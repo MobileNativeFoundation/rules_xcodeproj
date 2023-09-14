@@ -36,6 +36,8 @@ def _dict_to_xcode_target(d):
             platform = d["platform"],
         ),
         product = struct(
+            basename = d["product_basename"],
+            file_path = d["product_file_path"],
             module_name_attribute = d["module_name_attribute"],
             type = d["product_type"],
         ),
@@ -51,6 +53,8 @@ def mock_xcode_target(
         module_name_attribute,
         os_version,
         platform,
+        product_basename,
+        product_file_path,
         product_type,
         test_host = None):
     return struct(
@@ -60,6 +64,8 @@ def mock_xcode_target(
         module_name_attribute = module_name_attribute,
         os_version = os_version,
         platform = platform,
+        product_basename = product_basename,
+        product_file_path = product_file_path,
         product_type = product_type,
         test_host = test_host,
     )
@@ -255,6 +261,8 @@ def write_pbxtargetdependencies_test_suite(name):
                     os_version = "16.2.1",
                     platform = "MACOS",
                     product_type = "u",
+                    product_file_path = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
+                    product_basename = "tests.xctest",
                     module_name_attribute = "tests",
                     test_host = "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
                 ),
@@ -269,6 +277,8 @@ def write_pbxtargetdependencies_test_suite(name):
                     os_version = "12.0",
                     platform = "IOS_DEVICE",
                     product_type = "T",
+                    product_file_path = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
+                    product_basename = "codesigned_generator",
                     module_name_attribute = None,
                 ),
             },
@@ -280,6 +290,8 @@ def write_pbxtargetdependencies_test_suite(name):
                     os_version = "9.1",
                     platform = "WATCHOS_SIMULATOR",
                     product_type = "L",
+                    product_file_path = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
+                    product_basename = "libgenerator.a",
                     module_name_attribute = "generator",
                 ),
             },
@@ -358,6 +370,16 @@ def write_pbxtargetdependencies_test_suite(name):
             "tests",
             "",
             "generator",
+            # productPaths
+            "--product-paths",
+            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
+            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
+            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
+            # productBasenames
+            "--product-basenames",
+            "tests.xctest",
+            "codesigned_generator",
+            "libgenerator.a",
             # dependencyCounts
             "--dependency-counts",
             "1",

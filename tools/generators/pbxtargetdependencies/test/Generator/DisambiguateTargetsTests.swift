@@ -1724,9 +1724,3 @@ extension Array where Element == ConsolidatedTarget {
         }
     }
 }
-
-extension ConsolidatedTarget.Key: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        return lhs.sortedIds.first! < rhs.sortedIds.first!
-    }
-}

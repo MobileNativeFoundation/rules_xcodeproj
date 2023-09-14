@@ -48,6 +48,14 @@ extension Generator.InnerIdentifyTargets {
         targetIdToConsolidationMapOutputPath: [TargetID : (UInt8, URL)],
         createTargetSubIdentifier: Generator.CreateTargetSubIdentifier
     ) -> [IdentifiedTarget] {
+        let idsToNames: [TargetID: String] = Dictionary(
+            uniqueKeysWithValues: disambiguatedTargets.lazy.flatMap { target in
+                return target.target.key.sortedIds.map { id in
+                    return (id, target.name)
+                }
+            }
+        )
+
         var identifiedTargets: [IdentifiedTarget] = []
         for disambiguatedTarget in disambiguatedTargets {
             let aTarget = disambiguatedTarget.target.sortedTargets.first!
@@ -66,7 +74,13 @@ extension Generator.InnerIdentifyTargets {
                 IdentifiedTarget(
                     consolidationMapOutputPath: outputPath,
                     key: disambiguatedTarget.target.key,
+                    label: disambiguatedTarget.target.label,
+                    productType: disambiguatedTarget.target.productType,
                     name: disambiguatedTarget.name,
+                    productPath: aTarget.productPath,
+                    productBasename: aTarget.productBasename,
+                    uiTestHostName: disambiguatedTarget
+                        .target.uiTestHost.flatMap { idsToNames[$0] },
                     identifier: identifier,
                     dependencies: aTarget.dependencies
                 )

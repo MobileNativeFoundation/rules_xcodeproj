@@ -712,7 +712,10 @@ extension Target {
         platform: Platform = .iOSSimulator,
         osVersion: SemanticVersion = "12.0",
         arch: String = "arm64",
+        productPath: String = "some/libtarget.a",
+        productBasename: String = "libtarget.a",
         moduleName: String = "",
+        uiTestHost: TargetID? = nil,
         dependencies: [TargetID] = []
     ) -> Self {
         return Self(
@@ -723,7 +726,10 @@ extension Target {
             platform: platform,
             osVersion: osVersion,
             arch: arch,
+            productPath: productPath,
+            productBasename: productBasename,
             moduleName: moduleName,
+            uiTestHost: uiTestHost,
             dependencies: dependencies
         )
     }

@@ -21,9 +21,10 @@ struct Generator {
     /// `PBXProject.targets` `PBXProj` partial, , and target consolidation map
     /// files. Then it writes them to disk.
     func generate(arguments: Arguments, logger: Logger) async throws {
+        let testHosts = arguments.testHosts
         let identifiedTargets = try environment.identifyTargets(
-            consolidationMapArguments: arguments
-                .consolidationMapsArguments.toConsolidationMapArguments(),
+            consolidationMapArguments: try arguments.consolidationMapsArguments
+                .toConsolidationMapArguments(testHosts: testHosts),
             logger: logger
         )
 
@@ -53,7 +54,7 @@ struct Generator {
                 environment.calculateTargetAttributesPartial(
                     objects: environment.createTargetAttributesObjects(
                         identifiedTargets: identifiedTargets,
-                        testHosts: arguments.testHosts,
+                        testHosts: testHosts,
                         identifiers: identifiers,
                         createdOnToolsVersion: environment
                             .calculateCreatedOnToolsVersion(

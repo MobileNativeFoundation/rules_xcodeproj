@@ -60,7 +60,12 @@ extension Generator.Arguments {
             uniqueKeysWithValues:
                 stride(from: 0, to: targetAndTestHosts.count - 1, by: 2)
                 .lazy
-                .map { (targetAndTestHosts[$0], targetAndTestHosts[$0+1]) }
+                .map { index in
+                    return (
+                        targetAndTestHosts[index],
+                        targetAndTestHosts[index+1]
+                    )
+                }
         )
     }
 }

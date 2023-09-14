@@ -10,7 +10,11 @@ final class ConsolidationMapEntryTests: XCTestCase {
         let input: [ConsolidationMapEntry] = [
             .init(
                 key: .init(["CCCCC"]),
+                label: "@//:CCCCC",
+                productType: .commandLineTool,
                 name: "Disambiguated 3 (Name)",
+                productPath: "some/tool with spaces/c",
+                uiTestHostName: nil,
                 subIdentifier: .init(shard: "42", hash: "18270012"),
                 dependencySubIdentifiers: [
                     .init(shard: "02", hash: "00234561"),
@@ -19,13 +23,21 @@ final class ConsolidationMapEntryTests: XCTestCase {
             ),
             .init(
                 key: .init(["@A//:a 1234", "@B//:b 4356", "DDDD"]),
+                label: "@//package:a",
+                productType: .uiTestBundle,
                 name: "Disambiguated 2",
+                productPath: "a/test.xctest",
+                uiTestHostName: "Disambiguated 3 (Name)",
                 subIdentifier: .init(shard: "01", hash: "12345678"),
                 dependencySubIdentifiers: []
             ),
             .init(
                 key: .init(["A", "C"]),
+                label: "@repo//:C",
+                productType: .staticLibrary,
                 name: "Disambiguated",
+                productPath: "a/libtest.a",
+                uiTestHostName: nil,
                 subIdentifier: .init(shard: "00", hash: "00000000"),
                 dependencySubIdentifiers: [
                     .init(shard: "44", hash: "00000000"),

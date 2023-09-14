@@ -192,6 +192,16 @@ _SCHEMES = [
                 "x86_64",
                 "x86_64",
                 "x86_64",
+                # productPaths
+                "--product-paths",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
+                # productBasenames
+                "--product-basenames",
+                "generator_codesigned",
+                "tests.xctest",
+                "libgenerator.a",
                 # moduleNames
                 "--module-names",
                 "''",

@@ -9,6 +9,14 @@ struct Target: Equatable {
     let platform: Platform
     let osVersion: SemanticVersion
     let arch: String
+
+    /// e.g. "bazel-out/generator" or "bazel-out/App.app"
+    let productPath: String
+
+    /// e.g. "generator_codesigned" or "App.app"
+    let productBasename: String
+
     let moduleName: String
+    let uiTestHost: TargetID?
     let dependencies: [TargetID]
 }
