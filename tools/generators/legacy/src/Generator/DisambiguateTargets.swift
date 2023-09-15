@@ -76,12 +76,19 @@ extension Generator {
             guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
                 .count != 1
             else {
+                let baseName: String
+                switch consolidatedTargets.targetNameMode {
+                case .auto:
+                    baseName = target.moduleName
+                case .label:
+                    baseName = "\(target.label)"
+                }
                 uniqueValues[key] = DisambiguatedTarget(
                     name: names[moduleNameAndProductType.normalizedModuleName]!
                         .uniqueName(
                             for: target,
                             key: key,
-                            baseName: target.moduleName
+                            baseName: baseName
                         ),
                     target: target
                 )

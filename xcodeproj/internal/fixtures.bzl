@@ -148,6 +148,7 @@ def xcodeproj_fixture(
         default_xcode_configuration = None,
         extra_files = [],
         fail_for_invalid_extra_files_targets = True,
+        target_name_mode = None,
         top_level_targets = [],
         focused_targets = [],
         unfocused_targets = [],
@@ -177,6 +178,8 @@ def xcodeproj_fixture(
         post_build: Maps to `xcodeproj.post_build`.
         pre_build: Maps to `xcodeproj.pre_build`.
         project_options: Maps to `xcodeproj.project_options`.
+        target_name_mode:  Maps to
+            `xcodeproj.target_name_mode`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
@@ -215,6 +218,7 @@ def xcodeproj_fixture(
             project_name = suffix,
             project_options = project_options,
             tags = ["manual"],
+            target_name_mode = target_name_mode,
             top_level_targets = top_level_targets,
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,

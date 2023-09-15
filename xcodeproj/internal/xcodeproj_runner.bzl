@@ -269,6 +269,7 @@ def _write_generator_build_file(
             "%runner_label%": runner_label,
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
             "%tags%": tags,
+            "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
             "%top_level_device_targets%": str(attr.top_level_device_targets),
             "%top_level_simulator_targets%": str(
@@ -559,6 +560,10 @@ xcodeproj_runner = rule(
             values = ["auto", "none", "all"],
         ),
         "schemes_json": attr.string(),
+        "target_name_mode": attr.string(
+            default = "auto",
+            values = ["auto", "label"],
+        ),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
         "tvos_device_cpus": attr.string(

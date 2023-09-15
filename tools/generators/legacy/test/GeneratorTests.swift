@@ -65,6 +65,7 @@ final class GeneratorTests: XCTestCase {
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
             targetIdsFile: "/tmp/target_ids",
+            targetNameMode: .auto,
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
             postBuildScript: "./post-build.sh"
@@ -123,7 +124,8 @@ final class GeneratorTests: XCTestCase {
                 "Z": .init(
                     targets: ["Z": targets["Z"]!]
                 ),
-            ]
+            ],
+            targetNameMode: .auto
         )
         let disambiguatedTargets = DisambiguatedTargets(
             keys: [
@@ -408,24 +410,28 @@ final class GeneratorTests: XCTestCase {
         struct ConsolidateTargetsCalled: Equatable {
             let targets: [TargetID: Target]
             let xcodeGeneratedFiles: [FilePath: FilePath]
+            let targetNameMode: TargetNameMode
         }
 
         var consolidateTargetsCalled: [ConsolidateTargetsCalled] = []
         func consolidateTargets(
             _ targets: [TargetID: Target],
             _ xcodeGeneratedFiles: [FilePath: FilePath],
+            _ targetNameMode: TargetNameMode,
             logger _: Logger
         ) -> ConsolidatedTargets {
             consolidateTargetsCalled.append(.init(
                 targets: targets,
-                xcodeGeneratedFiles: xcodeGeneratedFiles
+                xcodeGeneratedFiles: xcodeGeneratedFiles,
+                targetNameMode: targetNameMode
             ))
             return consolidatedTargets
         }
 
         let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
             targets: targets,
-            xcodeGeneratedFiles: xcodeGeneratedFiles
+            xcodeGeneratedFiles: xcodeGeneratedFiles,
+            targetNameMode: .auto
         )]
 
         // MARK: createProducts()

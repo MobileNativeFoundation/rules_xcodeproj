@@ -36,6 +36,7 @@ def xcodeproj(
         project_options = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
+        target_name_mode = "auto",
         temporary_directory = None,
         top_level_targets,
         tvos_device_cpus = "arm64",
@@ -248,6 +249,19 @@ def xcodeproj(
             dependencies of the targets specified in the `top_level_targets`
             argument. This and the `scheme_autogeneration_mode` argument
             together customize how schemes for those targets are generated.
+        target_name_mode: Optional. Specifies how Xcode targets names are
+            represented:
+
+            <ul>
+            <li>
+              `auto`: Use the product name if it is available and there is no collision.
+               Otherwise select the target name from the label.
+               And if there is a collision, use the full label.
+            </li>
+            <li>
+              `label`: Always use full label for Xcode targets names.
+            </li>
+            </ul>
         temporary_directory: This argument is deprecated and is now a no-op. It
             will be removed in a future release.
         top_level_targets: A `list` of a list of top-level targets.
@@ -514,6 +528,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
+        target_name_mode = target_name_mode,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,

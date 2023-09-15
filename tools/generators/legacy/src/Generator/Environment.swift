@@ -24,6 +24,7 @@ struct Environment {
     let consolidateTargets: (
         _ targets: [TargetID: Target],
         _ xcodeGeneratedFiles: [FilePath: FilePath],
+        _ targetNameMode: TargetNameMode,
         _ logger: Logger
     ) throws -> ConsolidatedTargets
 

@@ -42,6 +42,7 @@ enum Fixtures {
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
         targetIdsFile: "/tmp/target_ids",
+        targetNameMode: .auto,
         indexImport: "/tmp/index-import",
         preBuildScript: "./pre-build.sh",
         postBuildScript: "./post-build.sh"
@@ -368,7 +369,8 @@ enum Fixtures {
             ["WKE"],
             ["R 1"],
             ["T 1", "T 2", "T 3"],
-        ]
+        ],
+        targetNameMode: .auto
     )
 
     static func disambiguatedTargets(

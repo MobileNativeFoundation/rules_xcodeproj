@@ -98,6 +98,7 @@ class Generator {
             return try environment.consolidateTargets(
                 targets,
                 xcodeGeneratedFiles,
+                project.targetNameMode,
                 logger
             )
         }
