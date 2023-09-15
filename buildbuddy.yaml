@@ -96,22 +96,6 @@ actions:
     bazel_commands:
       - *test_all
 
-  - name: Integration Test - Root - Bazel LTS
-    <<: *bazel_lts
-    <<: *action_base
-    <<: *normal_resources
-    <<: *root_workspace
-    bazel_commands:
-      - *validate_integration
-  - name: Integration Test - Root - Bazel HEAD
-    <<: *bazel_head
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *root_workspace
-    bazel_commands:
-      - *validate_integration
-
   - name: Integration Test - "examples/integration" - Bazel LTS
     <<: *bazel_lts
     <<: *arm64
