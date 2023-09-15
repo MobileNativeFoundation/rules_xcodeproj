@@ -92,6 +92,7 @@ extension Generator {
             .init(key: "DSTROOT", value: #""$(PROJECT_TEMP_DIR)""#),
             .init(key: "ENABLE_DEFAULT_SEARCH_PATHS", value: "NO"),
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
+            .init(key: "ENABLE_USER_SCRIPT_SANDBOXING", value: "NO"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
             .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#),
             .init(
