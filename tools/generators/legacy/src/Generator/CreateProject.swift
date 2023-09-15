@@ -103,6 +103,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             // Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match
             // its new project default, so we need to set it explicitly
             "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "ENABLE_USER_SCRIPT_SANDBOXING": false,
             "GCC_OPTIMIZATION_LEVEL": "0",
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
