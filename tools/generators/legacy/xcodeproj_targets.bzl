@@ -65,31 +65,6 @@ def get_xcode_schemes():
     return [
         xcode_schemes.scheme(
             name = "generator",
-            # The build_action in this example is not necessary for the scheme
-            # to work. It is here to test that customized build_for settings
-            # propagate properly.
-            build_action = xcode_schemes.build_action(
-                targets = [
-                    xcode_schemes.build_target(
-                        _APP_TARGET,
-                        xcode_schemes.build_for(archiving = True),
-                    ),
-                ],
-                pre_actions = [
-                    xcode_schemes.pre_post_action(
-                        script = "echo 'Building target: generator'",
-                        name = "Example: Start build time tracking...",
-                        expand_variables_based_on = _APP_TARGET,
-                    ),
-                ],
-                post_actions = [
-                    xcode_schemes.pre_post_action(
-                        script = "echo 'Completed Building target: generator'",
-                        name = "Example: Stop build time tracking...",
-                        expand_variables_based_on = _APP_TARGET,
-                    ),
-                ],
-            ),
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
                 args = [
@@ -114,9 +89,6 @@ def get_xcode_schemes():
                     "/tmp/specs/xcodeproj-targets_spec.7.json",
                 ],
                 build_configuration = "Release",
-                # This is not necessary for the generator. It is here to help
-                # verify that custom environment variables are passed along.
-                env = {"CUSTOM_ENV_VAR": "hello"},
                 diagnostics = xcode_schemes.diagnostics(
                     sanitizers = xcode_schemes.sanitizers(
                         address = True,
@@ -152,9 +124,6 @@ def get_xcode_schemes():
             ),
             test_action = xcode_schemes.test_action(
                 [_TEST_TARGET],
-                # This is not necessary for the generator tests. It is here to help
-                # verify that custom environment variables are passed along.
-                env = {"CUSTOM_ENV_VAR": "goodbye"},
                 diagnostics = xcode_schemes.diagnostics(
                     sanitizers = xcode_schemes.sanitizers(
                         address = True,
