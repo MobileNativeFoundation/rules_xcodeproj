@@ -379,7 +379,7 @@ extension ConsolidationMapsArguments {
 
 private extension Array {
     func slicedBy<CountsCollection>(
-        targetIndex: Array<TargetID>.Index,
+        targetIndex: Int,
         counts: CountsCollection,
         startIndex: inout Index
     ) -> Self where
