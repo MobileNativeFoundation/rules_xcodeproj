@@ -178,8 +178,7 @@ def xcodeproj_fixture(
         post_build: Maps to `xcodeproj.post_build`.
         pre_build: Maps to `xcodeproj.pre_build`.
         project_options: Maps to `xcodeproj.project_options`.
-        target_name_mode:  Maps to
-            `xcodeproj.target_name_mode`.
+        target_name_mode:  Maps to `xcodeproj.target_name_mode`.
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
