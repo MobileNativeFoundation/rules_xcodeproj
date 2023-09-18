@@ -66,6 +66,50 @@ final class DisambiguateTargetsTests: XCTestCase {
         )
     }
 
+    func test_label_mode() throws {
+        // Arrange
+        let targets: [TargetID: Target] = [
+            "A": Target.mock(
+                label: "@//a:A",
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                label: "@//b:B",
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+            "C": Target.mock(
+                label: "@//c:C",
+                product: .init(type: .staticLibrary, name: "C", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            "A": "@//a:A",
+            "B": "@//b:B",
+            "C": "@//c:C",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets,
+            .label
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
     // MARK: - Product Type
 
     func test_productType() throws {
