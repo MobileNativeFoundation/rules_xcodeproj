@@ -1,3 +1,4 @@
+import OrderedCollections
 import PathKit
 import XcodeProj
 
@@ -7,7 +8,9 @@ extension Generator {
         for consolidatedTargets: ConsolidatedTargets
     ) -> (Products, PBXGroup) {
         var products = Products()
-        for (key, target) in consolidatedTargets.targets {
+        for (key, target) in consolidatedTargets.targets.sorted(
+            by: localizedStandardSort
+        ) {
             let fileType: String?
             let name: String?
             let path: String?
@@ -55,7 +58,7 @@ extension Generator {
         }
 
         let group = PBXGroup(
-            children: products.byTarget.sortedLocalizedStandard(),
+            children: products.byTarget.values.elements,
             sourceTree: .group,
             name: "Products"
         )
@@ -72,7 +75,8 @@ struct Products: Equatable {
         let filePaths: Set<FilePath>
     }
 
-    private(set) var byTarget: [ConsolidatedTarget.Key: PBXFileReference] = [:]
+    private(set) var byTarget:
+        OrderedDictionary<ConsolidatedTarget.Key, PBXFileReference> = [:]
     private(set) var byFilePath: [FilePath: PBXFileReference] = [:]
 
     mutating func add(
@@ -95,4 +99,35 @@ extension Products {
             }
         }
     }
+}
+
+private func localizedStandardSort(
+    lhs: (key: ConsolidatedTarget.Key, value: ConsolidatedTarget),
+    rhs: (key: ConsolidatedTarget.Key, value: ConsolidatedTarget)
+) -> Bool {
+    let lhsTarget = lhs.value
+    let rhsTarget = rhs.value
+
+    guard
+        let lhsBasename = lhsTarget.product.basename,
+        let rhsBasename = rhsTarget.product.basename
+    else {
+        return false
+    }
+
+    let basenameCompare = lhsBasename.localizedStandardCompare(rhsBasename)
+    guard basenameCompare == .orderedSame else {
+        return basenameCompare == .orderedAscending
+    }
+
+    guard
+        let lhsProductPath = lhsTarget.sortedTargets.first!.product.path,
+        let rhsProductPath = rhsTarget.sortedTargets.first!.product.path
+    else {
+        return false
+    }
+
+    return lhsProductPath.path.string
+        .localizedStandardCompare(rhsProductPath.path.string) ==
+            .orderedAscending
 }
