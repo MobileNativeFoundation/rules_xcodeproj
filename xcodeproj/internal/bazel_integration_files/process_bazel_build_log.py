@@ -19,14 +19,14 @@ def _main(command: List[str]) -> None:
     bazel_out_directory = os.getenv("BAZEL_OUT")
     if not bazel_out_directory:
         sys.exit("BAZEL_OUT environment variable must be set")
-    bazel_out_prefix = bazel_out_directory[:-(len("/bazel-out")+1)]
+    bazel_out_prefix = bazel_out_directory[:-len("/bazel-out")]
     if not bazel_out_prefix.startswith("/"):
         bazel_out_prefix = f"{srcroot}/{bazel_out_prefix}"
 
     external_directory = os.getenv("BAZEL_EXTERNAL")
     if not external_directory:
         sys.exit("BAZEL_EXTERNAL environment variable must be set")
-    external_prefix = bazel_out_directory[:-(len("/external")+1)]
+    external_prefix = bazel_out_directory[:-len("/external")]
     if not external_prefix.startswith("/"):
         external_prefix = f"{srcroot}/{external_prefix}"
 
