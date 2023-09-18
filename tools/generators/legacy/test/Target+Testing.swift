@@ -133,8 +133,7 @@ extension ConsolidatedTarget {
 extension ConsolidatedTargets {
     init(
         targets: [TargetID: Target],
-        xcodeGeneratedFiles: [FilePath: FilePath] = [:],
-        targetNameMode: TargetNameMode
+        xcodeGeneratedFiles: [FilePath: FilePath] = [:]
     ) {
         var keys: [TargetID: ConsolidatedTarget.Key] = [:]
         var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
@@ -149,14 +148,13 @@ extension ConsolidatedTargets {
             )
         }
 
-        self.init(keys: keys, targets: consolidatedTargets, targetNameMode: targetNameMode)
+        self.init(keys: keys, targets: consolidatedTargets)
     }
 
     init(
         allTargets: [TargetID: Target],
         keys: Set<Set<TargetID>>,
-        xcodeGeneratedFiles: [FilePath: FilePath] = [:],
-        targetNameMode: TargetNameMode
+        xcodeGeneratedFiles: [FilePath: FilePath] = [:]
     ) {
         var mapping: [TargetID: ConsolidatedTarget.Key] = [:]
         var consolidatedTargets: [ConsolidatedTarget.Key: ConsolidatedTarget] =
@@ -173,7 +171,7 @@ extension ConsolidatedTargets {
             )
         }
 
-        self.init(keys: mapping, targets: consolidatedTargets, targetNameMode: targetNameMode)
+        self.init(keys: mapping, targets: consolidatedTargets)
     }
 }
 

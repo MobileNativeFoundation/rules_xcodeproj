@@ -15,7 +15,6 @@ extension Generator {
         // swiftlint:disable:previous cyclomatic_complexity
         _ targets: [TargetID: Target],
         _ xcodeGeneratedFiles: [FilePath: FilePath],
-        _ targetNameMode: TargetNameMode,
         logger: Logger
     ) throws -> ConsolidatedTargets {
         // First pass
@@ -219,8 +218,7 @@ Target "\(targetID)" not found in `consolidateTargets().targets`
 
         return ConsolidatedTargets(
             keys: targetIDMapping,
-            targets: consolidatedTargets,
-            targetNameMode: targetNameMode
+            targets: consolidatedTargets
         )
     }
 }
@@ -274,7 +272,6 @@ extension PlatformAndConfiguration: Comparable {
 struct ConsolidatedTargets: Equatable {
     let keys: [TargetID: ConsolidatedTarget.Key]
     let targets: [ConsolidatedTarget.Key: ConsolidatedTarget]
-    let targetNameMode: TargetNameMode
 }
 
 /// Collects multiple Bazel targets (see `Target`) that can be represented by

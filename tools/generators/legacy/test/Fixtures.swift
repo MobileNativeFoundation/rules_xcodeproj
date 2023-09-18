@@ -369,8 +369,7 @@ enum Fixtures {
             ["WKE"],
             ["R 1"],
             ["T 1", "T 2", "T 3"],
-        ],
-        targetNameMode: .auto
+        ]
     )
 
     static func disambiguatedTargets(

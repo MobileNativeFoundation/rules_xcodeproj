@@ -24,7 +24,6 @@ struct Environment {
     let consolidateTargets: (
         _ targets: [TargetID: Target],
         _ xcodeGeneratedFiles: [FilePath: FilePath],
-        _ targetNameMode: TargetNameMode,
         _ logger: Logger
     ) throws -> ConsolidatedTargets
 
@@ -64,7 +63,8 @@ struct Environment {
     ) -> Void
 
     let disambiguateTargets: (
-        _ consolidatedTargets: ConsolidatedTargets
+        _ consolidatedTargets: ConsolidatedTargets,
+        _ targetNameMode: TargetNameMode
     ) -> DisambiguatedTargets
 
     let addBazelDependenciesTarget: (

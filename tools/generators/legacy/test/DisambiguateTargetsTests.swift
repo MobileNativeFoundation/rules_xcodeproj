@@ -35,7 +35,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .application, name: "a", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "@//a:A",
             "A 2": "@//b:A (App)",
@@ -48,7 +48,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -90,7 +91,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .application, name: "c", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (Library)",
             "A 2": "A (App)",
@@ -102,7 +103,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -135,7 +137,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (iOS)",
             "A 2": "A (watchOS)",
@@ -145,7 +147,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -180,7 +183,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (iOS)",
             "A 2": "A (watchOS)",
@@ -190,7 +193,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -225,7 +229,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (arm64)",
             "A 2": "A (x86_64)",
@@ -235,7 +239,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -270,7 +275,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (iOS 15.1)",
             "A 2": "A (iOS 13.2)",
@@ -280,7 +285,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -315,7 +321,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (Device)",
             "A 2": "A (Simulator)",
@@ -325,7 +331,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -376,8 +383,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 ["A 1 - R", "A 1 - D"],
                 ["A 2 - R", "A 2 - D"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             ["A 1 - R", "A 1 - D"]: "A (Device)",
@@ -388,7 +394,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -423,7 +430,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (iOS)",
             "A 2": "A (macOS)",
@@ -433,7 +440,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -471,7 +479,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (Library) (iOS)",
             "A 2": "A (Library) (macOS)",
@@ -482,7 +490,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -518,7 +527,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (Debug)",
             "A 2": "A (Release)",
@@ -528,7 +537,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -562,7 +572,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (Debug)",
             "A 2": "A (Profile, Release)",
@@ -572,7 +582,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -607,7 +618,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": "A (\(ProductTypeComponents.prettyConfigurations(["1"])))",
             "A 2": "A (\(ProductTypeComponents.prettyConfigurations(["2"])))",
@@ -617,7 +628,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -660,7 +672,7 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (arm64) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -675,7 +687,8 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -718,7 +731,7 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -733,7 +746,8 @@ A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -770,7 +784,7 @@ A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (Library) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -785,7 +799,8 @@ A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -825,7 +840,7 @@ A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (iOS) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -840,7 +855,8 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -890,7 +906,7 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 product: .init(type: .staticLibrary, name: "C", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -911,7 +927,8 @@ B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -951,7 +968,7 @@ B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
-        let consolidatedTargets = ConsolidatedTargets(targets: targets, targetNameMode: .auto)
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             "A 1": """
 A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["1"])))
@@ -966,7 +983,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1029,8 +1047,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                     "tvOS-Device",
                     "macOS",
                 ],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init([
@@ -1047,7 +1064,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1103,8 +1121,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 ["A 1", "A 2", "A 3"],
                 ["A 4"],
                 ["B 1", "B 2", "B 3"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A 1", "A 2", "A 3"]): "A (iOS, tvOS)",
@@ -1115,7 +1132,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1176,8 +1194,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 ["A 2"],
                 ["B 1", "B 2"],
                 ["B 3", "B 4"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A 1", "A 3", "A 4"]): "A (iOS 11.0, tvOS)",
@@ -1189,7 +1206,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1245,8 +1263,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 ["A 1", "A 2", "A 3"],
                 ["B 1", "B 2", "B 3"],
                 ["B 4"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A 1", "A 2", "A 3"]): "A",
@@ -1259,7 +1276,8 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1298,8 +1316,7 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
             keys: [
                 ["A", "C"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A", "C"]): "A (iOS Device, tvOS)",
@@ -1309,7 +1326,8 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1351,8 +1369,7 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
             keys: [
                 ["A", "C"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A", "C"]): """
@@ -1366,7 +1383,8 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1417,8 +1435,7 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
             keys: [
                 ["A1", "A2"],
                 ["A3", "A4"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A1", "A2"]): """
@@ -1432,7 +1449,8 @@ A (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1490,8 +1508,7 @@ A (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
                 ["A1", "A2"],
                 ["A3", "A4"],
                 ["A5"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A1", "A2"]): """
@@ -1508,7 +1525,8 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1552,8 +1570,7 @@ A (x86_64)
                 ["A1", "A2"],
                 ["A3"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             .init(["A1", "A2"]): "A (Debug, Release)",
@@ -1564,7 +1581,8 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert

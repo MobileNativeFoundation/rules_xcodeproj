@@ -21,8 +21,7 @@ final class ConsolidateTargetsTests: XCTestCase {
             allTargets: targets,
             keys: [
                 ["A", "B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -32,7 +31,6 @@ final class ConsolidateTargetsTests: XCTestCase {
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -88,8 +86,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                     "A-Device-Debug",
                     "A-Device-ReleaseProfile",
                 ],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -99,7 +96,6 @@ final class ConsolidateTargetsTests: XCTestCase {
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -171,8 +167,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["A-Device-Debug", "A-Device-Release"],
                 ["B-Simulator-Debug", "B-Simulator-Release"],
                 ["C-Device-Debug", "C-Device-Release"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
             .init(.warning, """
@@ -189,7 +184,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -225,8 +219,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
             keys: [
                 ["A"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -236,7 +229,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -295,8 +287,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
                 ["A-Simulator-Intel"],
                 ["C-Intel"],
                 ["C-AppleSilicon"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -306,7 +297,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -344,8 +334,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
             keys: [
                 ["A"],
                 ["B", "C"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -355,7 +344,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -389,8 +377,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
             keys: [
                 ["A"],
                 ["B"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -400,7 +387,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -451,8 +437,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
                 ["A1", "A2"],
                 ["B1", "B2"],
                 ["B3", "B4"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -462,7 +447,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -525,8 +509,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
                     "watchOS-Simulator",
                     "watchOS-Device",
                 ],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
@@ -536,7 +519,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -636,8 +618,7 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
                 ["B-Device"],
                 ["A-Simulator"],
                 ["A-Device"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
             .init(.warning, """
@@ -663,7 +644,6 @@ they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 
@@ -773,8 +753,7 @@ they have conditional dependencies (e.g. `deps`, `test_host`, \
                 // Transitively has divergent testHost dependencies
                 ["A1-Simulator"],
                 ["A1-Device"],
-            ],
-            targetNameMode: .auto
+            ]
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
             .init(.warning, """
@@ -805,7 +784,6 @@ they have conditional dependencies (e.g. `deps`, `test_host`, \
         let consolidatedTargets = try Generator.consolidateTargets(
             targets,
             [:],
-            .auto,
             logger: logger
         )
 

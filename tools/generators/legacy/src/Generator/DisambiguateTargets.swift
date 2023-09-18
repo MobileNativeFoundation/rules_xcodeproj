@@ -23,7 +23,8 @@ struct DisambiguatedTargets: Equatable {
 
 extension Generator {
     static func disambiguateTargets(
-        _ consolidatedTargets: ConsolidatedTargets
+        _ consolidatedTargets: ConsolidatedTargets,
+        _ targetNameMode: TargetNameMode
     ) -> DisambiguatedTargets {
         let targets = consolidatedTargets.targets
 
@@ -71,7 +72,7 @@ extension Generator {
             ConsolidatedTarget.Key: DisambiguatedTarget,
         ](minimumCapacity: targets.count)
         for (key, target) in targets {
-            switch consolidatedTargets.targetNameMode {
+            switch targetNameMode {
             case .auto:
                 let moduleNameAndProductType =
                     ModuleNameAndProductType(target: target)

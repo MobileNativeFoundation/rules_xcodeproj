@@ -124,8 +124,7 @@ final class GeneratorTests: XCTestCase {
                 "Z": .init(
                     targets: ["Z": targets["Z"]!]
                 ),
-            ],
-            targetNameMode: .auto
+            ]
         )
         let disambiguatedTargets = DisambiguatedTargets(
             keys: [
@@ -410,28 +409,24 @@ final class GeneratorTests: XCTestCase {
         struct ConsolidateTargetsCalled: Equatable {
             let targets: [TargetID: Target]
             let xcodeGeneratedFiles: [FilePath: FilePath]
-            let targetNameMode: TargetNameMode
         }
 
         var consolidateTargetsCalled: [ConsolidateTargetsCalled] = []
         func consolidateTargets(
             _ targets: [TargetID: Target],
             _ xcodeGeneratedFiles: [FilePath: FilePath],
-            _ targetNameMode: TargetNameMode,
             logger _: Logger
         ) -> ConsolidatedTargets {
             consolidateTargetsCalled.append(.init(
                 targets: targets,
-                xcodeGeneratedFiles: xcodeGeneratedFiles,
-                targetNameMode: targetNameMode
+                xcodeGeneratedFiles: xcodeGeneratedFiles
             ))
             return consolidatedTargets
         }
 
         let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
             targets: targets,
-            xcodeGeneratedFiles: xcodeGeneratedFiles,
-            targetNameMode: .auto
+            xcodeGeneratedFiles: xcodeGeneratedFiles
         )]
 
         // MARK: createProducts()
@@ -493,20 +488,24 @@ final class GeneratorTests: XCTestCase {
 
         struct DisambiguateTargetsCalled: Equatable {
             let consolidatedTargets: ConsolidatedTargets
+            let targetNameMode: TargetNameMode
         }
 
         var disambiguateTargetsCalled: [DisambiguateTargetsCalled] = []
         func disambiguateTargets(
-            consolidatedTargets: ConsolidatedTargets
+            consolidatedTargets: ConsolidatedTargets,
+            targetNameMode: TargetNameMode
         ) -> DisambiguatedTargets {
             disambiguateTargetsCalled.append(.init(
-                consolidatedTargets: consolidatedTargets
+                consolidatedTargets: consolidatedTargets,
+                targetNameMode: targetNameMode
             ))
             return disambiguatedTargets
         }
 
         let expectedDisambiguateTargetsCalled = [DisambiguateTargetsCalled(
-            consolidatedTargets: consolidatedTargets
+            consolidatedTargets: consolidatedTargets,
+            targetNameMode: .auto
         )]
 
         // MARK: addBazelDependenciesTarget()

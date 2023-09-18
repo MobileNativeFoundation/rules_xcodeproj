@@ -98,14 +98,14 @@ class Generator {
             return try environment.consolidateTargets(
                 targets,
                 xcodeGeneratedFiles,
-                project.targetNameMode,
                 logger
             )
         }
 
         async let disambiguatedTargets = Task {
             try await environment.disambiguateTargets(
-                consolidatedTargetsTask.value
+                consolidatedTargetsTask.value,
+                project.targetNameMode
             )
         }.value
         let createdProductsTask = Task {
