@@ -122,6 +122,14 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+  - name: Integration Test - "examples/integration" - Bazel HEAD using WORKSPACE
+    <<: *bazel_head
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *nobzlmod_generate_integration
+      - *nobzlmod_build_all
 
   - name: Integration Test - "examples/rules_ios" - Bazel LTS using WORKSPACE
     <<: *bazel_lts
