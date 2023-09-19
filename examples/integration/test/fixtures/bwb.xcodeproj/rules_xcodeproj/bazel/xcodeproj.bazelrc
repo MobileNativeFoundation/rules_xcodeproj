@@ -63,6 +63,10 @@ build:rules_xcodeproj --nolegacy_important_outputs
 # in the logs when generating, and all of the many outputs when building
 build:rules_xcodeproj --show_result=0
 
+# Disable sandboxing. Sandboxing on macOS is still very slow.
+build:rules_xcodeproj --noworker_sandboxing
+build:rules_xcodeproj --spawn_strategy=remote,worker,local
+
 ### `--config=rules_xcodeproj_generator`
 #
 # Used when generating a project.
