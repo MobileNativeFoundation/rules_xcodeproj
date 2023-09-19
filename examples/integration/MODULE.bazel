@@ -52,7 +52,14 @@ apple_cc_configure = use_extension(
     "@build_bazel_apple_support//crosstool:setup.bzl",
     "apple_cc_configure_extension",
 )
-use_repo(apple_cc_configure, "local_config_apple_cc")
+use_repo(
+    apple_cc_configure,
+    "local_config_apple_cc",
+    "local_config_apple_cc_toolchains",
+)
+
+# TODO: Remove manual register once https://github.com/bazelbuild/rules_cc/commit/c8c38f8c710cbbf834283e4777916b68261b359c is released
+register_toolchains("@local_config_apple_cc_toolchains//:all")
 
 non_module_deps = use_extension(":repositories.bzl", "non_module_deps")
 use_repo(
