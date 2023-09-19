@@ -48,7 +48,52 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
+    func test_label_mode() throws {
+        // Arrange
+        let targets: [TargetID: Target] = [
+            "A": Target.mock(
+                label: "@//a:A",
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                label: "@//b:B",
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+            "C": Target.mock(
+                label: "@//c:C",
+                product: .init(type: .staticLibrary, name: "C", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            "A": "@//a:A",
+            "B": "@//b:B",
+            "C": "@//c:C",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets,
+            .label
         )
 
         // Assert
@@ -102,7 +147,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -145,7 +191,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -190,7 +237,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -235,7 +283,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -280,7 +329,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -325,7 +375,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -387,7 +438,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -432,7 +484,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -481,7 +534,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -527,7 +581,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -571,7 +626,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -616,7 +672,8 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -674,7 +731,8 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -732,7 +790,8 @@ A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -784,7 +843,8 @@ A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -839,7 +899,8 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -910,7 +971,8 @@ B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -965,7 +1027,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1045,7 +1108,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1112,7 +1176,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1185,7 +1250,8 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1254,7 +1320,8 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1303,7 +1370,8 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1359,7 +1427,8 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1424,7 +1493,8 @@ A (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1499,7 +1569,8 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert
@@ -1554,7 +1625,8 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets = Generator.disambiguateTargets(
-            consolidatedTargets
+            consolidatedTargets,
+            .auto
         )
 
         // Assert

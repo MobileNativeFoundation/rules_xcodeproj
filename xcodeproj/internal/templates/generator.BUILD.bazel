@@ -35,6 +35,7 @@ xcodeproj(
     scheme_autogeneration_mode = "%scheme_autogeneration_mode%",
     schemes_json = ":custom_xcode_schemes.json",
     tags = %tags%,
+    target_name_mode = "%target_name_mode%",
     top_level_device_targets = %top_level_device_targets%,
     top_level_simulator_targets = %top_level_simulator_targets%,
     tvos_device_cpus = "%tvos_device_cpus%",

@@ -38,6 +38,7 @@ struct Project: Equatable {
     let schemeAutogenerationMode: SchemeAutogenerationMode
     var customXcodeSchemes: [XcodeScheme] = []
     let targetIdsFile: String
+    let targetNameMode: TargetNameMode
     let indexImport: String
     let preBuildScript: String?
     let postBuildScript: String?
@@ -59,6 +60,7 @@ extension Project: Decodable {
         case extraFolders = "F"
         case schemeAutogenerationMode = "s"
         case targetIdsFile = "T"
+        case targetNameMode = "N"
         case indexImport = "i"
         case preBuildScript = "p"
         case postBuildScript = "P"
@@ -100,6 +102,11 @@ extension Project: Decodable {
             ) ?? .all
         targetIdsFile = try container
             .decode(String.self, forKey: .targetIdsFile)
+        targetNameMode = try container
+            .decodeIfPresent(
+                TargetNameMode.self,
+                forKey: .targetNameMode
+            ) ?? .auto
         indexImport = try container
             .decode(String.self, forKey: .indexImport)
         preBuildScript = try container

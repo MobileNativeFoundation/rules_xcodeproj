@@ -104,7 +104,8 @@ class Generator {
 
         async let disambiguatedTargets = Task {
             try await environment.disambiguateTargets(
-                consolidatedTargetsTask.value
+                consolidatedTargetsTask.value,
+                project.targetNameMode
             )
         }.value
         let createdProductsTask = Task {

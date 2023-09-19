@@ -65,6 +65,7 @@ final class GeneratorTests: XCTestCase {
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
             targetIdsFile: "/tmp/target_ids",
+            targetNameMode: .auto,
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
             postBuildScript: "./post-build.sh"
@@ -487,20 +488,24 @@ final class GeneratorTests: XCTestCase {
 
         struct DisambiguateTargetsCalled: Equatable {
             let consolidatedTargets: ConsolidatedTargets
+            let targetNameMode: TargetNameMode
         }
 
         var disambiguateTargetsCalled: [DisambiguateTargetsCalled] = []
         func disambiguateTargets(
-            consolidatedTargets: ConsolidatedTargets
+            consolidatedTargets: ConsolidatedTargets,
+            targetNameMode: TargetNameMode
         ) -> DisambiguatedTargets {
             disambiguateTargetsCalled.append(.init(
-                consolidatedTargets: consolidatedTargets
+                consolidatedTargets: consolidatedTargets,
+                targetNameMode: targetNameMode
             ))
             return disambiguatedTargets
         }
 
         let expectedDisambiguateTargetsCalled = [DisambiguateTargetsCalled(
-            consolidatedTargets: consolidatedTargets
+            consolidatedTargets: consolidatedTargets,
+            targetNameMode: .auto
         )]
 
         // MARK: addBazelDependenciesTarget()

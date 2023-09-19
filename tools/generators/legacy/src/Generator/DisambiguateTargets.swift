@@ -23,7 +23,8 @@ struct DisambiguatedTargets: Equatable {
 
 extension Generator {
     static func disambiguateTargets(
-        _ consolidatedTargets: ConsolidatedTargets
+        _ consolidatedTargets: ConsolidatedTargets,
+        _ targetNameMode: TargetNameMode
     ) -> DisambiguatedTargets {
         let targets = consolidatedTargets.targets
 
@@ -42,6 +43,9 @@ extension Generator {
                 .insert(normalizedLabel)
         }
         for (key, target) in targets {
+            labels[target.normalizedLabel, default: .init()]
+                .add(target: target, key: key)
+            
             let moduleNameAndProductType =
                 ModuleNameAndProductType(target: target)
             guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
@@ -61,9 +65,6 @@ extension Generator {
                     .add(target: target, key: key)
                 continue
             }
-
-            labels[target.normalizedLabel, default: .init()]
-                .add(target: target, key: key)
         }
 
         // And then distinguish them
@@ -71,46 +72,59 @@ extension Generator {
             ConsolidatedTarget.Key: DisambiguatedTarget,
         ](minimumCapacity: targets.count)
         for (key, target) in targets {
-            let moduleNameAndProductType =
-                ModuleNameAndProductType(target: target)
-            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
-                .count != 1
-            else {
-                uniqueValues[key] = DisambiguatedTarget(
-                    name: names[moduleNameAndProductType.normalizedModuleName]!
-                        .uniqueName(
+            switch targetNameMode {
+            case .auto:
+                let moduleNameAndProductType =
+                    ModuleNameAndProductType(target: target)
+                guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                    .count != 1
+                else {
+                    uniqueValues[key] = DisambiguatedTarget(
+                        name: names[moduleNameAndProductType.normalizedModuleName]!
+                            .uniqueName(
+                                for: target,
+                                key: key,
+                                baseName: target.moduleName
+                            ),
+                        target: target
+                    )
+                    continue
+                }
+
+                let nameAndProductType = NameAndProductType(target: target)
+                guard
+                    labelsByNameAndProductType[nameAndProductType]!.count != 1
+                else {
+                    uniqueValues[key] = DisambiguatedTarget(
+                        name: names[nameAndProductType.normalizedName]!.uniqueName(
                             for: target,
                             key: key,
-                            baseName: target.moduleName
+                            baseName: target.name
                         ),
-                    target: target
-                )
-                continue
-            }
+                        target: target
+                    )
+                    continue
+                }
 
-            let nameAndProductType = NameAndProductType(target: target)
-            guard
-                labelsByNameAndProductType[nameAndProductType]!.count != 1
-            else {
                 uniqueValues[key] = DisambiguatedTarget(
-                    name: names[nameAndProductType.normalizedName]!.uniqueName(
+                    name: labels[target.normalizedLabel]!.uniqueName(
                         for: target,
                         key: key,
-                        baseName: target.name
+                        baseName: target.label.description
                     ),
                     target: target
                 )
-                continue
+            case .label:
+                uniqueValues[key] = DisambiguatedTarget(
+                    name: labels[target.normalizedLabel]!.uniqueName(
+                        for: target,
+                        key: key,
+                        baseName: target.label.description
+                    ),
+                    target: target
+                )
             }
 
-            uniqueValues[key] = DisambiguatedTarget(
-                name: labels[target.normalizedLabel]!.uniqueName(
-                    for: target,
-                    key: key,
-                    baseName: target.label.description
-                ),
-                target: target
-            )
         }
 
         return DisambiguatedTargets(

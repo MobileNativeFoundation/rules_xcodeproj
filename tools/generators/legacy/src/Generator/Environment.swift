@@ -63,7 +63,8 @@ struct Environment {
     ) -> Void
 
     let disambiguateTargets: (
-        _ consolidatedTargets: ConsolidatedTargets
+        _ consolidatedTargets: ConsolidatedTargets,
+        _ targetNameMode: TargetNameMode
     ) -> DisambiguatedTargets
 
     let addBazelDependenciesTarget: (

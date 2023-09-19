@@ -1150,6 +1150,7 @@ def _write_spec(
         schemes_json,
         target_dtos,
         target_ids_list,
+        target_name_mode,
         xcode_configurations):
     # `target_hosts`
     hosted_targets = depset(
@@ -1188,6 +1189,9 @@ def _write_spec(
 
     if scheme_autogeneration_mode != "all":
         spec_dto["s"] = scheme_autogeneration_mode
+
+    if target_name_mode != "auto":
+        spec_dto["N"] = target_name_mode
 
     set_if_true(
         spec_dto,
@@ -1578,6 +1582,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         schemes_json = ctx.file.schemes_json,
         target_dtos = target_dtos,
         target_ids_list = target_ids_list,
+        target_name_mode = ctx.attr.target_name_mode,
         xcode_configurations = xcode_configurations,
     )
     execution_root_file = write_execution_root_file(
@@ -1838,6 +1843,9 @@ def make_xcodeproj_rule(
         ),
         "schemes_json": attr.label(
             allow_single_file = True,
+            mandatory = True,
+        ),
+        "target_name_mode": attr.string(
             mandatory = True,
         ),
         "top_level_device_targets": attr.label_list(
