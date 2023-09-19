@@ -21045,7 +21045,6 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift CONFIGURATION-STABLE-12";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
@@ -21135,7 +21134,6 @@
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib:Lib CONFIGURATION-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES) bazel-out/CONFIGURATION-STABLE-4/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-7/bin/Lib/Lib.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -21254,7 +21252,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOLinux;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOLinux;
@@ -21348,7 +21345,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOWindows;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOWindows;
@@ -21367,7 +21363,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -21424,7 +21419,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -21523,7 +21517,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -21546,7 +21539,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOAtomics;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOAtomics;
@@ -21669,7 +21661,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -21692,7 +21683,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -21715,7 +21705,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -21739,7 +21728,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "@@//iOSApp/Test/TestingUtils:TestingUtils CONFIGURATION-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/CONFIGURATION-STABLE-20/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -21779,7 +21767,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -21798,7 +21785,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-23";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -21823,7 +21809,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOAtomics;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOAtomics;
@@ -21842,7 +21827,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOHTTP1 CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHTTP1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -DLLHTTP_STRICT_MODE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOHTTP1;
@@ -22037,7 +22021,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_defines;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/cc/lib/cc_lib_defines.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_lib_defines;
@@ -22056,7 +22039,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIO CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIO;
@@ -22078,7 +22060,6 @@
 				BAZEL_TARGET_ID = "@@//GRPC:echo_server_services_swift CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = echo_server_services_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-22/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -22107,7 +22088,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CGRPCZlib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CGRPCZlib;
@@ -22126,7 +22106,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_protobuf//:SwiftProtobuf CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = SwiftProtobuf;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = SwiftProtobuf;
@@ -22183,7 +22162,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_transport_services//:NIOTransportServices CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOTransportServices;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOTransportServices;
@@ -22207,7 +22185,6 @@
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib:Lib CONFIGURATION-STABLE-7";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES) bazel-out/CONFIGURATION-STABLE-10/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-13/bin/Lib/Lib.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -22240,7 +22217,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOWindows;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOWindows;
@@ -22264,7 +22240,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "@@//iOSApp/Test/TestingUtils:TestingUtils CONFIGURATION-STABLE-9";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) $(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-19/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -22305,7 +22280,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOLLHTTP;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOLLHTTP;
@@ -22434,7 +22408,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -22453,7 +22426,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOTLS CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOTLS;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOTLS;
@@ -22482,7 +22454,6 @@
 				COMPILE_TARGET_NAME = CNIOBoringSSL;
 				CXX_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.rules_xcodeproj.cxx.compile.params";
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -22855,7 +22826,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_defines;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/cc/lib/cc_lib_defines.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_lib_defines;
@@ -22900,7 +22870,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -22919,7 +22888,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections//:DequeModule CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = DequeModule;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = DequeModule;
@@ -22940,7 +22908,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -23123,7 +23090,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOLinux;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOLinux;
@@ -23169,7 +23135,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -23229,7 +23194,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOConcurrencyHelpers CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOConcurrencyHelpers;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOConcurrencyHelpers;
@@ -23288,7 +23252,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOFoundationCompat CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOFoundationCompat;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOFoundationCompat;
@@ -23313,7 +23276,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/cc/lib/impl/cc_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_EXTENSION = lo;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -23371,7 +23333,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -23398,7 +23359,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CGRPCZlib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CGRPCZlib;
@@ -23496,7 +23456,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_external_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/external/examples_cc_external~override/cc_external_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_external_lib_impl;
@@ -23519,7 +23478,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_external_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/external/examples_cc_external~override/cc_external_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_external_lib_impl;
@@ -23739,7 +23697,6 @@
 				COMPILE_TARGET_NAME = FXPageControl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = FXPageControl;
@@ -23819,7 +23776,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIO CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIO;
@@ -23926,7 +23882,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -24054,7 +24009,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift//:GRPC CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = GRPC;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_protobuf -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = GRPC;
@@ -24159,7 +24113,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOTLS CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOTLS;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOTLS;
@@ -24207,7 +24160,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -24230,7 +24182,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -24342,7 +24293,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:_NIODataStructures CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = _NIODataStructures;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = _NIODataStructures;
@@ -24472,7 +24422,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections//:DequeModule CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = DequeModule;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = DequeModule;
@@ -24526,7 +24475,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2//:NIOHPACK CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHPACK;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOHPACK;
@@ -24638,7 +24586,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -24704,7 +24651,6 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib:Lib CONFIGURATION-STABLE-12";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/CONFIGURATION-STABLE-3/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-5/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-6/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-8/bin/Lib/Lib.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -24746,7 +24692,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOLLHTTP;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOLLHTTP;
@@ -24765,7 +24710,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2//:NIOHPACK CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHPACK;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOHPACK;
@@ -24787,7 +24731,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_extras//:NIOExtras CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOExtras;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOExtras;
@@ -24856,7 +24799,6 @@
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = Utils;
@@ -24954,7 +24896,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2//:NIOHTTP2 CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHTTP2;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOHTTP2;
@@ -25012,7 +24953,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/cc/lib/impl/cc_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_EXTENSION = lo;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -25076,7 +25016,6 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib:Lib CONFIGURATION-STABLE-6";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/CONFIGURATION-STABLE-11/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-12/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-14/bin/Lib/Lib.swift bazel-out/CONFIGURATION-STABLE-9/bin/Lib/Lib.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -25154,7 +25093,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIODarwin;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIODarwin;
@@ -25177,7 +25115,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOBoringSSLShims;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOBoringSSLShims;
@@ -25228,7 +25165,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOHTTP1 CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHTTP1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -DLLHTTP_STRICT_MODE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOHTTP1;
@@ -25253,7 +25189,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIODarwin;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIODarwin;
@@ -25272,7 +25207,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOEmbedded CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOEmbedded;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOEmbedded;
@@ -25336,7 +25270,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -25441,7 +25374,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOConcurrencyHelpers CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOConcurrencyHelpers;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOConcurrencyHelpers;
@@ -25462,7 +25394,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOPosix CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOPosix;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOPosix;
@@ -25483,7 +25414,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_log//:Logging CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Logging;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = Logging;
@@ -25509,7 +25439,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = _AtomicsShims;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = _AtomicsShims;
@@ -25528,7 +25457,6 @@
 				BAZEL_TARGET_ID = "@@//GRPC:echo_server_services_swift CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = echo_server_services_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-21/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -25554,7 +25482,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl//:NIOSSL CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOSSL;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOSSL;
@@ -25575,7 +25502,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl//:NIOSSL CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOSSL;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOSSL;
@@ -25597,7 +25523,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_extras//:NIOExtras CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOExtras;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOExtras;
@@ -25674,7 +25599,6 @@
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = Utils;
@@ -25732,7 +25656,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -25751,7 +25674,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -25835,7 +25757,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -25930,7 +25851,6 @@
 				COMPILE_TARGET_NAME = MixedAnswer;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = MixedAnswer;
@@ -26018,7 +25938,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOPosix CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOPosix;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOPosix;
@@ -26040,7 +25959,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:_NIODataStructures CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = _NIODataStructures;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = _NIODataStructures;
@@ -26065,7 +25983,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -26201,7 +26118,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_protobuf//:SwiftProtobuf CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = SwiftProtobuf;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = SwiftProtobuf;
@@ -26222,7 +26138,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics//:Atomics CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Atomics;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = Atomics;
@@ -26266,7 +26181,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-24";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -26288,7 +26202,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_transport_services//:NIOTransportServices CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOTransportServices;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOTransportServices;
@@ -26355,7 +26268,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-28/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -26498,7 +26410,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = _AtomicsShims;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = _AtomicsShims;
@@ -26525,7 +26436,6 @@
 				COMPILE_TARGET_NAME = FXPageControl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = FXPageControl;
@@ -26550,7 +26460,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -26569,7 +26478,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOEmbedded CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOEmbedded;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOEmbedded;
@@ -26590,7 +26498,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -26663,7 +26570,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics//:Atomics CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Atomics;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = Atomics;
@@ -26742,7 +26648,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOCore CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOCore;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = NIOCore;
@@ -26763,7 +26668,6 @@
 				BAZEL_TARGET_ID = "@@//GRPC:echo_client_services_swift CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = echo_client_services_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-22/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -26796,7 +26700,6 @@
 				COMPILE_TARGET_NAME = MixedAnswer;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = MixedAnswer;
@@ -26861,7 +26764,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CNIOBoringSSLShims;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = CNIOBoringSSLShims;
@@ -26884,7 +26786,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/cc/lib2/cc_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_lib_impl;
@@ -26939,7 +26840,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:lib_swift CONFIGURATION-STABLE-23";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -26961,7 +26861,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOFoundationCompat CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOFoundationCompat;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOFoundationCompat;
@@ -26983,7 +26882,6 @@
 				BAZEL_TARGET_ID = "@@//GRPC:echo_client_services_swift CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = echo_client_services_swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(MACOSX_FILES) bazel-out/CONFIGURATION-STABLE-21/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -27009,7 +26907,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift//:GRPC CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = GRPC;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_protobuf -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = GRPC;
@@ -27115,7 +27012,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -27134,7 +27030,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio//:NIOCore CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOCore;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOCore;
@@ -27160,7 +27055,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = cc_lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/cc/lib2/cc_lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = cc_lib_impl;
@@ -27179,7 +27073,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2//:NIOHTTP2 CONFIGURATION-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = NIOHTTP2;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_http2 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
 				PRODUCT_MODULE_NAME = NIOHTTP2;
@@ -27330,7 +27223,6 @@
 				COMPILE_TARGET_NAME = CNIOBoringSSL;
 				CXX_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.rules_xcodeproj.cxx.compile.params";
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.11.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -27353,7 +27245,6 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift CONFIGURATION-STABLE-6";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -27444,7 +27335,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -27463,7 +27353,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineToolLib:private_swift_lib CONFIGURATION-STABLE-24";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-24/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -27484,7 +27373,6 @@
 				BAZEL_TARGET_ID = "@@rules_swift~1.11.0~non_module_deps~com_github_apple_swift_log//:Logging CONFIGURATION-STABLE-21";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Logging;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PRODUCT_MODULE_NAME = Logging;

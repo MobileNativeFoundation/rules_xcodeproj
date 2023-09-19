@@ -636,10 +636,16 @@ def _process_compiler_opts(
 
     if conlyopts or cxxopts or has_swiftcopts:
         if cpp_fragment.apple_generate_dsym:
-            build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
+            if build_mode == "xcode":
+                build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
+            else:
+                # Set to dwarf, because Bazel will generate the dSYMs
+                # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
+                # that at the project level
+                pass
         elif c_has_debug_info or cxx_has_debug_info or swift_has_debug_info:
-            # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
-            # that at the project level
+            # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set that
+            # at the project level
             pass
         else:
             build_settings["DEBUG_INFORMATION_FORMAT"] = ""

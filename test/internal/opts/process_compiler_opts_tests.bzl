@@ -1006,7 +1006,20 @@ $(PROJECT_DIR)\
     ## DEBUG_INFORMATION_FORMAT
 
     _add_test(
-        name = "{}_all-debug-dsym".format(name),
+        name = "{}_all-debug-dsym-bazel".format(name),
+        build_mode = "bazel",
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+        },
+    )
+
+    _add_test(
+        name = "{}_all-debug-dsym-xcode".format(name),
+        build_mode = "xcode",
         conlyopts = ["-g"],
         cxxopts = ["-g"],
         swiftcopts = ["-g"],
@@ -1039,7 +1052,20 @@ $(PROJECT_DIR)\
     )
 
     _add_test(
-        name = "{}_c-debug-dsym".format(name),
+        name = "{}_c-debug-dsym-bazel".format(name),
+        build_mode = "bazel",
+        conlyopts = ["-g"],
+        cxxopts = ["-g"],
+        swiftcopts = [],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+        },
+    )
+
+    _add_test(
+        name = "{}_c-debug-dsym-xcode".format(name),
+        build_mode = "xcode",
         conlyopts = ["-g"],
         cxxopts = ["-g"],
         swiftcopts = [],
@@ -1083,7 +1109,20 @@ $(PROJECT_DIR)\
     )
 
     _add_test(
-        name = "{}_swift-debug-dsym".format(name),
+        name = "{}_swift-debug-dsym-bazel".format(name),
+        build_mode = "bazel",
+        conlyopts = [],
+        cxxopts = [],
+        swiftcopts = ["-g"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": None,
+        },
+    )
+
+    _add_test(
+        name = "{}_swift-debug-dsym-xcode".format(name),
+        build_mode = "xcode",
         conlyopts = [],
         cxxopts = [],
         swiftcopts = ["-g"],
