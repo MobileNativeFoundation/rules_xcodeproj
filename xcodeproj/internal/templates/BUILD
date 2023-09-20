@@ -13,8 +13,6 @@ filegroup(
         ["**"],
         exclude = [
             "**/.*",
-            "updater.sh",
-            "validator.sh",
         ],
     ),
     tags = ["manual"],
