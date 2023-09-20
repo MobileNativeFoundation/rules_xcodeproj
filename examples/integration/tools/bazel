@@ -19,7 +19,8 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
 
   # Ensure that we use bazelisk with `.bazelversion`, not whatever is being used
   # in the currenct command
-  bazelisk=$(ps -ewwo comm= "$(ps -o ppid= $$)")
+  ppid=$(ps -o ppid= $$)
+  bazelisk=$(ps -ewwo comm= "$ppid")
   global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which "$bazelisk")
   readonly root_bazel=(
     env
