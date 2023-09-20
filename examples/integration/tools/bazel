@@ -2,8 +2,11 @@
 
 set -euo pipefail
 
+set -x
+
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
+readonly root_dir="${workspace_dir%/*/*}"
 readonly archive_output_base="$workspace_dir/bazel-output-base/release_archive"
 
 # Don't update the release archive if doing a build inside of Xcode, or if we
@@ -12,7 +15,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   # Update release archive
 
   echo "Building expanded release.tar.gz" >&2
-  pushd "../../" > /dev/null
+  pushd "$root_dir" > /dev/null
 
   # Ensure that we use Bazelisk with `.bazelversion`, not whatever is being used
   # in the currenct command
@@ -39,7 +42,6 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   echo "Executing bazel command" >&2
 fi
 
-readonly root_dir="${workspace_dir%/*/*}"
 
 bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
 if [[ "$bazel_version" == "version" ]]; then
