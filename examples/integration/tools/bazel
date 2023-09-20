@@ -15,6 +15,8 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   echo "Building expanded release.tar.gz" >&2
   pushd "$root_dir" > /dev/null
 
+  set -x
+
   # Ensure that we use bazelisk with `.bazelversion`, not whatever is being used
   # in the currenct command
   bazelisk=$(ps -ewwo comm= "$(ps -o ppid= $$)")
