@@ -100,6 +100,8 @@ ones we’ve officially tested with.
 From the
 [release you wish to use](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases),
 copy the Bzlmod or WORKSPACE snippet into your repository.
+If you want to manually build a release archive, you can use this command:
+`bazel build //distribution:release`.
 
 ## Usage
 
