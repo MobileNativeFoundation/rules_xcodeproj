@@ -80,6 +80,10 @@ common --override_repository=rules_xcodeproj=$repository_override
 common --override_module=rules_xcodeproj=$repository_override
 EOF
 
+echo
+cat "$override_bazelrc" >&2
+echo
+
 flags+=("--bazelrc=$override_bazelrc")
 
 exec "$BAZEL_REAL" "${flags[@]}" "$@"
