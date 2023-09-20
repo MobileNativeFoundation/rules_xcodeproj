@@ -17,7 +17,7 @@ x_templates:
       env: {}
     - &bazel_lts
       env:
-        USE_BAZEL_VERSION: latest
+        USE_BAZEL_VERSION: last_rc
     - &bazel_head
       env:
         USE_BAZEL_VERSION: last_green
