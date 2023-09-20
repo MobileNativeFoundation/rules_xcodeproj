@@ -17,6 +17,8 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   echo "Building expanded release.tar.gz" >&2
   pushd "$root_dir" > /dev/null
 
+  env | sort >&2
+
   # Ensure that we use Bazelisk with `.bazelversion`, not whatever is being used
   # in the currenct command
   global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which bazel)
