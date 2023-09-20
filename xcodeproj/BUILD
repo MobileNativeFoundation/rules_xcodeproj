@@ -65,7 +65,6 @@ filegroup(
             "**/.*",
             "dev_extensions.bzl",
             "repositories.bzl",
-            "testing.bzl",
         ],
     ) + [
         ":release_repositories.bzl",

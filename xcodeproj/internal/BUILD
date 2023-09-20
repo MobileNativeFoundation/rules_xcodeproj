@@ -33,7 +33,6 @@ filegroup(
         ["**"],
         exclude = [
             "**/.*",
-            "fixtures.bzl",
             "xcodeproj_tests.bzl",
         ],
     ) + [
