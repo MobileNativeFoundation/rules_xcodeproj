@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-set -x
-
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
 readonly root_dir="${workspace_dir%/*/*}"
@@ -66,7 +64,7 @@ if [[ -s "$workspace_bazelrc" ]]; then
   flags+=("--bazelrc=$workspace_bazelrc")
 fi
 
-readonly override_bazelrc=/tmp/rules_xcodeproj_override.bazelrc
+readonly override_bazelrc="$archive_output_base/override.bazelrc"
 
 if [[ $(uname -m) == "arm64" ]]; then
   repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"
