@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-set -x
-
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
 readonly root_dir="${workspace_dir%/*/*}"
