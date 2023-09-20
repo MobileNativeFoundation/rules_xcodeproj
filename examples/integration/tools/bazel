@@ -17,11 +17,10 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   echo "Building expanded release.tar.gz" >&2
   pushd "$root_dir" > /dev/null
 
-  ps -ewwo comm= "$(ps -o ppid= $$)"
-
-  # Ensure that we use Bazelisk with `.bazelversion`, not whatever is being used
+  # Ensure that we use bazelisk with `.bazelversion`, not whatever is being used
   # in the currenct command
-  global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which bazel)
+  bazelisk=$(ps -ewwo comm= "$(ps -o ppid= $$)")
+  global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which "$bazelisk")
   readonly root_bazel=(
     env
       BAZEL_REAL=
