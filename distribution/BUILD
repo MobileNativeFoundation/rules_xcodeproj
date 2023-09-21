@@ -54,3 +54,23 @@ pkg_tar(
     strip_prefix = "/",
     tags = ["manual"],
 )
+
+genrule(
+    name = "expanded_release_pkg",
+    srcs = [":release_pkg"],
+    outs = ["expanded_release"],
+    cmd = """\
+set -euo pipefail
+
+mkdir "$@"
+tar -xf $< -C "$@"
+touch "$@/WORKSPACE"
+    """,
+    tags = ["manual"],
+)
+
+opt_wrapper(
+    name = "opt_expanded_release_pkg",
+    dep = ":expanded_release_pkg",
+    tags = ["manual"],
+)

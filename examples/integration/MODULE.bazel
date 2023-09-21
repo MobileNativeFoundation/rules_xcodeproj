@@ -1,5 +1,6 @@
 bazel_dep(
     name = "rules_xcodeproj",
+    # Set to the real version with `--override_module`
     version = "0.0.0",
 )
 bazel_dep(
@@ -32,11 +33,6 @@ bazel_dep(
 )
 
 bazel_dep(name = "bazel_features", version = "1.0.0", dev_dependency = True)
-
-local_path_override(
-    module_name = "rules_xcodeproj",
-    path = "../..",
-)
 
 local_path_override(
     module_name = "examples_cc_external",

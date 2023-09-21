@@ -1,1 +1,81 @@
-../../../tools/bazel
+#!/bin/bash
+
+set -euo pipefail
+
+readonly tool_location="${BASH_SOURCE[0]}"
+readonly workspace_dir="${tool_location%/*/*}"
+readonly root_dir="${workspace_dir%/*/*}"
+readonly archive_output_base="$workspace_dir/bazel-output-base/release_archive"
+readonly override_bazelrc="$archive_output_base/override.bazelrc"
+
+# Don't update the release archive if doing a build inside of Xcode, or if we
+# are in the inner-bazel invocation
+if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
+  # Update release archive
+
+  echo "Building expanded release.tar.gz" >&2
+  pushd "$root_dir" > /dev/null
+
+  # Ensure that we use bazelisk with `.bazelversion`, not whatever is being used
+  # in the currenct command
+  ppid=$(ps -o ppid= $$)
+  bazelisk=$(ps -ewwo comm= "${ppid// /}")
+  global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which "$bazelisk")
+  readonly root_bazel=(
+    env
+      BAZEL_REAL=
+      BAZELISK_SKIP_WRAPPER=
+      USE_BAZEL_VERSION=
+      PATH=/bin:/usr/bin
+      "$global_bazel"
+  )
+
+  "${root_bazel[@]}" \
+    "--output_base=$archive_output_base" \
+    build \
+    //distribution:opt_expanded_release_pkg
+
+  if [[ $(uname -m) == "arm64" ]]; then
+    repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"
+  else
+    repository_override="$archive_output_base/execroot/_main/bazel-out/darwin-opt/bin/distribution/expanded_release"
+  fi
+  cat > "$override_bazelrc" <<EOF
+common --override_repository=rules_xcodeproj=$repository_override
+common --override_module=rules_xcodeproj=$repository_override
+EOF
+
+  popd > /dev/null
+
+  # Execute command
+
+  echo
+  echo "Executing bazel command" >&2
+fi
+
+
+bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
+if [[ "$bazel_version" == "version" ]]; then
+  bazel_version=7
+fi
+
+flags=("--noworkspace_rc")
+
+readonly root_version_bazelrc="$root_dir/bazel_$bazel_version.bazelrc"
+if [[ -s "$root_version_bazelrc" ]]; then
+  flags+=("--bazelrc=$root_version_bazelrc")
+fi
+
+readonly workspace_version_bazelrc="$workspace_dir/bazel_$bazel_version.bazelrc"
+if [[ -s "$workspace_version_bazelrc" ]]; then
+  flags+=("--bazelrc=$workspace_version_bazelrc")
+fi
+
+readonly workspace_bazelrc="$workspace_dir/.bazelrc"
+if [[ -s "$workspace_bazelrc" ]]; then
+  flags+=("--bazelrc=$workspace_bazelrc")
+fi
+
+flags+=("--bazelrc=$override_bazelrc")
+
+exec "$BAZEL_REAL" "${flags[@]}" "$@"

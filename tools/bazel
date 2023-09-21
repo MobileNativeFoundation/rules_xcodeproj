@@ -2,38 +2,24 @@
 
 set -euo pipefail
 
+readonly tool_location="${BASH_SOURCE[0]}"
+readonly workspace_dir="${tool_location%/*/*}"
+
 bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
 if [[ "$bazel_version" == "version" ]]; then
   bazel_version=7
 fi
 
-flags=()
+flags=("--noworkspace_rc")
 
-tool_location="${BASH_SOURCE[0]}"
-tool_abs_location="$(/usr/bin/perl -MCwd -e 'print Cwd::abs_path shift' "$tool_location";)"
-readonly root_dir="${tool_abs_location%/*/*}"
-readonly workspace_dir="${tool_location%/*/*}"
-
-if [[ $bazel_version -eq 6 ]]; then
-  flags+=("--bazelrc=$root_dir/bazel_6.bazelrc")
-
-  if [[ "$workspace_dir" != "$root_dir" ]]; then
-    readonly workspace_6_bazelrc="$workspace_dir/bazel_6.bazelrc"
-    if [[ -s "$workspace_6_bazelrc" ]]; then
-      flags+=("--bazelrc=$workspace_6_bazelrc")
-    fi
-  fi
-else
-  flags+=("--bazelrc=$root_dir/bazel_7.bazelrc")
-
-  if [[ "$workspace_dir" != "$root_dir" ]]; then
-    readonly workspace_7_bazelrc="$workspace_dir/bazel_7.bazelrc"
-    if [[ -s "$workspace_7_bazelrc" ]]; then
-      flags+=("--bazelrc=$workspace_7_bazelrc")
-    fi
-  fi
+readonly workspace_version_bazelrc="$workspace_dir/bazel_$bazel_version.bazelrc"
+if [[ -s "$workspace_version_bazelrc" ]]; then
+  flags+=("--bazelrc=$workspace_version_bazelrc")
 fi
 
-flags+=("--bazelrc=.bazelrc")
+readonly workspace_bazelrc="$workspace_dir/.bazelrc"
+if [[ -s "$workspace_bazelrc" ]]; then
+  flags+=("--bazelrc=$workspace_bazelrc")
+fi
 
-exec "$BAZEL_REAL" "--noworkspace_rc" "${flags[@]}" "$@"
+exec "$BAZEL_REAL" "${flags[@]}" "$@"

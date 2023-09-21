@@ -46,7 +46,6 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
-    - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows //test/..."
@@ -149,13 +148,3 @@ actions:
   #   bazel_commands:
   #     - *validate_integration
   #     - *build_all
-
-  - name: Validate release.tar.gz
-    <<: *bazel_in_repo_version
-    <<: *arm64
-    <<: *normal_resources
-    <<: *action_base
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *set_release_archive_override
-      - run --config=workflows //:xcodeproj-bazel-sim_arm64

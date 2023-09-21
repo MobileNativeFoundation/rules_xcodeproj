@@ -285,12 +285,6 @@ xcodeproj(
 
 # Release
 
-sh_binary(
-    name = "set_release_archive_override",
-    srcs = ["set_release_archive_override.sh"],
-    tags = ["manual"],
-)
-
 filegroup(
     name = "release_files",
     srcs = [
