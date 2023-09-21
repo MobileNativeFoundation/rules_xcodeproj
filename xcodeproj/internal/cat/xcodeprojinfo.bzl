@@ -405,7 +405,7 @@ def _create_xcodeprojinfo(
                 struct(
                     label = str(target.label),
                     id = processed_target.xcode_target.id,
-                )
+                ),
             ] if processed_target.xcode_target else None,
             # We want the last one specified to be the one used
             order = "postorder",

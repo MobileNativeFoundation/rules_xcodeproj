@@ -561,7 +561,7 @@ xcodeproj_runner = rule(
             default = "auto",
             values = ["auto", "none", "all"],
         ),
-        "scheme_targets":  attr.label_list(
+        "scheme_targets": attr.label_list(
             providers = [XcodeProjSchemeInfo],
         ),
         "schemes_json": attr.string(),

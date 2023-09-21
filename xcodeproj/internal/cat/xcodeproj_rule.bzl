@@ -105,8 +105,8 @@ def _xcodeproj_impl(ctx):
     ):
         if ctx.split_attr.top_level_simulator_targets:
             simulator_infos = [
-                _process_dep(dep) for dep in
-                ctx.split_attr.top_level_simulator_targets[transition_key]
+                _process_dep(dep)
+                for dep in ctx.split_attr.top_level_simulator_targets[transition_key]
             ]
             infos.extend(simulator_infos)
         else:
@@ -114,8 +114,8 @@ def _xcodeproj_impl(ctx):
 
         if ctx.split_attr.top_level_device_targets:
             device_infos = [
-                _process_dep(dep) for dep in
-                ctx.split_attr.top_level_device_targets[transition_key]
+                _process_dep(dep)
+                for dep in ctx.split_attr.top_level_device_targets[transition_key]
             ]
             infos.extend(device_infos)
         else:
@@ -137,7 +137,7 @@ def _xcodeproj_impl(ctx):
         transitive = [
             info.top_level_focused_deps
             for info in infos
-        ]
+        ],
     ).to_list()
     print(a)
 
@@ -147,6 +147,7 @@ def _xcodeproj_impl(ctx):
 
     actions = ctx.actions
     bin_dir_path = ctx.bin_dir.path
+
     # FIXME: Error out if `xcode`
     build_mode = ctx.attr.build_mode
     colorize = ctx.attr.colorize

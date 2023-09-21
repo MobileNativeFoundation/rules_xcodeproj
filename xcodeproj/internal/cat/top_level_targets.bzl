@@ -864,7 +864,6 @@ def _process_focused_top_level_target(
         transitive_infos = transitive_infos,
     )
 
-
     extension_targets = getattr(ctx.rule.attr, "extensions", [])
     extension_target = getattr(ctx.rule.attr, "extension", None)
     if extension_target:
@@ -906,7 +905,6 @@ def _process_focused_top_level_target(
         # FIXME: Is this the right way to handle unfocused watch applications?
         watch_app_target_info.xcode_target.id if watch_app_target_info and watch_app_target_info.xcode_target else None
     )
-
 
     return processed_target(
         bwb_output_groups = bwb_output_groups,

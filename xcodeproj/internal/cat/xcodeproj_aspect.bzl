@@ -111,18 +111,18 @@ def make_xcodeproj_aspect(
                 default = Label("//xcodeproj:color"),
                 providers = [BuildSettingInfo],
             ),
+            "_focused_labels": attr.string_list(default = focused_labels),
+            "_generator_name": attr.string(default = generator_name),
+            "_owned_extra_files": attr.label_keyed_string_dict(
+                allow_files = True,
+                default = owned_extra_files,
+            ),
             "_target_build_settings_generator": attr.label(
                 cfg = "exec",
                 default = Label(
                     "//tools/generators/target_build_settings:universal_target_build_settings",
                 ),
                 executable = True,
-            ),
-            "_focused_labels": attr.string_list(default = focused_labels),
-            "_generator_name": attr.string(default = generator_name),
-            "_owned_extra_files": attr.label_keyed_string_dict(
-                allow_files = True,
-                default = owned_extra_files,
             ),
             "_unfocused_labels": attr.string_list(default = unfocused_labels),
             "_xcode_config": attr.label(

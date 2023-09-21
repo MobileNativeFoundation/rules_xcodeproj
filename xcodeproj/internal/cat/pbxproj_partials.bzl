@@ -15,16 +15,16 @@ load(":platforms.bzl", "PLATFORM_NAME", "platforms")
 # Utility
 
 _SWIFTUI_PREVIEW_PRODUCT_TYPES = {
-    "e": None,  # com.apple.product-type.app-extension
-    "a": None,  # com.apple.product-type.application
     "A": None,  # com.apple.product-type.application.on-demand-install-capable
-    "w": None,  # com.apple.product-type.application.watchapp2
     "B": None,  # com.apple.product-type.bundle
-    "u": None,  # com.apple.product-type.bundle.unit-test
     "E": None,  # com.apple.product-type.extensionkit-extension
-    "f": None,  # com.apple.product-type.framework
     "T": None,  # com.apple.product-type.tool
+    "a": None,  # com.apple.product-type.application
+    "e": None,  # com.apple.product-type.app-extension
+    "f": None,  # com.apple.product-type.framework
     "t": None,  # com.apple.product-type.tv-app-extension
+    "u": None,  # com.apple.product-type.bundle.unit-test
+    "w": None,  # com.apple.product-type.application.watchapp2
 }
 
 def _apple_platform_to_platform_name(platform):
@@ -396,7 +396,7 @@ def _write_schemes(
         args.add_all(_flags.additional_targets, additional_targets)
         args.add_all(
             _flags.additional_target_counts,
-            additional_target_counts
+            additional_target_counts,
         )
 
     actions.run(
@@ -625,7 +625,6 @@ def _write_consolidation_map_targets(
 
             target_link_params = link_params.get(xcode_target.id, EMPTY_STRING)
 
-
             # FIXME: Only set for top level targets
             # FIXME: Extract to a single type, for easier checking/setting?
             if (xcode_target.outputs.product_path):
@@ -662,13 +661,15 @@ def _write_consolidation_map_targets(
 
     # unitTestHosts
     unit_test_hosts = []
+
     # FIXME: Add test case for this
     for id in uniq(unit_test_host_ids):
         unit_test_host_target = xcode_targets[id]
         if not unit_test_host_target:
-            fail("""\
+            fail(
+                """\
     Target ID for unit test host '{}' not found in xcode_targets
-    """.format(unit_test_host)
+    """.format(unit_test_host),
             )
         unit_test_hosts.extend([
             id,
@@ -678,7 +679,7 @@ def _write_consolidation_map_targets(
             unit_test_host_target.product.file_path,
             # executableName
             (unit_test_host_target.product.executable_name or
-                unit_test_host_target.product.name),
+             unit_test_host_target.product.name),
         ])
 
     args.add_all(_flags.unit_test_hosts, unit_test_hosts)

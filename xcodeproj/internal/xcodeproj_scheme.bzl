@@ -6,7 +6,7 @@ def _xcodeproj_scheme_impl(ctx):
     return [
         XcodeProjSchemeInfo(
             name = ctx.attr.scheme_name,
-        )
+        ),
     ]
 
 xcodeproj_scheme = rule(

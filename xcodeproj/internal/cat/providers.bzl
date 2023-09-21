@@ -126,16 +126,16 @@ that contains information related to BwX mode output groups.
         "compilation_providers": """\
 A value returned from `compilation_providers.{collect,merge}`.
 """,
+        "dependencies": """\
+A `depset` of target IDs (see `xcode_target.id`) that this target directly
+depends on.
+""",
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
 target ID (see `xcode_target.id`) of the application extension target. The
 'infoplist' field is a `File` for the Info.plist for the target.
 """,
         "focused_deps": "FIXME",
-        "dependencies": """\
-A `depset` of target IDs (see `xcode_target.id`) that this target directly
-depends on.
-""",
         "hosted_targets": """\
 A `depset` of `struct`s with 'host' and 'hosted' fields. The `host` field is the
 target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is

@@ -14,8 +14,8 @@ load(":product.bzl", "from_resource_bundle")
 
 _NON_COMPILE_PRODUCT_TYPES = {
     "M": None,  # com.apple.product-type.application.messages
-    "w": None,  # com.apple.product-type.application.watchapp2
     "c": None,  # com.apple.product-type.application.watchapp2-container
+    "w": None,  # com.apple.product-type.application.watchapp2
     # Resource bundle not included, because we don't need to check it
 }
 
