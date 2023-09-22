@@ -462,8 +462,9 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibDynamic.framework.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibDynamic.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
@@ -472,13 +473,13 @@
         "n": "LibDynamic",
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibDynamic.framework"
+                "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/Lib.framework"
             ],
-            "e": "LibDynamic",
-            "m": "LibDynamic",
-            "n": "LibDynamic",
-            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibDynamic.framework_archive-root/LibDynamic.framework",
-            "t": "com.apple.product-type.framework.static"
+            "e": "Lib",
+            "m": "Lib",
+            "n": "Lib",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibDynamic.framework_archive-root/Lib.framework",
+            "t": "com.apple.product-type.framework"
         }
     },
     "@//iOSApp/Source/Utils:Utils_objc CONFIGURATION-STABLE-1",
@@ -604,7 +605,7 @@
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
-    "@//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-3",
+    "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-3",
     {
         "1": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests",
         "2": {
@@ -625,11 +626,11 @@
         ],
         "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests.__internal__.__test_bundle.zip",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOS_App_ObjC_UnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch",
-            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests.__internal__.__test_bundle/Info.plist",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
@@ -653,7 +654,7 @@
             "e": "iOS_App_ObjC_UnitTests",
             "m": "iOS_App_ObjC_UnitTests",
             "n": "iOS_App_ObjC_UnitTests",
-            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests.xctest",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -946,7 +947,7 @@
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
-    "@//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle CONFIGURATION-STABLE-3",
+    "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle CONFIGURATION-STABLE-3",
     {
         "1": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests",
         "2": {
@@ -967,11 +968,11 @@
         ],
         "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle.zip",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch",
-            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle/Info.plist",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
@@ -995,7 +996,7 @@
             "e": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
             "m": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
             "n": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
-            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -1631,8 +1632,9 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.40.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibDynamic.framework.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibDynamic.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
@@ -1641,13 +1643,13 @@
         "n": "LibDynamic",
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibDynamic.framework"
+                "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/Lib.framework"
             ],
-            "e": "LibDynamic",
-            "m": "LibDynamic",
-            "n": "LibDynamic",
-            "p": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibDynamic.framework_archive-root/LibDynamic.framework",
-            "t": "com.apple.product-type.framework.static"
+            "e": "Lib",
+            "m": "Lib",
+            "n": "Lib",
+            "p": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibDynamic.framework_archive-root/Lib.framework",
+            "t": "com.apple.product-type.framework"
         }
     }
 ]
