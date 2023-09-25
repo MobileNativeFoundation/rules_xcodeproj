@@ -62,6 +62,7 @@ readonly build_pre_config_flags=(
   # inputs, they will need to be added to this list. Ideally we can stop doing
   # this once Bazel adds support for a Remote Output Service.
   "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(cfg|c|C|cc|cl|cpp|cu|cxx|c++|def|h|H|hh|hpp|hxx|h++|hmap|ilc|inc|ipp|tcc|tlh|tpp|m|modulemap|mm|pch|swift|swiftdoc|swiftmodule|swiftsourceinfo|yaml)$"
+  "--bzl_offline" # use bzl offline mode Xcode Index Build (https://jira.sc-corp.net/browse/BUILD-4324)
 )
 
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
