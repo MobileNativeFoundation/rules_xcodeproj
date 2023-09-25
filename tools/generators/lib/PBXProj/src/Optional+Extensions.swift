@@ -4,9 +4,10 @@ import ArgumentParser
 
 extension Optional: ExpressibleByArgument where Wrapped: ExpressibleByArgument {
     public init?(argument: String) {
-        guard !argument.isEmpty else {
-            return nil
+        if argument.isEmpty {
+            self = .none
+        } else {
+            self = Wrapped(argument: argument)
         }
-        self = Wrapped(argument: argument)
     }
 }
