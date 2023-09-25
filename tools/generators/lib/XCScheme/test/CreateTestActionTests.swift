@@ -262,18 +262,24 @@ final class CreateTestActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Debug"
-        let testables: [BuildableReference] = [
+        let testables: [Testable] = [
             .init(
-                blueprintIdentifier: "BLUEPRINT_IDENTIFIER_3",
-                buildableName: "BUILDABLE_NAME_3",
-                blueprintName: "BLUEPRINT_NAME_3",
-                referencedContainer: "REFERENCED_CONTAINER_3"
+                buildableReference: .init(
+                    blueprintIdentifier: "BLUEPRINT_IDENTIFIER_3",
+                    buildableName: "BUILDABLE_NAME_3",
+                    blueprintName: "BLUEPRINT_NAME_3",
+                    referencedContainer: "REFERENCED_CONTAINER_3"
+                ),
+                skipped: false
             ),
             .init(
-                blueprintIdentifier: "BLUEPRINT_IDENTIFIER_1",
-                buildableName: "BUILDABLE_NAME_1",
-                blueprintName: "BLUEPRINT_NAME_1",
-                referencedContainer: "REFERENCED_CONTAINER_1"
+                buildableReference: .init(
+                    blueprintIdentifier: "BLUEPRINT_IDENTIFIER_1",
+                    buildableName: "BUILDABLE_NAME_1",
+                    blueprintName: "BLUEPRINT_NAME_1",
+                    referencedContainer: "REFERENCED_CONTAINER_1"
+                ),
+                skipped: true
             ),
         ]
 
@@ -295,7 +301,7 @@ final class CreateTestActionTests: XCTestCase {
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BLUEPRINT_IDENTIFIER_1"
@@ -360,7 +366,7 @@ private func createTestActionWithDefaults(
     expandVariablesBasedOn macroReference: BuildableReference? = nil,
     postActions: [ExecutionAction] = [],
     preActions: [ExecutionAction] = [],
-    testables: [BuildableReference] = [],
+    testables: [Testable] = [],
     useLaunchSchemeArgsEnv: Bool = true
 ) -> String {
     return CreateTestAction.defaultCallable(
