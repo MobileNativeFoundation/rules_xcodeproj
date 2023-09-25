@@ -11,7 +11,7 @@ public struct CreateProfileAction {
     /// Creates the `ProfileAction` element of an Xcode scheme.
     public func callAsFunction(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
@@ -37,7 +37,7 @@ public struct CreateProfileAction {
 extension CreateProfileAction {
     public typealias Callable = (
         _ buildConfiguration: String,
-        _ commandLineArguments: [String],
+        _ commandLineArguments: [CommandLineArgument],
         _ customWorkingDirectory: String?,
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
@@ -48,7 +48,7 @@ extension CreateProfileAction {
 
     public static func defaultCallable(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],

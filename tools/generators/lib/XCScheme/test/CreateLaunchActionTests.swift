@@ -37,10 +37,10 @@ final class CreateLaunchActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Debug"
-        let commandLineArguments: [String] = [
-            "-ARGUMENT_1",
-            "ARGUMENT_A",
-            "'ARGUMENT 2'",
+        let commandLineArguments: [CommandLineArgument] = [
+            .init(value: "-ARGUMENT_3"),
+            .init(value: "ARGUMENT_Z", enabled: false),
+            .init(value: "'ARGUMENT 1'"),
         ]
 
         let expectedAction = #"""
@@ -56,15 +56,15 @@ final class CreateLaunchActionTests: XCTestCase {
       allowLocationSimulation = "YES">
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-ARGUMENT_1"
+            argument = "-ARGUMENT_3"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ARGUMENT_A"
-            isEnabled = "YES">
+            argument = "ARGUMENT_Z"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&apos;ARGUMENT 2&apos;"
+            argument = "&apos;ARGUMENT 1&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -386,7 +386,7 @@ final class CreateLaunchActionTests: XCTestCase {
 
 private func createLaunchActionWithDefaults(
     buildConfiguration: String,
-    commandLineArguments: [String] = [],
+    commandLineArguments: [CommandLineArgument] = [],
     customWorkingDirectory: String? = nil,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,

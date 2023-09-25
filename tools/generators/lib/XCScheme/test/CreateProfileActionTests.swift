@@ -33,10 +33,10 @@ final class CreateProfileActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Debug"
-        let commandLineArguments: [String] = [
-            "-ARGUMENT_1",
-            "ARGUMENT_A",
-            "'ARGUMENT 2'",
+        let commandLineArguments: [CommandLineArgument] = [
+            .init(value: "-ARGUMENT_42"),
+            .init(value: "ARGUMENT_F", enabled: false),
+            .init(value: "'ARGUMENT 3'"),
         ]
 
         let expectedPrefix = #"""
@@ -48,15 +48,15 @@ final class CreateProfileActionTests: XCTestCase {
       debugDocumentVersioning = "YES">
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-ARGUMENT_1"
+            argument = "-ARGUMENT_42"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ARGUMENT_A"
-            isEnabled = "YES">
+            argument = "ARGUMENT_F"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&apos;ARGUMENT 2&apos;"
+            argument = "&apos;ARGUMENT 3&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -280,7 +280,7 @@ final class CreateProfileActionTests: XCTestCase {
 
 private func createProfileActionWithDefaults(
     buildConfiguration: String,
-    commandLineArguments: [String] = [],
+    commandLineArguments: [CommandLineArgument] = [],
     customWorkingDirectory: String? = nil,
     environmentVariables: [EnvironmentVariable] = [],
     postActions: [ExecutionAction] = [],

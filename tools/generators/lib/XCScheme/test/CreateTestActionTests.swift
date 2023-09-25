@@ -34,10 +34,10 @@ final class CreateTestActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Debug"
-        let commandLineArguments: [String] = [
-            "-ARGUMENT_1",
-            "ARGUMENT_A",
-            "'ARGUMENT 2'",
+        let commandLineArguments: [CommandLineArgument] = [
+            .init(value: "-ARGUMENT_1"),
+            .init(value: "ARGUMENT_A", enabled: false),
+            .init(value: "'ARGUMENT 2'"),
         ]
 
         let expectedAction = #"""
@@ -53,7 +53,7 @@ final class CreateTestActionTests: XCTestCase {
          </CommandLineArgument>
          <CommandLineArgument
             argument = "ARGUMENT_A"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&apos;ARGUMENT 2&apos;"
@@ -174,7 +174,8 @@ final class CreateTestActionTests: XCTestCase {
         let environmentVariables: [EnvironmentVariable] = [
             .init(
                 key: "BUILD_WORKING_DIRECTORY",
-                value: "$(BUILT_PRODUCTS_DIR)"
+                value: "$(BUILT_PRODUCTS_DIR)",
+                enabled: false
             ),
             .init(key: "VAR", value: "'Value 1'"),
         ]
@@ -189,7 +190,7 @@ final class CreateTestActionTests: XCTestCase {
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
             value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "VAR"
@@ -351,7 +352,7 @@ final class CreateTestActionTests: XCTestCase {
 
 private func createTestActionWithDefaults(
     buildConfiguration: String,
-    commandLineArguments: [String] = [],
+    commandLineArguments: [CommandLineArgument] = [],
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,

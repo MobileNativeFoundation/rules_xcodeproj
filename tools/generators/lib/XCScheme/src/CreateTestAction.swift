@@ -11,7 +11,7 @@ public struct CreateTestAction {
     /// Creates the `TestAction` element of an Xcode scheme.
     public func callAsFunction(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -43,7 +43,7 @@ public struct CreateTestAction {
 extension CreateTestAction {
     public typealias Callable = (
         _ buildConfiguration: String,
-        _ commandLineArguments: [String],
+        _ commandLineArguments: [CommandLineArgument],
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
@@ -57,7 +57,7 @@ extension CreateTestAction {
 
     public static func defaultCallable(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
