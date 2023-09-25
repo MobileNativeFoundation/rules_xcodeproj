@@ -33,17 +33,17 @@ extension Sequence where Element == XCSchemeInfo.BuildTargetInfo {
                     }
             }
                 .sorted { lhs, rhs in
-                    let lhsIsTopLevel = lhs.productType.isTopLevel
-                    let rhsIsTopLevel = rhs.productType.isTopLevel
-                    guard lhsIsTopLevel == rhsIsTopLevel else {
-                        return lhsIsTopLevel
+                    let lhsIsRunnable = lhs.productType.isRunnable
+                    let rhsIsRunnable = rhs.productType.isRunnable
+                    guard lhsIsRunnable == rhsIsRunnable else {
+                        return lhsIsRunnable
                     }
 
-                    if lhsIsTopLevel {
+                    if !lhsIsRunnable {
                         let lhsIsTest = lhs.productType.isTestBundle
                         let rhsIsTest = rhs.productType.isTestBundle
                         guard lhsIsTest == rhsIsTest else {
-                            // Test come after other top levels
+                            // Test come after other targets
                             return rhsIsTest
                         }
                     }
