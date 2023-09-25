@@ -1,10 +1,12 @@
 public struct EnvironmentVariable: Equatable {
     let key: String
     let value: String
+    let enabled: Bool
 
-    public init(key: String, value: String) {
+    public init(key: String, value: String, enabled: Bool = true) {
         self.key = key
         self.value = value
+        self.enabled = enabled
     }
 }
 
@@ -32,7 +34,7 @@ private func createEnvironmentVariableElement(
          <EnvironmentVariable
             key = "\#(variable.key.schemeXmlEscaped)"
             value = "\#(variable.value.schemeXmlEscaped)"
-            isEnabled = "YES">
+            isEnabled = "\#(variable.enabled.xmlString)">
          </EnvironmentVariable>
 """#
 }

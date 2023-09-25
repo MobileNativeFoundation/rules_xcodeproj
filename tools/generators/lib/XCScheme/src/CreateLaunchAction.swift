@@ -11,7 +11,7 @@ public struct CreateLaunchAction {
     /// Creates the `LaunchAction` element of an Xcode scheme.
     public func callAsFunction(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
@@ -41,7 +41,7 @@ public struct CreateLaunchAction {
 extension CreateLaunchAction {
     public typealias Callable = (
         _ buildConfiguration: String,
-        _ commandLineArguments: [String],
+        _ commandLineArguments: [CommandLineArgument],
         _ customWorkingDirectory: String?,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
@@ -54,7 +54,7 @@ extension CreateLaunchAction {
 
     public static func defaultCallable(
         buildConfiguration: String,
-        commandLineArguments: [String],
+        commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
