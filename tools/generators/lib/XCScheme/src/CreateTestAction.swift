@@ -19,7 +19,7 @@ public struct CreateTestAction {
         expandVariablesBasedOn: BuildableReference?,
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
-        testables: [BuildableReference],
+        testables: [Testable],
         useLaunchSchemeArgsEnv: Bool
     ) -> String {
         return callable(
@@ -51,7 +51,7 @@ extension CreateTestAction {
         _ expandVariablesBasedOn: BuildableReference?,
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
-        _ testables: [BuildableReference],
+        _ testables: [Testable],
         _ useLaunchSchemeArgsEnv: Bool
     ) -> String
 
@@ -65,7 +65,7 @@ extension CreateTestAction {
         expandVariablesBasedOn macroReference: BuildableReference?,
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
-        testables: [BuildableReference],
+        testables: [Testable],
         useLaunchSchemeArgsEnv: Bool
     ) -> String {
         // 3 spaces for indentation is intentional
@@ -123,11 +123,26 @@ buildConfiguration = "\#(buildConfiguration)"
     }
 }
 
-private func createTestableElement(_ reference: BuildableReference) -> String {
+public struct Testable {
+    public let buildableReference: BuildableReference
+    let skipped: Bool
+
+    public init(
+        buildableReference: BuildableReference,
+        skipped: Bool
+    ) {
+        self.buildableReference = buildableReference
+        self.skipped = skipped
+    }
+}
+
+private func createTestableElement(_ testable: Testable) -> String {
+    let reference = testable.buildableReference
+
     // 3 spaces for indentation is intentional
     return #"""
          <TestableReference
-            skipped = "NO">
+            skipped = "\#(testable.skipped.xmlString)">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "\#(reference.blueprintIdentifier)"
