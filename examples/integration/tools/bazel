@@ -33,6 +33,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   "${root_bazel[@]}" \
     "--output_base=$archive_output_base" \
     build \
+    --config=cache \
     //distribution:opt_expanded_release_pkg
 
   if [[ $(uname -m) == "arm64" ]]; then
