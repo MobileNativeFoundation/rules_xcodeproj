@@ -18,10 +18,6 @@ bazel_dep(
     version = "1.11.0",
     repo_name = "build_bazel_rules_swift",
 )
-bazel_dep(
-    name = "rules_apple_linker",
-    version = "0.4.0",
-)
 bazel_dep(name = "bazel_skylib", version = "1.4.2")
 bazel_dep(
     name = "examples_cc_external",

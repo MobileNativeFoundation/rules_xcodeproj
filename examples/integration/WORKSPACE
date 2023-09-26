@@ -51,19 +51,6 @@ load(
 
 apple_support_dependencies()
 
-# rules_apple_linker used for testing using a different linker
-
-http_archive(
-    name = "rules_apple_linker",
-    sha256 = "70b664b3ddc335178d163f487d0bda5e895f3dc00d311c17c3b4050e780056b8",
-    strip_prefix = "rules_apple_linker-0.4.0",
-    url = "https://github.com/keith/rules_apple_linker/archive/refs/tags/0.4.0.tar.gz",
-)
-
-load("@rules_apple_linker//:deps.bzl", "rules_apple_linker_deps")
-
-rules_apple_linker_deps()
-
 # Used for testing shared cache between Intel and Apple silicon
 
 register_execution_platforms("@build_bazel_apple_support//platforms:macos_x86_64")

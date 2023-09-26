@@ -91,7 +91,6 @@ ios_application(
     watch_application = "//watchOSApp",
     deps = [
         ":iOSApp.library",
-        "@rules_apple_linker//:lld",
     ],
 )
 
