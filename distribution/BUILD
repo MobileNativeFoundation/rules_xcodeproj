@@ -66,7 +66,11 @@ mkdir "$@"
 tar -xf $< -C "$@"
 touch "$@/WORKSPACE"
     """,
-    tags = ["manual"],
+    tags = [
+        "manual",
+        # Directory outputs with `genrule` aren't supported remotely
+        "no-remote",
+    ],
 )
 
 opt_wrapper(
