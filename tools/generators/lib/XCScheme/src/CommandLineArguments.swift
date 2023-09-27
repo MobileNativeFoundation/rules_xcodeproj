@@ -26,9 +26,20 @@ extension Array where Element == CommandLineArgument {
 }
 
 private func createCommandLineArgument(_ arg: CommandLineArgument) -> String {
+    let argument: String
+    if arg.value.isEmpty {
+        argument = "''"
+    } else {
+        argument = arg.value
+            .replacingOccurrences(of: " ", with: #"\ "#)
+            .replacingOccurrences(of: "'", with: #"\'"#)
+            .replacingOccurrences(of: #"""#, with: #"\""#)
+            .schemeXmlEscaped
+    }
+
     return #"""
          <CommandLineArgument
-            argument = "\#(arg.value.schemeXmlEscaped)"
+            argument = "\#(argument)"
             isEnabled = "\#(arg.enabled.xmlString)">
          </CommandLineArgument>
 """#

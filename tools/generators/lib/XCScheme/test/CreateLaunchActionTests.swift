@@ -39,7 +39,9 @@ final class CreateLaunchActionTests: XCTestCase {
         let buildConfiguration = "Debug"
         let commandLineArguments: [CommandLineArgument] = [
             .init(value: "-ARGUMENT_3"),
+            .init(value: ""),
             .init(value: "ARGUMENT_Z", enabled: false),
+            .init(value: "something with spaces"),
             .init(value: "'ARGUMENT 1'"),
         ]
 
@@ -60,11 +62,19 @@ final class CreateLaunchActionTests: XCTestCase {
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "''"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "ARGUMENT_Z"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&apos;ARGUMENT 1&apos;"
+            argument = "something\ with\ spaces"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "\&apos;ARGUMENT\ 1\&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
