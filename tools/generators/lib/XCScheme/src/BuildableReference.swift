@@ -1,4 +1,4 @@
-public struct BuildableReference: Equatable {
+public struct BuildableReference: Equatable, Hashable {
     public let blueprintIdentifier: String
     let buildableName: String
     public let blueprintName: String
