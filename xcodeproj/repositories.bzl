@@ -215,9 +215,9 @@ swift_library(
     deps = [":ArgumentParserToolInfo"],
 )
 """,
-        sha256 = "44782ba7180f924f72661b8f457c268929ccd20441eac17301f18eff3b91ce0c",
-        strip_prefix = "swift-argument-parser-1.2.2",
-        url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/1.2.2.tar.gz",
+        sha256 = "4a10bbef290a2167c5cc340b39f1f7ff6a8cf4e1b5433b68548bf5f1e542e908",
+        strip_prefix = "swift-argument-parser-1.2.3",
+        url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/1.2.3.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
