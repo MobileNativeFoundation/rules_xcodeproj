@@ -1,5 +1,6 @@
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load(":opt_wrapper.bzl", "opt_wrapper")
+load(":expanded_pkg.bzl", "expanded_pkg")
 
 opt_wrapper(
     name = "release",
@@ -55,22 +56,10 @@ pkg_tar(
     tags = ["manual"],
 )
 
-genrule(
+expanded_pkg(
     name = "expanded_release_pkg",
-    srcs = [":release_pkg"],
-    outs = ["expanded_release"],
-    cmd = """\
-set -euo pipefail
-
-mkdir "$@"
-tar -xf $< -C "$@"
-touch "$@/WORKSPACE"
-    """,
-    tags = [
-        "manual",
-        # Directory outputs with `genrule` aren't supported remotely
-        "no-remote",
-    ],
+    dep = ":release_pkg",
+    tags = ["manual"],
 )
 
 opt_wrapper(
