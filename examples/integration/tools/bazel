@@ -34,6 +34,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
     "--output_base=$archive_output_base" \
     build \
     --config=cache \
+    --remote_download_outputs=toplevel \
     //distribution:opt_expanded_release
 
   if [[ $(uname -m) == "arm64" ]]; then
