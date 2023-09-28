@@ -56,7 +56,7 @@ final class CreateProfileActionTests: XCTestCase {
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&apos;ARGUMENT 3&apos;"
+            argument = "\&apos;ARGUMENT\ 3\&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
