@@ -17,7 +17,7 @@ _BUNDLE_EXTENSIONS = [
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
 _SETTINGS = {
-	"arm64-apple-ios Lib": {
+	"arm64-apple-ios Lib.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -37,7 +37,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"arm64-apple-ios MixedAnswer": {
+	"arm64-apple-ios MixedAnswer.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -47,17 +47,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"arm64-apple-ios Source": {
-		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
-		"f": [
-			"/build_bazel_rules_ios/frameworks"
-		],
-		"s": [
-			"/__build_bazel_rules_swift/swiftmodules",
-			"/build_bazel_rules_ios/frameworks"
-		]
-	},
-	"arm64-apple-ios UI": {
+	"arm64-apple-ios UI.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -67,7 +57,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"arm64-apple-ios WidgetExtension": {
+	"arm64-apple-ios WidgetExtension.appex/WidgetExtension": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -77,7 +67,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"arm64-apple-ios WidgetExtension.appex/WidgetExtension": {
+	"arm64-apple-ios WidgetExtension.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -97,7 +87,17 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"x86_64-apple-ios-simulator Lib": {
+	"arm64-apple-ios iOSApp.framework": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
+		"f": [
+			"/build_bazel_rules_ios/frameworks"
+		],
+		"s": [
+			"/__build_bazel_rules_swift/swiftmodules",
+			"/build_bazel_rules_ios/frameworks"
+		]
+	},
+	"x86_64-apple-ios-simulator Lib.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -117,7 +117,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"x86_64-apple-ios-simulator MixedAnswer": {
+	"x86_64-apple-ios-simulator MixedAnswer.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -127,28 +127,8 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"x86_64-apple-ios-simulator Source": {
-		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
-		"f": [
-			"/build_bazel_rules_ios/frameworks"
-		],
-		"s": [
-			"/__build_bazel_rules_swift/swiftmodules",
-			"/build_bazel_rules_ios/frameworks"
-		]
-	},
-	"x86_64-apple-ios-simulator UI": {
+	"x86_64-apple-ios-simulator UI.framework": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
-		"f": [
-			"/build_bazel_rules_ios/frameworks"
-		],
-		"s": [
-			"/__build_bazel_rules_swift/swiftmodules",
-			"/build_bazel_rules_ios/frameworks"
-		]
-	},
-	"x86_64-apple-ios-simulator WidgetExtension": {
-		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
 		],
@@ -167,8 +147,28 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
+	"x86_64-apple-ios-simulator WidgetExtension.framework": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
+		"f": [
+			"/build_bazel_rules_ios/frameworks"
+		],
+		"s": [
+			"/__build_bazel_rules_swift/swiftmodules",
+			"/build_bazel_rules_ios/frameworks"
+		]
+	},
 	"x86_64-apple-ios-simulator iOSApp.app/iOSApp_ExecutableName": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
+		"f": [
+			"/build_bazel_rules_ios/frameworks"
+		],
+		"s": [
+			"/__build_bazel_rules_swift/swiftmodules",
+			"/build_bazel_rules_ios/frameworks"
+		]
+	},
+	"x86_64-apple-ios-simulator iOSApp.framework": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
 		],
