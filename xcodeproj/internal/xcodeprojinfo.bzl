@@ -339,10 +339,11 @@ def _skip_target(
     return _target_info_fields(
         args = memory_efficient_depset(
             [
-                _create_args_depset(
-                    ctx = ctx,
+                struct(
                     id = info.xcode_target.id,
-                    automatic_target_info = automatic_target_info,
+                    args = (
+                        getattr(ctx.rule.attr, automatic_target_info.args, [])
+                    ),
                 )
                 for info in deps_transitive_infos
             ] if automatic_target_info.args else None,
@@ -353,6 +354,28 @@ def _skip_target(
         ),
         compilation_providers = compilation_providers,
         dependencies = dependencies,
+        envs = memory_efficient_depset(
+            [
+                struct(
+                    id = info.xcode_target.id,
+                    env = struct(
+                        **dicts.add(
+                            getattr(
+                                ctx.rule.attr,
+                                automatic_target_info.env,
+                                {},
+                            ),
+                            ctx.configuration.test_env,
+                        )
+                    ),
+                )
+                for info in deps_transitive_infos
+            ] if automatic_target_info.env else None,
+            transitive = [
+                info.envs
+                for info in valid_transitive_infos
+            ],
+        ),
         extension_infoplists = memory_efficient_depset(
             transitive = [
                 info.extension_infoplists
@@ -408,20 +431,6 @@ def _skip_target(
             ],
         ),
         target_type = target_type.compile,
-        envs = memory_efficient_depset(
-            [
-                _create_envs_depset(
-                    ctx = ctx,
-                    id = info.xcode_target.id,
-                    automatic_target_info = automatic_target_info,
-                )
-                for info in deps_transitive_infos
-            ] if automatic_target_info.env else None,
-            transitive = [
-                info.envs
-                for info in valid_transitive_infos
-            ],
-        ),
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
         xcode_targets = memory_efficient_depset(
@@ -435,22 +444,6 @@ def _skip_target(
                 info.xcode_required_targets
                 for info in valid_transitive_infos
             ],
-        ),
-    )
-
-def _create_args_depset(*, ctx, id, automatic_target_info):
-    return struct(
-        id = id,
-        args = getattr(ctx.rule.attr, automatic_target_info.args, []),
-    )
-
-def _create_envs_depset(*, ctx, id, automatic_target_info):
-    test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
-
-    return struct(
-        id = id,
-        env = struct(
-            **dicts.add(test_env, ctx.configuration.test_env)
         ),
     )
 
@@ -543,6 +536,12 @@ def _create_xcodeprojinfo(
         ),
         compilation_providers = processed_target.compilation_providers,
         dependencies = processed_target.dependencies,
+        envs = memory_efficient_depset(
+            transitive = [
+                info.envs
+                for _, info in transitive_infos
+            ],
+        ),
         extension_infoplists = memory_efficient_depset(
             processed_target.extension_infoplists,
             transitive = [
@@ -585,12 +584,6 @@ def _create_xcodeprojinfo(
             ],
         ),
         target_type = automatic_target_info.target_type,
-        envs = memory_efficient_depset(
-            transitive = [
-                info.envs
-                for _, info in transitive_infos
-            ],
-        ),
         transitive_dependencies = processed_target.transitive_dependencies,
         xcode_target = processed_target.xcode_target,
         xcode_targets = memory_efficient_depset(

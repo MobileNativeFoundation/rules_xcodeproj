@@ -135,8 +135,7 @@ depends on.
 """,
         "envs": """\
 A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
-target id of the target and `env` values
-for the target (if applicable).
+target id of the target and `env` values for the target (if applicable).
 """,
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
