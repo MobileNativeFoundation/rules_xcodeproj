@@ -29,12 +29,10 @@
     {
         "build_action": null,
         "launch_action": null,
-        "name": "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
+        "name": "iOSAppSwiftUnitTests_Scheme",
         "profile_action": null,
         "test_action": {
-            "args": [
-                "--command_line_args=-AppleLanguages,(en)"
-            ],
+            "args": null,
             "build_configuration": "AppStore",
             "diagnostics": null,
             "env": {
@@ -51,10 +49,12 @@
     {
         "build_action": null,
         "launch_action": null,
-        "name": "iOSAppUnitTestSuite_Scheme",
+        "name": "iOSAppUnitTestSuite_CommandLineArgs_Scheme",
         "profile_action": null,
         "test_action": {
-            "args": null,
+            "args": [
+                "--command_line_args=-AppleLanguages,(en)"
+            ],
             "build_configuration": null,
             "diagnostics": null,
             "env": {
