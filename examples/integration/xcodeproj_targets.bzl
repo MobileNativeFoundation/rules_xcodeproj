@@ -158,23 +158,23 @@ def get_xcode_schemes():
             ),
         ),
         xcode_schemes.scheme(
-            name = "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
+            name = "iOSAppSwiftUnitTests_Scheme",
             test_action = xcode_schemes.test_action(
                 build_configuration = "AppStore",
                 env = {
                     "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
                 },
-                args = [
-                    "--command_line_args=-AppleLanguages,(en)",
-                ],
                 targets = [
                     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                 ],
             ),
         ),
         xcode_schemes.scheme(
-            name = "iOSAppUnitTestSuite_Scheme",
+            name = "iOSAppUnitTestSuite_CommandLineArgs_Scheme",
             test_action = xcode_schemes.test_action(
+                args = [
+                    "--command_line_args=-AppleLanguages,(en)",
+                ],
                 env = {
                     "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
                 },
