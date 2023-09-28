@@ -7,7 +7,7 @@ extension PBXTarget {
     }
 
     var buildableName: String {
-        return product?.path ?? name
+        return (productName ?? product?.path ?? name) + "."
     }
 
     var schemeName: String {

@@ -10,7 +10,7 @@ rules_ios_apple_framework(
         "MixedAnswer.swift",
     ],
     bundle_id = "rules-xcodeproj.MixedAnswer",
-    module_name = "MixedAnswer",
+    module_name = "MixedAnswer_iOS",
     platforms = {
         "ios": "15.0",
     },
