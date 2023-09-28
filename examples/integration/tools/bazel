@@ -34,7 +34,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
     "--output_base=$archive_output_base" \
     build \
     --config=cache \
-    //distribution:opt_expanded_release_pkg
+    //distribution:opt_expanded_release
 
   if [[ $(uname -m) == "arm64" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"

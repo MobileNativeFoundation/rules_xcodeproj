@@ -57,13 +57,13 @@ pkg_tar(
 )
 
 expanded_pkg(
-    name = "expanded_release_pkg",
+    name = "expanded_release",
     dep = ":release_pkg",
     tags = ["manual"],
 )
 
 opt_wrapper(
-    name = "opt_expanded_release_pkg",
-    dep = ":expanded_release_pkg",
+    name = "opt_expanded_release",
+    dep = ":expanded_release",
     tags = ["manual"],
 )
