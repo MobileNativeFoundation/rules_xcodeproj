@@ -32,6 +32,7 @@ private func createCommandLineArgument(_ arg: CommandLineArgument) -> String {
     } else {
         argument = arg.value
             .replacingOccurrences(of: " ", with: #"\ "#)
+            .replacingOccurrences(of: "\n", with: "\\\n")
             .replacingOccurrences(of: "'", with: #"\'"#)
             .replacingOccurrences(of: #"""#, with: #"\""#)
             .schemeXmlEscaped

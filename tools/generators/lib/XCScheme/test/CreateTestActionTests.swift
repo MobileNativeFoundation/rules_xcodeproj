@@ -56,7 +56,7 @@ final class CreateTestActionTests: XCTestCase {
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&apos;ARGUMENT 2&apos;"
+            argument = "\&apos;ARGUMENT\ 2\&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

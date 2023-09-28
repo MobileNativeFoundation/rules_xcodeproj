@@ -40,6 +40,7 @@ final class CreateLaunchActionTests: XCTestCase {
         let commandLineArguments: [CommandLineArgument] = [
             .init(value: "-ARGUMENT_3"),
             .init(value: ""),
+            .init(value: "multi\nline\nargument"),
             .init(value: "ARGUMENT_Z", enabled: false),
             .init(value: "something with spaces"),
             .init(value: "'ARGUMENT 1'"),
@@ -63,6 +64,10 @@ final class CreateLaunchActionTests: XCTestCase {
          </CommandLineArgument>
          <CommandLineArgument
             argument = "''"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "multi\&#10;line\&#10;argument"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -234,7 +239,9 @@ final class CreateLaunchActionTests: XCTestCase {
                 key: "BUILD_WORKING_DIRECTORY",
                 value: "$(BUILT_PRODUCTS_DIR)"
             ),
-            .init(key: "VAR", value: "'Value 1'"),
+            .init(key: "VAR A\nZ", value: "Spaces spaces everywhere"),
+            .init(key: "VAR1", value: "'Value 1'"),
+            .init(key: "VARB", value: "multi\nline\nvalue"),
         ]
 
         let expectedAction = #"""
@@ -255,8 +262,18 @@ final class CreateLaunchActionTests: XCTestCase {
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "VAR"
+            key = "VAR A&#10;Z"
+            value = "Spaces spaces everywhere"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "VAR1"
             value = "&apos;Value 1&apos;"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "VARB"
+            value = "multi&#10;line&#10;value"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
