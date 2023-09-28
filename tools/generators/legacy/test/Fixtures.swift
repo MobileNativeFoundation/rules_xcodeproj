@@ -1313,7 +1313,7 @@ $(BAZEL_OUT)/z/A.link.params
 
         if let group = group {
             // The order products are added to a group matters for uuid fixing
-            products.byTarget.sortedLocalizedStandard().forEach { product in
+            products.byTarget.values.forEach { product in
                 group.addChild(product)
             }
         }
