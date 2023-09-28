@@ -48,7 +48,7 @@ x_templates:
   commands:
     - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
-    - &test_all "--output_base=bazel-output-base test --config=workflows //test/..."
+    - &test_all "--output_base=bazel-output-base test --config=workflows //..."
     - &nobzlmod_build_all "--output_base=bazel-output-base build --config=workflows --config=nobzlmod //..."
     - &nobzlmod_test_all "--output_base=bazel-output-base test --config=workflows --config=nobzlmod //..."
     - &nobzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=nobzlmod //test/fixtures:update"
