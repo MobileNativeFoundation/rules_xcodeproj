@@ -91,7 +91,7 @@ struct Products: Equatable {
 }
 
 extension Products {
-    init(_ products: [ProductKeys: PBXFileReference]) {
+    init(_ products: OrderedDictionary<ProductKeys, PBXFileReference>) {
         for (keys, product) in products {
             byTarget[keys.targetKey] = product
             for filePath in keys.filePaths {
