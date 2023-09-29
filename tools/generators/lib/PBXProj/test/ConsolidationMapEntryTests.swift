@@ -16,6 +16,7 @@ final class ConsolidationMapEntryTests: XCTestCase {
                 productPath: "some/tool with spaces/c",
                 uiTestHostName: nil,
                 subIdentifier: .init(shard: "42", hash: "18270012"),
+                watchKitExtensionProductIdentifier: nil,
                 dependencySubIdentifiers: [
                     .init(shard: "02", hash: "00234561"),
                     .init(shard: "79", hash: "11111111"),
@@ -29,6 +30,13 @@ final class ConsolidationMapEntryTests: XCTestCase {
                 productPath: "a/test.xctest",
                 uiTestHostName: "Disambiguated 3 (Name)",
                 subIdentifier: .init(shard: "01", hash: "12345678"),
+                // Doesn't make sense, but testing the encoding and decoding
+                watchKitExtensionProductIdentifier: .init(
+                    shard: "42",
+                    type: .product,
+                    path: "extension.appex",
+                    hash: "77777777"
+                ),
                 dependencySubIdentifiers: []
             ),
             .init(
@@ -39,6 +47,7 @@ final class ConsolidationMapEntryTests: XCTestCase {
                 productPath: "a/libtest.a",
                 uiTestHostName: nil,
                 subIdentifier: .init(shard: "00", hash: "00000000"),
+                watchKitExtensionProductIdentifier: nil,
                 dependencySubIdentifiers: [
                     .init(shard: "44", hash: "00000000"),
                 ]

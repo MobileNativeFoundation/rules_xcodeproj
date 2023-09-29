@@ -44,7 +44,9 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                             productType: .uiTestBundle,
                             productPath: "C.xctest",
                             productBasename: "C.xctest",
-                            uiTestHost: "B"
+                            uiTestHost: "B",
+                            // Doesn't make sense, just for testing
+                            watchKitExtension: "W"
                         ),
                     ]
                 )
@@ -87,6 +89,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                     full: "AB_SHARD00AB_HASH000000000001 /* AB (macOS) */",
                     withoutComment: "AB_SHARD00AB_HASH000000000001"
                 ),
+                watchKitExtension: nil,
                 dependencies: [
                     "C",
                 ]
@@ -106,6 +109,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                     full: "C_SHARD00C_HASH000000000001 /* c (iOS) */",
                     withoutComment: "C_SHARD00C_HASH000000000001"
                 ),
+                watchKitExtension: "W",
                 dependencies: []
             ),
         ]

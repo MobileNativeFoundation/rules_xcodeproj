@@ -1,4 +1,5 @@
 import CustomDump
+import OrderedCollections
 import XCTest
 
 @testable import pbxtargetdependencies
@@ -32,10 +33,13 @@ final class CreateDependencyObjectsTests: XCTestCase {
                 dependencies: []
             ),
         ]
-        let identifiers: [TargetID : Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[0].identifier,
-            "B": identifiedTargets[0].identifier,
-            "C": identifiedTargets[1].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "A": identifiedTargets[0],
+            "B": identifiedTargets[0],
+            "C": identifiedTargets[1],
         ]
 
         let createContainerItemProxyObject =
@@ -59,15 +63,18 @@ final class CreateDependencyObjectsTests: XCTestCase {
             Generator.CreateContainerItemProxyObject.MockTracker.Called
         ] = [
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies
             ),
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
-                dependencyIdentifier: identifiers["C"]!
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
+                dependencyIdentifier: identifiedTargetsMap["C"]!.identifier
             ),
             .init(
-                subIdentifier: identifiers["C"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["C"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies
             ),
         ]
@@ -75,17 +82,20 @@ final class CreateDependencyObjectsTests: XCTestCase {
             Generator.CreateTargetDependencyObject.MockTracker.Called
         ] = [
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies,
                 containerItemProxyIdentifier: "CIP_AB1_ID"
             ),
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
                 dependencyIdentifier: identifiedTargets[1].identifier,
                 containerItemProxyIdentifier: "CIP_AB2_ID"
             ),
             .init(
-                subIdentifier: identifiers["C"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["C"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies,
                 containerItemProxyIdentifier: "CIP_C_ID"
             ),
@@ -105,7 +115,7 @@ final class CreateDependencyObjectsTests: XCTestCase {
         let objects = try Generator.CreateDependencyObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
-                identifiers: identifiers,
+                identifiedTargetsMap: identifiedTargetsMap,
                 createContainerItemProxyObject:
                     createContainerItemProxyObject.mock,
                 createTargetDependencyObject:
@@ -130,16 +140,6 @@ final class CreateDependencyObjectsTests: XCTestCase {
 
         let identifiedTargets: [IdentifiedTarget] = [
             .mock(
-                key: ["A", "B"],
-                identifier: .init(
-                    pbxProjEscapedName: "AB",
-                    subIdentifier: .init(shard: "01", hash: "00000000"),
-                    full: "AB_ID /* AB */",
-                    withoutComment: "AB_ID"
-                ),
-                dependencies: []
-            ),
-            .mock(
                 key: ["C"],
                 identifier: .init(
                     pbxProjEscapedName: "C",
@@ -149,11 +149,24 @@ final class CreateDependencyObjectsTests: XCTestCase {
                 ),
                 dependencies: []
             ),
+            .mock(
+                key: ["A", "B"],
+                identifier: .init(
+                    pbxProjEscapedName: "AB",
+                    subIdentifier: .init(shard: "01", hash: "00000000"),
+                    full: "AB_ID /* AB */",
+                    withoutComment: "AB_ID"
+                ),
+                dependencies: []
+            ),
         ]
-        let identifiers: [TargetID : Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[0].identifier,
-            "B": identifiedTargets[0].identifier,
-            "C": identifiedTargets[1].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "C": identifiedTargets[1],
+            "A": identifiedTargets[0],
+            "B": identifiedTargets[0],
         ]
 
         let createContainerItemProxyObject =
@@ -175,11 +188,13 @@ final class CreateDependencyObjectsTests: XCTestCase {
             Generator.CreateContainerItemProxyObject.MockTracker.Called
         ] = [
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies
             ),
             .init(
-                subIdentifier: identifiers["C"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["C"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies
             ),
         ]
@@ -187,12 +202,14 @@ final class CreateDependencyObjectsTests: XCTestCase {
             Generator.CreateTargetDependencyObject.MockTracker.Called
         ] = [
             .init(
-                subIdentifier: identifiers["A"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["A"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies,
                 containerItemProxyIdentifier: "CIP_AB_ID"
             ),
             .init(
-                subIdentifier: identifiers["C"]!.subIdentifier,
+                subIdentifier:
+                    identifiedTargetsMap["C"]!.identifier.subIdentifier,
                 dependencyIdentifier: .bazelDependencies,
                 containerItemProxyIdentifier: "CIP_C_ID"
             ),
@@ -210,7 +227,7 @@ final class CreateDependencyObjectsTests: XCTestCase {
         let objects = try Generator.CreateDependencyObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
-                identifiers: identifiers,
+                identifiedTargetsMap: identifiedTargetsMap,
                 createContainerItemProxyObject:
                     createContainerItemProxyObject.mock,
                 createTargetDependencyObject:

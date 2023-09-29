@@ -1,3 +1,4 @@
+import OrderedCollections
 import PBXProj
 
 extension Generator {
@@ -21,14 +22,14 @@ extension Generator {
         /// Calculates all the `PBXProject.targets` objects.
         func callAsFunction(
             identifiedTargets: [IdentifiedTarget],
+            identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>,
             testHosts: [TargetID: TargetID],
-            identifiers: [TargetID: Identifiers.Targets.Identifier],
             createdOnToolsVersion: String
         ) throws -> [Object] {
             return try callable(
                 /*identifiedTargets:*/ identifiedTargets,
+                /*identifiedTargetsMap:*/ identifiedTargetsMap,
                 /*testHosts:*/ testHosts,
-                /*identifiers:*/ identifiers,
                 /*createdOnToolsVersion:*/ createdOnToolsVersion,
                 /*createTargetAttributesContent:*/ createTargetAttributesContent
             )
@@ -41,16 +42,16 @@ extension Generator {
 extension Generator.CreateTargetAttributesObjects {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
+        _ identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>,
         _ testHosts: [TargetID: TargetID],
-        _ identifiers: [TargetID: Identifiers.Targets.Identifier],
         _ createdOnToolsVersion: String,
         _ createTargetAttributesContent: Generator.CreateTargetAttributesContent
     ) throws -> [Object]
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget],
+        identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>,
         testHosts: [TargetID: TargetID],
-        identifiers: [TargetID: Identifiers.Targets.Identifier],
         createdOnToolsVersion: String,
         createTargetAttributesContent: Generator.CreateTargetAttributesContent
     ) throws -> [Object] {
@@ -73,8 +74,9 @@ extension Generator.CreateTargetAttributesObjects {
                     content: createTargetAttributesContent(
                         createdOnToolsVersion: createdOnToolsVersion,
                         testHostIdentifier: try testHosts[anId].flatMap { id in
-                            return try identifiers
+                            return try identifiedTargetsMap
                                 .value(for: id, context: "Test host")
+                                .identifier
                                 .full
                         }
                     )

@@ -1,7 +1,8 @@
+import OrderedCollections
 import PBXProj
 
 extension Generator {
-    struct CalculateTargetIdentifierMap {
+    struct CalculateIdentifiedTargetsMap {
         private let callable: Callable
 
         /// - Parameters:
@@ -14,7 +15,7 @@ extension Generator {
         /// Calculates a map from target id to identifier.
         func callAsFunction(
             identifiedTargets: [IdentifiedTarget]
-        ) -> [TargetID: Identifiers.Targets.Identifier] {
+        ) -> OrderedDictionary<TargetID, IdentifiedTarget> {
             return callable(
                 /*identifiedTargets:*/ identifiedTargets
             )
@@ -22,19 +23,19 @@ extension Generator {
     }
 }
 
-// MARK: - CalculateTargetIdentifierMap.Callable
+// MARK: - CalculateIdentifiedTargetsMap.Callable
 
-extension Generator.CalculateTargetIdentifierMap {
+extension Generator.CalculateIdentifiedTargetsMap {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget]
-    ) -> [TargetID: Identifiers.Targets.Identifier]
+    ) -> OrderedDictionary<TargetID, IdentifiedTarget>
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget]
-    ) -> [TargetID: Identifiers.Targets.Identifier] {
-        return Dictionary(
+    ) -> OrderedDictionary<TargetID, IdentifiedTarget> {
+        return OrderedDictionary(
             uniqueKeysWithValues: identifiedTargets.flatMap { target in
-                target.key.sortedIds.map { ($0, target.identifier) }
+                target.key.sortedIds.map { ($0, target) }
             }
         )
     }

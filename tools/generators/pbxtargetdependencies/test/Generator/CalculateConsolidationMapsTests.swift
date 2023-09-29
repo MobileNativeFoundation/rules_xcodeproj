@@ -1,4 +1,5 @@
 import CustomDump
+import OrderedCollections
 import XCTest
 
 @testable import pbxtargetdependencies
@@ -40,6 +41,8 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                     full: "A_ID /* AA */",
                     withoutComment: "A_ID"
                 ),
+                // Doesn't make sense, but set just for testing
+                watchKitExtension: "W",
                 dependencies: ["C"]
             ),
             .mock(
@@ -58,11 +61,31 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 ),
                 dependencies: []
             ),
+            .mock(
+                consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/2"),
+                key: ["W"],
+                label: "@//package:W",
+                productType: .watch2Extension,
+                name: "w",
+                productPath: "some/W.appex",
+                productBasename: "W.appex",
+                identifier: .init(
+                    pbxProjEscapedName: "WatchKitExtension",
+                    subIdentifier: .init(shard: "42", hash: "12345678"),
+                    full: "W_ID /* W */",
+                    withoutComment: "W_ID"
+                ),
+                dependencies: []
+            ),
         ]
-        let identifiers: [TargetID: Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[1].identifier,
-            "B": identifiedTargets[0].identifier,
-            "C": identifiedTargets[2].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "B": identifiedTargets[0],
+            "A": identifiedTargets[1],
+            "C": identifiedTargets[2],
+            "W": identifiedTargets[3],
         ]
 
         let expectedConsolidationMaps: [URL: [ConsolidationMapEntry]] = [
@@ -75,6 +98,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                     productPath: "B.xctest",
                     uiTestHostName: "AA",
                     subIdentifier: .init(shard: "42", hash: "12345678"),
+                    watchKitExtensionProductIdentifier: nil,
                     dependencySubIdentifiers: [
                         .bazelDependencies,
                     ]
@@ -87,6 +111,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                     productPath: "some/C.dylib",
                     uiTestHostName: nil,
                     subIdentifier: .init(shard: "10", hash: "FFFFFFFF"),
+                    watchKitExtensionProductIdentifier: nil,
                     dependencySubIdentifiers: [
                         .bazelDependencies,
                     ]
@@ -101,9 +126,30 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                     productPath: "an/AA.app",
                     uiTestHostName: nil,
                     subIdentifier: .init(shard: "07", hash: "11111111"),
+                    watchKitExtensionProductIdentifier: .init(
+                        shard: "42",
+                        type: .product,
+                        path: "W.appex",
+                        hash: "12345678"
+                    ),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
                         .init(shard: "10", hash: "FFFFFFFF"),
+                    ]
+                ),
+            ],
+            URL(fileURLWithPath: "/tmp/2"): [
+                .init(
+                    key: ["W"],
+                    label: "@//package:W",
+                    productType: .watch2Extension,
+                    name: "w",
+                    productPath: "some/W.appex",
+                    uiTestHostName: nil,
+                    subIdentifier: .init(shard: "42", hash: "12345678"),
+                    watchKitExtensionProductIdentifier: nil,
+                    dependencySubIdentifiers: [
+                        .bazelDependencies,
                     ]
                 ),
             ],
@@ -114,7 +160,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
         let consolidationMaps = try Generator.CalculateConsolidationMaps
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
-                identifiers: identifiers
+                identifiedTargetsMap: identifiedTargetsMap
             )
 
         // Assert
@@ -128,8 +174,11 @@ final class CalculateConsolidationMapsTests: XCTestCase {
         let identifiedTargets: [IdentifiedTarget] = [
             .mock(key: ["A"], dependencies: ["B"]),
         ]
-        let identifiers: [TargetID: Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[0].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "A": identifiedTargets[0],
         ]
 
         // Act/Assert
@@ -137,7 +186,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
         XCTAssertThrowsError(
             try Generator.CalculateConsolidationMaps.defaultCallable(
                 identifiedTargets: identifiedTargets,
-                identifiers: identifiers
+                identifiedTargetsMap: identifiedTargetsMap
             )
         )
     }

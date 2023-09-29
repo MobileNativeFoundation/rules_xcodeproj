@@ -19,6 +19,7 @@ extension IdentifiedTarget {
             full: "T_ID /* T */",
             withoutComment: "T_ID"
         ),
+        watchKitExtension: TargetID? = nil,
         dependencies: [TargetID] = []
     ) -> Self {
         return Self(
@@ -31,6 +32,7 @@ extension IdentifiedTarget {
             productBasename: productBasename,
             uiTestHostName: uiTestHostName,
             identifier: identifier,
+            watchKitExtension: watchKitExtension,
             dependencies: dependencies
         )
     }

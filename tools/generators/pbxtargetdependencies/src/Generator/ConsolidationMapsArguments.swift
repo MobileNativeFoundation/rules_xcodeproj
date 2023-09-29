@@ -296,7 +296,8 @@ struct ConsolidationMapArguments: Equatable {
 
 extension ConsolidationMapsArguments {
     func toConsolidationMapArguments(
-        testHosts: [TargetID: TargetID]
+        testHosts: [TargetID: TargetID],
+        watchKitExtensions: [TargetID: TargetID]
     ) throws -> [ConsolidationMapArguments] {
         var dependenciesStartIndex = dependencies.startIndex
         var labelsStartIndex = labels.startIndex
@@ -346,6 +347,14 @@ extension ConsolidationMapsArguments {
                         uiTestHost = nil
                     }
 
+                    let watchKitExtension: TargetID?
+                    if productType == .watch2App {
+                        watchKitExtension = try watchKitExtensions
+                            .value(for: id, context: "WatchKit extension")
+                    } else {
+                        watchKitExtension = nil
+                    }
+
                     targetArguments.append(
                         .init(
                             id: id,
@@ -359,6 +368,7 @@ extension ConsolidationMapsArguments {
                             productBasename: productBasenames[targetIndex],
                             moduleName: moduleNames[targetIndex],
                             uiTestHost: uiTestHost,
+                            watchKitExtension: watchKitExtension,
                             dependencies: dependencies
                         )
                     )

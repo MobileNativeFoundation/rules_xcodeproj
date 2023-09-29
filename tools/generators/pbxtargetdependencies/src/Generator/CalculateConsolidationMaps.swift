@@ -1,4 +1,5 @@
 import Foundation
+import OrderedCollections
 import PBXProj
 
 extension Generator {
@@ -15,11 +16,11 @@ extension Generator {
         /// Calculates the contents of the consolidation maps.
         func callAsFunction(
             identifiedTargets: [IdentifiedTarget],
-            identifiers: [TargetID: Identifiers.Targets.Identifier]
+            identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>
         ) throws -> [URL: [ConsolidationMapEntry]] {
             return try callable(
                 /*identifiedTargets:*/ identifiedTargets,
-                /*identifiers:*/ identifiers
+                /*identifiedTargetsMap:*/ identifiedTargetsMap
             )
         }
     }
@@ -30,24 +31,37 @@ extension Generator {
 extension Generator.CalculateConsolidationMaps {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
-        _ identifiers: [TargetID: Identifiers.Targets.Identifier]
+        _ identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>
     ) throws -> [URL: [ConsolidationMapEntry]]
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget],
-        identifiers: [TargetID: Identifiers.Targets.Identifier]
+        identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>
     ) throws -> [URL: [ConsolidationMapEntry]] {
         var consolidationMaps: [URL: [ConsolidationMapEntry]] = [:]
         for target in identifiedTargets {
             let identifier = target.identifier
+
+            let watchKitExtensionProductIdentifier =
+                try target.watchKitExtension.flatMap { id in
+                    let watchKitExtension = try identifiedTargetsMap
+                        .value(for: id ,context: "WatchKit extension")
+
+                    return Identifiers.BuildFiles.productIdentifier(
+                        targetSubIdentifier:
+                            watchKitExtension.identifier.subIdentifier,
+                        productBasename: watchKitExtension.productBasename
+                    )
+                }
 
             var depSubIdentifiers: [Identifiers.Targets.SubIdentifier] = [
                 .bazelDependencies,
             ]
             depSubIdentifiers
                 .append(contentsOf: try target.dependencies.map { id in
-                    return try identifiers
+                    return try identifiedTargetsMap
                         .value(for: id ,context: "Dependency")
+                        .identifier
                         .subIdentifier
                 })
 
@@ -61,6 +75,8 @@ extension Generator.CalculateConsolidationMaps {
                         productPath: target.productPath,
                         uiTestHostName: target.uiTestHostName,
                         subIdentifier: identifier.subIdentifier,
+                        watchKitExtensionProductIdentifier:
+                            watchKitExtensionProductIdentifier,
                         dependencySubIdentifiers: depSubIdentifiers
                     )
                 )

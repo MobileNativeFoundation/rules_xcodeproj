@@ -18,7 +18,7 @@ extension Generator {
 
             self.callable = callable
         }
-        
+
         /// Identifies a set of disambiguated targets.
         func callAsFunction(
             _ disambiguatedTargets: [DisambiguatedTarget],
@@ -82,6 +82,7 @@ extension Generator.InnerIdentifyTargets {
                     uiTestHostName: disambiguatedTarget
                         .target.uiTestHost.flatMap { idsToNames[$0] },
                     identifier: identifier,
+                    watchKitExtension: aTarget.watchKitExtension,
                     dependencies: aTarget.dependencies
                 )
             )

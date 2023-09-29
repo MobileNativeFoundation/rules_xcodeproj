@@ -22,9 +22,14 @@ struct Generator {
     /// files. Then it writes them to disk.
     func generate(arguments: Arguments, logger: Logger) async throws {
         let testHosts = arguments.testHosts
+        let watchKitExtensions = arguments.watchKitExtensions
+
         let identifiedTargets = try environment.identifyTargets(
             consolidationMapArguments: try arguments.consolidationMapsArguments
-                .toConsolidationMapArguments(testHosts: testHosts),
+                .toConsolidationMapArguments(
+                    testHosts: testHosts,
+                    watchKitExtensions: watchKitExtensions
+                ),
             logger: logger
         )
 
@@ -37,14 +42,14 @@ struct Generator {
             )
         }
 
-        let identifiers = environment
-            .calculateTargetIdentifierMap(identifiedTargets: identifiedTargets)
+        let identifiedTargetsMap = environment
+            .calculateIdentifiedTargetsMap(identifiedTargets: identifiedTargets)
 
         let writeConsolidationMapsTask = Task {
             try await environment.writeConsolidationMaps(
                 try environment.calculateConsolidationMaps(
                     identifiedTargets: identifiedTargets,
-                    identifiers: identifiers
+                    identifiedTargetsMap: identifiedTargetsMap
                 )
             )
         }
@@ -54,8 +59,8 @@ struct Generator {
                 environment.calculateTargetAttributesPartial(
                     objects: environment.createTargetAttributesObjects(
                         identifiedTargets: identifiedTargets,
+                        identifiedTargetsMap: identifiedTargetsMap,
                         testHosts: testHosts,
-                        identifiers: identifiers,
                         createdOnToolsVersion: environment
                             .calculateCreatedOnToolsVersion(
                                 minimumXcodeVersion: arguments
@@ -72,7 +77,7 @@ struct Generator {
                 environment.calculateTargetDependenciesPartial(
                     objects: environment.createDependencyObjects(
                         identifiedTargets: identifiedTargets,
-                        identifiers: identifiers
+                        identifiedTargetsMap: identifiedTargetsMap
                     )
                 ),
                 to: arguments.targetDependenciesOutputPath

@@ -17,6 +17,7 @@ public struct ConsolidationMapEntry: Equatable {
     public let productPath: String
     public let uiTestHostName: String?
     public let subIdentifier: Identifiers.Targets.SubIdentifier
+    public let watchKitExtensionProductIdentifier: Identifiers.BuildFiles.SubIdentifier?
     public let dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier]
 
     public init(
@@ -27,6 +28,7 @@ public struct ConsolidationMapEntry: Equatable {
         productPath: String,
         uiTestHostName: String?,
         subIdentifier: Identifiers.Targets.SubIdentifier,
+        watchKitExtensionProductIdentifier: Identifiers.BuildFiles.SubIdentifier?,
         dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier]
     ) {
         self.key = key
@@ -36,6 +38,7 @@ public struct ConsolidationMapEntry: Equatable {
         self.productPath = productPath
         self.uiTestHostName = uiTestHostName
         self.subIdentifier = subIdentifier
+        self.watchKitExtensionProductIdentifier = watchKitExtensionProductIdentifier
         self.dependencySubIdentifiers = dependencySubIdentifiers
     }
 }
@@ -103,6 +106,11 @@ extension ConsolidationMapEntry {
         }
         data.append(Self.subSeparator)
 
+        if let watchKitExtensionProductIdentifier {
+            watchKitExtensionProductIdentifier.encode(into: &data)
+        }
+        data.append(Self.subSeparator)
+
         key.encode(into: &data)
 
         subIdentifier.encode(into: &data)
@@ -120,6 +128,15 @@ private extension ConsolidationMapEntry.Key {
             data.append(Data(id.rawValue.utf8))
             data.append(ConsolidationMapEntry.subSeparator)
         }
+    }
+}
+
+private extension Identifiers.BuildFiles.SubIdentifier {
+    func encode(into data: inout Data) {
+        data.append(Data(type.rawValue.utf8))
+        data.append(Data(shard.utf8))
+        data.append(Data(hash.utf8))
+        data.append(Data(path.path.utf8))
     }
 }
 
@@ -176,7 +193,7 @@ extension ConsolidationMapEntry {
         let uiTestHostName = String(components[6])
 
         self.init(
-            key: .init(from: components[7 ..< subIdentifiersIndex]),
+            key: .init(from: components[8 ..< subIdentifiersIndex]),
             label: .init(
                 repository: String(components[0]),
                 package: String(components[1]),
@@ -189,6 +206,8 @@ extension ConsolidationMapEntry {
             subIdentifier: .init(
                 from: subIdentifiersString[subIdentifierRange]
             ),
+            watchKitExtensionProductIdentifier:
+                try .init(from: components[7], in: url),
             dependencySubIdentifiers:
                 .init(from: subIdentifiersString[dependencySubIdentifiersRange])
         )
@@ -198,6 +217,40 @@ extension ConsolidationMapEntry {
 private extension ConsolidationMapEntry.Key {
     init(from strings: ArraySlice<String.SubSequence>) {
         self.init(strings.lazy.map { TargetID(String($0)) })
+    }
+}
+
+private extension Identifiers.BuildFiles.SubIdentifier {
+    init?(from string: String.SubSequence, in url: URL) throws {
+        guard !string.isEmpty else {
+            return nil
+        }
+
+        // Type is first character
+        let typeStartIndex = string.startIndex
+
+        // Shard is next two characters
+        let shardStartIndex = string.index(typeStartIndex, offsetBy: 1)
+
+        // Hash is next 8 characters
+        let hashStartIndex = string.index(shardStartIndex, offsetBy: 2)
+
+        let pathStartIndex = string.index(hashStartIndex, offsetBy: 8)
+
+        guard let type = Identifiers.BuildFiles.FileType(
+            rawValue: String(string[typeStartIndex])
+        ) else {
+            throw PreconditionError(message: #"""
+"\#(url.path)": "\#(string[typeStartIndex])" is an unknown file type
+"""#)
+        }
+
+        self.init(
+            shard: String(string[shardStartIndex ..< hashStartIndex]),
+            type: type,
+            path: BazelPath(String(string[pathStartIndex ..< string.endIndex])),
+            hash: String(string[hashStartIndex ..< pathStartIndex])
+        )
     }
 }
 

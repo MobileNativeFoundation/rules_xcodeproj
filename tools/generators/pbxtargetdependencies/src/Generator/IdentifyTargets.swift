@@ -12,6 +12,7 @@ struct IdentifiedTarget: Equatable {
     let productBasename: String
     let uiTestHostName: String?
     let identifier: Identifiers.Targets.Identifier
+    let watchKitExtension: TargetID?
     let dependencies: [TargetID]
 }
 
