@@ -29,3 +29,10 @@ extension BuildSetting: Comparable {
         return lhs.sortKey < rhs.sortKey
     }
 }
+
+// For tests
+extension Array where Element == BuildSetting {
+    public var asDictionary: [String: String] {
+        return Dictionary(uniqueKeysWithValues: map { ($0.key, $0.value) })
+    }
+}
