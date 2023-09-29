@@ -21079,9 +21079,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-4";
@@ -21160,9 +21157,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:iOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/iOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:iOS CONFIGURATION-STABLE-9";
@@ -21265,9 +21259,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:tvOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:tvOS CONFIGURATION-STABLE-11";
@@ -21299,9 +21290,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:iOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/iOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:iOS CONFIGURATION-STABLE-3";
@@ -21377,9 +21365,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:watchOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:watchOS CONFIGURATION-STABLE-10";
@@ -21955,9 +21940,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-5";
@@ -22353,9 +22335,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:tvOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:tvOS CONFIGURATION-STABLE-5";
@@ -23132,9 +23111,6 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib";
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-5";
@@ -23189,9 +23165,6 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = "\"bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib";
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11";
@@ -23603,9 +23576,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibFramework.iOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/UI/UIFramework.iOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/UI/UIFramework.iOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.iOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3";
@@ -24169,9 +24139,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.iOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-9/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-9";
@@ -24270,9 +24237,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:watchOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic";
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:watchOS CONFIGURATION-STABLE-4";
@@ -24557,9 +24521,6 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/Lib";
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-10";
@@ -24999,9 +24960,6 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = "\"bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib";
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-4";
@@ -25237,9 +25195,6 @@
 				BAZEL_LABEL = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = CoreUtilsObjC.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC";
 				BAZEL_TARGET_ID = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3";
@@ -25644,9 +25599,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/UI/UIFramework.watchOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-13/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-10";
@@ -26012,9 +25964,6 @@
 				BAZEL_LABEL = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = CoreUtilsObjC.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC";
 				BAZEL_TARGET_ID = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-9";
@@ -27201,9 +27150,6 @@
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.tvOS.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/UI";
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-11";

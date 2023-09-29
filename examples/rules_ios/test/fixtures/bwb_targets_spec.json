@@ -43,8 +43,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
@@ -108,8 +106,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UI.framework",
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "CONFIGURATION-STABLE-1",
@@ -199,8 +195,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "MixedAnswer.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.MixedAnswer",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
@@ -257,8 +251,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtils.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
@@ -289,8 +281,6 @@
             }
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.framework",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
@@ -336,8 +326,6 @@
             }
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.framework",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
@@ -461,8 +449,6 @@
         },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibDynamic.framework.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -518,8 +504,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Utils.framework",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_Utils_Utils"
         },
         "c": "CONFIGURATION-STABLE-1",
@@ -1211,8 +1195,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
@@ -1276,8 +1258,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UI.framework",
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "CONFIGURATION-STABLE-2",
@@ -1367,8 +1347,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "MixedAnswer.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.MixedAnswer",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
@@ -1425,8 +1403,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtils.framework",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
@@ -1457,8 +1433,6 @@
             }
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.framework",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
@@ -1504,8 +1478,6 @@
             }
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.framework",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.framework",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
@@ -1631,8 +1603,6 @@
         },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.40.link.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibDynamic.framework.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
