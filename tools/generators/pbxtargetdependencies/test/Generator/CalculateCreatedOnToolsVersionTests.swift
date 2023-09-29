@@ -1,4 +1,3 @@
-import CustomDump
 import ToolCommon
 import XCTest
 
@@ -19,9 +18,6 @@ class CalculateCreatedOnToolsVersionTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(
-            createdOnToolsVersion,
-            expectedCreatedOnToolsVersion
-        )
+        XCTAssertEqual(createdOnToolsVersion, expectedCreatedOnToolsVersion)
     }
 }
