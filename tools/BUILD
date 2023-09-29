@@ -68,8 +68,11 @@ _SCHEMES = [
                 "--folder-paths",
                 "a/project/structure/resource/folder",
             ],
-            build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["files_and_groups"],
+            build_configuration = "Release",
         ),
         test_action = xcode_schemes.test_action(
             _TESTS["files_and_groups"],
@@ -113,8 +116,11 @@ _SCHEMES = [
                 # preBuildScript
                 # postBuildScript
             ],
-            build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["pbxproj_prefix"],
+            build_configuration = "Release",
         ),
         test_action = xcode_schemes.test_action(
             _TESTS["pbxproj_prefix"],
@@ -217,8 +223,11 @@ _SCHEMES = [
                 "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
                 "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
             ],
-            build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["pbxtargetdependencies"],
+            build_configuration = "Release",
         ),
         test_action = xcode_schemes.test_action(
             _TESTS["pbxtargetdependencies"],
@@ -237,6 +246,10 @@ _SCHEMES = [
         launch_action = xcode_schemes.launch_action(
             _TOOLS["swiftc_stub"],
             diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["swiftc_stub"],
+            build_configuration = "Release",
         ),
     ),
 ]
