@@ -42,6 +42,7 @@ def _dict_to_xcode_target(d):
             type = d["product_type"],
         ),
         test_host = d["test_host"],
+        watchkit_extension = d["watchkit_extension"],
     )
 
 # FIXME: Extract
@@ -56,7 +57,8 @@ def mock_xcode_target(
         product_basename,
         product_file_path,
         product_type,
-        test_host = None):
+        test_host = None,
+        watchkit_extension = None):
     return struct(
         id = id,
         arch = arch,
@@ -68,6 +70,7 @@ def mock_xcode_target(
         product_file_path = product_file_path,
         product_type = product_type,
         test_host = test_host,
+        watchkit_extension = watchkit_extension,
     )
 
 def _write_pbxtargetdependencies_test_impl(ctx):
@@ -293,6 +296,8 @@ def write_pbxtargetdependencies_test_suite(name):
                     product_file_path = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
                     product_basename = "libgenerator.a",
                     module_name_attribute = "generator",
+                    # This doesn't make sense, it's just to test it
+                    watchkit_extension = "//some/extension some-config",
                 ),
             },
         },
@@ -311,6 +316,10 @@ def write_pbxtargetdependencies_test_suite(name):
             "--target-and-test-hosts",
             "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
             "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+            # targetAndWatchKitExtensions
+            "--target-and-watch-kit-extensions",
+            "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
+            "'//some/extension some-config'",
             # consolidationMapOutputPaths
             "--consolidation-map-output-paths",
             _consolidation_map_declared_file(0),
