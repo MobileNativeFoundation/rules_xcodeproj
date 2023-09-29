@@ -55,7 +55,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         id = id,
         is_framework = is_framework,
         product = product.file if product else None,
-        product_path = product.path if product else None,
+        product_path = product.path if product and not is_framework else None,
         product_file_path = product.actual_file_path if product else None,
         dsym_files = dsym_files,
         swift = swift,

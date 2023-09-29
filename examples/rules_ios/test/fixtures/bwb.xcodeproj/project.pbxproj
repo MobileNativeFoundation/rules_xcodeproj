@@ -4129,9 +4129,6 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp.library_swift CONFIGURATION-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp.library";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSApp.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source";
 				BAZEL_TARGET_ID = "@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1";
@@ -4197,9 +4194,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = MixedAnswer.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer CONFIGURATION-STABLE-1";
@@ -4286,9 +4280,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@//Lib:Lib";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/Lib";
 				BAZEL_TARGET_ID = "@//Lib:Lib CONFIGURATION-STABLE-1";
@@ -4313,9 +4304,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = CoreUtils.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC CONFIGURATION-STABLE-1";
@@ -4439,9 +4427,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@//Lib:LibDynamic";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibDynamic.framework.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibDynamic.framework.zip";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib";
 				BAZEL_TARGET_ID = "@//Lib:LibDynamic CONFIGURATION-STABLE-3";
@@ -4625,8 +4610,6 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = Utils.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/Utils:Utils CONFIGURATION-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -4810,9 +4793,6 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@//UI:UI";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = UI.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/UI";
 				BAZEL_TARGET_ID = "@//UI:UI CONFIGURATION-STABLE-1";
@@ -4998,9 +4978,6 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//WidgetExtension:WidgetExtension.library_swift CONFIGURATION-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension.library";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.framework";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.framework";
-				BAZEL_OUTPUTS_PRODUCT_BASENAME = WidgetExtension.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension";
 				BAZEL_TARGET_ID = "@//WidgetExtension:WidgetExtension.library CONFIGURATION-STABLE-1";

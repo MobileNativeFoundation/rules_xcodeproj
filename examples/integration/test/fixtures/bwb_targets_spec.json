@@ -380,8 +380,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
@@ -443,8 +441,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -542,8 +538,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -602,8 +596,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -882,8 +874,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.18.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -962,8 +952,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.20.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -1007,8 +995,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.21.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -1055,8 +1041,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -1115,8 +1099,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5488,8 +5470,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
@@ -5551,8 +5531,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-6/bin/UI/UIFramework.iOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/UI/UIFramework.iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5650,8 +5628,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -5710,8 +5686,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5993,8 +5967,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.112.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -6073,8 +6045,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.114.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -6118,8 +6088,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.115.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -6166,8 +6134,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -6226,8 +6192,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -7085,8 +7049,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
@@ -7151,8 +7113,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.iOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -7258,8 +7218,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -7321,8 +7279,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -7611,8 +7567,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.143.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -7698,8 +7652,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.145.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -7746,8 +7698,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.146.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -7797,8 +7747,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -7860,8 +7808,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -12524,8 +12470,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
@@ -12590,8 +12534,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -12697,8 +12639,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -12760,8 +12700,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/UI/UIFramework.watchOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/UI/UIFramework.watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -13053,8 +12991,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.237.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/iOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -13140,8 +13076,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.239.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -13188,8 +13122,6 @@
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.240.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/watchOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -13239,8 +13171,6 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
@@ -13302,8 +13232,6 @@
                 "\"bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.tvOS.framework.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.tvOS.zip",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
