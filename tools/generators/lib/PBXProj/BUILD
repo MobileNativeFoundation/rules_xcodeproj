@@ -11,6 +11,7 @@ swift_library(
     deps = [
         "//tools/generators/lib/GeneratorCommon",
         "@com_github_apple_swift_argument_parser//:ArgumentParser",
+        "@com_github_apple_swift_collections//:OrderedCollections",
     ],
 )
 
