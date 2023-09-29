@@ -498,7 +498,13 @@ def process_top_level_target(
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
     # the project level.
     if cpp.apple_generate_dsym:
-        build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
+        if build_mode == "xcode":
+            build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
+        else:
+            # Set to dwarf, because Bazel will generate the dSYMs
+            # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
+            # that at the project level
+            pass
     elif not ctx.var["COMPILATION_MODE"] == "dbg":
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 

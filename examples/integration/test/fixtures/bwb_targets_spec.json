@@ -109,8 +109,7 @@
         "8": "bazel-out/CONFIGURATION-STABLE-1/bin/cc/tool/tool.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/cc/tool/tool_codesigned",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool_codesigned"
         },
         "c": "CONFIGURATION-STABLE-1",
         "f": true,
@@ -193,7 +192,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "AppClip.app",
             "CODE_SIGN_ENTITLEMENTS": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/AppClip/Entitlements.withbundleid.plist",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -322,7 +320,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -386,7 +383,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
@@ -450,7 +446,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -550,7 +545,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -611,7 +605,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -684,7 +677,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/watchOSAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -739,7 +731,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-15/bin/watchOSApp/watchOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-15/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch",
             "TARGETED_DEVICE_FAMILY": "4"
@@ -816,7 +807,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.app",
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
                 "--digest-algorithm=sha1",
@@ -895,7 +885,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -976,7 +965,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -1022,7 +1010,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -1071,7 +1058,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -1132,7 +1118,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -1208,7 +1193,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/tvOSApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -1270,7 +1254,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-19/bin/Bundle/Bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ABundle.aplugin",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-19/bin/Bundle/rules_xcodeproj/Bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.ABundle"
         },
@@ -1432,7 +1415,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTests",
@@ -1497,7 +1479,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -1597,7 +1578,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iMessageAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -1650,7 +1630,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iMessageApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app",
             "TARGETED_DEVICE_FAMILY": "1"
@@ -1721,7 +1700,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -1795,7 +1773,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-19/bin/macOSApp/Source/macOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "macOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-19/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(SRCROOT)/macOSApp/third_party -Xcc -F -Xcc $(SRCROOT)/macOSApp/third_party -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-19/bin -Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -1858,7 +1835,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-19/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "macOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-19/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-19/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macosapp.uitests",
@@ -1919,7 +1895,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -1993,7 +1968,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSAppUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/tvOSApp/Source -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -2058,7 +2032,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
@@ -2128,7 +2101,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtensionUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -2195,7 +2167,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -2278,7 +2249,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTestsSuite",
@@ -2358,7 +2328,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -2455,7 +2424,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-21/bin/Proto/proto_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "proto_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/Proto/rules_xcodeproj/proto/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/Proto -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "Proto_tool_library"
@@ -4508,7 +4476,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-21/bin/GRPC/echo_client_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_client_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/GRPC/rules_xcodeproj/echo_client/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "GRPC_echo_client_library"
@@ -4592,7 +4559,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-21/bin/GRPC/echo_server_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_server_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/GRPC/rules_xcodeproj/echo_server/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-21/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "GRPC_echo_server_library"
@@ -4787,7 +4753,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineTool_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
                 "-v"
@@ -4975,7 +4940,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-24/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "CONFIGURATION-STABLE-24",
@@ -5160,7 +5124,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-25/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "CONFIGURATION-STABLE-25",
@@ -5195,7 +5158,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-29/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "CommandLine_Tests_BasicTests"
         },
@@ -5237,7 +5199,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineToolTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-23/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -5337,7 +5298,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "AppClip.app",
             "CODE_SIGN_ENTITLEMENTS": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/AppClip/Entitlements.withbundleid.plist",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5467,7 +5427,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/WidgetExtension/WidgetExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.appex",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5532,7 +5491,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
@@ -5596,7 +5554,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/UI/UIFramework.iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -5696,7 +5653,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -5757,7 +5713,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -5830,7 +5785,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/watchOSAppExtension/watchOSAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtension.appex",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -5886,7 +5840,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-16/bin/watchOSApp/watchOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSApp.app",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-16/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch",
@@ -5964,7 +5917,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.app",
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -6044,7 +5996,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\""
@@ -6125,7 +6076,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -6171,7 +6121,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -6220,7 +6169,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -6281,7 +6229,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -6357,7 +6304,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/tvOSApp/Source/tvOSApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSApp.app",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
@@ -6535,7 +6481,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTests",
@@ -6600,7 +6545,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -6683,7 +6627,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -6850,8 +6793,7 @@
         "8": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool_codesigned",
-            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool_codesigned"
         },
         "c": "CONFIGURATION-STABLE-2",
         "f": true,
@@ -6941,7 +6883,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "AppClip.app",
             "CODE_SIGN_ENTITLEMENTS": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/AppClip/Entitlements.withbundleid.plist",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7080,7 +7021,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/WidgetExtension/WidgetExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7148,7 +7088,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
@@ -7215,7 +7154,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7323,7 +7261,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -7387,7 +7324,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7464,7 +7400,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/watchOSAppExtension/watchOSAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7523,7 +7458,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-17/bin/watchOSApp/watchOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch",
             "TARGETED_DEVICE_FAMILY": "4"
@@ -7603,7 +7537,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.app",
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -7681,7 +7614,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -7769,7 +7701,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -7818,7 +7749,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -7870,7 +7800,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -7934,7 +7863,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8014,7 +7942,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/tvOSApp/Source/tvOSApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8079,7 +8006,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/Bundle/Bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ABundle.aplugin",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-20/bin/Bundle/rules_xcodeproj/Bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.ABundle"
         },
@@ -8254,7 +8180,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTests",
@@ -8322,7 +8247,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -8430,7 +8354,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iMessageApp/iMessageAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iMessageAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8487,7 +8410,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iMessageApp/iMessageApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iMessageApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app",
             "TARGETED_DEVICE_FAMILY": "1"
@@ -8561,7 +8483,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8639,7 +8560,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/macOSApp/Source/macOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "macOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-20/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(SRCROOT)/macOSApp/third_party -Xcc -F -Xcc $(SRCROOT)/macOSApp/third_party -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-20/bin -Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8705,7 +8625,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "macOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-20/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-20/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macosapp.uitests",
@@ -8770,7 +8689,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -8848,7 +8766,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSAppUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/tvOSApp/Source -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -8917,7 +8834,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
@@ -8991,7 +8907,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtensionUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -9062,7 +8977,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -9149,7 +9063,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTestsSuite",
@@ -9232,7 +9145,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -9336,7 +9248,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-22/bin/Proto/proto_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "proto_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/Proto/rules_xcodeproj/proto/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/Proto -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "Proto_tool_library",
@@ -11503,7 +11414,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-22/bin/GRPC/echo_client_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_client_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/GRPC/rules_xcodeproj/echo_client/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "GRPC_echo_client_library",
@@ -11595,7 +11505,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-22/bin/GRPC/echo_server_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_server_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/GRPC/rules_xcodeproj/echo_server/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.12.0~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "GRPC_echo_server_library",
@@ -11811,7 +11720,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineTool_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
                 "-v"
@@ -12019,7 +11927,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "CONFIGURATION-STABLE-27",
@@ -12224,7 +12131,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "CONFIGURATION-STABLE-28",
@@ -12262,7 +12168,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-30/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "CommandLine_Tests_BasicTests",
             "SWIFT_COMPILATION_MODE": "wholemodule"
@@ -12308,7 +12213,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineToolTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib -F$(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -F -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -I -Xcc $(SDKROOT)/usr/include/uuid -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/examples_command_line_external -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/examples_command_line_external -Xcc -DSECRET_3=\"Hello\" -Xcc -DSECRET_2=\"World!\" -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -12416,7 +12320,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "AppClip.app",
             "CODE_SIGN_ENTITLEMENTS": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/AppClip/Entitlements.withbundleid.plist",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -12556,7 +12459,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "WidgetExtension.appex",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -12625,7 +12527,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CoreUtilsObjC.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
@@ -12692,7 +12593,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -12800,7 +12700,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -12864,7 +12763,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/UI/UIFramework.watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -12941,7 +12839,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/watchOSAppExtension/watchOSAppExtension.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSAppExtension.appex",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -13001,7 +12898,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-18/bin/watchOSApp/watchOSApp.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "watchOSApp.app",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-18/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch",
@@ -13082,7 +12978,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.app",
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -13161,7 +13056,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/iOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\""
@@ -13249,7 +13143,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -13298,7 +13191,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/watchOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -13350,7 +13242,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "LibFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -13414,7 +13305,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.tvOS.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -13494,7 +13384,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-14/bin/tvOSApp/Source/tvOSApp.ipa",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tvOSApp.app",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/UI -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
@@ -13685,7 +13574,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "PRODUCT_MODULE_NAME": "iOSAppObjCUnitTests",
@@ -13753,7 +13641,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -13840,7 +13727,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
