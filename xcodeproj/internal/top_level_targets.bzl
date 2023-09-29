@@ -123,9 +123,12 @@ def process_top_level_properties(
                     )
                 bundle_file_path = bundle_file_path_path
         elif product_type.startswith("com.apple.product-type.framework"):
-            # Some rules only set the binary for static frameworks
+            # Some rules only set the binary for static frameworks. Create the
+            # values that should be set (since we don't copy the product anyway)
             bundle_file = bundle_info.binary
-            bundle_path = bundle_file.dirname
+            bundle_path = (
+                "{}/{}.framework".format(bundle_file.dirname, product_name)
+            )
             archive_file_path = bundle_path
             bundle_file_path = archive_file_path
         else:
