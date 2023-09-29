@@ -6,6 +6,7 @@ load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
     "import_indexstores": "//tools/import_indexstores",
+    "pbxnativetargets": "//tools/generators/pbxnativetargets",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
@@ -17,6 +18,11 @@ _TESTS = {
     "files_and_groups": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/files_and_groups:files_and_groups_tests",
+    ],
+    "pbxnativetargets": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/lib/XCScheme:XCSchemeTests",
+        "//tools/generators/pbxnativetargets:pbxnativetargets_tests",
     ],
     "pbxproj_prefix": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
@@ -102,6 +108,41 @@ _SCHEMES = [
         profile_action = xcode_schemes.profile_action(
             _TOOLS["import_indexstores"],
             build_configuration = "Release",
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["pbxnativetargets"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
+    xcode_schemes.scheme(
+        name = "pbxnativetargets",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["pbxnativetargets"],
+            args = [
+                # targetsOutputPath
+                "/tmp/pbxproj_partials/pbxnativetargets/0",
+                # buildFileSubIdentifiersOutputPath
+                "/tmp/pbxproj_partials/buildfile_subidentifiers/0",
+                # consolidationMap
+                "/tmp/pbxproj_partials/consolidation_maps/0",
+                # targetArgumentsFile
+                "/tmp/pbxproj_partials/target_arguments_files/7",
+                # topLevelTargetAttributesFile
+                "/tmp/pbxproj_partials/top_level_target_attributes_files/7",
+                # unitTestHostAttributesFile
+                "/tmp/pbxproj_partials/unit_test_host_attributes_files/7",
+                # defaultXcodeConfiguration
+                "Debug",
+            ],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["pbxtargetdependencies"],
+            build_configuration = "Release",
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["pbxnativetargets"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
         ),
     ),
     xcode_schemes.scheme(
@@ -428,6 +469,9 @@ xcodeproj(
     associated_extra_files = {
         "//tools/generators/files_and_groups": [
             "//tools/generators/files_and_groups:README.md",
+        ],
+        "//tools/generators/pbxnativetargets": [
+            "//tools/generators/pbxnativetargets:README.md",
         ],
         "//tools/generators/pbxproj_prefix": [
             "//tools/generators/pbxproj_prefix:README.md",
