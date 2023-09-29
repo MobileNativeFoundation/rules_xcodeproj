@@ -45,7 +45,8 @@ extension Generator.CreateBuildFileObject {
         case .compileStub, .source:
             settings = ""
         case .product, .watchKitExtension:
-            // Handled in `CreateProductBuildFileObject` and `CreteProductObject`
+            // Handled in `CreateProductBuildFileObject` and
+            // `CreateProductObject`
             preconditionFailure()
         }
 
