@@ -87,9 +87,11 @@ extension ElementCreator.CreateGroupChildElements {
         //   2. To have the files inside of the variant group sorted
         //      alphabetically.
         localizedFiles.sort(by: { lhs, rhs in
-            switch (lhs.ext, rhs.ext) {
-            case let (lhsExt, rhsExt) where lhsExt == rhsExt:
+            guard lhs.ext != rhs.ext else {
                 return sortLocalizedFilesByNameAndRegion(lhs: lhs, rhs: rhs)
+            }
+
+            switch (lhs.ext, rhs.ext) {
             case ("intentdefinition", _): return true
             case (_, "intentdefinition"): return false
             case ("storyboard", _): return true
