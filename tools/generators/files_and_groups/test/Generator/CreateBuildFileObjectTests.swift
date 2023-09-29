@@ -5,68 +5,6 @@ import XCTest
 @testable import PBXProj
 
 class CreateBuildFileObjectTests: XCTestCase {
-    func test_appClip() {
-        // Arrange
-
-        let subIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "SHARDA",
-            type: .appClip,
-            path: "an/app_clip.app",
-            hash: "HASHA"
-        )
-        let fileIdentifier = "FILE_ID"
-
-        let expectedElement = Object(
-            identifier: "SHARDAFFHASHA /* app_clip.app in Embed App Clips */",
-            content: #"""
-{isa = PBXBuildFile; fileRef = FILE_ID; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; }
-"""#
-        )
-
-        // Act
-
-        let element = Generator.CreateBuildFileObject.defaultCallable(
-            subIdentifier: subIdentifier,
-            fileIdentifier: fileIdentifier
-        )
-
-        // Assert
-
-        XCTAssertNoDifference(element, expectedElement)
-    }
-
-    func test_appExtension() {
-        // Arrange
-
-        let subIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "SHARDA",
-            type: .appExtension,
-            path: "an/app_extension.appex",
-            hash: "HASHA"
-        )
-        let fileIdentifier = "FILE_ID"
-
-        let expectedElement = Object(
-            identifier: #"""
-SHARDAFFHASHA /* app_extension.appex in Embed App Extensions */
-"""#,
-            content: #"""
-{isa = PBXBuildFile; fileRef = FILE_ID; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; }
-"""#
-        )
-
-        // Act
-
-        let element = Generator.CreateBuildFileObject.defaultCallable(
-            subIdentifier: subIdentifier,
-            fileIdentifier: fileIdentifier
-        )
-
-        // Assert
-
-        XCTAssertNoDifference(element, expectedElement)
-    }
-
     func test_compileStub() {
         // Arrange
 
@@ -174,38 +112,6 @@ SHARDA00HASHA0000000000FE /* _CompileStub_.m in Sources */
             identifier: "SHARDAFFHASHA /* file.swift in Sources */",
             content: #"""
 {isa = PBXBuildFile; fileRef = FILE_ID; }
-"""#
-        )
-
-        // Act
-
-        let element = Generator.CreateBuildFileObject.defaultCallable(
-            subIdentifier: subIdentifier,
-            fileIdentifier: fileIdentifier
-        )
-
-        // Assert
-
-        XCTAssertNoDifference(element, expectedElement)
-    }
-
-    func test_awatchContent() {
-        // Arrange
-
-        let subIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "SHARDA",
-            type: .watchContent,
-            path: "some/watch_content.appex",
-            hash: "HASHA"
-        )
-        let fileIdentifier = "FILE_ID"
-
-        let expectedElement = Object(
-            identifier: #"""
-SHARDAFFHASHA /* watch_content.appex in Embed Watch Content */
-"""#,
-            content: #"""
-{isa = PBXBuildFile; fileRef = FILE_ID; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; }
 """#
         )
 

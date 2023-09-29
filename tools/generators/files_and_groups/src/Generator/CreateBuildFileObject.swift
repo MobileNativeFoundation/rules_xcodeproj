@@ -38,16 +38,16 @@ extension Generator.CreateBuildFileObject {
     ) -> Object {
         let settings: String
         switch subIdentifier.type {
-        case .appExtension, .appClip, .watchContent:
-            settings = #"settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; "#
-        case .framework:
-            settings = #"settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; "#
         case .nonArcSource:
             settings = #"settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; "#
         case .header:
             settings = #"settings = {ATTRIBUTES = (Public, ); }; "#
-        default:
+        case .compileStub, .source:
             settings = ""
+        case .product, .watchKitExtension:
+            // Handled in `CreateProductBuildFileObject` and
+            // `CreateProductObject`
+            preconditionFailure()
         }
 
         let content = #"""

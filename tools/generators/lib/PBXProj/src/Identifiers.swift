@@ -102,24 +102,9 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
             /// A file referenced in a `BuildPhase.headers` build phase.
             case header = "3"
 
-            /// A file referenced in a `BuildPhase.resources` build phase.
-            case resource = "4"
-
-            /// A framework referenced in a `BuildPhase.embedFrameworks` build
-            /// phase.
-            case framework = "5"
-
-            /// Watch content referenced in a `BuildPhase.embedWatchContent`
-            /// build phase.
-            case watchContent = "6"
-
-            /// An app extension referenced in a `BuildPhase.embedAppExtensions`
-            /// build phase.
-            case appExtension = "7"
-
-            /// An app clip referenced in a `BuildPhase.embedAppClips` build
-            /// phase.
-            case appClip = "8"
+            /// A watchKit extension referenced in a
+            /// `BuildPhase.embedAppExtensions` build phase.
+            case watchKitExtension = "4"
         }
 
         public struct SubIdentifier: Equatable {
@@ -557,11 +542,7 @@ private extension Identifiers.BuildFiles.FileType {
         case .nonArcSource: return .sources
         case .compileStub: return .sources
         case .header: return .headers
-        case .resource: return .resources
-        case .framework: return .embedFrameworks
-        case .watchContent: return .embedWatchContent
-        case .appExtension: return .embedAppExtensions
-        case .appClip: return .embedAppClips
+        case .watchKitExtension: return .embedAppExtensions
         }
     }
 }
@@ -589,11 +570,7 @@ extension BuildPhase {
         case .headers: return "06"
         case .sources: return "07"
         case .copySwiftGeneratedHeader: return "08"
-        case .resources: return "09"
-        case .embedFrameworks: return "0A"
-        case .embedWatchContent: return "0B"
-        case .embedAppExtensions: return "0C"
-        case .embedAppClips: return "0D"
+        case .embedAppExtensions: return "09"
         }
     }
 }

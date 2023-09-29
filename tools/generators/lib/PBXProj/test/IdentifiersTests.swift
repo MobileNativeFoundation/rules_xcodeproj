@@ -143,15 +143,6 @@ final class IdentifiersTests: XCTestCase {
                 path: "a.c",
                 hash: "00000000000000000000"
             ),
-            .init(
-                shard: "FF",
-                type: .resource,
-                path: BazelPath(
-                    "a/folder/resource.xcassets",
-                    isFolder: true
-                ),
-                hash: "10000000000000000000"
-            ),
         ]
 
         let tempDir = try TemporaryDirectory()
@@ -299,41 +290,6 @@ final class IdentifiersTests: XCTestCase {
 
     // MARK: type
 
-    func test_buildFiles_subIdentifier_type_folderResource() {
-        // Arrange
-
-        var hashCache: [UInt8: Set<String>] = [:]
-        let path = BazelPath(
-            "a/path/to/a/file",
-            isFolder: true
-        )
-        let type: Identifiers.BuildFiles.FileType = .resource
-        let shard: UInt8 = 42
-
-        let expectedSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "2A",
-            type: .resource,
-            path: BazelPath(
-                "a/path/to/a/file",
-                isFolder: true
-            ),
-            hash: "9127BCB9F1C1C990ADB8"
-        )
-
-        // Act
-
-        let subIdentifier = Identifiers.BuildFiles.subIdentifier(
-            path,
-            type: type,
-            shard: shard,
-            hashCache: &hashCache
-        )
-
-        // Assert
-
-        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
-    }
-
     func test_buildFiles_subIdentifier_type_source() {
         // Arrange
 
@@ -403,35 +359,6 @@ final class IdentifiersTests: XCTestCase {
         let expectedSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
             shard: "2A",
             type: .header,
-            path: "a/path/to/a/file",
-            hash: "3317E1EDE29939A5A774"
-        )
-
-        // Act
-
-        let subIdentifier = Identifiers.BuildFiles.subIdentifier(
-            path,
-            type: type,
-            shard: shard,
-            hashCache: &hashCache
-        )
-
-        // Assert
-
-        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
-    }
-
-    func test_buildFiles_subIdentifier_type_resource() {
-        // Arrange
-
-        var hashCache: [UInt8: Set<String>] = [:]
-        let path: BazelPath = "a/path/to/a/file"
-        let type: Identifiers.BuildFiles.FileType = .resource
-        let shard: UInt8 = 42
-
-        let expectedSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "2A",
-            type: .resource,
             path: "a/path/to/a/file",
             hash: "3317E1EDE29939A5A774"
         )
