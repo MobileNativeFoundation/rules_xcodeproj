@@ -64,6 +64,18 @@ def _create():
             else:
                 args.extend([_quote_if_needed(str(value)) for value in values])
 
+        def _add(flag_or_value, value = None):
+            if value != None:
+                flag = flag_or_value
+            else:
+                flag = None
+                value = flag_or_value
+
+            if flag:
+                args.append(flag)
+
+            args.append(str(value))
+
         use_param_file_args = {}
 
         def _args_use_param_file(param_file):
@@ -80,7 +92,7 @@ def _create():
                 set_param_file_format_args = set_param_file_format_args,
                 use_param_file_args = use_param_file_args,
             ),
-            add = lambda *x: args.extend(x),
+            add = _add,
             add_all = _args_add_all,
             use_param_file = _args_use_param_file,
             set_param_file_format = _args_set_param_file_format,
