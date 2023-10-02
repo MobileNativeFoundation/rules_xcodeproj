@@ -78,7 +78,14 @@ extension ConsolidationMapEntry {
             entry.encode(into: &data)
         }
 
-        try data.write(to: url)
+        do {
+            try data.write(to: url)
+        } catch {
+            throw PreconditionError(message: """
+Failed to write consolidation map entries to "\(url.path)": \
+\(error.localizedDescription)
+""")
+        }
     }
 
     private func encode(into data: inout Data) {
