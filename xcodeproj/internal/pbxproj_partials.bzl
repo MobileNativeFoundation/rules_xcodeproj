@@ -134,6 +134,7 @@ def _write_files_and_groups(
     file_path_args.set_param_file_format("multiline")
 
     file_path_args.add_all(files)
+
     # TODO: Consider moving normalization into `args.add_all.map_each`
     file_path_args.add_all(file_paths)
 
