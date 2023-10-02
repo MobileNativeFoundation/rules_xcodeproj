@@ -128,20 +128,20 @@ def _write_pbxtargetdependencies_test_impl(ctx):
     asserts.equals(
         env,
         "@%s",
-        actions.use_param_file_args["use_param_file"],
-        "args.use_param_file",
+        actions.args_objects[0].captured.use_param_file_args["use_param_file"],
+        "args[0].use_param_file",
     )
 
     asserts.equals(
         env,
         "multiline",
-        actions.set_param_file_format_args["format"],
-        "args.param_file_format",
+        actions.args_objects[0].captured.set_param_file_format_args["format"],
+        "args[0].param_file_format",
     )
 
     asserts.equals(
         env,
-        [actions.action_args],
+        [actions.args_objects[0]],
         actions.run_args["arguments"],
         "actions.run.arguments",
     )
@@ -149,8 +149,8 @@ def _write_pbxtargetdependencies_test_impl(ctx):
     asserts.equals(
         env,
         ctx.attr.expected_args,
-        actions.args,
-        "actions.run.arguments[0]",
+        actions.args_objects[0].captured.args,
+        "args[0] arguments",
     )
 
     asserts.equals(
