@@ -23,6 +23,7 @@ private extension URL.AsyncBytes {
             let bytesTask = Task {
                 var accumulator: [UInt8] = []
                 var iterator = makeAsyncIterator()
+                // FIXME: Handle when file doesn't exist (currently hangs)
                 while let byte = try await iterator.next() {
                     // 10 == \n
                     if byte == 10 {
