@@ -592,7 +592,14 @@ extension Identifiers.BuildFiles.SubIdentifier {
             subIdentifier.encode(into: &data)
         }
 
-        try data.write(to: url)
+        do {
+            try data.write(to: url)
+        } catch {
+            throw PreconditionError(message: """
+Failed to write build file subidentifiers to "\(url.path)": \
+\(error.localizedDescription)
+""")
+        }
     }
 
     private func encode(into data: inout Data) {
