@@ -31,7 +31,7 @@ extension Generator.ReadFilePathsFile {
     static func defaultCallable(
         _ url: URL
     ) async throws -> [BazelPath] {
-        return try await url.allLines.collect()
+        return try await url.lines.collect()
             .map { BazelPath($0, isFolder: false) }
     }
 }
