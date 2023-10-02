@@ -24,12 +24,12 @@ struct Generator {
         let testHosts = arguments.testHosts
         let watchKitExtensions = arguments.watchKitExtensions
 
-        let identifiedTargets = try environment.identifyTargets(
-            consolidationMapArguments: try arguments.consolidationMapsArguments
-                .toConsolidationMapArguments(
-                    testHosts: testHosts,
-                    watchKitExtensions: watchKitExtensions
-                ),
+        let identifiedTargets = try await environment.identifyTargets(
+            consolidationMapArguments: try .parse(
+                from: arguments.consolidationMapsInputsFile,
+                testHosts: testHosts,
+                watchKitExtensions: watchKitExtensions
+            ),
             logger: logger
         )
 

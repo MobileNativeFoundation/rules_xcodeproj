@@ -10,6 +10,7 @@ load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 _TARGET_DEPENDENCIES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxtargetdependencies"
 _TARGETS_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_targets"
 _TARGET_ATTRIBUTES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_target_attributes"
+_CONSOLIDATION_MAPS_INPUTS_FILE = "a_generator_name_pbxproj_partials/consolidation_maps_inputs_file"
 
 def _consolidation_map_declared_file(idx):
     return "a_generator_name_pbxproj_partials/consolidation_maps/{}".format(idx)
@@ -84,7 +85,13 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         _TARGET_DEPENDENCIES_DECLARED_FILE: None,
         _TARGETS_DECLARED_FILE: None,
         _TARGET_ATTRIBUTES_DECLARED_FILE: None,
+        _CONSOLIDATION_MAPS_INPUTS_FILE: None,
     }
+    expected_outputs = [
+        _TARGET_DEPENDENCIES_DECLARED_FILE,
+        _TARGETS_DECLARED_FILE,
+        _TARGET_ATTRIBUTES_DECLARED_FILE,
+    ]
 
     xcode_targets_by_label = _json_to_xcode_targets_by_label(
         ctx.attr.xcode_targets_by_label,
@@ -99,6 +106,7 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         file = _consolidation_map_declared_file(idx)
         expected_consolidation_maps[file] = labels
         expected_declared_files[file] = None
+        expected_outputs.append(file)
 
     # Act
 
@@ -126,6 +134,13 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         expected_declared_files,
         actions.declared_files,
         "actions.declare_file",
+    )
+
+    asserts.equals(
+        env,
+        ctx.attr.expected_writes,
+        actions.writes,
+        "actions.write",
     )
 
     asserts.equals(
@@ -158,7 +173,7 @@ def _write_pbxtargetdependencies_test_impl(ctx):
 
     asserts.equals(
         env,
-        expected_declared_files.keys(),
+        expected_outputs,
         actions.run_args["outputs"],
         "actions.run.outputs",
     )
@@ -199,6 +214,7 @@ write_pbxtargetdependencies_test = unittest.make(
 
         # Expected
         "expected_args": attr.string_list(mandatory = True),
+        "expected_writes": attr.string_dict(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "xcode_target_configurations": attr.string_list_dict(mandatory = True),
         "xcode_targets_by_label": attr.string(mandatory = True),
@@ -225,7 +241,8 @@ def write_pbxtargetdependencies_test_suite(name):
             xcode_targets_by_label,
 
             # Expected
-            expected_args):
+            expected_args,
+            expected_writes):
         test_names.append(name)
         write_pbxtargetdependencies_test(
             name = name,
@@ -238,6 +255,7 @@ def write_pbxtargetdependencies_test_suite(name):
 
             # Expected
             expected_args = expected_args,
+            expected_writes = expected_writes,
         )
 
     # Full
@@ -310,96 +328,71 @@ def write_pbxtargetdependencies_test_suite(name):
             _TARGETS_DECLARED_FILE,
             # targetAttributesOutputPath
             _TARGET_ATTRIBUTES_DECLARED_FILE,
+            # consolidationMapsInputsFile,
+            _CONSOLIDATION_MAPS_INPUTS_FILE,
             # minimumXcodeVersion
             "14.3.1",
             # targetAndTestHosts
             "--target-and-test-hosts",
-            "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
-            "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+            "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+            "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
             # targetAndWatchKitExtensions
             "--target-and-watch-kit-extensions",
-            "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
-            "'//some/extension some-config'",
-            # consolidationMapOutputPaths
-            "--consolidation-map-output-paths",
-            _consolidation_map_declared_file(0),
-            _consolidation_map_declared_file(1),
-            # labelCounts
-            "--label-counts",
-            "2",
-            "1",
-            # labels
-            "--labels",
-            str(Label("//tools/generators/legacy/test:tests.__internal__.__test_bundle")),
-            str(Label("//tools/generators/legacy:generator")),
-            str(Label("//tools/generators/legacy:generator.library")),
-            # targetCounts
-            "--target-counts",
-            "1",
-            "1",
-            "1",
-            # targets
-            "--targets",
-            "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
-            "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
-            "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
-            # xcodeConfigurationCounts
-            "--xcode-configuration-counts",
-            "1",
-            "2",
-            "1",
-            # xcodeConfigurations
-            "--xcode-configurations",
-            "Release",
-            "Debug",
-            "Release",
-            "Debug",
-            # productTypes
-            "--product-types",
-            "u",
-            "T",
-            "L",
-            # platforms
-            "--platforms",
-            "macosx",
-            "iphoneos",
-            "watchsimulator",
-            # osVersions
-            "--os-versions",
-            "16.2.1",
-            "12.0",
-            "9.1",
-            # archs
-            "--archs",
-            "arm64",
-            "x86_64",
-            "i386",
-            # moduleNames
-            "--module-names",
-            "tests",
-            "",
-            "generator",
-            # productPaths
-            "--product-paths",
-            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
-            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
-            "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
-            # productBasenames
-            "--product-basenames",
-            "tests.xctest",
-            "codesigned_generator",
-            "libgenerator.a",
-            # dependencyCounts
-            "--dependency-counts",
-            "1",
-            "1",
-            "0",
-            # dependencies
-            "--dependencies",
-            "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2'",
-            "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
+            "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+            "//some/extension some-config",
             "--colorize",
         ],
+        expected_writes = {
+            _CONSOLIDATION_MAPS_INPUTS_FILE: "\n".join([
+                _consolidation_map_declared_file(0),
+                _consolidation_map_declared_file(1),
+                "--",
+                "2",
+                str(Label("//tools/generators/legacy/test:tests.__internal__.__test_bundle")),
+                "1",
+                "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+                "u",
+                "macosx",
+                "16.2.1",
+                "arm64",
+                "tests",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
+                "tests.xctest",
+                "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
+                "--",
+                "Release",
+                "--",
+                str(Label("//tools/generators/legacy:generator")),
+                "1",
+                "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
+                "T",
+                "iphoneos",
+                "12.0",
+                "x86_64",
+                "",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
+                "codesigned_generator",
+                "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "--",
+                "Debug",
+                "Release",
+                "--",
+                "1",
+                str(Label("//tools/generators/legacy:generator.library")),
+                "1",
+                "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "L",
+                "watchsimulator",
+                "9.1",
+                "i386",
+                "generator",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
+                "libgenerator.a",
+                "--",
+                "Debug",
+                "--",
+            ]) + "\n",
+        },
     )
 
     # Test suite

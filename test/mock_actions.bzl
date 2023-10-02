@@ -1,12 +1,5 @@
 """Module for a mocked `ctx.actions` struct."""
 
-# Utility
-
-def _quote_if_needed(str):
-    if " " in str:
-        return "'{}'".format(str)
-    return str
-
 # API
 
 def _create():
@@ -63,12 +56,12 @@ def _create():
                     mapped_value = map_each(value)
                     if type(mapped_value) == "list":
                         args.extend(
-                            [_quote_if_needed(str(v)) for v in mapped_value],
+                            [str(v) for v in mapped_value],
                         )
                     elif mapped_value:
-                        args.append(_quote_if_needed(str(mapped_value)))
+                        args.append(str(mapped_value))
             else:
-                args.extend([_quote_if_needed(str(value)) for value in values])
+                args.extend([str(value) for value in values])
 
             if terminate_with != None:
                 args.append(terminate_with)
