@@ -51,6 +51,10 @@ _SCHEMES = [
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_execution_root_file",
                 # selectedModelVersionsFile
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/selected_model_versions_file",
+                # filePathsFile
+                "/tmp/pbxproj_partials/file_paths_file",
+                # folderPathsFile
+                "/tmp/pbxproj_partials/folder_paths_file",
                 # developmentRegion
                 "en",
                 # useBaseInternationalization
@@ -59,14 +63,6 @@ _SCHEMES = [
                 "--build-file-sub-identifiers-files",
                 "/tmp/pbxproj_partials/buildfile_subidentifiers/0",
                 "/tmp/pbxproj_partials/buildfile_subidentifiers/1",
-                # filePaths
-                "--file-paths",
-                "a/project/file",
-                "bazel-out/generated/file",
-                "external/repository/file",
-                # folderPaths
-                "--folder-paths",
-                "a/project/structure/resource/folder",
             ],
             diagnostics = _SCHEME_DIAGNOSTICS,
         ),

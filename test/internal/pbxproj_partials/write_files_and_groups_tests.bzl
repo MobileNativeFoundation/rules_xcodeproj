@@ -9,6 +9,8 @@ load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 _KNOWN_REGIONS_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_known_regions"
 _FILES_AND_GROUPS_DECLARED_FILE = "a_generator_name_pbxproj_partials/files_and_groups"
 _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE = "a_generator_name_pbxproj_partials/resolved_repositories_file"
+_FILE_PATHS_FILE = "a_generator_name_pbxproj_partials/file_paths_file"
+_FOLDER_PATHS_FILE = "a_generator_name_pbxproj_partials/folder_paths_file"
 
 def _write_files_and_groups_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -21,11 +23,20 @@ def _write_files_and_groups_test_impl(ctx):
         _FILES_AND_GROUPS_DECLARED_FILE: None,
         _KNOWN_REGIONS_DECLARED_FILE: None,
         _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE: None,
+        _FILE_PATHS_FILE: None,
+        _FOLDER_PATHS_FILE: None,
     }
     expected_inputs = [
+        _FILE_PATHS_FILE,
+        _FOLDER_PATHS_FILE,
         ctx.attr.execution_root_file,
         ctx.attr.selected_model_versions_file,
     ] + ctx.attr.buildfile_subidentifiers_files
+    expected_outputs = [
+        _FILES_AND_GROUPS_DECLARED_FILE,
+        _KNOWN_REGIONS_DECLARED_FILE,
+        _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
+    ]
 
     # Act
 
@@ -59,6 +70,13 @@ def _write_files_and_groups_test_impl(ctx):
         expected_declared_files,
         actions.declared_files,
         "actions.declare_file",
+    )
+
+    asserts.equals(
+        env,
+        ctx.attr.expected_writes,
+        actions.writes,
+        "actions.write",
     )
 
     asserts.equals(
@@ -98,7 +116,7 @@ def _write_files_and_groups_test_impl(ctx):
 
     asserts.equals(
         env,
-        expected_declared_files.keys(),
+        expected_outputs,
         actions.run_args["outputs"],
         "actions.run.outputs",
     )
@@ -135,6 +153,7 @@ write_files_and_groups_test = unittest.make(
 
         # Expected
         "expected_args": attr.string_list(mandatory = True),
+        "expected_writes": attr.string_dict(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
@@ -172,7 +191,8 @@ def write_files_and_groups_test_suite(name):
             workspace_directory,
 
             # Expected
-            expected_args):
+            expected_args,
+            expected_writes):
         test_names.append(name)
         write_files_and_groups_test(
             name = name,
@@ -192,6 +212,7 @@ def write_files_and_groups_test_suite(name):
 
             # Expected
             expected_args = expected_args,
+            expected_writes = expected_writes,
         )
 
     # Basic
@@ -228,6 +249,10 @@ def write_files_and_groups_test_suite(name):
             "an/execution/root/file",
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
+            # filePathsFile
+            _FILE_PATHS_FILE,
+            # folderPathsFile
+            _FOLDER_PATHS_FILE,
             # developmentRegion
             "en",
             # useBaseInternationalization
@@ -237,165 +262,10 @@ def write_files_and_groups_test_suite(name):
             "some/buildfile_subidentifiers/0",
             "some/buildfile_subidentifiers/1",
         ],
-    )
-
-    # files
-
-    _add_test(
-        name = "{}_files".format(name),
-
-        # Inputs
-        buildfile_subidentifiers_files = [
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-        ],
-        execution_root_file = "an/execution/root/file",
-        files = [
-            "a/path/to/a/file",
-            "another/path/to/another/file",
-        ],
-        install_path = "best/vision.xcodeproj",
-        project_options = {
-            "development_region": "enGB",
+        expected_writes = {
+            _FILE_PATHS_FILE: "\n",
+            _FOLDER_PATHS_FILE: "\n",
         },
-        selected_model_versions_file = "some/selected_model_versions_file",
-        workspace_directory = "/Users/TimApple/StarBoard",
-
-        # Expected
-        expected_args = [
-            # knownRegionsOutputPath
-            _KNOWN_REGIONS_DECLARED_FILE,
-            # filesAndGroupsOutputPath
-            _FILES_AND_GROUPS_DECLARED_FILE,
-            # resolvedRepositoriesOutputPath
-            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
-            # workspace
-            "/Users/TimApple/StarBoard",
-            # installPath
-            "best/vision.xcodeproj",
-            # executionRootFile
-            "an/execution/root/file",
-            # selectedModelVersionsFile
-            "some/selected_model_versions_file",
-            # developmentRegion
-            "enGB",
-            # useBaseInternationalization
-            "--use-base-internationalization",
-            # buildFileSubIdentifiersFiles
-            "--build-file-sub-identifiers-files",
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-            # filePaths
-            "--file-paths",
-            "a/path/to/a/file",
-            "another/path/to/another/file",
-        ],
-    )
-
-    # file_paths
-
-    _add_test(
-        name = "{}_files_paths".format(name),
-
-        # Inputs
-        buildfile_subidentifiers_files = [
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-        ],
-        execution_root_file = "an/execution/root/file",
-        file_paths = [
-            "a/path/to/a/file_path.bundle",
-            "another/path/to/another/file_path.framework",
-        ],
-        install_path = "best/vision.xcodeproj",
-        project_options = {
-            "development_region": "enGB",
-        },
-        selected_model_versions_file = "some/selected_model_versions_file",
-        workspace_directory = "/Users/TimApple/StarBoard",
-
-        # Expected
-        expected_args = [
-            # knownRegionsOutputPath
-            _KNOWN_REGIONS_DECLARED_FILE,
-            # filesAndGroupsOutputPath
-            _FILES_AND_GROUPS_DECLARED_FILE,
-            # resolvedRepositoriesOutputPath
-            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
-            # workspace
-            "/Users/TimApple/StarBoard",
-            # installPath
-            "best/vision.xcodeproj",
-            # executionRootFile
-            "an/execution/root/file",
-            # selectedModelVersionsFile
-            "some/selected_model_versions_file",
-            # developmentRegion
-            "enGB",
-            # useBaseInternationalization
-            "--use-base-internationalization",
-            # buildFileSubIdentifiersFiles
-            "--build-file-sub-identifiers-files",
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-            # filePaths
-            "--file-paths",
-            "a/path/to/a/file_path.bundle",
-            "another/path/to/another/file_path.framework",
-        ],
-    )
-
-    # folders
-
-    _add_test(
-        name = "{}_folders".format(name),
-
-        # Inputs
-        buildfile_subidentifiers_files = [
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-        ],
-        execution_root_file = "an/execution/root/file",
-        folders = [
-            "a/path/to/a/folder",
-            "another/path/to/another/folder",
-        ],
-        install_path = "best/vision.xcodeproj",
-        project_options = {
-            "development_region": "enGB",
-        },
-        selected_model_versions_file = "some/selected_model_versions_file",
-        workspace_directory = "/Users/TimApple/StarBoard",
-
-        # Expected
-        expected_args = [
-            # knownRegionsOutputPath
-            _KNOWN_REGIONS_DECLARED_FILE,
-            # filesAndGroupsOutputPath
-            _FILES_AND_GROUPS_DECLARED_FILE,
-            # resolvedRepositoriesOutputPath
-            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
-            # workspace
-            "/Users/TimApple/StarBoard",
-            # installPath
-            "best/vision.xcodeproj",
-            # executionRootFile
-            "an/execution/root/file",
-            # selectedModelVersionsFile
-            "some/selected_model_versions_file",
-            # developmentRegion
-            "enGB",
-            # useBaseInternationalization
-            "--use-base-internationalization",
-            # buildFileSubIdentifiersFiles
-            "--build-file-sub-identifiers-files",
-            "some/buildfile_subidentifiers/0",
-            "some/buildfile_subidentifiers/1",
-            # folderPaths
-            "--folder-paths",
-            "a/path/to/a/folder",
-            "another/path/to/another/folder",
-        ],
     )
 
     # Full
@@ -446,6 +316,10 @@ def write_files_and_groups_test_suite(name):
             "an/execution/root/file",
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
+            # filePathsFile
+            _FILE_PATHS_FILE,
+            # folderPathsFile
+            _FOLDER_PATHS_FILE,
             # developmentRegion
             "enGB",
             # useBaseInternationalization
@@ -456,19 +330,21 @@ def write_files_and_groups_test_suite(name):
             "--build-file-sub-identifiers-files",
             "some/buildfile_subidentifiers/0",
             "some/buildfile_subidentifiers/1",
-            # filePaths
-            "--file-paths",
-            "a/path/to/a/file",
-            "another/path/to/another/file",
-            "a/path/to/a/file_path.bundle",
-            "another/path/to/another/file_path.framework",
-            # folderPaths
-            "--folder-paths",
-            "a/path/to/a/folder",
-            "another/path/to/another/folder",
             # colorize
             "--colorize",
         ],
+        expected_writes = {
+            _FILE_PATHS_FILE: """\
+a/path/to/a/file
+another/path/to/another/file
+a/path/to/a/file_path.bundle
+another/path/to/another/file_path.framework
+""",
+            _FOLDER_PATHS_FILE: """\
+a/path/to/a/folder
+another/path/to/another/folder
+""",
+        },
     )
 
     # Test suite
