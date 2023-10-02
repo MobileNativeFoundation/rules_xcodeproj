@@ -36,7 +36,12 @@ def _create():
     def _create_args():
         args = []
 
-        def _args_add_all(flag_or_values, values = None, *, map_each = None):
+        def _add_all(
+                flag_or_values,
+                values = None,
+                *,
+                map_each = None,
+                terminate_with = None):
             if values != None:
                 flag = flag_or_values
             else:
@@ -63,6 +68,9 @@ def _create():
                         args.append(_quote_if_needed(str(mapped_value)))
             else:
                 args.extend([_quote_if_needed(str(value)) for value in values])
+
+            if terminate_with != None:
+                args.append(terminate_with)
 
         def _add(flag_or_value, value = None):
             if value != None:
@@ -93,7 +101,7 @@ def _create():
                 use_param_file_args = use_param_file_args,
             ),
             add = _add,
-            add_all = _args_add_all,
+            add_all = _add_all,
             use_param_file = _args_use_param_file,
             set_param_file_format = _args_set_param_file_format,
         )
