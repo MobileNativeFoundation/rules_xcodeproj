@@ -4193,7 +4193,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
+				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer CONFIGURATION-STABLE-1";
@@ -4303,7 +4303,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC";
+				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC CONFIGURATION-STABLE-1";
@@ -4609,7 +4609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
+				BAZEL_LABEL = "@//iOSApp/Source/Utils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils";
 				BAZEL_TARGET_ID = "@//iOSApp/Source/Utils:Utils CONFIGURATION-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
