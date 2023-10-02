@@ -24,6 +24,13 @@ class BazelLabelTests: XCTestCase {
         XCTAssertEqual(label.name, "bar")
     }
 
+    func test_init_withStringLiteral_nameWithSlash() throws {
+        let label: BazelLabel = "@//foo/bar/wiz:bar/wiz"
+        XCTAssertEqual(label.repository, "@")
+        XCTAssertEqual(label.package, "foo/bar/wiz")
+        XCTAssertEqual(label.name, "bar/wiz")
+    }
+
     func test_customString_withRepository() throws {
         let label: BazelLabel = "@awesome_repo//foo/bar:hello"
         let actual = "\(label)"
@@ -39,7 +46,19 @@ class BazelLabelTests: XCTestCase {
     func test_customString_noName() throws {
         let label: BazelLabel = "@//foo/bar"
         let actual = "\(label)"
-        XCTAssertEqual("@//foo/bar:bar", actual)
+        XCTAssertEqual("@//foo/bar", actual)
+    }
+
+    func test_customString_shorthandForm() throws {
+        let label: BazelLabel = "@//foo/bar:bar"
+        let actual = "\(label)"
+        XCTAssertEqual("@//foo/bar", actual)
+    }
+
+    func test_customString_nameWithSlash() throws {
+        let label: BazelLabel = "@//foo/bar/wiz:bar/wiz"
+        let actual = "\(label)"
+        XCTAssertEqual("@//foo/bar/wiz:bar/wiz", actual)
     }
 
     func test_encodingAndDecoding() throws {

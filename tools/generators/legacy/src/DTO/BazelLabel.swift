@@ -1,9 +1,10 @@
 import Foundation
 
-struct BazelLabel: Equatable, Hashable {
+struct BazelLabel: Equatable, Hashable, CustomStringConvertible {
     let repository: String
     let package: String
     let name: String
+    let description: String
 }
 
 extension BazelLabel {
@@ -66,9 +67,11 @@ extension BazelLabel {
 
     init(_ value: String) throws {
         let parts = try Self.parse(value)
-        repository = parts.repository
-        package = parts.package
-        name = parts.name
+        self.init(
+            repository: parts.repository,
+            package: parts.package,
+            name: parts.name
+        )
     }
 
     init?(nilIfInvalid value: String) {
@@ -78,11 +81,19 @@ extension BazelLabel {
             return nil
         }
     }
-}
 
-extension BazelLabel: CustomStringConvertible {
-    var description: String {
-        return "\(repository)//\(package):\(name)"
+    init(repository: String, package: String, name: String) {
+        self.repository = repository
+        self.package = package
+        self.name = name
+
+        // Favor returning the shorthand form of the label,
+        // e.g. for `@repo//foo/bar/wiz:wiz` return `@repo//foo/bar/wiz`,
+        // for `@repo//foo/bar/wiz:baz` return `@repo//foo/bar/wiz:baz`,
+        // for `@repo//foo/bar/wiz:bar/wiz` return `@repo//foo/bar/wiz:bar/wiz`.
+        let canOmitName = !name.contains("/") && package.hasSuffix("/\(name)")
+        let suffix = canOmitName ? "" : ":\(name)"
+        description = "\(repository)//\(package)\(suffix)"
     }
 }
 
