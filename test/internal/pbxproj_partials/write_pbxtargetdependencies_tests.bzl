@@ -97,9 +97,14 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         ctx.attr.xcode_targets_by_label,
     )
 
+    shard_count = ctx.attr.generator_shard_count
+
     bucketed_labels = {}
     for label in xcode_targets_by_label:
-        bucketed_labels.setdefault(hash(label.name) % 8, []).append(label)
+        bucketed_labels.setdefault(
+            hash(label.name) % shard_count,
+            [],
+        ).append(label)
 
     expected_consolidation_maps = {}
     for idx, labels in enumerate(bucketed_labels.values()):
@@ -122,6 +127,7 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         generator_name = "a_generator_name",
         install_path = "a/project.xcodeproj",
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
+        shard_count = shard_count,
         tool = None,
         xcode_target_configurations = ctx.attr.xcode_target_configurations,
         xcode_targets_by_label = xcode_targets_by_label,
@@ -215,6 +221,7 @@ write_pbxtargetdependencies_test = unittest.make(
         # Expected
         "expected_args": attr.string_list(mandatory = True),
         "expected_writes": attr.string_dict(mandatory = True),
+        "generator_shard_count": attr.int(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "xcode_target_configurations": attr.string_list_dict(mandatory = True),
         "xcode_targets_by_label": attr.string(mandatory = True),
@@ -237,6 +244,7 @@ def write_pbxtargetdependencies_test_suite(name):
             # Inputs
             colorize = False,
             minimum_xcode_version,
+            shard_count = 2,
             xcode_target_configurations,
             xcode_targets_by_label,
 
@@ -249,6 +257,7 @@ def write_pbxtargetdependencies_test_suite(name):
 
             # Inputs
             colorize = colorize,
+            generator_shard_count = shard_count,
             minimum_xcode_version = minimum_xcode_version,
             xcode_target_configurations = xcode_target_configurations,
             xcode_targets_by_label = json.encode(xcode_targets_by_label),
