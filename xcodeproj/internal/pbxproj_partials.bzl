@@ -28,8 +28,6 @@ _flags = struct(
     consolidation_map_output_paths = "--consolidation-map-output-paths",
     dependencies = "--dependencies",
     dependency_counts = "--dependency-counts",
-    files_paths = "--file-paths",
-    folder_paths = "--folder-paths",
     labels = "--labels",
     label_counts = "--label-counts",
     module_names = "--module-names",
@@ -122,6 +120,41 @@ def _write_files_and_groups(
     args.use_param_file("@%s")
     args.set_param_file_format("multiline")
 
+    # filePaths
+
+    file_paths_file = actions.declare_file(
+        "{}_pbxproj_partials/file_paths_file".format(
+            generator_name,
+        ),
+    )
+
+    file_path_args = actions.args()
+    file_path_args.set_param_file_format("multiline")
+
+    file_path_args.add_all(files)
+
+    # TODO: Consider moving normalization into `args.add_all.map_each`
+    file_path_args.add_all(file_paths)
+
+    actions.write(file_paths_file, file_path_args)
+
+    # folderPaths
+
+    folder_paths_file = actions.declare_file(
+        "{}_pbxproj_partials/folder_paths_file".format(
+            generator_name,
+        ),
+    )
+
+    folder_path_args = actions.args()
+    folder_path_args.set_param_file_format("multiline")
+
+    folder_path_args.add_all(folders)
+
+    actions.write(folder_paths_file, folder_path_args)
+
+    # ... the rest
+
     # knownRegionsOutputPath
     args.add(pbxproject_known_regions)
 
@@ -143,6 +176,12 @@ def _write_files_and_groups(
     # selectedModelVersionsFile
     args.add(selected_model_versions_file)
 
+    # filePathsFile
+    args.add(file_paths_file)
+
+    # folderPathsFile
+    args.add(folder_paths_file)
+
     # developmentRegion
     args.add(project_options["development_region"])
 
@@ -159,17 +198,6 @@ def _write_files_and_groups(
         buildfile_subidentifiers_files,
     )
 
-    # filePaths
-    if files or file_paths:
-        args.add(_flags.files_paths)
-        args.add_all(files)
-
-        # TODO: Consider moving normalization into `args.add_all.map_each`
-        args.add_all(file_paths)
-
-    # folderPaths
-    args.add_all(_flags.folder_paths, folders)
-
     # colorize
     if colorize:
         args.add(_flags.colorize)
@@ -180,6 +208,8 @@ def _write_files_and_groups(
         arguments = [args],
         executable = tool,
         inputs = [
+            file_paths_file,
+            folder_paths_file,
             execution_root_file,
             selected_model_versions_file,
         ] + buildfile_subidentifiers_files,

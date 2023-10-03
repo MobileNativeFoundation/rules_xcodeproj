@@ -27,6 +27,10 @@ extension Generator {
             _ useBaseInternationalization: Bool
         ) -> String
 
+        let readFilePathsFile: ReadFilePathsFile
+
+        let readFolderPathsFile: ReadFolderPathsFile
+
         let resolvedRepositoriesBuildSetting: (
             _ resolvedRepositories: [ResolvedRepository]
         ) -> String
@@ -50,6 +54,8 @@ extension Generator.Environment {
         elements: ElementCreator.Environment.default,
         filesAndGroupsPartial: Generator.filesAndGroupsPartial,
         knownRegionsPartial: Generator.knownRegionsPartial,
+        readFilePathsFile: Generator.ReadFilePathsFile(),
+        readFolderPathsFile: Generator.ReadFolderPathsFile(),
         resolvedRepositoriesBuildSetting:
             Generator.resolvedRepositoriesBuildSetting,
         write: Write()

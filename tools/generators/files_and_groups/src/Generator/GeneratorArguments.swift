@@ -31,6 +31,24 @@ Path to where the 'resolved_repositories' file should be written.
 
         @OptionGroup var elementCreatorArguments: ElementCreator.Arguments
 
+        @Argument(
+            help: """
+Path to a file that contains file paths which are relative to the Bazel \
+execution root.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var filePathsFile: URL
+
+        @Argument(
+            help: """
+Path to a file that contains folder paths which are relative to the Bazel \
+execution root.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var folderPathsFile: URL
+
         @Argument(help: "Development region for the project.")
         var developmentRegion: String
 
@@ -51,24 +69,5 @@ read from.
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
         var buildFileSubIdentifiersFiles: [URL]
-
-        @Option(
-            parsing: .upToNextOption,
-            help: """
-Paths to files to include in the project. The paths are relative to the Bazel \
-execution root.
-"""
-        )
-        var filePaths: [BazelPath] = []
-
-        @Option(
-            parsing: .upToNextOption,
-            help: """
-Paths to folders to include in the project. The paths are relative to the \
-Bazel execution root.
-""",
-            transform: { BazelPath($0, isFolder: true) }
-        )
-        var folderPaths: [BazelPath] = []
     }
 }

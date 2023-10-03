@@ -19,8 +19,11 @@ struct Generator {
     /// groups `PBXProj` partial, and `RESOLVED_REPOSITORIES` build setting.
     /// Then it writes them to disk.
     func generate(arguments: Arguments) async throws {
-        let pathTree = environment.calculatePathTree(
-            /*paths:*/ Set(arguments.filePaths + arguments.folderPaths)
+        let pathTree = try await environment.calculatePathTree(
+            /*paths:*/ Set(
+                environment.readFilePathsFile(arguments.filePathsFile) +
+                environment.readFolderPathsFile(arguments.folderPathsFile)
+            )
         )
 
         let elementsCreator = ElementCreator(environment: environment.elements)
