@@ -77,7 +77,7 @@ FF0100000000000000000006 /* Post-build Run Script */
             index: UInt8
         ) -> String {
             return #"""
-FF01000000000000000001\#(String(format: "%02X", index)) \#
+FF01000000000000000001\#(byteHexStrings[index]!) \#
 /* \#(name) */
 """#
         }
@@ -139,7 +139,7 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
         ) -> SubIdentifier {
             precondition(shard < 0xFE)
             return SubIdentifier(
-                shard: String(format: "%02X", shard),
+                shard: byteHexStrings[shard]!,
                 type: type,
                 path: path,
                 hash: shardSubIdentifier(
@@ -242,7 +242,7 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
                 // long. So we need to truncate it to fit within the remaining
                 // 20 characters (by dropping 6 bytes).
                 .dropLast(6)
-                .map { String(format: "%02X", $0) }
+                .map { byteHexStrings[$0]! }
                 .joined()
         }
     }
@@ -347,7 +347,7 @@ FF0000000000000000000008 /* rules_xcodeproj */
                 // long. So we need to truncate it to fit within the remaining
                 // 22 characters (by dropping 5 bytes).
                 .dropLast(5)
-                .map { String(format: "%02X", $0) }
+                .map { byteHexStrings[$0]! }
                 .joined()
         }
     }
@@ -368,7 +368,7 @@ FF0000000000000000000002 /* Build configuration list for PBXProject */
             index: UInt8
         ) -> String {
             return #"""
-FF00000000000000000001\#(String(format: "%02X", index)) \#
+FF00000000000000000001\#(byteHexStrings[index]!) \#
 /* \#(name) */
 """#
         }
@@ -409,7 +409,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
         ) -> SubIdentifier {
             precondition(shard < 0xFE)
             return SubIdentifier(
-                shard: String(format: "%02X", shard),
+                shard: byteHexStrings[shard]!,
                 hash: shardSubIdentifier(
                     id,
                     hashCache: &hashCache[shard, default: []]
@@ -471,7 +471,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
             subIdentifier: SubIdentifier
         ) -> String {
             return #"""
-\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000001\#(String(format: "%02X", index)) \#
+\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000001\#(byteHexStrings[index]!) \#
 /* \#(name) */
 """#
         }
@@ -528,7 +528,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
                 // characters) long. So we need to truncate it (by dropping 12
                 // bytes).
                 .dropLast(12)
-                .map { String(format: "%02X", $0) }
+                .map { byteHexStrings[$0]! }
                 .joined()
         }
     }
@@ -592,7 +592,14 @@ extension Identifiers.BuildFiles.SubIdentifier {
             subIdentifier.encode(into: &data)
         }
 
-        try data.write(to: url)
+        do {
+            try data.write(to: url)
+        } catch {
+            throw PreconditionError(message: """
+Failed to write build file subidentifiers to "\(url.path)": \
+\(error.localizedDescription)
+""")
+        }
     }
 
     private func encode(into data: inout Data) {
@@ -651,4 +658,8 @@ file type
             hash: String(line[hashStartIndex ..< pathIsFolderStartIndex])
         )
     }
+}
+
+private let byteHexStrings: [UInt8: String] = (0x00...0xFF).reduce(into: [:]) {
+    $0[$1] = String(format: "%02X", $1)
 }
