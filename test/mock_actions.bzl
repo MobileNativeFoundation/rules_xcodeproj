@@ -41,6 +41,7 @@ def _create():
                 values = None,
                 *,
                 map_each = None,
+                omit_if_empty = True,
                 terminate_with = None):
             if values != None:
                 flag = flag_or_values
@@ -51,7 +52,7 @@ def _create():
             if type(values) == "depset":
                 values = values.to_list()
 
-            if not values:
+            if omit_if_empty and not values:
                 return
 
             if flag:
