@@ -54,14 +54,14 @@ extension ElementCreator.CreateLocalizedFileElement {
         bazelPath: BazelPath,
         createIdentifier: ElementCreator.CreateIdentifier
     ) -> Element {
-        let lastKnownFileType = ext.flatMap { Xcode.filetype(extension: $0) } ??
-            "file"
+        let lastKnownFileType = ext
+            .flatMap { Xcode.pbxProjEscapedFileType(extension: $0) } ?? "file"
 
         let explicitFileType: String?
         if name == "BUILD" {
-            explicitFileType = Xcode.filetype(extension: "bazel")
+            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "bazel")
         } else if name == "Podfile" {
-            explicitFileType = Xcode.filetype(extension: "rb")
+            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "rb")
         } else {
             explicitFileType = nil
         }
@@ -72,11 +72,11 @@ extension ElementCreator.CreateLocalizedFileElement {
 
         if let explicitFileType {
             contentComponents.append(
-                "explicitFileType = \(explicitFileType.pbxProjEscaped);"
+                "explicitFileType = \(explicitFileType);"
             )
         } else {
             contentComponents.append(
-                "lastKnownFileType = \(lastKnownFileType.pbxProjEscaped);"
+                "lastKnownFileType = \(lastKnownFileType);"
             )
         }
 
