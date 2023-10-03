@@ -37,6 +37,7 @@ final class StringExtensionTests: XCTestCase {
             "\t": escapedTab.quoted,
             "a;": "a;".quoted,
             "a_a": "a_a",
+            "a-a": "a-a".quoted,
             "a a": "a a".quoted,
             "": "".quoted,
             "a\(quote)q\(quote)a": "a\(escapedQuote)q\(escapedQuote)a".quoted,
