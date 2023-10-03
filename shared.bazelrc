@@ -56,7 +56,7 @@ build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
-build:cache --modify_execution_info=^(BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
+build:cache --modify_execution_info=^(AppleLipo|BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
 build:cache --@rules_xcodeproj//xcodeproj:extra_common_flags='--config=cache'
 build:cache --@rules_xcodeproj//xcodeproj:extra_generator_flags='--bes_backend= --bes_results_url='
