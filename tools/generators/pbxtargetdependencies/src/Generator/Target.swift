@@ -18,5 +18,6 @@ struct Target: Equatable {
 
     let moduleName: String
     let uiTestHost: TargetID?
+    let watchKitExtension: TargetID?
     let dependencies: [TargetID]
 }

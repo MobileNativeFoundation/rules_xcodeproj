@@ -113,6 +113,11 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
             "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-4": 
                 "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-4",
         ]
+        // Doesn't make sense, just for testing
+        let watchKitExtensions: [TargetID: TargetID] = [
+            "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-4":
+                "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-4",
+        ]
 
         let expectedConsolidationMapArguments: [ConsolidationMapArguments] = [
             .init(
@@ -133,6 +138,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         productBasename: "generator_codesigned",
                         moduleName: "",
                         uiTestHost: nil,
+                        watchKitExtension: nil,
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                         ]
@@ -149,6 +155,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         productBasename: "tests.xctest",
                         moduleName: "tests",
                         uiTestHost: "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
+                        watchKitExtension: nil,
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -167,6 +174,8 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         productBasename: "tests.xctest",
                         moduleName: "tests",
                         uiTestHost: nil,
+                        // FIXME: FIXME
+                        watchKitExtension: nil,
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
@@ -193,6 +202,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         productBasename: "libgenerator.a",
                         moduleName: "generator",
                         uiTestHost: nil,
+                        watchKitExtension: nil,
                         dependencies: [
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                             "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -208,7 +218,10 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
         // Act
 
         let consolidationMapArguments = try arguments
-            .toConsolidationMapArguments(testHosts: testHosts)
+            .toConsolidationMapArguments(
+                testHosts: testHosts,
+                watchKitExtensions: watchKitExtensions
+            )
 
         // Assert
 

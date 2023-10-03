@@ -1,4 +1,5 @@
 import CustomDump
+import OrderedCollections
 import XCTest
 
 @testable import pbxtargetdependencies
@@ -36,10 +37,13 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
             "A": "C",
             "B": "C",
         ]
-        let identifiers: [TargetID : Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[0].identifier,
-            "B": identifiedTargets[0].identifier,
-            "C": identifiedTargets[1].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "A": identifiedTargets[0],
+            "B": identifiedTargets[0],
+            "C": identifiedTargets[1],
         ]
         let createdOnToolsVersion = "14.2.1"
 
@@ -61,7 +65,7 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
             ),
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: identifiers["C"]!.full
+                testHostIdentifier: identifiedTargetsMap["C"]!.identifier.full
             ),
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
@@ -75,11 +79,11 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
                 content: "{TA_BazelDependnencies}"
             ),
             .init(
-                identifier: identifiers["A"]!.full,
+                identifier: identifiedTargetsMap["A"]!.identifier.full,
                 content: "{TA_AB}"
             ),
             .init(
-                identifier: identifiers["C"]!.full,
+                identifier: identifiedTargetsMap["C"]!.identifier.full,
                 content: "{TA_C}"
             ),
         ]
@@ -89,8 +93,8 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
         let objects = try Generator.CreateTargetAttributesObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
+                identifiedTargetsMap: identifiedTargetsMap,
                 testHosts: testHosts,
-                identifiers: identifiers,
                 createdOnToolsVersion: createdOnToolsVersion,
                 createTargetAttributesContent:
                     createTargetAttributesContent.mock
@@ -126,9 +130,12 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
             "A": "C",
             "B": "C",
         ]
-        let identifiers: [TargetID : Identifiers.Targets.Identifier] = [
-            "A": identifiedTargets[0].identifier,
-            "B": identifiedTargets[0].identifier,
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "A": identifiedTargets[0],
+            "B": identifiedTargets[0],
         ]
         let createdOnToolsVersion = "14.2.1"
 
@@ -145,8 +152,8 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
         XCTAssertThrowsError(
             try Generator.CreateTargetAttributesObjects.defaultCallable(
                 identifiedTargets: identifiedTargets,
+                identifiedTargetsMap: identifiedTargetsMap,
                 testHosts: testHosts,
-                identifiers: identifiers,
                 createdOnToolsVersion: createdOnToolsVersion,
                 createTargetAttributesContent:
                     createTargetAttributesContent.mock

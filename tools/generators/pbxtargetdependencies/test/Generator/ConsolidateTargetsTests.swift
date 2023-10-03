@@ -716,6 +716,7 @@ extension Target {
         productBasename: String = "libtarget.a",
         moduleName: String = "",
         uiTestHost: TargetID? = nil,
+        watchKitExtension: TargetID? = nil,
         dependencies: [TargetID] = []
     ) -> Self {
         return Self(
@@ -730,6 +731,7 @@ extension Target {
             productBasename: productBasename,
             moduleName: moduleName,
             uiTestHost: uiTestHost,
+            watchKitExtension: watchKitExtension,
             dependencies: dependencies
         )
     }

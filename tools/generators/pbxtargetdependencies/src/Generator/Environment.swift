@@ -10,12 +10,12 @@ extension Generator {
 
         let calculateCreatedOnToolsVersion: CalculateCreatedOnToolsVersion
 
+        let calculateIdentifiedTargetsMap: CalculateIdentifiedTargetsMap
+
         let calculateTargetAttributesPartial: CalculateTargetAttributesPartial
 
         let calculateTargetDependenciesPartial:
             CalculateTargetDependenciesPartial
-
-        let calculateTargetIdentifierMap: CalculateTargetIdentifierMap
 
         let calculateTargetsPartial: CalculateTargetsPartial
 
@@ -36,11 +36,12 @@ extension Generator.Environment {
         calculateConsolidationMaps: Generator.CalculateConsolidationMaps(),
         calculateCreatedOnToolsVersion:
             Generator.CalculateCreatedOnToolsVersion(),
+        calculateIdentifiedTargetsMap:
+            Generator.CalculateIdentifiedTargetsMap(),
         calculateTargetAttributesPartial:
             Generator.CalculateTargetAttributesPartial(),
         calculateTargetDependenciesPartial:
             Generator.CalculateTargetDependenciesPartial(),
-        calculateTargetIdentifierMap: Generator.CalculateTargetIdentifierMap(),
         calculateTargetsPartial: Generator.CalculateTargetsPartial(),
         createDependencyObjects: Generator.CreateDependencyObjects(
             createContainerItemProxyObject:

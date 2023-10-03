@@ -40,6 +40,7 @@ _flags = struct(
     product_paths = "--product-paths",
     product_types = "--product-types",
     target_and_test_hosts = "--target-and-test-hosts",
+    target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
     target_counts = "--target-counts",
     targets = "--targets",
     use_base_internationalization = "--use-base-internationalization",
@@ -469,6 +470,7 @@ def _write_pbxtargetdependencies(
     product_paths = []
     product_types = []
     target_and_test_hosts = []
+    target_and_watch_kit_extensions = []
     target_counts = []
     target_ids = []
     xcode_configuration_counts = []
@@ -510,8 +512,20 @@ def _write_pbxtargetdependencies(
                     target_and_test_hosts.append(xcode_target.id)
                     target_and_test_hosts.append(xcode_target.test_host)
 
+                if xcode_target.watchkit_extension:
+                    target_and_watch_kit_extensions.append(xcode_target.id)
+                    target_and_watch_kit_extensions.append(
+                        xcode_target.watchkit_extension,
+                    )
+
     # targetAndTestHosts
     args.add_all(_flags.target_and_test_hosts, target_and_test_hosts)
+
+    # targetAndWatchKitExtensions
+    args.add_all(
+        _flags.target_and_watch_kit_extensions,
+        target_and_watch_kit_extensions,
+    )
 
     # consolidationMapOutputPaths
     args.add_all(

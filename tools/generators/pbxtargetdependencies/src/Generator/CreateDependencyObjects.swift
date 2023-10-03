@@ -1,3 +1,4 @@
+import OrderedCollections
 import PBXProj
 
 extension Generator {
@@ -26,11 +27,11 @@ extension Generator {
         /// objects.
         func callAsFunction(
             identifiedTargets: [IdentifiedTarget],
-            identifiers: [TargetID: Identifiers.Targets.Identifier]
+            identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>
         ) throws -> [Object] {
             return try callable(
                 /*identifiedTargets:*/ identifiedTargets,
-                /*identifiers:*/ identifiers,
+                /*identifiedTargetsMap:*/ identifiedTargetsMap,
                 /*createContainerItemProxyObject:*/
                     createContainerItemProxyObject,
                 /*createTargetDependencyObject:*/ createTargetDependencyObject
@@ -44,7 +45,7 @@ extension Generator {
 extension Generator.CreateDependencyObjects {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
-        _ identifiers: [TargetID: Identifiers.Targets.Identifier],
+        _ identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>,
         _ createContainerItemProxyObject:
             Generator.CreateContainerItemProxyObject,
         _ createTargetDependencyObject: Generator.CreateTargetDependencyObject
@@ -52,7 +53,7 @@ extension Generator.CreateDependencyObjects {
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget],
-        identifiers: [TargetID: Identifiers.Targets.Identifier],
+        identifiedTargetsMap: OrderedDictionary<TargetID, IdentifiedTarget>,
         createContainerItemProxyObject:
             Generator.CreateContainerItemProxyObject,
         createTargetDependencyObject: Generator.CreateTargetDependencyObject
@@ -84,10 +85,10 @@ extension Generator.CreateDependencyObjects {
             addElements(from: identifier, to: .bazelDependencies)
 
             for dependency in target.dependencies {
-                let dependencyIdentifier = try identifiers.value(
+                let dependencyIdentifier = try identifiedTargetsMap.value(
                     for: dependency,
                     context: "Dependency"
-                )
+                ).identifier
 
                 addElements(from: identifier, to: dependencyIdentifier)
             }
