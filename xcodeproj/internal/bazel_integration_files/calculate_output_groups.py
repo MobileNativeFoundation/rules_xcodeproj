@@ -57,7 +57,7 @@ note: ({now}) {value_name} updated after {wait_counter} seconds.""",
     return value
 
 
-def _calculate_build_request_file(
+def _get_build_request(
         xcode_version,
         objroot,
         build_request_min_ctime):
@@ -81,40 +81,46 @@ def _calculate_build_request_file(
         with open(build_description_cache, 'rb') as f:
             f.seek(-32, os.SEEK_END)
             build_request_id = f.read().decode('ASCII')
-        return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
 
-    def wait_for_xcbuilddata():
+        build_request_file = (
+            f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
+        )
+        def wait_for_build_request():
+            if os.path.exists(build_request_file):
+                with open(build_request_file, encoding = "utf-8") as f:
+                    # Parse the build-request.json file
+                    return json.load(f)
+            return None
+
+        return _wait_for_value(
+            wait_for_build_request,
+            f"\"{build_request_file}\"",
+        )
+
+    def wait_for_build_request():
         xcbuilddata = max(
             glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
             key = os.path.getctime,
         )
         if os.path.getctime(xcbuilddata) >= build_request_min_ctime:
-            return xcbuilddata
+            build_request_file = f"{xcbuilddata}/build-request.json"
+            if os.path.exists(build_request_file):
+                with open(build_request_file, encoding = "utf-8") as f:
+                    # Parse the build-request.json file
+                    return json.load(f)
         return None
 
-    xcbuilddata = (
-        _wait_for_value(wait_for_xcbuilddata, "newest '.xcbuilddata' folder")
+    return _wait_for_value(
+        wait_for_build_request,
+        "newest 'buildRequest.json' file",
     )
-    return f"{xcbuilddata}/build-request.json"
 
 
 def _calculate_label_and_target_ids(
-        build_request_file,
+        build_request,
         guid_labels,
         guid_target_ids):
     try:
-        # TODO: Remove this existence check after Xcode 14.3 is the minimum
-        # The first time a certain buildRequest is used, the buildRequest.json
-        # might not exist yet, so we for it to exist
-        _wait_for_value(
-            lambda: os.path.exists(build_request_file),
-            f"\"{build_request_file}\"",
-        )
-
-        with open(build_request_file, encoding = "utf-8") as f:
-            # Parse the build-request.json file
-            build_request = json.load(f)
-
         # Xcode gets "stuck" in the `buildFiles` or `build` command for
         # top-level targets, so we can't reliably change commands here. Leaving
         # the code in place in case this is fixed in the future, or we want to
@@ -358,7 +364,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
     prefixes = prefixes_str.split(",")
 
     try:
-        build_request_file = _calculate_build_request_file(
+        build_request = _get_build_request(
             xcode_version,
             objroot,
             build_request_min_ctime,
@@ -378,7 +384,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         sys.exit(1)
 
     labels_and_target_ids = _calculate_label_and_target_ids(
-        build_request_file,
+        build_request,
         guid_labels,
         guid_target_ids,
     )
