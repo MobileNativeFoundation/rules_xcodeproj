@@ -48,14 +48,20 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
 
     if product and product.type.startswith("com.apple.product-type.framework"):
         is_framework = True
+        is_static_framework = (
+            product.type == "com.apple.product-type.framework.static"
+        )
     else:
         is_framework = False
+        is_static_framework = False
 
     return struct(
         id = id,
         is_framework = is_framework,
         product = product.file if product else None,
-        product_path = product.path if product and not is_framework else None,
+        product_path = (
+            product.path if product and not is_static_framework else None
+        ),
         product_file_path = product.actual_file_path if product else None,
         dsym_files = dsym_files,
         swift = swift,
