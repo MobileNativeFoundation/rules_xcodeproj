@@ -8,15 +8,6 @@ load(":platforms.bzl", "PLATFORM_NAME")
 def _apple_platform_to_platform_name(platform):
     return PLATFORM_NAME[platform]
 
-def _depset_len(d):
-    return str(len(d.to_list()))
-
-def _depset_to_list(d):
-    return d.to_list()
-
-def _identity(seq):
-    return seq
-
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -435,6 +426,12 @@ def _write_pbxtargetdependencies(
         ),
     )
 
+    consolidation_maps_inputs_file = actions.declare_file(
+        "{}_pbxproj_partials/consolidation_maps_inputs_file".format(
+            generator_name,
+        ),
+    )
+
     bucketed_labels = {}
     for label in xcode_targets_by_label:
         # FIXME: Fine-tune this, and make it configurable
@@ -455,26 +452,14 @@ def _write_pbxtargetdependencies(
     # targetAttributesOutputPath
     args.add(pbxproject_target_attributes)
 
+    # consolidationMapsInputsFile
+    args.add(consolidation_maps_inputs_file)
+
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
 
-    archs = []
-    dependencies = []
-    dependency_counts = []
-    label_counts = []
-    labels = []
-    module_names = []
-    os_versions = []
-    platforms = []
-    product_basenames = []
-    product_paths = []
-    product_types = []
-    target_and_test_hosts = []
-    target_and_watch_kit_extensions = []
-    target_counts = []
-    target_ids = []
-    xcode_configuration_counts = []
-    xcode_configurations = []
+    # Consolidation maps inputs
+
     for idx, bucket_labels in enumerate(bucketed_labels.values()):
         consolidation_map = actions.declare_file(
             "{}_pbxproj_partials/consolidation_maps/{}".format(
@@ -484,29 +469,51 @@ def _write_pbxtargetdependencies(
         )
         consolidation_maps[consolidation_map] = bucket_labels
 
-        label_counts.append(len(bucket_labels))
+    consolidation_map_args = actions.args()
+    consolidation_map_args.set_param_file_format("multiline")
+
+    consolidation_map_args.add_all(
+        consolidation_maps.keys(),
+        terminate_with = "--",
+    )
+
+    target_and_test_hosts = []
+    target_and_watch_kit_extensions = []
+    for bucket_labels in consolidation_maps.values():
+        # labelCount
+        consolidation_map_args.add(len(bucket_labels))
+
         for label in bucket_labels:
-            labels.append(str(label))
+            consolidation_map_args.add(str(label))
 
             xcode_targets = xcode_targets_by_label[label].values()
-            target_counts.append(len(xcode_targets))
+
+            consolidation_map_args.add(len(xcode_targets))
+
             for xcode_target in xcode_targets:
-                target_ids.append(xcode_target.id)
-                product_types.append(xcode_target.product.type)
-                platforms.append(xcode_target.platform.platform)
-                os_versions.append(xcode_target.platform.os_version)
-                archs.append(xcode_target.platform.arch)
-                module_names.append(
+                consolidation_map_args.add(xcode_target.id)
+                consolidation_map_args.add(xcode_target.product.type)
+                consolidation_map_args.add(
+                    apple_platform_to_platform_name(
+                        xcode_target.platform.platform,
+                    ),
+                )
+                consolidation_map_args.add(xcode_target.platform.os_version)
+                consolidation_map_args.add(xcode_target.platform.arch)
+                consolidation_map_args.add(
                     xcode_target.product.module_name_attribute or EMPTY_STRING,
                 )
-                product_paths.append(xcode_target.product.file_path)
-                product_basenames.append(xcode_target.product.basename)
-                dependency_counts.append(xcode_target.dependencies)
-                dependencies.append(xcode_target.dependencies)
-
-                configurations = xcode_target_configurations[xcode_target.id]
-                xcode_configuration_counts.append(len(configurations))
-                xcode_configurations.append(configurations)
+                consolidation_map_args.add(xcode_target.product.file_path)
+                consolidation_map_args.add(xcode_target.product.basename)
+                consolidation_map_args.add_all(
+                    xcode_target.dependencies,
+                    omit_if_empty = False,
+                    terminate_with = "--",
+                )
+                consolidation_map_args.add_all(
+                    xcode_target_configurations[xcode_target.id],
+                    terminate_with = "--",
+                )
 
                 if xcode_target.test_host:
                     target_and_test_hosts.append(xcode_target.id)
@@ -518,6 +525,8 @@ def _write_pbxtargetdependencies(
                         xcode_target.watchkit_extension,
                     )
 
+    actions.write(consolidation_maps_inputs_file, consolidation_map_args)
+
     # targetAndTestHosts
     args.add_all(_flags.target_and_test_hosts, target_and_test_hosts)
 
@@ -526,72 +535,6 @@ def _write_pbxtargetdependencies(
         _flags.target_and_watch_kit_extensions,
         target_and_watch_kit_extensions,
     )
-
-    # consolidationMapOutputPaths
-    args.add_all(
-        _flags.consolidation_map_output_paths,
-        consolidation_maps.keys(),
-    )
-
-    # labelCounts
-    args.add_all(_flags.label_counts, label_counts)
-
-    # labels
-    args.add_all(_flags.labels, labels)
-
-    # targetCounts
-    args.add_all(_flags.target_counts, target_counts)
-
-    # targets
-    args.add_all(_flags.targets, target_ids)
-
-    # xcodeConfigurationCounts
-    args.add_all(
-        _flags.xcode_configuration_counts,
-        xcode_configuration_counts,
-    )
-
-    # xcodeConfigurations
-    args.add_all(
-        _flags.xcode_configurations,
-        xcode_configurations,
-        map_each = _identity,
-    )
-
-    # productTypes
-    args.add_all(_flags.product_types, product_types)
-
-    # platforms
-    args.add_all(
-        _flags.platforms,
-        platforms,
-        map_each = apple_platform_to_platform_name,
-    )
-
-    # osVersions
-    args.add_all(_flags.os_versions, os_versions)
-
-    # archs
-    args.add_all(_flags.archs, archs)
-
-    # moduleNames
-    args.add_all(_flags.module_names, module_names)
-
-    # productPaths
-    args.add_all(_flags.product_paths, product_paths)
-
-    # productBasenames
-    args.add_all(_flags.product_basenames, product_basenames)
-
-    # dependencyCounts
-    args.add_all(
-        _flags.dependency_counts,
-        dependency_counts,
-        map_each = _depset_len,
-    )
-
-    # dependencies
-    args.add_all(_flags.dependencies, dependencies, map_each = _depset_to_list)
 
     # colorize
     if colorize:
@@ -604,6 +547,7 @@ def _write_pbxtargetdependencies(
     actions.run(
         arguments = [args],
         executable = tool,
+        inputs = [consolidation_maps_inputs_file],
         outputs = [
             pbxtargetdependencies,
             pbxproject_targets,

@@ -1,4 +1,5 @@
 import Foundation
+import GeneratorCommon
 import PBXProj
 
 extension Generator {
@@ -34,11 +35,18 @@ extension Generator.WriteConsolidationMap {
         _ entries: [ConsolidationMapEntry],
         to url: URL
     ) throws {
-        // Create parent directory
-        try FileManager.default.createDirectory(
-            at: url.deletingLastPathComponent(),
-            withIntermediateDirectories: true
-        )
+        do {
+            // Create parent directory
+            try FileManager.default.createDirectory(
+                at: url.deletingLastPathComponent(),
+                withIntermediateDirectories: true
+            )
+        } catch {
+            throw PreconditionError(message: """
+Failed to create parent directories for "\(url.path)": \
+\(error.localizedDescription)
+""")
+        }
 
         // Write
         try ConsolidationMapEntry.encode(entries, to: url)

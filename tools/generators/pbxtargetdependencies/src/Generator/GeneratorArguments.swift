@@ -30,6 +30,14 @@ written.
         )
         var targetAttributesOutputPath: URL
 
+        @Argument(
+            help: """
+Path to a file containing `ConsolidationMapArguments` inputs.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var consolidationMapsInputsFile: URL
+
         @Argument(help: """
 Minimum Xcode version that the generated project supports.
 """)
@@ -47,13 +55,18 @@ Minimum Xcode version that the generated project supports.
         )
         private var targetAndWatchKitExtensions: [TargetID] = []
 
-        @OptionGroup var consolidationMapsArguments: ConsolidationMapsArguments
-
         mutating func validate() throws {
             guard targetAndTestHosts.count.isMultiple(of: 2) else {
                 throw ValidationError("""
 <target-and-test-hosts> (\(targetAndTestHosts.count) elements) must be \
 <target> and <test-host> pairs.
+""")
+            }
+
+            guard targetAndWatchKitExtensions.count.isMultiple(of: 2) else {
+                throw ValidationError("""
+<target-and-watch-kit-extensions> (\(targetAndTestHosts.count) elements) must \
+be <target> and <watchkit-extension> pairs.
 """)
             }
         }

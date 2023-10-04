@@ -19,22 +19,9 @@ details):
 - Positional `target-dependencies-output-path`
 - Positional `targets-output-path`
 - Positional `target-attributes-output-path`
+- Positional `consolidation-maps-inputs-file`
 - Positional `minimum-xcode-version`
 - Optional option `--target-and-test-hosts <target> <test-host> ...`
-- Option `--consolidation-map-output-paths <consolidation-map-output-path> ...`
-- Option `--label-counts <label-count> ...`
-- Option `--labels <label> ...`
-- Option `--target-counts <target-count> ...`
-- Option `--targets <target> ...`
-- Option `--xcode-configuration-counts <xcode-configuration-count> ...`
-- Option `--xcode-configurations <xcode-configuration> ...`
-- Option `--product-types <product-types> ...`
-- Option `--platforms <platform> ...`
-- Option `--os-versions <os-version> ...`
-- Option `--archs <arch> ...`
-- Option `--module-names <module-name> ...`
-- Option `--dependency-counts <dependency-count> ...`
-- Option `--dependencies <dependency> ...`
 - Flag `--colorize`
 
 Here is an example invocation:
@@ -44,64 +31,11 @@ $ pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxproject_target_attributes \
+    /tmp/pbxproj_partials/consolidation_maps_inputs_file \
     14.0 \
     --target-and-test-hosts \
     '//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3' \
-    '//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3' \
-    --consolidation-map-output-paths \
-    /tmp/pbxproj_partials/consolidation_maps/0 \
-    /tmp/pbxproj_partials/consolidation_maps/1 \
-    --label-counts \
-    2 \
-    1 \
-    --labels \
-    //tools/generators/legacy:generator \
-    //tools/generators/legacy/test:tests.__internal__.__test_bundle \
-    //tools/generators/legacy:generator.library \
-    --target-counts \
-    1 \
-    1 \
-    1 \
-    --targets \
-    '//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3' \
-    '//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3' \
-    '//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1' \
-    --xcode-configuration-counts \
-    2 \
-    1 \
-    1 \
-    --xcode-configurations \
-    Debug \
-    Release \
-    Debug \
-    Debug \
-    --product-types \
-    T \
-    u \
-    L \
-    --platforms \
-    macosx \
-    macosx \
-    macosx \
-    --os-versions \
-    12.0 \
-    12.0 \
-    12.0 \
-    --archs \
-    x86_64 \
-    x86_64 \
-    x86_64 \
-    --module-names \
-    '' \
-    'tests' \
-    'generator' \
-    --dependency-counts \
-    1 \
-    1 \
-    0 \
-    --dependencies \
-    '//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1' \
-    '//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'
+    '//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'
 ```
 
 ## Output
