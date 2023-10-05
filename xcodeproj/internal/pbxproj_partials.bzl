@@ -1,6 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
-load(":memory_efficiency.bzl", "EMPTY_DEPSET", "EMPTY_STRING")
+load(":memory_efficiency.bzl", "EMPTY_STRING")
 load(":platforms.bzl", "PLATFORM_NAME")
 
 # Utility
@@ -377,6 +377,7 @@ def _write_pbxtargetdependencies(
         generator_name,
         install_path,
         minimum_xcode_version,
+        shard_count,
         tool,
         xcode_target_configurations,
         xcode_targets_by_label):
@@ -389,6 +390,8 @@ def _write_pbxtargetdependencies(
         generator_name: The name of the `xcodeproj` generator target.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
+        shard_count: The number of shards to split the computation of
+            `PBXNativeTarget`s into.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
         tool: The executable that will generate the output files.
@@ -434,8 +437,10 @@ def _write_pbxtargetdependencies(
 
     bucketed_labels = {}
     for label in xcode_targets_by_label:
-        # FIXME: Fine-tune this, and make it configurable
-        bucketed_labels.setdefault(hash(label.name) % 8, []).append(label)
+        bucketed_labels.setdefault(
+            hash(label.name) % shard_count,
+            [],
+        ).append(label)
 
     consolidation_maps = {}
 
