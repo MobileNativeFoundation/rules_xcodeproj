@@ -5,7 +5,7 @@ build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
 
 # Faster digest hashing with BLAKE3
-startup --digest_function=blake3
+# startup --digest_function=blake3
 
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_13.0/1
