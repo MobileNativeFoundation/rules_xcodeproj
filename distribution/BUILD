@@ -49,19 +49,23 @@ pkg_tar(
     },
     owner = "0.0",
     package_file_name = "release.tar.gz",
-    remap_paths = dicts.add({
-        "MODULE.release.bazel": "MODULE.bazel",
-        "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
-        "xcodeproj/repositories.release.bzl": "xcodeproj/repositories.bzl",
-    }, {
-        # "tools/generators/G/BUILD.release.bazel": "tools/generators/G/BUILD"
-        paths.dirname(g) + "/BUILD.release.bazel": paths.dirname(g) + "/BUILD"
-        for g in _GENERATORS
-    }, {
-        # "tools/generators/G/universal_G": "tools/generators/G/prebuilt_universal_G"
-        g: paths.dirname(g) + "/prebuilt_" + paths.basename(g)
-        for g in _GENERATORS
-    }),
+    remap_paths = dicts.add(
+        {
+            "MODULE.release.bazel": "MODULE.bazel",
+            "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
+            "xcodeproj/repositories.release.bzl": "xcodeproj/repositories.bzl",
+        },
+        {
+            # "tools/generators/G/BUILD.release.bazel": "tools/generators/G/BUILD"
+            paths.dirname(g) + "/BUILD.release.bazel": paths.dirname(g) + "/BUILD"
+            for g in _GENERATORS
+        },
+        {
+            # "tools/generators/G/universal_G": "tools/generators/G/prebuilt_universal_G"
+            g: paths.dirname(g) + "/prebuilt_" + paths.basename(g)
+            for g in _GENERATORS
+        },
+    ),
     strip_prefix = "/",
     tags = ["manual"],
 )
