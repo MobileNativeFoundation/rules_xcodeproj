@@ -40,8 +40,6 @@ extension Generator.CreateBuildFileObject {
         switch subIdentifier.type {
         case .nonArcSource:
             settings = #"settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; "#
-        case .header:
-            settings = #"settings = {ATTRIBUTES = (Public, ); }; "#
         case .compileStub, .source:
             settings = ""
         case .product, .watchKitExtension:

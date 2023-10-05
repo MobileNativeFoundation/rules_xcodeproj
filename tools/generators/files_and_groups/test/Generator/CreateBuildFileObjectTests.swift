@@ -37,36 +37,6 @@ SHARDA00HASHA0000000000FE /* _CompileStub_.m in Sources */
         XCTAssertNoDifference(element, expectedElement)
     }
 
-    func test_header() {
-        // Arrange
-
-        let subIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "SHARDA",
-            type: .header,
-            path: "a/header/file.h",
-            hash: "HASHA"
-        )
-        let fileIdentifier = "FILE_ID"
-
-        let expectedElement = Object(
-            identifier: "SHARDAFFHASHA /* file.h in Headers */",
-            content: #"""
-{isa = PBXBuildFile; fileRef = FILE_ID; settings = {ATTRIBUTES = (Public, ); }; }
-"""#
-        )
-
-        // Act
-
-        let element = Generator.CreateBuildFileObject.defaultCallable(
-            subIdentifier: subIdentifier,
-            fileIdentifier: fileIdentifier
-        )
-
-        // Assert
-
-        XCTAssertNoDifference(element, expectedElement)
-    }
-
     func test_nonArcSource() {
         // Arrange
 

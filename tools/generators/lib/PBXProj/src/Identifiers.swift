@@ -99,12 +99,9 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
             /// phase.
             case compileStub = "2"
 
-            /// A file referenced in a `BuildPhase.headers` build phase.
-            case header = "3"
-
             /// A watchKit extension referenced in a
             /// `BuildPhase.embedAppExtensions` build phase.
-            case watchKitExtension = "4"
+            case watchKitExtension = "3"
         }
 
         public struct SubIdentifier: Equatable {
@@ -541,7 +538,6 @@ private extension Identifiers.BuildFiles.FileType {
         case .source: return .sources
         case .nonArcSource: return .sources
         case .compileStub: return .sources
-        case .header: return .headers
         case .watchKitExtension: return .embedAppExtensions
         }
     }
@@ -567,10 +563,9 @@ extension BuildPhase {
         case .bazelIntegration: return "03"
         case .createCompileDependencies: return "04"
         case .createLinkDependencies: return "05"
-        case .headers: return "06"
-        case .sources: return "07"
-        case .copySwiftGeneratedHeader: return "08"
-        case .embedAppExtensions: return "09"
+        case .sources: return "06"
+        case .copySwiftGeneratedHeader: return "07"
+        case .embedAppExtensions: return "08"
         }
     }
 }

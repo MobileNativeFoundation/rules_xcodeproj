@@ -86,31 +86,6 @@ final class IdentifiersTests: XCTestCase {
         XCTAssertEqual(identifier, expectedIdentifier)
     }
 
-    func test_buildFiles_identifier_header() {
-        // Arrange
-
-        let subIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "2A",
-            type: .header,
-            path: "a/path/to/a/file",
-            hash: "5D281FBE82FC44DCE0D9"
-        )
-
-        let expectedIdentifier = #"""
-2AFF5D281FBE82FC44DCE0D9 /* file in Headers */
-"""#
-
-        // Act
-
-        let identifier = Identifiers.BuildFiles.id(
-            subIdentifier: subIdentifier
-        )
-
-        // Assert
-
-        XCTAssertEqual(identifier, expectedIdentifier)
-    }
-
     // MARK: - BuildFiles.subIdentifier
 
     // MARK: encode/decode
@@ -130,12 +105,6 @@ final class IdentifiersTests: XCTestCase {
                 type: .compileStub,
                 path: "",
                 hash: "ABABABAB"
-            ),
-            .init(
-                shard: "77",
-                type: .header,
-                path: "large/header.h",
-                hash: "BBBB567890ABCDEFAAAA"
             ),
             .init(
                 shard: "FF",
@@ -330,35 +299,6 @@ final class IdentifiersTests: XCTestCase {
         let expectedSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
             shard: "2A",
             type: .nonArcSource,
-            path: "a/path/to/a/file",
-            hash: "3317E1EDE29939A5A774"
-        )
-
-        // Act
-
-        let subIdentifier = Identifiers.BuildFiles.subIdentifier(
-            path,
-            type: type,
-            shard: shard,
-            hashCache: &hashCache
-        )
-
-        // Assert
-
-        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
-    }
-
-    func test_buildFiles_subIdentifier_type_header() {
-        // Arrange
-
-        var hashCache: [UInt8: Set<String>] = [:]
-        let path: BazelPath = "a/path/to/a/file"
-        let type: Identifiers.BuildFiles.FileType = .header
-        let shard: UInt8 = 42
-
-        let expectedSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
-            shard: "2A",
-            type: .header,
             path: "a/path/to/a/file",
             hash: "3317E1EDE29939A5A774"
         )
