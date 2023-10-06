@@ -6,6 +6,11 @@ readonly pidfile="$OBJROOT/import_indexstores.pid"
 readonly build_execution_root="$1"
 shift
 
+# Exit early if no indexstore filelists were provided
+if [ $# -eq 0 ]; then
+  exit
+fi
+
 # Kill previously running import
 if [[ -s "$pidfile" ]]; then
   pid=$(cat "$pidfile")
@@ -13,11 +18,6 @@ if [[ -s "$pidfile" ]]; then
   while kill -0 "$pid" 2>/dev/null; do
     sleep 1
   done
-fi
-
-# Exit early if no indexstore filelists were provided
-if [ $# -eq 0 ]; then
-  exit
 fi
 
 # Set pid to allow cleanup later
