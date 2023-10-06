@@ -18,33 +18,39 @@ extension Array<ConsolidationMapArguments> {
 
         let outputPaths = try rawArgs.consumeArgs(
             URL.self,
+            in: url,
             transform: { URL(fileURLWithPath: $0, isDirectory: false) },
             terminator: "--"
         )
 
         var consolidationMapArguments: [ConsolidationMapArguments] = []
         for outputPath in outputPaths {
-            let labelCount = try rawArgs.consumeArg(Int.self)
+            let labelCount = try rawArgs.consumeArg(Int.self, in: url)
 
             var targetArguments: [Target] = []
             for _ in (0..<labelCount) {
-                let label = try rawArgs.consumeArg(BazelLabel.self)
-                let targetCount = try rawArgs.consumeArg(Int.self)
+                let label = try rawArgs.consumeArg(BazelLabel.self, in: url)
+                let targetCount = try rawArgs.consumeArg(Int.self, in: url)
 
                 for _ in (0..<targetCount) {
-                    let id = try rawArgs.consumeArg(TargetID.self)
+                    let id = try rawArgs.consumeArg(TargetID.self, in: url)
                     let productType =
-                        try rawArgs.consumeArg(PBXProductType.self)
+                        try rawArgs.consumeArg(PBXProductType.self, in: url)
                     let platform =
-                        try rawArgs.consumeArg(Platform.self)
-                    let osVersion = try rawArgs.consumeArg(SemanticVersion.self)
-                    let arch = try rawArgs.consumeArg(String.self)
-                    let moduleName = try rawArgs.consumeArg(String.self)
-                    let productPath = try rawArgs.consumeArg(String.self)
-                    let productBasename = try rawArgs.consumeArg(String.self)
-                    let dependencies = try rawArgs.consumeArgs(TargetID.self)
+                        try rawArgs.consumeArg(Platform.self, in: url)
+                    let osVersion =
+                        try rawArgs.consumeArg(SemanticVersion.self, in: url)
+                    let arch = try rawArgs.consumeArg(String.self, in: url)
+                    let moduleName =
+                        try rawArgs.consumeArg(String.self, in: url)
+                    let productPath =
+                        try rawArgs.consumeArg(String.self, in: url)
+                    let productBasename =
+                        try rawArgs.consumeArg(String.self, in: url)
+                    let dependencies =
+                        try rawArgs.consumeArgs(TargetID.self, in: url)
                     let xcodeConfigurations = try rawArgs
-                        .consumeArgs(String.self)
+                        .consumeArgs(String.self, in: url)
 
                     let uiTestHost: TargetID?
                     if productType == .uiTestBundle {
