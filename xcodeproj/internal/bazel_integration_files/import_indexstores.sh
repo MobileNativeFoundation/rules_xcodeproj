@@ -50,6 +50,9 @@ then
   # object file paths. We need to remap the same way to get unit file hash
   # matches.
   readonly object_file_prefix="/${PROJECT_TEMP_DIR##*/}"
+elif [[ "$ACTION" == "indexbuild" ]]; then
+  # Remove `Index.noindex/` part of path
+  readonly object_file_prefix="${PROJECT_TEMP_DIR/\/Index.noindex\/Build\/Intermediates.noindex\///Build/Intermediates.noindex/}"
 else
   # Remove SwiftUI Previews part of path
   readonly object_file_prefix="${PROJECT_TEMP_DIR/\/Intermediates.noindex\/Previews\/*\/Intermediates.noindex\///Intermediates.noindex/}"
