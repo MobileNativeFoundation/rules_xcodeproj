@@ -27,6 +27,9 @@ swift_library(
     name = "import_indexstores.library",
     srcs = glob(["*.swift"]),
     module_name = "import_indexstores",
+    deps = [
+        "//tools/lib/ToolCommon",
+    ],
 )
 
 swift_binary(

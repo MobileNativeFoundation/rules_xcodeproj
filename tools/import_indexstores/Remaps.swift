@@ -7,6 +7,7 @@ func remapArgs(
     developerDir: String,
     objectFilePrefix: String,
     srcRoot: String,
+    targetPathOverride: String?,
     xcodeExecutionRoot: String,
     xcodeOutputBase: String
 ) -> [String] {
@@ -25,7 +26,7 @@ func remapArgs(
         // another pattern:
         // https://github.com/bazelbuild/bazel/blob/c4a1ab8b6577c4376aaaa5c3c2d4ef07d524175c/src/main/java/com/google/devtools/build/lib/rules/cpp/CcCompilationHelper.java#L1358
         "-remap",
-        #"^(?:\#(executionRootRegex)/|\./)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\.o$=\#(objectFilePrefix)/$1$2$3/Objects-normal/\#(arch)/$4.o"#,
+        #"^(?:\#(executionRootRegex)/|\./)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\.o$=\#(objectFilePrefix)/\#(targetPathOverride ?? "$1$2$3")/Objects-normal/\#(arch)/$4.o"#,
 
         // Generated sources and swiftmodules
         //

@@ -1,145 +1,165 @@
 import Foundation
+import ToolCommon
 
 @main
 struct ImportIndex {
     static func main() async throws {
-        let args = CommandLine.arguments
-        let pidFile =
+        do {
+            let args = CommandLine.arguments
+            let pidFile =
             try getEnvironmentVariable("OBJROOT") + "/import_indexstores.pid"
 
-        guard args.count > 1 else {
-            throw PreconditionError(
-                message: "Not enough arguments, expected path to execution root"
-            )
-        }
-        let buildExecutionRoot = args[1]
+            guard args.count > 1 else {
+                throw PreconditionError(message: """
+Not enough arguments, expected path to execution root
+"""
+                )
+            }
+            let buildExecutionRoot = args[1]
 
-        // Exit early if no indexstore filelists were provided
-        if args.count == 2 {
-            return
-        }
+            // Exit early if no indexstore filelists were provided
+            if args.count == 2 {
+                return
+            }
 
-        // MARK: pidFile
+            // MARK: pidFile
 
-        // Kill any previously running import
-        if FileManager.default.fileExists(atPath: pidFile) {
-            let pid = try String(contentsOfFile: pidFile)
+            // Kill any previously running import
+            if FileManager.default.fileExists(atPath: pidFile) {
+                let pid = try String(contentsOfFile: pidFile)
 
-            try runSubProcess("/bin/kill", [pid])
-            while true {
-                if try runSubProcess("/bin/kill", ["-0", pid]) != 0 {
-                    break
+                try runSubProcess("/bin/kill", [pid])
+                while true {
+                    if try runSubProcess("/bin/kill", ["-0", pid]) != 0 {
+                        break
+                    }
+                    sleep(1)
                 }
-                sleep(1)
             }
-        }
 
-        // Set pid to allow cleanup later
-        try String(ProcessInfo.processInfo.processIdentifier)
-            .write(toFile: pidFile, atomically: true, encoding: .utf8)
-        defer {
-            try? FileManager.default.removeItem(atPath: pidFile)
-        }
-
-        // MARK: filelist
-
-        let projectDirPrefix = try getEnvironmentVariable("PROJECT_DIR") + "/"
-
-        // Merge all filelists into a single file
-        var indexStores: Set<String> = []
-        for filePath in args.dropFirst(2) {
-            let url = URL(fileURLWithPath: filePath)
-            for try await indexStore in url.lines {
-                indexStores.insert(indexStore)
+            // Set pid to allow cleanup later
+            try String(ProcessInfo.processInfo.processIdentifier)
+                .write(toFile: pidFile, atomically: true, encoding: .utf8)
+            defer {
+                try? FileManager.default.removeItem(atPath: pidFile)
             }
-        }
 
-        // Exit early if no indexstores were provided
-        guard !indexStores.isEmpty else {
-            return
-        }
+            // MARK: filelist
 
-        let filelistContent = indexStores
-            .map { projectDirPrefix + $0 + "\n" }
-            .joined()
-        let filelist = try TemporaryFile()
-        try filelistContent
-            .write(to: filelist.url, atomically: true, encoding: .utf8)
+            let projectDirPrefix =
+                try getEnvironmentVariable("PROJECT_DIR") + "/"
 
-        // MARK: Remaps
+            // Merge all filelists into a single file
+            var indexstores: [String: Set<String>] = [:]
+            for filePath in args.dropFirst(2) {
+                let url = URL(fileURLWithPath: filePath)
 
-        // We remove any `/private` prefix from the current execution_root,
-        // since it's removed in the Project navigator
-        let xcodeExecutionRoot: String
-        if buildExecutionRoot.hasPrefix("/private") {
-            xcodeExecutionRoot = String(buildExecutionRoot.dropFirst(8))
-        } else {
-            xcodeExecutionRoot = buildExecutionRoot
-        }
+                var iterator = url.allLines.makeAsyncIterator()
+                while let indexstore = try await iterator.next() {
+                    guard let targetPathOverride = try await iterator.next()
+                    else {
+                        throw PreconditionError(message: """
+indexstore filelists must contain pairs of <indexstore> <target-path-override> \
+lines
+"""
+                        )
+                    }
 
-        let projectTempDir = try getEnvironmentVariable("PROJECT_TEMP_DIR")
+                    indexstores[targetPathOverride, default: []]
+                        .insert(indexstore)
+                }
+            }
 
-        let objectFilePrefix: String
-        if try getEnvironmentVariable("ACTION") == "indexbuild" {
-            // Remove `Index.noindex/` part of path
-            objectFilePrefix = projectTempDir.replacingOccurrences(
-                of: "/Index.noindex/Build/Intermediates.noindex/",
-                with: "/Build/Intermediates.noindex/"
+            // Exit early if no indexstores were provided
+            guard !indexstores.isEmpty else {
+                return
+            }
+
+            let indexDataStoreDir = URL(
+                fileURLWithPath:
+                    try getEnvironmentVariable("INDEX_DATA_STORE_DIR")
             )
-        } else {
-            // Remove SwiftUI Previews part of path
-            objectFilePrefix = try projectTempDir.replacingRegex(
-                matching: #"""
+            let recordsDir =
+                indexDataStoreDir.appendingPathComponent("v5/records")
+
+            try FileManager.default.createDirectory(
+                at: recordsDir,
+                withIntermediateDirectories: true
+            )
+
+            // We remove any `/private` prefix from the current execution_root,
+            // since it's removed in the Project navigator
+            let xcodeExecutionRoot: String
+            if buildExecutionRoot.hasPrefix("/private") {
+                xcodeExecutionRoot = String(buildExecutionRoot.dropFirst(8))
+            } else {
+                xcodeExecutionRoot = buildExecutionRoot
+            }
+
+            let projectTempDir = try getEnvironmentVariable("PROJECT_TEMP_DIR")
+
+            let objectFilePrefix: String
+            if try getEnvironmentVariable("ACTION") == "indexbuild" {
+                // Remove `Index.noindex/` part of path
+                objectFilePrefix = projectTempDir.replacingOccurrences(
+                    of: "/Index.noindex/Build/Intermediates.noindex/",
+                    with: "/Build/Intermediates.noindex/"
+                )
+            } else {
+                // Remove SwiftUI Previews part of path
+                objectFilePrefix = try projectTempDir.replacingRegex(
+                    matching: #"""
 Intermediates\.noindex/Previews/[^/]*/Intermediates\.noindex
 """#,
-                with: "Intermediates.noindex"
-            )
+                    with: "Intermediates.noindex"
+                )
+            }
+
+            let xcodeOutputBase = xcodeExecutionRoot
+                .split(separator: "/")
+                .dropLast(2)
+                .joined(separator: "/")
+
+            let archs = try getEnvironmentVariable("ARCHS")
+            let arch = String(archs.split(separator: " ", maxSplits: 1).first!)
+
+            let developerDir = try getEnvironmentVariable("DEVELOPER_DIR")
+            let indexImport = try getEnvironmentVariable("INDEX_IMPORT")
+            let srcRoot = try getEnvironmentVariable("SRCROOT")
+
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                for (targetPathOverride, indexstores) in indexstores {
+                    group.addTask {
+                        try Self.import(
+                            indexstores,
+                            into: indexDataStoreDir,
+                            arch: arch,
+                            developerDir: developerDir,
+                            indexImport: indexImport,
+                            objectFilePrefix: objectFilePrefix,
+                            projectDirPrefix: projectDirPrefix,
+                            srcRoot: srcRoot,
+                            targetPathOverride:
+                                targetPathOverride.isEmpty ?
+                                    nil : targetPathOverride,
+                            xcodeExecutionRoot: xcodeExecutionRoot,
+                            xcodeOutputBase: xcodeOutputBase
+                        )
+                    }
+                }
+
+                try await group.waitForAll()
+            }
+
+            // Unit files are created fresh, but record files are copied from
+            // `bazel-out/`, which are read-only. We need to adjust their
+            // permissions.
+            // TODO: do this in `index-import`
+            try setWritePermissions(in: recordsDir)
+        } catch {
+            fputs(error.localizedDescription, stderr)
+            Darwin.exit(1)
         }
-
-        let xcodeOutputBase = xcodeExecutionRoot
-            .split(separator: "/")
-            .dropLast(2)
-            .joined(separator: "/")
-
-        let archs = try getEnvironmentVariable("ARCHS")
-        let arch = String(archs.split(separator: " ", maxSplits: 1).first!)
-
-        let remaps = remapArgs(
-            arch: arch,
-            developerDir: try getEnvironmentVariable("DEVELOPER_DIR"),
-            objectFilePrefix: objectFilePrefix,
-            srcRoot: try getEnvironmentVariable("SRCROOT"),
-            xcodeExecutionRoot: xcodeExecutionRoot,
-            xcodeOutputBase: xcodeOutputBase
-        )
-
-        // MARK: Import
-
-        let indexDataStoreDir = URL(
-            fileURLWithPath: try getEnvironmentVariable("INDEX_DATA_STORE_DIR")
-        )
-        let recordsDir = indexDataStoreDir.appendingPathComponent("v5/records")
-
-        try FileManager.default.createDirectory(
-            at: recordsDir,
-            withIntermediateDirectories: true
-        )
-
-        try runSubProcess(
-            try getEnvironmentVariable("INDEX_IMPORT"),
-            remaps + [
-                "-undo-rules_swift-renames",
-                "-incremental",
-                "@\(filelist.url.path)",
-                indexDataStoreDir.path,
-            ]
-        )
-
-        // Unit files are created fresh, but record files are copied from
-        // `bazel-out/`, which are read-only. We need to adjust their
-        // permissions.
-        // TODO: do this in `index-import`
-        try setWritePermissions(in: recordsDir)
     }
 }
 
@@ -165,18 +185,6 @@ Environment variable "\#(key)" is set to an empty string
         )
     }
     return value
-}
-
-@discardableResult private func runSubProcess(
-    _ executable: String,
-    _ args: [String]
-) throws -> Int32 {
-    let task = Process()
-    task.launchPath = executable
-    task.arguments = args
-    try task.run()
-    task.waitUntilExit()
-    return task.terminationStatus
 }
 
 private func setWritePermissions(in url: URL) throws {
