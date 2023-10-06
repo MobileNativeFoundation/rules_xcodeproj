@@ -3,7 +3,7 @@ _BASE_FILES = [
     "copy_dsyms.sh",
     "create_lldbinit.sh",
     "generate_bazel_dependencies.sh",
-    "import_indexstores.sh",
+    ":renamed_import_indexstores",
     "process_bazel_build_log.py",
 ]
 
@@ -17,8 +17,8 @@ filegroup(
 filegroup(
     name = "bazel_integration_files",
     srcs = [
+        ":renamed_swiftc_stub",
         ":rsync_excludes",
-        ":swiftc",
     ] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [
@@ -93,10 +93,10 @@ echo '/*.framework/SwiftUIPreviewsFrameworks/***' >> "framework.exclude.rsynclis
 )
 
 genrule(
-    name = "swiftc_stub",
-    srcs = ["//tools/swiftc_stub:universal_swiftc_stub"],
-    outs = ["swiftc"],
-    # Make the swiftc_stub have the right name
+    name = "renamed_import_indexstores",
+    srcs = ["//tools/import_indexstores:universal_import_indexstores"],
+    outs = ["import_indexstores"],
+    # Make `import_indexstores` have the right name
     cmd = """\
 readonly output="$@"
 if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
@@ -105,7 +105,27 @@ else
   cp "$<" "$@"
 fi
 """,
-    message = "Renaming swiftc stub",
+    message = "Renaming import_indexstores",
+    tags = [
+        "manual",
+        "no-sandbox",
+    ],
+)
+
+genrule(
+    name = "renamed_swiftc_stub",
+    srcs = ["//tools/swiftc_stub:universal_swiftc_stub"],
+    outs = ["swiftc"],
+    # Make `swiftc_stub` have the right name
+    cmd = """\
+readonly output="$@"
+if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
+  cp -c "$<" "$@"
+else
+  cp "$<" "$@"
+fi
+""",
+    message = "Renaming swiftc_stub",
     tags = [
         "manual",
         "no-sandbox",

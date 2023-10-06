@@ -52,6 +52,9 @@ pkg_tar(
     remap_paths = dicts.add(
         {
             "MODULE.release.bazel": "MODULE.bazel",
+            "tools/import_indexstores/BUILD.release.bazel": (
+                "tools/import_indexstores/BUILD"
+            ),
             "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
             "xcodeproj/repositories.release.bzl": "xcodeproj/repositories.bzl",
         },

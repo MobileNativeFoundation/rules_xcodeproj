@@ -5,6 +5,7 @@ load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
+    "import_indexstores": "//tools/import_indexstores",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
@@ -73,6 +74,24 @@ _SCHEMES = [
         test_action = xcode_schemes.test_action(
             _TESTS["files_and_groups"],
             diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
+    xcode_schemes.scheme(
+        name = "import_indexstores",
+        build_action = xcode_schemes.build_action(
+            targets = [
+                xcode_schemes.build_target(
+                    _TOOLS["import_indexstores"],
+                ),
+            ],
+        ),
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["import_indexstores"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["import_indexstores"],
+            build_configuration = "Release",
         ),
     ),
     xcode_schemes.scheme(
@@ -223,6 +242,7 @@ filegroup(
     srcs = [
         "//" + package_name() + "/extension_point_identifiers_parser:release_files",
         "//" + package_name() + "/generators:release_files",
+        "//" + package_name() + "/import_indexstores:release_files",
         "//" + package_name() + "/params_processors:release_files",
         "//" + package_name() + "/swiftc_stub:release_files",
         "//" + package_name() + "/xccurrentversions_parser:release_files",
