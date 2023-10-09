@@ -85,21 +85,21 @@ extension ArraySlice<String> {
 
     public mutating func consumeArgs<Output>(
         _ type: Output.Type,
+        count: Int,
         in url: URL,
         transform: (String) throws -> Output,
-        terminator: String = "--",
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
         var args: [Output] = []
-        while let arg = try consumeArg(
-            type,
-            in: url,
-            transform: transform,
-            unless: terminator,
-            file: file,
-            line: line
-        ) {
+        for _ in (0..<count) {
+            let arg = try consumeArg(
+                type,
+                in: url,
+                transform: transform,
+                file: file,
+                line: line
+            )
             args.append(arg)
         }
         return args
@@ -107,13 +107,14 @@ extension ArraySlice<String> {
 
     public mutating func consumeArgs<Output: ExpressibleByArgument>(
         _ type: Output.Type,
-        terminator: String = "--",
+        count: Int,
         in url: URL,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
         return try consumeArgs(
             type,
+            count: count,
             in: url,
             transform: { arg in
                 return try Self.argumentTransform(
@@ -123,7 +124,42 @@ extension ArraySlice<String> {
                     line: line
                 )
             },
-            terminator: terminator,
+            file: file,
+            line: line
+        )
+    }
+
+    public mutating func consumeArgs<Output>(
+        _ type: Output.Type,
+        in url: URL,
+        transform: (String) throws -> Output,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [Output] {
+        let count = try consumeArg(Int.self, in: url)
+
+        return try consumeArgs(
+            type,
+            count: count,
+            in: url,
+            transform: transform,
+            file: file,
+            line: line
+        )
+    }
+
+    public mutating func consumeArgs<Output: ExpressibleByArgument>(
+        _ type: Output.Type,
+        in url: URL,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [Output] {
+        let count = try consumeArg(Int.self, in: url)
+
+        return try consumeArgs(
+            type,
+            count: count,
+            in: url,
             file: file,
             line: line
         )

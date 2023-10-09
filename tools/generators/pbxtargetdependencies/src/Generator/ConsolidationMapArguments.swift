@@ -19,8 +19,7 @@ extension Array<ConsolidationMapArguments> {
         let outputPaths = try rawArgs.consumeArgs(
             URL.self,
             in: url,
-            transform: { URL(fileURLWithPath: $0, isDirectory: false) },
-            terminator: "--"
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
 
         var consolidationMapArguments: [ConsolidationMapArguments] = []
@@ -48,9 +47,9 @@ extension Array<ConsolidationMapArguments> {
                     let productBasename =
                         try rawArgs.consumeArg(String.self, in: url)
                     let dependencies =
-                        try rawArgs.consumeArgs(TargetID.self, in: url)
-                    let xcodeConfigurations = try rawArgs
-                        .consumeArgs(String.self, in: url)
+                        try rawArgs.consumeArgsTargetID.self, in: url)
+                    let xcodeConfigurations =
+                        try rawArgs.consumeArgs(String.self, in: url)
 
                     let uiTestHost: TargetID?
                     if productType == .uiTestBundle {

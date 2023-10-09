@@ -8,6 +8,9 @@ load(":platforms.bzl", "PLATFORM_NAME")
 def _apple_platform_to_platform_name(platform):
     return PLATFORM_NAME[platform]
 
+def _depset_len(depset):
+    return str(len(depset.to_list()))
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -477,9 +480,9 @@ def _write_pbxtargetdependencies(
     consolidation_map_args = actions.args()
     consolidation_map_args.set_param_file_format("multiline")
 
+    consolidation_map_args.add(len(consolidation_maps))
     consolidation_map_args.add_all(
         consolidation_maps.keys(),
-        terminate_with = "--",
     )
 
     target_and_test_hosts = []
@@ -511,14 +514,16 @@ def _write_pbxtargetdependencies(
                 consolidation_map_args.add(xcode_target.product.file_path)
                 consolidation_map_args.add(xcode_target.product.basename)
                 consolidation_map_args.add_all(
-                    xcode_target.dependencies,
-                    omit_if_empty = False,
-                    terminate_with = "--",
+                    [xcode_target.dependencies],
+                    map_each = _depset_len,
                 )
-                consolidation_map_args.add_all(
-                    xcode_target_configurations[xcode_target.id],
-                    terminate_with = "--",
+                consolidation_map_args.add_all(xcode_target.dependencies)
+
+                target_xcode_configurations = (
+                    xcode_target_configurations[xcode_target.id]
                 )
+                consolidation_map_args.add(len(target_xcode_configurations))
+                consolidation_map_args.add_all(target_xcode_configurations)
 
                 if xcode_target.test_host:
                     target_and_test_hosts.append(xcode_target.id)
