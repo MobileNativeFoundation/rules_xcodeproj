@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 import XcodeProj
 
 extension XcodeScheme {

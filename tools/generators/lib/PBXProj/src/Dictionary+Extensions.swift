@@ -1,5 +1,5 @@
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 
 extension Dictionary {
     public mutating func update(_ values: [Key: Value]) {

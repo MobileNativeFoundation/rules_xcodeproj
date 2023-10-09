@@ -1,5 +1,5 @@
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 extension Generator {
     /// Calculates `PBXProj` prefix partial.

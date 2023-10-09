@@ -1,6 +1,6 @@
 import Foundation
-import GeneratorCommon
 import PathKit
+import ToolCommon
 import XcodeProj
 
 @testable import generator

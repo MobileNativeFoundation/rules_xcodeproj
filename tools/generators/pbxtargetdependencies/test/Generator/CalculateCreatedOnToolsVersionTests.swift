@@ -1,5 +1,5 @@
 import CustomDump
-import GeneratorCommon
+import ToolCommon
 import XCTest
 
 @testable import pbxtargetdependencies

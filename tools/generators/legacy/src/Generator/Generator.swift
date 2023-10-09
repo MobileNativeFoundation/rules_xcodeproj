@@ -1,6 +1,6 @@
 import Foundation
-import GeneratorCommon
 import PathKit
+import ToolCommon
 import XcodeProj
 
 /// A class that generates and writes to disk an Xcode project.

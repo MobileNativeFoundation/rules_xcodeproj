@@ -1,5 +1,5 @@
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 public struct Write {
     private let callable: Callable

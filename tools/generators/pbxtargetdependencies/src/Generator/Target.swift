@@ -1,5 +1,5 @@
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 struct Target: Equatable {
     let id: TargetID

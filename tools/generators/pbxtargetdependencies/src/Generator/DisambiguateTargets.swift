@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 import PBXProj
 
 /// A `struct` containing values for a target that need to be unique in the eyes

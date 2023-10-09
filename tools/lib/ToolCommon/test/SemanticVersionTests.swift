@@ -1,5 +1,5 @@
 import Foundation
-import GeneratorCommon
+import ToolCommon
 import XCTest
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2

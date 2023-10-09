@@ -1,5 +1,5 @@
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 extension Generator {
     /// Calculates the `buildSettings` attribute of the `XCBuildConfiguration`

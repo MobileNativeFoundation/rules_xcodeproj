@@ -1,6 +1,6 @@
 import Foundation
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 struct IdentifiedTarget: Equatable {
     let consolidationMapOutputPath: URL
@@ -39,7 +39,7 @@ extension Generator {
 
             self.callable = callable
         }
-        
+
         /// Identifies all the targets defined by the consolidation map
         /// arguments.
         func callAsFunction(

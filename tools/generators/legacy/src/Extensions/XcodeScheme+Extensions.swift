@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 
 // MARK: TargetWithID
 

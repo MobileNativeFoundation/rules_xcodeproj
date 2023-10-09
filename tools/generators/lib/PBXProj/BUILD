@@ -9,7 +9,7 @@ swift_library(
     module_name = "PBXProj",
     visibility = ["//tools/generators:__subpackages__"],
     deps = [
-        "//tools/generators/lib/GeneratorCommon",
+        "//tools/lib/ToolCommon",
         "@com_github_apple_swift_argument_parser//:ArgumentParser",
         "@com_github_apple_swift_collections//:OrderedCollections",
     ],

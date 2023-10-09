@@ -1,6 +1,6 @@
 import CustomDump
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 import XCTest
 
 @testable import pbxtargetdependencies

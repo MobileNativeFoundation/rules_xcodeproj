@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 
 extension Generator {
     /// Calculates the `PBXProject.compatibilityVersion` string.

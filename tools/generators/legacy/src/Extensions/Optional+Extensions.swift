@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 
 extension Optional {
     func orThrow(

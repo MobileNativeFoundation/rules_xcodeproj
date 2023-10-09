@@ -1,5 +1,5 @@
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 public struct ConsolidationMapEntry: Equatable {
     public struct Key: Equatable, Hashable {
