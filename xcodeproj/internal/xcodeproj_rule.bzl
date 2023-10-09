@@ -22,6 +22,7 @@ load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":logging.bzl", "warn")
+load(":memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
 load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
@@ -1333,8 +1334,8 @@ def _write_xcodeproj(
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
-    args.add("1" if is_fixture else "0")
-    args.add("1" if colorize else "0")
+    args.add(TRUE_ARG if is_fixture else FALSE_ARG)
+    args.add(TRUE_ARG if colorize else FALSE_ARG)
     args.add_all(spec_files)
 
     actions.run(

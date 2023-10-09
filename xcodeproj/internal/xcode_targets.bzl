@@ -15,6 +15,8 @@ load(
     "EMPTY_DEPSET",
     "EMPTY_LIST",
     "EMPTY_TUPLE",
+    "FALSE_ARG",
+    "TRUE_ARG",
     "memory_efficient_depset",
 )
 load(":platforms.bzl", "platforms")
@@ -957,7 +959,7 @@ def _linker_inputs_to_dto(
         args = actions.args()
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
-        args.add("1" if is_framework else "0")
+        args.add(TRUE_ARG if is_framework else FALSE_ARG)
         args.add(generated_product_paths_file)
         args.add(platforms.to_swift_triple(platform))
         args.add(link_params)
