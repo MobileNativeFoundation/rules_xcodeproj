@@ -47,7 +47,7 @@ extension Array<ConsolidationMapArguments> {
                     let productBasename =
                         try rawArgs.consumeArg(String.self, in: url)
                     let dependencies =
-                        try rawArgs.consumeArgsTargetID.self, in: url)
+                        try rawArgs.consumeArgs(TargetID.self, in: url)
                     let xcodeConfigurations =
                         try rawArgs.consumeArgs(String.self, in: url)
 
