@@ -22,7 +22,7 @@ _DOC_COMPONENTS = [
             "manual",
             "no-sandbox",  # https://github.com/bazelbuild/stardoc/issues/112
         ],
-        deps = ["//xcodeproj/internal:xcodeproj_internal"],
+        deps = ["//xcodeproj/internal"],
     )
     for component in _DOC_COMPONENTS
 ]

@@ -10,7 +10,7 @@ bzl_library(
 )
 
 bzl_library(
-    name = "xcodeproj_internal",
+    name = "internal",
     srcs = glob(["*.bzl"]),
     visibility = ["//:__subpackages__"],
     deps = [
