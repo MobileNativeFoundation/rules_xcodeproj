@@ -169,10 +169,17 @@ def _collect_output_files(
         if not indexstore_overrides and indexstore:
             indexstore_overrides = [(indexstore, EMPTY_STRING)]
 
-        transitive_indexestores = memory_efficient_depset(
+        transitive_indexstore_overrides = memory_efficient_depset(
             indexstore_overrides,
             transitive = [
-                info.outputs._transitive_indexestores
+                info.outputs._transitive_indexstore_overrides
+                for info in transitive_infos
+            ],
+        )
+        transitive_indexstores = memory_efficient_depset(
+            [indexstore] if indexstore else None,
+            transitive = [
+                info.outputs._transitive_indexstores
                 for info in transitive_infos
             ],
         )
@@ -189,7 +196,8 @@ def _collect_output_files(
         )
     else:
         closest_compiled = EMPTY_DEPSET
-        transitive_indexestores = EMPTY_DEPSET
+        transitive_indexstore_overrides = EMPTY_DEPSET
+        transitive_indexstores = EMPTY_DEPSET
         transitive_products = EMPTY_DEPSET
 
     transitive_infoplists = memory_efficient_depset(
@@ -207,7 +215,8 @@ def _collect_output_files(
 
         indexstores_filelist = indexstore_filelists.write(
             actions = ctx.actions,
-            indexstore_and_target_overrides = transitive_indexestores,
+            indexstore_and_target_overrides = transitive_indexstore_overrides,
+            indexstores = transitive_indexstores,
             name = "bi",
             rule_name = ctx.rule.attr.name,
         )
@@ -262,7 +271,8 @@ def _collect_output_files(
             _closest_compiled = closest_compiled,
             _is_framework = is_framework,
             _output_group_list = output_group_list,
-            _transitive_indexestores = transitive_indexestores,
+            _transitive_indexstore_overrides = transitive_indexstore_overrides,
+            _transitive_indexstores = transitive_indexstores,
             _transitive_products = transitive_products,
             _transitive_infoplists = transitive_infoplists,
         ),
@@ -289,7 +299,8 @@ def _merge_output_files(*, transitive_infos):
                 for info in transitive_infos
             ],
         ),
-        _transitive_indexestores = EMPTY_DEPSET,
+        _transitive_indexstore_overrides = EMPTY_DEPSET,
+        _transitive_indexstores = EMPTY_DEPSET,
         _transitive_products = EMPTY_DEPSET,
         _transitive_infoplists = memory_efficient_depset(
             transitive = [

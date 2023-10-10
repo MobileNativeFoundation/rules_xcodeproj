@@ -502,6 +502,7 @@ def _collect_input_files(
 
     # Collect unfocused target info
     indexstores = []
+    indexstore_overrides = []
     bwx_unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
@@ -559,7 +560,8 @@ def _collect_input_files(
             )
             generated.extend(swiftmodules)
             if should_produce_output_groups and indexstore:
-                indexstores.append((indexstore, EMPTY_STRING))
+                indexstore_overrides.append((indexstore, EMPTY_STRING))
+                indexstores.append(indexstore)
 
         if is_swift:
             unfocused_swift_info_modules = target[SwiftInfo].transitive_modules
@@ -613,15 +615,23 @@ def _collect_input_files(
     )
 
     if should_produce_output_groups:
-        indexstores_depset = memory_efficient_depset(
+        transitive_indexstore_overrides = memory_efficient_depset(
+            indexstore_overrides,
+            transitive = [
+                info.inputs._indexstore_overrides
+                for info in transitive_infos
+            ],
+        )
+        transitive_indexstores = memory_efficient_depset(
             indexstores,
             transitive = [
-                info.inputs.indexstores
+                info.inputs._indexstores
                 for info in transitive_infos
             ],
         )
     else:
-        indexstores_depset = EMPTY_DEPSET
+        transitive_indexstore_overrides = EMPTY_DEPSET
+        transitive_indexstores = EMPTY_DEPSET
 
     # We need to collect transitive modulemaps, because some are private to
     # dependent targets, but we still need them for the final output group
@@ -654,7 +664,8 @@ def _collect_input_files(
 
         indexstores_filelist = indexstore_filelists.write(
             actions = ctx.actions,
-            indexstore_and_target_overrides = indexstores_depset,
+            indexstore_and_target_overrides = transitive_indexstore_overrides,
+            indexstores = transitive_indexstores,
             name = "xi",
             rule_name = ctx.rule.attr.name,
         )
@@ -728,7 +739,7 @@ def _collect_input_files(
             c_sources = c_sources,
             cxx_sources = cxx_sources,
             hdrs = hdrs,
-            indexstores = indexstores_depset,
+            indexstores = transitive_indexstores,
             indexstores_output_group_name = indexstores_output_group_name,
             linking_output_group_name = linking_output_group_name,
             non_arc_srcs = non_arc_srcs,
@@ -743,6 +754,8 @@ def _collect_input_files(
             unfocused_generated_linking = unfocused_generated_linking,
         ),
         struct(
+            _indexstore_overrides = transitive_indexstore_overrides,
+            _indexstores = transitive_indexstores,
             _modulemaps = modulemaps_depset,
             _non_target_swift_info_modules = non_target_swift_info_modules,
             _output_group_list = memory_efficient_depset(
@@ -778,7 +791,6 @@ def _collect_input_files(
                 ],
             ),
             has_generated_files = has_generated_files,
-            indexstores = indexstores_depset,
             extra_files = memory_efficient_depset(
                 [(label, depset(extra_files))] if extra_files else None,
                 transitive = [
@@ -843,6 +855,18 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             break
 
     return struct(
+        _indexstore_overrides = memory_efficient_depset(
+            transitive = [
+                info.inputs._indexstore_overrides
+                for info in transitive_infos
+            ],
+        ),
+        _indexstores = memory_efficient_depset(
+            transitive = [
+                info.inputs._indexstores
+                for info in transitive_infos
+            ],
+        ),
         _modulemaps = memory_efficient_depset(
             transitive = [
                 info.inputs._modulemaps
@@ -905,12 +929,6 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             ],
         ),
         has_generated_files = has_generated_files,
-        indexstores = memory_efficient_depset(
-            transitive = [
-                info.inputs.indexstores
-                for info in transitive_infos
-            ],
-        ),
         extra_files = memory_efficient_depset(
             transitive = [
                 info.inputs.extra_files
