@@ -1,6 +1,6 @@
 import CryptoKit
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 /// Helps set identifiers for `PBXProj` objects.
 ///

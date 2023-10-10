@@ -19,8 +19,8 @@ swift_library(
     srcs = glob(["src/**/*.swift"]),
     module_name = "files_and_groups",
     deps = [
-        "//tools/generators/lib/GeneratorCommon",
         "//tools/generators/lib/PBXProj",
+        "//tools/lib/ToolCommon",
         "@com_github_apple_swift_argument_parser//:ArgumentParser",
         "@com_github_apple_swift_collections//:OrderedCollections",
     ],

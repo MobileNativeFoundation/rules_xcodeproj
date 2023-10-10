@@ -1,6 +1,6 @@
 import CryptoKit
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 import XcodeProj
 
 /// A `struct` containing values for a target that need to be unique in the eyes
@@ -45,7 +45,7 @@ extension Generator {
         for (key, target) in targets {
             labels[target.normalizedLabel, default: .init()]
                 .add(target: target, key: key)
-            
+
             let moduleNameAndProductType =
                 ModuleNameAndProductType(target: target)
             guard labelsByModuleNameAndProductType[moduleNameAndProductType]!

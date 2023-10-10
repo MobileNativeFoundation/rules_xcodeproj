@@ -24,7 +24,7 @@ swift_library(
     module_name = "generator",
     visibility = ["//tools/generators/legacy/test:__pkg__"],
     deps = [
-        "//tools/generators/lib/GeneratorCommon",
+        "//tools/lib/ToolCommon",
         "@com_github_apple_swift_collections//:OrderedCollections",
         "@com_github_kylef_pathkit//:PathKit",
         "@com_github_michaeleisel_zippyjson//:ZippyJSON",

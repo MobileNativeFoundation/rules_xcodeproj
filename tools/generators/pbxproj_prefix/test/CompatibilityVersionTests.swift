@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 import XCTest
 
 @testable import pbxproj_prefix

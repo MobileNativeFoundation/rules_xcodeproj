@@ -1,6 +1,6 @@
 import Foundation
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 extension Generator {
     /// Provides the callable dependencies for `Generator`.

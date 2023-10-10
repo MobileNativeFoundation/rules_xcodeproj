@@ -1,6 +1,6 @@
 import ArgumentParser
 import Foundation
-import GeneratorCommon
+import ToolCommon
 import PBXProj
 
 struct ConsolidationMapArguments: Equatable {

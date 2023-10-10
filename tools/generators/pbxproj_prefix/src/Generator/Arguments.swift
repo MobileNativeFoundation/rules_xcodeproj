@@ -1,7 +1,7 @@
 import ArgumentParser
 import Foundation
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 extension Generator {
     struct Arguments: ParsableArguments {

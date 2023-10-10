@@ -1,5 +1,5 @@
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 extension URL {
     /// Reads the file at `self`, returning the absolute path to the Bazel

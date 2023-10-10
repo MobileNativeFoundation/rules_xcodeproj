@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 
 struct Platform: Equatable, Hashable {
     enum OS: Comparable {

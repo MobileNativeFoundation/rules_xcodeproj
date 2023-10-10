@@ -1,6 +1,6 @@
 import Foundation
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 
 /// A type that generates and writes to disk the `PBXTargetDependency` `PBXProj`
 /// partial, `PBXProject.attributes.TargetAttributes` `PBXProj` partial,

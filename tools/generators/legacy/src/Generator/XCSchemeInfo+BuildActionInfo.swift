@@ -1,5 +1,5 @@
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 import XcodeProj
 
 extension XCSchemeInfo {

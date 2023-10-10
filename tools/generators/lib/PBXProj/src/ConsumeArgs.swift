@@ -1,6 +1,6 @@
 import ArgumentParser
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 extension ArraySlice<String> {
     // MARK: - consumeArg

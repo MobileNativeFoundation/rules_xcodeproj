@@ -1,5 +1,5 @@
-import GeneratorCommon
 import PathKit
+import ToolCommon
 import XcodeProj
 
 extension Generator {
@@ -377,7 +377,7 @@ App clip product reference with key \(key) not found in `products`
 
         return buildPhase
     }
-    
+
     private static func createBazelDependenciesScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,

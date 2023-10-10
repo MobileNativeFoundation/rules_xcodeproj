@@ -1,5 +1,5 @@
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 
 struct XcodeScheme: Equatable, Decodable {
     let name: String

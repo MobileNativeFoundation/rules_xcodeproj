@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 import XCTest
 
 /// A `TextOutputStream` that writes to a string.

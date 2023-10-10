@@ -1,8 +1,8 @@
 // swiftlint:disable file_length
 import Foundation
-import GeneratorCommon
 import OrderedCollections
 import PathKit
+import ToolCommon
 import XcodeProj
 
 /// Wrapper for files (`PBXFileReference`, `PBXVariantGroup`, and

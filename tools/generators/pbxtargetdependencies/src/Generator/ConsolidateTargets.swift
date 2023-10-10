@@ -1,5 +1,5 @@
-import GeneratorCommon
 import OrderedCollections
+import ToolCommon
 import PBXProj
 
 struct ConsolidatedTarget: Equatable {
@@ -21,14 +21,14 @@ struct ConsolidatedTarget: Equatable {
 extension Generator {
     struct ConsolidateTargets {
         private let callable: Callable
-        
+
         /// - Parameters:
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(callable: @escaping Callable = Self.defaultCallable) {
             self.callable = callable
         }
-        
+
         /// Attempts to consolidate targets that differ only by configuration.
         ///
         /// - Parameters:

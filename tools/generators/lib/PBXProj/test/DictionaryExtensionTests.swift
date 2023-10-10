@@ -1,6 +1,6 @@
 import CustomDump
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 import XCTest
 
 final class DictionaryExtensionTests: XCTestCase {
@@ -72,7 +72,7 @@ final class DictionaryExtensionTests: XCTestCase {
             "Hello": 42,
             "World": 7,
         ]
-        
+
         let expectedValue = 42
 
         // Act

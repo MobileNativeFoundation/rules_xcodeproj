@@ -1,5 +1,5 @@
-import GeneratorCommon
 import PathKit
+import ToolCommon
 
 extension Generator {
     static func calculateXcodeGeneratedFiles(

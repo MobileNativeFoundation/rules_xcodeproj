@@ -1,4 +1,4 @@
-import GeneratorCommon
+import ToolCommon
 
 struct Project: Equatable {
     struct Options: Equatable {

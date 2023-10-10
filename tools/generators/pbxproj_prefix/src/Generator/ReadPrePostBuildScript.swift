@@ -1,5 +1,5 @@
 import Foundation
-import GeneratorCommon
+import ToolCommon
 
 extension Generator {
     /// Reads the file at `url`, returning the pre/post-build script.

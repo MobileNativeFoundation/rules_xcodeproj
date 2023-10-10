@@ -1,6 +1,6 @@
 import CustomDump
-import GeneratorCommon
 import PathKit
+import ToolCommon
 import XCTest
 
 @testable import generator

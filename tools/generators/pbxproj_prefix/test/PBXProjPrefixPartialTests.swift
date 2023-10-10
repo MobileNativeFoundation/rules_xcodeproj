@@ -1,7 +1,7 @@
 import CustomDump
 import Foundation
-import GeneratorCommon
 import PBXProj
+import ToolCommon
 import XCTest
 
 @testable import pbxproj_prefix
