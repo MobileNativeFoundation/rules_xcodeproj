@@ -5,7 +5,9 @@ EMPTY_DEPSET = depset()
 EMPTY_LIST = []
 EMPTY_STRING = ""
 EMPTY_TUPLE = tuple()
+FALSE_ARG = "0"
 NONE_LIST = [None]
+TRUE_ARG = "1"
 
 def memory_efficient_depset(direct = None, *, transitive = None, **kwargs):
     """Creates a memory efficient `depset`.
