@@ -348,15 +348,17 @@ def xcodeproj(
 
     if archived_bundles_allowed != None:
         warn("""\
-`archived_bundles_allowed` is deprecated and is now a no-op. It will be \
-removed in a future release. Adjust the setting of \
+{target}: `archived_bundles_allowed` is deprecated and is now a no-op. It will \
+be removed in a future release. Adjust the setting of \
 `--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
-in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
+in your `.bazelrc` or `xcodeproj.bazelrc` file.
+""".format(target = bazel_labels.normalize_string(name)))
 
     if temporary_directory != None:
         warn("""\
-`temporary_directory` is deprecated and is now a no-op. It will be \
-removed in a future release.""")
+{target}: `temporary_directory` is deprecated and is now a no-op. It will be \
+removed in a future release.
+""".format(target = bazel_labels.normalize_string(name)))
 
     # Apply defaults
     if not bazel_path:
@@ -390,17 +392,20 @@ removed in a future release.""")
     if default_xcode_configuration and default_xcode_configuration not in xcode_configurations:
         keys = sorted(xcode_configurations.keys())
         fail("""
-`default_xcode_configuration` ("{configuration}") must be one of the keys in \
-`xcode_configurations` ({keys}), or `None` to select the first configuration \
-alphabetically ("{default}").
+{target}: `default_xcode_configuration` ("{configuration}") must be one of the \
+keys in `xcode_configurations` ({keys}), or `None` to select the first \
+configuration alphabetically ("{default}").
 """.format(
             configuration = default_xcode_configuration,
             default = keys[0],
             keys = keys,
+            target = bazel_labels.normalize_string(name),
         ))
 
     if not top_level_targets:
-        fail("`top_level_targets` cannot be empty.")
+        fail("""
+{target}: `top_level_targets` cannot be empty.
+""".format(target = bazel_labels.normalize_string(name)))
 
     actual_top_level_targets = []
     for target in top_level_targets:
@@ -462,10 +467,11 @@ alphabetically ("{default}").
     xcode_configuration_flags = None
     for configuration, flags in xcode_configurations.items():
         if type(flags) != "dict":
-            fail("""\
-All values in `xcode_configurations` must be transition settings dictionaries.
-Please refer to https://bazel.build/extending/config#defining) on how to them.
-""")
+            fail("""
+{target}: All values in `xcode_configurations` must be transition settings \
+dictionaries. Please refer to https://bazel.build/extending/config#defining) \
+on how to set them.
+""".format(target = bazel_labels.normalize_string(name)))
 
         # Make sure Starlark build settings work with bzlmod (need to resolve
         # the labels before it reaches the generated BUILD file)
@@ -479,14 +485,15 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         if xcode_configuration_flags == None:
             xcode_configuration_flags = keys
         elif xcode_configuration_flags != keys:
-            fail("""\
-`xcode_configurations`: Keys of the transition settings dictionary for \
-{configuration} ({new_keys}) do not match keys of other configurations \
+            fail("""
+{target}: Keys of the `xcode_configurations` transition settings dictionary \
+for {configuration} ({new_keys}) do not match keys of other configurations \
 ({old_keys}). All transition settings dictionaries must have the same keys.
 """.format(
                 configuration = configuration,
                 new_keys = keys,
                 old_keys = xcode_configuration_flags,
+                target = bazel_labels.normalize_string(name),
             ))
         xcode_configuration_inverse_map.setdefault(str(flags), []).append(
             configuration,
