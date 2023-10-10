@@ -3,6 +3,8 @@ import Foundation
 import GeneratorCommon
 
 extension ArraySlice<String> {
+    // MARK: - consumeArg
+
     public mutating func consumeArg<Output> (
         _ type: Output.Type,
         in url: URL,
@@ -82,6 +84,23 @@ extension ArraySlice<String> {
 
         return try transform(rawArg)
     }
+
+    public mutating func consumeArg(
+        _ type: Bool.Type,
+        in url: URL,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> Bool {
+        return try consumeArg(
+            Bool.self,
+            in: url,
+            transform: { $0 == "1" },
+            file: file,
+            line: line
+        )
+    }
+
+    // MARK: - consumeArgs
 
     public mutating func consumeArgs<Output>(
         _ type: Output.Type,
