@@ -6,11 +6,21 @@ load("//test:mock_actions.bzl", "mock_actions")
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 
-_KNOWN_REGIONS_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_known_regions"
-_FILES_AND_GROUPS_DECLARED_FILE = "a_generator_name_pbxproj_partials/files_and_groups"
-_RESOLVED_REPOSITORIES_FILE_DECLARED_FILE = "a_generator_name_pbxproj_partials/resolved_repositories_file"
-_FILE_PATHS_FILE = "a_generator_name_pbxproj_partials/file_paths_file"
-_FOLDER_PATHS_FILE = "a_generator_name_pbxproj_partials/folder_paths_file"
+_KNOWN_REGIONS_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pbxproject_known_regions",
+)
+_FILES_AND_GROUPS_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/files_and_groups",
+)
+_RESOLVED_REPOSITORIES_FILE_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/resolved_repositories_file",
+)
+_FILE_PATHS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/file_paths_file",
+)
+_FOLDER_PATHS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/folder_paths_file",
+)
 
 def _write_files_and_groups_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -213,7 +223,10 @@ def write_files_and_groups_test_suite(name):
 
             # Expected
             expected_args = expected_args,
-            expected_writes = expected_writes,
+            expected_writes = {
+                file.path: content
+                for file, content in expected_writes.items()
+            },
         )
 
     # Basic
@@ -237,11 +250,11 @@ def write_files_and_groups_test_suite(name):
         # Expected
         expected_args = [
             # knownRegionsOutputPath
-            _KNOWN_REGIONS_DECLARED_FILE,
+            _KNOWN_REGIONS_DECLARED_FILE.path,
             # filesAndGroupsOutputPath
-            _FILES_AND_GROUPS_DECLARED_FILE,
+            _FILES_AND_GROUPS_DECLARED_FILE.path,
             # resolvedRepositoriesOutputPath
-            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
+            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE.path,
             # workspace
             "/Users/TimApple/StarBoard",
             # installPath
@@ -251,9 +264,9 @@ def write_files_and_groups_test_suite(name):
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
             # filePathsFile
-            _FILE_PATHS_FILE,
+            _FILE_PATHS_FILE.path,
             # folderPathsFile
-            _FOLDER_PATHS_FILE,
+            _FOLDER_PATHS_FILE.path,
             # developmentRegion
             "en",
             # useBaseInternationalization
@@ -304,11 +317,11 @@ def write_files_and_groups_test_suite(name):
         # Expected
         expected_args = [
             # knownRegionsOutputPath
-            _KNOWN_REGIONS_DECLARED_FILE,
+            _KNOWN_REGIONS_DECLARED_FILE.path,
             # filesAndGroupsOutputPath
-            _FILES_AND_GROUPS_DECLARED_FILE,
+            _FILES_AND_GROUPS_DECLARED_FILE.path,
             # resolvedRepositoriesOutputPath
-            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
+            _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE.path,
             # workspace
             "/Users/TimApple/StarBoard",
             # installPath
@@ -318,9 +331,9 @@ def write_files_and_groups_test_suite(name):
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
             # filePathsFile
-            _FILE_PATHS_FILE,
+            _FILE_PATHS_FILE.path,
             # folderPathsFile
-            _FOLDER_PATHS_FILE,
+            _FOLDER_PATHS_FILE.path,
             # developmentRegion
             "enGB",
             # useBaseInternationalization

@@ -7,13 +7,23 @@ load("//test:utils.bzl", "mock_apple_platform_to_platform_name")
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 
-_TARGET_DEPENDENCIES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxtargetdependencies"
-_TARGETS_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_targets"
-_TARGET_ATTRIBUTES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_target_attributes"
-_CONSOLIDATION_MAPS_INPUTS_FILE = "a_generator_name_pbxproj_partials/consolidation_maps_inputs_file"
+_TARGET_DEPENDENCIES_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pbxtargetdependencies",
+)
+_TARGETS_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pbxproject_targets",
+)
+_TARGET_ATTRIBUTES_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pbxproject_target_attributes",
+)
+_CONSOLIDATION_MAPS_INPUTS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/consolidation_maps_inputs_file",
+)
 
 def _consolidation_map_declared_file(idx):
-    return "a_generator_name_pbxproj_partials/consolidation_maps/{}".format(idx)
+    return mock_actions.mock_file(
+        "a_generator_name_pbxproj_partials/consolidation_maps/{}".format(idx),
+    )
 
 def _json_to_xcode_targets_by_label(json_str):
     return {
@@ -62,11 +72,11 @@ def mock_xcode_target(
         watchkit_extension = None):
     return struct(
         id = id,
+        apple_platform = apple_platform,
         arch = arch,
         dependencies = dependencies,
         module_name_attribute = module_name_attribute,
         os_version = os_version,
-        apple_platform = apple_platform,
         product_basename = product_basename,
         product_file_path = product_file_path,
         product_type = product_type,
@@ -265,7 +275,10 @@ def write_pbxtargetdependencies_test_suite(name):
 
             # Expected
             expected_args = expected_args,
-            expected_writes = expected_writes,
+            expected_writes = {
+                file.path: content
+                for file, content in expected_writes.items()
+            },
         )
 
     # Full
@@ -333,13 +346,13 @@ def write_pbxtargetdependencies_test_suite(name):
         # Expected
         expected_args = [
             # targetDependenciesOutputPath
-            _TARGET_DEPENDENCIES_DECLARED_FILE,
+            _TARGET_DEPENDENCIES_DECLARED_FILE.path,
             # targetsOutputPath
-            _TARGETS_DECLARED_FILE,
+            _TARGETS_DECLARED_FILE.path,
             # targetAttributesOutputPath
-            _TARGET_ATTRIBUTES_DECLARED_FILE,
+            _TARGET_ATTRIBUTES_DECLARED_FILE.path,
             # consolidationMapsInputsFile,
-            _CONSOLIDATION_MAPS_INPUTS_FILE,
+            _CONSOLIDATION_MAPS_INPUTS_FILE.path,
             # minimumXcodeVersion
             "14.3.1",
             # targetAndTestHosts
@@ -355,8 +368,8 @@ def write_pbxtargetdependencies_test_suite(name):
         expected_writes = {
             _CONSOLIDATION_MAPS_INPUTS_FILE: "\n".join([
                 "2",
-                _consolidation_map_declared_file(0),
-                _consolidation_map_declared_file(1),
+                _consolidation_map_declared_file(0).path,
+                _consolidation_map_declared_file(1).path,
                 "2",
                 str(Label("//tools/generators/legacy/test:tests.__internal__.__test_bundle")),
                 "1",
