@@ -34,6 +34,15 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_binary(
+    name = "cat_link_params_processor",
+    srcs = ["cat_link_params_processor.py"],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    # TODO: Restrict visibility
+    visibility = ["//visibility:public"],
+)
+
 py_library(
     name = "swift_debug_settings_processor_library",
     srcs = ["swift_debug_settings_processor.py"],

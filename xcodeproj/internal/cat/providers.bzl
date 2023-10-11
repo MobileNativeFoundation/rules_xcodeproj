@@ -8,11 +8,9 @@ automatically process it.
 If you need more control over how a target or its dependencies are processed,
 return an `XcodeProjInfo` provider instance instead.
 
-> **Warning**
->
-> This provider currently has an unstable API and may change in the future. If
-> you are using this provider, please let us know so we can prioritize
-> stabilizing it.
+**Warning:** This provider currently has an unstable API and may change in the
+future. If you are using this provider, please let us know so we can prioritize
+stabilizing it.
 """,
     fields = {
         "alternate_icons": """\
@@ -27,9 +25,6 @@ should execute or test with.
 """,
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
-""",
-        "codesign_inputs": """\
-An attribute name (or `None`) to collect the `codesign_inputs` `list` from.
 """,
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
@@ -68,11 +63,17 @@ attributes.
         "is_supported": """\
 Whether an Xcode target can be generated for this target. Even if this value is
 `False`, setting values for the other attributes can cause inputs to be
-collected and shown in the Xcode project.
+collected and shown in the Xcode project. This should be `True` if an Xcode
+target could be generated for a target, even if an Xcode target isn't desired.
+Use target focusing or `should_generate = False` to prevent an Xcode target from
+being generated. The distinction matters, since unsupported targets are
+processed differently from supported targets, which can have an effect on target
+merging.
 """,
         "is_top_level": """\
-Whether this target is a "top-level" (e.g. bundled or executable) target.
+FIXME
 """,
+        "label": "The `Label` to use for the target.",
         "launchdplists": """\
 A sequence of attribute names to collect `File`s from for the
 `launchdplists`-like attributes.
@@ -92,6 +93,10 @@ attribute.
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
+""",
+        "should_generate": """\
+If `is_supported` is `True`, this determines whether an Xcode target should be
+generated for this target.
 """,
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
@@ -114,54 +119,65 @@ XcodeProjInfo = provider(
     """\
 Provides information needed to generate an Xcode project.
 
-> **Warning**
->
-> This provider currently has an unstable API and may change in the future. If
-> you are using this provider, please let us know so we can prioritize
-> stabilizing it.
+**Warning:** This provider currently has an unstable API and may change in the
+future. If you are using this provider, please let us know so we can prioritize
+stabilizing it.
 """,
     fields = {
         "args": """\
 A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the
-target id of the target and `arg` values
-for the target (if applicable).
+target ID (see `xcode_target.id`) of the target and `arg` values for the target
+(if applicable).
+""",
+        "bwb_output_groups": """\
+A value returned from `bwb_output_groups.collect`/`bwb_output_groups.merge`,
+that contains information related to BwB mode output groups.
 """,
         "compilation_providers": """\
 A value returned from `compilation_providers.{collect,merge}`.
 """,
         "dependencies": """\
-A `depset` of target ids (see `xcode_target.id`) that this target directly
+A `depset` of target IDs (see `xcode_target.id`) that this target directly
 depends on.
 """,
-        "envs": """\
+        "env": """\
 A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
-target id of the target and `env` values for the target (if applicable).
+target ID (see `xcode_target.id`) of the target and `env` values for the target
+(if applicable).
 """,
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
-target id of the application extension target. The 'infoplist' field is a `File`
-for the Info.plist for the target.
+target ID (see `xcode_target.id`) of the application extension target. The
+'infoplist' field is a `File` for the Info.plist for the target.
 """,
+        "framework_product_mappings": """\
+A `depset` of `(linker_path, product_path)` `tuple`s.
+`linker_path` is the `.framework/Executable` path used when linking to a
+framework. `product_path` is the path to a built `.framework` product. In
+particular, `product_path` can have a fully fleshed out framework, including
+resources, while `linker_path` will most likely only have a symlink to a
+`.dylib` in it.
+""",
+        "focused_deps": "FIXME",
         "hosted_targets": """\
-A `depset` of `struct`s with 'host' and 'hosted' fields. The 'host' field is the
-target id of the hosting target. The 'hosted' field is the target id of the
-hosted target.
+A `depset` of `struct`s with 'host' and 'hosted' fields. The `host` field is the
+target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is
+the target ID of the hosted target.
 """,
         "inputs": """\
-A value returned from `input_files.collect`, that contains the input files for
-this target. It also includes the two extra fields that collect all of the
-generated `Files` and all of the `Files` that should be added to the Xcode
-project, but are not associated with any targets.
+A value returned from `input_files.collect`/`inputs_files.merge`, that contains
+information related to all of the input `File`s for the project collected so
+far. It also includes information related to "extra files" that should be added
+to the Xcode project, but are not associated with any targets.
 """,
-        "label": "The `Label` of the target.",
-        "labels": """\
-A `depset` of `Labels` for the target and its transitive dependencies.
-""",
-        "lldb_context": "A value returned from `lldb_context.collect`.",
-        "mergable_xcode_library_targets": """\
-A `depset` of target ids (see `xcode_target.id`). Each represents a target that
-can potentially merge into a top-level target (to be decided by the top-level
+        "mergeable_infos": """\
+A `depset` of `structs`s. Each contains information about a target that can
+potentially merge into a top-level target (to be decided by the top-level
 target).
+""",
+        "merged_target_ids": """\
+A `depset` of `xcode_target.id`s of targets that have been merged into another
+target.
 """,
         "non_top_level_rule_kind": """
 If this target is not a top-level target, this is the value from
@@ -172,35 +188,35 @@ specified in `top_level_targets` cause duplicate mis-configured targets to be
 added to the project.
 """,
         "outputs": """\
-A value returned from `output_files.collect`, that contains information about
-the output files for this target and its transitive dependencies.
+A value returned from `output_files.collect`/`output_files.merge`, that contains
+information about the output files for this target and its transitive
+dependencies.
 """,
-        "potential_target_merges": """\
-A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
-of the target that can be merged into the target with the id of the 'dest'
-field.
-""",
-        "replacement_labels": """\
-A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
-target id of the target that have its label (and name) be replaced with the
-label in the `label` field.
+        "platforms": """\
+A `depset` of `apple_platform`s that this target and its transitive dependencies
+are built for.
 """,
         "resource_bundle_ids": """\
 A `depset` of `tuple`s mapping target id to bundle id.
+""",
+        "swift_debug_settings": """\
+For top-level targets, this is a `depset` of swift_debug_settings `File`s,
+produced by `pbxproj_partials.write_target_build_settings`.
 """,
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode
 target, it can still have a non-`None` value for this field.
 """,
-        "transitive_dependencies": """\
-A `depset` of target ids (see `xcode_target.id`) that this target transitively
-depends on.
+        "top_level_focused_deps": "FIXME",
+        "top_level_swift_debug_settings": """\
+A `depset` of `tuple`s of an LLDB context key and swift_debug_settings `File`s,
+produced by `pbxproj_partials.write_target_build_settings`. This will be an
+empty `depset` for non-top-level targets.
 """,
-        "xcode_required_targets": """\
-A `depset` of values returned from `xcode_targets.make` for targets that need to
-be in projects that have `build_mode = "xcode"`. This means that they can't be
-unfocused in BwX mode, and if requested it will be ignored.
+        "transitive_dependencies": """\
+A `depset` of target IDs (see `xcode_target.id`) that this target transitively
+depends on.
 """,
         "xcode_target": """\
 A value returned from `xcode_targets.make` if this target can produce an Xcode
@@ -210,34 +226,5 @@ target.
 A `depset` of values returned from `xcode_targets.make`, which potentially will
 become targets in the Xcode project.
 """,
-    },
-)
-
-XcodeProjOutputInfo = provider(
-    "Provides information about the outputs of the `xcodeproj` rule.",
-    fields = {
-        "installer": "The xcodeproj installer.",
-        "project_name": "The installed project name.",
-    },
-)
-
-XcodeProjProvisioningProfileInfo = provider(
-    "Provides information about a provisioning profile.",
-    fields = {
-        "is_xcode_managed": "Whether the profile is managed by Xcode.",
-        "profile_name": """\
-The profile name (e.g. "iOS Team Provisioning Profile: com.example.app").
-""",
-        "team_id": """\
-The Team ID the profile is associated with (e.g. "V82V4GQZXM").
-""",
-    },
-)
-
-XcodeProjRunnerOutputInfo = provider(
-    "Provides information about the outputs of the `xcodeproj_runner` rule.",
-    fields = {
-        "project_name": "The installed project name.",
-        "runner": "The xcodeproj runner.",
     },
 )
