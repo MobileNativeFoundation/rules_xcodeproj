@@ -7,19 +7,20 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
-load(":filelists.bzl", "filelists")
 load(
     ":files.bzl",
     "FRAMEWORK_EXTENSIONS",
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "normalized_file_path",
 )
+load(":indexstore_filelists.bzl", "indexstore_filelists")
 load(":linker_input_files.bzl", "linker_input_files")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_DEPSET",
     "EMPTY_DICT",
     "EMPTY_LIST",
+    "EMPTY_STRING",
     "memory_efficient_depset",
 )
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
@@ -558,7 +559,7 @@ def _collect_input_files(
             )
             generated.extend(swiftmodules)
             if should_produce_output_groups and indexstore:
-                indexstores.append(indexstore)
+                indexstores.append((indexstore, EMPTY_STRING))
 
         if is_swift:
             unfocused_swift_info_modules = target[SwiftInfo].transitive_modules
@@ -651,11 +652,11 @@ def _collect_input_files(
         indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
 
-        indexstores_filelist = filelists.write(
+        indexstores_filelist = indexstore_filelists.write(
             actions = ctx.actions,
-            rule_name = ctx.rule.attr.name,
+            indexstore_and_target_overrides = indexstores_depset,
             name = "xi",
-            files = indexstores_depset,
+            rule_name = ctx.rule.attr.name,
         )
 
         # We don't want to declare indexstore files as outputs, because they

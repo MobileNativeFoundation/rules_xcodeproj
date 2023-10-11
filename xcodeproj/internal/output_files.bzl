@@ -1,7 +1,12 @@
 """Module containing functions dealing with target output files."""
 
-load(":filelists.bzl", "filelists")
-load(":memory_efficiency.bzl", "EMPTY_DEPSET", "memory_efficient_depset")
+load(":indexstore_filelists.bzl", "indexstore_filelists")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
+    "EMPTY_STRING",
+    "memory_efficient_depset",
+)
 
 # Utility
 
@@ -86,6 +91,7 @@ def _collect_output_files(
         output_group_info,
         swift_info,
         top_level_product = None,
+        indexstore_overrides = [],
         infoplist = None,
         inputs = None,
         transitive_infos,
@@ -103,6 +109,9 @@ def _collect_output_files(
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         top_level_product: A value returned from `process_product`, or `None` if
             the target isn't a top level target.
+        indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s
+            that override the indexstore for the target. This is used for merged
+            targets.
         infoplist: A `File` or `None`.
         inputs: A value returned from `input_files.collect`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -157,8 +166,11 @@ def _collect_output_files(
                 if not info.outputs._is_framework
             ])
 
+        if not indexstore_overrides and indexstore:
+            indexstore_overrides = [(indexstore, EMPTY_STRING)]
+
         transitive_indexestores = memory_efficient_depset(
-            [indexstore] if indexstore else None,
+            indexstore_overrides,
             transitive = [
                 info.outputs._transitive_indexestores
                 for info in transitive_infos
@@ -193,11 +205,11 @@ def _collect_output_files(
         linking_output_group_name = "bl {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
 
-        indexstores_filelist = filelists.write(
+        indexstores_filelist = indexstore_filelists.write(
             actions = ctx.actions,
-            rule_name = ctx.rule.attr.name,
+            indexstore_and_target_overrides = transitive_indexestores,
             name = "bi",
-            files = transitive_indexestores,
+            rule_name = ctx.rule.attr.name,
         )
 
         # We don't want to declare indexstore files as outputs, because they
