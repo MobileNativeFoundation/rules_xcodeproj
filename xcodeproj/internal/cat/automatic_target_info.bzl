@@ -6,7 +6,7 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
 )
-load(":memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
+load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 ## Utility
@@ -159,9 +159,8 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     app_icons = None
     args = None
     bundle_id = None
-    collect_uncategorized_files = False
-    codesign_inputs = None
     codesignopts = None
+    collect_uncategorized_files = False
     deps = _DEPS_ATTRS
     entitlements = None
     env = None
@@ -171,6 +170,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     infoplists = EMPTY_LIST
     is_supported = True
     is_top_level = False
+    label = target.label
     launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
     non_arc_srcs = EMPTY_LIST
@@ -222,7 +222,6 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif _is_test_target(target):
         args = "args"
-        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         entitlements = "entitlements"
         env = "env"
@@ -231,11 +230,19 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _TEST_BUNDLE_XCODE_TARGETS
+
+        label = Label(
+            # This is an implementation detail, but we can update if rules_apple
+            # ever changes this. It's worth it to be able to do this change at
+            # the aspect level. We only support rules_apple versions greater
+            # than 2.5.0 since 2.3.0-2.5.0 had the bundle name instead of target
+            # name as part of the label.
+            str(label).split(".__internal__.")[0],
+        )
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
         alternate_icons = "alternate_icons"
         app_icons = "app_icons"
-        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         entitlements = "entitlements"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
@@ -249,7 +256,6 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         collect_uncategorized_files = rule_kind != "apple_bundle_import"
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif rule_kind == "macos_command_line_application":
-        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
@@ -276,17 +282,17 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         collect_uncategorized_files = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     else:
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
+
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
-        is_executable = executable and not executable.is_source
+        is_executable = bool(executable and not executable.is_source)
         is_top_level = is_executable
 
         is_supported = is_executable
         collect_uncategorized_files = not is_supported
         if is_executable and hasattr(ctx.rule.attr, "srcs"):
             srcs = _SRCS_ATTRS
-
-        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
 
     # Xcode doesn't support some source types that Bazel supports
     for attr in srcs:
@@ -300,7 +306,6 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         app_icons = app_icons,
         args = args,
         bundle_id = bundle_id,
-        codesign_inputs = codesign_inputs,
         codesignopts = codesignopts,
         collect_uncategorized_files = collect_uncategorized_files,
         deps = deps,
@@ -312,6 +317,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         is_supported = is_supported,
         is_top_level = is_top_level,
         implementation_deps = implementation_deps,
+        label = label,
         launchdplists = launchdplists,
         link_mnemonics = link_mnemonics,
         non_arc_srcs = non_arc_srcs,

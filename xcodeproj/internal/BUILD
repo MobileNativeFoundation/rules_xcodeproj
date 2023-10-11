@@ -15,6 +15,7 @@ bzl_library(
     visibility = ["//:__subpackages__"],
     deps = [
         ":bazel_tools",
+        "//xcodeproj/internal/xcschemes",
         "@bazel_skylib//lib:paths",
         "@bazel_skylib//lib:sets",
         "@bazel_skylib//lib:structs",
@@ -37,7 +38,9 @@ filegroup(
         ],
     ) + [
         "//" + package_name() + "/bazel_integration_files:release_files",
+        "//" + package_name() + "/cat:release_files",
         "//" + package_name() + "/templates:release_files",
+        "//" + package_name() + "/xcschemes:release_files",
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
