@@ -14,6 +14,7 @@ test_suite(
         "//test/internal/target_id",
         "//test/internal/targets",
         "//test/internal/xcode_schemes",
+        "//test/internal/xcschemes",
     ],
 )
 
@@ -30,6 +31,7 @@ bzl_library(
         "//test/internal/target_id:bzls",
         "//test/internal/targets:bzls",
         "//test/internal/xcode_schemes:bzls",
+        "//test/internal/xcschemes:bzls",
     ],
 )
 
