@@ -503,7 +503,7 @@ def _write_pbxtargetdependencies(
                 consolidation_map_args.add(xcode_target.product.type)
                 consolidation_map_args.add(
                     apple_platform_to_platform_name(
-                        xcode_target.platform.platform,
+                        xcode_target.platform.apple_platform,
                     ),
                 )
                 consolidation_map_args.add(xcode_target.platform.os_version)
