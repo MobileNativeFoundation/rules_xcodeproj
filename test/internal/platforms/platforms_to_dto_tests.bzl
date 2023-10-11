@@ -10,9 +10,9 @@ def _platforms_to_dto_test_impl(ctx):
     env = unittest.begin(ctx)
 
     platform = struct(
-        _arch = ctx.attr.arch,
-        _os_version = ctx.attr.minimum_os_version,
-        _platform = getattr(apple_common.platform, ctx.attr.platform_key),
+        apple_platform = getattr(apple_common.platform, ctx.attr.platform_key),
+        arch = ctx.attr.arch,
+        os_version = ctx.attr.minimum_os_version,
     )
     dto = platforms.to_dto(platform)
     string_platform = stringify_dict(dto)
