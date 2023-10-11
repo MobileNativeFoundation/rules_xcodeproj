@@ -17,26 +17,26 @@ load(
 # `swift_library`s. Maybe https://github.com/bazelbuild/bazel/issues/6526 will
 # fix that for us.
 macos_command_line_application(
-    name = "swiftc",
+    name = "import_indexstores",
     minimum_os_version = "12.0",
     visibility = ["//visibility:public"],
-    deps = [":swiftc_stub.library"],
+    deps = [":import_indexstores.library"],
 )
 
 swift_library(
-    name = "swiftc_stub.library",
-    srcs = ["main.swift"],
-    module_name = "swiftc_stub",
+    name = "import_indexstores.library",
+    srcs = glob(["*.swift"]),
+    module_name = "import_indexstores",
 )
 
 swift_binary(
-    name = "swiftc_stub_binary",
-    deps = [":swiftc_stub.library"],
+    name = "import_indexstores_binary",
+    deps = [":import_indexstores.library"],
 )
 
 apple_universal_binary(
-    name = "universal_swiftc_stub",
-    binary = ":swiftc_stub_binary",
+    name = "universal_import_indexstores",
+    binary = ":import_indexstores_binary",
     forced_cpus = [
         "x86_64",
         "arm64",
@@ -52,7 +52,7 @@ filegroup(
     name = "release_files",
     srcs = [
         "BUILD.release.bazel",
-        ":universal_swiftc_stub",
+        ":universal_import_indexstores",
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
