@@ -18,18 +18,18 @@ test_suite(
 )
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "test_bzls",
     deps = [
-        "//test/internal/bazel_labels:starlark_tests_bzls",
-        "//test/internal/build_settings:starlark_tests_bzls",
-        "//test/internal/flattened_key_values:starlark_tests_bzls",
-        "//test/internal/info_plists:starlark_tests_bzls",
-        "//test/internal/pbxproj_partials:starlark_tests_bzls",
-        "//test/internal/platforms:starlark_tests_bzls",
-        "//test/internal/target:starlark_tests_bzls",
-        "//test/internal/target_id:starlark_tests_bzls",
-        "//test/internal/targets:starlark_tests_bzls",
-        "//test/internal/xcode_schemes:starlark_tests_bzls",
+        "//test/internal/bazel_labels:bzls",
+        "//test/internal/build_settings:bzls",
+        "//test/internal/flattened_key_values:bzls",
+        "//test/internal/info_plists:bzls",
+        "//test/internal/pbxproj_partials:bzls",
+        "//test/internal/platforms:bzls",
+        "//test/internal/target:bzls",
+        "//test/internal/target_id:bzls",
+        "//test/internal/targets:bzls",
+        "//test/internal/xcode_schemes:bzls",
     ],
 )
 

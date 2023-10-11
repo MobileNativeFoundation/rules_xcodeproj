@@ -6,7 +6,7 @@ flattened_key_values_test_suite()
 test_suite(name = "flattened_key_values")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

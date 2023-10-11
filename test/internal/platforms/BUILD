@@ -9,7 +9,7 @@ platforms_to_dto_test_suite(name = "platforms_to_dto")
 test_suite(name = "platforms")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

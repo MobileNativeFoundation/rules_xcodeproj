@@ -9,7 +9,7 @@ process_compiler_opts_test_suite(name = "process_compiler_opts")
 test_suite(name = "opts")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )
