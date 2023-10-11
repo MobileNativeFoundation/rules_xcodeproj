@@ -15,7 +15,7 @@ process_top_level_properties_test_suite(name = "process_top_level_properties")
 test_suite(name = "target")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

@@ -21,7 +21,7 @@ write_pbxtargetdependencies_test_suite(name = "write_pbxtargetdependencies")
 test_suite(name = "pbxproj_partials")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

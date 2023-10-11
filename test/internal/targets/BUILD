@@ -6,7 +6,7 @@ is_test_bundle_test_suite(name = "is_test_bundle")
 test_suite(name = "targets")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

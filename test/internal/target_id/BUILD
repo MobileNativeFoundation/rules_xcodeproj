@@ -6,7 +6,7 @@ write_target_ids_list_test_suite(name = "write_target_ids_list")
 test_suite(name = "target_id")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )

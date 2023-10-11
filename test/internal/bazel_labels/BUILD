@@ -9,7 +9,7 @@ parse_test_suite(name = "parse_tests")
 test_suite(name = "bazel_labels")
 
 bzl_library(
-    name = "starlark_tests_bzls",
+    name = "bzls",
     srcs = glob(["*.bzl"]),
     visibility = ["//test:__pkg__"],
 )
