@@ -15,6 +15,7 @@ load(
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",
     "XCODE_CONFIGURATIONS",
+    "XCSCHEMES",
     "get_xcode_schemes",
 )
 
@@ -72,6 +73,19 @@ xcodeproj(
     top_level_targets = TOP_LEVEL_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
     xcode_configurations = XCODE_CONFIGURATIONS,
+)
+
+xcodeproj(
+    name = "xcodeproj_cat",
+    generation_mode = "incremental",
+    project_name = "generator_cat",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+    schemes = get_xcode_schemes(),
+    tags = ["manual"],
+    top_level_targets = TOP_LEVEL_TARGETS,
+    unfocused_targets = UNFOCUSED_TARGETS,
+    xcode_configurations = XCODE_CONFIGURATIONS,
+    xcschemes = XCSCHEMES,
 )
 
 # Release

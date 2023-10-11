@@ -134,7 +134,8 @@ def _write_generator_defz_bzl(
         is_fixture,
         name,
         repo,
-        template):
+        template,
+        use_incremental):
     output = actions.declare_file("{}.generator.defs.bzl".format(name))
 
     build_mode = attr.build_mode
@@ -150,21 +151,21 @@ def _write_generator_defz_bzl(
         """\
 # buildifier: disable=bzl-visibility
 load(
-    "{repo}//xcodeproj/internal:xcodeproj_aspect.bzl",
+    "{repo}//xcodeproj/internal{maybe_cat}:xcodeproj_aspect.bzl",
     "make_xcodeproj_aspect",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
+    "{repo}//xcodeproj/internal{maybe_cat}:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "{repo}//xcodeproj/internal:xcodeproj_transitions.bzl",
+    "{repo}//xcodeproj/internal{maybe_cat}:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
-)""".format(repo = repo),
+)""".format(repo = repo, maybe_cat = "/cat" if use_incremental else ""),
     ]
     if is_fixture:
         loads.append("""\
@@ -209,10 +210,13 @@ _target_transitions = make_xcodeproj_target_transitions(
         output = output,
         substitutions = {
             "%build_mode%": build_mode,
+            "%focused_labels%": str(attr.focused_labels),
             "%generator_name%": name,
             "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
+            "%owned_extra_files%": str(attr.owned_extra_files),
             "%target_transitions%": target_transitions,
+            "%unfocused_labels%": str(attr.unfocused_labels),
             "%xcodeproj_transitions%": (
                 "fixtures_transition" if is_fixture else "None"
             ),
@@ -253,14 +257,13 @@ def _write_generator_build_file(
             "%fail_for_invalid_extra_files_targets%": (
                 str(attr.fail_for_invalid_extra_files_targets)
             ),
-            "%focused_labels%": str(attr.focused_labels),
+            "%generation_shard_count%": str(attr.generation_shard_count),
             "%install_directory%": attr.install_directory,
             "%install_path%": install_path,
             "%ios_device_cpus%": attr.ios_device_cpus,
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
             "%name%": name,
-            "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
             "%project_name%": attr.project_name,
@@ -277,12 +280,12 @@ def _write_generator_build_file(
             ),
             "%tvos_device_cpus%": attr.tvos_device_cpus,
             "%tvos_simulator_cpus%": attr.tvos_simulator_cpus,
-            "%unfocused_labels%": str(attr.unfocused_labels),
             "%unowned_extra_files%": str(attr.unowned_extra_files),
             "%visibility%": "{repo}//xcodeproj:__pkg__".format(repo = repo),
             "%watchos_device_cpus%": attr.watchos_device_cpus,
             "%watchos_simulator_cpus%": attr.watchos_simulator_cpus,
             "%xcode_configuration_map%": str(attr.xcode_configuration_map),
+            "%xcschemes_json%": attr.xcschemes_json.replace("\\", "\\\\"),
         },
     )
 
@@ -465,6 +468,7 @@ def _xcodeproj_runner_impl(ctx):
         name = name,
         repo = repo,
         template = ctx.file._generator_defs_bzl_template,
+        use_incremental = ctx.attr.generation_mode == "incremental",
     )
 
     runner = _write_runner(
@@ -535,6 +539,13 @@ xcodeproj_runner = rule(
             default = True,
         ),
         "focused_labels": attr.string_list(default = []),
+        "generation_mode": attr.string(
+            values = ["incremental", "legacy"],
+            mandatory = True,
+        ),
+        "generation_shard_count": attr.int(
+            mandatory = True,
+        ),
         "install_directory": attr.string(
             mandatory = True,
         ),
@@ -585,6 +596,7 @@ xcodeproj_runner = rule(
         "xcode_configurations": attr.string(
             mandatory = True,
         ),
+        "xcschemes_json": attr.string(),
         "_bazelrc_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:xcodeproj.bazelrc"),

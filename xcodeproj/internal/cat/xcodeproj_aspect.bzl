@@ -1,10 +1,14 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
+load(
+    "//xcodeproj/internal:providers.bzl",
+    "XcodeProjProvisioningProfileInfo",
+)
 load(
     ":providers.bzl",
     "XcodeProjInfo",
-    "XcodeProjProvisioningProfileInfo",
 )
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
@@ -56,7 +60,7 @@ def _xcodeproj_aspect_impl(target, ctx):
     providers = []
 
     if XcodeProjInfo not in target:
-        # Only create an `XcodeProjInfo` if the target hasn't already created
+        # Only create a `XcodeProjInfo` if the target hasn't already created
         # one
         attrs = dir(ctx.rule.attr)
         info = create_xcodeprojinfo(
@@ -84,12 +88,9 @@ def _xcodeproj_aspect_impl(target, ctx):
 def make_xcodeproj_aspect(
         *,
         build_mode,
-        # buildifier: disable=unused-variable
         focused_labels,
         generator_name,
-        # buildifier: disable=unused-variable
         owned_extra_files,
-        # buildifier: disable=unused-variable
         unfocused_labels):
     return aspect(
         implementation = _xcodeproj_aspect_impl,
@@ -106,14 +107,24 @@ def make_xcodeproj_aspect(
             "_cc_toolchain": attr.label(default = Label(
                 "@bazel_tools//tools/cpp:current_cc_toolchain",
             )),
+            "_colorize": attr.label(
+                default = Label("//xcodeproj:color"),
+                providers = [BuildSettingInfo],
+            ),
+            "_focused_labels": attr.string_list(default = focused_labels),
             "_generator_name": attr.string(default = generator_name),
-            "_swift_compiler_params_processor": attr.label(
+            "_owned_extra_files": attr.label_keyed_string_dict(
+                allow_files = True,
+                default = owned_extra_files,
+            ),
+            "_target_build_settings_generator": attr.label(
                 cfg = "exec",
                 default = Label(
-                    "//tools/params_processors:swift_compiler_params_processor",
+                    "//tools/generators/target_build_settings:universal_target_build_settings",
                 ),
                 executable = True,
             ),
+            "_unfocused_labels": attr.string_list(default = unfocused_labels),
             "_xcode_config": attr.label(
                 default = configuration_field(
                     name = "xcode_config_label",

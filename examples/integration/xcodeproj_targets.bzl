@@ -6,6 +6,7 @@ load(
     "top_level_target",
     "top_level_targets",
     "xcode_schemes",
+    "xcschemes",
 )
 
 BAZEL_ENV = {
@@ -192,3 +193,62 @@ def get_xcode_schemes():
             ),
         ),
     ]
+
+XCSCHEMES = [
+    xcschemes.scheme(
+        name = "iOSAppUnitTests_Scheme",
+        test = xcschemes.test(
+            env = {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+            },
+            test_targets = [
+                xcschemes.test_target(
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    post_actions = [
+                        xcschemes.pre_post_actions.launch_script(
+                            title = "Run After Tests",
+                            script_text = "echo \"Hi\"",
+                        ),
+                    ],
+                ),
+                "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+            ],
+        ),
+    ),
+    xcschemes.scheme(
+        name = "iOSAppSwiftUnitTests_Scheme",
+        test = xcschemes.test(
+            xcode_configuration = "AppStore",
+            env = {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+            },
+            test_targets = [
+                "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+            ],
+        ),
+    ),
+    xcschemes.scheme(
+        name = "iOSAppUnitTestSuite_CommandLineArgs_Scheme",
+        test = xcschemes.test(
+            args = [
+                "-AppleLanguages",
+                "(en)",
+            ],
+            env = {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+            },
+            test_targets = [
+                "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+                xcschemes.test_target(
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+                    post_actions = [
+                        xcschemes.pre_post_actions.launch_script(
+                            title = "Run After Tests",
+                            script_text = "echo \"Hi\"",
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ),
+]
