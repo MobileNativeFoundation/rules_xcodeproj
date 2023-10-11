@@ -214,17 +214,18 @@ def _write_pbxtargetdependencies_test_impl(ctx):
 
 write_pbxtargetdependencies_test = unittest.make(
     impl = _write_pbxtargetdependencies_test_impl,
+    # @unsorted-dict-items
     attrs = {
         # Inputs
         "colorize": attr.bool(mandatory = True),
-
-        # Expected
-        "expected_args": attr.string_list(mandatory = True),
-        "expected_writes": attr.string_dict(mandatory = True),
         "generator_shard_count": attr.int(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "xcode_target_configurations": attr.string_list_dict(mandatory = True),
         "xcode_targets_by_label": attr.string(mandatory = True),
+
+        # Expected
+        "expected_args": attr.string_list(mandatory = True),
+        "expected_writes": attr.string_dict(mandatory = True),
     },
 )
 

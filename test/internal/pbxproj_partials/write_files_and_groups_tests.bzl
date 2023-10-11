@@ -144,16 +144,13 @@ def _write_files_and_groups_test_impl(ctx):
 
 write_files_and_groups_test = unittest.make(
     impl = _write_files_and_groups_test_impl,
+    # @unsorted-dict-items
     attrs = {
         # Inputs
         "buildfile_subidentifiers_files": attr.string_list(mandatory = True),
         "colorize": attr.bool(mandatory = True),
         "compile_stub_needed": attr.bool(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
-
-        # Expected
-        "expected_args": attr.string_list(mandatory = True),
-        "expected_writes": attr.string_dict(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
@@ -161,6 +158,10 @@ write_files_and_groups_test = unittest.make(
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
+
+        # Expected
+        "expected_args": attr.string_list(mandatory = True),
+        "expected_writes": attr.string_dict(mandatory = True),
     },
 )
 
