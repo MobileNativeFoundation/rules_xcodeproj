@@ -7,9 +7,15 @@ load("//test:utils.bzl", "mock_apple_platform_to_platform_name")
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 
-_OUTPUT_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproj_prefix"
-_POST_BUILD_DECLARED_FILE = "a_generator_name_pbxproj_partials/post_build_script"
-_PRE_BUILD_DECLARED_FILE = "a_generator_name_pbxproj_partials/pre_build_script"
+_OUTPUT_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pbxproj_prefix",
+)
+_POST_BUILD_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/post_build_script",
+)
+_PRE_BUILD_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/pre_build_script",
+)
 
 def _write_pbxproj_prefix_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -201,7 +207,10 @@ def write_pbxproj_prefix_test_suite(name):
 
             # Expected
             expected_args = expected_args,
-            expected_writes = expected_writes,
+            expected_writes = {
+                file.path: content
+                for file, content in expected_writes.items()
+            },
         )
 
     # Basic
@@ -232,7 +241,7 @@ def write_pbxproj_prefix_test_suite(name):
         # Expected
         expected_args = [
             # outputPath
-            _OUTPUT_DECLARED_FILE,
+            _OUTPUT_DECLARED_FILE.path,
             # workspace
             "/Users/TimApple/StarBoard",
             # executionRootFile
@@ -292,7 +301,7 @@ def write_pbxproj_prefix_test_suite(name):
         # Expected
         expected_args = [
             # outputPath
-            _OUTPUT_DECLARED_FILE,
+            _OUTPUT_DECLARED_FILE.path,
             # workspace
             "/Users/TimApple/StarBoard",
             # executionRootFile
@@ -322,10 +331,10 @@ def write_pbxproj_prefix_test_suite(name):
             "Debug",
             # preBuildScript
             "--pre-build-script",
-            _PRE_BUILD_DECLARED_FILE,
+            _PRE_BUILD_DECLARED_FILE.path,
             # postBuildScript
             "--post-build-script",
-            _POST_BUILD_DECLARED_FILE,
+            _POST_BUILD_DECLARED_FILE.path,
             # colorize
             "--colorize",
         ],

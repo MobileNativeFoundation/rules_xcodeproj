@@ -1,5 +1,10 @@
 """Module for a mocked `ctx.actions` struct."""
 
+def _path_or_str(value):
+    if hasattr(value, "path"):
+        return value.path
+    return str(value)
+
 # API
 
 def _create():
@@ -10,19 +15,31 @@ def _create():
         run_args["inputs"] = inputs
         run_args["outputs"] = outputs
 
+    declared_directories = {}
+
+    def _actions_declare_directory(path):
+        file = _mock_file(
+            path = path,
+        )
+        declared_directories[file] = None
+        return file
+
     declared_files = {}
 
     def _actions_declare_file(path):
-        declared_files[path] = None
-        return path
+        file = _mock_file(
+            path = path,
+        )
+        declared_files[file] = None
+        return file
 
     writes = {}
 
     def _actions_write(write_output, content):
         if type(content) == "string":
-            writes[write_output] = content
+            writes[write_output.path] = content
         else:
-            writes[write_output] = "\n".join(content.captured.args) + "\n"
+            writes[write_output.path] = "\n".join(content.captured.args) + "\n"
 
     args_objects = []
 
@@ -61,7 +78,7 @@ def _create():
                     elif mapped_value:
                         args.append(str(mapped_value))
             else:
-                args.extend([str(value) for value in values])
+                args.extend([_path_or_str(value) for value in values])
 
             if terminate_with != None:
                 args.append(terminate_with)
@@ -76,7 +93,7 @@ def _create():
             if flag:
                 args.append(flag)
 
-            args.append(str(value))
+            args.append(_path_or_str(value))
 
         use_param_file_args = {}
 
@@ -106,6 +123,7 @@ def _create():
 
     mock = struct(
         args = _create_args,
+        declare_directory = _actions_declare_directory,
         declare_file = _actions_declare_file,
         run = _action_run,
         write = _actions_write,
@@ -114,11 +132,18 @@ def _create():
     return struct(
         args_objects = args_objects,
         run_args = run_args,
+        declared_directories = declared_directories,
         declared_files = declared_files,
         mock = mock,
         writes = writes,
     )
 
+def _mock_file(path):
+    return struct(
+        path = path,
+    )
+
 mock_actions = struct(
     create = _create,
+    mock_file = _mock_file,
 )
