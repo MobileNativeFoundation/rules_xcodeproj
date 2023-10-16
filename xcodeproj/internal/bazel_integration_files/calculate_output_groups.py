@@ -172,8 +172,9 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             """\
 error: Failed to determine labels and targets. Note, currently `.xcworkspace`s \
 aren't supported. Please make sure you are opening the generated \
-`.xcodeproj` file bundle directly. If you are, and you still get this error, \
-then please file a bug report here: \
+`.xcodeproj` file bundle directly. If you are, try using the "Clean Build \
+Folder" command instead (⇧ ⌘ K). If you still get this error after that, then \
+please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
