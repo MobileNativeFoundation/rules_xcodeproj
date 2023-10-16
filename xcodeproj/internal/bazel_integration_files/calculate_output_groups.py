@@ -85,15 +85,27 @@ def _get_build_request(
         build_request_file = (
             f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
         )
-        def wait_for_build_request():
+        def wait_for_build_request_file():
             if os.path.exists(build_request_file):
                 with open(build_request_file, encoding = "utf-8") as f:
                     # Parse the build-request.json file
-                    return json.load(f)
+                    try:
+                        return json.load(f)
+                    except Exception as error:
+                        print(
+                            f"""\
+error: Failed to parse '{build_request_file}':
+{type(error).__name__}: {error}.
+
+Please file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+                            file = sys.stderr,
+                        )
+                        exit(1)
             return None
 
         return _wait_for_value(
-            wait_for_build_request,
+            wait_for_build_request_file,
             f"\"{build_request_file}\"",
         )
 
@@ -107,7 +119,19 @@ def _get_build_request(
             if os.path.exists(build_request_file):
                 with open(build_request_file, encoding = "utf-8") as f:
                     # Parse the build-request.json file
-                    return json.load(f)
+                    try:
+                        return json.load(f)
+                    except Exception as error:
+                        print(
+                            f"""\
+error: Failed to parse '{build_request_file}':
+{type(error).__name__}: {error}.
+
+Please file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+                            file = sys.stderr,
+                        )
+                        exit(1)
         return None
 
     return _wait_for_value(
@@ -120,52 +144,40 @@ def _calculate_label_and_target_ids(
         build_request,
         guid_labels,
         guid_target_ids):
-    try:
-        # Xcode gets "stuck" in the `buildFiles` or `build` command for
-        # top-level targets, so we can't reliably change commands here. Leaving
-        # the code in place in case this is fixed in the future, or we want to
-        # do something similar in an XCBBuildService proxy.
-        #
-        # command = (
-        #     build_request.get("_buildCommand2", {}).get("command", "build")
-        # )
-        command = "build"
-        parameters = build_request["parameters"]
-        platform = (
-            parameters["activeRunDestination"]["platform"]
-        )
-        configuration_name = parameters["configurationName"]
+    # Xcode gets "stuck" in the `buildFiles` or `build` command for
+    # top-level targets, so we can't reliably change commands here. Leaving
+    # the code in place in case this is fixed in the future, or we want to
+    # do something similar in an XCBBuildService proxy.
+    #
+    # command = (
+    #     build_request.get("_buildCommand2", {}).get("command", "build")
+    # )
+    command = "build"
+    parameters = build_request["parameters"]
+    platform = (
+        parameters["activeRunDestination"]["platform"]
+    )
+    configuration_name = parameters["configurationName"]
 
-        labels_and_target_ids = []
-        for target in build_request["configuredTargets"]:
-            label = guid_labels.get(target["guid"])
-            if not label:
-                # `BazelDependency` and the like
-                continue
-            full_target_target_ids = guid_target_ids[target["guid"]]
-            target_target_ids = (
-                full_target_target_ids.get(command) or
-                # Will only be `null` if `command == "buildFiles"` and there
-                # isn't a different compile target id
-                full_target_target_ids["build"]
-            )
-            target_ids = _select_target_ids(
-                target_target_ids[configuration_name],
-                platform,
-            )
-            for target_id in target_ids:
-                labels_and_target_ids.append((label, target_id))
-    except Exception as error:
-        print(
-            f"""\
-error: Failed to parse '{build_request_file}':
-{type(error).__name__}: {error}.
-
-Please file a bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-            file = sys.stderr,
+    labels_and_target_ids = []
+    for target in build_request["configuredTargets"]:
+        label = guid_labels.get(target["guid"])
+        if not label:
+            # `BazelDependency` and the like
+            continue
+        full_target_target_ids = guid_target_ids[target["guid"]]
+        target_target_ids = (
+            full_target_target_ids.get(command) or
+            # Will only be `null` if `command == "buildFiles"` and there
+            # isn't a different compile target id
+            full_target_target_ids["build"]
         )
-        exit(1)
+        target_ids = _select_target_ids(
+            target_target_ids[configuration_name],
+            platform,
+        )
+        for target_id in target_ids:
+            labels_and_target_ids.append((label, target_id))
 
     if not labels_and_target_ids:
         print(
