@@ -38,7 +38,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
             return
         }
         XCTAssertEqual(preconditionError.message, """
-An `XCSchemeInfo.LaunchActionInfo` should have a launchable `XCSchemeInfo.TargetInfo` value: "\(libraryTargetInfo.label)".
+An `XCSchemeInfo.LaunchActionInfo` should have a launchable \
+`XCSchemeInfo.TargetInfo` value: "\(libraryTargetInfo.label)".
 """)
     }
 }
