@@ -91,7 +91,7 @@ apple_resource_group(
 
 rules_ios_apple_framework(
     name = "iOSApp.library",
-    srcs = glob(["**/*.swift"]),
+    srcs = glob(["**/*.swift"]) + ["foo.h"],
     module_name = "iOSApp",
     platforms = {
         "ios": "15.0",

@@ -15,6 +15,7 @@ struct iOSApp: App { // swiftlint:disable:this type_name
 
 extension View {
     func print(_ value: Any) -> Self {
+        let _: Foo = Foo.one
         Swift.print(value)
         Swift.print(MixedAnswerSwift.swiftMixedAnswer())
         return self
