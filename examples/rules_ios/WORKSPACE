@@ -1,17 +1,9 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# TODO: Undo this `rules_apple` bump once there's a new version of `rules_ios` consuming a newer `rules_apple`
-http_archive(
-    name = "build_bazel_rules_apple",
-    sha256 = "f89786b86c19f0e99a99a03dc64005ba13e715dbc49959239bad0620c66cdc83",
-    strip_prefix = "rules_apple-4b4f645b75ba1df7e70244b696151bb2172ac8f2",
-    url = "https://github.com/bazelbuild/rules_apple/archive/4b4f645b75ba1df7e70244b696151bb2172ac8f2.tar.gz",
-)
-
 http_archive(
     name = "build_bazel_rules_ios",
-    sha256 = "e406b29c373829f9b8241e5585f24b99a14c8078be3e3748a4c600621d62d86c",
-    url = "https://github.com/bazel-ios/rules_ios/releases/download/2.2.1/rules_ios.2.2.1.tar.gz",
+    sha256 = "ece4c3005d8d8bd067eaac8265e933b964bef7e6fb47c9d2b7d30ff1e2256cde",
+    url = "https://github.com/bazel-ios/rules_ios/releases/download/3.1.0/rules_ios.3.1.0.tar.gz",
 )
 
 load(
