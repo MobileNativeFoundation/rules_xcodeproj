@@ -1,10 +1,6 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
-# This example doesn't support bzlmod yet
-build --noenable_bzlmod
-common:nobzlmod --platform_mappings=platform_mappings
-
 # https://github.com/bazel-ios/rules_ios/issues/672
 build --noexperimental_strict_conflict_checks
 
