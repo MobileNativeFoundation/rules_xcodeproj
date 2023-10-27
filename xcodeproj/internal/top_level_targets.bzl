@@ -238,7 +238,7 @@ def process_top_level_target(
         watch_app_target_info.xcode_target.id if watch_app_target_info else None
     )
 
-    extension_targets = getattr(ctx.rule.attr, "extensions", [])
+    extension_targets = list(getattr(ctx.rule.attr, "extensions", []))
     extension_target = getattr(ctx.rule.attr, "extension", None)
     if extension_target:
         extension_targets.append(extension_target)
