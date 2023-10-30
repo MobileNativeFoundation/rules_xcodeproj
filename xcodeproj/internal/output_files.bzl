@@ -8,6 +8,37 @@ load(
     "memory_efficient_depset",
 )
 
+_COPYABLE_PRODUCT_TYPES = {
+    "com.apple.product-type.app-extension": True,
+    "com.apple.product-type.app-extension.intents-service": True,
+    "com.apple.product-type.app-extension.messages": True,
+    "com.apple.product-type.app-extension.messages-sticker-pack": True,
+    "com.apple.product-type.application": True,
+    "com.apple.product-type.application.messages": True,
+    "com.apple.product-type.application.on-demand-install-capable": True,
+    "com.apple.product-type.application.watchapp2": True,
+    "com.apple.product-type.application.watchapp2-container": True,
+    "com.apple.product-type.bundle": True,
+    "com.apple.product-type.bundle.ocunit-test": True,
+    "com.apple.product-type.bundle.ui-testing": True,
+    "com.apple.product-type.bundle.unit-test": True,
+    "com.apple.product-type.driver-extension": True,
+    "com.apple.product-type.extensionkit-extension": True,
+    "com.apple.product-type.framework": True,
+    "com.apple.product-type.framework.static": False,
+    "com.apple.product-type.instruments-package": True,
+    "com.apple.product-type.library.dynamic": True,
+    "com.apple.product-type.library.static": False,
+    "com.apple.product-type.metal-library": False,
+    "com.apple.product-type.system-extension": True,
+    "com.apple.product-type.tool": True,
+    "com.apple.product-type.tv-app-extension": True,
+    "com.apple.product-type.watchkit2-extension": True,
+    "com.apple.product-type.xcframework": True,
+    "com.apple.product-type.xcode-extension": True,
+    "com.apple.product-type.xpc-service": True,
+}
+
 # Utility
 
 def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
@@ -51,21 +82,21 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     if _has_dsym(debug_outputs) and output_group_info and "dsyms" in output_group_info:
         dsym_files = output_group_info["dsyms"]
 
-    if product and product.type.startswith("com.apple.product-type.framework"):
-        is_framework = True
-        is_static_framework = (
-            product.type == "com.apple.product-type.framework.static"
+    if product:
+        copy_output_to_xcode = _COPYABLE_PRODUCT_TYPES[product.type]
+        is_framework = product.type.startswith(
+            "com.apple.product-type.framework",
         )
     else:
+        copy_output_to_xcode = False
         is_framework = False
-        is_static_framework = False
 
     return struct(
         id = id,
         is_framework = is_framework,
         product = product.file if product else None,
         product_path = (
-            product.path if product and not is_static_framework else None
+            product.path if product and copy_output_to_xcode else None
         ),
         product_file_path = product.actual_file_path if product else None,
         dsym_files = dsym_files,
@@ -86,11 +117,12 @@ def _has_dsym(debug_outputs):
 def _collect_output_files(
         *,
         ctx,
+        copy_product_transitively = False,
         debug_outputs,
         id,
         output_group_info,
+        product = None,
         swift_info,
-        top_level_product = None,
         indexstore_overrides = [],
         infoplist = None,
         inputs = None,
@@ -103,12 +135,14 @@ def _collect_output_files(
         ctx: The aspect context.
         debug_outputs: The `AppleDebugOutputs` provider for the target, or
             `None`.
+        copy_product_transitively: Whether or not to copy the product
+            transitively. Currently this should only be true for top-level
+            targets.
         id: A unique identifier for the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        product: A value returned from `process_product`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
-        top_level_product: A value returned from `process_product`, or `None` if
-            the target isn't a top level target.
         indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s
             that override the indexstore for the target. This is used for merged
             targets.
@@ -135,7 +169,7 @@ def _collect_output_files(
         debug_outputs = debug_outputs,
         id = id,
         output_group_info = output_group_info,
-        product = top_level_product,
+        product = product,
         swift_info = swift_info,
     )
 
@@ -188,17 +222,22 @@ def _collect_output_files(
         # transitive products. Until then we need them, to allow `Copy Bazel
         # Outputs` to be able to copy the products of transitive dependencies.
         transitive_products = memory_efficient_depset(
-            direct_products,
+            direct_products if copy_product_transitively else None,
             transitive = [
                 info.outputs._transitive_products
                 for info in transitive_infos
             ] + [dsym_files],
+        )
+        products_depset = memory_efficient_depset(
+            direct_products if not copy_product_transitively else None,
+            transitive = [transitive_products],
         )
     else:
         closest_compiled = EMPTY_DEPSET
         transitive_indexstore_overrides = EMPTY_DEPSET
         transitive_indexstores = EMPTY_DEPSET
         transitive_products = EMPTY_DEPSET
+        products_depset = EMPTY_DEPSET
 
     transitive_infoplists = memory_efficient_depset(
         [infoplist] if infoplist else None,
@@ -243,7 +282,7 @@ def _collect_output_files(
                 indexstores_files,
             ),
             (linking_output_group_name, False, EMPTY_DEPSET),
-            (products_output_group_name, False, transitive_products),
+            (products_output_group_name, False, products_depset),
         ]
     else:
         generated_output_group_name = None
