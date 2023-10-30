@@ -133,11 +133,11 @@ def _collect_output_files(
 
     Args:
         ctx: The aspect context.
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or
-            `None`.
         copy_product_transitively: Whether or not to copy the product
             transitively. Currently this should only be true for top-level
             targets.
+        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+            `None`.
         id: A unique identifier for the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
