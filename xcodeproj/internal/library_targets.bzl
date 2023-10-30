@@ -136,6 +136,7 @@ def process_library_target(
         id = id,
         inputs = target_inputs,
         output_group_info = output_group_info,
+        product = product,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )

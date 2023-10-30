@@ -430,12 +430,13 @@ def process_top_level_target(
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
+        copy_product_transitively = True,
         debug_outputs = debug_outputs,
         id = id,
         inputs = target_inputs,
         output_group_info = output_group_info,
+        product = product,
         swift_info = swift_info,
-        top_level_product = product,
         infoplist = infoplist,
         transitive_infos = transitive_infos,
     )
