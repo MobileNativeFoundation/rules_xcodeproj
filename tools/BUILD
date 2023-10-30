@@ -9,6 +9,7 @@ _TOOLS = {
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
+    "xcschemes": "//tools/generators/xcschemes",
 }
 
 _TESTS = {
@@ -23,6 +24,11 @@ _TESTS = {
     "pbxtargetdependencies": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxtargetdependencies:pbxtargetdependencies_tests",
+    ],
+    "xcschemes": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/lib/XCScheme:XCSchemeTests",
+        "//tools/generators/xcschemes:xcschemes_tests",
     ],
 }
 
@@ -193,6 +199,48 @@ _SCHEMES = [
             build_configuration = "Release",
         ),
     ),
+    xcode_schemes.scheme(
+        name = "xcschemes",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["xcschemes"],
+            args = [
+                # outputDirectory
+                "/tmp/pbxproj_partials/xcschemes",
+                # schemeManagementOutputPath
+                "/tmp/pbxproj_partials/xcschememanagement.plist",
+                # autogenerationMode
+                "auto",
+                # defaultXcodeConfiguration
+                "Debug",
+                # workspace
+                "/tmp/workspace",
+                # installPath
+                "some/project.xcodeproj",
+                # extensionPointIdentifiersFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_extension_point_identifiers",
+                # executionActionsFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_pbxproj_partials/execution_actions_file",
+                # targetsArgsEnvFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_pbxproj_partials/targets_args_env",
+                # customSchemesFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_pbxproj_partials/custom_schemes_file",
+                # consolidationMaps
+                "--consolidation-maps",
+                "/tmp/pbxproj_partials/consolidation_maps/0",
+                "/tmp/pbxproj_partials/consolidation_maps/1",
+                # targetAndExtensionHosts
+            ],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        profile_action = xcode_schemes.profile_action(
+            _TOOLS["xcschemes"],
+            build_configuration = "Release",
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["xcschemes"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
 ]
 
 _XCODE_CONFIGURATIONS = {
@@ -225,6 +273,9 @@ xcodeproj(
         ],
         "//tools/generators/pbxtargetdependencies": [
             "//tools/generators/pbxtargetdependencies:README.md",
+        ],
+        "//tools/generators/xcschemes": [
+            "//tools/generators/xcschemes:README.md",
         ],
     },
     extra_files = [

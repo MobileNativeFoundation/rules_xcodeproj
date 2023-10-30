@@ -30,14 +30,6 @@ public struct BuildActionEntry: Equatable {
         public static let profiling = Self(rawValue: 1 << 3)
         public static let archiving = Self(rawValue: 1 << 4)
 
-        public static let all: Self = [
-            .analyzing,
-            .testing,
-            .running,
-            .profiling,
-            .archiving,
-        ]
-
         public let rawValue: Int
 
         public init(rawValue: Int) {
