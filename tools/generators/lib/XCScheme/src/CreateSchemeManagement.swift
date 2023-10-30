@@ -8,7 +8,7 @@ public struct CreateSchemeManagement {
         self.callable = callable
     }
 
-    /// Creates the XML for an `.xcscheme` file.
+    /// Creates the XML for an `xcschememanagement.plist` file.
     public func callAsFunction(schemeNames: [String]) -> String {
         return callable(/*schemeNames:*/ schemeNames)
     }
