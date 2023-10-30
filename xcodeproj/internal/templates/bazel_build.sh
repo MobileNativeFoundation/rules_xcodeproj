@@ -96,6 +96,9 @@ readonly base_pre_config_flags=(
 
   # Don't block the end of the build for BES upload (artifacts OR events)
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
+
+  # SNAP: disable loading workspace .bazelrc in bzl as rules_xcodeporoj handle it internally (https://jira.sc-corp.net/browse/BUILD-4590)
+  "--bzl_enable_workspace_rc=false" 
 )
 
 # Create VFS overlay
