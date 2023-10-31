@@ -17,39 +17,65 @@ extension Array<ConsolidationMapArguments> {
         var rawArgs = ArraySlice(try await url.allLines.collect())
 
         let outputPaths = try rawArgs.consumeArgs(
-            URL.self,
+            "output-paths",
+            as: URL.self,
             in: url,
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
 
         var consolidationMapArguments: [ConsolidationMapArguments] = []
         for outputPath in outputPaths {
-            let labelCount = try rawArgs.consumeArg(Int.self, in: url)
+            let labelCount =
+                try rawArgs.consumeArg("label-count", as: Int.self, in: url)
 
             var targetArguments: [Target] = []
             for _ in (0..<labelCount) {
-                let label = try rawArgs.consumeArg(BazelLabel.self, in: url)
-                let targetCount = try rawArgs.consumeArg(Int.self, in: url)
+                let label = try rawArgs.consumeArg(
+                    "label",
+                    as: BazelLabel.self,
+                    in: url
+                )
+                let targetCount = try rawArgs.consumeArg(
+                    "target-count",
+                    as: Int.self,
+                    in: url
+                )
 
                 for _ in (0..<targetCount) {
-                    let id = try rawArgs.consumeArg(TargetID.self, in: url)
-                    let productType =
-                        try rawArgs.consumeArg(PBXProductType.self, in: url)
-                    let platform =
-                        try rawArgs.consumeArg(Platform.self, in: url)
-                    let osVersion =
-                        try rawArgs.consumeArg(SemanticVersion.self, in: url)
-                    let arch = try rawArgs.consumeArg(String.self, in: url)
+                    let id = try rawArgs.consumeArg(
+                        "target-id",
+                        as: TargetID.self,
+                        in: url
+                    )
+                    let productType = try rawArgs.consumeArg(
+                        "product-type",
+                        as: PBXProductType.self,
+                        in: url
+                    )
+                    let platform = try rawArgs.consumeArg(
+                        "platform",
+                        as: Platform.self,
+                        in: url
+                    )
+                    let osVersion = try rawArgs.consumeArg(
+                        "os-version",
+                        as: SemanticVersion.self,
+                        in: url
+                    )
+                    let arch = try rawArgs.consumeArg("arch", in: url)
                     let moduleName =
-                        try rawArgs.consumeArg(String.self, in: url)
+                        try rawArgs.consumeArg("module-name", in: url)
                     let productPath =
-                        try rawArgs.consumeArg(String.self, in: url)
+                        try rawArgs.consumeArg("product-path", in: url)
                     let productBasename =
-                        try rawArgs.consumeArg(String.self, in: url)
-                    let dependencies =
-                        try rawArgs.consumeArgs(TargetID.self, in: url)
+                        try rawArgs.consumeArg("product-basename", in: url)
+                    let dependencies = try rawArgs.consumeArgs(
+                        "dependencies",
+                        as: TargetID.self,
+                        in: url
+                    )
                     let xcodeConfigurations =
-                        try rawArgs.consumeArgs(String.self, in: url)
+                        try rawArgs.consumeArgs("xcode-configurations", in: url)
 
                     let uiTestHost: TargetID?
                     if productType == .uiTestBundle {
