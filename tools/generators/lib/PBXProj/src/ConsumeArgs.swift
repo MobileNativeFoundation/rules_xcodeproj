@@ -6,15 +6,16 @@ extension ArraySlice<String> {
     // MARK: - consumeArg
 
     public mutating func consumeArg<Output> (
-        _ type: Output.Type,
-        in url: URL,
+        _ name: String,
+        as type: Output.Type,
+        in url: URL? = nil,
         transform: (String) throws -> Output,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> Output {
         guard let rawArg = popFirst() else {
             throw PreconditionError(
-                message: #""\#(url.path)": Expected more arguments"#,
+                message: url.prefixMessage("Missing <\(name)>"),
                 file: file,
                 line: line
             )
@@ -24,15 +25,16 @@ extension ArraySlice<String> {
 
     private static func argumentTransform<Output: ExpressibleByArgument>(
         _ rawArg: String,
-        in url: URL,
+        name: String,
+        in url: URL?,
         file: StaticString,
         line: UInt
     ) throws -> Output {
         guard let arg = Output(argument: rawArg) else {
             throw PreconditionError(
-                message: #"""
-"\#(url.path)": Failed to parse "\#(rawArg)" as \#(Output.Type.self)
-"""#,
+                message: url.prefixMessage("""
+Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
+"""),
                 file: file,
                 line: line
             )
@@ -41,17 +43,20 @@ extension ArraySlice<String> {
     }
 
     public mutating func consumeArg<Output: ExpressibleByArgument>(
-        _ type: Output.Type,
-        in url: URL,
+        _ name: String,
+        as type: Output.Type = String.self,
+        in url: URL? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> Output {
         return try consumeArg(
-            type,
+            name,
+            as: type,
             in: url,
             transform: { arg in
                 return try Self.argumentTransform(
                     arg,
+                    name: name,
                     in: url,
                     file: file,
                     line: line
@@ -62,37 +67,16 @@ extension ArraySlice<String> {
         )
     }
 
-    private mutating func consumeArg<Output>(
-        _ type: Output.Type,
-        in url: URL,
-        transform: (String) throws -> Output,
-        unless: String,
-        file: StaticString,
-        line: UInt
-    ) throws -> Output? {
-        guard let rawArg = popFirst() else {
-            throw PreconditionError(
-                message: #""\#(url.path)": Expected more arguments"#,
-                file: file,
-                line: line
-            )
-        }
-
-        guard rawArg != unless else {
-            return nil
-        }
-
-        return try transform(rawArg)
-    }
-
     public mutating func consumeArg(
-        _ type: Bool.Type,
-        in url: URL,
+        _ name: String,
+        as type: Bool.Type,
+        in url: URL? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> Bool {
         return try consumeArg(
-            Bool.self,
+            name,
+            as: Bool.self,
             in: url,
             transform: { $0 == "1" },
             file: file,
@@ -103,9 +87,10 @@ extension ArraySlice<String> {
     // MARK: - consumeArgs
 
     public mutating func consumeArgs<Output>(
-        _ type: Output.Type,
+        _ name: String,
+        as type: Output.Type,
         count: Int,
-        in url: URL,
+        in url: URL? = nil,
         transform: (String) throws -> Output,
         file: StaticString = #filePath,
         line: UInt = #line
@@ -113,7 +98,8 @@ extension ArraySlice<String> {
         var args: [Output] = []
         for _ in (0..<count) {
             let arg = try consumeArg(
-                type,
+                name,
+                as: type,
                 in: url,
                 transform: transform,
                 file: file,
@@ -125,19 +111,22 @@ extension ArraySlice<String> {
     }
 
     public mutating func consumeArgs<Output: ExpressibleByArgument>(
-        _ type: Output.Type,
+        _ name: String,
+        as type: Output.Type,
         count: Int,
-        in url: URL,
+        in url: URL? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
         return try consumeArgs(
-            type,
+            name,
+            as: type,
             count: count,
             in: url,
             transform: { arg in
                 return try Self.argumentTransform(
                     arg,
+                    name: name,
                     in: url,
                     file: file,
                     line: line
@@ -149,16 +138,18 @@ extension ArraySlice<String> {
     }
 
     public mutating func consumeArgs<Output>(
-        _ type: Output.Type,
-        in url: URL,
+        _ name: String,
+        as type: Output.Type,
+        in url: URL? = nil,
         transform: (String) throws -> Output,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
-        let count = try consumeArg(Int.self, in: url)
+        let count = try consumeArg("\(name)-count", as: Int.self, in: url)
 
         return try consumeArgs(
-            type,
+            name,
+            as: type,
             count: count,
             in: url,
             transform: transform,
@@ -168,19 +159,30 @@ extension ArraySlice<String> {
     }
 
     public mutating func consumeArgs<Output: ExpressibleByArgument>(
-        _ type: Output.Type,
-        in url: URL,
+        _ name: String,
+        as type: Output.Type = String.self,
+        in url: URL? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
-        let count = try consumeArg(Int.self, in: url)
+        let count = try consumeArg("\(name)-count", as: Int.self, in: url)
 
         return try consumeArgs(
-            type,
+            name,
+            as: type,
             count: count,
             in: url,
             file: file,
             line: line
         )
+    }
+}
+
+private extension Optional where Wrapped == URL {
+    func prefixMessage(_ message: String) -> String {
+        guard let url = self else {
+            return message
+        }
+        return #""\#(url.path)": \#(message)"#
     }
 }
