@@ -590,10 +590,9 @@ extension Identifiers.BuildFiles.SubIdentifier {
         do {
             try data.write(to: url)
         } catch {
-            throw PreconditionError(message: """
-Failed to write build file subidentifiers to "\(url.path)": \
-\(error.localizedDescription)
-""")
+            throw PreconditionError(message: url.prefixMessage("""
+Failed to write build file subidentifiers: \(error.localizedDescription)
+"""))
         }
     }
 
@@ -627,10 +626,9 @@ extension Identifiers.BuildFiles.SubIdentifier {
         guard let type = Identifiers.BuildFiles.FileType(
             rawValue: String(line[line.startIndex ..< shardStartIndex])
         ) else {
-            throw PreconditionError(message: #"""
-"\#(url.path)": "\#(line[line.startIndex ..< shardStartIndex])" is an unknown \#
-file type
-"""#)
+            throw PreconditionError(message: url.prefixMessage("""
+"\(line[line.startIndex ..< shardStartIndex])" is an unknown file type
+"""))
         }
 
         let pathIsFolderStartIndex: String.Index

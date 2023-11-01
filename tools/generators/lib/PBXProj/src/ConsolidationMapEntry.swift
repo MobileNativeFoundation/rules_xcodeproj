@@ -84,10 +84,9 @@ extension ConsolidationMapEntry {
         do {
             try data.write(to: url)
         } catch {
-            throw PreconditionError(message: """
-Failed to write consolidation map entries to "\(url.path)": \
-\(error.localizedDescription)
-""")
+            throw PreconditionError(message: url.prefixMessage("""
+Failed to write consolidation map entries: \(error.localizedDescription)
+"""))
         }
     }
 
@@ -167,9 +166,9 @@ extension ConsolidationMapEntry {
             }
             return entries
         } catch {
-            throw PreconditionError(message: """
-"\(url.path)": \(error.localizedDescription)
-""")
+            throw PreconditionError(
+                message: url.prefixMessage(error.localizedDescription)
+            )
         }
     }
 
@@ -192,9 +191,9 @@ extension ConsolidationMapEntry {
         guard
             let productType = PBXProductType(rawValue: String(components[3]))
         else {
-            throw PreconditionError(message: #"""
-"\#(url.path)": "\#(String(components[3]))" is an unknown product type
-"""#)
+            throw PreconditionError(message: url.prefixMessage("""
+"\(String(components[3]))" is an unknown product type
+"""))
         }
 
         let uiTestHostName = String(components[6])
@@ -247,9 +246,9 @@ private extension Identifiers.BuildFiles.SubIdentifier {
         guard let type = Identifiers.BuildFiles.FileType(
             rawValue: String(string[typeStartIndex])
         ) else {
-            throw PreconditionError(message: #"""
-"\#(url.path)": "\#(string[typeStartIndex])" is an unknown file type
-"""#)
+            throw PreconditionError(message: url.prefixMessage("""
+"\(string[typeStartIndex])" is an unknown file type
+"""))
         }
 
         self.init(

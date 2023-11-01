@@ -9,16 +9,16 @@ extension URL {
         do {
             lines = try String(contentsOf: self).split(separator: "\n")
         } catch {
-            throw PreconditionError(message: """
-"\(self.path)": \(error.localizedDescription)
-""")
+            throw PreconditionError(
+                message: prefixMessage(error.localizedDescription)
+            )
         }
 
         guard lines.count == 1 else {
-            throw PreconditionError(message: """
-"\(self.path)": The execution_root_file must contain one line: the absolute \
-path to the Bazel execution root.
-""")
+            throw PreconditionError(message: prefixMessage("""
+The execution_root_file must contain one line: the absolute path to the Bazel \
+execution root.
+"""))
         }
 
         return String(lines[0])
