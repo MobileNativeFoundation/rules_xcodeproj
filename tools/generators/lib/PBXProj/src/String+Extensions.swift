@@ -66,6 +66,10 @@ private let invalidCharacters: CharacterSet = {
 private let specialCheckCharacters = CharacterSet(charactersIn: "_/")
 
 extension StringProtocol {
+    public var nullsToNewlines: String {
+        replacingOccurrences(of: "\0", with: "\n")
+    }
+
     /// Copied from https://github.com/tuist/XcodeProj/blob/f570155209af12643309ac4e758b875c63dcbf50/Sources/XcodeProj/Utils/CommentedString.swift#L21-L69
     public var pbxProjEscaped: Self {
         guard !isEmpty else {
