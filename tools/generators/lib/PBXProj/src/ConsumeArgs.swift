@@ -183,6 +183,6 @@ private extension Optional where Wrapped == URL {
         guard let url = self else {
             return message
         }
-        return #""\#(url.path)": \#(message)"#
+        return url.prefixMessage(message)
     }
 }

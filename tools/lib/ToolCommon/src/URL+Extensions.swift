@@ -10,6 +10,10 @@ extension URL {
     public var allLines: AsyncThrowingStream<String, Error> {
         return resourceBytes.allLines(in: self)
     }
+
+    public func prefixMessage(_ message: String) -> String {
+        return #""\#(path)": \#(message)"#
+    }
 }
 
 private extension URL.AsyncBytes {
@@ -30,9 +34,10 @@ private extension URL.AsyncBytes {
                             data: Data(accumulator),
                             encoding: .utf8
                         ) else {
-                            throw PreconditionError(message: """
-"\(url.path)": invalid (non-UTF8) data
-""")
+                            throw PreconditionError(
+                                message:
+                                    url.prefixMessage("Invalid (non-UTF8) data")
+                            )
                         }
                         continuation.yield(string)
                         accumulator = []

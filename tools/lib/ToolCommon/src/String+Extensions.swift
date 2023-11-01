@@ -11,19 +11,18 @@ extension String {
                 withIntermediateDirectories: true
             )
         } catch {
-            throw PreconditionError(message: """
-Failed to create parent directories for "\(url.path)": \
-\(error.localizedDescription)
-""")
+            throw PreconditionError(message: url.prefixMessage("""
+Failed to create parent directories: \(error.localizedDescription)
+"""))
         }
 
         // Write
         do {
             try write(to: url, atomically: false, encoding: .utf8)
         } catch {
-            throw PreconditionError(message: """
-Failed to write "\(url.path)": \(error.localizedDescription)
-""")
+            throw PreconditionError(message: url.prefixMessage("""
+Failed to write: \(error.localizedDescription)
+"""))
         }
     }
 }

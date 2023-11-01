@@ -38,9 +38,9 @@ extension ElementCreator.ReadSelectedModelVersionsFile {
             return try decoder
                 .decode([BazelPath: String].self, from: Data(contentsOf: url))
         } catch {
-            throw PreconditionError(message: """
-"\(url.path)": \(error.localizedDescription)
-""")
+            throw PreconditionError(
+                message: url.prefixMessage(error.localizedDescription)
+            )
         }
     }
 }
