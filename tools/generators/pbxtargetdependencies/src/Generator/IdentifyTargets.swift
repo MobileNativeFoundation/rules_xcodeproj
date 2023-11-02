@@ -44,11 +44,13 @@ extension Generator {
         /// arguments.
         func callAsFunction(
             consolidationMapArguments: [ConsolidationMapArguments],
-            logger: Logger
+            logger: Logger,
+            targetNameMode: TargetNameMode
         ) throws -> [IdentifiedTarget] {
             return try callable(
                 /*consolidationMapArguments:*/ consolidationMapArguments,
                 /*logger:*/ logger,
+                /*targetNameMode:*/ targetNameMode,
                 /*consolidateTargets:*/ consolidateTargets,
                 /*disambiguateTargets:*/ disambiguateTargets,
                 /*innerIdentifyTargets:*/ innerIdentifyTargets
@@ -63,6 +65,7 @@ extension Generator.IdentifyTargets {
     public typealias Callable = (
         _ consolidationMapArguments: [ConsolidationMapArguments],
         _ logger: Logger,
+        _ targetNameMode: TargetNameMode,
         _ consolidateTargets: Generator.ConsolidateTargets,
         _ disambiguateTargets: Generator.DisambiguateTargets,
         _ innerIdentifyTargets: Generator.InnerIdentifyTargets
@@ -72,6 +75,7 @@ extension Generator.IdentifyTargets {
     static func defaultCallable(
         consolidationMapArguments: [ConsolidationMapArguments],
         logger: Logger,
+        targetNameMode: TargetNameMode,
         consolidateTargets: Generator.ConsolidateTargets,
         disambiguateTargets: Generator.DisambiguateTargets,
         innerIdentifyTargets: Generator.InnerIdentifyTargets
@@ -90,7 +94,10 @@ extension Generator.IdentifyTargets {
             Dictionary(uniqueKeysWithValues: targetIdToOutputPathKeysWithValues)
 
         return try innerIdentifyTargets(
-            disambiguateTargets(consolidateTargets(targets, logger: logger)),
+            disambiguateTargets(
+                consolidateTargets(targets, logger: logger),
+                targetNameMode: targetNameMode
+            ),
             targetIdToConsolidationMapOutputPath: targetIdToOutputPath
         )
     }

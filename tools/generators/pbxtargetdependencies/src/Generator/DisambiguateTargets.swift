@@ -29,9 +29,13 @@ extension Generator {
         }
 
         func callAsFunction(
-            _ consolidatedTargets: [ConsolidatedTarget]
+            _ consolidatedTargets: [ConsolidatedTarget],
+            targetNameMode: TargetNameMode
         )-> [DisambiguatedTarget] {
-            return callable(consolidatedTargets)
+            return callable(
+                /*consolidatedTargets:*/ consolidatedTargets,
+                /*targetNameMode:*/ targetNameMode
+            )
         }
     }
 }
@@ -40,109 +44,139 @@ extension Generator {
 
 extension Generator.DisambiguateTargets {
     public typealias Callable = (
-        _ consolidatedTargets: [ConsolidatedTarget]
+        _ consolidatedTargets: [ConsolidatedTarget],
+        _ targetNameMode: TargetNameMode
     ) -> [DisambiguatedTarget]
 
     static func defaultCallable(
-        _ consolidatedTargets: [ConsolidatedTarget]
+        _ consolidatedTargets: [ConsolidatedTarget],
+        targetNameMode: TargetNameMode
     ) -> [DisambiguatedTarget] {
-        // Gather all information needed to distinguish the targets
-        var labelsByModuleNameAndProductType:
-            [ModuleNameAndProductType: Set<String>] = [:]
-        var labelsByNameAndProductType:
-            [NameAndProductType: Set<String>] = [:]
-        var names: [String: TargetComponents] = [:]
-        var labels: [String: TargetComponents] = [:]
-        for consolidatedTarget in consolidatedTargets {
-            let normalizedLabel = consolidatedTarget.normalizedLabel
-            labelsByModuleNameAndProductType[
-                .init(target: consolidatedTarget),
-                default: []
-            ].insert(normalizedLabel)
-            labelsByNameAndProductType[
-                .init(target: consolidatedTarget),
-                default: []
-            ].insert(normalizedLabel)
-        }
-        for consolidatedTarget in consolidatedTargets {
-            let moduleNameAndProductType =
-                ModuleNameAndProductType(target: consolidatedTarget)
-            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
-                .count != 1
-            else {
-                names[
-                    moduleNameAndProductType.normalizedModuleName,
-                    default: .init()
-                ].add(target: consolidatedTarget)
-                continue
-            }
-
-            let nameAndProductType =
-                NameAndProductType(target: consolidatedTarget)
-            guard
-                labelsByNameAndProductType[nameAndProductType]!.count != 1
-            else {
-                names[nameAndProductType.normalizedName, default: .init()]
-                    .add(target: consolidatedTarget)
-                continue
-            }
-
-            labels[consolidatedTarget.normalizedLabel, default: .init()]
-                .add(target: consolidatedTarget)
-        }
-
-        // And then distinguish them
         var disambiguatedTargets: [DisambiguatedTarget] = []
-        for consolidatedTarget in consolidatedTargets {
-            let moduleNameAndProductType =
+
+        switch targetNameMode {
+        case .auto:
+            // Gather all information needed to distinguish the targets
+            var labelsByModuleNameAndProductType:
+                [ModuleNameAndProductType: Set<String>] = [:]
+            var labelsByNameAndProductType:
+                [NameAndProductType: Set<String>] = [:]
+            for consolidatedTarget in consolidatedTargets {
+                let normalizedLabel = consolidatedTarget.normalizedLabel
+                labelsByModuleNameAndProductType[
+                    .init(target: consolidatedTarget),
+                    default: []
+                ].insert(normalizedLabel)
+                labelsByNameAndProductType[
+                    .init(target: consolidatedTarget),
+                    default: []
+                ].insert(normalizedLabel)
+            }
+
+            var names: [String: TargetComponents] = [:]
+            var labels: [String: TargetComponents] = [:]
+            for consolidatedTarget in consolidatedTargets {
+                let moduleNameAndProductType =
+                    ModuleNameAndProductType(target: consolidatedTarget)
+                guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                    .count != 1
+                else {
+                    names[
+                        moduleNameAndProductType.normalizedModuleName,
+                        default: .init()
+                    ].add(target: consolidatedTarget)
+                    continue
+                }
+
+                let nameAndProductType =
+                    NameAndProductType(target: consolidatedTarget)
+                guard
+                    labelsByNameAndProductType[nameAndProductType]!.count != 1
+                else {
+                    names[nameAndProductType.normalizedName, default: .init()]
+                        .add(target: consolidatedTarget)
+                    continue
+                }
+
+                labels[consolidatedTarget.normalizedLabel, default: .init()]
+                    .add(target: consolidatedTarget)
+            }
+
+            // And then distinguish them
+            for consolidatedTarget in consolidatedTargets {
+                let moduleNameAndProductType =
                 ModuleNameAndProductType(target: consolidatedTarget)
-            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
-                .count != 1
-            else {
-                disambiguatedTargets.append(
-                    .init(
-                        name: names[
-                            moduleNameAndProductType.normalizedModuleName
-                        ]!.uniqueName(
-                            for: consolidatedTarget,
-                            baseName: consolidatedTarget.moduleName
-                        ),
-                        target: consolidatedTarget
+                guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                    .count != 1
+                else {
+                    disambiguatedTargets.append(
+                        .init(
+                            name: names[
+                                moduleNameAndProductType.normalizedModuleName
+                            ]!.uniqueName(
+                                for: consolidatedTarget,
+                                baseName: consolidatedTarget.moduleName
+                            ),
+                            target: consolidatedTarget
+                        )
                     )
-                )
-                continue
-            }
+                    continue
+                }
 
-            let nameAndProductType =
+                let nameAndProductType =
                 NameAndProductType(target: consolidatedTarget)
-            guard
-                labelsByNameAndProductType[nameAndProductType]!.count != 1
-            else {
+                guard
+                    labelsByNameAndProductType[nameAndProductType]!.count != 1
+                else {
+                    disambiguatedTargets.append(
+                        .init(
+                            name: names[
+                                nameAndProductType.normalizedName
+                            ]!.uniqueName(
+                                for: consolidatedTarget,
+                                baseName: consolidatedTarget.name
+                            ),
+                            target: consolidatedTarget
+                        )
+                    )
+                    continue
+                }
+
                 disambiguatedTargets.append(
                     .init(
-                        name: names[
-                            nameAndProductType.normalizedName
+                        name: labels[
+                            consolidatedTarget.normalizedLabel
                         ]!.uniqueName(
                             for: consolidatedTarget,
-                            baseName: consolidatedTarget.name
+                            baseName: consolidatedTarget.label.description
                         ),
                         target: consolidatedTarget
                     )
                 )
-                continue
             }
 
-            disambiguatedTargets.append(
-                .init(
-                    name: labels[
-                        consolidatedTarget.normalizedLabel
-                    ]!.uniqueName(
-                        for: consolidatedTarget,
-                        baseName: consolidatedTarget.label.description
-                    ),
-                    target: consolidatedTarget
+        case .label:
+            // Gather all information needed to distinguish the targets
+            var labels: [String: TargetComponents] = [:]
+            for consolidatedTarget in consolidatedTargets {
+                labels[consolidatedTarget.normalizedLabel, default: .init()]
+                    .add(target: consolidatedTarget)
+            }
+
+            // And then distinguish them
+            for consolidatedTarget in consolidatedTargets {
+                disambiguatedTargets.append(
+                    .init(
+                        name: labels[
+                            consolidatedTarget.normalizedLabel
+                        ]!.uniqueName(
+                            for: consolidatedTarget,
+                            baseName: consolidatedTarget.label.description
+                        ),
+                        target: consolidatedTarget
+                    )
                 )
-            )
+            }
         }
 
         return disambiguatedTargets.sorted { lhs, rhs in

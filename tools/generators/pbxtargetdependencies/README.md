@@ -21,6 +21,7 @@ details):
 - Positional `target-attributes-output-path`
 - Positional `consolidation-maps-inputs-file`
 - Positional `minimum-xcode-version`
+- Positional `target-name-mode`
 - Optional option `--target-and-test-hosts <target> <test-host> ...`
 - Flag `--colorize`
 
@@ -33,6 +34,7 @@ $ pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxproject_target_attributes \
     /tmp/pbxproj_partials/consolidation_maps_inputs_file \
     14.0 \
+	auto \
     --target-and-test-hosts \
     '//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3' \
     '//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'

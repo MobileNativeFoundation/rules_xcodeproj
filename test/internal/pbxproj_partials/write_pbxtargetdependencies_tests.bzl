@@ -138,6 +138,7 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         install_path = "a/project.xcodeproj",
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
         shard_count = shard_count,
+        target_name_mode = ctx.attr.target_name_mode,
         tool = None,
         xcode_target_configurations = ctx.attr.xcode_target_configurations,
         xcode_targets_by_label = xcode_targets_by_label,
@@ -230,6 +231,7 @@ write_pbxtargetdependencies_test = unittest.make(
         "colorize": attr.bool(mandatory = True),
         "generator_shard_count": attr.int(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
+        "target_name_mode": attr.string(mandatory = True),
         "xcode_target_configurations": attr.string_list_dict(mandatory = True),
         "xcode_targets_by_label": attr.string(mandatory = True),
 
@@ -255,6 +257,7 @@ def write_pbxtargetdependencies_test_suite(name):
             # Inputs
             colorize = False,
             minimum_xcode_version,
+            target_name_mode,
             shard_count = 2,
             xcode_target_configurations,
             xcode_targets_by_label,
@@ -270,6 +273,7 @@ def write_pbxtargetdependencies_test_suite(name):
             colorize = colorize,
             generator_shard_count = shard_count,
             minimum_xcode_version = minimum_xcode_version,
+            target_name_mode = target_name_mode,
             xcode_target_configurations = xcode_target_configurations,
             xcode_targets_by_label = json.encode(xcode_targets_by_label),
 
@@ -289,6 +293,7 @@ def write_pbxtargetdependencies_test_suite(name):
         # Inputs
         colorize = True,
         minimum_xcode_version = "14.3.1",
+        target_name_mode = "label",
         xcode_target_configurations = {
             "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3": ["Release"],
             "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3": ["Debug", "Release"],
@@ -355,6 +360,8 @@ def write_pbxtargetdependencies_test_suite(name):
             _CONSOLIDATION_MAPS_INPUTS_FILE.path,
             # minimumXcodeVersion
             "14.3.1",
+            # targetNameMode
+            "label",
             # targetAndTestHosts
             "--target-and-test-hosts",
             "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",

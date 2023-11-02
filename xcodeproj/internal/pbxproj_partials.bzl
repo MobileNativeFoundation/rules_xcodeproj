@@ -381,6 +381,7 @@ def _write_pbxtargetdependencies(
         install_path,
         minimum_xcode_version,
         shard_count,
+        target_name_mode,
         tool,
         xcode_target_configurations,
         xcode_targets_by_label):
@@ -397,6 +398,7 @@ def _write_pbxtargetdependencies(
             `PBXNativeTarget`s into.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
+        target_name_mode: How the name of Xcode targets should be generated.
         tool: The executable that will generate the output files.
         xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
             `list` of Xcode configuration names that the target is present in.
@@ -465,6 +467,9 @@ def _write_pbxtargetdependencies(
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
+
+    # targetNameMode
+    args.add(target_name_mode)
 
     # Consolidation maps inputs
 
