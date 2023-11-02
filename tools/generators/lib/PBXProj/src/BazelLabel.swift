@@ -1,10 +1,11 @@
 import ArgumentParser
 import Foundation
 
-public struct BazelLabel: Equatable, Hashable {
+public struct BazelLabel: Equatable, Hashable, CustomStringConvertible {
     public let repository: String
     public let package: String
     public let name: String
+    public let description: String
 }
 
 extension BazelLabel {
@@ -20,9 +21,11 @@ extension BazelLabel {
 
     public init(_ value: String) throws {
         let parts = try Self.parse(value)
-        repository = parts.repository
-        package = parts.package
-        name = parts.name
+        self.init(
+            repository: parts.repository,
+            package: parts.package,
+            name: parts.name
+        )
     }
 
     private static func parse(
@@ -71,13 +74,19 @@ extension BazelLabel {
             name: name
         )
     }
-}
 
-// MARK: - CustomStringConvertible
+    init(repository: String, package: String, name: String) {
+        self.repository = repository
+        self.package = package
+        self.name = name
 
-extension BazelLabel: CustomStringConvertible {
-    public var description: String {
-        return "\(repository)//\(package):\(name)"
+        // Favor returning the shorthand form of the label,
+        // e.g. for `@repo//foo/bar/wiz:wiz` return `@repo//foo/bar/wiz`,
+        // for `@repo//foo/bar/wiz:baz` return `@repo//foo/bar/wiz:baz`,
+        // for `@repo//foo/bar/wiz:bar/wiz` return `@repo//foo/bar/wiz:bar/wiz`.
+        let canOmitName = !name.contains("/") && package.hasSuffix("/\(name)")
+        let suffix = canOmitName ? "" : ":\(name)"
+        description = "\(repository)//\(package)\(suffix)"
     }
 }
 
