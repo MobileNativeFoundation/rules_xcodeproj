@@ -1,7 +1,7 @@
 import Foundation
 import ToolCommon
 
-public struct TargetSwiftDebugSettings {
+public struct TargetSwiftDebugSettings: Equatable {
     public let clangArgs: [String]
     public let frameworkIncludes: [String]
     public let swiftIncludes: [String]

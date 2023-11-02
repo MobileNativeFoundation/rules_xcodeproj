@@ -46,29 +46,26 @@ extension WriteTargetSwiftDebugSettings {
 
         var data = Data()
 
-        data.append(Data(String(clangArgs.count).utf8))
-        data.append(separator)
-        for arg in clangArgs {
-            data.append(Data(arg.utf8))
-            data.append(separator)
-        }
-
-        data.append(Data(String(frameworkIncludes.count).utf8))
-        data.append(separator)
-        for include in frameworkIncludes {
-            data.append(Data(include.utf8))
-            data.append(separator)
-        }
-
-        data.append(Data(String(swiftIncludes.count).utf8))
-        data.append(separator)
-        for include in swiftIncludes {
-            data.append(Data(include.utf8))
-            data.append(separator)
-        }
+        data.appendArgs(clangArgs)
+        data.appendArgs(frameworkIncludes)
+        data.appendArgs(swiftIncludes)
 
         try data.write(to: url)
     }
 }
 
-private let separator = Data([0x0a]) // Newline
+private extension Data {
+    private static let separator = Data([0x0a]) // Newline
+
+    mutating func appendArgs<Collection: RandomAccessCollection>(
+        _ collection: Collection
+    ) where Collection.Element == String {
+        append(Data(String(collection.count).utf8))
+        append(Self.separator)
+        for arg in collection {
+            append(Data(arg.newlinesToNulls.utf8))
+            append(Self.separator)
+        }
+    }
+}
+
