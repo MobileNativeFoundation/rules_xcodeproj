@@ -9,6 +9,7 @@ final class DisambiguateTargetsTests: XCTestCase {
 
     func test_sorted() throws {
         // Arrange
+
         let targets: [Target] = [
             .mock(
                 id: "A 1",
@@ -56,7 +57,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -70,6 +71,7 @@ final class DisambiguateTargetsTests: XCTestCase {
 
     func test_label() throws {
         // Arrange
+
         let targets: [Target] = [
             .mock(
                 id: "A 1",
@@ -117,7 +119,93 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    // MARK: - targetNameMode
+
+    func test_targetNameMode_auto() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A",
+                label: "@//a:A"
+            ),
+            .mock(
+                id: "B",
+                label: "@//b:B"
+            ),
+            .mock(
+                id: "C",
+                label: "@//c:C"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+        let targetNameMode = TargetNameMode.auto
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A"]: "A",
+            ["B"]: "B",
+            ["C"]: "C",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = disambiguateTargetsWithDefaults(
+            consolidatedTargets,
+            targetNameMode: targetNameMode
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_targetNameMode_label() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A",
+                label: "@//a:A"
+            ),
+            .mock(
+                id: "B",
+                label: "@//b:B"
+            ),
+            .mock(
+                id: "C",
+                label: "@//c:C"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+        let targetNameMode = TargetNameMode.label
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A"]: "@//a:A",
+            ["B"]: "@//b:B",
+            ["C"]: "@//c:C",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = disambiguateTargetsWithDefaults(
+            consolidatedTargets,
+            targetNameMode: targetNameMode
+        )
 
         // Assert
 
@@ -174,7 +262,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -219,7 +307,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -264,7 +352,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -307,7 +395,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -352,7 +440,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -397,7 +485,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -463,7 +551,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -510,7 +598,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -562,7 +650,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -606,7 +694,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -648,7 +736,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -689,7 +777,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -740,7 +828,7 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -794,7 +882,7 @@ A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -845,7 +933,7 @@ A (Library) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -896,7 +984,7 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -963,7 +1051,7 @@ B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1014,7 +1102,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1103,7 +1191,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1180,7 +1268,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1272,7 +1360,7 @@ A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1366,7 +1454,7 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1413,7 +1501,7 @@ B (iOS 11.0 Device, iOS 13.0 Simulator, tvOS)
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1464,7 +1552,7 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1524,7 +1612,7 @@ A (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1594,7 +1682,7 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1648,7 +1736,7 @@ A (x86_64)
         // Act
 
         let disambiguatedTargets =
-            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+            disambiguateTargetsWithDefaults(consolidatedTargets)
 
         // Assert
 
@@ -1723,4 +1811,14 @@ extension Array where Element == ConsolidatedTarget {
             )
         }
     }
+}
+
+private func disambiguateTargetsWithDefaults(
+    _ consolidatedTargets: [ConsolidatedTarget],
+    targetNameMode: TargetNameMode = .auto
+) -> [DisambiguatedTarget] {
+    return Generator.DisambiguateTargets.defaultCallable(
+        consolidatedTargets,
+        targetNameMode: targetNameMode
+    )
 }

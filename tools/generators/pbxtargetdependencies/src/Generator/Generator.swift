@@ -30,7 +30,8 @@ struct Generator {
                 testHosts: testHosts,
                 watchKitExtensions: watchKitExtensions
             ),
-            logger: logger
+            logger: logger,
+            targetNameMode: arguments.targetNameMode
         )
 
         let writeTargetsTask = Task {

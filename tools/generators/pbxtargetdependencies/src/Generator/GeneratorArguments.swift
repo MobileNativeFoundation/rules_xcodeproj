@@ -43,6 +43,9 @@ Minimum Xcode version that the generated project supports.
 """)
         var minimumXcodeVersion: SemanticVersion
 
+        @Argument(help: "How Xcode targets names are represented.")
+        var targetNameMode: TargetNameMode
+
         @Option(
             parsing: .upToNextOption,
             help: "Pairs of <target> <test-host> target IDs."

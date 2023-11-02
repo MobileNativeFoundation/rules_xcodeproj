@@ -157,6 +157,8 @@ _SCHEMES = [
                 "/tmp/pbxproj_partials/consolidation_maps_inputs_file",
                 # minimumXcodeVersion
                 "14.0",
+                # targetNameMode
+                "auto",
                 # targetAndTestHosts
                 "--target-and-test-hosts",
                 "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
