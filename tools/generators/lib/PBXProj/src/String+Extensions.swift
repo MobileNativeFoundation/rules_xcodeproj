@@ -66,6 +66,10 @@ private let invalidCharacters: CharacterSet = {
 private let specialCheckCharacters = CharacterSet(charactersIn: "_/")
 
 extension StringProtocol {
+    var newlinesToNulls: String {
+        replacingOccurrences(of: "\n", with: "\0")
+    }
+
     public var nullsToNewlines: String {
         replacingOccurrences(of: "\0", with: "\n")
     }
