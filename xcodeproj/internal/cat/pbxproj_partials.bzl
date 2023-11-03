@@ -3,7 +3,6 @@
 load("//xcodeproj/internal:collections.bzl", "uniq")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
-    "EMPTY_LIST",
     "EMPTY_STRING",
     "FALSE_ARG",
     "TRUE_ARG",
@@ -18,22 +17,6 @@ load("//xcodeproj/internal:platforms.bzl", "PLATFORM_NAME")
 
 def _apple_platform_to_platform_name(platform):
     return PLATFORM_NAME[platform]
-
-def _dynamic_framework_path(file_and_is_framework):
-    file, is_framework = file_and_is_framework
-    if is_framework:
-        path = file.path
-    else:
-        path = file.dirname
-    if path.startswith("bazel-out/"):
-        return "$(BAZEL_OUT){}".format(path[9:])
-    if path.startswith("external/"):
-        return "$(BAZEL_EXTERNAL){}".format(path[8:])
-    if path.startswith("../"):
-        return "$(BAZEL_EXTERNAL){}".format(path[2:])
-    if path.startswith("/"):
-        return path
-    return "$(SRCROOT)/{}".format(path)
 
 def _depset_len(depset):
     return str(len(depset.to_list()))
@@ -92,7 +75,6 @@ def _normalize_path(path):
 # enum of flags, mainly to ensure the strings are frozen and reused
 _FLAGS = struct(
     archs = "--archs",
-    args_separator = "---",
     c_params = "--c-params",
     colorize = "--colorize",
     consolidation_maps = "--consolidation-maps",
@@ -155,212 +137,6 @@ def _write_swift_debug_settings(
     )
 
     return output
-
-def _write_target_build_settings(
-        *,
-        actions,
-        apple_generate_dsym,
-        certificate_name = None,
-        colorize,
-        conly_args,
-        cxx_args,
-        device_family = EMPTY_STRING,
-        entitlements = None,
-        extension_safe = False,
-        generate_build_settings,
-        include_self_swift_debug_settings = True,
-        infoplist = None,
-        is_top_level_target = False,
-        name,
-        previews_dynamic_frameworks = EMPTY_LIST,
-        previews_include_path = EMPTY_STRING,
-        provisioning_profile_is_xcode_managed = False,
-        provisioning_profile_name = None,
-        skip_codesigning = False,
-        swift_args,
-        swift_debug_settings_to_merge,
-        team_id = None,
-        tool):
-    """Creates the `OTHER_SWIFT_FLAGS` build setting string file for a target.
-
-    Args:
-        actions: `ctx.actions`.
-        apple_generate_dsym: `cpp_fragment.apple_generate_dsym`.
-        colorize: A `bool` indicating whether to colorize the output.
-        conly_args: A `list` of `Args` for the C compile action for this target.
-        cxx_args: A `list` of `Args` for the C++ compile action for this target.
-        device_family: A value as returned by `get_targeted_device_family`.
-        entitlements: An optional entitlements `File`.
-        extension_safe: If `True, `APPLICATION_EXTENSION_API_ONLY` will be set.
-        infoplist: An optional `File` containing the `Info.plist` for the
-            target.
-        name: The name of the target.
-        previews_dynamic_frameworks: A `list` of `(File, bool)` `tuple`s. If
-            the `bool` is `True`, the file points to a dynamic framework. If
-            `False`, the file points to an exceutable in a dynamic framework.
-        skip_codesigning: If `True`, `CODE_SIGNING_ALLOWED = NO` will be set.
-        swift_args: A `list` of `Args` for the `SwiftCompile` action for this
-            target.
-        swift_debug_settings_to_merge: A `depset` of `Files` containing
-            Swift debug settings from dependencies.
-        swiftmodule: `target_outputs.direct_outputs.swift.,module.swiftmodule`.
-        tool: The executable that will generate the output files.
-
-    Returns:
-        A `tuple` with three elements:
-
-        *   A `File` containing TBD.
-        *   A `File` containing TBD.
-        *   A `list` of `File`s containing C or C++ compiler arguments. These
-            files should be added to compile outputs groups to ensure that Xcode
-            has them available for the `Create Compile Dependencies` build
-            phase.
-    """
-    generate_swift_debug_settings = swift_args or is_top_level_target
-
-    if not (generate_build_settings or generate_swift_debug_settings):
-        return None, None, []
-
-    params = []
-
-    args = actions.args()
-
-    # colorize
-    args.add(TRUE_ARG if colorize else FALSE_ARG)
-
-    if generate_build_settings:
-        build_settings_output = actions.declare_file(
-            "{}.rules_xcodeproj.build_settings".format(name),
-        )
-
-        # buildSettingsOutputPath
-        args.add(build_settings_output)
-    else:
-        build_settings_output = None
-
-        # buildSettingsOutputPath
-        args.add("")
-
-    if swift_args or is_top_level_target:
-        debug_settings_output = actions.declare_file(
-            "{}.rules_xcodeproj.debug_settings".format(name),
-        )
-
-        # swiftDebugSettingsOutputPath
-        args.add(debug_settings_output)
-
-        # includeSelfSwiftDebugSettings
-        args.add(TRUE_ARG if include_self_swift_debug_settings else FALSE_ARG)
-
-        # transitiveSwiftDebugSettingPaths
-        args.add_all([swift_debug_settings_to_merge], map_each = _depset_len)
-        args.add_all(swift_debug_settings_to_merge)
-
-        inputs = swift_debug_settings_to_merge
-    else:
-        debug_settings_output = None
-
-        # swiftDebugSettingsOutputPath
-        args.add("")
-
-        inputs = []
-
-    # deviceFamily
-    args.add(device_family)
-
-    # extensionSafe
-    args.add(TRUE_ARG if extension_safe else FALSE_ARG)
-
-    # generatesDsyms
-    args.add(TRUE_ARG if apple_generate_dsym else FALSE_ARG)
-
-    # infoPlist
-    args.add(infoplist or EMPTY_STRING)
-
-    # entitlements
-    args.add(entitlements or EMPTY_STRING)
-
-    # skipCodesigning
-    args.add(TRUE_ARG if skip_codesigning else FALSE_ARG)
-
-    # certificateName
-    args.add(certificate_name or EMPTY_STRING)
-
-    # provisioningProfileName
-    args.add(provisioning_profile_name or EMPTY_STRING)
-
-    # teamID
-    args.add(team_id or EMPTY_STRING)
-
-    # provisioningProfileIsXcodeManaged
-    args.add(TRUE_ARG if provisioning_profile_is_xcode_managed else FALSE_ARG)
-
-    # previewsFrameworkPaths
-    args.add_joined(
-        previews_dynamic_frameworks,
-        format_each = '"%s"',
-        map_each = _dynamic_framework_path,
-        omit_if_empty = False,
-        join_with = " ",
-    )
-
-    # previewsIncludePath
-    args.add(previews_include_path)
-
-    c_output_args = actions.args()
-
-    # C argsSeparator
-    c_output_args.add(_FLAGS.args_separator)
-
-    if generate_build_settings and conly_args:
-        c_params = actions.declare_file(
-            "{}.c.compile.params".format(name),
-        )
-        params.append(c_params)
-
-        # cParams
-        c_output_args.add(c_params)
-
-    cxx_output_args = actions.args()
-
-    # Cxx argsSeparator
-    cxx_output_args.add(_FLAGS.args_separator)
-
-    if generate_build_settings and cxx_args:
-        cxx_params = actions.declare_file(
-            "{}.cxx.compile.params".format(name),
-        )
-        params.append(cxx_params)
-
-        # cxxParams
-        cxx_output_args.add(cxx_params)
-
-    outputs = params
-    if build_settings_output:
-        outputs.append(build_settings_output)
-    if debug_settings_output:
-        outputs.append(debug_settings_output)
-
-    actions.run(
-        arguments = (
-            [args] + swift_args + [c_output_args] + conly_args +
-            [cxx_output_args] + cxx_args
-        ),
-        executable = tool,
-        inputs = inputs,
-        outputs = outputs,
-        progress_message = "Generating %{output}",
-        mnemonic = "WriteTargetBuildSettings",
-        execution_requirements = {
-            # This action is very fast, and there are potentially thousands of
-            # this action for a project, which results in caching overhead
-            # slowing down clean builds. So, we disable remote cache/execution.
-            # This also prevents DDoSing the remote cache.
-            "no-remote": "1",
-        },
-    )
-
-    return build_settings_output, debug_settings_output, params
 
 def _write_targets(
         *,
@@ -868,11 +644,11 @@ def _write_xcfilelists(*, actions, files, file_paths, generator_name):
 
 pbxproj_partials = struct(
     write_files_and_groups = _pbxproj_partials.write_files_and_groups,
-    write_target_build_settings = _write_target_build_settings,
-    write_project_pbxproj = _write_project_pbxproj,
     write_pbxproj_prefix = _pbxproj_partials.write_pbxproj_prefix,
     write_pbxtargetdependencies = _pbxproj_partials.write_pbxtargetdependencies,
+    write_project_pbxproj = _write_project_pbxproj,
     write_swift_debug_settings = _write_swift_debug_settings,
+    write_target_build_settings = _pbxproj_partials.write_target_build_settings,
     write_targets = _write_targets,
     write_xcfilelists = _write_xcfilelists,
 )

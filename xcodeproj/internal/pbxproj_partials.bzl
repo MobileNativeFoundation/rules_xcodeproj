@@ -1,6 +1,12 @@
 """Actions for creating `PBXProj` partials."""
 
-load(":memory_efficiency.bzl", "EMPTY_STRING")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_LIST",
+    "EMPTY_STRING",
+    "FALSE_ARG",
+    "TRUE_ARG",
+)
 load(":platforms.bzl", "PLATFORM_NAME")
 
 # Utility
@@ -11,11 +17,28 @@ def _apple_platform_to_platform_name(platform):
 def _depset_len(depset):
     return str(len(depset.to_list()))
 
+def _dynamic_framework_path(file_and_is_framework):
+    file, is_framework = file_and_is_framework
+    if is_framework:
+        path = file.path
+    else:
+        path = file.dirname
+    if path.startswith("bazel-out/"):
+        return "$(BAZEL_OUT){}".format(path[9:])
+    if path.startswith("external/"):
+        return "$(BAZEL_EXTERNAL){}".format(path[8:])
+    if path.startswith("../"):
+        return "$(BAZEL_EXTERNAL){}".format(path[2:])
+    if path.startswith("/"):
+        return path
+    return "$(SRCROOT)/{}".format(path)
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
-_flags = struct(
+_FLAGS = struct(
     archs = "--archs",
+    args_separator = "---",
     build_file_sub_identifiers_files = "--build-file-sub-identifiers-files",
     colorize = "--colorize",
     compile_stub_needed = "--compile-stub-needed",
@@ -181,21 +204,21 @@ def _write_files_and_groups(
     args.add(project_options["development_region"])
 
     # useBaseInternationalization
-    args.add(_flags.use_base_internationalization)
+    args.add(_FLAGS.use_base_internationalization)
 
     if compile_stub_needed:
         # compileStubNeeded
-        args.add(_flags.compile_stub_needed)
+        args.add(_FLAGS.compile_stub_needed)
 
     # buildFileSubIdentifiersFiles
     args.add_all(
-        _flags.build_file_sub_identifiers_files,
+        _FLAGS.build_file_sub_identifiers_files,
         buildfile_subidentifiers_files,
     )
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} files and groups partials".format(install_path)
 
@@ -315,17 +338,17 @@ def _write_pbxproj_prefix(
     # organizationName
     organization_name = project_options.get("organization_name")
     if organization_name:
-        args.add(_flags.organization_name, organization_name)
+        args.add(_FLAGS.organization_name, organization_name)
 
     # platforms
     args.add_all(
-        _flags.platforms,
+        _FLAGS.platforms,
         platforms,
         map_each = apple_platform_to_platform_name,
     )
 
     # xcodeConfigurations
-    args.add_all(_flags.xcode_configurations, xcode_configurations)
+    args.add_all(_FLAGS.xcode_configurations, xcode_configurations)
 
     # preBuildScript
     if pre_build_script:
@@ -339,7 +362,7 @@ def _write_pbxproj_prefix(
             pre_build_script,
         )
         inputs.append(pre_build_script_output)
-        args.add(_flags.pre_build_script, pre_build_script_output)
+        args.add(_FLAGS.pre_build_script, pre_build_script_output)
 
     # postBuildScript
     if post_build_script:
@@ -353,11 +376,11 @@ def _write_pbxproj_prefix(
             post_build_script,
         )
         inputs.append(post_build_script_output)
-        args.add(_flags.post_build_script, post_build_script_output)
+        args.add(_FLAGS.post_build_script, post_build_script_output)
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} PBXProj prefix partial".format(install_path)
 
@@ -543,17 +566,17 @@ def _write_pbxtargetdependencies(
     actions.write(consolidation_maps_inputs_file, consolidation_map_args)
 
     # targetAndTestHosts
-    args.add_all(_flags.target_and_test_hosts, target_and_test_hosts)
+    args.add_all(_FLAGS.target_and_test_hosts, target_and_test_hosts)
 
     # targetAndWatchKitExtensions
     args.add_all(
-        _flags.target_and_watch_kit_extensions,
+        _FLAGS.target_and_watch_kit_extensions,
         target_and_watch_kit_extensions,
     )
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} PBXTargetDependencies partials".format(
         install_path,
@@ -579,8 +602,228 @@ def _write_pbxtargetdependencies(
         consolidation_maps,
     )
 
+def _write_target_build_settings(
+        *,
+        actions,
+        apple_generate_dsym,
+        certificate_name = None,
+        colorize,
+        conly_args,
+        cxx_args,
+        device_family = EMPTY_STRING,
+        entitlements = None,
+        extension_safe = False,
+        generate_build_settings,
+        include_self_swift_debug_settings = True,
+        infoplist = None,
+        is_top_level_target = False,
+        name,
+        previews_dynamic_frameworks = EMPTY_LIST,
+        previews_include_path = EMPTY_STRING,
+        provisioning_profile_is_xcode_managed = False,
+        provisioning_profile_name = None,
+        skip_codesigning = False,
+        swift_args,
+        swift_debug_settings_to_merge,
+        team_id = None,
+        tool):
+    """Creates the `OTHER_SWIFT_FLAGS` build setting string file for a target.
+
+    Args:
+        actions: `ctx.actions`.
+        apple_generate_dsym: `cpp_fragment.apple_generate_dsym`.
+        certificate_name: The name of the certificate to use for code signing.
+        colorize: A `bool` indicating whether to colorize the output.
+        conly_args: A `list` of `Args` for the C compile action for this target.
+        cxx_args: A `list` of `Args` for the C++ compile action for this target.
+        device_family: A value as returned by `get_targeted_device_family`.
+        entitlements: An optional entitlements `File`.
+        extension_safe: If `True, `APPLICATION_EXTENSION_API_ONLY` will be set.
+        generate_build_settings: A `bool` indicating whether to generate build
+            settings. This is mostly tied to if the target is focused or not.
+        include_self_swift_debug_settings: A `bool` indicating whether to
+            include the target's own Swift debug settings. Should be false for
+            merged top-level targets.
+        infoplist: An optional `File` containing the `Info.plist` for the
+            target.
+        is_top_level_target: A `bool` indicating whether this is a top level
+            target.
+        name: The name of the target.
+        previews_dynamic_frameworks: A `list` of `(File, bool)` `tuple`s. If
+            the `bool` is `True`, the file points to a dynamic framework. If
+            `False`, the file points to an executable in a dynamic framework.
+        previews_include_path: The Swift include path to add when building
+            Xcode previews.
+        provisioning_profile_is_xcode_managed: A `bool` indicating whether the
+            provisioning profile is managed by Xcode.
+        provisioning_profile_name: The name of the provisioning profile to use
+            for code signing.
+        skip_codesigning: If `True`, `CODE_SIGNING_ALLOWED = NO` will be set.
+        swift_args: A `list` of `Args` for the `SwiftCompile` action for this
+            target.
+        swift_debug_settings_to_merge: A `depset` of `Files` containing
+            Swift debug settings from dependencies.
+        team_id: The team ID to use for code signing.
+        tool: The executable that will generate the output files.
+
+    Returns:
+        A `tuple` with three elements:
+
+        *   A `File` containing some build settings for the target, or `None`.
+        *   A `File` containing Swift debug settings for the target, or `None`.
+        *   A `list` of `File`s containing C or C++ compiler arguments. These
+            files should be added to compile outputs groups to ensure that Xcode
+            has them available for the `Create Compile Dependencies` build
+            phase.
+    """
+    generate_swift_debug_settings = swift_args or is_top_level_target
+
+    if not (generate_build_settings or generate_swift_debug_settings):
+        return None, None, []
+
+    outputs = []
+    params = []
+
+    args = actions.args()
+
+    # colorize
+    args.add(TRUE_ARG if colorize else FALSE_ARG)
+
+    if generate_build_settings:
+        build_settings_output = actions.declare_file(
+            "{}.rules_xcodeproj.build_settings".format(name),
+        )
+        outputs.append(build_settings_output)
+
+        # buildSettingsOutputPath
+        args.add(build_settings_output)
+    else:
+        build_settings_output = None
+
+        # buildSettingsOutputPath
+        args.add("")
+
+    if swift_args or is_top_level_target:
+        debug_settings_output = actions.declare_file(
+            "{}.rules_xcodeproj.debug_settings".format(name),
+        )
+        outputs.append(debug_settings_output)
+
+        # swiftDebugSettingsOutputPath
+        args.add(debug_settings_output)
+
+        # includeSelfSwiftDebugSettings
+        args.add(TRUE_ARG if include_self_swift_debug_settings else FALSE_ARG)
+
+        # transitiveSwiftDebugSettingPaths
+        args.add_all([swift_debug_settings_to_merge], map_each = _depset_len)
+        args.add_all(swift_debug_settings_to_merge)
+
+        inputs = swift_debug_settings_to_merge
+    else:
+        debug_settings_output = None
+
+        # swiftDebugSettingsOutputPath
+        args.add("")
+
+        inputs = []
+
+    # deviceFamily
+    args.add(device_family)
+
+    # extensionSafe
+    args.add(TRUE_ARG if extension_safe else FALSE_ARG)
+
+    # generatesDsyms
+    args.add(TRUE_ARG if apple_generate_dsym else FALSE_ARG)
+
+    # infoPlist
+    args.add(infoplist or EMPTY_STRING)
+
+    # entitlements
+    args.add(entitlements or EMPTY_STRING)
+
+    # skipCodesigning
+    args.add(TRUE_ARG if skip_codesigning else FALSE_ARG)
+
+    # certificateName
+    args.add(certificate_name or EMPTY_STRING)
+
+    # provisioningProfileName
+    args.add(provisioning_profile_name or EMPTY_STRING)
+
+    # teamID
+    args.add(team_id or EMPTY_STRING)
+
+    # provisioningProfileIsXcodeManaged
+    args.add(TRUE_ARG if provisioning_profile_is_xcode_managed else FALSE_ARG)
+
+    # previewsFrameworkPaths
+    args.add_joined(
+        previews_dynamic_frameworks,
+        format_each = '"%s"',
+        map_each = _dynamic_framework_path,
+        omit_if_empty = False,
+        join_with = " ",
+    )
+
+    # previewsIncludePath
+    args.add(previews_include_path)
+
+    c_output_args = actions.args()
+
+    # C argsSeparator
+    c_output_args.add(_FLAGS.args_separator)
+
+    if generate_build_settings and conly_args:
+        c_params = actions.declare_file(
+            "{}.c.compile.params".format(name),
+        )
+        params.append(c_params)
+        outputs.append(c_params)
+
+        # cParams
+        c_output_args.add(c_params)
+
+    cxx_output_args = actions.args()
+
+    # Cxx argsSeparator
+    cxx_output_args.add(_FLAGS.args_separator)
+
+    if generate_build_settings and cxx_args:
+        cxx_params = actions.declare_file(
+            "{}.cxx.compile.params".format(name),
+        )
+        params.append(cxx_params)
+        outputs.append(cxx_params)
+
+        # cxxParams
+        cxx_output_args.add(cxx_params)
+
+    actions.run(
+        arguments = (
+            [args] + swift_args + [c_output_args] + conly_args +
+            [cxx_output_args] + cxx_args
+        ),
+        executable = tool,
+        inputs = inputs,
+        outputs = outputs,
+        progress_message = "Generating %{output}",
+        mnemonic = "WriteTargetBuildSettings",
+        execution_requirements = {
+            # This action is very fast, and there are potentially thousands of
+            # this action for a project, which results in caching overhead
+            # slowing down clean builds. So, we disable remote cache/execution.
+            # This also prevents DDoSing the remote cache.
+            "no-remote": "1",
+        },
+    )
+
+    return build_settings_output, debug_settings_output, params
+
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_pbxproj_prefix = _write_pbxproj_prefix,
     write_pbxtargetdependencies = _write_pbxtargetdependencies,
+    write_target_build_settings = _write_target_build_settings
 )
