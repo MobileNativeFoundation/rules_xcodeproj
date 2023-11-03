@@ -112,29 +112,29 @@ rules_ios_apple_framework(
             "name": "VendoredFramework",
             "slices": [
                 {
-                    "identifier": "ios-arm64",
-                    "platform": "ios",
-                    "platform_variant": "",
-                    "supported_archs": ["arm64"],
-                    "path": "Vendored/VendoredFramework.xcframework/ios-arm64/VendoredFramework.framework",
                     "build_type": {
                         "linkage": "dynamic",
                         "packaging": "framework",
                     },
+                    "identifier": "ios-arm64",
+                    "path": "Vendored/VendoredFramework.xcframework/ios-arm64/VendoredFramework.framework",
+                    "platform": "ios",
+                    "platform_variant": "",
+                    "supported_archs": ["arm64"],
                 },
                 {
+                    "build_type": {
+                        "linkage": "dynamic",
+                        "packaging": "framework",
+                    },
                     "identifier": "ios-arm64_x86_64-simulator",
+                    "path": "Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator/VendoredFramework.framework",
                     "platform": "ios",
                     "platform_variant": "simulator",
                     "supported_archs": [
                         "arm64",
                         "x86_64",
                     ],
-                    "path": "Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator/VendoredFramework.framework",
-                    "build_type": {
-                        "linkage": "dynamic",
-                        "packaging": "framework",
-                    },
                 },
             ],
         },
