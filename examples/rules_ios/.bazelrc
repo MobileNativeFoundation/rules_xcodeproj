@@ -7,6 +7,7 @@ build --noexperimental_strict_conflict_checks
 # rules_ios
 build --features apple.virtualize_frameworks
 build --features apple.arm64_simulator_use_device_deps
+build --apple_platform_type=ios
 
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc
