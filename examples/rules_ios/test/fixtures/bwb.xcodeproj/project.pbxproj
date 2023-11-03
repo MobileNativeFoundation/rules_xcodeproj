@@ -369,9 +369,11 @@
 		2778F606CF16F87E7D917427 /* Utils_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = Utils_public_hmap.hmap; sourceTree = "<group>"; };
 		27CFDFB6A55AC3DAB0AF807F /* MixedAnswer.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.extended.modulemap; sourceTree = "<group>"; };
 		280396FE617035AF0A5D625E /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
+		2A15E929759968C3C7CCFE4A /* VendoredFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VendoredFramework.framework; sourceTree = "<group>"; };
 		2B40423341C5FE090E518F48 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		2B84C3492AA1F7731BE2634E /* ObjCUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUnitTests.m; sourceTree = "<group>"; };
 		2C2D23D1BC26DB010C914CF8 /* iOSApp-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSApp-Swift.h"; sourceTree = "<group>"; };
+		2CB76352E830E46888B56904 /* VendoredFramework_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = VendoredFramework_vfs.yaml; sourceTree = "<group>"; };
 		2E7DD0CF5A8435F4F047851F /* iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		2ED65F017CC11B294B685E69 /* WidgetExtension.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetExtension.library-umbrella.h"; sourceTree = "<group>"; };
 		2FA806B486149E6FC49C62E9 /* WidgetExtension.library_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = WidgetExtension.library_vfs.yaml; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 		462AF4564A57BCE54F8968B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		469806B308CFCC56E299D163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4881EEC5A32BE56448E19924 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
+		49862F4EA0053957DE17AE14 /* VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator_vfs.yaml"; sourceTree = "<group>"; };
 		4A41ED3E440B4A9FBDDE9D84 /* iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		4B90A42BBB97F226612E57DF /* iOSApp.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		4C78B5008B0D8710A680FB0E /* iOSAppUITestSuite_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_swift_vfs.yaml; sourceTree = "<group>"; };
@@ -536,6 +539,7 @@
 		B09248B045A2C5E652598848 /* MixedAnswer_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswer_public_hmap.hmap; sourceTree = "<group>"; };
 		B0AB5D2E604F2AC1E1DD0C55 /* iOSAppObjCUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
 		B302772796100738941F29FB /* iOSAppObjCUnitTests_macro_with_bundle_name_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_with_bundle_name_vfs.yaml; sourceTree = "<group>"; };
+		B46D0BEF6DE511C36F339E1E /* VendoredFramework_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = VendoredFramework_swift_vfs.yaml; sourceTree = "<group>"; };
 		B4A618DD7C0368EB1019F141 /* Lib-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lib-Swift.h"; sourceTree = "<group>"; };
 		B567E39BDD671DCCA2B55806 /* iOSAppMixedUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
 		B675338F06046E743DB54DB7 /* iOSAppSwiftUnitTestSuite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppSwiftUnitTestSuite-Swift.h"; sourceTree = "<group>"; };
@@ -678,6 +682,14 @@
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
+		1792E8F9EB01CAA2F6FC8CB4 /* ios-arm64_x86_64-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				2A15E929759968C3C7CCFE4A /* VendoredFramework.framework */,
+			);
+			path = "ios-arm64_x86_64-simulator";
+			sourceTree = "<group>";
+		};
 		198B84C38948586E3A26C1E2 /* iOSAppSwiftUnitTests.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +822,7 @@
 				7B1A3467292ED8A6A3E3F855 /* CONFIGURATION-STABLE-2 */,
 				9A109E4879FDE8386DEBBE16 /* CONFIGURATION-STABLE-5 */,
 				5F2EEB62891AEAB58A031194 /* CONFIGURATION-STABLE-6 */,
+				55BEA77AF2E74EA793DF2494 /* CONFIGURATION-STABLE-7 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -954,6 +967,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		55BEA77AF2E74EA793DF2494 /* CONFIGURATION-STABLE-7 */ = {
+			isa = PBXGroup;
+			children = (
+				6DE3525406E120F893CE52E8 /* bin */,
+			);
+			path = "CONFIGURATION-STABLE-7";
+			sourceTree = "<group>";
+		};
 		5778E226D53A3A59A0048B28 /* CoreUtilsObjC-CoreUtilsObjCResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1052,14 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		680B9771F21E6593ADB11455 /* Vendored */ = {
+			isa = PBXGroup;
+			children = (
+				D8002840EB75F1EF73EF5C10 /* VendoredFramework.xcframework */,
+			);
+			path = Vendored;
+			sourceTree = "<group>";
+		};
 		683F8951083DED3A3E38F37A /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,6 +1092,14 @@
 				AACC6F33D430269F2376686E /* test_host_app */,
 			);
 			path = rules;
+			sourceTree = "<group>";
+		};
+		6DE3525406E120F893CE52E8 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				C86B0AF068C553B1CA6CE637 /* iOSApp */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		6FD24D47DFB655B602B3E6E7 /* rules_xcodeproj~override~internal~rules_xcodeproj_generated */ = {
@@ -1450,6 +1487,14 @@
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
+		C86B0AF068C553B1CA6CE637 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				EBFFEBCD264E93D8E556B63C /* Source */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
 		CBFEBD05B234D64CA5AD88E2 /* CONFIGURATION-STABLE-0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1518,6 +1563,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		D8002840EB75F1EF73EF5C10 /* VendoredFramework.xcframework */ = {
+			isa = PBXGroup;
+			children = (
+				1792E8F9EB01CAA2F6FC8CB4 /* ios-arm64_x86_64-simulator */,
+			);
+			path = VendoredFramework.xcframework;
+			sourceTree = "<group>";
+		};
 		DB047C3BBB8EB2921A7A477D /* Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -1535,6 +1588,7 @@
 				26A1530C21D6DCC83E51FC2C /* CoreUtilsMixed */,
 				3A78D46DEB8ECA9D197BEF7F /* CoreUtilsObjC */,
 				57E23D2B5CB8913F710374CE /* Utils */,
+				680B9771F21E6593ADB11455 /* Vendored */,
 				788FC887077E2ECEA09C1D7F /* Assets.xcassets */,
 				CD07B657B5ED92CC3963B7FD /* BUILD */,
 				817C3EE93221FD1ABC7E9E9A /* data.json */,
@@ -1656,6 +1710,16 @@
 				4B90A42BBB97F226612E57DF /* iOSApp.library_swift.rules_xcodeproj.swift.compile.params */,
 				C6359A44EC8027F899100610 /* iOSApp.library_vfs.yaml */,
 				0F7FB9A69465D2970BB0233F /* iOSApp.library.extended.modulemap */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		EBFFEBCD264E93D8E556B63C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B46D0BEF6DE511C36F339E1E /* VendoredFramework_swift_vfs.yaml */,
+				2CB76352E830E46888B56904 /* VendoredFramework_vfs.yaml */,
+				49862F4EA0053957DE17AE14 /* VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator_vfs.yaml */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -4391,7 +4455,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppMixedUnitTests.16.link.params";
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -F$(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator.swift.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PREVIEWS_SWIFT_INCLUDE__ = "";
 				PREVIEWS_SWIFT_INCLUDE__NO = "";
 				PREVIEWS_SWIFT_INCLUDE__YES = "-I bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests";

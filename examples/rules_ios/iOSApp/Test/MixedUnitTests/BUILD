@@ -16,6 +16,7 @@ rules_ios_ios_unit_test(
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [
+        "//iOSApp/Source:VendoredFramework",
         "//iOSApp/Source:iOSApp.library",
         "//iOSApp/Source/Utils",
     ],
