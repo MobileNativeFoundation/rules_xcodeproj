@@ -3719,6 +3719,7 @@
 		F18A94782A22379234661DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1C8F9C47796C2C3992BAA34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1EAA5F54DC2A74E1F151E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F206319618ABB9B381621346 /* libfoo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfoo.dylib; sourceTree = "<group>"; };
 		F218988F8D4C323B707016A7 /* ghash-ssse3-x86.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghash-ssse3-x86.linux.x86.S"; sourceTree = "<group>"; };
 		F23227D0AAA38189EE7F76EB /* tvOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		F234A6330DCEE8C336377685 /* p256-nistz.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "p256-nistz.c"; sourceTree = "<group>"; };
@@ -3803,6 +3804,7 @@
 		FC8F988872385150B3FBB8EA /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		FCF3317CCBF0A6449B6BC2E6 /* tasn_dec.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tasn_dec.c; sourceTree = "<group>"; };
 		FD213F185246EB5BC31B2E3A /* ServerCallContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCallContext.swift; sourceTree = "<group>"; };
+		FDB9E2792616FFD229AFFFE1 /* libfoo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfoo.dylib; sourceTree = "<group>"; };
 		FDBCAC0313D6A14E303A66E6 /* tls_record.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tls_record.cc; sourceTree = "<group>"; };
 		FDBD856646178696688A925A /* AsyncAwaitSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAwaitSupport.swift; sourceTree = "<group>"; };
 		FDC2DE628B86627A98354DF7 /* ghash-ssse3-x86_64.mac.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghash-ssse3-x86_64.mac.x86_64.S"; sourceTree = "<group>"; };
@@ -5826,6 +5828,7 @@
 			isa = PBXGroup;
 			children = (
 				EA6EC27D4A84B3EFE9B52786 /* _virtual_includes */,
+				F206319618ABB9B381621346 /* libfoo.dylib */,
 			);
 			path = lib3;
 			sourceTree = "<group>";
@@ -7540,6 +7543,7 @@
 			isa = PBXGroup;
 			children = (
 				65ECCF34F7102AA5188E7E59 /* _virtual_includes */,
+				FDB9E2792616FFD229AFFFE1 /* libfoo.dylib */,
 			);
 			path = lib3;
 			sourceTree = "<group>";
