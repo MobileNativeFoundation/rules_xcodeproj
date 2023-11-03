@@ -49,7 +49,6 @@ def _make_xcode_target(
         transitive_dependencies,
         outputs,
         lldb_context = None,
-        should_create_xcode_target = True,
         xcode_required_targets = EMPTY_DEPSET):
     """Creates the internal data structure of the `xcode_targets` module.
 
@@ -93,9 +92,6 @@ def _make_xcode_target(
             that this target depends on.
         outputs: A value returned from `output_files.collect`.
         lldb_context: A value returned from `lldb_contexts.collect`.
-        should_create_xcode_target: `True` if this `xcode_target` should be
-            included in the generated Xcode project. This can be `False` for
-            targets like header-only libraries.
         xcode_required_targets: A `depset` of values returned from
             `xcode_targets.make`, which represent targets that are required in
             BwX mode.
@@ -152,7 +148,6 @@ def _make_xcode_target(
         outputs = (
             _to_xcode_target_outputs(outputs) if not compile_targets else outputs
         ),
-        should_create_xcode_target = should_create_xcode_target,
         swift_params = swift_params,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,

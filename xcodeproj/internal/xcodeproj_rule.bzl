@@ -225,6 +225,13 @@ def _process_extra_files(
     ).to_list()
 
     if is_fixture:
+        # A reference type is used for `extra_idx in order to allow the function
+        # below to capture it
+        if configurations_map:
+            extra_idx = [int(configurations_map.values()[-1].split("-")[-1]) + 1]
+        else:
+            extra_idx = [0]
+
         def _normalize_path(path):
             # bazel-out/darwin_x86_64-dbg-ST-deadbeaf/bin -> bazel-out/darwin_x86_64-dbg-STABLE-1/bin
             if not path.startswith("bazel-out/"):
@@ -234,10 +241,16 @@ def _process_extra_files(
             if not suffix:
                 return path
 
+            configuration_replacement = configurations_map.get(configuration)
+            if not configuration_replacement:
+                configuration_replacement = (
+                    "CONFIGURATION-STABLE-{}".format(extra_idx[0])
+                )
+                extra_idx[0] = extra_idx[0] + 1
+                configurations_map[configuration] = configuration_replacement
+
             return (
-                "bazel-out/" +
-                configurations_map.get(configuration, configuration) + "/" +
-                suffix
+                "bazel-out/" + configuration_replacement + "/" + suffix
             )
 
         extra_files = [
@@ -453,9 +466,6 @@ targets.
         if (label_str in unfocused_labels or
             (has_focused_labels and label_str not in focused_labels)):
             unfocused_targets[xcode_target.id] = xcode_target
-            continue
-
-        if not xcode_target.should_create_xcode_target:
             continue
 
         if xcode_target.product.is_resource_bundle and exclude_resource_bundles:

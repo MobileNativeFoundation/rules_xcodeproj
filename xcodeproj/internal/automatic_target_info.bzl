@@ -43,6 +43,12 @@ def _get_target_type(*, target):
 
     return None
 
+def _has_values_in(attrs, *, attr):
+    for name in attrs:
+        if getattr(attr, name, None):
+            return True
+    return False
+
 def _is_test_target(target):
     """Returns whether the given target is for test purposes or not."""
     if AppleBundleInfo not in target:
@@ -176,11 +182,25 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     if rule_kind == "cc_library":
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         xcode_targets = _CC_LIBRARY_XCODE_TARGETS
+
+        is_supported = (
+            bool(target.files) and
+            _has_values_in(_SRCS_ATTRS, attr = ctx.rule.attr)
+        )
+        collect_uncategorized_files = not is_supported
     elif rule_kind == "objc_library":
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         non_arc_srcs = _NON_ARC_SRCS_ATTRS
         pch = "pch"
         xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
+
+        is_supported = (
+            bool(target.files) and (
+                _has_values_in(_SRCS_ATTRS, attr = ctx.rule.attr) or
+                _has_values_in(_NON_ARC_SRCS_ATTRS, attr = ctx.rule.attr)
+            )
+        )
+        collect_uncategorized_files = not is_supported
     elif rule_kind == "swift_library":
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_grpc_library":

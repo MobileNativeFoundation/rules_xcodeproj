@@ -4402,6 +4402,7 @@
 		9B1276F29D5DFEA28051AEF6 /* JSONDecodingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingOptions.swift; sourceTree = "<group>"; };
 		9B22BB6B408BA5B8595323AE /* tls_record.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tls_record.cc; sourceTree = "<group>"; };
 		9B34E4231BAB348B1061089D /* NIOHTTP1.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = NIOHTTP1.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		9B5BE8582007B07E0686BEE6 /* libfoo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfoo.dylib; sourceTree = "<group>"; };
 		9B92524B8859DB87B22B4790 /* ecdh_extra.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ecdh_extra.c; sourceTree = "<group>"; };
 		9B957AB91C015FC2DFF65017 /* tvOSApp.168.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSApp.168.link.params; sourceTree = "<group>"; };
 		9BAE7061DC999B5477D957FB /* libcc_lib_defines.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libcc_lib_defines.a; path = "bazel-out/CONFIGURATION-STABLE-2/bin/cc/lib/libcc_lib_defines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4733,6 +4734,7 @@
 		C837B135DD8D07B0E4644097 /* iOSAppSwiftUnitTests.269.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTests.269.link.params; sourceTree = "<group>"; };
 		C84481073CF87CA507AD83A0 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		C85C8FD12D6898CA35C3A8F6 /* rsa_pss.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = rsa_pss.c; sourceTree = "<group>"; };
+		C85F3C5F66CF67DB207B353B /* libfoo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfoo.dylib; sourceTree = "<group>"; };
 		C8905CBDF21984CB2C6ACBE5 /* v3_alt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = v3_alt.c; sourceTree = "<group>"; };
 		C8CAB8C9EF1805D2FFDC5A81 /* voprf.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = voprf.c; sourceTree = "<group>"; };
 		C92465D6BCED2AACCDA2B179 /* UIFramework.tvOS.167.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UIFramework.tvOS.167.link.params; sourceTree = "<group>"; };
@@ -8807,6 +8809,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBA17061974BE3B5C3176EB /* _virtual_includes */,
+				C85F3C5F66CF67DB207B353B /* libfoo.dylib */,
 			);
 			path = lib3;
 			sourceTree = "<group>";
@@ -13398,6 +13401,7 @@
 			isa = PBXGroup;
 			children = (
 				3C968DAAB00AAD8C99246343 /* _virtual_includes */,
+				9B5BE8582007B07E0686BEE6 /* libfoo.dylib */,
 			);
 			path = lib3;
 			sourceTree = "<group>";

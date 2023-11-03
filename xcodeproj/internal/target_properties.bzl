@@ -51,11 +51,7 @@ def process_dependencies(
     for info in transitive_infos:
         all_transitive_dependencies.append(info.transitive_dependencies)
         xcode_target = info.xcode_target
-        if xcode_target and xcode_target.should_create_xcode_target:
-            # TODO: Refactor `should_create_xcode_target` and
-            # `is_supported` handling. The only reason we don't use
-            # `is_supported` for header-only targets is because we
-            # want to be able to unfocus their files.
+        if xcode_target:
             if (
                 include_all_deps or
                 # Test hosts need to be copied
