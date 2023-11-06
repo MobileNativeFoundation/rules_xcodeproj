@@ -18,10 +18,7 @@ _DOC_COMPONENTS = [
         name = component,
         out = "{}.md".format(component),
         input = "//xcodeproj/internal/docs:{}.bzl".format(component),
-        tags = [
-            "manual",
-            "no-sandbox",  # https://github.com/bazelbuild/stardoc/issues/112
-        ],
+        tags = ["manual"],
         deps = ["//xcodeproj/internal"],
     )
     for component in _DOC_COMPONENTS
