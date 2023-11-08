@@ -112,9 +112,9 @@ def xcodeproj_rules_dependencies(
         _maybe(
             http_archive,
             name = "bazel_features",
-            sha256 = "9fcb3d7cbe908772462aaa52f02b857a225910d30daa3c252f670e3af6d8036d",
-            strip_prefix = "bazel_features-1.0.0",
-            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.0.0/bazel_features-v1.0.0.tar.gz",
+            sha256 = "62c26e427e5cbc751024446927622e398a9dcdf32c64325238815709d11c11a8",
+            strip_prefix = "bazel_features-1.1.1",
+            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.1.1/bazel_features-v1.1.1.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
