@@ -107,7 +107,7 @@ def xcodeproj(
             them here.
 
             If `PATH` is not specified, it will default to `/bin:/usr/bin`, so
-            you don't have to specify it unless you want to user a different
+            you don't have to specify it unless you want to use a different
             value.
         bazel_path: Optional. The path the `bazel` binary or wrapper script.
 
