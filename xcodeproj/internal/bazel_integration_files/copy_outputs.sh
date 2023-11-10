@@ -71,6 +71,19 @@ if [[ "$ACTION" != indexbuild ]]; then
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
 
+      # If it is a macOS .framework Xcode expects the library to live in `Versions/{Version}/{Name}`:
+      # So we symlink the `{Name}.framework/{Name}` library to `{Name}.framework/{Name}/Versions/Current/{Name}`
+      if [[ "$BAZEL_OUTPUTS_PRODUCT_BASENAME" = *.framework ]]; then
+        readonly framework_name="${BAZEL_OUTPUTS_PRODUCT_BASENAME%.*}"
+        readonly framework_dir="$TARGET_BUILD_DIR/$framework_name.framework"
+        readonly framework_lib="$framework_dir/$framework_name"
+
+        # If Versions/Current/{Name} exists add a symlink to the lib
+        if [[ -d "$framework_dir/Versions/Current" ]]; then
+          ln -sfh "$framework_lib" "$framework_dir/Versions/Current/$framework_name"
+        fi
+      fi
+
       if [[ -n "${TEST_HOST:-}" ]]; then
         # We need to re-sign test frameworks that Xcode placed into the test
         # host un-signed

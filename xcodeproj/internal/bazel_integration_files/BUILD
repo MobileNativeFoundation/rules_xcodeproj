@@ -88,6 +88,7 @@ echo '/*.appex/PlugIns/*.xctest' >> "appex.exclude.rsynclist"
 
 echo '/*.framework/Modules/***' >> "framework.exclude.rsynclist"
 echo '/*.framework/SwiftUIPreviewsFrameworks/***' >> "framework.exclude.rsynclist"
+echo '/*.framework/Versions/***' >> "framework.exclude.rsynclist"
 """,
     tags = ["manual"],
 )
