@@ -176,6 +176,7 @@ extension Generator {
             .init(key: "SWIFT_OPTIMIZATION_LEVEL", value: #""-Onone""#),
             .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             .init(key: "SWIFT_VERSION", value: "5.0"),
+            .init(key: "TAPI_EXEC", value: "/usr/bin/true"),
             .init(
                 key: "TARGET_TEMP_DIR",
                 value: #"""

@@ -33,6 +33,7 @@ class BazelDependenciesBuildSettingsTests: XCTestCase {
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EXEC = swiftc;
+				TAPI_EXEC = "";
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/target_ids_file";
 				TARGET_NAME = BazelDependencies;
 			}

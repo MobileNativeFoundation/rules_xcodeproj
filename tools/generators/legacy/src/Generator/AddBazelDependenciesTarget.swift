@@ -62,6 +62,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             "LDPLUSPLUS": "",
             "LIBTOOL": "libtool",
             "SWIFT_EXEC": "swiftc",
+            "TAPI_EXEC": "",
         ]
 
         if buildMode.usesBazelModeBuildScripts {

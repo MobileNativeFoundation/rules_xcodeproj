@@ -44,6 +44,7 @@ extension Generator {
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EXEC = swiftc;
+				TAPI_EXEC = "";
 				TARGET_IDS_FILE = \#(
                     targetIdsFile
                         .executionRootBasedBuildSettingPath

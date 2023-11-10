@@ -14,6 +14,7 @@ export LD=
 export LDPLUSPLUS=
 export LIBTOOL=libtool
 export SWIFT_EXEC=swiftc
+export TAPI_EXEC=
 
 cd "$SRCROOT"
 

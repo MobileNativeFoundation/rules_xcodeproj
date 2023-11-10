@@ -22751,6 +22751,7 @@
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EXEC = swiftc;
+				TAPI_EXEC = "";
 				TARGET_IDS_FILE = "fixture-target-ids-file";
 				TARGET_NAME = BazelDependencies;
 			};
@@ -24583,6 +24584,7 @@
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EXEC = swiftc;
+				TAPI_EXEC = "";
 				TARGET_IDS_FILE = "fixture-target-ids-file";
 				TARGET_NAME = BazelDependencies;
 			};
