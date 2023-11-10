@@ -11,7 +11,10 @@ exports_files(["README.md"])
 
 exports_files(
     ["Info.plist"],
-    visibility = ["//Lib:__subpackages__"],
+    visibility = [
+        "//Lib:__subpackages__",
+        "//macOSApp:__subpackages__",
+    ],
 )
 
 ios_build_test(
@@ -41,6 +44,7 @@ swift_library(
         "//UI:__subpackages__",
         "//WidgetExtension:__subpackages__",
         "//iMessageApp:__subpackages__",
+        "//macOSApp:__subpackages__",
     ],
     deps = [
         "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",

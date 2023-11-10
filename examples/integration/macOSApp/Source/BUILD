@@ -1,4 +1,4 @@
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application", "macos_dynamic_framework")
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
@@ -22,6 +22,9 @@ macos_application(
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = "rules-xcodeproj.macOSApp",
     bundle_name = "macOSApp",
+    frameworks = [
+        ":macOSLib.framework",
+    ],
     infoplists = [":Info.plist"],
     minimum_os_version = "12.0",
     resources = [":ResourceGroup"],
@@ -31,6 +34,18 @@ macos_application(
         "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":macOSApp.library"],
+)
+
+macos_dynamic_framework(
+    name = "macOSLib.framework",
+    bundle_id = "rules-xcodeproj.macOSApp.LibFramework",
+    bundle_name = "Lib",
+    extension_safe = True,
+    infoplists = ["//Lib:Info.plist"],
+    minimum_os_version = "12.0",
+    version = "//iOSApp:Version",
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+    deps = ["//Lib"],
 )
 
 apple_resource_group(
@@ -53,6 +68,7 @@ swift_library(
     module_name = "macOSApp",
     tags = ["manual"],
     deps = [
+        "//Lib",
         "//macOSApp/third_party:ExampleFramework",
     ],
 )
