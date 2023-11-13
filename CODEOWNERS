@@ -13,7 +13,9 @@ tools/bazel @MobileNativeFoundation/rules_xcodeproj-maintainers-release
 # Admin
 
 *.bazelrc @MobileNativeFoundation/rules_xcodeproj-admins
+/.github/ @MobileNativeFoundation/rules_xcodeproj-admins
 /buildbuddy.yaml @MobileNativeFoundation/rules_xcodeproj-admins
+/CODEOWNERS @MobileNativeFoundation/rules_xcodeproj-admins
 /CONTRIBUTING.md @MobileNativeFoundation/rules_xcodeproj-admins
 /LICENSE @MobileNativeFoundation/rules_xcodeproj-admins
 /MAINTENANCE.md @MobileNativeFoundation/rules_xcodeproj-admins
