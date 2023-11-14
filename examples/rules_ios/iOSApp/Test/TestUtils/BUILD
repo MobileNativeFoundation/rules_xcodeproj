@@ -5,20 +5,14 @@ load(
 
 rules_ios_apple_framework(
     name = "Utils",
+    testonly = True,
     srcs = glob(
-        ["**/*.m"],
-        # Headers included here on purpose, to test `hdrs` collection logic
-        ["**/*.h"],
+        ["**/*.swift"],
     ),
-    module_name = "Source_Utils",
+    module_name = "Test_Utils",
     platforms = {
         "ios": "15.0",
     },
-    public_headers = glob(["**/*.h"]),
     tags = ["manual"],
     visibility = ["//iOSApp:__subpackages__"],
-    deps = [
-        "//iOSApp/Source/CoreUtilsObjC",
-        "//iOSApp/Source/UtilsSwift",
-    ],
 )

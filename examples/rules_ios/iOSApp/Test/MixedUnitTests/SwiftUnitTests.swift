@@ -1,9 +1,10 @@
-import Utils
+import Source_Utils
+import Test_Utils
 import XCTest
 
 @testable import iOSApp
 
-class SwiftUnitTests: XCTestCase {
+class SwiftUnitTests: UnitTestCase {
     func testExample() throws {
         XCTAssertEqual(Foo().greeting(), "Hello, world?")
     }

@@ -10,4 +10,6 @@
     return [Answers new].answer;
 }
 
+- (void)handleFileManager:(id<FileManagerProtocol>)fileManager {}
+
 @end
