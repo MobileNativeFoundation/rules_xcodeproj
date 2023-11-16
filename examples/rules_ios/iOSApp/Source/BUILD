@@ -93,6 +93,8 @@ rules_ios_apple_framework(
     name = "iOSApp.library",
     srcs = glob(["**/*.swift"]),
     module_name = "iOSApp",
+    link_dynamic = True, # enables Xcode Previews
+    bundle_id = "com.foo.iOSApp.library", # required if `link_dynamic` is `True`
     platforms = {
         "ios": "15.0",
     },
@@ -102,6 +104,7 @@ rules_ios_apple_framework(
         "//UI",
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
+        "//Pods/FooPod",
     ],
 )
 

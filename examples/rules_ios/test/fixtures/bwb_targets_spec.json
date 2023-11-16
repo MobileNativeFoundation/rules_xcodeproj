@@ -265,6 +265,77 @@
             "t": "com.apple.product-type.framework.static"
         }
     },
+    "@@//Pods/FooPod:FooPod_swift CONFIGURATION-STABLE-3",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod",
+        "2": {
+            "a": "x86_64",
+            "m": "10.0",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "FooPod",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "FooPod-Swift.h"
+        },
+        "c": "CONFIGURATION-STABLE-3",
+        "i": {
+            "s": [
+                "Pods/FooPod/Sources/foo.swift"
+            ]
+        },
+        "l": "@@//Pods/FooPod:FooPod_swift",
+        "n": "FooPod_swift",
+        "o": {
+            "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod-Swift.h",
+                "m": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod.swiftmodule"
+            }
+        },
+        "p": {
+            "m": "FooPod",
+            "n": "FooPod_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/libFooPod_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod",
+        "2": {
+            "a": "x86_64",
+            "m": "10.0",
+            "v": "iphonesimulator"
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FooPod.10.link.params",
+        "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/FooPod.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "FooPod.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Pods/FooPod/rules_xcodeproj/FooPod/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.foo.FooPod",
+            "PRODUCT_MODULE_NAME": "Pods_FooPod_FooPod"
+        },
+        "c": "CONFIGURATION-STABLE-5",
+        "l": "@@//Pods/FooPod:FooPod",
+        "n": "FooPod",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-3/bin/Pods/FooPod/FooPod.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ],
+            "e": "FooPod",
+            "m": "FooPod",
+            "n": "FooPod",
+            "p": "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/FooPod.framework",
+            "t": "com.apple.product-type.framework"
+        }
+    },
     "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params",
@@ -280,13 +351,35 @@
                 "n": "iOSApp.library_swift"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.library.11.link.params",
+        "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5"
+        ],
         "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_archive-root/iOSApp.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/rules_xcodeproj/iOSApp.library/Info.plist",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source",
+            "PREVIEW_FRAMEWORK_PATHS": [
+                "\"$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Pods/FooPod/FooPod.framework\""
+            ],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.foo.iOSApp.library",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
         "c": "CONFIGURATION-STABLE-1",
         "i": {
+            "f": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC-CoreUtilsObjCResources/CoreUtilsObjCResources.bundle"
+            ],
             "s": [
                 "iOSApp/Source/iOSApp.swift"
             ]
@@ -301,19 +394,20 @@
         },
         "p": {
             "a": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/libiOSApp.library_swift.a"
             ],
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.framework",
-            "t": "com.apple.product-type.framework.static"
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_archive-root/iOSApp.framework",
+            "t": "com.apple.product-type.framework"
         }
     },
-    "@@//WidgetExtension:WidgetExtension.library CONFIGURATION-STABLE-3",
+    "@@//WidgetExtension:WidgetExtension.library CONFIGURATION-STABLE-7",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params",
-        "1": "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension",
+        "1": "bazel-out/CONFIGURATION-STABLE-7/bin/WidgetExtension",
         "2": {
             "a": "x86_64",
             "m": "15.0",
@@ -330,7 +424,7 @@
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
-        "c": "CONFIGURATION-STABLE-3",
+        "c": "CONFIGURATION-STABLE-7",
         "i": {
             "s": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/Intents.Intent.output.swift",
@@ -364,7 +458,7 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.11.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.13.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.appex",
@@ -399,8 +493,16 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.12.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.14.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1"
         ],
         "b": {
@@ -419,7 +521,6 @@
         ],
         "i": {
             "f": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC-CoreUtilsObjCResources/CoreUtilsObjCResources.bundle",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp-UnprocessedResources/UnprocessedResources.bundle"
             ],
             "r": [
@@ -439,34 +540,34 @@
             "t": "com.apple.product-type.application"
         }
     },
-    "@@//Lib:LibDynamic CONFIGURATION-STABLE-5",
+    "@@//Lib:LibDynamic CONFIGURATION-STABLE-9",
     {
-        "1": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib",
+        "1": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib",
         "2": {
             "a": "x86_64",
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.15.link.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibDynamic_archive-root/Lib.framework",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibDynamic_archive-root/Lib.framework",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
-            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
-        "c": "CONFIGURATION-STABLE-5",
+        "c": "CONFIGURATION-STABLE-9",
         "l": "@@//Lib:LibDynamic",
         "n": "LibDynamic",
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/frameworks/Lib.framework"
+                "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/Lib.framework"
             ],
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibDynamic_archive-root/Lib.framework",
+            "p": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibDynamic_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -538,8 +639,16 @@
                 "n": "iOSAppMixedUnitTests_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppMixedUnitTests.16.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppMixedUnitTests.18.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -550,7 +659,7 @@
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~3.1.0/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/rules_xcodeproj/iOSAppMixedUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -F$(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator.swift.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -F$(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator.swift.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests",
@@ -606,8 +715,16 @@
                 "n": "iOSAppObjCUnitTests_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.17.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.19.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -660,8 +777,16 @@
                 "n": "iOSAppSwiftUnitTests_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.18.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.20.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -722,8 +847,16 @@
                 "n": "iOSAppObjCUnitTestSuite_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.19.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.21.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -776,8 +909,16 @@
                 "n": "iOSAppSwiftUnitTestSuite_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.20.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.22.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -839,7 +980,7 @@
                 "n": "iOSAppUITestSuite_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.21.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.23.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite.xctest",
@@ -895,8 +1036,16 @@
                 "n": "iOSAppObjCUnitTests_macro_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.22.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.24.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -948,8 +1097,16 @@
                 "n": "iOSAppObjCUnitTests_macro_with_bundle_name_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.25.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -1001,8 +1158,16 @@
                 "n": "iOSAppObjCUnitTestSuite_macro_objc"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.24.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-5/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.26.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-5",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -1055,7 +1220,7 @@
                 "n": "iOSAppUITests_macro_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests_macro.25.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests_macro.27.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle_archive-root/iOSAppUITests_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests_macro.xctest",
@@ -1112,7 +1277,7 @@
                 "n": "iOSAppUITestSuite_macro_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite_macro.26.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite_macro.28.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppUITestSuite_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite_macro.xctest",
@@ -1420,6 +1585,77 @@
             "t": "com.apple.product-type.framework.static"
         }
     },
+    "@@//Pods/FooPod:FooPod_swift CONFIGURATION-STABLE-4",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod",
+        "2": {
+            "a": "arm64",
+            "m": "10.0",
+            "v": "iphoneos"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "FooPod",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "FooPod-Swift.h"
+        },
+        "c": "CONFIGURATION-STABLE-4",
+        "i": {
+            "s": [
+                "Pods/FooPod/Sources/foo.swift"
+            ]
+        },
+        "l": "@@//Pods/FooPod:FooPod_swift",
+        "n": "FooPod_swift",
+        "o": {
+            "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod-Swift.h",
+                "m": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod.swiftmodule"
+            }
+        },
+        "p": {
+            "m": "FooPod",
+            "n": "FooPod_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/libFooPod_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-6",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod",
+        "2": {
+            "a": "arm64",
+            "m": "10.0",
+            "v": "iphoneos"
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FooPod.39.link.params",
+        "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod/FooPod.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "FooPod.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Pods/FooPod/rules_xcodeproj/FooPod/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.foo.FooPod",
+            "PRODUCT_MODULE_NAME": "Pods_FooPod_FooPod"
+        },
+        "c": "CONFIGURATION-STABLE-6",
+        "l": "@@//Pods/FooPod:FooPod",
+        "n": "FooPod",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-4/bin/Pods/FooPod/FooPod.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ],
+            "e": "FooPod",
+            "m": "FooPod",
+            "n": "FooPod",
+            "p": "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod/FooPod.framework",
+            "t": "com.apple.product-type.framework"
+        }
+    },
     "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-2",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params",
@@ -1435,13 +1671,35 @@
                 "n": "iOSApp.library_swift"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.library.40.link.params",
+        "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-6"
+        ],
         "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_archive-root/iOSApp.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSApp.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/rules_xcodeproj/iOSApp.library/Info.plist",
             "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source",
+            "PREVIEW_FRAMEWORK_PATHS": [
+                "\"$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Pods/FooPod/FooPod.framework\""
+            ],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.foo.iOSApp.library",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
         "c": "CONFIGURATION-STABLE-2",
         "i": {
+            "f": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC-CoreUtilsObjCResources/CoreUtilsObjCResources.bundle"
+            ],
             "s": [
                 "iOSApp/Source/iOSApp.swift"
             ]
@@ -1456,19 +1714,20 @@
         },
         "p": {
             "a": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/frameworks/iOSApp.framework",
                 "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/libiOSApp.library_swift.a"
             ],
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.framework",
-            "t": "com.apple.product-type.framework.static"
+            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_archive-root/iOSApp.framework",
+            "t": "com.apple.product-type.framework"
         }
     },
-    "@@//WidgetExtension:WidgetExtension.library CONFIGURATION-STABLE-4",
+    "@@//WidgetExtension:WidgetExtension.library CONFIGURATION-STABLE-8",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params",
-        "1": "bazel-out/CONFIGURATION-STABLE-4/bin/WidgetExtension",
+        "1": "bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension",
         "2": {
             "a": "arm64",
             "m": "15.0",
@@ -1485,7 +1744,7 @@
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
-        "c": "CONFIGURATION-STABLE-4",
+        "c": "CONFIGURATION-STABLE-8",
         "i": {
             "s": [
                 "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/Intents.Intent.output.swift",
@@ -1519,7 +1778,7 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.38.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.42.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.appex",
@@ -1555,8 +1814,16 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.39.link.params",
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/frameworks/iOSApp.framework",
+                "bazel-out/CONFIGURATION-STABLE-6/bin/Pods/FooPod/frameworks/FooPod.framework"
+            ]
+        },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.43.link.params",
         "7": [
+            "@@//Pods/FooPod:FooPod CONFIGURATION-STABLE-6",
+            "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-2",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-2"
         ],
         "b": {
@@ -1576,7 +1843,6 @@
         ],
         "i": {
             "f": [
-                "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC-CoreUtilsObjCResources/CoreUtilsObjCResources.bundle",
                 "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp-UnprocessedResources/UnprocessedResources.bundle"
             ],
             "r": [
@@ -1596,34 +1862,34 @@
             "t": "com.apple.product-type.application"
         }
     },
-    "@@//Lib:LibDynamic CONFIGURATION-STABLE-6",
+    "@@//Lib:LibDynamic CONFIGURATION-STABLE-10",
     {
-        "1": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib",
+        "1": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib",
         "2": {
             "a": "arm64",
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.40.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.44.link.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibDynamic_archive-root/Lib.framework",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibDynamic_archive-root/Lib.framework",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
-            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "PREVIEW_FRAMEWORK_PATHS": [],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
-        "c": "CONFIGURATION-STABLE-6",
+        "c": "CONFIGURATION-STABLE-10",
         "l": "@@//Lib:LibDynamic",
         "n": "LibDynamic",
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/Lib.framework"
+                "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/frameworks/Lib.framework"
             ],
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibDynamic_archive-root/Lib.framework",
+            "p": "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/LibDynamic_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     }
