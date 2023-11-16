@@ -455,13 +455,7 @@ def _create_xcodeprojinfo(
         unfocused_labels = ctx.attr._unfocused_labels,
     )
 
-    # Force `force_non_xcode_target` to always be `False`
-    # and the issue stops happening
-    force_non_xcode_target = False
-    if target.label.workspace_name == "some_repo_rule_1":
-        force_non_xcode_target = True
-
-    if not automatic_target_info.is_supported or force_non_xcode_target:
+    if not automatic_target_info.is_supported:
         processed_target = process_unsupported_target(
             ctx = ctx,
             target = target,
@@ -608,6 +602,9 @@ def _should_create_provider(*, ctx, target):
 def _should_generate_target(*, focused_labels, label, unfocused_labels):
     if not focused_labels and not unfocused_labels:
         return True
+
+    if label.workspace_name == "some_repo_rule_1":
+        return False
 
     label_str = str(label)
     if label_str in unfocused_labels:
