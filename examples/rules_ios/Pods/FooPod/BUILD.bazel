@@ -1,0 +1,15 @@
+load(
+    "@build_bazel_rules_ios//rules:framework.bzl",
+    rules_ios_apple_framework = "apple_framework",
+)
+
+rules_ios_apple_framework(
+    name = "FooPod",
+    srcs = ["Sources/foo.swift"],
+    bundle_id = "com.foo.FooPod",  # required if `link_dynamic` is `True`
+    infoplists = [{"foo": "bar"}],  # required if `link_dynamic` is `True`
+    link_dynamic = True,  # Set to `False` and the issue goes away
+    platforms = {"ios": "10.0"},
+    swift_version = "5.7",
+    visibility = ["//visibility:public"],
+)

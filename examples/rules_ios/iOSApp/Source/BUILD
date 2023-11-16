@@ -92,6 +92,8 @@ apple_resource_group(
 rules_ios_apple_framework(
     name = "iOSApp.library",
     srcs = glob(["**/*.swift"]),
+    bundle_id = "com.foo.iOSApp.library",  # required if `link_dynamic` is `True`
+    link_dynamic = True,  # enables Xcode Previews
     module_name = "iOSApp",
     platforms = {
         "ios": "15.0",
@@ -99,6 +101,7 @@ rules_ios_apple_framework(
     tags = ["manual"],
     visibility = ["//iOSApp/Test:__subpackages__"],
     deps = [
+        "//Pods/FooPod",
         "//UI",
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
