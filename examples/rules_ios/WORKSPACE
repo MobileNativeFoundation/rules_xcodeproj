@@ -65,3 +65,13 @@ load(
 provisioning_profile_repository(
     name = "local_provisioning_profiles",
 )
+
+load("//:repository_rules/repo_rule_1.bzl", "repo_rule_1")
+load("//:repository_rules/repo_rule_2.bzl", "repo_rule_2")
+
+repo_rule_1(
+    name = "some_repo_rule_1",
+)
+repo_rule_2(
+    name = "some_repo_rule_2",
+)

@@ -19,5 +19,6 @@ rules_ios_ios_unit_test(
         "//iOSApp/Source:VendoredFramework",
         "//iOSApp/Source:iOSApp.library",
         "//iOSApp/Source/Utils",
+        "@some_repo_rule_1//:Foo", # Don't take a dep on this and the issue stops happening
     ],
 )
