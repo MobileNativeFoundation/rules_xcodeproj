@@ -127,6 +127,8 @@ def _extract_top_level_values(
         objc = compilation_providers.objc
 
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
+        # Setting `dynamic_frameworks` as below still seems to fix the issue
+        # dynamic_frameworks = compilation_providers.propagated_objc.dynamic_framework_file.to_list()
         static_frameworks = [
             file
             for file in objc.static_framework_file.to_list()
