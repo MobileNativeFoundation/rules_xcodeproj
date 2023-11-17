@@ -76,9 +76,12 @@ def process_unsupported_target(
     (
         _,
         provider_compilation_providers,
-    ) = comp_providers.collect(
+    ) = comp_providers.merge(
         cc_info = target[CcInfo] if CcInfo in target else None,
-        objc = target[apple_common.Objc] if apple_common.Objc in target else None,
+        transitive_compilation_providers = [
+            (info.xcode_target, info.compilation_providers)
+            for info in transitive_infos
+        ],
     )
 
     return processed_target(

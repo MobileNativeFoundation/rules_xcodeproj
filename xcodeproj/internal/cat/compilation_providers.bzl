@@ -71,6 +71,8 @@ def _merge_compilation_providers(
         order = "topological",
     )
 
+    has_linking_info = product_type or bool(cc_info)
+
     if apple_dynamic_framework_info:
         propagated_framework_files = memory_efficient_depset(
             transitive = [
@@ -91,44 +93,45 @@ def _merge_compilation_providers(
         if providers._cc_info
     ]
 
-    if len(transitive_cc_infos) > 1 or (cc_info and transitive_cc_infos):
-        merged_cc_info = cc_common.merge_cc_infos(
-            direct_cc_infos = [cc_info] if cc_info else [],
-            cc_infos = transitive_cc_infos,
-        )
-    elif transitive_cc_infos:
-        merged_cc_info = transitive_cc_infos[0]
-    else:
-        merged_cc_info = cc_info
-
     objc = None
-    if _objc_has_linking_info:
-        maybe_objc_providers = [
-            _to_objc(providers._propagated_objc, providers._cc_info)
-            for _, providers in transitive_compilation_providers
-        ]
-        objc_providers = [objc for objc in maybe_objc_providers if objc]
-        if objc_providers:
-            objc = apple_common.new_objc_provider(providers = objc_providers)
-        if apple_dynamic_framework_info:
-            propagated_objc = apple_dynamic_framework_info.objc
-        else:
-            propagated_objc = objc
-    else:
-        propagated_objc = None
+    propagated_objc = None
+    if has_linking_info:
+        if len(transitive_cc_infos) > 1 or (cc_info and transitive_cc_infos):
+            cc_info = cc_common.merge_cc_infos(
+                direct_cc_infos = [cc_info] if cc_info else [],
+                cc_infos = transitive_cc_infos,
+            )
+        elif transitive_cc_infos:
+            cc_info = transitive_cc_infos[0]
 
-    propagate_providers = product_type == _FRAMEWORK_PRODUCT_TYPE
+        if _objc_has_linking_info:
+            maybe_objc_providers = [
+                _to_objc(providers._propagated_objc, providers._cc_info)
+                for _, providers in transitive_compilation_providers
+            ]
+            objc_providers = [objc for objc in maybe_objc_providers if objc]
+            if objc_providers:
+                objc = apple_common.new_objc_provider(providers = objc_providers)
+            if apple_dynamic_framework_info:
+                propagated_objc = apple_dynamic_framework_info.objc
+            else:
+                propagated_objc = objc
+
+    propagate_providers = (
+        product_type == _FRAMEWORK_PRODUCT_TYPE or
+        has_linking_info and not product_type
+    )
 
     return (
         struct(
-            cc_info = merged_cc_info,
+            cc_info = cc_info,
             framework_files = framework_files,
             objc = objc,
         ),
         struct(
             _propagated_framework_files = propagated_framework_files,
             _propagated_objc = propagated_objc if propagate_providers else None,
-            _cc_info = merged_cc_info if propagate_providers else None,
+            _cc_info = cc_info if propagate_providers else None,
         ),
     )
 
