@@ -1,5 +1,7 @@
 """Module containing functions dealing with target linker input files."""
 
+load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_TUPLE")
+
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
     "app": None,
@@ -172,7 +174,14 @@ def _extract_top_level_values(
             compilation_providers.framework_files.to_list(),
         )
     else:
-        return None
+        return struct(
+            _additional_input_files = EMPTY_TUPLE,
+            _static_frameworks = EMPTY_TUPLE,
+            dynamic_frameworks = EMPTY_TUPLE,
+            link_args = None,
+            link_args_inputs = None,
+            static_libraries = EMPTY_TUPLE,
+        )
 
     link_args = None
     link_args_inputs = None
