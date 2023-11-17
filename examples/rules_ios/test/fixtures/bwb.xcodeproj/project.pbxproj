@@ -4068,7 +4068,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4134,8 +4134,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//WidgetExtension:WidgetExtension";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.appex";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = WidgetExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension";
@@ -4198,7 +4198,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4308,7 +4308,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite_macro.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTestSuite_macro.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4366,7 +4366,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests_swift CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4404,8 +4404,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib:LibDynamic";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibDynamic.framework.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibDynamic.framework.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibDynamic_archive-root/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibDynamic_archive-root/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-6/bin/Lib";
@@ -4440,7 +4440,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_swift CONFIGURATION-STABLE-1 @@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle_archive-root/iOSAppMixedUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppMixedUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4485,7 +4485,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests_macro.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTests_macro.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4520,7 +4520,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/UITests:iOSAppUITestSuite_macro_swift CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/UITests:iOSAppUITestSuite_macro";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppUITestSuite_macro.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITestSuite_macro.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4556,7 +4556,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/UITests:iOSAppUITestSuite_swift CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/UITests:iOSAppUITestSuite";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4736,7 +4736,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite_swift CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4798,8 +4798,8 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@@//iOSApp/Source:iOSApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source";
@@ -4895,7 +4895,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOS_App_ObjC_UnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1";
@@ -4994,7 +4994,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "@@//iOSApp/Test/UITests:iOSAppUITests_macro_swift CONFIGURATION-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iOSApp/Test/UITests:iOSAppUITests_macro";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle_archive-root/iOSAppUITests_macro.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITests_macro.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITests_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1";
