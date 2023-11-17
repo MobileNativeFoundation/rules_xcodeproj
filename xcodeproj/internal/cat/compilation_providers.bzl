@@ -130,6 +130,7 @@ def _merge_compilation_providers(
             cc_info = merged_cc_info,
             framework_files = framework_files,
             objc = objc,
+            propagated_objc = propagated_objc,
         ),
         struct(
             _propagated_framework_files = propagated_framework_files,

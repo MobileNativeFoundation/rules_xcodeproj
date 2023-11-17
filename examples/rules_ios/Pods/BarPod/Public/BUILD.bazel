@@ -1,0 +1,13 @@
+load(
+    "@build_bazel_rules_ios//rules:framework.bzl",
+    rules_ios_apple_framework = "apple_framework",
+)
+
+rules_ios_apple_framework(
+    name = "BarPod",
+    srcs = ["Sources/foo.swift", "Sources/foo.m"], # this being mixed seems to be necessary to repro the issue
+    link_dynamic = True, # Comment out to see `XCPreviewAgent` crash
+    bundle_id = "com.foo.BarPod", # Comment out to see `XCPreviewAgent` crash
+    infoplists = [{"foo": "bar"}], # Comment out to see `XCPreviewAgent` crash
+    visibility = ["//visibility:public"],
+)
