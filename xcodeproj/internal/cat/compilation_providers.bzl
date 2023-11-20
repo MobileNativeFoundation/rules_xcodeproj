@@ -9,7 +9,10 @@ load(
 
 _objc_has_linking_info = not bazel_features.cc.objc_linking_info_migrated
 
-_FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
+_PROPAGATE_PROVIDERS_PRODUCT_TYPES = {
+    "F": None,  # com.apple.product-type.framework.static
+    "f": None,  # com.apple.product-type.framework
+}
 
 def _collect_compilation_providers(*, cc_info, objc):
     """Collects compilation providers for a non top-level target.
@@ -119,7 +122,7 @@ def _merge_compilation_providers(
         else:
             propagated_objc = objc
 
-    propagate_providers = product_type == _FRAMEWORK_PRODUCT_TYPE
+    propagate_providers = product_type in _PROPAGATE_PROVIDERS_PRODUCT_TYPES
 
     return (
         struct(
