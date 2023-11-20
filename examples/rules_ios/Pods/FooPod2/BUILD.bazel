@@ -4,14 +4,10 @@ load(
 )
 
 rules_ios_apple_framework(
-    name = "FooPod",
+    name = "FooPod2",
     srcs = ["Sources/foo.swift", "Sources/foo.m"], # this being mixed seems to be necessary to repro the issue
     platforms = {"ios": "15.0"},
     swift_version = "5.7",
     visibility = ["//visibility:public"],
-    link_dynamic = True,
-    bundle_id = "com.foo.FooPod", # required if `link_dynamic` is `True`
-    infoplists = [{"foo":"bar"}], # required if `link_dynamic` is `True`
-    deps = ["//Pods/FooPod2:FooPod2"],
+    deps = ["//Pods/BarPod/Public:BarPod"],
 )
-

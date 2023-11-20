@@ -10,4 +10,5 @@ rules_ios_apple_framework(
     bundle_id = "com.foo.BarPod", # Comment out to see `XCPreviewAgent` crash
     infoplists = [{"foo": "bar"}], # Comment out to see `XCPreviewAgent` crash
     visibility = ["//visibility:public"],
+    platforms = {"ios": "15.0"},
 )
