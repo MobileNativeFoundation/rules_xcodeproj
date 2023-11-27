@@ -46,13 +46,16 @@ def _create():
     def _create_args():
         args = []
 
-        def _add_all(
+        def _inner_add_all(
                 flag_or_values,
                 values = None,
                 *,
+                format_each = None,
                 map_each = None,
                 omit_if_empty = True,
                 terminate_with = None):
+            inner_args = []
+
             if values != None:
                 flag = flag_or_values
             else:
@@ -63,25 +66,76 @@ def _create():
                 values = values.to_list()
 
             if omit_if_empty and not values:
-                return
+                return inner_args
 
             if flag:
-                args.append(flag)
+                inner_args.append(flag)
 
             if map_each:
                 for value in values:
                     mapped_value = map_each(value)
                     if type(mapped_value) == "list":
-                        args.extend(
-                            [str(v) for v in mapped_value],
-                        )
+                        if format_each:
+                            inner_args.extend(
+                                [format_each % v for v in mapped_value],
+                            )
+                        else:
+                            inner_args.extend(
+                                [str(v) for v in mapped_value],
+                            )
                     elif mapped_value:
-                        args.append(str(mapped_value))
+                        if format_each:
+                            inner_args.append(format_each % mapped_value)
+                        else:
+                            inner_args.append(str(mapped_value))
             else:
-                args.extend([_path_or_str(value) for value in values])
+                inner_args.extend([_path_or_str(value) for value in values])
 
             if terminate_with != None:
-                args.append(terminate_with)
+                inner_args.append(terminate_with)
+
+            return inner_args
+
+        def _add_all(
+                flag_or_values,
+                values = None,
+                *,
+                format_each = None,
+                map_each = None,
+                omit_if_empty = True,
+                terminate_with = None):
+            args.extend(
+                _inner_add_all(
+                    flag_or_values,
+                    values = values,
+                    format_each = format_each,
+                    map_each = map_each,
+                    omit_if_empty = omit_if_empty,
+                    terminate_with = terminate_with,
+                ),
+            )
+
+        def _add_joined(
+                flag_or_values,
+                values = None,
+                *,
+                format_each = None,
+                join_with,
+                map_each = None,
+                omit_if_empty = True,
+                terminate_with = None):
+            args.append(
+                join_with.join(
+                    _inner_add_all(
+                        flag_or_values,
+                        values = values,
+                        format_each = format_each,
+                        map_each = map_each,
+                        omit_if_empty = omit_if_empty,
+                        terminate_with = terminate_with,
+                    ),
+                ),
+            )
 
         def _add(flag_or_value, value = None):
             if value != None:
@@ -113,6 +167,7 @@ def _create():
             ),
             add = _add,
             add_all = _add_all,
+            add_joined = _add_joined,
             use_param_file = _args_use_param_file,
             set_param_file_format = _args_set_param_file_format,
         )
