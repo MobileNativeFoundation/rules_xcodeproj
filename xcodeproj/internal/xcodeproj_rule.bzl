@@ -1689,10 +1689,13 @@ done
         swift_debug_settings = normalized_swift_debug_settings
         xccurrentversions_file = normalized_xccurrentversions
 
-    bazel_integration_files = (
-        list(ctx.files._base_integration_files) +
-        swift_debug_settings
-    ) + [
+    bazel_integration_files = swift_debug_settings
+    if build_mode == "xcode":
+        bazel_integration_files += ctx.files._bwx_integration_files
+    else:
+        bazel_integration_files += ctx.files._bwb_integration_files
+
+    bazel_integration_files.append(
         write_bazel_build_script(
             actions = actions,
             bazel_env = ctx.attr.bazel_env,
@@ -1701,7 +1704,7 @@ done
             target_ids_list = target_ids_list,
             template = ctx.file._bazel_build_script_template,
         ),
-    ]
+    )
     if build_mode == "xcode":
         bazel_integration_files.append(
             write_create_xcode_overlay_script(
@@ -1711,8 +1714,6 @@ done
                 template = ctx.file._create_xcode_overlay_script_template,
             ),
         )
-    else:
-        bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     xcodeproj = _write_xcodeproj(
         actions = actions,
@@ -1899,23 +1900,25 @@ def make_xcodeproj_rule(
                 "@bazel_tools//tools/allowlists/function_transition_allowlist",
             ),
         ),
-        "_base_integration_files": attr.label(
-            cfg = "exec",
-            allow_files = True,
-            default = Label(
-                "//xcodeproj/internal/bazel_integration_files:base_integration_files",
-            ),
-        ),
         "_bazel_build_script_template": attr.label(
             allow_single_file = True,
             default = Label(
                 "//xcodeproj/internal/templates:bazel_build.sh",
             ),
         ),
-        "_bazel_integration_files": attr.label(
+        "_bwb_integration_files": attr.label(
             cfg = "exec",
             allow_files = True,
-            default = Label("//xcodeproj/internal/bazel_integration_files"),
+            default = Label(
+                "//xcodeproj/internal/bazel_integration_files:bwb_integration_files",
+            ),
+        ),
+        "_bwx_integration_files": attr.label(
+            cfg = "exec",
+            allow_files = True,
+            default = Label(
+                "//xcodeproj/internal/bazel_integration_files:bwx_integration_files",
+            ),
         ),
         "_create_xcode_overlay_script_template": attr.label(
             allow_single_file = True,
