@@ -14,7 +14,7 @@ def _depset_len(depset):
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
-_flags = struct(
+_FLAGS = struct(
     archs = "--archs",
     build_file_sub_identifiers_files = "--build-file-sub-identifiers-files",
     colorize = "--colorize",
@@ -181,21 +181,21 @@ def _write_files_and_groups(
     args.add(project_options["development_region"])
 
     # useBaseInternationalization
-    args.add(_flags.use_base_internationalization)
+    args.add(_FLAGS.use_base_internationalization)
 
     if compile_stub_needed:
         # compileStubNeeded
-        args.add(_flags.compile_stub_needed)
+        args.add(_FLAGS.compile_stub_needed)
 
     # buildFileSubIdentifiersFiles
     args.add_all(
-        _flags.build_file_sub_identifiers_files,
+        _FLAGS.build_file_sub_identifiers_files,
         buildfile_subidentifiers_files,
     )
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} files and groups partials".format(install_path)
 
@@ -315,17 +315,17 @@ def _write_pbxproj_prefix(
     # organizationName
     organization_name = project_options.get("organization_name")
     if organization_name:
-        args.add(_flags.organization_name, organization_name)
+        args.add(_FLAGS.organization_name, organization_name)
 
     # platforms
     args.add_all(
-        _flags.platforms,
+        _FLAGS.platforms,
         platforms,
         map_each = apple_platform_to_platform_name,
     )
 
     # xcodeConfigurations
-    args.add_all(_flags.xcode_configurations, xcode_configurations)
+    args.add_all(_FLAGS.xcode_configurations, xcode_configurations)
 
     # preBuildScript
     if pre_build_script:
@@ -339,7 +339,7 @@ def _write_pbxproj_prefix(
             pre_build_script,
         )
         inputs.append(pre_build_script_output)
-        args.add(_flags.pre_build_script, pre_build_script_output)
+        args.add(_FLAGS.pre_build_script, pre_build_script_output)
 
     # postBuildScript
     if post_build_script:
@@ -353,11 +353,11 @@ def _write_pbxproj_prefix(
             post_build_script,
         )
         inputs.append(post_build_script_output)
-        args.add(_flags.post_build_script, post_build_script_output)
+        args.add(_FLAGS.post_build_script, post_build_script_output)
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} PBXProj prefix partial".format(install_path)
 
@@ -543,17 +543,17 @@ def _write_pbxtargetdependencies(
     actions.write(consolidation_maps_inputs_file, consolidation_map_args)
 
     # targetAndTestHosts
-    args.add_all(_flags.target_and_test_hosts, target_and_test_hosts)
+    args.add_all(_FLAGS.target_and_test_hosts, target_and_test_hosts)
 
     # targetAndWatchKitExtensions
     args.add_all(
-        _flags.target_and_watch_kit_extensions,
+        _FLAGS.target_and_watch_kit_extensions,
         target_and_watch_kit_extensions,
     )
 
     # colorize
     if colorize:
-        args.add(_flags.colorize)
+        args.add(_FLAGS.colorize)
 
     message = "Generating {} PBXTargetDependencies partials".format(
         install_path,
