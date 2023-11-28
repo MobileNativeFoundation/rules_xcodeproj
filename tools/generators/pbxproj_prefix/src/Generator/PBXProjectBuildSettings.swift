@@ -6,6 +6,7 @@ extension Generator {
     /// objects used by the `PBXProject` element.
     ///
     /// - Parameters:
+    ///   - config: The value to be used for the `BAZEL_CONFIG` build setting.
     ///   - indexImport: The Bazel execution root relative path to the
     ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
@@ -15,6 +16,7 @@ extension Generator {
     ///     `RESOLVED_REPOSITORIES` build setting.
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
+        config: String,
         indexImport: String,
         indexingProjectDir: String,
         projectDir: String,
@@ -28,7 +30,7 @@ extension Generator {
                 key: "ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS",
                 value: "NO"
             ),
-            .init(key: "BAZEL_CONFIG", value: "rules_xcodeproj"),
+            .init(key: "BAZEL_CONFIG", value: config.pbxProjEscaped),
             .init(
                 key: "BAZEL_EXTERNAL",
                 value: #""$(BAZEL_OUTPUT_BASE)/external""#

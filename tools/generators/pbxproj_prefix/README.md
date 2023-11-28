@@ -11,6 +11,7 @@ The generator accepts the following command-line arguments (see
 [`PBXProjPrefix.swift`](src/PBXProjPrefix.swift) for more details):
 
 - Positional `output-path`
+- Positional `config`
 - Positional `workspace`
 - Positional `execution-root-file`
 - Positional `target-ids-file`
@@ -31,6 +32,7 @@ Here is an example invocation:
 ```shell
 $ pbxproj_prefix \
     /tmp/pbxproj_partials/pbxproj_prefix \
+	rules_xcodeproj \
     /tmp/workspace \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_execution_root_file \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_target_ids \

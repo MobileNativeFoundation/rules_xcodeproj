@@ -13,6 +13,9 @@ Path to where the 'pbxproj_prefix' 'PBXProj' partial should be written.
         )
         var outputPath: URL
 
+        @Argument(help: "Name of the bazelrc config.")
+        var config: String
+
         @Argument(help: "Absolute path to the Bazel workspace.")
         var workspace: String
 

@@ -46,6 +46,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         actions = actions.mock,
         apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
         colorize = ctx.attr.colorize,
+        config = ctx.attr.config,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
         execution_root_file = ctx.attr.execution_root_file,
         generator_name = "a_generator_name",
@@ -136,6 +137,7 @@ write_pbxproj_prefix_test = unittest.make(
     attrs = {
         # Inputs
         "colorize": attr.bool(mandatory = True),
+        "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
         "index_import": attr.string(mandatory = True),
@@ -170,6 +172,7 @@ def write_pbxproj_prefix_test_suite(name):
 
             # Inputs
             colorize = False,
+            config,
             default_xcode_configuration,
             execution_root_file,
             index_import,
@@ -192,6 +195,7 @@ def write_pbxproj_prefix_test_suite(name):
 
             # Inputs
             colorize = colorize,
+            config = config,
             default_xcode_configuration = default_xcode_configuration,
             execution_root_file = execution_root_file,
             index_import = index_import,
@@ -219,6 +223,7 @@ def write_pbxproj_prefix_test_suite(name):
         name = "{}_basic".format(name),
 
         # Inputs
+        config = "rules_xcodeproj",
         default_xcode_configuration = "Debug",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
@@ -242,6 +247,8 @@ def write_pbxproj_prefix_test_suite(name):
         expected_args = [
             # outputPath
             _OUTPUT_DECLARED_FILE.path,
+            # config
+            "rules_xcodeproj",
             # workspace
             "/Users/TimApple/StarBoard",
             # executionRootFile
@@ -276,6 +283,7 @@ def write_pbxproj_prefix_test_suite(name):
 
         # Inputs
         colorize = True,
+        config = "custom_rxcp_config",
         default_xcode_configuration = "Release",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
@@ -302,6 +310,8 @@ def write_pbxproj_prefix_test_suite(name):
         expected_args = [
             # outputPath
             _OUTPUT_DECLARED_FILE.path,
+            # config
+            "custom_rxcp_config",
             # workspace
             "/Users/TimApple/StarBoard",
             # executionRootFile
