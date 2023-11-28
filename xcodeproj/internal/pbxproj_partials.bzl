@@ -255,6 +255,7 @@ def _write_pbxproj_prefix(
         actions,
         apple_platform_to_platform_name = _apple_platform_to_platform_name,
         colorize,
+        config,
         default_xcode_configuration,
         execution_root_file,
         generator_name,
@@ -276,6 +277,7 @@ def _write_pbxproj_prefix(
         actions: `ctx.actions`.
         apple_platform_to_platform_name: Exposed for testing. Don't set.
         colorize: A `bool` indicating whether to colorize the output.
+        config: The name of the `.bazelrc` config.
         default_xcode_configuration: The name of the the Xcode configuration to
             use when building, if not overridden by custom schemes.
         execution_root_file: A `File` containing the absolute path to the Bazel
@@ -314,6 +316,9 @@ def _write_pbxproj_prefix(
 
     # outputPath
     args.add(output)
+
+    # config
+    args.add(config)
 
     # workspace
     args.add(workspace_directory)

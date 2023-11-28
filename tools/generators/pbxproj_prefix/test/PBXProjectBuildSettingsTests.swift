@@ -9,6 +9,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
     func test() {
         // Arrange
 
+        let config = "rxcp_custom_config"
         let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project dir"
         let projectDir = "/some/project dir"
@@ -20,7 +21,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
-				BAZEL_CONFIG = rules_xcodeproj;
+				BAZEL_CONFIG = rxcp_custom_config;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
@@ -88,6 +89,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         // Act
 
         let buildSettings = Generator.pbxProjectBuildSettings(
+            config: config,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             projectDir: projectDir,
