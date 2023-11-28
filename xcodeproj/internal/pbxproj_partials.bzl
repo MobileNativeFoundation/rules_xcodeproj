@@ -33,6 +33,10 @@ def _dynamic_framework_path(file_and_is_framework):
         return path
     return "$(SRCROOT)/{}".format(path)
 
+def _keys_and_files(pair):
+    key, file = pair
+    return [key, file.path]
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -602,6 +606,52 @@ def _write_pbxtargetdependencies(
         consolidation_maps,
     )
 
+def _write_swift_debug_settings(
+        *,
+        actions,
+        colorize,
+        generator_name,
+        install_path,
+        tool,
+        top_level_swift_debug_settings,
+        xcode_configuration):
+    output = actions.declare_file(
+        "{}_swift_debug_settings/{}-swift_debug_settings.py".format(
+            generator_name,
+            xcode_configuration,
+        ),
+    )
+
+    args = actions.args()
+
+    # colorize
+    args.add(TRUE_ARG if colorize else FALSE_ARG)
+
+    # outputPath
+    args.add(output)
+
+    # keysAndFiles
+    args.add_all(top_level_swift_debug_settings, map_each = _keys_and_files)
+
+    message = "Generating {} {}-swift_debug_settings.py".format(
+        install_path,
+        xcode_configuration,
+    )
+
+    actions.run(
+        arguments = [args],
+        executable = tool,
+        inputs = [
+            file
+            for _, file in top_level_swift_debug_settings
+        ],
+        outputs = [output],
+        progress_message = message,
+        mnemonic = "WriteSwiftDebugSettings",
+    )
+
+    return output
+
 def _write_target_build_settings(
         *,
         actions,
@@ -825,5 +875,6 @@ pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_pbxproj_prefix = _write_pbxproj_prefix,
     write_pbxtargetdependencies = _write_pbxtargetdependencies,
+    write_swift_debug_settings = _write_swift_debug_settings,
     write_target_build_settings = _write_target_build_settings,
 )
