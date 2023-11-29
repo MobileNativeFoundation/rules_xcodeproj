@@ -2,6 +2,15 @@
 
 load(":collections.bzl", "uniq")
 
+XCODEPROJ_TRANSITION_ATTRS = {
+    "ios_device_cpus": attr.string(mandatory = True),
+    "ios_simulator_cpus": attr.string(mandatory = True),
+    "tvos_device_cpus": attr.string(mandatory = True),
+    "tvos_simulator_cpus": attr.string(mandatory = True),
+    "watchos_device_cpus": attr.string(mandatory = True),
+    "watchos_simulator_cpus": attr.string(mandatory = True),
+}
+
 _BASE_TRANSITION_INPUTS = [
     "//command_line_option:cpu",
 ]
