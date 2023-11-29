@@ -1796,65 +1796,30 @@ def make_xcodeproj_rule(
         target_transitions = None,
         xcodeproj_transition = None):
     attrs = {
-        "adjust_schemes_for_swiftui_previews": attr.bool(
-            mandatory = True,
-        ),
-        "bazel_env": attr.string_dict(
-            mandatory = True,
-        ),
-        "bazel_path": attr.string(
-            mandatory = True,
-        ),
-        "build_mode": attr.string(
-            mandatory = True,
-        ),
+        "adjust_schemes_for_swiftui_previews": attr.bool(mandatory = True),
+        "bazel_env": attr.string_dict(mandatory = True),
+        "bazel_path": attr.string(mandatory = True),
+        "build_mode": attr.string(mandatory = True),
         "colorize": attr.bool(mandatory = True),
-        "config": attr.string(
-            mandatory = True,
-        ),
+        "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
-        "fail_for_invalid_extra_files_targets": attr.bool(
-            mandatory = True,
-        ),
+        "fail_for_invalid_extra_files_targets": attr.bool(mandatory = True),
         "focused_labels": attr.string_list(mandatory = True),
-        "install_path": attr.string(
-            mandatory = True,
-        ),
-        "minimum_xcode_version": attr.string(
-            mandatory = True,
-        ),
+        "install_path": attr.string(mandatory = True),
+        "minimum_xcode_version": attr.string(mandatory = True),
         "owned_extra_files": attr.label_keyed_string_dict(
             allow_files = True,
             mandatory = True,
         ),
-        "post_build": attr.string(
-            mandatory = True,
-        ),
-        "pre_build": attr.string(
-            mandatory = True,
-        ),
-        "project_name": attr.string(
-            mandatory = True,
-        ),
-        "project_options": attr.string_dict(
-            mandatory = True,
-        ),
-        "runner_build_file": attr.string(
-            mandatory = True,
-        ),
-        "runner_label": attr.string(
-            mandatory = True,
-        ),
-        "scheme_autogeneration_mode": attr.string(
-            mandatory = True,
-        ),
-        "schemes_json": attr.label(
-            allow_single_file = True,
-            mandatory = True,
-        ),
-        "target_name_mode": attr.string(
-            mandatory = True,
-        ),
+        "post_build": attr.string(mandatory = True),
+        "pre_build": attr.string(mandatory = True),
+        "project_name": attr.string(mandatory = True),
+        "project_options": attr.string_dict(mandatory = True),
+        "runner_build_file": attr.string(mandatory = True),
+        "runner_label": attr.string(mandatory = True),
+        "scheme_autogeneration_mode": attr.string(mandatory = True),
+        "schemes_json": attr.label(allow_single_file = True, mandatory = True),
+        "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
             aspects = [xcodeproj_aspect],
@@ -1872,12 +1837,8 @@ def make_xcodeproj_rule(
             allow_files = True,
             mandatory = True,
         ),
-        "workspace_directory": attr.string(
-            mandatory = True,
-        ),
-        "xcode_configuration_map": attr.string_list_dict(
-            mandatory = True,
-        ),
+        "workspace_directory": attr.string(mandatory = True),
+        "xcode_configuration_map": attr.string_list_dict(mandatory = True),
         "_allowlist_function_transition": attr.label(
             default = Label(
                 "@bazel_tools//tools/allowlists/function_transition_allowlist",

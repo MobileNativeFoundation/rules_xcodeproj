@@ -93,9 +93,7 @@ _update_fixtures = rule(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:updater.sh"),
         ),
-        "_validate": attr.bool(
-            default = False,
-        ),
+        "_validate": attr.bool(default = False),
     },
     executable = True,
 )
@@ -118,9 +116,7 @@ _validate_fixtures = rule(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:updater.sh"),
         ),
-        "_validate": attr.bool(
-            default = True,
-        ),
+        "_validate": attr.bool(default = True),
     },
     executable = True,
 )
