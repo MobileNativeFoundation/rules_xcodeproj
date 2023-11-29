@@ -30,7 +30,7 @@ build --host_macos_minimum_os=13.0
 startup --output_base=bazel-output-base
 
 # Prevent trying to evaluate checked in generated fixtures
-build --deleted_packages=test/fixtures/generated/xcodeproj_bwx,test/fixtures/generated/xcodeproj_bwb,test/fixtures/generator/generated/xcodeproj_bwx,test/fixtures/generator/generated/xcodeproj_bwb
+build --deleted_packages=test/fixtures/generated/xcodeproj_bwx,test/fixtures/generated/xcodeproj_bwb
 
 # Ensure we work with BwtB
 build --experimental_inmemory_jdeps_files
