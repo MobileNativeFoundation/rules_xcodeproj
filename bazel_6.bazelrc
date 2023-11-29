@@ -1,4 +1,7 @@
 build:cache --experimental_remote_build_event_upload=minimal
 
+# Use Bzlmod
+build --enable_bzlmod
+
 # Disabled until bugs are fixed
 common --lockfile_mode=off
