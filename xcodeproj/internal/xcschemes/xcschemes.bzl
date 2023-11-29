@@ -755,8 +755,8 @@ def _top_level_anchor_target(
     """Defines a top-level anchor target for library build targets.
 
     Use this function to define library targets to build, when you don't want
-    to also build the top-level target they are transitive dependencies of. If
-    you also want to build the top-level target, use
+    to also build the top-level target that depends on them. If you also want to
+    build the top-level target, use
     [`top_level_build_target`](#xcschemes.top_level_build_target-library_targets)
     instead.
 
@@ -991,7 +991,14 @@ def _launch_script(title = "Run Script", *, order = None, script_text):
 
     Args:
         title: The title of the action.
-        order: TBD.
+        order: The relative order of the action within the section it appears
+            in.
+
+            If `None`, the action will be added to the end of the section, in
+            an unspecified but deterministic order. Otherwise, the order should
+            be an integer. Smaller order values will run before larger order
+            values. rules_xcodeproj created actions (e.g. "Update .lldbinit and
+            copy dSYMs") use order values 0, -100, -200, etc.
         script_text: The script text.
 
             The script will be run in Bazel's execution root, so you probably

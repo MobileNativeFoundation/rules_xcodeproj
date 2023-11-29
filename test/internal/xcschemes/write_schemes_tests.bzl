@@ -326,7 +326,7 @@ def write_schemes_test_suite(name):
         )
 
     # @unsorted-dict-items
-    matches_xcode_targets = {
+    xcode_targets = {
         "IOS_APP": _mock_xcode_target(
             id = "IOS_APP",
             apple_platform = "IOS",
@@ -361,8 +361,11 @@ def write_schemes_test_suite(name):
         ),
     }
 
+    # This set of targets differs from `xcode_targets`, in that `IOS_APP`
+    # doesn't have a framework target of the same platform in its transitive
+    # dependencies.
     # @unsorted-dict-items
-    no_matches_xcode_targets = {
+    xcode_targets_no_matching_transitive_previews = {
         "IOS_APP": _mock_xcode_target(
             id = "IOS_APP",
             apple_platform = "IOS",
@@ -424,7 +427,7 @@ def write_schemes_test_suite(name):
         extension_point_identifiers_file = "a/extension_point_identifiers_file",
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = matches_xcode_targets,
+        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -479,7 +482,7 @@ def write_schemes_test_suite(name):
         extension_point_identifiers_file = "a/extension_point_identifiers_file",
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = matches_xcode_targets,
+        xcode_targets = xcode_targets,
         xcscheme_infos = [
             xcscheme_infos_testable.make_scheme(name = "Scheme 2"),
             xcscheme_infos_testable.make_scheme(
@@ -1378,7 +1381,7 @@ def write_schemes_test_suite(name):
         ],
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = matches_xcode_targets,
+        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -1440,7 +1443,7 @@ def write_schemes_test_suite(name):
         include_transitive_preview_targets = True,
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = no_matches_xcode_targets,
+        xcode_targets = xcode_targets_no_matching_transitive_previews,
 
         # Expected
         expected_args = [
@@ -1493,7 +1496,7 @@ def write_schemes_test_suite(name):
         include_transitive_preview_targets = True,
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = matches_xcode_targets,
+        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -1571,7 +1574,7 @@ def write_schemes_test_suite(name):
             ],
         },
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = matches_xcode_targets,
+        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [

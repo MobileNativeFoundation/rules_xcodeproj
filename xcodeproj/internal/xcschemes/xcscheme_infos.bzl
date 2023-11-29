@@ -2,6 +2,7 @@
 
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
+    "EMPTY_LIST",
     "EMPTY_STRING",
     "FALSE_ARG",
     "TRUE_ARG",
@@ -15,7 +16,11 @@ def _make_arg_env(value, *, enabled = TRUE_ARG):
         value = value,
     )
 
-def _make_build_target(id, *, post_actions = [], pre_actions = []):
+def _make_build_target(
+        id,
+        *,
+        post_actions = EMPTY_LIST,
+        pre_actions = EMPTY_LIST):
     return struct(
         id = id,
         post_actions = post_actions,
@@ -37,8 +42,8 @@ def _make_launch_target(
         id = EMPTY_STRING,
         *,
         extension_host = EMPTY_STRING,
-        post_actions = [],
-        pre_actions = [],
+        post_actions = EMPTY_LIST,
+        pre_actions = EMPTY_LIST,
         working_directory = EMPTY_STRING):
     return struct(
         extension_host = extension_host,
@@ -64,7 +69,7 @@ def _make_pre_post_action(
 def _make_profile(
         *,
         args = None,
-        build_targets = [],
+        build_targets = EMPTY_LIST,
         env = None,
         env_include_defaults = FALSE_ARG,
         launch_target = _make_launch_target(),
@@ -83,7 +88,7 @@ def _make_profile(
 def _make_run(
         *,
         args = None,
-        build_targets = [],
+        build_targets = EMPTY_LIST,
         diagnostics = _make_diagnostics(),
         env = None,
         env_include_defaults = TRUE_ARG,
@@ -102,11 +107,11 @@ def _make_run(
 def _make_test(
         *,
         args = None,
-        build_targets = [],
+        build_targets = EMPTY_LIST,
         diagnostics = _make_diagnostics(),
         env = None,
         env_include_defaults = FALSE_ARG,
-        test_targets = [],
+        test_targets = EMPTY_LIST,
         use_run_args_and_env = TRUE_ARG,
         xcode_configuration = EMPTY_STRING):
     return struct(
@@ -124,8 +129,8 @@ def _make_test_target(
         id,
         *,
         enabled = TRUE_ARG,
-        post_actions = [],
-        pre_actions = []):
+        post_actions = EMPTY_LIST,
+        pre_actions = EMPTY_LIST):
     return struct(
         enabled = enabled,
         id = id,
@@ -244,7 +249,7 @@ def _get_library_target_id(label, *, scheme_name, target_ids):
             """\
 Unknown library target in `xcscheme` "{scheme}": {label}
 
-Is '{label}' an `alias` target? Only actual target labels are support in \
+Is '{label}' an `alias` target? Only actual target labels are supported in \
 `xcscheme` definitions. Check that '{label}' is spelled correctly, and if it \
 is, make sure it's a transitive dependency of a top-level target in the \
 `xcodeproj.top_level_targets` attribute.
@@ -287,7 +292,7 @@ Unknown Xcode configuration in `xcscheme` "{scheme}": {config}
             """\
 Unknown top-level target in `xcscheme` "{scheme}": {label}
 
-Is '{label}' an `alias` target? Only actual target labels are support in \
+Is '{label}' an `alias` target? Only actual target labels are supported in \
 `xcscheme` definitions. Check that '{label}' is spelled correctly, and if it \
 is, make sure it's in the `xcodeproj.top_level_targets` attribute.
 """.format(label = label, scheme = scheme_name),
@@ -320,7 +325,7 @@ def _launch_target_info_from_dict(
     if not launch_target:
         return (
             _make_launch_target(),
-            [],
+            EMPTY_LIST,
         )
 
     if type(launch_target) == "string":
@@ -333,11 +338,11 @@ def _launch_target_info_from_dict(
                     top_level_deps = top_level_deps,
                     xcode_configuration = xcode_configuration,
                 ),
-                post_actions = [],
-                pre_actions = [],
+                post_actions = EMPTY_LIST,
+                pre_actions = EMPTY_LIST,
                 working_directory = EMPTY_STRING,
             ),
-            [],
+            EMPTY_LIST,
         )
 
     deps_for_top_level_target = _get_deps_for_top_level_target(
@@ -585,10 +590,10 @@ def _test_target_info_from_dict(
                     top_level_deps = top_level_deps,
                     xcode_configuration = xcode_configuration,
                 ),
-                post_actions = [],
-                pre_actions = [],
+                post_actions = EMPTY_LIST,
+                pre_actions = EMPTY_LIST,
             ),
-            [],
+            EMPTY_LIST,
         )
 
     deps_for_top_level_target = _get_deps_for_top_level_target(

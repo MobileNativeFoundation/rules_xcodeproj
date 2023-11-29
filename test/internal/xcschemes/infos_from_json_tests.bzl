@@ -779,7 +779,6 @@ def infos_from_json_test_suite(name):
                     diagnostics = None,
                     env = "inherit",
                     env_include_defaults = "0",
-                    # FIXME: test_targets
                     test_targets = [],
                     use_run_args_and_env = "1",
                     xcode_configuration = "",
@@ -800,7 +799,6 @@ def infos_from_json_test_suite(name):
                             "sim bt 4 lib",
                         ),
                     ],
-                    # FIXME: test_targets
                     test_targets = [],
                 ),
             ),
