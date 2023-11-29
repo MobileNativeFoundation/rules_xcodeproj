@@ -517,44 +517,26 @@ xcodeproj_runner = rule(
             default = True,
             mandatory = True,
         ),
-        "bazel_env": attr.string_dict(
-            mandatory = True,
-        ),
-        "bazel_path": attr.string(
-            mandatory = True,
-        ),
+        "bazel_env": attr.string_dict(mandatory = True),
+        "bazel_path": attr.string(mandatory = True),
         "build_mode": attr.string(
             mandatory = True,
             values = ["xcode", "bazel"],
         ),
-        "config": attr.string(
-            mandatory = True,
-        ),
+        "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
-        "fail_for_invalid_extra_files_targets": attr.bool(
-            default = True,
-        ),
+        "fail_for_invalid_extra_files_targets": attr.bool(default = True),
         "focused_labels": attr.string_list(default = []),
-        "install_directory": attr.string(
-            mandatory = True,
-        ),
-        "ios_device_cpus": attr.string(
-            mandatory = True,
-        ),
+        "install_directory": attr.string(mandatory = True),
+        "ios_device_cpus": attr.string(mandatory = True),
         "ios_simulator_cpus": attr.string(),
-        "is_fixture": attr.bool(
-            mandatory = True,
-        ),
+        "is_fixture": attr.bool(mandatory = True),
         "minimum_xcode_version": attr.string(),
         "owned_extra_files": attr.string_dict(),
         "post_build": attr.string(),
         "pre_build": attr.string(),
-        "project_name": attr.string(
-            mandatory = True,
-        ),
-        "project_options": attr.string_dict(
-            mandatory = True,
-        ),
+        "project_name": attr.string(mandatory = True),
+        "project_options": attr.string_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(
             default = "auto",
             values = ["auto", "none", "all"],
@@ -566,25 +548,15 @@ xcodeproj_runner = rule(
         ),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
-        "tvos_device_cpus": attr.string(
-            mandatory = True,
-        ),
+        "tvos_device_cpus": attr.string(mandatory = True),
         "tvos_simulator_cpus": attr.string(),
         "unfocused_labels": attr.string_list(default = []),
         "unowned_extra_files": attr.string_list(),
-        "watchos_device_cpus": attr.string(
-            mandatory = True,
-        ),
+        "watchos_device_cpus": attr.string(mandatory = True),
         "watchos_simulator_cpus": attr.string(),
-        "xcode_configuration_flags": attr.string_list(
-            mandatory = True,
-        ),
-        "xcode_configuration_map": attr.string_list_dict(
-            mandatory = True,
-        ),
-        "xcode_configurations": attr.string(
-            mandatory = True,
-        ),
+        "xcode_configuration_flags": attr.string_list(mandatory = True),
+        "xcode_configuration_map": attr.string_list_dict(mandatory = True),
+        "xcode_configurations": attr.string(mandatory = True),
         "_bazelrc_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:xcodeproj.bazelrc"),
