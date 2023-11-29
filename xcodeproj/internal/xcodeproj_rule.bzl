@@ -30,6 +30,7 @@ load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
+load(":xcodeproj_transitions.bzl", "XCODEPROJ_TRANSITION_ATTRS")
 
 # Utility
 
@@ -1819,12 +1820,6 @@ def make_xcodeproj_rule(
         "install_path": attr.string(
             mandatory = True,
         ),
-        "ios_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "ios_simulator_cpus": attr.string(
-            mandatory = True,
-        ),
         "minimum_xcode_version": attr.string(
             mandatory = True,
         ),
@@ -1872,21 +1867,9 @@ def make_xcodeproj_rule(
             providers = [XcodeProjInfo],
             mandatory = True,
         ),
-        "tvos_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "tvos_simulator_cpus": attr.string(
-            mandatory = True,
-        ),
         "unfocused_labels": attr.string_list(mandatory = True),
         "unowned_extra_files": attr.label_list(
             allow_files = True,
-            mandatory = True,
-        ),
-        "watchos_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "watchos_simulator_cpus": attr.string(
             mandatory = True,
         ),
         "workspace_directory": attr.string(
@@ -1969,7 +1952,7 @@ def make_xcodeproj_rule(
                 fragment = "apple",
             ),
         ),
-    }
+    } | XCODEPROJ_TRANSITION_ATTRS
 
     return rule(
         doc = "Creates an `.xcodeproj` file in the workspace when run.",
