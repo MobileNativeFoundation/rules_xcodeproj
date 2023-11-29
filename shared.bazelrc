@@ -41,9 +41,6 @@ build --experimental_inmemory_dotd_files
 build --remote_download_outputs=minimal
 test --remote_download_outputs=toplevel
 
-# Work around https://github.com/bazelbuild/bazel/issues/11920
-run --remote_download_outputs=all
-
 # rules_xcodeproj needs toplevel to download needed outputs
 build:rules_xcodeproj --remote_download_outputs=toplevel
 
