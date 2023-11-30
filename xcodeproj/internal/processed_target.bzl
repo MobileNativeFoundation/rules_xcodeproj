@@ -1,7 +1,5 @@
 """Functions for creating data structures related to processed bazel targets."""
 
-load(":providers.bzl", "target_type")
-
 def processed_target(
         *,
         compilation_providers,
@@ -66,7 +64,6 @@ def processed_target(
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         resource_bundle_ids = resource_bundle_ids,
-        target_type = target_type,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
         xcode_targets = [xcode_target] if xcode_target else None,
