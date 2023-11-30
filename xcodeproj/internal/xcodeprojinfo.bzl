@@ -17,35 +17,36 @@ Provides information needed to generate an Xcode project.
     fields = {
         "args": """\
 A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the
-target id of the target and `arg` values
-for the target (if applicable).
+target ID (see `xcode_target.id`) of the target and `arg` values for the target
+(if applicable).
 """,
         "compilation_providers": """\
 A value returned from `compilation_providers.{collect,merge}`.
 """,
         "dependencies": """\
-A `depset` of target ids (see `xcode_target.id`) that this target directly
+A `depset` of target IDs (see `xcode_target.id`) that this target directly
 depends on.
 """,
         "envs": """\
 A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
-target id of the target and `env` values for the target (if applicable).
+target ID (see `xcode_target.id`) of the target and `env` values for the target
+(if applicable).
 """,
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
-target id of the application extension target. The 'infoplist' field is a `File`
-for the Info.plist for the target.
+target ID (see `xcode_target.id`) of the application extension target. The
+'infoplist' field is a `File` for the Info.plist for the target.
 """,
         "hosted_targets": """\
-A `depset` of `struct`s with 'host' and 'hosted' fields. The 'host' field is the
-target id of the hosting target. The 'hosted' field is the target id of the
-hosted target.
+A `depset` of `struct`s with 'host' and 'hosted' fields. The `host` field is the
+target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is
+the target ID of the hosted target.
 """,
         "inputs": """\
-A value returned from `input_files.collect`, that contains the input files for
-this target. It also includes the two extra fields that collect all of the
-generated `Files` and all of the `Files` that should be added to the Xcode
-project, but are not associated with any targets.
+A value returned from `input_files.collect`/`inputs_files.merge`, that contains
+information related to all of the input `File`s for the project collected so
+far. It also includes information related to "extra files" that should be added
+to the Xcode project, but are not associated with any targets.
 """,
         "label": "The `Label` of the target.",
         "labels": """\
@@ -66,8 +67,9 @@ specified in `top_level_targets` cause duplicate mis-configured targets to be
 added to the project.
 """,
         "outputs": """\
-A value returned from `output_files.collect`, that contains information about
-the output files for this target and its transitive dependencies.
+A value returned from `output_files.collect`/`output_files.merge`, that contains
+information about the output files for this target and its transitive
+dependencies.
 """,
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
@@ -88,7 +90,7 @@ A string that categorizes the type of the current target. This will be one of
 target, it can still have a non-`None` value for this field.
 """,
         "transitive_dependencies": """\
-A `depset` of target ids (see `xcode_target.id`) that this target transitively
+A `depset` of target IDs (see `xcode_target.id`) that this target transitively
 depends on.
 """,
         "xcode_required_targets": """\
