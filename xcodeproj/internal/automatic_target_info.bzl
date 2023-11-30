@@ -159,9 +159,9 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     app_icons = None
     args = None
     bundle_id = None
-    collect_uncategorized_files = False
     codesign_inputs = None
     codesignopts = None
+    collect_uncategorized_files = False
     deps = _DEPS_ATTRS
     entitlements = None
     env = None
