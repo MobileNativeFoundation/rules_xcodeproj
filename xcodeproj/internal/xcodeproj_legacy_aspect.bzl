@@ -1,6 +1,6 @@
-"""Implementation of the `xcodeproj_aspect` aspect."""
+"""Module containing implementation functions for the legacy \
+`xcodeproj_aspect` aspect."""
 
-load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
 load(
     ":providers.bzl",
     "XcodeProjInfo",
@@ -52,7 +52,47 @@ def _transitive_infos(*, ctx, attrs):
 
 # Aspect
 
-def _xcodeproj_aspect_impl(target, ctx):
+def _xcodeproj_legacy_aspect_attrs(build_mode, generator_name):
+    return {
+        "_build_mode": attr.string(default = build_mode),
+        "_cc_compiler_params_processor": attr.label(
+            cfg = "exec",
+            default = Label(
+                "//tools/params_processors:cc_compiler_params_processor",
+            ),
+            executable = True,
+        ),
+        "_cc_toolchain": attr.label(default = Label(
+            "@bazel_tools//tools/cpp:current_cc_toolchain",
+        )),
+        "_generator_name": attr.string(default = generator_name),
+        "_swift_compiler_params_processor": attr.label(
+            cfg = "exec",
+            default = Label(
+                "//tools/params_processors:swift_compiler_params_processor",
+            ),
+            executable = True,
+        ),
+        "_xcode_config": attr.label(
+            default = configuration_field(
+                name = "xcode_config_label",
+                fragment = "apple",
+            ),
+        ),
+    }
+
+def _xcodeproj_legacy_aspect_impl(target, ctx):
+    """Implementation function for the `xcodeproj_aspect` aspect.
+
+    Args:
+        target: The `Target` the aspect is propagating over.
+        ctx: The context for the aspect.
+
+    Returns:
+        A `list` of providers to add to the target. The elements of the list
+        will include `XcodeProjInfo` and `XcodeProjProvisioningProfileInfo` if
+        the target doesn't already have them.
+    """
     providers = []
 
     if XcodeProjInfo not in target:
@@ -81,37 +121,7 @@ def _xcodeproj_aspect_impl(target, ctx):
 
     return providers
 
-def make_xcodeproj_aspect(*, build_mode, generator_name):
-    return aspect(
-        implementation = _xcodeproj_aspect_impl,
-        attr_aspects = ["*"],
-        attrs = {
-            "_build_mode": attr.string(default = build_mode),
-            "_cc_compiler_params_processor": attr.label(
-                cfg = "exec",
-                default = Label(
-                    "//tools/params_processors:cc_compiler_params_processor",
-                ),
-                executable = True,
-            ),
-            "_cc_toolchain": attr.label(default = Label(
-                "@bazel_tools//tools/cpp:current_cc_toolchain",
-            )),
-            "_generator_name": attr.string(default = generator_name),
-            "_swift_compiler_params_processor": attr.label(
-                cfg = "exec",
-                default = Label(
-                    "//tools/params_processors:swift_compiler_params_processor",
-                ),
-                executable = True,
-            ),
-            "_xcode_config": attr.label(
-                default = configuration_field(
-                    name = "xcode_config_label",
-                    fragment = "apple",
-                ),
-            ),
-        },
-        fragments = ["apple", "cpp", "objc"],
-        toolchains = use_cpp_toolchain(),
-    )
+xcodeproj_legacy_aspect = struct(
+    attrs = _xcodeproj_legacy_aspect_attrs,
+    impl = _xcodeproj_legacy_aspect_impl,
+)

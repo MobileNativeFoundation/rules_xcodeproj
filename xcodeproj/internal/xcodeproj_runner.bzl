@@ -150,14 +150,8 @@ def _write_generator_defz_bzl(
         """\
 # buildifier: disable=bzl-visibility
 load(
-    "{repo}//xcodeproj/internal:xcodeproj_aspect.bzl",
-    "make_xcodeproj_aspect",
-)
-
-# buildifier: disable=bzl-visibility
-load(
-    "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
-    "make_xcodeproj_rule",
+    "{repo}//xcodeproj/internal:xcodeproj_factory.bzl",
+    "xcodeproj_factory",
 )
 
 # buildifier: disable=bzl-visibility
@@ -456,7 +450,7 @@ def _xcodeproj_runner_impl(ctx):
         name = name,
         runner_label = runner_label,
         repo = repo,
-        template = ctx.file._generator_package_contents_template,
+        template = ctx.file._generator_legacy_build_file_template,
     )
     generator_defs_bzl = _write_generator_defz_bzl(
         actions = actions,
@@ -587,10 +581,10 @@ xcodeproj_runner = rule(
                 "//xcodeproj/internal/templates:generator.defs.bzl",
             ),
         ),
-        "_generator_package_contents_template": attr.label(
+        "_generator_legacy_build_file_template": attr.label(
             allow_single_file = True,
             default = Label(
-                "//xcodeproj/internal/templates:generator.BUILD.bazel",
+                "//xcodeproj/internal/templates:generator.legacy.BUILD.bazel",
             ),
         ),
         "_runner_template": attr.label(
