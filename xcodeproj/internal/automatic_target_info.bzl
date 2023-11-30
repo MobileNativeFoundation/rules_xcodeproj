@@ -293,7 +293,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     else:
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
-        is_executable = executable and not executable.is_source
+        is_executable = bool(executable and not executable.is_source)
         is_top_level = is_executable
 
         is_supported = is_executable
