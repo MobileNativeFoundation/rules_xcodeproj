@@ -7,7 +7,7 @@ load(
     "AppleResourceBundleInfo",
 )
 load(":memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
-load(":providers.bzl", "target_type")
+load(":xcodeprojinfo.bzl", "target_type")
 
 ## Utility
 

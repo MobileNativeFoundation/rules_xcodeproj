@@ -12,10 +12,7 @@ load(
     "//xcodeproj/internal:automatic_target_info.bzl",
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
 )
-load(
-    "//xcodeproj/internal:providers.bzl",
-    _XcodeProjInfo = "XcodeProjInfo",
-)
+load("//xcodeproj/internal:xcodeprojinfo.bzl", _XcodeProjInfo = "XcodeProjInfo")
 
 XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
 XcodeProjInfo = _XcodeProjInfo
