@@ -1,13 +1,10 @@
 """Module containing implementation functions for the legacy \
 `xcodeproj_aspect` aspect."""
 
-load(
-    ":providers.bzl",
-    "XcodeProjInfo",
-    "XcodeProjProvisioningProfileInfo",
-)
+load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":xcodeprojinfos.bzl", "xcodeprojinfos")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility
 

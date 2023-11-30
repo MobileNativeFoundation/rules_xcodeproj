@@ -26,10 +26,10 @@ load(":memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
 load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
-load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility
 

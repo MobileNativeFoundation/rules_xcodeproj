@@ -22,17 +22,13 @@ load(
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(
-    ":providers.bzl",
-    "XcodeProjInfo",
-    "target_type",
-)
-load(
     ":target_properties.bzl",
     "process_dependencies",
 )
 load(":targets.bzl", "targets")
 load(":top_level_targets.bzl", "process_top_level_target")
 load(":unsupported_targets.bzl", "process_unsupported_target")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 
 # Creating `XcodeProjInfo`
 

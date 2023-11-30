@@ -14,7 +14,6 @@ load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
-load(":providers.bzl", "XcodeProjInfo")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -23,6 +22,7 @@ load(
     "process_swiftmodules",
 )
 load(":xcode_targets.bzl", "xcode_targets")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 def process_library_target(
         *,

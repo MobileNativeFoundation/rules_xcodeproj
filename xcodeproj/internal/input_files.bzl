@@ -24,9 +24,9 @@ load(
     "memory_efficient_depset",
 )
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
-load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
 load(":target_properties.bzl", "should_include_non_xcode_outputs")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility
 

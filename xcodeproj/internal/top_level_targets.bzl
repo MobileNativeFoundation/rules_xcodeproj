@@ -26,7 +26,6 @@ load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
-load(":providers.bzl", "XcodeProjInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":target_id.bzl", "get_id")
 load(
@@ -36,6 +35,7 @@ load(
     "process_swiftmodules",
 )
 load(":xcode_targets.bzl", "xcode_targets")
+load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 def _get_codesign_opts(*, ctx, inputs_attr, opts_attr):
     if not opts_attr:
