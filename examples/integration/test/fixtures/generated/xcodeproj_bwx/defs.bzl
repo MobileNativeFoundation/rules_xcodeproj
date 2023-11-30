@@ -2,14 +2,8 @@
 
 # buildifier: disable=bzl-visibility
 load(
-    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_aspect.bzl",
-    "make_xcodeproj_aspect",
-)
-
-# buildifier: disable=bzl-visibility
-load(
-    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_rule.bzl",
-    "make_xcodeproj_rule",
+    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_factory.bzl",
+    "xcodeproj_factory",
 )
 
 # buildifier: disable=bzl-visibility
@@ -52,17 +46,17 @@ _target_transitions = make_xcodeproj_target_transitions(
 
 # Aspect
 
-_aspect = make_xcodeproj_aspect(
+_aspect = xcodeproj_factory.make_aspect(
     build_mode = "xcode",
     generator_name = "xcodeproj_bwx",
 )
 
 # Rule
 
-xcodeproj = make_xcodeproj_rule(
-    xcodeproj_aspect = _aspect,
+xcodeproj = xcodeproj_factory.make_rule(
     is_fixture = True,
     target_transitions = _target_transitions,
+    xcodeproj_aspect = _aspect,
     xcodeproj_transition = fixtures_transition,
 )
 

@@ -30,7 +30,6 @@ load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
-load(":xcodeproj_transitions.bzl", "XCODEPROJ_TRANSITION_ATTRS")
 
 # Utility
 
@@ -1415,7 +1414,7 @@ def _write_installer(
 
 # Rule
 
-def _xcodeproj_impl(ctx):
+def _xcodeproj_legacy_impl(ctx):
     xcode_configuration_map = ctx.attr.xcode_configuration_map
     infos = []
     infos_per_xcode_configuration = {}
@@ -1788,14 +1787,12 @@ done
         ),
     ]
 
-# buildifier: disable=function-docstring
-def make_xcodeproj_rule(
+def _xcodeproj_legacy_attrs(
         *,
-        xcodeproj_aspect,
         is_fixture = False,
         target_transitions = None,
-        xcodeproj_transition = None):
-    attrs = {
+        xcodeproj_aspect):
+    return {
         "adjust_schemes_for_swiftui_previews": attr.bool(mandatory = True),
         "bazel_env": attr.string_dict(mandatory = True),
         "bazel_path": attr.string(mandatory = True),
@@ -1913,12 +1910,9 @@ def make_xcodeproj_rule(
                 fragment = "apple",
             ),
         ),
-    } | XCODEPROJ_TRANSITION_ATTRS
+    }
 
-    return rule(
-        doc = "Creates an `.xcodeproj` file in the workspace when run.",
-        cfg = xcodeproj_transition,
-        implementation = _xcodeproj_impl,
-        attrs = attrs,
-        executable = True,
-    )
+xcodeproj_legacy_rule = struct(
+    attrs = _xcodeproj_legacy_attrs,
+    impl = _xcodeproj_legacy_impl,
+)

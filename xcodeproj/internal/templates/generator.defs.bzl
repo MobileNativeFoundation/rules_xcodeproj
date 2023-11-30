@@ -8,16 +8,16 @@
 
 # Aspect
 
-_aspect = make_xcodeproj_aspect(
+_aspect = xcodeproj_factory.make_aspect(
     build_mode = "%build_mode%",
     generator_name = "%generator_name%",
 )
 
 # Rule
 
-xcodeproj = make_xcodeproj_rule(
-    xcodeproj_aspect = _aspect,
+xcodeproj = xcodeproj_factory.make_rule(
     is_fixture = %is_fixture%,
     target_transitions = _target_transitions,
+    xcodeproj_aspect = _aspect,
     xcodeproj_transition = %xcodeproj_transitions%,
 )
