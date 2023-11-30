@@ -1,12 +1,15 @@
 """Public rules, macros, and libraries."""
 
 load(
+    "//xcodeproj/internal:automatic_target_info.bzl",
+    _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
+)
+load(
     "//xcodeproj/internal:project_options.bzl",
     _project_options = "project_options",
 )
 load(
     "//xcodeproj/internal:providers.bzl",
-    _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
     _XcodeProjInfo = "XcodeProjInfo",
 )
 load(
