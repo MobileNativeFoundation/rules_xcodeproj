@@ -61,6 +61,15 @@ def _is_test_target(target):
 # instead of allocating and retaining new ones for each target
 
 _BINARY_DEPS_ATTRS = ["binary"]
+
+# @unsorted-dict-items
+_BUNDLE_DEPS_ATTRS = [
+    "deps",
+
+    # rules_ios
+    "private_deps",
+    "transitive_deps",
+]
 _DEPS_ATTRS = ["deps"]
 _EXPORTED_SYMBOLS_LISTS_ATTRS = ["exported_symbols_lists"]
 _HDRS_DEPS_ATTRS = ["hdrs"]
@@ -94,6 +103,8 @@ _CC_LIBRARY_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
+
+# @unsorted-dict-items
 _BUNDLE_XCODE_TARGETS = {
     "app_clips": _XCODE_TARGET_TYPES_COMPILE,
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
@@ -101,6 +112,10 @@ _BUNDLE_XCODE_TARGETS = {
     "extensions": _XCODE_TARGET_TYPES_COMPILE,
     "frameworks": _XCODE_TARGET_TYPES_COMPILE,
     "watch_application": _XCODE_TARGET_TYPES_COMPILE,
+
+    # rules_ios
+    "private_deps": _XCODE_TARGET_TYPES_COMPILE,
+    "transitive_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
 _OBJC_LIBRARY_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
@@ -237,6 +252,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         app_icons = "app_icons"
         codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
+        deps = _BUNDLE_DEPS_ATTRS
         entitlements = "entitlements"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         hdrs = _HDRS_DEPS_ATTRS
