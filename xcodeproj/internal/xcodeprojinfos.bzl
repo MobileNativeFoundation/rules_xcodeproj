@@ -1,4 +1,4 @@
-"""Functions for creating `XcodeProjInfo` providers."""
+"""Module for creating `XcodeProjInfo` providers."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
@@ -223,16 +223,16 @@ def _target_info_fields(
         "xcode_targets": xcode_targets,
     }
 
-def _skip_target(
+def _make_skipped_target_xcodeprojinfo(
         *,
         ctx,
+        automatic_target_info,
         build_mode,
-        target,
-        target_skip_type,
         deps,
         deps_attrs,
-        transitive_infos,
-        automatic_target_info):
+        target,
+        target_skip_type,
+        transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -240,16 +240,17 @@ def _skip_target(
 
     Args:
         ctx: The aspect context.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         build_mode: See `xcodeproj.build_mode`.
-        target_skip_type: The `skip_type` for this `target` (see `_get_skip_type`).
-        target: The `Target` to skip.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
+        target_skip_type: The `skip_type` for this `target`
+            (see `_get_skip_type`).
+        target: The `Target` to skip.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            `target`.
 
     Returns:
         The return value of `_target_info_fields`, with values merged from
@@ -447,23 +448,23 @@ def _skip_target(
         ),
     )
 
-def _create_xcodeprojinfo(
+def _make_non_skipped_target_xcodeprojinfo(
         *,
         ctx,
+        attrs,
+        automatic_target_info,
         build_mode,
         target,
-        attrs,
-        transitive_infos,
-        automatic_target_info):
+        transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
-        target: The `Target` to process.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        build_mode: See `xcodeproj.build_mode`.
+        target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
 
@@ -604,13 +605,13 @@ def _create_xcodeprojinfo(
 
 # API
 
-def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
+def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
@@ -627,27 +628,27 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
 
     target_skip_type = _get_skip_type(ctx = ctx, target = target)
     if target_skip_type:
-        info_fields = _skip_target(
+        info_fields = _make_skipped_target_xcodeprojinfo(
             ctx = ctx,
+            automatic_target_info = automatic_target_info,
             build_mode = build_mode,
-            target = target,
-            target_skip_type = target_skip_type,
             deps = [
                 dep
                 for attr in automatic_target_info.deps
                 for dep in getattr(ctx.rule.attr, attr, [])
             ],
             deps_attrs = automatic_target_info.deps,
+            target = target,
+            target_skip_type = target_skip_type,
             transitive_infos = transitive_infos,
-            automatic_target_info = automatic_target_info,
         )
     else:
-        info_fields = _create_xcodeprojinfo(
+        info_fields = _make_non_skipped_target_xcodeprojinfo(
             ctx = ctx,
-            build_mode = build_mode,
-            target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
+            build_mode = build_mode,
+            target = target,
             transitive_infos = transitive_infos,
         )
 
@@ -665,3 +666,7 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
         ),
         **info_fields
     )
+
+xcodeprojinfos = struct(
+    make = _make_xcodeprojinfo,
+)

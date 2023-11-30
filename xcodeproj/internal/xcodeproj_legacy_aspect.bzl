@@ -7,7 +7,7 @@ load(
     "XcodeProjProvisioningProfileInfo",
 )
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
+load(":xcodeprojinfos.bzl", "xcodeprojinfos")
 
 # Utility
 
@@ -99,7 +99,7 @@ def _xcodeproj_legacy_aspect_impl(target, ctx):
         # Only create an `XcodeProjInfo` if the target hasn't already created
         # one
         attrs = dir(ctx.rule.attr)
-        info = create_xcodeprojinfo(
+        info = xcodeprojinfos.make(
             ctx = ctx,
             build_mode = ctx.attr._build_mode,
             target = target,
