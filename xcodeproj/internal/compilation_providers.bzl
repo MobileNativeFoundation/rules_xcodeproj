@@ -116,12 +116,12 @@ def _collect_compilation_providers(
 
     return (
         struct(
-            _framework_files = EMPTY_DEPSET,
-            _is_top_level = False,
-            _is_xcode_library_target = is_xcode_library_target,
             _propagated_framework_files = EMPTY_DEPSET,
             _propagated_objc = objc,
             cc_info = cc_info,
+            framework_files = EMPTY_DEPSET,
+            is_top_level = False,
+            is_xcode_library_target = is_xcode_library_target,
             objc = objc,
         ),
         implementation_compilation_context,
@@ -208,12 +208,12 @@ def _merge_compilation_providers(
 
     return (
         struct(
-            _framework_files = framework_files,
-            _is_top_level = True,
-            _is_xcode_library_target = False,
             _propagated_framework_files = propagated_framework_files,
             _propagated_objc = propagated_objc,
             cc_info = merged_cc_info,
+            framework_files = framework_files,
+            is_top_level = True,
+            is_xcode_library_target = False,
             objc = objc,
         ),
         implementation_compilation_context,
