@@ -150,9 +150,9 @@ def _collect_compilation_providers(
             cc_info.compilation_context if cc_info else None
         ),
         compilation_contexts = [
-            providers.cc_info.compilation_context
+            providers._cc_info.compilation_context
             for providers in transitive_implementation_providers
-            if providers.cc_info
+            if providers._cc_info
         ],
     )
 
@@ -161,13 +161,16 @@ def _collect_compilation_providers(
 
     return (
         struct(
-            _propagated_framework_files = EMPTY_DEPSET,
-            _propagated_objc = objc,
             cc_info = cc_info,
             framework_files = EMPTY_DEPSET,
             is_top_level = False,
             is_xcode_library_target = is_xcode_library_target,
             objc = objc,
+        ),
+        struct(
+            _cc_info = cc_info,
+            _propagated_framework_files = EMPTY_DEPSET,
+            _propagated_objc = objc,
         ),
         implementation_compilation_context,
     )
@@ -214,9 +217,9 @@ def _merge_compilation_providers(
         propagated_framework_files = framework_files
 
     transitive_cc_infos = [
-        providers.cc_info
+        providers._cc_info
         for _, providers in transitive_compilation_providers
-        if providers.cc_info
+        if providers._cc_info
     ]
 
     if len(transitive_cc_infos) > 1 or (cc_info and transitive_cc_infos):
@@ -238,7 +241,7 @@ def _merge_compilation_providers(
     objc = None
     if _objc_has_linking_info:
         maybe_objc_providers = [
-            _to_objc(providers._propagated_objc, providers.cc_info)
+            _to_objc(providers._propagated_objc, providers._cc_info)
             for _, providers in transitive_compilation_providers
         ]
         objc_providers = [objc for objc in maybe_objc_providers if objc]
@@ -253,13 +256,16 @@ def _merge_compilation_providers(
 
     return (
         struct(
-            _propagated_framework_files = propagated_framework_files,
-            _propagated_objc = propagated_objc,
             cc_info = merged_cc_info,
             framework_files = framework_files,
             is_top_level = True,
             is_xcode_library_target = False,
             objc = objc,
+        ),
+        struct(
+            _cc_info = merged_cc_info,
+            _propagated_framework_files = propagated_framework_files,
+            _propagated_objc = propagated_objc,
         ),
         implementation_compilation_context,
     )

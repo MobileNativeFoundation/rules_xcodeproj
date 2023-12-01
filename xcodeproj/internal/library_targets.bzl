@@ -80,7 +80,8 @@ def process_library_target(
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     (
-        compilation_providers,
+        target_compilation_providers,
+        provider_compilation_providers,
         implementation_compilation_context,
     ) = comp_providers.collect(
         cc_info = target[CcInfo],
@@ -94,7 +95,7 @@ def process_library_target(
     linker_inputs = linker_input_files.collect(
         target = target,
         automatic_target_info = automatic_target_info,
-        compilation_providers = compilation_providers,
+        compilation_providers = target_compilation_providers,
     )
 
     cpp = ctx.fragments.cpp
@@ -180,7 +181,7 @@ def process_library_target(
     )
 
     return processed_target(
-        compilation_providers = compilation_providers,
+        compilation_providers = provider_compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,
         library = product.file,

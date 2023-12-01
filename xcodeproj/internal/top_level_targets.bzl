@@ -9,7 +9,7 @@ load(
     "get_targeted_device_family",
 )
 load(":collections.bzl", "set_if_true")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
@@ -340,7 +340,7 @@ def process_top_level_target(
         )
 
     if avoid_compilation_providers_list:
-        (avoid_compilation_providers, _) = comp_providers.merge(
+        (avoid_compilation_providers, _, _) = compilation_providers.merge(
             transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
@@ -361,9 +361,10 @@ def process_top_level_target(
     ]
 
     (
-        compilation_providers,
+        target_compilation_providers,
+        provider_compilation_providers,
         implementation_compilation_context,
-    ) = comp_providers.merge(
+    ) = compilation_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
         transitive_compilation_providers = [
@@ -374,7 +375,7 @@ def process_top_level_target(
     linker_inputs = linker_input_files.collect(
         target = target,
         automatic_target_info = automatic_target_info,
-        compilation_providers = compilation_providers,
+        compilation_providers = target_compilation_providers,
         avoid_compilation_providers = avoid_compilation_providers,
     )
 
@@ -534,7 +535,7 @@ def process_top_level_target(
     )
 
     return processed_target(
-        compilation_providers = compilation_providers,
+        compilation_providers = provider_compilation_providers,
         dependencies = dependencies,
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,

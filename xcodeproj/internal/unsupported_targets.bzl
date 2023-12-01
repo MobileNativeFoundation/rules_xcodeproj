@@ -5,7 +5,7 @@ load(
     "AppleResourceBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -66,9 +66,10 @@ def process_unsupported_target(
         resource_bundle_ids = None
 
     (
-        compilation_providers,
+        target_compilation_providers,
+        provider_compilation_providers,
         _,
-    ) = comp_providers.collect(
+    ) = compilation_providers.collect(
         cc_info = cc_info,
         objc = objc,
         is_xcode_target = False,
@@ -79,7 +80,7 @@ def process_unsupported_target(
     linker_inputs = linker_input_files.collect(
         target = target,
         automatic_target_info = automatic_target_info,
-        compilation_providers = compilation_providers,
+        compilation_providers = target_compilation_providers,
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
@@ -106,7 +107,7 @@ def process_unsupported_target(
     )
 
     return processed_target(
-        compilation_providers = compilation_providers,
+        compilation_providers = provider_compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
