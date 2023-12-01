@@ -206,6 +206,7 @@ def process_top_level_target(
     configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
     label = target.label
     id = get_id(label = label, configuration = configuration)
+    rule_attr = ctx.rule.attr
 
     frameworks = getattr(ctx.rule.attr, "frameworks", [])
     framework_infos = [
@@ -292,10 +293,11 @@ def process_top_level_target(
     else:
         extension_infoplists = None
 
-    provisioning_profiles.process_attr(
-        ctx = ctx,
+    provisioning_profiles.legacy_process_attr(
         automatic_target_info = automatic_target_info,
         build_settings = build_settings,
+        objc_fragment = ctx.fragments.objc,
+        rule_attr = rule_attr,
     )
 
     # The common case is to have a `bundle_info`, so this check prevents
