@@ -7,6 +7,8 @@ load(
     "memory_efficient_depset",
 )
 
+_objc_has_linking_info = not bazel_features.cc.objc_linking_info_migrated
+
 def _legacy_merge_cc_compilation_context(
         *,
         direct_compilation_context,
@@ -66,12 +68,55 @@ def _modern_merge_cc_compilation_context(
 
     return direct_compilation_context
 
-# Bazel 6 check
+def _to_objc(objc, cc_info):
+    if objc:
+        return objc
+    if not cc_info:
+        return None
+
+    libraries = []
+    force_load_libraries = []
+    link_inputs = []
+    linkopts = []
+    for input in cc_info.linking_context.linker_inputs.to_list():
+        for library in input.libraries:
+            link_inputs.extend(input.additional_inputs)
+            linkopts.extend(input.user_link_flags)
+
+            # TODO: Account for all of the different linking strategies
+            # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
+            static_library = (library.static_library or
+                              library.pic_static_library)
+            if static_library:
+                libraries.append(static_library)
+                if library.alwayslink:
+                    force_load_libraries.append(static_library)
+
+    return apple_common.new_objc_provider(
+        force_load_library = depset(
+            force_load_libraries,
+            order = "topological",
+        ),
+        library = depset(
+            libraries,
+            order = "topological",
+        ),
+        link_inputs = depset(
+            link_inputs,
+            order = "topological",
+        ),
+        linkopt = depset(
+            linkopts,
+            order = "topological",
+        ),
+    )
+
 _merge_cc_compilation_context = (
+    # Bazel 6 check
     _modern_merge_cc_compilation_context if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_merge_cc_compilation_context
 )
 
-_objc_has_linking_info = not bazel_features.cc.objc_linking_info_migrated
+# API
 
 def _collect_compilation_providers(
         *,
@@ -217,49 +262,6 @@ def _merge_compilation_providers(
             objc = objc,
         ),
         implementation_compilation_context,
-    )
-
-def _to_objc(objc, cc_info):
-    if objc:
-        return objc
-    if not cc_info:
-        return None
-
-    libraries = []
-    force_load_libraries = []
-    link_inputs = []
-    linkopts = []
-    for input in cc_info.linking_context.linker_inputs.to_list():
-        for library in input.libraries:
-            link_inputs.extend(input.additional_inputs)
-            linkopts.extend(input.user_link_flags)
-
-            # TODO: Account for all of the different linking strategies
-            # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
-            static_library = (library.static_library or
-                              library.pic_static_library)
-            if static_library:
-                libraries.append(static_library)
-                if library.alwayslink:
-                    force_load_libraries.append(static_library)
-
-    return apple_common.new_objc_provider(
-        force_load_library = depset(
-            force_load_libraries,
-            order = "topological",
-        ),
-        library = depset(
-            libraries,
-            order = "topological",
-        ),
-        link_inputs = depset(
-            link_inputs,
-            order = "topological",
-        ),
-        linkopt = depset(
-            linkopts,
-            order = "topological",
-        ),
     )
 
 compilation_providers = struct(
