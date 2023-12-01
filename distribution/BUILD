@@ -1,8 +1,8 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
-load(":opt_wrapper.bzl", "opt_wrapper")
 load(":expanded_pkg.bzl", "expanded_pkg")
+load(":opt_wrapper.bzl", "opt_wrapper")
 
 opt_wrapper(
     name = "release",

@@ -3,7 +3,6 @@
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceBundleInfo",
-    "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
