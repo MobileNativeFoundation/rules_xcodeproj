@@ -3,8 +3,8 @@
 
 load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":xcodeprojinfos.bzl", "xcodeprojinfos")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
+load(":xcodeprojinfos.bzl", "xcodeprojinfos")
 
 # Utility
 

@@ -5,12 +5,14 @@ load("//test:mock_actions.bzl", "mock_actions")
 load(":utils.bzl", "json_to_xcscheme_infos")
 
 # buildifier: disable=bzl-visibility
+# buildifier: disable=out-of-order-load
 load(
     "//xcodeproj/internal/xcschemes:xcscheme_infos.bzl",
     "xcscheme_infos_testable",
 )
 
 # buildifier: disable=bzl-visibility
+# buildifier: disable=out-of-order-load
 load(
     "//xcodeproj/internal/xcschemes:xcschemes_execution.bzl",
     "xcschemes_execution",
