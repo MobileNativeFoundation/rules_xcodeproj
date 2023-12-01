@@ -345,7 +345,7 @@ def process_top_level_target(
         )
 
     if avoid_compilation_providers_list:
-        (avoid_compilation_providers, _, _) = compilation_providers.merge(
+        (avoid_compilation_providers, _) = compilation_providers.merge(
             transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
@@ -368,7 +368,6 @@ def process_top_level_target(
     (
         target_compilation_providers,
         provider_compilation_providers,
-        implementation_compilation_context,
     ) = compilation_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
@@ -475,7 +474,9 @@ def process_top_level_target(
         c_sources = target_inputs.c_sources,
         cxx_sources = target_inputs.cxx_sources,
         target = target,
-        implementation_compilation_context = implementation_compilation_context,
+        implementation_compilation_context = (
+            target_compilation_providers.implementation_compilation_context
+        ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

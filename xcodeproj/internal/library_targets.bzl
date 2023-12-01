@@ -84,7 +84,6 @@ def process_library_target(
     (
         target_compilation_providers,
         provider_compilation_providers,
-        implementation_compilation_context,
     ) = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
@@ -169,7 +168,9 @@ def process_library_target(
         c_sources = target_inputs.c_sources,
         cxx_sources = target_inputs.cxx_sources,
         target = target,
-        implementation_compilation_context = implementation_compilation_context,
+        implementation_compilation_context = (
+            target_compilation_providers.implementation_compilation_context
+        ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
