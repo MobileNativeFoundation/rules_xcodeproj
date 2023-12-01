@@ -235,7 +235,10 @@ def _extract_top_level_values(
         # Dedup libraries
         static_libraries = uniq(static_libraries)
     else:
-        return None
+        additional_input_files = []
+        dynamic_frameworks = []
+        static_libraries = []
+        static_frameworks = []
 
     link_args = None
     link_args_inputs = None
