@@ -61,10 +61,10 @@ _TOOLS_REPOS = {
 def _should_create_provider(*, ctx, target):
     if ctx.rule.kind in _INTERNAL_RULE_KINDS:
         return False
-    if not target.label.workspace_name:
-        return True
     if BuildSettingInfo in target:
         return False
+    if not target.label.workspace_name:
+        return True
     bzlmod_components = target.label.workspace_name.split("~")
     if len(bzlmod_components) <= 2 and bzlmod_components[0] in _TOOLS_REPOS:
         # Check for 2 components is to not exclude module extension dependencies
