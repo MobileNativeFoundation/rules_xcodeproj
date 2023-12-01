@@ -53,6 +53,7 @@ def _process_resource_bundle(bundle, *, bundle_id):
         debug_outputs = None,
         id = id,
         output_group_info = None,
+        rule_attr = None,
         swift_info = None,
         transitive_infos = EMPTY_LIST,
         should_produce_dto = False,

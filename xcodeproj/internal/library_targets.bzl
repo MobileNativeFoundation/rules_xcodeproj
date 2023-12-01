@@ -31,6 +31,7 @@ def process_library_target(
         target,
         attrs,
         automatic_target_info,
+        rule_attr,
         transitive_infos):
     """Gathers information about a library target.
 
@@ -41,6 +42,7 @@ def process_library_target(
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -53,9 +55,9 @@ def process_library_target(
 
     build_settings = {}
 
-    product_name = ctx.rule.attr.name
+    product_name = rule_attr.name
     module_name_attribute, product_module_name = get_product_module_name(
-        ctx = ctx,
+        rule_attr = rule_attr,
         target = target,
     )
     set_if_true(
@@ -72,7 +74,7 @@ def process_library_target(
     deps_infos = [
         dep[XcodeProjInfo]
         for attr in automatic_target_info.implementation_deps
-        for dep in getattr(ctx.rule.attr, attr, [])
+        for dep in getattr(rule_attr, attr, [])
         if XcodeProjInfo in dep
     ]
 
@@ -119,6 +121,7 @@ def process_library_target(
         ctx = ctx,
         target = target,
         attrs = attrs,
+        rule_attr = rule_attr,
         id = id,
         platform = platform,
         is_bundle = False,
@@ -137,6 +140,7 @@ def process_library_target(
         inputs = target_inputs,
         output_group_info = output_group_info,
         product = product,
+        rule_attr = rule_attr,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )

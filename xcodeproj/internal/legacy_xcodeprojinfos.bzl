@@ -73,8 +73,8 @@ _TOOLS_REPOS = {
 
 # Just a slight optimization to not process things we know don't need to have
 # our provider
-def _should_create_provider(*, ctx, target):
-    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
+def _should_create_provider(*, rule_kind, target):
+    if rule_kind in _INTERNAL_RULE_KINDS:
         return False
     if BuildSettingInfo in target:
         return False
@@ -89,31 +89,32 @@ def _should_create_provider(*, ctx, target):
 
     return True
 
-def _get_skip_type(*, ctx, target):
+def _get_skip_type(*, rule_attr, rule_kind, target):
     """Determines if the given target should be skipped for target generation.
 
     There are some rules, like the test runners for iOS tests, that we want to
     ignore. Nothing from those rules are considered.
 
     Args:
-        ctx: The aspect context.
+        rule_attr: `ctx.rule.attr`.
+        rule_kind: `ctx.rule.kind`.
         target: The `Target` to check.
 
     Returns:
         A `_SKIP_TYPE` if `target` should be skipped, otherwise `None`.
     """
-    if ctx.rule.kind in _BUILD_TEST_RULES:
+    if rule_kind in _BUILD_TEST_RULES:
         return _SKIP_TYPE.apple_build_test
 
-    if ctx.rule.kind in _TEST_SUITE_RULES:
+    if rule_kind in _TEST_SUITE_RULES:
         return _SKIP_TYPE.test_suite
 
-    if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
+    if AppleBinaryInfo in target and not hasattr(rule_attr, "deps"):
         return _SKIP_TYPE.apple_binary_no_deps
 
     if targets.is_test_bundle(
         target = target,
-        deps = getattr(ctx.rule.attr, "deps", None),
+        deps = getattr(rule_attr, "deps", None),
     ):
         return _SKIP_TYPE.apple_test_bundle
 
@@ -226,6 +227,7 @@ def _make_skipped_target_xcodeprojinfo(
         build_mode,
         deps,
         deps_attrs,
+        rule_attr,
         target,
         target_skip_type,
         transitive_infos):
@@ -242,6 +244,7 @@ def _make_skipped_target_xcodeprojinfo(
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
+        rule_attr: `ctx.rule.attr`.
         target_skip_type: The `_SKIP_TYPE` for `target`
             (see `_get_skip_type`).
         target: The `Target` to skip.
@@ -326,7 +329,7 @@ def _make_skipped_target_xcodeprojinfo(
         #
         # `iOSAppObjCUnitTestSuite_iPhone-13-Pro__16.2` => `iOSAppObjCUnitTestSuite`
         #
-        runner_label_name = ctx.rule.attr.runner.label.name
+        runner_label_name = rule_attr.runner.label.name
         label_name = target.label.name.replace("_{}".format(runner_label_name), "")
 
         return Label(
@@ -339,7 +342,7 @@ def _make_skipped_target_xcodeprojinfo(
                 struct(
                     id = info.xcode_target.id,
                     args = (
-                        getattr(ctx.rule.attr, automatic_target_info.args, [])
+                        getattr(rule_attr, automatic_target_info.args, [])
                     ),
                 )
                 for info in deps_transitive_infos
@@ -358,7 +361,7 @@ def _make_skipped_target_xcodeprojinfo(
                     env = struct(
                         **dicts.add(
                             getattr(
-                                ctx.rule.attr,
+                                rule_attr,
                                 automatic_target_info.env,
                                 {},
                             ),
@@ -450,6 +453,8 @@ def _make_non_skipped_target_xcodeprojinfo(
         attrs,
         automatic_target_info,
         build_mode,
+        rule_attr,
+        rule_kind,
         target,
         transitive_infos):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
@@ -460,6 +465,8 @@ def _make_non_skipped_target_xcodeprojinfo(
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         build_mode: See `xcodeproj.build_mode`.
+        rule_attr: `ctx.rule.attr`.
+        rule_kind: `ctx.rule.kind`.
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
@@ -468,7 +475,7 @@ def _make_non_skipped_target_xcodeprojinfo(
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
-    if not _should_create_provider(ctx = ctx, target = target):
+    if not _should_create_provider(rule_kind = rule_kind, target = target):
         return None
 
     valid_transitive_infos = [
@@ -486,6 +493,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
+            rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
     elif automatic_target_info.is_top_level:
@@ -498,6 +506,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             bundle_info = (
                 target[AppleBundleInfo] if AppleBundleInfo in target else None
             ),
+            rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
     else:
@@ -507,6 +516,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
+            rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
 
@@ -557,7 +567,7 @@ def _make_non_skipped_target_xcodeprojinfo(
         lldb_context = processed_target.lldb_context,
         mergable_xcode_library_targets = mergable_xcode_library_targets,
         non_top_level_rule_kind = (
-            None if processed_target.is_top_level else ctx.rule.kind
+            None if processed_target.is_top_level else rule_kind
         ),
         outputs = processed_target.outputs,
         potential_target_merges = memory_efficient_depset(
@@ -601,13 +611,23 @@ def _make_non_skipped_target_xcodeprojinfo(
 
 # API
 
-def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
+def _make_xcodeprojinfo(
+        *,
+        ctx,
+        attrs,
+        build_mode,
+        rule_attr,
+        rule_kind,
+        target,
+        transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
         ctx: The aspect context.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         build_mode: See `xcodeproj.build_mode`.
+        rule_attr: `ctx.rule.attr`.
+        rule_kind: `ctx.rule.kind`.
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
@@ -619,10 +639,16 @@ def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
     automatic_target_info = calculate_automatic_target_info(
         ctx = ctx,
         build_mode = build_mode,
+        rule_attr = rule_attr,
+        rule_kind = rule_kind,
         target = target,
     )
 
-    target_skip_type = _get_skip_type(ctx = ctx, target = target)
+    target_skip_type = _get_skip_type(
+        rule_attr = rule_attr,
+        rule_kind = rule_kind,
+        target = target,
+    )
     if target_skip_type:
         info_fields = _make_skipped_target_xcodeprojinfo(
             ctx = ctx,
@@ -631,9 +657,10 @@ def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
             deps = [
                 dep
                 for attr in automatic_target_info.deps
-                for dep in getattr(ctx.rule.attr, attr, [])
+                for dep in getattr(rule_attr, attr, [])
             ],
             deps_attrs = automatic_target_info.deps,
+            rule_attr = rule_attr,
             target = target,
             target_skip_type = target_skip_type,
             transitive_infos = transitive_infos,
@@ -644,6 +671,8 @@ def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
             attrs = attrs,
             automatic_target_info = automatic_target_info,
             build_mode = build_mode,
+            rule_attr = rule_attr,
+            rule_kind = rule_kind,
             target = target,
             transitive_infos = transitive_infos,
         )

@@ -126,6 +126,7 @@ def _collect_output_files(
         indexstore_overrides = [],
         infoplist = None,
         inputs = None,
+        rule_attr,
         transitive_infos,
         should_produce_dto = True,
         should_produce_output_groups = True):
@@ -148,6 +149,7 @@ def _collect_output_files(
             targets.
         infoplist: A `File` or `None`.
         inputs: A value returned from `input_files.collect`, or `None`.
+        rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -257,7 +259,7 @@ def _collect_output_files(
             indexstore_and_target_overrides = transitive_indexstore_overrides,
             indexstores = transitive_indexstores,
             name = "bi",
-            rule_name = ctx.rule.attr.name,
+            rule_name = rule_attr.name,
         )
 
         # We don't want to declare indexstore files as outputs, because they

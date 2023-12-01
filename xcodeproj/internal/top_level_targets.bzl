@@ -37,13 +37,13 @@ load(
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
-def _get_codesign_opts(*, ctx, inputs_attr, opts_attr):
+def _get_codesign_opts(*, ctx, inputs_attr, opts_attr, rule_attr):
     if not opts_attr:
         return ([], [])
 
     opts = [
         ctx.expand_make_variables(opts_attr, opt, {})
-        for opt in getattr(ctx.rule.attr, opts_attr, [])
+        for opt in getattr(rule_attr, opts_attr, [])
     ]
 
     if opts and inputs_attr:
@@ -186,6 +186,7 @@ def process_top_level_target(
         attrs,
         automatic_target_info,
         bundle_info,
+        rule_attr,
         transitive_infos):
     """Gathers information about a top-level target.
 
@@ -197,6 +198,7 @@ def process_top_level_target(
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
+        rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -206,16 +208,15 @@ def process_top_level_target(
     configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
     label = target.label
     id = get_id(label = label, configuration = configuration)
-    rule_attr = ctx.rule.attr
 
-    frameworks = getattr(ctx.rule.attr, "frameworks", [])
+    frameworks = getattr(rule_attr, "frameworks", [])
     framework_infos = [
         framework[XcodeProjInfo]
         for framework in frameworks
     ]
     avoid_deps = list(frameworks)
 
-    test_host_target = getattr(ctx.rule.attr, "test_host", None)
+    test_host_target = getattr(rule_attr, "test_host", None)
     test_host_target_info = (
         test_host_target[XcodeProjInfo] if test_host_target else None
     )
@@ -225,13 +226,13 @@ def process_top_level_target(
     if test_host_target:
         avoid_deps.append(test_host_target)
 
-    app_clip_targets = getattr(ctx.rule.attr, "app_clips", [])
+    app_clip_targets = getattr(rule_attr, "app_clips", [])
     app_clips = [
         extension_target[XcodeProjInfo].xcode_target.id
         for extension_target in app_clip_targets
     ]
 
-    watch_app_target = getattr(ctx.rule.attr, "watch_application", None)
+    watch_app_target = getattr(rule_attr, "watch_application", None)
     watch_app_target_info = (
         watch_app_target[XcodeProjInfo] if watch_app_target else None
     )
@@ -239,8 +240,8 @@ def process_top_level_target(
         watch_app_target_info.xcode_target.id if watch_app_target_info else None
     )
 
-    extension_targets = list(getattr(ctx.rule.attr, "extensions", []))
-    extension_target = getattr(ctx.rule.attr, "extension", None)
+    extension_targets = list(getattr(rule_attr, "extensions", []))
+    extension_target = getattr(rule_attr, "extension", None)
     if extension_target:
         extension_targets.append(extension_target)
     extension_target_infos = [
@@ -264,12 +265,16 @@ def process_top_level_target(
 
     modulemaps = process_modulemaps(swift_info = swift_info)
 
-    app_icon_info = app_icons.get_info(ctx, automatic_target_info)
-
+    app_icon_info = app_icons.get_info(
+        ctx = ctx,
+        automatic_target_info = automatic_target_info,
+        rule_attr = rule_attr,
+    )
     infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),
         app_icon_info.default_icon_path if app_icon_info else None,
         ctx = ctx,
+        rule_attr = rule_attr,
     )
 
     if infoplist:
@@ -310,7 +315,7 @@ def process_top_level_target(
         bundle_info = bundle_info,
     )
     props = process_top_level_properties(
-        target_name = ctx.rule.attr.name,
+        target_name = rule_attr.name,
         target_files = target_files,
         bundle_info = bundle_info,
         tree_artifact_enabled = tree_artifact_enabled,
@@ -356,7 +361,7 @@ def process_top_level_target(
     deps_infos = [
         dep[XcodeProjInfo]
         for attr in automatic_target_info.deps
-        for dep in getattr(ctx.rule.attr, attr, [])
+        for dep in getattr(rule_attr, attr, [])
         if XcodeProjInfo in dep
     ]
 
@@ -382,6 +387,7 @@ def process_top_level_target(
         ctx = ctx,
         inputs_attr = automatic_target_info.codesign_inputs,
         opts_attr = automatic_target_info.codesignopts,
+        rule_attr = rule_attr,
     )
     additional_files.extend(codesign_inputs)
     set_if_true(
@@ -391,7 +397,7 @@ def process_top_level_target(
     )
 
     module_name_attribute, product_module_name = get_product_module_name(
-        ctx = ctx,
+        rule_attr = rule_attr,
         target = target,
     )
 
@@ -417,6 +423,7 @@ def process_top_level_target(
         ctx = ctx,
         target = target,
         attrs = attrs,
+        rule_attr = rule_attr,
         id = id,
         platform = platform,
         is_bundle = is_bundle,
@@ -440,6 +447,7 @@ def process_top_level_target(
         product = product,
         swift_info = swift_info,
         infoplist = infoplist,
+        rule_attr = rule_attr,
         transitive_infos = transitive_infos,
     )
 

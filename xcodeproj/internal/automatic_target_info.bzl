@@ -257,12 +257,20 @@ _DEFAULT_XCODE_TARGETS = {
     None: {"deps": NONE_LIST},
 }
 
-def calculate_automatic_target_info(ctx, build_mode, target):
+def calculate_automatic_target_info(
+        *,
+        ctx,
+        build_mode,
+        rule_attr,
+        rule_kind,
+        target):
     """Calculates the automatic target info for the given target.
 
     Args:
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
+        rule_attr: `ctx.rule.attr`.
+        rule_kind: `ctx.rule.kind`.
         target: The `Target` to calculate the automatic target info for.
 
     Returns:
@@ -300,15 +308,13 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     pch = None
     provisioning_profile = None
 
-    rule_kind = ctx.rule.kind
-
     if rule_kind == "cc_library":
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         xcode_targets = _CC_LIBRARY_XCODE_TARGETS
 
         is_supported = (
             bool(target.files) and
-            _has_values_in(_SRCS_ATTRS, attr = ctx.rule.attr)
+            _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
         collect_uncategorized_files = not is_supported
     elif rule_kind == "objc_library":
@@ -319,8 +325,8 @@ def calculate_automatic_target_info(ctx, build_mode, target):
 
         is_supported = (
             bool(target.files) and (
-                _has_values_in(_SRCS_ATTRS, attr = ctx.rule.attr) or
-                _has_values_in(_NON_ARC_SRCS_ATTRS, attr = ctx.rule.attr)
+                _has_values_in(_SRCS_ATTRS, attr = rule_attr) or
+                _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
             )
         )
         collect_uncategorized_files = not is_supported
@@ -389,7 +395,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         is_top_level = True
         xcode_targets = _BINARY_XCODE_TARGETS
     elif AppleFrameworkImportInfo in target:
-        if (getattr(ctx.rule.attr, "bundle_only", False) and
+        if (getattr(rule_attr, "bundle_only", False) and
             build_mode == "xcode"):
             fail("""\
 `bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
@@ -406,7 +412,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
 
         is_supported = is_executable
         collect_uncategorized_files = not is_supported
-        if is_executable and hasattr(ctx.rule.attr, "srcs"):
+        if is_executable and hasattr(rule_attr, "srcs"):
             srcs = _SRCS_ATTRS
 
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]

@@ -25,6 +25,7 @@ def process_unsupported_target(
         target,
         attrs,
         automatic_target_info,
+        rule_attr,
         transitive_infos):
     """Gathers information about a non-Xcode target.
 
@@ -34,6 +35,7 @@ def process_unsupported_target(
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
 
@@ -57,7 +59,7 @@ def process_unsupported_target(
                     ),
                 ),
                 getattr(
-                    ctx.rule.attr,
+                    rule_attr,
                     automatic_target_info.bundle_id,
                 ),
             ),
@@ -92,6 +94,7 @@ def process_unsupported_target(
         ctx = ctx,
         target = target,
         attrs = attrs,
+        rule_attr = rule_attr,
         unfocused = None,
         id = None,
         platform = None,
