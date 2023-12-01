@@ -33,12 +33,12 @@ target ID (see `xcode_target.id`) of the target and `env` values for the target
 (if applicable).
 """,
         "extension_infoplists": """\
-A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
+A `depset` of `struct`s with `id` and `infoplist` fields. The `id` field is the
 target ID (see `xcode_target.id`) of the application extension target. The
-'infoplist' field is a `File` for the Info.plist for the target.
+`infoplist` field is a `File` for the Info.plist for the target.
 """,
         "hosted_targets": """\
-A `depset` of `struct`s with 'host' and 'hosted' fields. The `host` field is the
+A `depset` of `struct`s with `host` and `hosted` fields. The `host` field is the
 target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is
 the target ID of the hosted target.
 """,
@@ -54,7 +54,7 @@ A `depset` of `Labels` for the target and its transitive dependencies.
 """,
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "mergable_xcode_library_targets": """\
-A `depset` of target ids (see `xcode_target.id`). Each represents a target that
+A `depset` of target IDs (see `xcode_target.id`). Each represents a target that
 can potentially merge into a top-level target (to be decided by the top-level
 target).
 """,
@@ -72,17 +72,18 @@ information about the output files for this target and its transitive
 dependencies.
 """,
         "potential_target_merges": """\
-A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
-of the target that can be merged into the target with the id of the 'dest'
+A `depset` of `struct`s with `src` and `dest` fields. The `src` field is the id
+of the target that can be merged into the target with the id of the `dest`
 field.
 """,
         "replacement_labels": """\
 A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
-target id of the target that have its label (and name) be replaced with the
+target ID (see `xcode_target.id`) of the target that have its label (and name)
+be replaced with the
 label in the `label` field.
 """,
         "resource_bundle_ids": """\
-A `depset` of `tuple`s mapping target id to bundle id.
+A `depset` of `tuple`s mapping target ID (see `xcode_target.id`) to bundle id.
 """,
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
