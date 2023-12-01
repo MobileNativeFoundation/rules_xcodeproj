@@ -168,14 +168,21 @@ def _merge_compilation_providers(
     else:
         propagated_framework_files = framework_files
 
-    merged_cc_info = cc_common.merge_cc_infos(
-        direct_cc_infos = [cc_info] if cc_info else [],
-        cc_infos = [
-            providers.cc_info
-            for _, providers in transitive_compilation_providers
-            if providers.cc_info
-        ],
-    )
+    transitive_cc_infos = [
+        providers.cc_info
+        for _, providers in transitive_compilation_providers
+        if providers.cc_info
+    ]
+
+    if len(transitive_cc_infos) > 1 or (cc_info and transitive_cc_infos):
+        merged_cc_info = cc_common.merge_cc_infos(
+            direct_cc_infos = [cc_info] if cc_info else [],
+            cc_infos = transitive_cc_infos,
+        )
+    elif transitive_cc_infos:
+        merged_cc_info = transitive_cc_infos[0]
+    else:
+        merged_cc_info = cc_info
 
     # We don't actually merge the compilation context here, because no top-level
     # rules have (or will need) implementation deps
