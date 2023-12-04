@@ -21,11 +21,11 @@ _DEVICE_FAMILY_VALUES = {
     "mac": None,
 }
 
-def get_product_module_name(*, ctx, target):
+def get_product_module_name(*, rule_attr, target):
     """Generates a module name for the given target.
 
     Args:
-        ctx: The aspect context.
+        rule_attr: `ctx.rule.attr`.
         target: The `Target` to generate a module name for.
 
     Returns:
@@ -35,7 +35,7 @@ def get_product_module_name(*, ctx, target):
             the target's `Label` into a valid module name (e.g. "//some/pkg:target"
             becomes "some_pkg_target").
     """
-    module_name = getattr(ctx.rule.attr, "module_name", None)
+    module_name = getattr(rule_attr, "module_name", None)
     if module_name:
         return (module_name, module_name)
 
@@ -43,7 +43,7 @@ def get_product_module_name(*, ctx, target):
         # A `swift_proto_library` target must only have exactly one target in
         # the deps attribute. This is already validated in
         # `swift_proto_library`'s implementation.
-        target_to_derive_module_name = ctx.rule.attr.deps[0]
+        target_to_derive_module_name = rule_attr.deps[0]
 
         # The module name of the Swift library produced by a
         # `swift_proto_library` is based on the name of the `proto_library`

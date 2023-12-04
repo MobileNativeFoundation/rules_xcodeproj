@@ -105,6 +105,7 @@ def _collect_input_files(
         ctx,
         target,
         attrs,
+        rule_attr,
         unfocused = False,
         id,
         platform,
@@ -122,6 +123,7 @@ def _collect_input_files(
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
+        rule_attr: `ctx.rule.attr`.
         unfocused: Whether the target is unfocused. If `None`, it will be
             determined automatically (this should only be the case for
             `non_xcode_target`s).
@@ -364,7 +366,7 @@ def _collect_input_files(
             # Only attributes in `file_handlers` are categorized
             continue
 
-        dep = getattr(ctx.rule.attr, attr)
+        dep = getattr(rule_attr, attr)
 
         dep_type = type(dep)
         if dep_type == "Target":
@@ -667,7 +669,7 @@ def _collect_input_files(
             indexstore_and_target_overrides = transitive_indexstore_overrides,
             indexstores = transitive_indexstores,
             name = "xi",
-            rule_name = ctx.rule.attr.name,
+            rule_name = rule_attr.name,
         )
 
         # We don't want to declare indexstore files as outputs, because they

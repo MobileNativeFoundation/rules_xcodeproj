@@ -49,13 +49,14 @@ def _find_default_icon_path(set_path, app_icon_files):
 
     return None
 
-def _get_app_icon_info(ctx, automatic_target_info):
+def _get_app_icon_info(ctx, automatic_target_info, rule_attr):
     """Attempts to find the application icon name.
 
     Args:
         ctx: The aspect context.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        rule_attr: `ctx.rule.attr`.
 
     Returns:
         The application icon name, if found. Otherwise, `None`.
@@ -63,7 +64,7 @@ def _get_app_icon_info(ctx, automatic_target_info):
     if not automatic_target_info.app_icons:
         return None
 
-    app_icons = getattr(ctx.rule.attr, automatic_target_info.app_icons, None)
+    app_icons = getattr(rule_attr, automatic_target_info.app_icons, None)
     if not app_icons:
         return None
 

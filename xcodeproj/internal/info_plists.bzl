@@ -13,12 +13,12 @@ def _get_file(target):
         return getattr(target[AppleBinaryInfo], "infoplist", None)
     return None
 
-def _adjust_for_xcode(file, default_app_icon_path, *, ctx):
+def _adjust_for_xcode(file, default_app_icon_path, *, ctx, rule_attr):
     if file == None:
         return None
 
     output = ctx.actions.declare_file(
-        "rules_xcodeproj/{}/Info.plist".format(ctx.rule.attr.name),
+        "rules_xcodeproj/{}/Info.plist".format(rule_attr.name),
     )
     command = """\
 cp "{input}" "{output}"

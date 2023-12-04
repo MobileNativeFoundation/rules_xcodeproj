@@ -25,7 +25,7 @@ def _should_ignore_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _transitive_infos(*, ctx, attrs):
+def _transitive_infos(*, attrs, rule_attr):
     transitive_infos = []
 
     # TODO: Have `XcodeProjAutomaticTargetProcessingInfo` tell us which
@@ -36,7 +36,7 @@ def _transitive_infos(*, ctx, attrs):
         if _should_ignore_attr(attr):
             continue
 
-        dep = getattr(ctx.rule.attr, attr)
+        dep = getattr(rule_attr, attr)
 
         dep_type = type(dep)
         if dep_type == "list":
@@ -98,15 +98,19 @@ def _xcodeproj_legacy_aspect_impl(target, ctx):
     if XcodeProjInfo not in target:
         # Only create an `XcodeProjInfo` if the target hasn't already created
         # one
-        attrs = dir(ctx.rule.attr)
+        rule_attr = ctx.rule.attr
+
+        attrs = dir(rule_attr)
         info = legacy_xcodeprojinfos.make(
             ctx = ctx,
             build_mode = ctx.attr._build_mode,
-            target = target,
             attrs = attrs,
+            rule_attr = rule_attr,
+            rule_kind = ctx.rule.kind,
+            target = target,
             transitive_infos = _transitive_infos(
-                ctx = ctx,
                 attrs = attrs,
+                rule_attr = rule_attr,
             ),
         )
         if info:
