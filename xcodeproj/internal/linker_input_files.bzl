@@ -1,6 +1,7 @@
 """Module containing functions dealing with target linker input files."""
 
 load(":collections.bzl", "flatten", "uniq")
+load(":memory_efficiency.bzl", "EMPTY_TUPLE")
 
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
@@ -134,6 +135,21 @@ def _extract_top_level_values(
         avoid_compilation_providers,
         objc_libraries,
         cc_linker_inputs):
+    link_args = None
+    link_args_inputs = None
+    if target:
+        for action in target.actions:
+            if action.mnemonic in automatic_target_info.link_mnemonics:
+                link_args = action.args
+                link_args_inputs = tuple([
+                    f
+                    for f in action.inputs.to_list()
+                    # TODO: Generalize this or add to
+                    # `XcodeProjAutomaticTargetProcessingInfo` somehow?
+                    if f.path.endswith("-linker.objlist")
+                ])
+                break
+
     if compilation_providers.objc:
         objc = compilation_providers.objc
         if avoid_compilation_providers:
@@ -147,6 +163,12 @@ def _extract_top_level_values(
                 file: None
                 for file in avoid_objc.static_framework_file.to_list()
             }
+            static_frameworks = [
+                file
+                for file in objc.static_framework_file.to_list()
+                if file.is_source and file not in avoid_static_framework_files
+            ]
+
             avoid_static_libraries = {
                 file: None
                 for file in depset(transitive = [
@@ -154,22 +176,23 @@ def _extract_top_level_values(
                     avoid_objc.imported_library,
                 ]).to_list()
             }
+            static_libraries = [
+                file
+                for file in objc_libraries
+                if file not in avoid_static_libraries
+            ]
         else:
-            avoid_static_framework_files = {}
-            avoid_static_libraries = {}
+            static_frameworks = [
+                file
+                for file in objc.static_framework_file.to_list()
+                if file.is_source
+            ]
+            static_libraries = [
+                file
+                for file in objc_libraries
+            ]
 
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
-        static_frameworks = [
-            file
-            for file in objc.static_framework_file.to_list()
-            if file.is_source and file not in avoid_static_framework_files
-        ]
-        static_libraries = [
-            file
-            for file in objc_libraries
-            if file not in avoid_static_libraries
-        ]
-
         additional_input_files = _process_additional_inputs(
             objc.link_inputs.to_list(),
         )
@@ -232,28 +255,18 @@ def _extract_top_level_values(
             compilation_providers.framework_files.to_list(),
         )
 
+        # TODO: Remove `uniq` when removing legacy generation mode
         # Dedup libraries
         static_libraries = uniq(static_libraries)
     else:
-        additional_input_files = []
-        dynamic_frameworks = []
-        static_libraries = []
-        static_frameworks = []
-
-    link_args = None
-    link_args_inputs = None
-    if target:
-        for action in target.actions:
-            if action.mnemonic in automatic_target_info.link_mnemonics:
-                link_args = action.args
-                link_args_inputs = tuple([
-                    f
-                    for f in action.inputs.to_list()
-                    # TODO: Generalize this or add to
-                    # `XcodeProjAutomaticTargetProcessingInfo` somehow?
-                    if f.path.endswith("-linker.objlist")
-                ])
-                break
+        return struct(
+            _additional_input_files = EMPTY_TUPLE,
+            _static_frameworks = EMPTY_TUPLE,
+            dynamic_frameworks = EMPTY_TUPLE,
+            link_args = link_args,
+            link_args_inputs = link_args_inputs,
+            static_libraries = EMPTY_TUPLE,
+        )
 
     return struct(
         _additional_input_files = tuple(additional_input_files),
