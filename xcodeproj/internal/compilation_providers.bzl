@@ -122,14 +122,12 @@ def _collect_compilation_providers(
         *,
         cc_info,
         objc,
-        is_xcode_target,
         transitive_implementation_providers):
     """Collects compilation providers for a non top-level target.
 
     Args:
         cc_info: The `CcInfo` of the target, or `None`.
         objc: The `ObjcProvider` of the target, or `None`.
-        is_xcode_target: Whether the target is an Xcode target.
         transitive_implementation_providers: A `list` of
             `XcodeProjInfo`s of transitive implementation deps that should have
             compilation providers merged.
@@ -143,8 +141,6 @@ def _collect_compilation_providers(
         -   The implementation deps aware `CcCompilationContext` for `target`.
 
     """
-    is_xcode_library_target = cc_info and is_xcode_target
-
     implementation_compilation_context = _merge_cc_compilation_context(
         direct_compilation_context = (
             cc_info.compilation_context if cc_info else None
@@ -166,8 +162,6 @@ def _collect_compilation_providers(
             implementation_compilation_context = (
                 implementation_compilation_context
             ),
-            is_top_level = False,
-            is_xcode_library_target = is_xcode_library_target,
             objc = objc,
         ),
         struct(
@@ -259,8 +253,6 @@ def _merge_compilation_providers(
                 # no top-level rules have (or will need) implementation deps
                 cc_info.compilation_context if cc_info else None
             ),
-            is_top_level = True,
-            is_xcode_library_target = False,
             objc = objc,
         ),
         struct(
