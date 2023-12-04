@@ -663,6 +663,6 @@ def _make_xcodeprojinfo(*, ctx, attrs, build_mode, target, transitive_infos):
         **info_fields
     )
 
-xcodeprojinfos = struct(
+legacy_xcodeprojinfos = struct(
     make = _make_xcodeprojinfo,
 )
