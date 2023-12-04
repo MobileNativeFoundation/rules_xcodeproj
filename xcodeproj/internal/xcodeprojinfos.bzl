@@ -21,16 +21,20 @@ load(
 )
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-)
+load(":target_properties.bzl", "process_dependencies")
 load(":targets.bzl", "targets")
 load(":top_level_targets.bzl", "process_top_level_target")
 load(":unsupported_targets.bzl", "process_unsupported_target")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 
 # Creating `XcodeProjInfo`
+
+_BUILD_TEST_RULES = {
+    "ios_build_test": None,
+    "macos_build_test": None,
+    "tvos_build_test": None,
+    "watchos_build_test": None,
+}
 
 _INTERNAL_RULE_KINDS = {
     "apple_cc_toolchain": None,
@@ -45,6 +49,17 @@ _INTERNAL_RULE_KINDS = {
     "xcode_swift_toolchain": None,
 }
 
+_SKIP_TYPE = struct(
+    apple_build_test = "apple_build_test",
+    apple_binary_no_deps = "apple_binary_no_deps",
+    apple_test_bundle = "apple_test_bundle",
+    test_suite = "test_suite",
+)
+
+_TEST_SUITE_RULES = {
+    "test_suite": None,
+}
+
 _TOOLS_REPOS = {
     "apple_support": None,
     "bazel_tools": None,
@@ -57,7 +72,7 @@ _TOOLS_REPOS = {
 }
 
 # Just a slight optimization to not process things we know don't need to have
-# out provider.
+# our provider
 def _should_create_provider(*, ctx, target):
     if ctx.rule.kind in _INTERNAL_RULE_KINDS:
         return False
@@ -65,29 +80,14 @@ def _should_create_provider(*, ctx, target):
         return False
     if not target.label.workspace_name:
         return True
+
     bzlmod_components = target.label.workspace_name.split("~")
     if len(bzlmod_components) <= 2 and bzlmod_components[0] in _TOOLS_REPOS:
-        # Check for 2 components is to not exclude module extension dependencies
+        # The check for 2 components is to not exclude module extension
+        # dependencies
         return False
+
     return True
-
-_BUILD_TEST_RULES = {
-    "ios_build_test": None,
-    "macos_build_test": None,
-    "tvos_build_test": None,
-    "watchos_build_test": None,
-}
-
-_TEST_SUITE_RULES = {
-    "test_suite": None,
-}
-
-skip_type = struct(
-    apple_build_test = "apple_build_test",
-    apple_binary_no_deps = "apple_binary_no_deps",
-    apple_test_bundle = "apple_test_bundle",
-    test_suite = "test_suite",
-)
 
 def _get_skip_type(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
@@ -100,22 +100,22 @@ def _get_skip_type(*, ctx, target):
         target: The `Target` to check.
 
     Returns:
-        A `skip_type` if `target` should be skipped, otherwise `None`.
+        A `_SKIP_TYPE` if `target` should be skipped, otherwise `None`.
     """
     if ctx.rule.kind in _BUILD_TEST_RULES:
-        return skip_type.apple_build_test
+        return _SKIP_TYPE.apple_build_test
 
     if ctx.rule.kind in _TEST_SUITE_RULES:
-        return skip_type.test_suite
+        return _SKIP_TYPE.test_suite
 
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
-        return skip_type.apple_binary_no_deps
+        return _SKIP_TYPE.apple_binary_no_deps
 
     if targets.is_test_bundle(
         target = target,
         deps = getattr(ctx.rule.attr, "deps", None),
     ):
-        return skip_type.apple_test_bundle
+        return _SKIP_TYPE.apple_test_bundle
 
     return None
 
@@ -242,7 +242,7 @@ def _make_skipped_target_xcodeprojinfo(
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
-        target_skip_type: The `skip_type` for this `target`
+        target_skip_type: The `_SKIP_TYPE` for `target`
             (see `_get_skip_type`).
         target: The `Target` to skip.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
@@ -289,7 +289,7 @@ def _make_skipped_target_xcodeprojinfo(
     def _target_replacement_label(info):
         if not info.xcode_target:
             return target.label
-        if target_skip_type != skip_type.apple_test_bundle:
+        if target_skip_type != _SKIP_TYPE.apple_test_bundle:
             return target.label
 
         # Normalizes label to ensure this works with and without bzlmod
@@ -301,7 +301,7 @@ def _make_skipped_target_xcodeprojinfo(
         #
         # 1. This relies on implementation details of
         # https://github.com/bazelbuild/rules_apple/blob/master/apple/internal/testing/apple_test_assembler.bzl#L100-L125
-        # 2. Since `target_skip_type` is `skip_type.apple_test_bundle`
+        # 2. Since `target_skip_type` is `_SKIP_TYPE.apple_test_bundle`
         # we can assume that `runner` is present as it's a required attribute
         # 3. The `.replace` below is safe even if `runner` is the
         # default runner `ios_default_runner` since it's a no-op in that case.
