@@ -5,7 +5,7 @@ def get_id(*, label, configuration):
 
     Args:
         label: The `Label` of the `Target`.
-        configuration: The value returned from `calculate_configuration`.
+        configuration: A value from `calculate_configuration`.
 
     Returns:
         An opaque string that uniquely identifies the target.

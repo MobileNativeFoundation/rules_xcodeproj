@@ -47,7 +47,7 @@ def process_library_target(
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `processed_target`.
+        A value from `processed_target`.
     """
     configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
     label = target.label

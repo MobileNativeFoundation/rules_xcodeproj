@@ -66,7 +66,7 @@ def _is_platform_type(platform, platform_type):
     """Returns whether a platform is of a given type.
 
     Args:
-        platform: A value returned from `platforms.collect`.
+        platform: A value from `platforms.collect`.
         platform_type: A value from `apple_common.platform`.
     """
     return platform.apple_platform.platform_type == platform_type
@@ -79,7 +79,7 @@ def _platform_to_dto(platform):
     """Generates a target DTO value for a platform.
 
     Args:
-        platform: A value returned from `platforms.collect`.
+        platform: A value from `platforms.collect`.
     """
     dto = {
         "a": platform.arch,
@@ -93,7 +93,7 @@ def _platform_to_swift_triple(platform):
     """Generates a Swift triple for a platform.
 
     Args:
-        platform: A value returned from `platforms.collect`.
+        platform: A value from `platforms.collect`.
     """
     apple_platform = platform.apple_platform
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
@@ -106,7 +106,7 @@ def _platform_to_lldb_context_triple(platform):
     """Generates a lldb context triple for a platform.
 
     Args:
-        platform: A value returned from `platforms.collect`.
+        platform: A value from `platforms.collect`.
     """
     apple_platform = platform.apple_platform
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(

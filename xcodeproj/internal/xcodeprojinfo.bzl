@@ -21,7 +21,7 @@ target ID (see `xcode_target.id`) of the target and `arg` values for the target
 (if applicable).
 """,
         "compilation_providers": """\
-A value returned from `compilation_providers.{collect,merge}`.
+A value from `compilation_providers.{collect,merge}`.
 """,
         "direct_dependencies": """\
 A `depset` of target IDs (see `xcode_target.id`) that this target directly
@@ -43,7 +43,7 @@ target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is
 the target ID of the hosted target.
 """,
         "inputs": """\
-A value returned from `input_files.collect`/`inputs_files.merge`, that contains
+A value from `input_files.collect`/`inputs_files.merge`, that contains
 information related to all of the input `File`s for the project collected so
 far. It also includes information related to "extra files" that should be added
 to the Xcode project, but are not associated with any targets.
@@ -52,7 +52,7 @@ to the Xcode project, but are not associated with any targets.
         "labels": """\
 A `depset` of `Labels` for the target and its transitive dependencies.
 """,
-        "lldb_context": "A value returned from `lldb_context.collect`.",
+        "lldb_context": "A value from `lldb_context.collect`.",
         "mergable_xcode_library_targets": """\
 A `depset` of target IDs (see `xcode_target.id`). Each represents a target that
 can potentially merge into a top-level target (to be decided by the top-level
@@ -67,7 +67,7 @@ specified in `top_level_targets` cause duplicate mis-configured targets to be
 added to the project.
 """,
         "outputs": """\
-A value returned from `output_files.collect`/`output_files.merge`, that contains
+A value from `output_files.collect`/`output_files.merge`, that contains
 information about the output files for this target and its transitive
 dependencies.
 """,
@@ -95,17 +95,17 @@ A `depset` of target IDs (see `xcode_target.id`) that this target transitively
 depends on.
 """,
         "xcode_required_targets": """\
-A `depset` of values returned from `xcode_targets.make` for targets that need to
-be in projects that have `build_mode = "xcode"`. This means that they can't be
+A `depset` of values from `xcode_targets.make` for targets that need to be in
+projects that have `build_mode = "xcode"`. This means that they can't be
 unfocused in BwX mode, and if requested it will be ignored.
 """,
         "xcode_target": """\
-A value returned from `xcode_targets.make` if this target can produce an Xcode
+A value from `xcode_targets.make` if this target can produce an Xcode
 target.
 """,
         "xcode_targets": """\
-A `depset` of values returned from `xcode_targets.make`, which potentially will
-become targets in the Xcode project.
+A `depset` of values from `xcode_targets.make`, which potentially will become
+targets in the Xcode project.
 """,
     },
 )

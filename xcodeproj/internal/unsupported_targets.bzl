@@ -40,7 +40,7 @@ def process_unsupported_target(
             transitive dependencies of `target`.
 
     Returns:
-        The value returned from `processed_target`.
+        A from `processed_target`.
     """
     build_mode = ctx.attr._build_mode
     cc_info = target[CcInfo] if CcInfo in target else None

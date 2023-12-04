@@ -56,7 +56,7 @@ def top_level_targets(labels, *, target_environments = ["simulator"]):
             [`top_level_target.target_environments`](#top_level_target-target_environments).
 
     Returns:
-        A `list` of values returned from `top_level_target`.
+        A `list` of values from `top_level_target`.
     """
     return [
         top_level_target(label, target_environments = target_environments)

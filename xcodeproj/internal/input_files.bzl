@@ -129,10 +129,10 @@ def _collect_input_files(
             `non_xcode_target`s).
         id: A unique identifier for the target. Will be `None` for non-Xcode
             targets.
-        platform: A value returned from `platforms.collect`.
+        platform: A value from `platforms.collect`.
         is_bundle: Whether `target` is a bundle.
-        product: A value returned from `process_product`.
-        linker_inputs: A value returned from `linker_file_inputs.collect`.
+        product: A value from `process_product`.
+        linker_inputs: A value from `linker_file_inputs.collect`.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         additional_files: A `list` of `File`s to add to the inputs. This can
@@ -982,7 +982,7 @@ def _to_output_groups_fields(
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
-        inputs: A value returned from `input_files.collect`.
+        inputs: A value from `input_files.collect`.
         additional_bwx_generated: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.

@@ -64,8 +64,8 @@ def _make_xcode_target(
             into this target.
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.
-        platform: The value returned from `process_platform`.
-        product: The value returned from `process_product`.
+        platform: A value from `process_platform`.
+        product: A value from `process_product`.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
@@ -75,10 +75,10 @@ def _make_xcode_target(
         c_has_fortify_source: Whether the C compiler has fortify source enabled.
         cxx_has_fortify_source: Whether the C++ compiler has fortify source
             enabled.
-        modulemaps: The value returned from `process_modulemaps`.
-        swiftmodules: The value returned from `process_swiftmodules`.
-        inputs: The value returned from `input_files.collect`.
-        linker_inputs: A value returned from `linker_input_files.collect` or
+        modulemaps: A value from `process_modulemaps`.
+        swiftmodules: A value from `process_swiftmodules`.
+        inputs: A from `input_files.collect`.
+        linker_inputs: A value from `linker_input_files.collect` or
             `None`.
         watch_application: The `id` of the watch application target that should
             be embedded in this target, or `None`.
@@ -90,11 +90,10 @@ def _make_xcode_target(
             directly depends on.
         transitive_dependencies: A `depset` of `id`s of all transitive targets
             that this target depends on.
-        outputs: A value returned from `output_files.collect`.
-        lldb_context: A value returned from `lldb_contexts.collect`.
-        xcode_required_targets: A `depset` of values returned from
-            `xcode_targets.make`, which represent targets that are required in
-            BwX mode.
+        outputs: A value from `output_files.collect`.
+        lldb_context: A value from `lldb_contexts.collect`.
+        xcode_required_targets: A `depset` of values from `xcode_targets.make`,
+            which represent targets that are required in BwX mode.
 
     Returns:
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
@@ -288,7 +287,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
         dest: The `xcode_target` being merged into.
 
     Returns:
-        A value as returned by `xcode_targets.make`.
+        A value from `xcode_targets.make`.
     """
 
     build_settings = {}
@@ -817,7 +816,7 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     """Generates a target DTO value for inputs.
 
     Args:
-        inputs: A value returned from `input_files.to_xcode_target_inputs`.
+        inputs: A value from `input_files.to_xcode_target_inputs`.
         focused_labels: Maps to `xcodeproj.focused_targets`.
         unfocused_labels: Maps to `xcodeproj.unfocused_targets`.
 
@@ -1024,7 +1023,7 @@ def _get_top_level_static_libraries(xcode_target):
     """Returns the static libraries needed to link the target.
 
     Args:
-        xcode_target: A value returned from `xcode_targets.make`.
+        xcode_target: A value from `xcode_targets.make`.
 
     Returns:
         A `list` of `File`s that need to be linked for the target.

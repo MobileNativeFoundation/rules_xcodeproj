@@ -55,7 +55,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         id: The unique identifier of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
-        product: A value returned from `process_product`, or `None` if the
+        product: A value from `process_product`, or `None` if the
             target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
 
@@ -68,7 +68,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
             or `None`.
         *   `product_file_path`: A `file_path` for the target's product or
             `None`.
-        *   `swift`: A value returned from `parse_swift_info_module`.
+        *   `swift`: A value from `parse_swift_info_module`.
     """
     swift = None
     if swift_info:
@@ -142,13 +142,13 @@ def _collect_output_files(
         id: A unique identifier for the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
-        product: A value returned from `process_product`.
+        product: A value from `process_product`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s
             that override the indexstore for the target. This is used for merged
             targets.
         infoplist: A `File` or `None`.
-        inputs: A value returned from `input_files.collect`, or `None`.
+        inputs: A value from `input_files.collect`, or `None`.
         rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
@@ -380,7 +380,7 @@ def _to_output_groups_fields(
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
-        outputs: A value returned from `output_files.collect()`.
+        outputs: A value from `output_files.collect()`.
         additional_bwb_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
@@ -411,14 +411,14 @@ def parse_swift_info_module(module):
     """Collects outputs from a rules_swift module.
 
     Args:
-        module: A value returned from `swift_common.create_module`.
+        module: A value from `swift_common.create_module`.
 
     Returns:
         A `struct` with the following fields:
 
         *   `swift_generated_header`: A `File` for the generated Swift header
             file, or `None`.
-        *   `module`: A value returned from `swift_common.create_swift_module`.
+        *   `module`: A value from `swift_common.create_swift_module`.
     """
     generated_header = None
 
@@ -451,7 +451,7 @@ def swift_to_outputs(swift):
     """Converts a Swift output struct to more easily consumable outputs.
 
     Args:
-        swift: A value returned from `parse_swift_info_module`.
+        swift: A value from `parse_swift_info_module`.
 
     Returns:
         A `tuple` containing two elements:

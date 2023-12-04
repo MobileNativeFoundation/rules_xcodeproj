@@ -17,7 +17,7 @@ def _collect_lldb_context(
         id: The unique identifier of the target.
         is_swift: Whether the target compiles Swift code.
         swift_sub_params: A `list` of `File`s of Swift compiler options.
-        swiftmodules: The value returned from `process_swiftmodules`.
+        swiftmodules: A value from `process_swiftmodules`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
 
