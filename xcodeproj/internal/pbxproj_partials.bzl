@@ -691,7 +691,7 @@ def _write_target_build_settings(
         colorize: A `bool` indicating whether to colorize the output.
         conly_args: A `list` of `Args` for the C compile action for this target.
         cxx_args: A `list` of `Args` for the C++ compile action for this target.
-        device_family: A value as returned by `get_targeted_device_family`.
+        device_family: A value from `get_targeted_device_family`.
         entitlements: An optional entitlements `File`.
         extension_safe: If `True`, `APPLICATION_EXTENSION_API_ONLY` will be set.
         generate_build_settings: A `bool` indicating whether to generate build

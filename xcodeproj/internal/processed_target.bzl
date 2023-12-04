@@ -19,15 +19,14 @@ def processed_target(
     """Generates the return value for target processing functions.
 
     Args:
-        compilation_providers: A value returned from
-            `compilation_providers.collect`.
+        compilation_providers: A value from `compilation_providers.collect`.
         direct_dependencies: A `depset` of `id`s of targets that this target
             directly depends on.
         extension_infoplists: A `list` of `File` for the Info.plist's of an
             application extension target, or `None`.
         hosted_targets: An optional `list` of `struct`s as used in
             `XcodeProjInfo.hosted_targets`.
-        inputs: A value as returned from `input_files.collect` that will
+        inputs: A value from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
         is_top_level: If `True`, the target can be listed in
             `top_level_targets`. This is not the same as
@@ -36,8 +35,8 @@ def processed_target(
         is_xcode_required: If `True`, the target is required in BwX mode.
         library: A `File` for the static library produced by this target, or
             `None`.
-        lldb_context: A value as returned from `lldb_context.collect`.
-        outputs: A value as returned from `output_files.collect` that will
+        lldb_context: A value from `lldb_context.collect`.
+        outputs: A value from `output_files.collect` that will
             provide values for the `XcodeProjInfo.outputs` field.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
@@ -45,8 +44,8 @@ def processed_target(
             `XcodeProjInfo.resource_bundle_ids` `depset`.
         transitive_dependencies: A `depset` of target ids of transitive
             dependencies of this target.
-        xcode_target: An optional value returned from `xcode_targets.make` that
-            will be in the `XcodeProjInfo.xcode_targets` `depset`.
+        xcode_target: An optional value from `xcode_targets.make` that will be
+            in the `XcodeProjInfo.xcode_targets` `depset`.
 
     Returns:
         A `struct` containing fields for each argument.

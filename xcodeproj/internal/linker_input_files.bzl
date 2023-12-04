@@ -28,7 +28,7 @@ def _collect_linker_inputs(
     Args:
         automatic_target_info:  The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
-        avoid_compilation_providers: A value returned from
+        avoid_compilation_providers: A value from
             `compilation_providers.collect`. The linker inputs from these
             providers will be excluded from the return list.
         compilation_providers: A value returned by
@@ -360,7 +360,7 @@ def _get_primary_static_library(linker_inputs):
     """Returns the "primary" static library for this target.
 
     Args:
-        linker_inputs: A value returned from `linker_input_files.collect`.
+        linker_inputs: A value from `linker_input_files.collect`.
 
     Returns:
         The `File` of the primary static library, or `None`.
