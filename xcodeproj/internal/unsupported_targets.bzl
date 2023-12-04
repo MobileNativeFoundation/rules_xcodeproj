@@ -70,7 +70,6 @@ def process_unsupported_target(
     (
         target_compilation_providers,
         provider_compilation_providers,
-        _,
     ) = compilation_providers.collect(
         cc_info = cc_info,
         objc = objc,

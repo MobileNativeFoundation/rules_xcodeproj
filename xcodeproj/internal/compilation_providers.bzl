@@ -163,6 +163,9 @@ def _collect_compilation_providers(
         struct(
             cc_info = cc_info,
             framework_files = EMPTY_DEPSET,
+            implementation_compilation_context = (
+                implementation_compilation_context
+            ),
             is_top_level = False,
             is_xcode_library_target = is_xcode_library_target,
             objc = objc,
@@ -172,7 +175,6 @@ def _collect_compilation_providers(
             _propagated_framework_files = EMPTY_DEPSET,
             _propagated_objc = objc,
         ),
-        implementation_compilation_context,
     )
 
 def _merge_compilation_providers(
@@ -232,12 +234,6 @@ def _merge_compilation_providers(
     else:
         merged_cc_info = cc_info
 
-    # We don't actually merge the compilation context here, because no top-level
-    # rules have (or will need) implementation deps
-    implementation_compilation_context = (
-        cc_info.compilation_context if cc_info else None
-    )
-
     objc = None
     if _objc_has_linking_info:
         maybe_objc_providers = [
@@ -258,6 +254,11 @@ def _merge_compilation_providers(
         struct(
             cc_info = merged_cc_info,
             framework_files = framework_files,
+            implementation_compilation_context = (
+                # We don't actually merge the compilation context here, because
+                # no top-level rules have (or will need) implementation deps
+                cc_info.compilation_context if cc_info else None
+            ),
             is_top_level = True,
             is_xcode_library_target = False,
             objc = objc,
@@ -267,7 +268,6 @@ def _merge_compilation_providers(
             _propagated_framework_files = propagated_framework_files,
             _propagated_objc = propagated_objc,
         ),
-        implementation_compilation_context,
     )
 
 compilation_providers = struct(
