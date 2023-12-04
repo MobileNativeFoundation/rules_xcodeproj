@@ -118,30 +118,50 @@ _merge_cc_compilation_context = (
 
 # API
 
-def _collect_compilation_providers(
-        *,
-        cc_info,
-        objc,
-        transitive_implementation_providers):
+def _collect_compilation_providers(*, cc_info, objc):
     """Collects compilation providers for a non top-level target.
 
     Args:
         cc_info: The `CcInfo` of the target, or `None`.
         objc: The `ObjcProvider` of the target, or `None`.
+
+    Returns:
+        A `tuple` containing two values:
+
+        *   A `struct` containing information to be consumed by the
+            `linker_input_files` module.
+        *   An opaque `struct` to be set in
+            `XcodeProjInfo.compilation_providers`.
+    """
+    if not _objc_has_linking_info:
+        objc = None
+
+    return (
+        struct(
+            cc_info = cc_info,
+            framework_files = EMPTY_DEPSET,
+            objc = objc,
+        ),
+        struct(
+            _cc_info = cc_info,
+            _propagated_framework_files = EMPTY_DEPSET,
+            _propagated_objc = objc,
+        ),
+    )
+
+def _collect_implementation_compilation_context(
+        *,
+        cc_info,
+        transitive_implementation_providers):
+    """Collects the implementation deps aware `CcCompilationContext`.
+
+    Args:
+        cc_info: The `CcInfo` of the target, or `None`.
         transitive_implementation_providers: A `list` of
             `XcodeProjInfo`s of transitive implementation deps that should have
             compilation providers merged.
-
-    Returns:
-        A `tuple` with two elements:
-
-        -   An opaque `struct` containing the linker input files for a target.
-            The `struct` should be passed to functions in the
-            `collect_providers` module to retrieve its contents.
-        -   The implementation deps aware `CcCompilationContext` for `target`.
-
     """
-    implementation_compilation_context = _merge_cc_compilation_context(
+    return _merge_cc_compilation_context(
         direct_compilation_context = (
             cc_info.compilation_context if cc_info else None
         ),
@@ -150,25 +170,6 @@ def _collect_compilation_providers(
             for providers in transitive_implementation_providers
             if providers._cc_info
         ],
-    )
-
-    if not _objc_has_linking_info:
-        objc = None
-
-    return (
-        struct(
-            cc_info = cc_info,
-            framework_files = EMPTY_DEPSET,
-            implementation_compilation_context = (
-                implementation_compilation_context
-            ),
-            objc = objc,
-        ),
-        struct(
-            _cc_info = cc_info,
-            _propagated_framework_files = EMPTY_DEPSET,
-            _propagated_objc = objc,
-        ),
     )
 
 def _merge_compilation_providers(
@@ -248,11 +249,6 @@ def _merge_compilation_providers(
         struct(
             cc_info = merged_cc_info,
             framework_files = framework_files,
-            implementation_compilation_context = (
-                # We don't actually merge the compilation context here, because
-                # no top-level rules have (or will need) implementation deps
-                cc_info.compilation_context if cc_info else None
-            ),
             objc = objc,
         ),
         struct(
@@ -264,5 +260,8 @@ def _merge_compilation_providers(
 
 compilation_providers = struct(
     collect = _collect_compilation_providers,
+    collect_implementation_compilation_context = (
+        _collect_implementation_compilation_context
+    ),
     merge = _merge_compilation_providers,
 )

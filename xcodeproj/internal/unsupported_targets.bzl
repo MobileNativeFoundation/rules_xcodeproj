@@ -43,9 +43,6 @@ def process_unsupported_target(
         A from `processed_target`.
     """
     build_mode = ctx.attr._build_mode
-    cc_info = target[CcInfo] if CcInfo in target else None
-    objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     if AppleResourceBundleInfo in target and automatic_target_info.bundle_id:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
@@ -71,18 +68,17 @@ def process_unsupported_target(
         target_compilation_providers,
         provider_compilation_providers,
     ) = compilation_providers.collect(
-        cc_info = cc_info,
-        objc = objc,
-        # Since we don't use the returned `implementation_compilation_context`,
-        # we can pass `[]` here
-        transitive_implementation_providers = [],
+        cc_info = target[CcInfo] if CcInfo in target else None,
+        objc = target[apple_common.Objc] if apple_common.Objc in target else None,
     )
     linker_inputs = linker_input_files.collect(
         target = target,
         automatic_target_info = automatic_target_info,
         compilation_providers = target_compilation_providers,
     )
-    swiftmodules = process_swiftmodules(swift_info = swift_info)
+    swiftmodules = process_swiftmodules(
+        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
+    )
 
     direct_dependencies, transitive_dependencies = process_dependencies(
         build_mode = build_mode,
