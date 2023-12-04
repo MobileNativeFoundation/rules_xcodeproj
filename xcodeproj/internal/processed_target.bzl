@@ -3,7 +3,7 @@
 def processed_target(
         *,
         compilation_providers,
-        dependencies,
+        direct_dependencies,
         extension_infoplists = None,
         hosted_targets = None,
         inputs,
@@ -21,8 +21,8 @@ def processed_target(
     Args:
         compilation_providers: A value returned from
             `compilation_providers.collect`.
-        dependencies: A `depset` of target ids of direct dependencies of this
-            target.
+        direct_dependencies: A `depset` of `id`s of targets that this target
+            directly depends on.
         extension_infoplists: A `list` of `File` for the Info.plist's of an
             application extension target, or `None`.
         hosted_targets: An optional `list` of `struct`s as used in
@@ -54,7 +54,7 @@ def processed_target(
     return struct(
         compilation_providers = compilation_providers,
         extension_infoplists = extension_infoplists,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         hosted_targets = hosted_targets,
         inputs = inputs,
         is_top_level = is_top_level,

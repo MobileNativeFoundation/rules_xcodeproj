@@ -23,7 +23,7 @@ target ID (see `xcode_target.id`) of the target and `arg` values for the target
         "compilation_providers": """\
 A value returned from `compilation_providers.{collect,merge}`.
 """,
-        "dependencies": """\
+        "direct_dependencies": """\
 A `depset` of target IDs (see `xcode_target.id`) that this target directly
 depends on.
 """,

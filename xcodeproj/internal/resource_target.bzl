@@ -4,13 +4,13 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
 load(":files.bzl", "build_setting_path")
 load(":input_files.bzl", "input_files")
+load(
+    ":legacy_target_properties.bzl",
+    "process_modulemaps",
+)
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 load(":output_files.bzl", "output_files")
 load(":product.bzl", "process_product")
-load(
-    ":target_properties.bzl",
-    "process_modulemaps",
-)
 load(":xcode_targets.bzl", "xcode_targets")
 
 def _process_resource_bundle(bundle, *, bundle_id):
@@ -71,7 +71,7 @@ def _process_resource_bundle(bundle, *, bundle_id):
         modulemaps = process_modulemaps(swift_info = None),
         swiftmodules = EMPTY_LIST,
         inputs = input_files.from_resource_bundle(bundle),
-        dependencies = bundle.dependencies,
+        direct_dependencies = bundle.dependencies,
         transitive_dependencies = bundle.dependencies,
         outputs = target_outputs,
     )

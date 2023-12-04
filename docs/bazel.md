@@ -578,8 +578,8 @@ return an `XcodeProjInfo` provider instance instead.
 ## XcodeProjInfo
 
 <pre>
-XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
-              <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
+XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-direct_dependencies">direct_dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>,
+              <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>, <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
               <a href="#XcodeProjInfo-non_top_level_rule_kind">non_top_level_rule_kind</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>,
               <a href="#XcodeProjInfo-resource_bundle_ids">resource_bundle_ids</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>,
               <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
@@ -600,7 +600,7 @@ Provides information needed to generate an Xcode project.
 | :------------- | :------------- |
 | <a id="XcodeProjInfo-args"></a>args |  A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the target ID (see `xcode_target.id`) of the target and `arg` values for the target (if applicable).    |
 | <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from `compilation_providers.{collect,merge}`.    |
-| <a id="XcodeProjInfo-dependencies"></a>dependencies |  A `depset` of target IDs (see `xcode_target.id`) that this target directly depends on.    |
+| <a id="XcodeProjInfo-direct_dependencies"></a>direct_dependencies |  A `depset` of target IDs (see `xcode_target.id`) that this target directly depends on.    |
 | <a id="XcodeProjInfo-envs"></a>envs |  A `depset` of `struct`s with `id` and `env` fields. The `id` field is the target ID (see `xcode_target.id`) of the target and `env` values for the target (if applicable).    |
 | <a id="XcodeProjInfo-extension_infoplists"></a>extension_infoplists |  A `depset` of `struct`s with `id` and `infoplist` fields. The `id` field is the target ID (see `xcode_target.id`) of the application extension target. The `infoplist` field is a `File` for the Info.plist for the target.    |
 | <a id="XcodeProjInfo-hosted_targets"></a>hosted_targets |  A `depset` of `struct`s with `host` and `hosted` fields. The `host` field is the target ID (see `xcode_target.id`) of the hosting target. The `hosted` field is the target ID of the hosted target.    |

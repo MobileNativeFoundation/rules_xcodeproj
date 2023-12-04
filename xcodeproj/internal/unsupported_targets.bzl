@@ -8,16 +8,16 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
+load(
+    ":legacy_target_properties.bzl",
+    "process_dependencies",
+    "process_swiftmodules",
+)
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-    "process_swiftmodules",
-)
 
 def process_unsupported_target(
         *,
@@ -84,7 +84,7 @@ def process_unsupported_target(
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
-    dependencies, transitive_dependencies = process_dependencies(
+    direct_dependencies, transitive_dependencies = process_dependencies(
         build_mode = build_mode,
         transitive_infos = transitive_infos,
     )
@@ -109,7 +109,7 @@ def process_unsupported_target(
 
     return processed_target(
         compilation_providers = provider_compilation_providers,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
             build_mode = build_mode,
