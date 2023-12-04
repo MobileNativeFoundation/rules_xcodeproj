@@ -73,7 +73,6 @@ def process_unsupported_target(
     ) = compilation_providers.collect(
         cc_info = cc_info,
         objc = objc,
-        is_xcode_target = False,
         # Since we don't use the returned `implementation_compilation_context`,
         # we can pass `[]` here
         transitive_implementation_providers = [],

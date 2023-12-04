@@ -377,10 +377,11 @@ def process_top_level_target(
         ] + avoid_compilation_providers_list,
     )
     linker_inputs = linker_input_files.collect(
-        target = target,
         automatic_target_info = automatic_target_info,
-        compilation_providers = target_compilation_providers,
         avoid_compilation_providers = avoid_compilation_providers,
+        compilation_providers = target_compilation_providers,
+        target = target,
+        is_top_level = True,
     )
 
     codesign_opts, codesign_inputs = _get_codesign_opts(

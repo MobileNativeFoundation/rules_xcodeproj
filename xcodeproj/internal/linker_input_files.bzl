@@ -18,21 +18,23 @@ _SKIP_INPUT_EXTENSIONS = {
 
 def _collect_linker_inputs(
         *,
-        target,
         automatic_target_info,
+        avoid_compilation_providers = None,
+        target,
         compilation_providers,
-        avoid_compilation_providers = None):
+        is_top_level = False):
     """Collects linker input files for a target.
 
     Args:
-        target: The `Target`.
         automatic_target_info:  The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
-        compilation_providers: A value returned by
-            `compilation_providers.collect`.
         avoid_compilation_providers: A value returned from
             `compilation_providers.collect`. The linker inputs from these
             providers will be excluded from the return list.
+        compilation_providers: A value returned by
+            `compilation_providers.collect`.
+        is_top_level: Whether `target` is the top-level target.
+        target: The `Target`.
 
     Returns:
         An opaque `struct` containing the linker input files for a target. The
@@ -43,7 +45,7 @@ def _collect_linker_inputs(
         compilation_providers = compilation_providers,
     )
 
-    if compilation_providers.is_top_level:
+    if is_top_level:
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             target = target,
@@ -53,14 +55,11 @@ def _collect_linker_inputs(
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
         )
-    elif compilation_providers.is_xcode_library_target:
+    else:
         primary_static_library = _compute_primary_static_library(
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
         )
-        top_level_values = None
-    else:
-        primary_static_library = None
         top_level_values = None
 
     return struct(
