@@ -1,6 +1,7 @@
 """Module containing functions dealing with target linker input files."""
 
 load(":collections.bzl", "flatten", "uniq")
+load(":memory_efficiency.bzl", "EMPTY_TUPLE")
 
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
