@@ -9,7 +9,7 @@ load(
 )
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":bazel_labels.bzl", "bazel_labels")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":compilation_providers.bzl", "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -256,9 +256,10 @@ def _make_skipped_target_xcodeprojinfo(
         `transitive_infos`.
     """
     (
-        compilation_providers,
         _,
-    ) = comp_providers.merge(
+        provider_compilation_providers,
+        _,
+    ) = compilation_providers.merge(
         transitive_compilation_providers = [
             (
                 dep[XcodeProjInfo].xcode_target,
@@ -352,7 +353,7 @@ def _make_skipped_target_xcodeprojinfo(
                 for info in valid_transitive_infos
             ],
         ),
-        compilation_providers = compilation_providers,
+        compilation_providers = provider_compilation_providers,
         dependencies = dependencies,
         envs = memory_efficient_depset(
             [
