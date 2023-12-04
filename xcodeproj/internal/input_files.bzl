@@ -14,6 +14,7 @@ load(
     "normalized_file_path",
 )
 load(":indexstore_filelists.bzl", "indexstore_filelists")
+load(":legacy_target_properties.bzl", "should_include_non_xcode_outputs")
 load(":linker_input_files.bzl", "linker_input_files")
 load(
     ":memory_efficiency.bzl",
@@ -25,7 +26,6 @@ load(
 )
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
 load(":resources.bzl", "collect_resources")
-load(":target_properties.bzl", "should_include_non_xcode_outputs")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility

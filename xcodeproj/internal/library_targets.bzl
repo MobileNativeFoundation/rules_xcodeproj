@@ -7,6 +7,12 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
+load(
+    ":legacy_target_properties.bzl",
+    "process_dependencies",
+    "process_modulemaps",
+    "process_swiftmodules",
+)
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
@@ -15,12 +21,6 @@ load(":platforms.bzl", "platforms")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":target_id.bzl", "get_id")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-    "process_modulemaps",
-    "process_swiftmodules",
-)
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
@@ -66,7 +66,7 @@ def process_library_target(
         product_module_name,
     )
 
-    dependencies, transitive_dependencies = process_dependencies(
+    direct_dependencies, transitive_dependencies = process_dependencies(
         build_mode = build_mode,
         transitive_infos = transitive_infos,
     )
@@ -187,7 +187,7 @@ def process_library_target(
 
     return processed_target(
         compilation_providers = provider_compilation_providers,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
         library = product.file,
         lldb_context = lldb_context,
@@ -210,7 +210,7 @@ def process_library_target(
             swiftmodules = swiftmodules,
             inputs = target_inputs,
             linker_inputs = linker_inputs,
-            dependencies = dependencies,
+            direct_dependencies = direct_dependencies,
             transitive_dependencies = transitive_dependencies,
             outputs = target_outputs,
         ),

@@ -45,7 +45,7 @@ def _make_xcode_target(
         watch_application = None,
         extensions = EMPTY_LIST,
         app_clips = EMPTY_LIST,
-        dependencies,
+        direct_dependencies,
         transitive_dependencies,
         outputs,
         lldb_context = None,
@@ -86,8 +86,8 @@ def _make_xcode_target(
             should be embedded in this target.
         app_clips: A `list` of `id`s of app clip targets that should be embedded
             in this target.
-        dependencies: A `depset` of `id`s of targets that this target depends
-            on.
+        direct_dependencies: A `depset` of `id`s of targets that this target
+            directly depends on.
         transitive_dependencies: A `depset` of `id`s of all transitive targets
             that this target depends on.
         outputs: A value returned from `output_files.collect`.
@@ -126,7 +126,7 @@ def _make_xcode_target(
         _watch_application = watch_application,
         _extensions = tuple(extensions),
         _app_clips = tuple(app_clips),
-        _dependencies = dependencies,
+        _direct_dependencies = direct_dependencies,
         id = id,
         label = label,
         configuration = configuration,
@@ -312,7 +312,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     )
 
     srcs = []
-    transitive_dependencies = [dest._dependencies]
+    transitive_dependencies = [dest._direct_dependencies]
     platform = None
     c_params = dest.c_params
     cxx_params = dest.cxx_params
@@ -323,14 +323,14 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     modulemaps = ()
     if src_swift:
         srcs.append(src_swift)
-        transitive_dependencies.append(src_swift._dependencies)
+        transitive_dependencies.append(src_swift._direct_dependencies)
         swift_params = src_swift.swift_params or dest.swift_params
         platform = src_swift.platform
         swiftmodules = src_swift._swiftmodules
         modulemaps = src_swift._modulemaps
     if src_non_swift:
         srcs.append(src_non_swift)
-        transitive_dependencies.append(src_non_swift._dependencies)
+        transitive_dependencies.append(src_non_swift._direct_dependencies)
         c_params = src_non_swift.c_params or c_params
         cxx_params = src_non_swift.cxx_params or cxx_params
         c_has_fortify_source = src_non_swift._c_has_fortify_source or c_has_fortify_source
@@ -367,7 +367,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
         watch_application = dest._watch_application,
         extensions = dest._extensions,
         app_clips = dest._app_clips,
-        dependencies = memory_efficient_depset(
+        direct_dependencies = memory_efficient_depset(
             transitive = transitive_dependencies,
         ),
         transitive_dependencies = dest.transitive_dependencies,
@@ -770,7 +770,7 @@ def _xcode_target_to_dto(
 
     dependencies = [
         _handle_dependency(id)
-        for id in xcode_target._dependencies.to_list()
+        for id in xcode_target._direct_dependencies.to_list()
         if (id not in excluded_targets and
             # TODO: Move dependency filtering here (out of the generator)
             # In BwX mode there can only be one merge destination

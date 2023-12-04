@@ -14,6 +14,12 @@ load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
+load(
+    ":legacy_target_properties.bzl",
+    "process_dependencies",
+    "process_modulemaps",
+    "process_swiftmodules",
+)
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
@@ -28,12 +34,6 @@ load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":target_id.bzl", "get_id")
-load(
-    ":target_properties.bzl",
-    "process_dependencies",
-    "process_modulemaps",
-    "process_swiftmodules",
-)
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
@@ -323,7 +323,7 @@ def process_top_level_target(
     )
     platform = platforms.collect(ctx = ctx)
 
-    dependencies, transitive_dependencies = process_dependencies(
+    direct_dependencies, transitive_dependencies = process_dependencies(
         build_mode = build_mode,
         test_host = test_host,
         top_level_product_type = props.product_type,
@@ -545,7 +545,7 @@ def process_top_level_target(
 
     return processed_target(
         compilation_providers = provider_compilation_providers,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
         inputs = provider_inputs,
@@ -576,7 +576,7 @@ def process_top_level_target(
             watch_application = watch_application,
             extensions = extensions,
             app_clips = app_clips,
-            dependencies = dependencies,
+            direct_dependencies = direct_dependencies,
             transitive_dependencies = transitive_dependencies,
             outputs = target_outputs,
             lldb_context = lldb_context,

@@ -1,4 +1,5 @@
-"""Functions for processing target properties"""
+"""Functions for processing target properties. Only to be used when \
+`xcodeproj.generation_mode = "legacy"` is set."""
 
 load(":collections.bzl", "uniq")
 load(":memory_efficiency.bzl", "memory_efficient_depset")
@@ -65,7 +66,7 @@ def process_dependencies(
         else:
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
-            direct_transitive_dependencies.append(info.dependencies)
+            direct_transitive_dependencies.append(info.direct_dependencies)
 
     direct = memory_efficient_depset(
         direct_dependencies,

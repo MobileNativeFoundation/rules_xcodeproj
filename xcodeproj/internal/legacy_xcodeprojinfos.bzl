@@ -11,6 +11,7 @@ load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":input_files.bzl", "input_files")
+load(":legacy_target_properties.bzl", "process_dependencies")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
@@ -21,7 +22,6 @@ load(
 )
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
-load(":target_properties.bzl", "process_dependencies")
 load(":targets.bzl", "targets")
 load(":top_level_targets.bzl", "process_top_level_target")
 load(":unsupported_targets.bzl", "process_unsupported_target")
@@ -124,7 +124,7 @@ def _target_info_fields(
         *,
         args,
         compilation_providers,
-        dependencies,
+        direct_dependencies,
         envs,
         extension_infoplists,
         hosted_targets,
@@ -149,7 +149,8 @@ def _target_info_fields(
         args: Maps to the `XcodeProjInfo.args` field.
         compilation_providers: Maps to the `XcodeProjInfo.compilation_providers`
             field.
-        dependencies: Maps to the `XcodeProjInfo.dependencies` field.
+        direct_dependencies: Maps to the `XcodeProjInfo.direct_dependencies`
+            field.
         envs: Maps to the `XcodeProjInfo.envs` field.
         extension_infoplists: Maps to the `XcodeProjInfo.extension_infoplists`
             field.
@@ -180,7 +181,7 @@ def _target_info_fields(
 
         *   `args`
         *   `compilation_providers`
-        *   `dependencies`
+        *   `direct_dependencies`
         *   `extension_infoplists`
         *   `envs`
         *   `generated_inputs`
@@ -201,7 +202,7 @@ def _target_info_fields(
     return {
         "args": args,
         "compilation_providers": compilation_providers,
-        "dependencies": dependencies,
+        "direct_dependencies": direct_dependencies,
         "envs": envs,
         "extension_infoplists": extension_infoplists,
         "hosted_targets": hosted_targets,
@@ -274,7 +275,7 @@ def _make_skipped_target_xcodeprojinfo(
         for _, info in transitive_infos
     ]
 
-    dependencies, transitive_dependencies = process_dependencies(
+    direct_dependencies, transitive_dependencies = process_dependencies(
         build_mode = build_mode,
         transitive_infos = valid_transitive_infos,
     )
@@ -353,7 +354,7 @@ def _make_skipped_target_xcodeprojinfo(
             ],
         ),
         compilation_providers = provider_compilation_providers,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         envs = memory_efficient_depset(
             [
                 struct(
@@ -542,7 +543,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             ],
         ),
         compilation_providers = processed_target.compilation_providers,
-        dependencies = processed_target.dependencies,
+        direct_dependencies = processed_target.direct_dependencies,
         envs = memory_efficient_depset(
             transitive = [
                 info.envs
