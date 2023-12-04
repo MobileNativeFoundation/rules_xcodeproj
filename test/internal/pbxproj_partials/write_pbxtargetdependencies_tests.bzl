@@ -40,7 +40,7 @@ def _dict_to_xcode_targets_by_id(d):
 def _dict_to_xcode_target(d):
     return struct(
         id = d["id"],
-        dependencies = depset(d["dependencies"]),
+        direct_dependencies = depset(d["direct_dependencies"]),
         platform = struct(
             apple_platform = d["apple_platform"],
             arch = d["arch"],
@@ -62,7 +62,7 @@ def mock_xcode_target(
         id,
         apple_platform,
         arch,
-        dependencies,
+        direct_dependencies,
         module_name_attribute,
         os_version,
         product_basename,
@@ -74,7 +74,7 @@ def mock_xcode_target(
         id = id,
         apple_platform = apple_platform,
         arch = arch,
-        dependencies = dependencies,
+        direct_dependencies = direct_dependencies,
         module_name_attribute = module_name_attribute,
         os_version = os_version,
         product_basename = product_basename,
@@ -303,7 +303,7 @@ def write_pbxtargetdependencies_test_suite(name):
             "//tools/generators/legacy/test:tests.__internal__.__test_bundle": {
                 "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3": mock_xcode_target(
                     id = "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
-                    dependencies = [
+                    direct_dependencies = [
                         "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
                     ],
                     apple_platform = "MACOS",
@@ -321,7 +321,7 @@ def write_pbxtargetdependencies_test_suite(name):
                     id = "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
                     apple_platform = "IOS_DEVICE",
                     arch = "x86_64",
-                    dependencies = [
+                    direct_dependencies = [
                         "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                     ],
                     os_version = "12.0",
@@ -336,7 +336,7 @@ def write_pbxtargetdependencies_test_suite(name):
                     id = "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                     apple_platform = "WATCHOS_SIMULATOR",
                     arch = "i386",
-                    dependencies = [],
+                    direct_dependencies = [],
                     os_version = "9.1",
                     product_type = "L",
                     product_file_path = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/libgenerator.a",
