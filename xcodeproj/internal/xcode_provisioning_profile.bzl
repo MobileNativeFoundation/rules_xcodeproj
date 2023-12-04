@@ -7,7 +7,7 @@ load(":provisioning_profiles.bzl", "provisioning_profiles")
 def _xcode_provisioning_profile_impl(ctx):
     target = ctx.attr.provisioning_profile
 
-    info = provisioning_profiles.create_profileinfo(
+    info = provisioning_profiles.create_provider(
         target = target,
         is_xcode_managed = ctx.attr.managed_by_xcode,
         profile_name = ctx.attr.profile_name,

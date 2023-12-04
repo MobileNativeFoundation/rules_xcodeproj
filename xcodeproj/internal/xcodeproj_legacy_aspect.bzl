@@ -1,8 +1,11 @@
 """Module containing implementation functions for the legacy \
 `xcodeproj_aspect` aspect."""
 
-load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
-load(":provisioning_profiles.bzl", "provisioning_profiles")
+load(
+    ":provisioning_profiles.bzl",
+    "XcodeProjProvisioningProfileInfo",
+    "provisioning_profiles",
+)
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":xcodeprojinfos.bzl", "xcodeprojinfos")
 
@@ -113,7 +116,7 @@ def _xcodeproj_legacy_aspect_impl(target, ctx):
         # Only create an `XcodeProjProvisioningProfileInfo` if the target hasn't
         # already created one
         providers.append(
-            provisioning_profiles.create_profileinfo(target = target),
+            provisioning_profiles.create_provider(target = target),
         )
 
     return providers
