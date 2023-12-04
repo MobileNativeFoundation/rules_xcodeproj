@@ -42,7 +42,7 @@ def _collect_linker_inputs(
         compilation_providers = compilation_providers,
     )
 
-    if compilation_providers._is_top_level:
+    if compilation_providers.is_top_level:
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             target = target,
@@ -52,7 +52,7 @@ def _collect_linker_inputs(
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
         )
-    elif compilation_providers._is_xcode_library_target:
+    elif compilation_providers.is_xcode_library_target:
         primary_static_library = _compute_primary_static_library(
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
@@ -229,7 +229,7 @@ def _extract_top_level_values(
 
         # Dynamic frameworks from `AppleDynamicFrameworkInfo`
         dynamic_frameworks.extend(
-            compilation_providers._framework_files.to_list(),
+            compilation_providers.framework_files.to_list(),
         )
 
         # Dedup libraries
