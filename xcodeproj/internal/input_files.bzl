@@ -509,6 +509,7 @@ def _collect_input_files(
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
             (dep_compilation_providers, _) = compilation_providers.merge(
+                propagate_providers = False,
                 transitive_compilation_providers = [
                     (info.xcode_target, info.compilation_providers)
                     for info in transitive_infos
