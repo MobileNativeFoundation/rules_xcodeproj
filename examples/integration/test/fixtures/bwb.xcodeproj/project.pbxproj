@@ -21227,8 +21227,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/UI/UIFramework.watchOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/UI";
@@ -21250,11 +21250,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=watchos*]" = "-I bazel-out/CONFIGURATION-STABLE-8/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
@@ -21308,8 +21308,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:iOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/iOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/Lib/dist/dynamic";
@@ -21355,7 +21355,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-10";
@@ -21413,8 +21413,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:tvOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib/dist/dynamic/tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib/dist/dynamic";
@@ -21447,8 +21447,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:iOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/iOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/Lib/dist/dynamic";
@@ -21525,8 +21525,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:watchOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic/watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic";
@@ -21609,8 +21609,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/ObjCUnitTests";
@@ -21721,8 +21721,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/iOSApp.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/iOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source";
@@ -22043,8 +22043,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-15/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/iOSApp.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/iOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source";
@@ -22103,8 +22103,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/UI/UIFramework.tvOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.tvOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/UI";
@@ -22126,11 +22126,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=appletvos*]" = "-I bazel-out/CONFIGURATION-STABLE-9/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
@@ -22436,7 +22436,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//Bundle:Bundle";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-13/bin/Bundle/Bundle_dsyms/ABundle.aplugin.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/Bundle/Bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/Bundle/ABundle.aplugin";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = ABundle.aplugin;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-13/bin/Bundle";
 				BAZEL_TARGET_ID = "@@//Bundle:Bundle CONFIGURATION-STABLE-13";
@@ -22466,7 +22466,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppExtensionUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/Test/UnitTests";
 				BAZEL_TARGET_ID = "@@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-4";
@@ -22501,8 +22501,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:tvOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic";
@@ -22617,8 +22617,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/watchOSAppExtension.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/watchOSAppExtension.appex";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/watchOSAppExtension";
@@ -22677,7 +22677,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-3";
@@ -22718,7 +22718,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSAppUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UnitTests";
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-5";
@@ -22754,7 +22754,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@@//macOSApp/Source:macOSLib.framework";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSLib.framework.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source";
 				BAZEL_TARGET_ID = "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-13";
@@ -22928,8 +22928,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-16/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-16/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Source/tvOSApp.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/tvOSApp/Source/tvOSApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Source/tvOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/tvOSApp/Source/tvOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/tvOSApp/Source";
@@ -23142,7 +23142,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-11/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-11";
@@ -23203,8 +23203,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/SwiftUnitTests";
@@ -23253,7 +23253,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppExtensionUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/Test/UnitTests";
 				BAZEL_TARGET_ID = "@@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-11";
@@ -23361,8 +23361,8 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib/LibFramework.tvOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.tvOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/Lib";
@@ -23418,8 +23418,8 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = "\"bazel-out/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.tvOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/Lib";
@@ -23500,7 +23500,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSApp.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = macOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source";
 				BAZEL_TARGET_ID = "@@//macOSApp/Source:macOSApp CONFIGURATION-STABLE-13";
@@ -23585,7 +23585,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-12";
@@ -23730,7 +23730,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp/iMessageAppExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp/iMessageAppExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iMessageAppExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp";
 				BAZEL_TARGET_ID = "@@//iMessageApp:iMessageAppExtension CONFIGURATION-STABLE-10";
@@ -23779,8 +23779,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-9/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-9/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/tvOSApp.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/tvOSApp/Source/tvOSApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/tvOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/tvOSApp/Source/tvOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-9/bin/tvOSApp/Source";
@@ -23835,8 +23835,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.iOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.iOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.iOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/UI/UIFramework.iOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.iOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/UI";
@@ -23859,11 +23859,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=iphoneos*]" = "-I bazel-out/CONFIGURATION-STABLE-7/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.iOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
@@ -23918,8 +23918,8 @@
 				BAZEL_LABEL = "@@//WidgetExtension:WidgetExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-10/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-14/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/WidgetExtension/WidgetExtension.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/WidgetExtension/WidgetExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/WidgetExtension/WidgetExtension.appex";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = WidgetExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/WidgetExtension";
@@ -24027,8 +24027,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-15/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-15/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/watchOSAppExtension/watchOSAppExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.appex";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/watchOSAppExtension";
@@ -24121,8 +24121,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
@@ -24169,8 +24169,8 @@
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@@//watchOSApp:watchOSApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-19/bin/watchOSApp/watchOSApp.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-20/bin/watchOSApp/watchOSApp.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-19/bin/watchOSApp/watchOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-20/bin/watchOSApp/watchOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-19/bin/watchOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-20/bin/watchOSApp";
@@ -24275,7 +24275,7 @@
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@@//iMessageApp:iMessageApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp/iMessageApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp/iMessageApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iMessageApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iMessageApp";
 				BAZEL_TARGET_ID = "@@//iMessageApp:iMessageApp CONFIGURATION-STABLE-10";
@@ -24308,8 +24308,8 @@
 				BAZEL_LABEL = "@@//AppClip:AppClip";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-10/bin/AppClip/AppClip.app.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-14/bin/AppClip/AppClip.app.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/AppClip/AppClip.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/AppClip/AppClip.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/AppClip/AppClip.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/AppClip/AppClip.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = AppClip.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/AppClip";
@@ -24455,8 +24455,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.iOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.iOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.iOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.iOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/UI/UIFramework.iOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/UI/UIFramework.iOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.iOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/UI";
@@ -24479,11 +24479,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=iphoneos*]" = "-I bazel-out/CONFIGURATION-STABLE-14/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.iOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-10/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.iOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-14/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
@@ -24556,8 +24556,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "@@//Lib/dist/dynamic:watchOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/Lib.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic";
@@ -24619,8 +24619,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/ObjCUnitTests";
@@ -24739,8 +24739,8 @@
 				BAZEL_LABEL = "@@//AppClip:AppClip";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-7/bin/AppClip/AppClip.app.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.ipa";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/AppClip/AppClip.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/AppClip/AppClip.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = AppClip.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/AppClip";
@@ -24843,8 +24843,8 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = "\"bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.watchOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/Lib";
@@ -24946,7 +24946,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Source/macOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Test/UITests/macOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Test/UITests/macOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = macOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-13/bin/macOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-13";
@@ -25014,7 +25014,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSAppUnitTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/tvOSApp/Test/UnitTests";
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-12";
@@ -25162,7 +25162,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//Bundle:Bundle";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-6/bin/Bundle/Bundle_dsyms/ABundle.aplugin.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/Bundle/Bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/Bundle/ABundle.aplugin";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = ABundle.aplugin;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-6/bin/Bundle";
 				BAZEL_TARGET_ID = "@@//Bundle:Bundle CONFIGURATION-STABLE-6";
@@ -25190,7 +25190,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@@//macOSApp/Source:macOSLib.framework";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSLib.framework.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/Lib.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = Lib.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source";
 				BAZEL_TARGET_ID = "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-6";
@@ -25219,8 +25219,8 @@
 				BAZEL_LABEL = "@@//Lib:LibFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.watchOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = LibFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-8/bin/Lib";
@@ -25396,7 +25396,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Test/UITests/macOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Test/UITests/macOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = macOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-6";
@@ -25458,8 +25458,8 @@
 				BAZEL_LABEL = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = CoreUtilsObjC.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC";
@@ -25499,7 +25499,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageAppExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageAppExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iMessageAppExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp";
 				BAZEL_TARGET_ID = "@@//iMessageApp:iMessageAppExtension CONFIGURATION-STABLE-3";
@@ -25716,7 +25716,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-3";
@@ -25865,8 +25865,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-15/bin/UI/UIFramework.watchOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.watchOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/UI/UIFramework.watchOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-11/bin/UI/UIFramework.watchOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.watchOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-11/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-15/bin/UI";
@@ -25888,11 +25888,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=watchos*]" = "-I bazel-out/CONFIGURATION-STABLE-15/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.watchOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-11/bin/Lib/LibFramework.watchOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.watchOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
@@ -25935,7 +25935,7 @@
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@@//iMessageApp:iMessageApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageApp.ipa";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp/iMessageApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iMessageApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iMessageApp";
 				BAZEL_TARGET_ID = "@@//iMessageApp:iMessageApp CONFIGURATION-STABLE-3";
@@ -25964,7 +25964,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//CommandLine/Tests:CommandLineToolTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/Tests/CommandLineToolTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = CommandLineToolTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/Tests";
 				BAZEL_TARGET_ID = "@@//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle CONFIGURATION-STABLE-26";
@@ -26184,8 +26184,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/UITests/iOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests/iOSAppUITests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/UITests/iOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/UITests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Test/UITests";
@@ -26234,8 +26234,8 @@
 				BAZEL_LABEL = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = CoreUtilsObjC.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC";
@@ -26384,7 +26384,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-4/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-4/bin/watchOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-4";
@@ -26466,8 +26466,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/UITests/iOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITests.xctest";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/UITests/iOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/UITests";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/iOSApp/Test/UITests";
@@ -26520,7 +26520,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-3";
@@ -26682,7 +26682,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppSwiftUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-10";
@@ -26746,8 +26746,8 @@
 				BAZEL_LABEL = "@@//WidgetExtension:WidgetExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/CONFIGURATION-STABLE-7/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/WidgetExtension/WidgetExtension.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = WidgetExtension.appex;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-7/bin/WidgetExtension";
@@ -26875,7 +26875,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = tvOSAppUITests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-5/bin/tvOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle CONFIGURATION-STABLE-5";
@@ -26954,7 +26954,7 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@@//CommandLine/Tests:CommandLineToolTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\"";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/Tests/CommandLineToolTests.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = CommandLineToolTests.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-23/bin/CommandLine/Tests";
 				BAZEL_TARGET_ID = "@@//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle CONFIGURATION-STABLE-23";
@@ -27119,7 +27119,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Source/iOSApp.app.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = iOSAppObjCUnitTestSuite.xctest;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-10/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-10";
@@ -27245,7 +27245,7 @@
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSApp.app.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSApp.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source/macOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = macOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-6/bin/macOSApp/Source";
 				BAZEL_TARGET_ID = "@@//macOSApp/Source:macOSApp CONFIGURATION-STABLE-6";
@@ -27302,8 +27302,8 @@
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@@//watchOSApp:watchOSApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-17/bin/watchOSApp/watchOSApp.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-18/bin/watchOSApp/watchOSApp.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-17/bin/watchOSApp/watchOSApp.app";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-18/bin/watchOSApp/watchOSApp.app";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = watchOSApp.app;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-17/bin/watchOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/CONFIGURATION-STABLE-18/bin/watchOSApp";
@@ -27427,8 +27427,8 @@
 					"\"bazel-out/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
 					"\"bazel-out/CONFIGURATION-STABLE-16/bin/UI/UIFramework.tvOS.framework.dSYM\"",
 				);
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.tvOS.zip";
-				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/UI/UIFramework.tvOS.zip";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.tvOS.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/UI/UIFramework.tvOS.framework";
 				BAZEL_OUTPUTS_PRODUCT_BASENAME = UIFramework.tvOS.framework;
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-12/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/CONFIGURATION-STABLE-16/bin/UI";
@@ -27450,11 +27450,11 @@
 				"PREVIEWS_SWIFT_INCLUDE__YES[sdk=appletvos*]" = "-I bazel-out/CONFIGURATION-STABLE-16/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.tvOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.tvOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = (
 					"\"$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.zip\"",
+					"\"$(BAZEL_OUT)/CONFIGURATION-STABLE-16/bin/Lib/LibFramework.tvOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;

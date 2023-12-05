@@ -27,12 +27,6 @@ def _process_top_level_properties_test_impl(ctx):
 
     asserts.equals(
         env,
-        ctx.attr.expected_bundle_path if ctx.attr.expected_bundle_path else None,
-        properties.bundle_file_path,
-        "bundle_file_path",
-    )
-    asserts.equals(
-        env,
         ctx.attr.expected_product_name,
         properties.product_name,
         "product_name",
