@@ -34,18 +34,19 @@ def _process_resource_bundle(bundle, *, bundle_id):
     bundle_path = paths.join(package_bin_dir, "{}.bundle".format(name))
 
     product = process_product(
-        ctx = None,
-        target = None,
-        product_name = name,
-        product_type = "com.apple.product-type.bundle",
-        # For resource bundles, we want to use the bundle name instead of
-        # `module_name`
-        module_name_attribute = name,
-        is_resource_bundle = True,
+        actions = None,
+        bin_dir_path = None,
         bundle_file = None,
         bundle_path = bundle_path,
         bundle_file_path = bundle_path,
+        is_resource_bundle = True,
         linker_inputs = None,
+        # For resource bundles, we want to use the bundle name instead of
+        # `module_name`
+        module_name_attribute = name,
+        product_name = name,
+        product_type = "com.apple.product-type.bundle",
+        target = None,
     )
 
     (target_outputs, _) = output_files.collect(

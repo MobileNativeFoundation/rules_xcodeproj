@@ -49,7 +49,8 @@ def process_library_target(
     Returns:
         A value from `processed_target`.
     """
-    configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
+    bin_dir_path = ctx.bin_dir.path
+    configuration = calculate_configuration(bin_dir_path = bin_dir_path)
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
@@ -107,12 +108,13 @@ def process_library_target(
 
     platform = platforms.collect(ctx = ctx)
     product = process_product(
-        ctx = ctx,
-        target = target,
+        actions = ctx.actions,
+        bin_dir_path = bin_dir_path,
+        linker_inputs = linker_inputs,
+        module_name_attribute = module_name_attribute,
         product_name = product_name,
         product_type = "com.apple.product-type.library.static",
-        module_name_attribute = module_name_attribute,
-        linker_inputs = linker_inputs,
+        target = target,
     )
 
     modulemaps = process_modulemaps(swift_info = swift_info)
@@ -150,7 +152,7 @@ def process_library_target(
         )
 
     package_bin_dir = join_paths_ignoring_empty(
-        ctx.bin_dir.path,
+        bin_dir_path,
         label.workspace_root,
         label.package,
     )

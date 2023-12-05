@@ -205,7 +205,8 @@ def process_top_level_target(
     Returns:
         A value from `processed_target`.
     """
-    configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
+    bin_dir_path = ctx.bin_dir.path
+    configuration = calculate_configuration(bin_dir_path = bin_dir_path)
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
@@ -403,21 +404,22 @@ def process_top_level_target(
     )
 
     product = process_product(
-        ctx = ctx,
-        target = target,
-        product_name = props.product_name,
-        product_type = props.product_type,
+        actions = ctx.actions,
+        archive_file_path = props.archive_file_path,
+        bin_dir_path = bin_dir_path,
+        bundle_file = props.bundle_file,
+        bundle_path = props.bundle_path,
+        bundle_file_path = props.bundle_file_path,
+        executable_name = props.executable_name,
         # For bundle targets, we want to use the product name instead of
         # `module_name`
         module_name_attribute = (
             props.product_name if is_bundle else module_name_attribute
         ),
-        bundle_file = props.bundle_file,
-        bundle_path = props.bundle_path,
-        bundle_file_path = props.bundle_file_path,
-        archive_file_path = props.archive_file_path,
-        executable_name = props.executable_name,
+        product_name = props.product_name,
+        product_type = props.product_type,
         linker_inputs = linker_inputs,
+        target = target,
     )
 
     (target_inputs, provider_inputs) = input_files.collect(
@@ -458,7 +460,7 @@ def process_top_level_target(
         )
 
     package_bin_dir = join_paths_ignoring_empty(
-        ctx.bin_dir.path,
+        bin_dir_path,
         label.workspace_root,
         label.package,
     )
