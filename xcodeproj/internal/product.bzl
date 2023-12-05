@@ -202,32 +202,36 @@ def process_product(
         basename = file.basename
         path = file.path
         fp = path
-        actual_fp = path
+        original_path = path
     elif bundle_path:
         # Tree artifacts, resource bundles, and `swift_test`
         file = bundle_file
         basename = paths.basename(bundle_path)
         path = bundle_path
         fp = path
-        actual_fp = path
+        original_path = path
     elif target[DefaultInfo].files_to_run.executable:
         executable = target[DefaultInfo].files_to_run.executable
         file = _codesign_executable(actions = actions, executable = executable)
         basename = file.basename
         fp = executable.path
-        actual_fp = fp
+        original_path = fp
         path = file.path
     elif CcInfo in target and linker_inputs and target.files != depset():
         file = linker_input_files.get_primary_static_library(linker_inputs)
-        basename = file.basename if file else None
-        fp = file.path if file else None
-        actual_fp = fp
+        if file:
+            basename = file.basename
+            fp = file.path
+        else:
+            basename = None
+            fp = None
+        original_path = fp
         path = fp
     else:
         file = None
         basename = None
         fp = None
-        actual_fp = None
+        original_path = None
         path = None
 
     if target and apple_common.AppleDynamicFramework in target:
@@ -253,7 +257,6 @@ def process_product(
         package_dir = None
 
     return struct(
-        actual_file_path = actual_fp,
         basename = basename,
         executable = executable,
         executable_name = executable_name,
@@ -263,6 +266,7 @@ def process_product(
         is_resource_bundle = is_resource_bundle,
         module_name_attribute = module_name_attribute,
         name = product_name,
+        original_path = original_path,
         package_dir = package_dir,
         path = path,
         type = product_type,
