@@ -166,7 +166,7 @@ extension Generator.ProcessArgs {
             buildSettings.append(
                 (
                     "INFOPLIST_FILE",
-                    infoPlist.buildSettingPath().quoteIfNeeded().pbxProjEscaped
+                    infoPlist.buildSettingPath().pbxProjEscaped
                 )
             )
         }
@@ -175,8 +175,7 @@ extension Generator.ProcessArgs {
             buildSettings.append(
                 (
                     "CODE_SIGN_ENTITLEMENTS",
-                    entitlements.buildSettingPath().quoteIfNeeded()
-                        .pbxProjEscaped
+                    entitlements.buildSettingPath().pbxProjEscaped
                 )
             )
 
