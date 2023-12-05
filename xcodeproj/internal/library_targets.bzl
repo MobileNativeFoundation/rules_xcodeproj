@@ -3,7 +3,7 @@
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":build_settings.bzl", "get_product_module_name")
 load(":collections.bzl", "set_if_true")
-load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
@@ -79,19 +79,15 @@ def process_library_target(
         if XcodeProjInfo in dep
     ]
 
-    objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    cc_info = target[CcInfo]
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     (
         target_compilation_providers,
         provider_compilation_providers,
-    ) = comp_providers.collect(
-        cc_info = target[CcInfo],
-        objc = objc,
-        transitive_implementation_providers = [
-            info.compilation_providers
-            for info in deps_infos
-        ],
+    ) = compilation_providers.collect(
+        cc_info = cc_info,
+        objc = target[apple_common.Objc] if apple_common.Objc in target else None,
     )
     linker_inputs = linker_input_files.collect(
         target = target,
@@ -169,8 +165,12 @@ def process_library_target(
         c_sources = target_inputs.c_sources,
         cxx_sources = target_inputs.cxx_sources,
         target = target,
-        implementation_compilation_context = (
-            target_compilation_providers.implementation_compilation_context
+        implementation_compilation_context = compilation_providers.collect_implementation_compilation_context(
+            cc_info = cc_info,
+            transitive_implementation_providers = [
+                info.compilation_providers
+                for info in deps_infos
+            ],
         ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,

@@ -262,6 +262,7 @@ def process_top_level_target(
     additional_files = []
     build_settings = {}
     is_bundle = bundle_info != None
+    cc_info = target[CcInfo] if CcInfo in target else None
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     modulemaps = process_modulemaps(swift_info = swift_info)
@@ -371,7 +372,7 @@ def process_top_level_target(
         provider_compilation_providers,
     ) = compilation_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
-        cc_info = target[CcInfo] if CcInfo in target else None,
+        cc_info = cc_info,
         transitive_compilation_providers = [
             (info.xcode_target, info.compilation_providers)
             for info in deps_infos
@@ -477,8 +478,10 @@ def process_top_level_target(
         c_sources = target_inputs.c_sources,
         cxx_sources = target_inputs.cxx_sources,
         target = target,
+        # We don't actually merge the compilation context here, because no
+        # top-level rules have (or will need) implementation deps
         implementation_compilation_context = (
-            target_compilation_providers.implementation_compilation_context
+            cc_info.compilation_context if cc_info else None
         ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
