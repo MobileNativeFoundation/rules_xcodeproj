@@ -37,20 +37,20 @@ PRODUCT_TYPE_ENCODED = {
     "com.apple.product-type.xpc-service": "X",
 }
 
-def _codesign_executable(*, ctx, executable):
+def _codesign_executable(*, actions, executable):
     executable_path = "{}_codesigned".format(
         executable.basename,
     )
-    entitlements = ctx.actions.declare_file(
+    entitlements = actions.declare_file(
         "{}.entitlements".format(executable_path),
         sibling = executable,
     )
-    output = ctx.actions.declare_file(
+    output = actions.declare_file(
         executable_path,
         sibling = executable,
     )
 
-    ctx.actions.run_shell(
+    actions.run_shell(
         outputs = [entitlements],
         command = """\
 cat > "{entitlements}" <<EOF
@@ -66,12 +66,12 @@ EOF
 """.format(entitlements = entitlements.path),
     )
 
-    args = ctx.actions.args()
+    args = actions.args()
     args.add(executable)
     args.add(output)
     args.add(entitlements)
 
-    ctx.actions.run_shell(
+    actions.run_shell(
         inputs = [executable, entitlements],
         outputs = [output],
         command = """\
@@ -100,44 +100,46 @@ exit ${PIPESTATUS[0]}
 
 def process_product(
         *,
-        ctx,
-        target,
-        product_name,
-        product_type,
-        module_name_attribute,
-        is_resource_bundle = False,
+        actions,
+        archive_file_path = None,
+        bin_dir_path,
         bundle_file = None,
         bundle_path = None,
         bundle_file_path = None,
-        archive_file_path = None,
         executable_name = None,
-        linker_inputs):
+        is_resource_bundle = False,
+        linker_inputs,
+        module_name_attribute,
+        product_name,
+        product_type,
+        target):
     """Generates information about the target's product.
 
     Args:
-        ctx: The aspect context.
-        target: The `Target` the product information is gathered from.
-        product_name: The name of the product (i.e. the "PRODUCT_NAME" build
-            setting).
-        product_type: A PBXProductType string. See
-            https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
-            for examples.
-        module_name_attribute: The `module_name` attribute of `target`.
-        is_resource_bundle: Whether the product is a resource bundle.
+        actions: `ctx.actions`.
+        archive_file_path: If the product is a bundle, this is
+            `file_path` to the bundle, possibly in an archive, otherwise `None`.
+        bin_dir_path: `ctx.bin_dir.path`.
         bundle_file: If the product is a bundle, this is `File` for the bundle,
             otherwise `None`.
         bundle_path: If the product is a bundle, this is the path to
             the bundle, when not in an archive, otherwise `None`.
         bundle_file_path: If the product is a bundle, this is the `file_path` to
             the bundle, when not in an archive, otherwise `None`.
-        archive_file_path: If the product is a bundle, this is
-            `file_path` to the bundle, possibly in an archive, otherwise `None`.
         executable_name: If the product is a bundle, this is the executable
             name, otherwise `None`.
+        module_name_attribute: The `module_name` attribute of `target`.
+        product_name: The name of the product (i.e. the "PRODUCT_NAME" build
+            setting).
+        product_type: A PBXProductType string. See
+            https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
+            for examples.
+        is_resource_bundle: Whether the product is a resource bundle.
         linker_inputs: A value returned by `linker_input_files.collect`.
+        target: The `Target` the product information is gathered from.
 
     Returns:
-        A `struct` containing the name, the path to the product and the product type.
+        A `struct` with various fields describing the product.
     """
     if bundle_file_path:
         file = bundle_file
@@ -146,7 +148,7 @@ def process_product(
         actual_fp = archive_file_path
     elif target[DefaultInfo].files_to_run.executable:
         executable = target[DefaultInfo].files_to_run.executable
-        file = _codesign_executable(ctx = ctx, executable = executable)
+        file = _codesign_executable(actions = actions, executable = executable)
         basename = file.basename
         fp = executable.path
         actual_fp = fp
@@ -184,24 +186,24 @@ def process_product(
         label = target.label
         package_dir = paths.join(
             label.workspace_name,
-            ctx.bin_dir.path,
+            bin_dir_path,
             label.package,
         )
     else:
         package_dir = None
 
     return struct(
+        actual_file_path = actual_fp,
+        basename = basename,
         executable = executable,
         executable_name = executable_name,
-        name = product_name,
-        module_name_attribute = module_name_attribute,
-        framework_files = framework_files,
         file = file,
-        path = path,
-        basename = basename,
         file_path = fp,
-        actual_file_path = actual_fp,
-        package_dir = package_dir,
-        type = product_type,
+        framework_files = framework_files,
         is_resource_bundle = is_resource_bundle,
+        module_name_attribute = module_name_attribute,
+        name = product_name,
+        package_dir = package_dir,
+        path = path,
+        type = product_type,
     )
