@@ -49,6 +49,14 @@ information.
       - The `PBXProject.targets` property
       - Closes the `PBXProject` element
     - A set of files, each detailing how a set of configured targets are consolidated together
+- [`target_build_settings`](target_build_settings/README.md):
+  - Run once for each target
+  - Each target generates a file that contains one or more build settings:
+    - `DEBUG_INFORMATION_FORMAT`
+    - `OTHER_CFLAGS`
+    - `OTHER_SWIFT_FLAGS`
+    - `SWIFT_COMPILATION_MODE`
+    - etc.
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
   - All of the `PBXNativeTarget` related objects:
