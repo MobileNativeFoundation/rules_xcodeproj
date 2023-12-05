@@ -176,6 +176,7 @@ def _merge_compilation_providers(
         *,
         apple_dynamic_framework_info = None,
         cc_info = None,
+        propagate_providers,
         transitive_compilation_providers):
     """Merges compilation providers from the deps of a target.
 
@@ -183,6 +184,8 @@ def _merge_compilation_providers(
         apple_dynamic_framework_info: The
             `apple_common.AppleDynamicFrameworkInfo` of the target, or `None`.
         cc_info: The `CcInfo` of the target, or `None`.
+        propagate_providers: A `bool` indicating whether providers should be
+            propagated to downstream targets.
         transitive_compilation_providers: A `list` of
             `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies
             that should have compilation providers merged.
@@ -252,9 +255,9 @@ def _merge_compilation_providers(
             objc = objc,
         ),
         struct(
-            _cc_info = merged_cc_info,
+            _cc_info = merged_cc_info if propagate_providers else None,
             _propagated_framework_files = propagated_framework_files,
-            _propagated_objc = propagated_objc,
+            _propagated_objc = propagated_objc if propagate_providers else None,
         ),
     )
 

@@ -260,6 +260,7 @@ def _make_skipped_target_xcodeprojinfo(
         _,
         provider_compilation_providers,
     ) = compilation_providers.merge(
+        propagate_providers = False,
         transitive_compilation_providers = [
             (
                 dep[XcodeProjInfo].xcode_target,

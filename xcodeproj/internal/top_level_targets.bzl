@@ -348,6 +348,7 @@ def process_top_level_target(
 
     if avoid_compilation_providers_list:
         (avoid_compilation_providers, _) = compilation_providers.merge(
+            propagate_providers = True,
             transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
@@ -373,6 +374,7 @@ def process_top_level_target(
     ) = compilation_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = cc_info,
+        propagate_providers = True,
         transitive_compilation_providers = [
             (info.xcode_target, info.compilation_providers)
             for info in deps_infos
