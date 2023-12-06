@@ -38,7 +38,6 @@ def _process_resource_bundle(bundle, *, bundle_id):
         bin_dir_path = None,
         bundle_file = None,
         bundle_path = bundle_path,
-        bundle_file_path = bundle_path,
         is_resource_bundle = True,
         linker_inputs = None,
         # For resource bundles, we want to use the bundle name instead of

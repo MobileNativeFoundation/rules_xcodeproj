@@ -20,17 +20,10 @@ def _process_top_level_properties_test_impl(ctx):
             for p in ctx.attr.target_files
         ],
         bundle_info = _bundle_info_stub(ctx.attr.bundle_info),
-        tree_artifact_enabled = ctx.attr.tree_artifact_enabled,
         build_settings = build_settings,
     )
     string_build_settings = stringify_dict(build_settings)
 
-    asserts.equals(
-        env,
-        ctx.attr.expected_bundle_path if ctx.attr.expected_bundle_path else None,
-        properties.bundle_file_path,
-        "bundle_file_path",
-    )
     asserts.equals(
         env,
         ctx.attr.expected_product_name,
@@ -70,7 +63,6 @@ process_top_level_properties_test = unittest.make(
         "expected_product_type": attr.string(mandatory = True),
         "target_files": attr.string_list(mandatory = True),
         "target_name": attr.string(mandatory = True),
-        "tree_artifact_enabled": attr.bool(mandatory = True),
     },
 )
 
@@ -124,7 +116,6 @@ def process_top_level_properties_test_suite(name):
             target_name,
             target_files,
             bundle_info,
-            tree_artifact_enabled,
             expected_bundle_path,
             expected_executable_name,
             expected_product_name,
@@ -136,7 +127,6 @@ def process_top_level_properties_test_suite(name):
             target_name = target_name,
             target_files = target_files,
             bundle_info = bundle_info,
-            tree_artifact_enabled = tree_artifact_enabled,
             expected_bundle_path = expected_bundle_path,
             expected_executable_name = expected_executable_name,
             expected_product_name = expected_product_name,
@@ -152,7 +142,6 @@ def process_top_level_properties_test_suite(name):
         target_name = "binary",
         target_files = ["bazel-out/some/binary"],
         bundle_info = None,
-        tree_artifact_enabled = True,
         expected_bundle_path = None,
         expected_executable_name = "binary",
         expected_product_name = "binary",
@@ -165,7 +154,6 @@ def process_top_level_properties_test_suite(name):
         target_name = "test",
         target_files = ["bazel-out/some/test.xctest/test"],
         bundle_info = None,
-        tree_artifact_enabled = True,
         expected_bundle_path = "bazel-out/some/test.xctest",
         expected_executable_name = "test",
         expected_product_name = "test",
@@ -188,7 +176,6 @@ def process_top_level_properties_test_suite(name):
             product_type = "com.apple.product-type.application",
             executable_name = "executable_name",
         ),
-        tree_artifact_enabled = True,
         expected_bundle_path = "bazel-out/some/flagship.app",
         expected_executable_name = "executable_name",
         expected_product_name = "flagship",
@@ -211,7 +198,6 @@ def process_top_level_properties_test_suite(name):
             product_type = "com.apple.product-type.application",
             executable_name = "executable_name",
         ),
-        tree_artifact_enabled = False,
         expected_bundle_path = (
             "bazel-out/some/intermediate/Payload/flagship.app"
         ),
@@ -236,7 +222,6 @@ def process_top_level_properties_test_suite(name):
             product_type = "com.apple.product-type.bundle.unit-test",
             executable_name = "executable_name",
         ),
-        tree_artifact_enabled = False,
         expected_bundle_path = "bazel-out/some/intermediate/flagship.xctest",
         expected_executable_name = "executable_name",
         expected_product_name = "flagship",

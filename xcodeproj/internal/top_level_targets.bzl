@@ -1,6 +1,5 @@
 """ Functions for processing top level targets """
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":app_icons.bzl", "app_icons")
 load(
@@ -53,33 +52,11 @@ def _get_codesign_opts(*, ctx, inputs_attr, opts_attr, rule_attr):
 
     return (opts, inputs)
 
-def get_tree_artifact_enabled(*, ctx, bundle_info):
-    """Returns whether tree artifacts are enabled.
-
-    Args:
-        ctx: The context
-        bundle_info: An instance of `BundleInfo`
-
-    Returns:
-        A boolean representing if tree artifacts are enabled
-    """
-    if not bundle_info:
-        return False
-
-    tree_artifact_enabled = (
-        ctx.var.get("apple.experimental.tree_artifact_outputs", "")
-            .lower() in
-        ("true", "yes", "1")
-    )
-
-    return tree_artifact_enabled
-
 def process_top_level_properties(
         *,
         target_name,
         target_files,
         bundle_info,
-        tree_artifact_enabled,
         build_settings):
     """Processes properties for a top level target.
 
@@ -87,14 +64,13 @@ def process_top_level_properties(
         target_name: Name of the target.
         target_files: The `files` attribute of the target.
         bundle_info: The `AppleBundleInfo` provider for the target.
-        tree_artifact_enabled: A `bool` controlling if tree artifacts are
-            enabled.
         build_settings: A mutable `dict` of build settings.
 
     Returns:
         A `struct` of information about the top level target.
     """
     if bundle_info:
+        bundle_extension = bundle_info.bundle_extension
         bundle_name = bundle_info.bundle_name
         executable_name = getattr(bundle_info, "executable_name", bundle_name)
         product_name = bundle_name
@@ -103,25 +79,6 @@ def process_top_level_properties(
         bundle_file = bundle_info.archive
         if bundle_file:
             bundle_path = bundle_file.path
-            archive_file_path = bundle_path
-
-            if tree_artifact_enabled:
-                bundle_file_path = archive_file_path
-            else:
-                bundle_extension = bundle_info.bundle_extension
-                bundle = "{}{}".format(bundle_name, bundle_extension)
-                if bundle_extension == ".app":
-                    bundle_file_path_path = paths.join(
-                        bundle_info.archive_root,
-                        "Payload",
-                        bundle,
-                    )
-                else:
-                    bundle_file_path_path = paths.join(
-                        bundle_info.archive_root,
-                        bundle,
-                    )
-                bundle_file_path = bundle_file_path_path
         elif product_type.startswith("com.apple.product-type.framework"):
             # Some rules only set the binary for static frameworks. Create the
             # values that should be set (since we don't copy the product anyway)
@@ -129,8 +86,6 @@ def process_top_level_properties(
             bundle_path = (
                 "{}/{}.framework".format(bundle_file.dirname, product_name)
             )
-            archive_file_path = bundle_path
-            bundle_file_path = archive_file_path
         else:
             fail("`AppleBundleInfo.archive` not set for {}".format(target_name))
 
@@ -145,6 +100,8 @@ def process_top_level_properties(
             getattr(bundle_info, "extension_safe", False),
         )
     else:
+        bundle_extension = None
+        bundle_name = None
         executable_name = target_name
         product_name = target_name
 
@@ -160,19 +117,15 @@ def process_top_level_properties(
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = bundle_file.path
             bundle_path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
-            bundle_file_path = bundle_path
-            archive_file_path = bundle_file_path
         else:
             product_type = "com.apple.product-type.tool"
             bundle_path = None
-            bundle_file_path = None
-            archive_file_path = None
 
     return struct(
-        archive_file_path = archive_file_path,
+        bundle_extension = bundle_extension,
         bundle_file = bundle_file,
+        bundle_name = bundle_name,
         bundle_path = bundle_path,
-        bundle_file_path = bundle_file_path,
         executable_name = executable_name,
         product_name = product_name,
         product_type = product_type,
@@ -312,15 +265,10 @@ def process_top_level_target(
     # `process_top_level_properties` and `output_files.collect` does internally.
     target_files = EMPTY_LIST if bundle_info else target.files.to_list()
 
-    tree_artifact_enabled = get_tree_artifact_enabled(
-        ctx = ctx,
-        bundle_info = bundle_info,
-    )
     props = process_top_level_properties(
         target_name = rule_attr.name,
         target_files = target_files,
         bundle_info = bundle_info,
-        tree_artifact_enabled = tree_artifact_enabled,
         build_settings = build_settings,
     )
     platform = platforms.collect(ctx = ctx)
@@ -408,11 +356,11 @@ def process_top_level_target(
 
     product = process_product(
         actions = ctx.actions,
-        archive_file_path = props.archive_file_path,
         bin_dir_path = bin_dir_path,
+        bundle_extension = props.bundle_extension,
         bundle_file = props.bundle_file,
+        bundle_name = props.bundle_name,
         bundle_path = props.bundle_path,
-        bundle_file_path = props.bundle_file_path,
         executable_name = props.executable_name,
         # For bundle targets, we want to use the product name instead of
         # `module_name`

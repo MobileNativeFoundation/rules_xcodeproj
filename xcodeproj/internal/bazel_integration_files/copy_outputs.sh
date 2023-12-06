@@ -23,36 +23,7 @@ readonly test_frameworks=(
 if [[ "$ACTION" != indexbuild ]]; then
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
-    if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]]; then
-      suffix=/Payload
-    fi
-
-    if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]] || [[ "$BAZEL_OUTPUTS_PRODUCT" = *.zip ]]; then
-      # Extract archive first
-      readonly archive="$BAZEL_OUTPUTS_PRODUCT"
-      readonly expanded_dest="$DERIVED_FILE_DIR/expanded_archive"
-      readonly product_parent_dir="$expanded_dest${suffix:-}"
-      readonly sha_output="$DERIVED_FILE_DIR/archive.sha256"
-
-      existing_sha=$(cat "$sha_output" 2>/dev/null || true)
-      sha=$(shasum -a 256 "$archive")
-
-      if [[ \
-        "$existing_sha" != "$sha" || \
-        ! -d "$product_parent_dir/$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
-      ]]; then
-        mkdir -p "$expanded_dest"
-        rm -rf "${expanded_dest:?}/"
-        echo "Extracting $archive to $expanded_dest"
-        # Set timestamps (-DD) to allow rsync to work properly, since Bazel
-        # zeroes out timestamps in the archive
-        unzip -q -DD "$archive" -d "$expanded_dest"
-        echo "$sha" > "$sha_output"
-      fi
-      cd "$product_parent_dir"
-    else
-      cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
-    fi
+    cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set

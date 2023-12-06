@@ -37,6 +37,11 @@ PRODUCT_TYPE_ENCODED = {
     "com.apple.product-type.xpc-service": "X",
 }
 
+_ARCHIVE_EXTENSIONS = {
+    "ipa": None,
+    "zip": None,
+}
+
 def _codesign_executable(*, actions, executable):
     executable_path = "{}_codesigned".format(
         executable.basename,
@@ -98,14 +103,60 @@ exit ${PIPESTATUS[0]}
 
     return output
 
+def _extract_archive(*, actions, archive, bundle_name, bundle_extension):
+    output = actions.declare_directory(
+        bundle_name + bundle_extension,
+        sibling = archive,
+    )
+
+    args = actions.args()
+    args.add(archive)
+    args.add(output.path)
+
+    actions.run_shell(
+        inputs = [archive],
+        outputs = [output],
+        command = """\
+set -eu
+
+readonly archive="$1"
+readonly output="$2"
+
+if [[ "$archive" = *.ipa ]]; then
+    suffix=/Payload
+else
+    suffix=
+fi
+
+expanded_dir=$(mktemp -d)
+trap 'rm -rf "$expanded_dir"' EXIT
+
+unzip -q -DD "$archive" -d "$expanded_dir"
+mv "$expanded_dir$suffix/${output##*/}" "${output%/*}"
+""",
+        arguments = [args],
+        mnemonic = "XcodeProjExtractBundleArchive",
+        execution_requirements = {
+            # Similar to our recommendations on `BundleApp`, by default it
+            # doesn't make sense to cache the output of this action
+            "no-cache": "1",
+            # Similar to our recommendations on `BundleApp`, by default it
+            # doesn't make sense to cache transfer the input or output of this
+            # action over the network
+            "no-remote": "1",
+        },
+    )
+
+    return output
+
 def process_product(
         *,
         actions,
-        archive_file_path = None,
         bin_dir_path,
+        bundle_extension = None,
         bundle_file = None,
+        bundle_name = None,
         bundle_path = None,
-        bundle_file_path = None,
         executable_name = None,
         is_resource_bundle = False,
         linker_inputs,
@@ -117,14 +168,14 @@ def process_product(
 
     Args:
         actions: `ctx.actions`.
-        archive_file_path: If the product is a bundle, this is
-            `file_path` to the bundle, possibly in an archive, otherwise `None`.
         bin_dir_path: `ctx.bin_dir.path`.
+        bundle_extension: If the product is a bundle, the extension of the
+            unarchived bundle, otherwise `None`.
         bundle_file: If the product is a bundle, this is `File` for the bundle,
             otherwise `None`.
+        bundle_name: If the product is a bundle, this is the name of the
+            unarchived bundle, without the extension, otherwise `None`.
         bundle_path: If the product is a bundle, this is the path to
-            the bundle, when not in an archive, otherwise `None`.
-        bundle_file_path: If the product is a bundle, this is the `file_path` to
             the bundle, when not in an archive, otherwise `None`.
         executable_name: If the product is a bundle, this is the executable
             name, otherwise `None`.
@@ -141,33 +192,42 @@ def process_product(
     Returns:
         A `struct` with various fields describing the product.
     """
-    if bundle_file_path:
+    if bundle_file and bundle_file.extension in _ARCHIVE_EXTENSIONS:
+        file = _extract_archive(
+            actions = actions,
+            archive = bundle_file,
+            bundle_name = bundle_name,
+            bundle_extension = bundle_extension,
+        )
+        basename = file.basename
+        path = file.path
+        fp = path
+        actual_fp = path
+    elif bundle_path:
+        # Tree artifacts, resource bundles, and `swift_test`
         file = bundle_file
-        basename = paths.basename(bundle_file_path)
-        fp = bundle_file_path
-        actual_fp = archive_file_path
+        basename = paths.basename(bundle_path)
+        path = bundle_path
+        fp = path
+        actual_fp = path
     elif target[DefaultInfo].files_to_run.executable:
         executable = target[DefaultInfo].files_to_run.executable
         file = _codesign_executable(actions = actions, executable = executable)
         basename = file.basename
         fp = executable.path
         actual_fp = fp
+        path = file.path
     elif CcInfo in target and linker_inputs and target.files != depset():
         file = linker_input_files.get_primary_static_library(linker_inputs)
         basename = file.basename if file else None
         fp = file.path if file else None
         actual_fp = fp
+        path = fp
     else:
         file = None
         basename = None
         fp = None
         actual_fp = None
-
-    if bundle_path:
-        path = bundle_path
-    elif file:
-        path = file.path
-    else:
         path = None
 
     if target and apple_common.AppleDynamicFramework in target:
