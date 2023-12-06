@@ -36,7 +36,6 @@ extension Generator {
 			);
 			name = "Generate Bazel Dependendencies";
 			outputFileListPaths = (
-				"$(INTERNAL_DIR)/external.xcfilelist",
 				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
 			outputPaths = (
