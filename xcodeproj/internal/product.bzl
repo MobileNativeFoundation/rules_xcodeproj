@@ -136,6 +136,15 @@ mv "$expanded_dir$suffix/${output##*/}" "${output%/*}"
 """,
         arguments = [args],
         mnemonic = "XcodeProjExtractBundleArchive",
+        execution_requirements = {
+            # Similar to our recommendations on `BundleApp`, by default it
+            # doesn't make sense to cache the output of this action
+            "no-cache": "1",
+            # Similar to our recommendations on `BundleApp`, by default it
+            # doesn't make sense to cache transfer the input or output of this
+            # action over the network
+            "no-remote": "1",
+        },
     )
 
     return output
