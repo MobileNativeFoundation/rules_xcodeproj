@@ -720,10 +720,10 @@ private extension PBXProductType {
     var needsExtensionHost: Bool {
         switch self {
         case .appExtension,
-                .intentsServiceExtension,
-                .messagesExtension,
-                .tvExtension,
-                .extensionKitExtension:
+             .intentsServiceExtension,
+             .messagesExtension,
+             .tvExtension,
+             .extensionKitExtension:
             return true
         default:
             return false
