@@ -144,32 +144,40 @@ private extension PBXProductType {
         switch self {
         // Applications
         case .application,
-            .commandLineTool,
-            .messagesApplication,
-            .onDemandInstallCapableApplication,
-            .watch2App,
-            .watch2AppContainer,
-            .xpcService:
+             .commandLineTool,
+             .messagesApplication,
+             .onDemandInstallCapableApplication,
+             .watch2App,
+             .watch2AppContainer,
+             .xpcService:
             return 0
         // App extensions
         case .appExtension,
-            .driverExtension,
-            .extensionKitExtension,
-            .intentsServiceExtension,
-            .messagesExtension,
-            .stickerPack,
-            .systemExtension,
-            .tvExtension,
-            .watch2Extension,
-            .xcodeExtension:
+             .driverExtension,
+             .extensionKitExtension,
+             .intentsServiceExtension,
+             .messagesExtension,
+             .stickerPack,
+             .systemExtension,
+             .tvExtension,
+             .watch2Extension,
+             .xcodeExtension:
             return 1
         // Tests
         case .ocUnitTestBundle,
-            .uiTestBundle,
-            .unitTestBundle:
+             .uiTestBundle,
+             .unitTestBundle:
             return 2
         // Others
-        default:
+        case .resourceBundle,
+             .bundle,
+             .framework,
+             .staticFramework,
+             .xcFramework,
+             .dynamicLibrary,
+             .staticLibrary,
+             .instrumentsPackage,
+             .metalLibrary:
             return 3
         }
     }

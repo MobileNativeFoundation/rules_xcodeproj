@@ -162,22 +162,35 @@ private extension PBXProductType {
     var isLaunchable: Bool {
         switch self {
         case .application,
-                .messagesApplication,
-                .onDemandInstallCapableApplication,
-                .watch2App,
-                .watch2AppContainer,
-                .appExtension,
-                .intentsServiceExtension,
-                .messagesExtension,
-                .tvExtension,
-                .extensionKitExtension,
-                .xcodeExtension,
-                .driverExtension,
-                .systemExtension,
-                .commandLineTool,
-                .xpcService:
+             .messagesApplication,
+             .onDemandInstallCapableApplication,
+             .watch2App,
+             .watch2AppContainer,
+             .appExtension,
+             .intentsServiceExtension,
+             .messagesExtension,
+             .tvExtension,
+             .extensionKitExtension,
+             .xcodeExtension,
+             .driverExtension,
+             .systemExtension,
+             .commandLineTool,
+             .xpcService:
             return true
-        default:
+        case .stickerPack,
+             .watch2Extension,
+             .resourceBundle,
+             .bundle,
+             .ocUnitTestBundle,
+             .unitTestBundle,
+             .uiTestBundle,
+             .framework,
+             .staticFramework,
+             .xcFramework,
+             .dynamicLibrary,
+             .staticLibrary,
+             .instrumentsPackage,
+             .metalLibrary:
             return false
         }
     }
