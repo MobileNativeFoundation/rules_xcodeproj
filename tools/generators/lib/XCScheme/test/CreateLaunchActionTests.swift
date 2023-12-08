@@ -409,6 +409,41 @@ final class CreateLaunchActionTests: XCTestCase {
 
         XCTAssertNoDifference(action, expectedAction)
     }
+
+    func test_runnable_path() {
+         // Arrange
+        let buildConfiguration = "Debug"
+        let runnable = Runnable.path(path: "/Foo/Bar.app")
+
+        let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Foo/Bar.app">
+      </PathRunnable>
+   </LaunchAction>
+"""#
+
+         // Act
+
+        let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            runnable: runnable
+         )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
 }
 
 private func createLaunchActionWithDefaults(

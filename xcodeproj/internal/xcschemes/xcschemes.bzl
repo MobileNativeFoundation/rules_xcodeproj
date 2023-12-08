@@ -160,9 +160,10 @@ def _profile(
             addition to any set by [`env`](#xcschemes.profile-env).
         launch_target: The target to launch when profiling.
 
-            Can be `None`, a label string, or a value returned by
-            [`xcschemes.launch_target`](#xcschemes.launch_target). If a label
-            string, `xcschemes.launch_target(label_str)` will be used. If
+            Can be `None`, a label string, a value returned by
+            [`xcschemes.launch_target`](#xcschemes.launch_target),
+            or a value returned by [`xcschemes.launch_path`](#xcschemes.launch_path).
+            If a label string, `xcschemes.launch_target(label_str)` will be used. If
             `None`, `xcschemes.launch_target()` will be used, which means no
             launch target will be set (i.e. the `Executable` dropdown will be
             set to `None`).
@@ -321,9 +322,10 @@ def _run(
             addition to any set by [`env`](#xcschemes.run-env).
         launch_target: The target to launch when running.
 
-            Can be `None`, a label string, or a value returned by
-            [`xcschemes.launch_target`](#xcschemes.launch_target). If a label
-            string, `xcschemes.launch_target(label_str)` will be used. If
+            Can be `None`, a label string, a value returned by
+            [`xcschemes.launch_target`](#xcschemes.launch_target),
+            or a value returned by [`xcschemes.launch_path`](#xcschemes.launch_path).
+            If a label string, `xcschemes.launch_target(label_str)` will be used. If
             `None`, `xcschemes.launch_target()` will be used, which means no
             launch target will be set (i.e. the `Executable` dropdown will be
             set to `None`).
@@ -534,6 +536,35 @@ def _test(
 
 # Targets
 
+def _launch_path(
+        path,
+        *,
+        working_directory = None):
+    """Defines the launch path for a pre-built executable.
+
+    Args:
+        path: Positional. The launch path for a launch target.
+
+            The path must be an absolute path to an executable file.
+            It will be set as the runnable within a launch action.
+        working_directory: The working directory to use when running the launch
+            target.
+
+            If not set, the Xcode default working directory will be used (i.e.
+            some directory in `DerivedData`).
+    """
+
+    if not path:
+        fail("""
+`path` must be provided to `xcschemes.launch_path`.
+""")
+
+    return struct(
+        is_path = TRUE_ARG,
+        path = path,
+        working_directory = working_directory or "",
+    )
+
 def _launch_target(
         label,
         *,
@@ -619,6 +650,7 @@ def _launch_target(
 
     return struct(
         extension_host = extension_host or "",
+        is_path = FALSE_ARG,
         label = label,
         library_targets = library_targets,
         post_actions = post_actions,
@@ -1119,6 +1151,7 @@ xcschemes = struct(
     arg = _arg,
     diagnostics = _diagnostics,
     env_value = _env_value,
+    launch_path = _launch_path,
     launch_target = _launch_target,
     library_target = _library_target,
     pre_post_actions = _pre_post_actions,

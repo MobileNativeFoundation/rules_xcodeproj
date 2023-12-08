@@ -245,6 +245,29 @@ private extension ArraySlice where Element == String {
         [CommandLineArgument],
         [EnvironmentVariable]
     ) {
+        let isPath = try consumeArg(
+            "\(namePrefix)-launch-target-is-path",
+            as: Bool.self,
+            in: url,
+            file: file,
+            line: line
+        )
+
+        if isPath {
+            let path = try consumeArg(
+                "\(namePrefix)-launch-target-path",
+                as: String.self,
+                in: url,
+                file: file,
+                line: line
+            )
+            return (
+                SchemeInfo.LaunchTarget.path(path),
+                commandLineArguments ?? [],
+                environmentVariables ?? []
+            )
+        }
+
         let id = try consumeArg(
             "\(namePrefix)-launch-target-id",
             as: TargetID?.self,
@@ -313,7 +336,7 @@ set
         }
 
         return (
-            SchemeInfo.LaunchTarget(
+            SchemeInfo.LaunchTarget.target(
                 primary: target,
                 extensionHost: extensionHost
             ),

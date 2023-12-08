@@ -6,4 +6,5 @@ public enum Runnable {
         debuggingMode: Int,
         remoteBundleIdentifier: String
     )
+    case path(path: String)
 }

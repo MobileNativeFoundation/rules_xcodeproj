@@ -158,18 +158,17 @@ extension Generator.CreateScheme {
 
         let launchRunnable: Runnable?
         let wasCreatedForAppExtension: Bool
-        if let launchTarget = schemeInfo.run.launchTarget {
-            let buildableReference =
-                launchTarget.primary.buildableReference
+        switch schemeInfo.run.launchTarget {
+        case let .target(primary, extensionHost):
+            let buildableReference = primary.buildableReference
 
             adjustBuildActionEntry(
                 for: buildableReference,
                 include: [.running, .analyzing]
             )
 
-            if let extensionHost = launchTarget.extensionHost {
+            if let extensionHost {
                 let hostBuildableReference = extensionHost.buildableReference
-
                 adjustBuildActionEntry(
                     for: hostBuildableReference,
                     include: [.running, .analyzing]
@@ -177,7 +176,7 @@ extension Generator.CreateScheme {
 
                 let extensionPointIdentifier = try extensionPointIdentifiers
                     .value(
-                        for: launchTarget.primary.key.sortedIds.first!,
+                        for: primary.key.sortedIds.first!,
                         context: "Extension Target ID"
                     )
 
@@ -196,7 +195,11 @@ extension Generator.CreateScheme {
 
             launchPreActions
                 .appendUpdateLldbInitAndCopyDSYMs(for: buildableReference)
-        } else {
+        case let .path(path):
+            launchRunnable = .path(path: path)
+            wasCreatedForAppExtension = false
+
+        case .none:
             launchRunnable = nil
             wasCreatedForAppExtension = false
         }
@@ -211,13 +214,12 @@ extension Generator.CreateScheme {
         // MARK: Profile
 
         let profileRunnable: Runnable?
-        if let launchTarget = schemeInfo.profile.launchTarget {
-            let buildableReference =
-                launchTarget.primary.buildableReference
-
+        switch schemeInfo.profile.launchTarget {
+        case let .target(primary, extensionHost):
+            let buildableReference = primary.buildableReference
             adjustBuildActionEntry(for: buildableReference, include: .profiling)
 
-            if let extensionHost = launchTarget.extensionHost {
+            if let extensionHost {
                 let hostBuildableReference = extensionHost.buildableReference
 
                 adjustBuildActionEntry(
@@ -227,7 +229,7 @@ extension Generator.CreateScheme {
 
                 let extensionPointIdentifier = try extensionPointIdentifiers
                     .value(
-                        for: launchTarget.primary.key.sortedIds.first!,
+                        for: primary.key.sortedIds.first!,
                         context: "Extension Target ID"
                     )
 
@@ -245,7 +247,11 @@ extension Generator.CreateScheme {
 
             profilePreActions
                 .appendUpdateLldbInitAndCopyDSYMs(for: buildableReference)
-        } else {
+
+        case let .path(path):
+            profileRunnable = .path(path: path)
+
+        case .none:
             profileRunnable = nil
         }
 

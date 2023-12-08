@@ -42,12 +42,21 @@ def _make_launch_target(
         id = EMPTY_STRING,
         *,
         extension_host = EMPTY_STRING,
+        path = None,
         post_actions = EMPTY_LIST,
         pre_actions = EMPTY_LIST,
         working_directory = EMPTY_STRING):
+    if path:
+        return struct(
+            is_path = TRUE_ARG,
+            path = path,
+            working_directory = working_directory,
+        )
+
     return struct(
         extension_host = extension_host,
         id = id,
+        is_path = FALSE_ARG,
         post_actions = post_actions,
         pre_actions = pre_actions,
         working_directory = working_directory,
@@ -331,16 +340,22 @@ def _launch_target_info_from_dict(
     if type(launch_target) == "string":
         return (
             _make_launch_target(
-                extension_host = EMPTY_STRING,
                 id = _get_top_level_id(
                     label = launch_target,
+                    scheme_name = scheme_name,
                     target_environment = None,
                     top_level_deps = top_level_deps,
                     xcode_configuration = xcode_configuration,
                 ),
-                post_actions = EMPTY_LIST,
-                pre_actions = EMPTY_LIST,
-                working_directory = EMPTY_STRING,
+            ),
+            EMPTY_LIST,
+        )
+
+    if launch_target["is_path"] == TRUE_ARG:
+        return (
+            _make_launch_target(
+                path = launch_target["path"],
+                working_directory = launch_target["working_directory"],
             ),
             EMPTY_LIST,
         )
@@ -453,12 +468,14 @@ def _profile_info_from_dict(
         default_xcode_configuration
     )
 
-    (launch_target, build_targets) = _launch_target_info_from_dict(
+    build_targets = []
+    (launch_target, launch_build_targets) = _launch_target_info_from_dict(
         profile["launch_target"],
         scheme_name = scheme_name,
         top_level_deps = top_level_deps,
         xcode_configuration = resolving_xcode_configuration,
     )
+    build_targets.extend(launch_build_targets)
 
     build_targets.extend([
         info
@@ -496,12 +513,14 @@ def _run_info_from_dict(
         default_xcode_configuration
     )
 
-    (launch_target, build_targets) = _launch_target_info_from_dict(
+    build_targets = []
+    (launch_target, launch_build_targets) = _launch_target_info_from_dict(
         run["launch_target"],
         scheme_name = scheme_name,
         top_level_deps = top_level_deps,
         xcode_configuration = resolving_xcode_configuration,
     )
+    build_targets.extend(launch_build_targets)
 
     build_targets.extend([
         info

@@ -768,6 +768,14 @@ def write_schemes_test_suite(name):
                     xcode_configuration = "Test",
                 ),
             ),
+            xcscheme_infos_testable.make_scheme(
+                name = "Scheme 3",
+                run = xcscheme_infos_testable.make_run(
+                    launch_target = xcscheme_infos_testable.make_launch_target(
+                        path = "/Foo/Bar.app",
+                    ),
+                ),
+            ),
         ],
 
         # Expected
@@ -802,7 +810,7 @@ def write_schemes_test_suite(name):
         expected_writes = {
             _CUSTOM_SCHEMES_DECLARED_FILE: "\n".join([
                 # schemeCount
-                "2",
+                "3",
                 # - name
                 "Scheme 2",
                 # - test - testTargetCount
@@ -841,6 +849,8 @@ def write_schemes_test_suite(name):
                 "0",
                 # - run - xcodeConfiguration
                 "",
+                # - run - launchTarget - isPath
+                "0",
                 # - run - launchTarget - id
                 "",
                 # - run - launchTarget - extensionHostID
@@ -859,6 +869,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - profile - xcodeConfiguration
                 "",
+                # - profile - launchTarget - isPath
+                "0",
                 # - profile - launchTarget - id
                 "",
                 # - profile - launchTarget - extensionHostID
@@ -948,6 +960,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - run - xcodeConfiguration
                 "Run",
+                # - run - launchTarget - isPath
+                "0",
                 # - run - launchTarget - id
                 "run launch id",
                 # - run - launchTarget - extensionHostID
@@ -982,12 +996,79 @@ def write_schemes_test_suite(name):
                 "0",
                 # - profile - xcodeConfiguration
                 "Profile",
+                # - profile - launchTarget - isPath
+                "0",
                 # - profile - launchTarget - id
                 "profile launch id",
                 # - profile - launchTarget - extensionHostID
                 "profile extension host id",
                 # - profile - customWorkingDirectory
                 "profile working dir",
+
+                # - name
+                "Scheme 3",
+                # - test - testTargetCount
+                "0",
+                # - test - buildTargets count
+                "0",
+                # - test - commandLineArguments count
+                "-1",
+                # - test - environmentVariables count
+                "-1",
+                # - test - environmentVariablesIncludeDefaults
+                "0",
+                # - test - useRunArgsAndEnv
+                "1",
+                # - test - enableAddressSanitizer
+                "0",
+                # - test - enableThreadSanitizer
+                "0",
+                # - test - enableUBSanitizer
+                "0",
+                # - test - xcodeConfiguration
+                "",
+                # - run - buildTargets count
+                "0",
+                # - run - commandLineArguments count
+                "-1",
+                # - run - environmentVariables count
+                "-1",
+                # - run - environmentVariablesIncludeDefaults
+                "1",
+                # - run - enableAddressSanitizer
+                "0",
+                # - run - enableThreadSanitizer
+                "0",
+                # - run - enableUBSanitizer
+                "0",
+                # - run - xcodeConfiguration
+                "",
+                # - run - launchTarget - isPath
+                "1",
+                # - run - launchTarget - path
+                "/Foo/Bar.app",
+                # - run - customWorkingDirectory
+                "",
+                # - profile - buildTargets count
+                "0",
+                # - profile - commandLineArguments count
+                "-1",
+                # - profile - environmentVariables count
+                "-1",
+                # - profile - environmentVariablesIncludeDefaults
+                "0",
+                # - profile - useRunArgsAndEnv
+                "1",
+                # - profile - xcodeConfiguration
+                "",
+                # - profile - launchTarget - isPath
+                "0",
+                # - profile - launchTarget - id
+                "",
+                # - profile - launchTarget - extensionHostID
+                "",
+                # - profile - customWorkingDirectory
+                "",
             ]) + "\n",
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n".join([
                 # schemeName

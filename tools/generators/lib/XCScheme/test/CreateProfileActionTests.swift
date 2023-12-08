@@ -276,6 +276,38 @@ final class CreateProfileActionTests: XCTestCase {
 
         XCTAssertNoDifference(prefix, expectedPrefix)
     }
+
+    func test_runnable_path() {
+        // Arrange
+
+        let buildConfiguration = "Debug"
+        let runnable = Runnable.path(path: "/Foo/Bar")
+
+        let expectedPrefix = #"""
+   <ProfileAction
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Foo/Bar">
+      </PathRunnable>
+   </ProfileAction>
+"""#
+
+        // Act
+
+        let prefix = createProfileActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            runnable: runnable
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(prefix, expectedPrefix)
+    }
 }
 
 private func createProfileActionWithDefaults(
