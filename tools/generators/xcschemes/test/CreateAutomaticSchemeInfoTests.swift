@@ -146,7 +146,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),
@@ -158,7 +158,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 commandLineArguments: [],
                 customWorkingDirectory: nil,
                 environmentVariables: [],
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),
@@ -224,7 +224,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: extensionHost
                 ),
@@ -236,7 +236,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 commandLineArguments: [],
                 customWorkingDirectory: nil,
                 environmentVariables: [],
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: extensionHost
                 ),
@@ -297,7 +297,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),
@@ -309,7 +309,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 commandLineArguments: [],
                 customWorkingDirectory: nil,
                 environmentVariables: [],
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),
@@ -371,7 +371,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),
@@ -383,7 +383,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 commandLineArguments: [],
                 customWorkingDirectory: nil,
                 environmentVariables: [],
-                launchTarget: .init(
+                launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
                 ),

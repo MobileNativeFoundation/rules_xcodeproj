@@ -131,6 +131,14 @@ ignoresPersistentStateOnLaunch = "NO"
         let runnableString: String
         if let runnable = runnable {
             switch runnable {
+            case let .path(path):
+                runnableString = #"""
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "\#(path)">
+      </PathRunnable>
+
+"""#
             case let .plain(reference):
                 runnableString = #"""
       <BuildableProductRunnable
@@ -195,7 +203,7 @@ ignoresPersistentStateOnLaunch = "NO"
 private extension Runnable {
     var isHosted: Bool {
         switch self {
-        case .plain: return false
+        case .path, .plain: return false
         case .hosted: return true
         }
     }

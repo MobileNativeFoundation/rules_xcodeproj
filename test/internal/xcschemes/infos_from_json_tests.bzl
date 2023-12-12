@@ -285,6 +285,7 @@ def infos_from_json_test_suite(name):
 
     full_launch_target = struct(
         extension_host = "eh label",
+        is_path = "0",
         label = "lt label",
         library_targets = [
             struct(
@@ -462,6 +463,7 @@ def infos_from_json_test_suite(name):
                         pre_actions = [],
                         target_environment = "",
                         working_directory = "",
+                        is_path = "0",
                     ),
                     use_run_args_and_env = "1",
                     xcode_configuration = "",
@@ -652,6 +654,7 @@ def infos_from_json_test_suite(name):
                     env_include_defaults = "1",
                     launch_target = struct(
                         extension_host = "eh label",
+                        is_path = "0",
                         label = "lt label",
                         library_targets = [
                             struct(

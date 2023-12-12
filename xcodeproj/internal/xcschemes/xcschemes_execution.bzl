@@ -324,14 +324,20 @@ def _write_schemes(
 
     # buildifier: disable=uninitialized
     def _add_launch_target(launch_target, *, action_name, scheme_name):
-        custom_scheme_args.add(launch_target.id)
-        custom_scheme_args.add(launch_target.extension_host)
-        custom_scheme_args.add(launch_target.working_directory)
-        _add_execution_actions(
-            launch_target,
-            action_name = action_name,
-            scheme_name = scheme_name,
-        )
+        custom_scheme_args.add(launch_target.is_path)
+
+        if launch_target.is_path == TRUE_ARG:
+            custom_scheme_args.add(launch_target.path)
+            custom_scheme_args.add(launch_target.working_directory)
+        else:
+            custom_scheme_args.add(launch_target.id)
+            custom_scheme_args.add(launch_target.extension_host)
+            custom_scheme_args.add(launch_target.working_directory)
+            _add_execution_actions(
+                launch_target,
+                action_name = action_name,
+                scheme_name = scheme_name,
+            )
 
     custom_scheme_args.add(len(xcscheme_infos))
     for info in xcscheme_infos:

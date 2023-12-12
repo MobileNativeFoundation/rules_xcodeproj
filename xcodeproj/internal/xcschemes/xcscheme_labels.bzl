@@ -1,5 +1,11 @@
 """Module for dealing with custom Xcode schemes from the `xcodeproj` macro."""
 
+load(
+    "//xcodeproj/internal:memory_efficiency.bzl",
+    "FALSE_ARG",
+    "TRUE_ARG",
+)
+
 def _resolve_build_target_labels(build_target):
     return struct(
         extension_host = _resolve_label(build_target.extension_host),
@@ -29,8 +35,16 @@ def _resolve_launch_target_labels(launch_target):
     if not launch_target or type(launch_target) == "string":
         return _resolve_label(launch_target)
 
+    if launch_target.is_path == TRUE_ARG:
+        return struct(
+            is_path = TRUE_ARG,
+            path = launch_target.path,
+            working_directory = launch_target.working_directory,
+        )
+
     return struct(
         extension_host = _resolve_label(launch_target.extension_host),
+        is_path = FALSE_ARG,
         label = _resolve_label(launch_target.label),
         library_targets = [
             _resolve_library_target_labels(library_target)

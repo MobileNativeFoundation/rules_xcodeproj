@@ -19,9 +19,9 @@ struct SchemeInfo: Equatable {
         let order: Int?
     }
 
-    struct LaunchTarget: Equatable {
-        let primary: Target
-        let extensionHost: Target?
+    enum LaunchTarget: Equatable {
+        case target(primary: Target, extensionHost: Target?)
+        case path(String)
     }
 
     struct Profile: Equatable {

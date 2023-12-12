@@ -231,6 +231,7 @@ def info_constructors_test_suite(name):
         expected_info = struct(
             extension_host = "",
             id = "",
+            is_path = "0",
             post_actions = [],
             pre_actions = [],
             working_directory = "",
@@ -279,6 +280,7 @@ def info_constructors_test_suite(name):
         expected_info = struct(
             extension_host = "host id",
             id = "an id",
+            is_path = "0",
             post_actions = [
                 xcscheme_infos_testable.make_pre_post_action(
                     for_build = False,
@@ -308,6 +310,23 @@ def info_constructors_test_suite(name):
                 ),
             ],
             working_directory = "a working directory",
+        ),
+    )
+
+    _add_test(
+        name = "{}_make_launch_target_is_path".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_launch_target(
+            path = "/Foo/Bar.app",
+            working_directory = "/Foo",
+        ),
+
+        # Expected
+        expected_info = struct(
+            is_path = "1",
+            path = "/Foo/Bar.app",
+            working_directory = "/Foo",
         ),
     )
 

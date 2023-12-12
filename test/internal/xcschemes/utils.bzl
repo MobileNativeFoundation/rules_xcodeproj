@@ -19,13 +19,21 @@ def _dict_to_diagnostics_info(d):
     )
 
 def _dict_to_launch_target_info(d):
-    return struct(
-        extension_host = d["extension_host"],
-        id = d["id"],
-        post_actions = _dicts_to_pre_post_action_infos(d["post_actions"]),
-        pre_actions = _dicts_to_pre_post_action_infos(d["pre_actions"]),
-        working_directory = d["working_directory"],
-    )
+    if d["is_path"] == "1":
+        return struct(
+            is_path = "1",
+            path = d["path"],
+            working_directory = d["working_directory"],
+        )
+    else:
+        return struct(
+            extension_host = d["extension_host"],
+            id = d["id"],
+            is_path = "0",
+            post_actions = _dicts_to_pre_post_action_infos(d["post_actions"]),
+            pre_actions = _dicts_to_pre_post_action_infos(d["pre_actions"]),
+            working_directory = d["working_directory"],
+        )
 
 def _dict_to_profile_info(d):
     return struct(

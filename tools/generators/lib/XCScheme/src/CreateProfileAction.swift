@@ -84,6 +84,14 @@ useCustomWorkingDirectory = "YES"
         let runnableString: String
         if let runnable = runnable {
             switch runnable {
+            case let .path(path):
+                runnableString = #"""
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "\#(path)">
+      </PathRunnable>
+
+"""#
             case let .plain(reference), let .hosted(reference, _, _, _):
                 runnableString = #"""
       <BuildableProductRunnable

@@ -74,13 +74,13 @@ extension Generator.CreateAutomaticSchemeInfo {
 """
 
             launchTarget =
-                .init(primary: target, extensionHost: extensionHost)
+                .target(primary: target, extensionHost: extensionHost)
             buildTargets = []
         } else {
             name = baseSchemeName
 
             if productType.isLaunchable {
-                launchTarget = .init(primary: target, extensionHost: nil)
+                launchTarget = .target(primary: target, extensionHost: nil)
                 buildTargets = []
             } else {
                 launchTarget = nil
