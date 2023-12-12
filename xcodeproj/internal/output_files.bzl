@@ -98,7 +98,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product_path = (
             product.path if product and copy_output_to_xcode else None
         ),
-        product_file_path = product.actual_file_path if product else None,
+        product_file_path = product.original_path if product else None,
         dsym_files = dsym_files,
         swift = swift,
     )
