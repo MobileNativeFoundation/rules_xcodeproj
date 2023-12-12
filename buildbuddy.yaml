@@ -15,9 +15,12 @@ x_templates:
     - &bazel_in_repo_version
       # No change, uses `.bazelversion`, just used to make it clear
       env: {}
+    - &bazel_previous_lts
+      env:
+        USE_BAZEL_VERSION: latest-1
     - &bazel_lts
       env:
-        USE_BAZEL_VERSION: 6.4.0rc4
+        USE_BAZEL_VERSION: latest
     - &bazel_head
       env:
         USE_BAZEL_VERSION: last_green
@@ -78,6 +81,14 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
+  - name: Test - Bazel Previous LTS
+    <<: *bazel_previous_lts
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *test_all
   - name: Test - Bazel LTS
     <<: *bazel_lts
     <<: *arm64
@@ -95,6 +106,15 @@ actions:
     bazel_commands:
       - *test_all
 
+  - name: Integration Test - "examples/integration" - Bazel Previous LTS
+    <<: *bazel_previous_lts
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *validate_integration
+      - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS
     <<: *bazel_lts
     <<: *arm64
@@ -129,6 +149,16 @@ actions:
     bazel_commands:
       - *nobzlmod_generate_integration
       - *nobzlmod_build_all
+
+  - name: Integration Test - "examples/rules_ios" - Bazel Previous LTS
+    <<: *bazel_previous_lts
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_rules_ios_workspace
+    bazel_commands:
+      - *validate_integration
+      - *build_all
   - name: Integration Test - "examples/rules_ios" - Bazel LTS
     <<: *bazel_lts
     <<: *arm64
