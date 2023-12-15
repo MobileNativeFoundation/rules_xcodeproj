@@ -21,7 +21,6 @@ load(
     "memory_efficient_depset",
 )
 load(":output_files.bzl", "output_files")
-load(":processed_target.bzl", "processed_target")
 load(":targets.bzl", "targets")
 load(":top_level_targets.bzl", "process_top_level_target")
 load(":unsupported_targets.bzl", "process_unsupported_target")

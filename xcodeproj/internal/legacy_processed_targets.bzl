@@ -1,6 +1,6 @@
-"""Functions for creating data structures related to processed bazel targets."""
+"""Module for creating the data structure representing a processed target."""
 
-def processed_target(
+def _make_legacy_processed_target(
         *,
         compilation_providers,
         direct_dependencies,
@@ -67,3 +67,7 @@ def processed_target(
         xcode_target = xcode_target,
         xcode_targets = [xcode_target] if xcode_target else None,
     )
+
+legacy_processed_targets = struct(
+    make = _make_legacy_processed_target,
+)

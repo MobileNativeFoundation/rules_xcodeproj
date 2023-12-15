@@ -8,6 +8,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
+load(":legacy_processed_targets.bzl", "legacy_processed_targets")
 load(
     ":legacy_target_properties.bzl",
     "process_dependencies",
@@ -16,7 +17,6 @@ load(
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
-load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
 
 def process_unsupported_target(
@@ -103,7 +103,7 @@ def process_unsupported_target(
         transitive_infos = transitive_infos,
     )
 
-    return processed_target(
+    return legacy_processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         inputs = provider_inputs,

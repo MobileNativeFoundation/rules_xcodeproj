@@ -13,6 +13,7 @@ load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
+load(":legacy_processed_targets.bzl", "legacy_processed_targets")
 load(
     ":legacy_target_properties.bzl",
     "process_dependencies",
@@ -29,7 +30,6 @@ load(
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
-load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":target_id.bzl", "get_id")
@@ -499,7 +499,7 @@ def process_top_level_target(
         app_icon_info.set_name if app_icon_info else None,
     )
 
-    return processed_target(
+    return legacy_processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         extension_infoplists = extension_infoplists,

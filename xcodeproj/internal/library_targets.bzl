@@ -7,6 +7,7 @@ load(":compilation_providers.bzl", "compilation_providers")
 load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
+load(":legacy_processed_targets.bzl", "legacy_processed_targets")
 load(
     ":legacy_target_properties.bzl",
     "process_dependencies",
@@ -18,7 +19,6 @@ load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
-load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":target_id.bzl", "get_id")
 load(":xcode_targets.bzl", "xcode_targets")
@@ -186,7 +186,7 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
 
-    return processed_target(
+    return legacy_processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
