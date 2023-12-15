@@ -39,8 +39,10 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
 
   if [[ $(uname -m) == "arm64" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"
-  else
+  elif [[ "$bazel_version" == "6" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin-opt/bin/distribution/expanded_release"
+  else
+    repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_x86_64-opt/bin/distribution/expanded_release"
   fi
   cat > "$override_bazelrc" <<EOF
 common --override_repository=rules_xcodeproj=$repository_override
