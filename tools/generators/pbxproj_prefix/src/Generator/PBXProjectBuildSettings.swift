@@ -67,12 +67,6 @@ extension Generator {
                 key: "BUILD_WORKSPACE_DIRECTORY",
                 value: #""$(SRCROOT)""#
             ),
-            .init(
-                key: "BUILT_PRODUCTS_DIR",
-                value: #"""
-"$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
-"""#
-            ),
             .init(key: "CC", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
             .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
@@ -85,12 +79,6 @@ extension Generator {
             .init(key: "COPY_PHASE_STRIP", value: "NO"),
             .init(key: "CXX", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "DEBUG_INFORMATION_FORMAT", value: "dwarf"),
-            .init(
-                key: "DEPLOYMENT_LOCATION",
-                value: #"""
-"$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))"
-"""#
-            ),
             .init(key: "DSTROOT", value: #""$(PROJECT_TEMP_DIR)""#),
             .init(key: "ENABLE_DEFAULT_SEARCH_PATHS", value: "NO"),
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
@@ -105,24 +93,6 @@ extension Generator {
                 key: "LIBTOOL",
                 value: #""$(BAZEL_INTEGRATION_DIR)/libtool.sh""#
             ),
-            .init(
-                key: "INDEXING_BUILT_PRODUCTS_DIR__",
-                value: #""$(INDEXING_BUILT_PRODUCTS_DIR__NO)""#
-            ),
-            .init(
-                key: "INDEXING_BUILT_PRODUCTS_DIR__NO",
-                value: #""$(BUILD_DIR)""#
-            ),
-            .init(
-                key: "INDEXING_BUILT_PRODUCTS_DIR__YES",
-                value: #""$(CONFIGURATION_BUILD_DIR)""#
-            ),
-            .init(
-                key: "INDEXING_DEPLOYMENT_LOCATION__",
-                value: #""$(INDEXING_DEPLOYMENT_LOCATION__NO)""#
-            ),
-            .init(key: "INDEXING_DEPLOYMENT_LOCATION__NO", value: "YES"),
-            .init(key: "INDEXING_DEPLOYMENT_LOCATION__YES", value: "NO"),
             .init(
                 key: "INDEXING_PROJECT_DIR__",
                 value: #""$(INDEXING_PROJECT_DIR__NO)""#

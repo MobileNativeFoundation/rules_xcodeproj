@@ -200,7 +200,6 @@ Here is an example output:
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
-				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CC = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
@@ -210,7 +209,6 @@ Here is an example output:
 				COPY_PHASE_STRIP = NO;
 				CXX = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -218,12 +216,6 @@ Here is an example output:
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
-				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
-				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
-				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
-				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
-				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
-				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
 				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
@@ -270,7 +262,6 @@ Here is an example output:
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
-				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CC = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
@@ -280,7 +271,6 @@ Here is an example output:
 				COPY_PHASE_STRIP = NO;
 				CXX = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -288,12 +278,6 @@ Here is an example output:
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
-				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
-				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
-				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
-				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
-				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
-				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
 				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
