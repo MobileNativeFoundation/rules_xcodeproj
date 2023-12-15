@@ -5,7 +5,7 @@ load("//test:utils.bzl", "stringify_dict")
 
 # buildifier: disable=bzl-visibility
 load(
-    "//xcodeproj/internal:top_level_targets.bzl",
+    "//xcodeproj/internal/processed_targets:legacy_top_level_targets.bzl",
     "process_top_level_properties",
 )
 

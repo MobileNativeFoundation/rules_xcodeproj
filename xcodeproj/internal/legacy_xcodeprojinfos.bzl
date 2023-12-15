@@ -7,12 +7,23 @@ load(
     "AppleBinaryInfo",
     "AppleBundleInfo",
 )
+load(
+    "//xcodeproj/internal/processed_targets:legacy_library_targets.bzl",
+    library_targets = "legacy_library_targets",
+)
+load(
+    "//xcodeproj/internal/processed_targets:legacy_top_level_targets.bzl",
+    top_level_targets = "legacy_top_level_targets",
+)
+load(
+    "//xcodeproj/internal/processed_targets:legacy_unsupported_targets.bzl",
+    unsupported_targets = "legacy_unsupported_targets",
+)
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":legacy_target_properties.bzl", "process_dependencies")
-load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
     ":memory_efficiency.bzl",
@@ -21,10 +32,7 @@ load(
     "memory_efficient_depset",
 )
 load(":output_files.bzl", "output_files")
-load(":processed_target.bzl", "processed_target")
 load(":targets.bzl", "targets")
-load(":top_level_targets.bzl", "process_top_level_target")
-load(":unsupported_targets.bzl", "process_unsupported_target")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 
 # Creating `XcodeProjInfo`
@@ -490,7 +498,7 @@ def _make_non_skipped_target_xcodeprojinfo(
     ]
 
     if not automatic_target_info.is_supported:
-        processed_target = process_unsupported_target(
+        processed_target = unsupported_targets.process(
             ctx = ctx,
             target = target,
             attrs = attrs,
@@ -499,7 +507,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             transitive_infos = valid_transitive_infos,
         )
     elif automatic_target_info.is_top_level:
-        processed_target = process_top_level_target(
+        processed_target = top_level_targets.process(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
@@ -512,7 +520,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             transitive_infos = valid_transitive_infos,
         )
     else:
-        processed_target = process_library_target(
+        processed_target = library_targets.process(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
