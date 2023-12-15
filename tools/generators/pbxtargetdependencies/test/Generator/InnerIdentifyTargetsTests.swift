@@ -18,7 +18,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                             id: "B",
                             label: "@repo//some:AB",
                             productType: .application,
-                            productPath: "some/AB.app",
+                            originalProductBasename: "AB.app",
                             productBasename: "AB.app",
                             dependencies: ["C"]
                         ),
@@ -26,7 +26,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                             id: "A",
                             label: "@repo//some:AB",
                             productType: .application,
-                            productPath: "some/AB.app",
+                            originalProductBasename: "AB.app",
                             productBasename: "AB.app",
                             dependencies: ["C"]
                         ),
@@ -42,7 +42,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                             id: "C",
                             label: "//:C",
                             productType: .uiTestBundle,
-                            productPath: "C.xctest",
+                            originalProductBasename: "C.xctest",
                             productBasename: "C.xctest",
                             uiTestHost: "B",
                             // Doesn't make sense, just for testing
@@ -80,7 +80,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                 label: "@repo//some:AB",
                 productType: .application,
                 name: "AB (macOS)",
-                productPath: "some/AB.app",
+                originalProductBasename: "AB.app",
                 productBasename: "AB.app",
                 uiTestHostName: nil,
                 identifier: .init(
@@ -100,7 +100,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                 label: "//:C",
                 productType: .uiTestBundle,
                 name: "c (iOS)",
-                productPath: "C.xctest",
+                originalProductBasename: "C.xctest",
                 productBasename: "C.xctest",
                 uiTestHostName: "AB (macOS)",
                 identifier: .init(

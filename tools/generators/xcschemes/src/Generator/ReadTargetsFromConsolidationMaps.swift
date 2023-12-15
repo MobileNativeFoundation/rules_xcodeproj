@@ -55,10 +55,8 @@ extension Generator.ReadTargetsFromConsolidationMaps {
                                             subIdentifier: entry.subIdentifier,
                                             name: entry.name
                                         ),
-                                    buildableName: String(
-                                        entry.productPath
-                                            .split(separator: "/").last!
-                                    ),
+                                    buildableName:
+                                        entry.originalProductBasename,
                                     blueprintName: entry.name,
                                     referencedContainer: referencedContainer
                                 )

@@ -10,8 +10,8 @@ struct Target: Equatable {
     let osVersion: SemanticVersion
     let arch: String
 
-    /// e.g. "bazel-out/generator" or "bazel-out/App.app"
-    let productPath: String
+    /// e.g. "generator" or "App.app"
+    let originalProductBasename: String
 
     /// e.g. "generator_codesigned" or "App.app"
     let productBasename: String

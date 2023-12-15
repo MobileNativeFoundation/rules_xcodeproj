@@ -72,7 +72,7 @@ extension Generator.CalculateConsolidationMaps {
                         label: target.label,
                         productType: target.productType,
                         name: target.name,
-                        productPath: target.productPath,
+                        originalProductBasename: target.originalProductBasename,
                         uiTestHostName: target.uiTestHostName,
                         subIdentifier: identifier.subIdentifier,
                         watchKitExtensionProductIdentifier:

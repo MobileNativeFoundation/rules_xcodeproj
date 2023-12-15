@@ -14,7 +14,7 @@ public struct ConsolidationMapEntry: Equatable {
     public let label: BazelLabel
     public let productType: PBXProductType
     public let name: String
-    public let productPath: String
+    public let originalProductBasename: String
     public let uiTestHostName: String?
     public let subIdentifier: Identifiers.Targets.SubIdentifier
     public let watchKitExtensionProductIdentifier: Identifiers.BuildFiles.SubIdentifier?
@@ -25,7 +25,7 @@ public struct ConsolidationMapEntry: Equatable {
         label: BazelLabel,
         productType: PBXProductType,
         name: String,
-        productPath: String,
+        originalProductBasename: String,
         uiTestHostName: String?,
         subIdentifier: Identifiers.Targets.SubIdentifier,
         watchKitExtensionProductIdentifier: Identifiers.BuildFiles.SubIdentifier?,
@@ -35,7 +35,7 @@ public struct ConsolidationMapEntry: Equatable {
         self.label = label
         self.productType = productType
         self.name = name
-        self.productPath = productPath
+        self.originalProductBasename = originalProductBasename
         self.uiTestHostName = uiTestHostName
         self.subIdentifier = subIdentifier
         self.watchKitExtensionProductIdentifier = watchKitExtensionProductIdentifier
@@ -104,7 +104,7 @@ Failed to write consolidation map entries: \(error.localizedDescription)
         data.append(Data(name.utf8))
         data.append(Self.subSeparator)
 
-        data.append(Data(productPath.utf8))
+        data.append(Data(originalProductBasename.utf8))
         data.append(Self.subSeparator)
 
         if let uiTestHostName {
@@ -207,7 +207,7 @@ extension ConsolidationMapEntry {
             ),
             productType: productType,
             name: String(components[4]),
-            productPath: String(components[5]),
+            originalProductBasename: String(components[5]),
             uiTestHostName: uiTestHostName.isEmpty ? nil : uiTestHostName,
             subIdentifier: .init(
                 from: subIdentifiersString[subIdentifierRange]
