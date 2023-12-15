@@ -8,6 +8,11 @@ readonly root_dir="${workspace_dir%/*/*}"
 readonly archive_output_base="$workspace_dir/bazel-output-base/release_archive"
 readonly override_bazelrc="$archive_output_base/override.bazelrc"
 
+bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
+if [[ "$bazel_version" == "version" ]]; then
+  bazel_version=7
+fi
+
 # Don't update the release archive if doing a build inside of Xcode, or if we
 # are in the inner-bazel invocation
 if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
@@ -39,8 +44,10 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
 
   if [[ $(uname -m) == "arm64" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"
-  else
+  elif [[ "$bazel_version" == "6" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin-opt/bin/distribution/expanded_release"
+  else
+    repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_x86_64-opt/bin/distribution/expanded_release"
   fi
   cat > "$override_bazelrc" <<EOF
 common --override_repository=rules_xcodeproj=$repository_override
@@ -53,12 +60,6 @@ EOF
 
   echo
   echo "Executing bazel command" >&2
-fi
-
-
-bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
-if [[ "$bazel_version" == "version" ]]; then
-  bazel_version=7
 fi
 
 flags=("--noworkspace_rc")
