@@ -336,7 +336,7 @@ $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
             buildSettings.set("EXECUTABLE_NAME", to: executableName)
         }
 
-        if target.product.type.isLaunchable {
+        if buildMode == .xcode && target.product.type.isLaunchable {
             // We need `BUILT_PRODUCTS_DIR` to point to where the
             // binary/bundle is actually at, for running from scheme to work
             buildSettings["BUILT_PRODUCTS_DIR"] = """

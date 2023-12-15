@@ -84,20 +84,11 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 """,
             "BUILD_MARKER_FILE": "$(OBJROOT)/build_marker",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
-            // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
-            // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
-            // from being modified though.
-            "BUILT_PRODUCTS_DIR": """
-$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
-""",
             "CLANG_ENABLE_OBJC_ARC": true,
             "CLANG_MODULES_AUTOLINK": false,
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
             "COPY_PHASE_STRIP": false,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
-            "DEPLOYMENT_LOCATION": """
-$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
-""",
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
             // Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match
@@ -108,18 +99,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEX_IMPORT": indexImport,
-            "INDEXING_BUILT_PRODUCTS_DIR__": """
-$(INDEXING_BUILT_PRODUCTS_DIR__NO)
-""",
-            "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
-            // Index Build doesn't respect `DEPLOYMENT_LOCATION`, but we also
-            // don't need the `DYLD_LIBRARY_PATH` fix for it
-            "INDEXING_BUILT_PRODUCTS_DIR__YES": "$(CONFIGURATION_BUILD_DIR)",
-            "INDEXING_DEPLOYMENT_LOCATION__": """
-$(INDEXING_DEPLOYMENT_LOCATION__NO)
-""",
-            "INDEXING_DEPLOYMENT_LOCATION__NO": true,
-            "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
             "INDEXING_PROJECT_DIR__NO": absoluteProjectDirPath,
             "INDEXING_PROJECT_DIR__YES": indexingProjectDirPath,
@@ -170,6 +149,30 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
                 "SWIFT_USE_INTEGRATED_DRIVER": false,
                 "TAPI_EXEC": "/usr/bin/true",
+            ], uniquingKeysWith: { _, r in r })
+        } else {
+            buildSettings.merge([
+            // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
+            // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
+            // from being modified though.
+            "BUILT_PRODUCTS_DIR": """
+$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
+            "DEPLOYMENT_LOCATION": """
+$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
+""",
+            // Index Build doesn't respect `DEPLOYMENT_LOCATION`, but we also
+            // don't need the `DYLD_LIBRARY_PATH` fix for it
+            "INDEXING_BUILT_PRODUCTS_DIR__": """
+$(INDEXING_BUILT_PRODUCTS_DIR__NO)
+""",
+            "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
+            "INDEXING_BUILT_PRODUCTS_DIR__YES": "$(CONFIGURATION_BUILD_DIR)",
+            "INDEXING_DEPLOYMENT_LOCATION__": """
+$(INDEXING_DEPLOYMENT_LOCATION__NO)
+""",
+            "INDEXING_DEPLOYMENT_LOCATION__NO": true,
+            "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             ], uniquingKeysWith: { _, r in r })
         }
 

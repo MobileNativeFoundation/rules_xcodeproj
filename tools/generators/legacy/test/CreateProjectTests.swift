@@ -202,9 +202,6 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
             "BUILD_MARKER_FILE": "$(OBJROOT)/build_marker",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
-            "BUILT_PRODUCTS_DIR": """
-$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
-""",
             "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
             "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
             "CLANG_ENABLE_OBJC_ARC": true,
@@ -215,9 +212,6 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
             "COPY_PHASE_STRIP": false,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
-            "DEPLOYMENT_LOCATION": """
-$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
-""",
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -229,18 +223,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEX_IMPORT": "/tmp/index-import",
-            "INDEXING_BUILT_PRODUCTS_DIR__": """
-$(INDEXING_BUILT_PRODUCTS_DIR__NO)
-""",
-            "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
-            "INDEXING_BUILT_PRODUCTS_DIR__YES": """
-$(CONFIGURATION_BUILD_DIR)
-""",
-            "INDEXING_DEPLOYMENT_LOCATION__": """
-$(INDEXING_DEPLOYMENT_LOCATION__NO)
-""",
-            "INDEXING_DEPLOYMENT_LOCATION__NO": true,
-            "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
             "INDEXING_PROJECT_DIR__NO": """
 /tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
