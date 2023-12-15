@@ -545,9 +545,7 @@ def _write_pbxtargetdependencies(
                 )
                 consolidation_map_args.add(xcode_target.platform.os_version)
                 consolidation_map_args.add(xcode_target.platform.arch)
-                consolidation_map_args.add(
-                    xcode_target.product.module_name_attribute or EMPTY_STRING,
-                )
+                consolidation_map_args.add(xcode_target.module_name_attribute)
                 consolidation_map_args.add(xcode_target.product.original_basename)
                 consolidation_map_args.add(xcode_target.product.basename)
                 consolidation_map_args.add_all(
