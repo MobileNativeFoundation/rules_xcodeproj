@@ -5,21 +5,24 @@ load(
     "AppleResourceBundleInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(":compilation_providers.bzl", "compilation_providers")
-load(":configuration.bzl", "calculate_configuration")
-load(":input_files.bzl", "input_files")
-load(":legacy_processed_targets.bzl", "legacy_processed_targets")
+load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
+load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
+load("//xcodeproj/internal:input_files.bzl", "input_files")
 load(
-    ":legacy_target_properties.bzl",
+    "//xcodeproj/internal:legacy_target_properties.bzl",
     "process_dependencies",
     "process_swiftmodules",
 )
-load(":linker_input_files.bzl", "linker_input_files")
-load(":lldb_contexts.bzl", "lldb_contexts")
-load(":output_files.bzl", "output_files")
-load(":target_id.bzl", "get_id")
+load("//xcodeproj/internal:linker_input_files.bzl", "linker_input_files")
+load("//xcodeproj/internal:lldb_contexts.bzl", "lldb_contexts")
+load("//xcodeproj/internal:output_files.bzl", "output_files")
+load("//xcodeproj/internal:target_id.bzl", "get_id")
+load(
+    ":legacy_processed_targets.bzl",
+    processed_targets = "legacy_processed_targets",
+)
 
-def process_unsupported_target(
+def _process_legacy_unsupported_target(
         *,
         ctx,
         target,
@@ -103,7 +106,7 @@ def process_unsupported_target(
         transitive_infos = transitive_infos,
     )
 
-    return legacy_processed_targets.make(
+    return processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
@@ -121,3 +124,7 @@ def process_unsupported_target(
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )
+
+legacy_unsupported_targets = struct(
+    process = _process_legacy_unsupported_target,
+)

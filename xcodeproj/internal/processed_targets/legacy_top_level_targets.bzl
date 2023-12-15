@@ -1,40 +1,43 @@
 """ Functions for processing top level targets """
 
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load(":app_icons.bzl", "app_icons")
+load("//xcodeproj/internal:app_icons.bzl", "app_icons")
 load(
-    ":build_settings.bzl",
+    "//xcodeproj/internal:build_settings.bzl",
     "get_product_module_name",
     "get_targeted_device_family",
 )
-load(":collections.bzl", "set_if_true")
-load(":compilation_providers.bzl", "compilation_providers")
-load(":configuration.bzl", "calculate_configuration")
-load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
-load(":info_plists.bzl", "info_plists")
-load(":input_files.bzl", "input_files")
-load(":legacy_processed_targets.bzl", "legacy_processed_targets")
+load("//xcodeproj/internal:collections.bzl", "set_if_true")
+load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
+load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
+load("//xcodeproj/internal:files.bzl", "build_setting_path", "join_paths_ignoring_empty")
+load("//xcodeproj/internal:info_plists.bzl", "info_plists")
+load("//xcodeproj/internal:input_files.bzl", "input_files")
 load(
-    ":legacy_target_properties.bzl",
+    "//xcodeproj/internal:legacy_target_properties.bzl",
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
 )
-load(":linker_input_files.bzl", "linker_input_files")
-load(":lldb_contexts.bzl", "lldb_contexts")
+load("//xcodeproj/internal:linker_input_files.bzl", "linker_input_files")
+load("//xcodeproj/internal:lldb_contexts.bzl", "lldb_contexts")
 load(
-    ":memory_efficiency.bzl",
+    "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
-load(":opts.bzl", "process_opts")
-load(":output_files.bzl", "output_files")
-load(":platforms.bzl", "platforms")
-load(":product.bzl", "process_product")
-load(":provisioning_profiles.bzl", "provisioning_profiles")
-load(":target_id.bzl", "get_id")
-load(":xcode_targets.bzl", "xcode_targets")
-load(":xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj/internal:opts.bzl", "process_opts")
+load("//xcodeproj/internal:output_files.bzl", "output_files")
+load("//xcodeproj/internal:platforms.bzl", "platforms")
+load("//xcodeproj/internal:product.bzl", "process_product")
+load("//xcodeproj/internal:provisioning_profiles.bzl", "provisioning_profiles")
+load("//xcodeproj/internal:target_id.bzl", "get_id")
+load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
+load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load(
+    ":legacy_processed_targets.bzl",
+    processed_targets = "legacy_processed_targets",
+)
 
 def _get_codesign_opts(*, ctx, inputs_attr, opts_attr, rule_attr):
     if not opts_attr:
@@ -131,7 +134,9 @@ def process_top_level_properties(
         product_type = product_type,
     )
 
-def process_top_level_target(
+# API
+
+def _process_legacy_top_level_target(
         *,
         ctx,
         build_mode,
@@ -499,7 +504,7 @@ def process_top_level_target(
         app_icon_info.set_name if app_icon_info else None,
     )
 
-    return legacy_processed_targets.make(
+    return processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         extension_infoplists = extension_infoplists,
@@ -544,3 +549,7 @@ def process_top_level_target(
             ),
         ),
     )
+
+legacy_top_level_targets = struct(
+    process = _process_legacy_top_level_target,
+)
