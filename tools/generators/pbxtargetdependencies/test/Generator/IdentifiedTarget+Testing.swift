@@ -10,7 +10,7 @@ extension IdentifiedTarget {
         label: BazelLabel = "//some:target",
         productType: PBXProductType = .staticLibrary,
         name: String = "T",
-        productPath: String = "some/libt.a",
+        originalProductBasename: String = "libt.a",
         productBasename: String = "libt.a",
         uiTestHostName: String? = nil,
         identifier: Identifiers.Targets.Identifier = .init(
@@ -28,7 +28,7 @@ extension IdentifiedTarget {
             label: label,
             productType: productType,
             name: name,
-            productPath: productPath,
+            originalProductBasename: originalProductBasename,
             productBasename: productBasename,
             uiTestHostName: uiTestHostName,
             identifier: identifier,

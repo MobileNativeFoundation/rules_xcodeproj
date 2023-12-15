@@ -28,7 +28,7 @@ extension Array<ConsolidationMapArguments> {
             let labelCount =
                 try rawArgs.consumeArg("label-count", as: Int.self, in: url)
 
-            var targetArguments: [Target] = []
+            var targets: [Target] = []
             for _ in (0..<labelCount) {
                 let label = try rawArgs.consumeArg(
                     "label",
@@ -65,8 +65,10 @@ extension Array<ConsolidationMapArguments> {
                     let arch = try rawArgs.consumeArg("arch", in: url)
                     let moduleName =
                         try rawArgs.consumeArg("module-name", in: url)
-                    let productPath =
-                        try rawArgs.consumeArg("product-path", in: url)
+                    let originalProductBasename = try rawArgs.consumeArg(
+                        "original-product-basename",
+                        in: url
+                    )
                     let productBasename =
                         try rawArgs.consumeArg("product-basename", in: url)
                     let dependencies = try rawArgs.consumeArgs(
@@ -93,7 +95,7 @@ extension Array<ConsolidationMapArguments> {
                         watchKitExtension = nil
                     }
 
-                    targetArguments.append(
+                    targets.append(
                         .init(
                             id: id,
                             label: label,
@@ -102,7 +104,7 @@ extension Array<ConsolidationMapArguments> {
                             platform: platform,
                             osVersion: osVersion,
                             arch: arch,
-                            productPath: productPath,
+                            originalProductBasename: originalProductBasename,
                             productBasename: productBasename,
                             moduleName: moduleName,
                             uiTestHost: uiTestHost,
@@ -116,7 +118,7 @@ extension Array<ConsolidationMapArguments> {
             consolidationMapArguments.append(
                 .init(
                     outputPath: outputPath,
-                    targets: targetArguments
+                    targets: targets
                 )
             )
         }
