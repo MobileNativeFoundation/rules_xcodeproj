@@ -1,4 +1,5 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
+load("@rules_python//python:defs.bzl", "py_library")
 
 # See the note in __init__.py for why this is needed.
 py_library(
@@ -80,6 +81,7 @@ _BUILDIFIER_WARNINGS = [
     "load-on-top",
     "module-docstring",
     "name-conventions",
+    "native-py",
     "no-effect",
     "out-of-order-load",
     "output-group",

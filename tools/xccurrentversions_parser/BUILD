@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
 py_binary(
     name = "xccurrentversions_parser",
     srcs = ["xccurrentversions_parser.py"],

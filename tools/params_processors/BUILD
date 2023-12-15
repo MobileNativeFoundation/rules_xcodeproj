@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
+
 py_library(
     name = "cc_compiler_params_processor_library",
     srcs = ["cc_compiler_params_processor.py"],

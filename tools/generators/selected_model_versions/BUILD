@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
+
 py_library(
     name = "selected_model_versions_library",
     srcs = ["selected_model_versions.py"],

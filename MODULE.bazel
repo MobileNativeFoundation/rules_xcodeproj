@@ -17,6 +17,7 @@ bazel_dep(
     version = "2.0.0",
     repo_name = "build_bazel_rules_apple",
 )
+bazel_dep(name = "rules_python", version = "0.27.1")
 
 internal = use_extension("//xcodeproj:extensions.bzl", "internal")
 use_repo(internal, "rules_xcodeproj_generated")

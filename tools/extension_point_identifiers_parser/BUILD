@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
 py_binary(
     name = "extension_point_identifiers_parser",
     srcs = ["extension_point_identifiers_parser.py"],
