@@ -78,7 +78,7 @@ if [[ "$ACTION" != indexbuild ]]; then
         find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
       fi
 
-      # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
+      # Xcode Previews has a hard time finding frameworks (`@rpath`) when using
       # framework schemes, so let's symlink them into
       # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
       # `@loader_path/SwiftUIPreviewsFrameworks`)

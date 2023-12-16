@@ -106,7 +106,7 @@ lines
                     with: "/Build/Intermediates.noindex/"
                 )
             } else {
-                // Remove SwiftUI Previews part of path
+                // Remove Xcode Previews part of path
                 objectFilePrefix = try projectTempDir.replacingRegex(
                     matching: #"""
 Intermediates\.noindex/Previews/[^/]*/Intermediates\.noindex

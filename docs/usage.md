@@ -90,7 +90,7 @@ project-level configs, these flags adjust those instead of the base configs.
   `rules_xcodeproj_generator`)
 - `extra_indexbuild_flags`: Applied to the Index Build config (i.e.
   `rules_xcodeproj_indexbuild`)
-- `extra_swiftuipreviews_flags`: Applied to the SwiftUI Previews build config
+- `extra_swiftuipreviews_flags`: Applied to the Xcode Previews build config
   (i.e. `rules_xcodeproj_swiftuipreviews`)
 
 ## `.bazelrc` files
@@ -161,7 +161,7 @@ environment:
 bazel run //:xcodeproj -- 'info output_path'
 ```
 
-This will build all targets in the project the same way as SwiftUI Previews
+This will build all targets in the project the same way as Xcode Previews
 does:
 
 ```
@@ -293,7 +293,7 @@ Changes the [Bazel config](#bazel-configs) that is used. Valid values are:
   or the project-level equivalent.
 
 For example, this will build all targets in the project the same way as
-SwiftUI Previews does:
+Xcode Previews does:
 
 ```
 bazel run //:xcodeproj -- --config=swiftuipreviews --generator_output_groups=all_targets build

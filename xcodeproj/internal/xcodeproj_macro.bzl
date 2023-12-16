@@ -77,7 +77,7 @@ def xcodeproj(
         name: A unique name for this target.
         adjust_schemes_for_swiftui_previews: Optional. Whether to adjust schemes
             in BwB mode to explicitly include transitive dependencies that are
-            able to run SwiftUI Previews.
+            able to run Xcode Previews.
 
             For example, this changes a scheme for an single application target
             to also include any app clip, app extension, framework, or watchOS
