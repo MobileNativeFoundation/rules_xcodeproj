@@ -1890,7 +1890,9 @@ def _xcodeproj_legacy_attrs(
         ),
         "_installer_template": attr.label(
             allow_single_file = True,
-            default = Label("//xcodeproj/internal/templates:installer.sh"),
+            default = Label(
+                "//xcodeproj/internal/templates:legacy_installer.sh",
+            ),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
         "_link_params_processor": attr.label(
