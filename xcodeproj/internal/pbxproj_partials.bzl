@@ -1,5 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
+load(":collections.bzl", "uniq")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_LIST",
@@ -9,6 +10,8 @@ load(
 )
 load(":platforms.bzl", "PLATFORM_NAME")
 
+_UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
+
 # Utility
 
 def _apple_platform_to_platform_name(platform):
@@ -16,6 +19,18 @@ def _apple_platform_to_platform_name(platform):
 
 def _depset_len(depset):
     return str(len(depset.to_list()))
+
+def _dsym_files_to_string(dsym_files):
+    dsym_paths = []
+    for file in dsym_files.to_list():
+        file_path = file.path
+
+        # dSYM files contain plist and DWARF.
+        if not file_path.endswith("Info.plist"):
+            # ../Product.dSYM/Contents/Resources/DWARF/Product
+            dsym_path = "/".join(file_path.split("/")[:-4])
+            dsym_paths.append("\"{}\"".format(dsym_path))
+    return " ".join(dsym_paths)
 
 def _dynamic_framework_path(file_and_is_framework):
     file, is_framework = file_and_is_framework
@@ -54,6 +69,278 @@ _FLAGS = struct(
     use_base_internationalization = "--use-base-internationalization",
     xcode_configurations = "--xcode-configurations",
 )
+
+def _write_consolidation_map_targets(
+        *,
+        actions,
+        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        colorize,
+        consolidation_map,
+        default_xcode_configuration,
+        generator_name,
+        idx,
+        install_path,
+        labels,
+        tool,
+        xcode_target_configurations,
+        xcode_targets,
+        xcode_targets_by_label):
+    """Creates `File`s representing targets in a `PBXProj` element, for a \
+    given consolidation map
+
+    Args:
+        actions: `ctx.actions`.
+        apple_platform_to_platform_name: Exposed for testing. Don't set.
+        colorize: Whether to colorize the output.
+        consolidation_map: A `File` containing a target consolidation maps.
+        default_xcode_configuration: The name of the the Xcode configuration to
+            use when building, if not overridden by custom schemes.
+        generator_name: The name of the `xcodeproj` generator target.
+        idx: The index of the consolidation map.
+        install_path: The workspace relative path to where the final
+            `.xcodeproj` will be written.
+        labels: A `list` of `Label`s of the targets included in
+            `consolidation_map`.
+        tool: The executable that will generate the output files.
+        xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
+            `list` of Xcode configuration names that the target is present in.
+        xcode_targets: A `dict` mapping `xcode_target.id` to `xcode_target`s.
+        xcode_targets_by_label: A `dict` mapping `xcode_target.label` to a
+            `dict` mapping `xcode_target.id` to `xcode_target`s.
+
+    Returns:
+        A tuple with two elements:
+
+        *   `pbxnativetargets`: A `File` for the `PBNativeTarget` `PBXProj`
+            partial.
+        *   `buildfile_subidentifiers`: A `File` that contain serialized
+            `[Identifiers.BuildFile.SubIdentifier]`.
+    """
+    pbxnativetargets = actions.declare_file(
+        "{}_pbxproj_partials/pbxnativetargets/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+    buildfile_subidentifiers = actions.declare_file(
+        "{}_pbxproj_partials/buildfile_subidentifiers/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+
+    target_arguments_file = actions.declare_file(
+        "{}_pbxproj_partials/target_arguments_files/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+    top_level_target_attributes_file = actions.declare_file(
+        "{}_pbxproj_partials/top_level_target_attributes_files/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+    unit_test_host_attributes_file = actions.declare_file(
+        "{}_pbxproj_partials/unit_test_host_attributes_files/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+
+    args = actions.args()
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
+
+    # targetsOutputPath
+    args.add(pbxnativetargets)
+
+    # buildFileSubIdentifiersOutputPath
+    args.add(buildfile_subidentifiers)
+
+    # consolidationMap
+    args.add(consolidation_map)
+
+    # targetArgumentsFile
+    args.add(target_arguments_file)
+
+    # topLevelTargetAttributesFile
+    args.add(top_level_target_attributes_file)
+
+    # unitTestHostAttributesFile
+    args.add(unit_test_host_attributes_file)
+
+    # defaultXcodeConfiguration
+    args.add(default_xcode_configuration)
+
+    # Target arguments
+
+    targets_args = actions.args()
+    targets_args.set_param_file_format("multiline")
+
+    top_level_targets_args = actions.args()
+    top_level_targets_args.set_param_file_format("multiline")
+
+    unit_test_hosts_args = actions.args()
+    unit_test_hosts_args.set_param_file_format("multiline")
+
+    target_count = 0
+    for label in labels:
+        target_count += len(xcode_targets_by_label[label])
+
+    targets_args.add(target_count)
+
+    build_settings_files = []
+    unit_test_host_ids = []
+    for label in labels:
+        for xcode_target in xcode_targets_by_label[label].values():
+            targets_args.add(xcode_target.id)
+            targets_args.add(xcode_target.product.type)
+            targets_args.add(xcode_target.package_bin_dir)
+            targets_args.add(xcode_target.product.name)
+            targets_args.add(xcode_target.product.basename)
+
+            # FIXME: Don't send if it would be the same as `$(PRODUCT_NAME:c99extidentifier)`?
+            targets_args.add(xcode_target.module_name)
+
+            targets_args.add(
+                apple_platform_to_platform_name(
+                    xcode_target.platform.apple_platform,
+                ),
+            )
+            targets_args.add(xcode_target.platform.os_version)
+            targets_args.add(xcode_target.platform.arch)
+            targets_args.add(
+                _dsym_files_to_string(xcode_target.outputs.dsym_files),
+            )
+
+            if (xcode_target.test_host and
+                xcode_target.product.type == _UNIT_TEST_PRODUCT_TYPE):
+                unit_test_host = xcode_target.test_host
+                unit_test_host_ids.append(unit_test_host)
+            else:
+                unit_test_host = EMPTY_STRING
+
+            build_settings_file = (
+                xcode_target.build_settings_file
+            )
+            targets_args.add(build_settings_file or EMPTY_STRING)
+            if build_settings_file:
+                build_settings_files.append(
+                    build_settings_file,
+                )
+
+            targets_args.add(
+                TRUE_ARG if xcode_target.has_c_params else FALSE_ARG,
+            )
+            targets_args.add(
+                TRUE_ARG if xcode_target.has_cxx_params else FALSE_ARG,
+            )
+
+            targets_args.add_all(
+                [xcode_target.inputs.srcs],
+                map_each = _depset_len,
+            )
+            targets_args.add_all(xcode_target.inputs.srcs)
+            targets_args.add_all(
+                [xcode_target.inputs.non_arc_srcs],
+                map_each = _depset_len,
+            )
+            targets_args.add_all(xcode_target.inputs.non_arc_srcs)
+            targets_args.add_all(
+                [xcode_target.inputs.resources],
+                map_each = _depset_len,
+            )
+            targets_args.add_all(xcode_target.inputs.resources)
+            targets_args.add_all(
+                [xcode_target.inputs.folder_resources],
+                map_each = _depset_len,
+            )
+            targets_args.add_all(xcode_target.inputs.folder_resources)
+
+            target_xcode_configurations = (
+                xcode_target_configurations[xcode_target.id]
+            )
+            targets_args.add(len(target_xcode_configurations))
+            targets_args.add_all(target_xcode_configurations)
+
+            # FIXME: Only set for top level targets
+            if xcode_target.outputs.product_path:
+                top_level_targets_args.add(xcode_target.id)
+                top_level_targets_args.add(
+                    xcode_target.bundle_id or EMPTY_STRING,
+                )
+                top_level_targets_args.add(
+                    xcode_target.outputs.product_path or EMPTY_STRING,
+                )
+                top_level_targets_args.add(
+                    xcode_target.link_params or EMPTY_STRING,
+                )
+                top_level_targets_args.add(
+                    xcode_target.product.executable_name or EMPTY_STRING,
+                )
+                top_level_targets_args.add(xcode_target.compile_target_ids)
+                top_level_targets_args.add(unit_test_host)
+
+    actions.write(target_arguments_file, targets_args)
+    actions.write(top_level_target_attributes_file, top_level_targets_args)
+
+    # FIXME: Add test case for this
+    for id in uniq(unit_test_host_ids):
+        unit_test_host_target = xcode_targets[id]
+        if not unit_test_host_target:
+            fail(
+                """\
+Target ID for unit test host '{}' not found in xcode_targets
+""".format(unit_test_host),
+            )
+        unit_test_hosts_args.add(id)
+        unit_test_hosts_args.add(unit_test_host_target.package_bin_dir)
+
+        unit_test_hosts_args.add(
+            unit_test_host_target.product.original_basename,
+        )
+        unit_test_hosts_args.add(
+            unit_test_host_target.product.executable_name or
+            unit_test_host_target.product.name,
+        )
+
+    actions.write(unit_test_host_attributes_file, unit_test_hosts_args)
+
+    # colorize
+    if colorize:
+        args.add(_FLAGS.colorize)
+
+    message = "Generating {} PBXNativeTargets partials (shard {})".format(
+        install_path,
+        idx,
+    )
+
+    actions.run(
+        arguments = [args],
+        executable = tool,
+        inputs = [
+            consolidation_map,
+            target_arguments_file,
+            top_level_target_attributes_file,
+            unit_test_host_attributes_file,
+        ] + build_settings_files,
+        outputs = [
+            pbxnativetargets,
+            buildfile_subidentifiers,
+        ],
+        progress_message = message,
+        mnemonic = "WritePBXNativeTargets",
+        execution_requirements = {
+            # Lots of files to read, so lets have some speed
+            "no-sandbox": "1",
+        },
+    )
+
+    return (
+        pbxnativetargets,
+        buildfile_subidentifiers,
+    )
 
 def _write_files_and_groups(
         *,
@@ -873,6 +1160,75 @@ def _write_target_build_settings(
 
     return build_settings_output, debug_settings_output, params
 
+def _write_targets(
+        *,
+        actions,
+        colorize,
+        consolidation_maps,
+        default_xcode_configuration,
+        generator_name,
+        install_path,
+        tool,
+        xcode_target_configurations,
+        xcode_targets,
+        xcode_targets_by_label):
+    """Creates `File`s representing targets in a `PBXProj` element.
+
+    Args:
+        actions: `ctx.actions`.
+        colorize: Whether to colorize the output.
+        consolidation_maps: A `dict` mapping `File`s containing target
+            consolidation maps to a `list` of `Label`s of the targets included
+            in the map.
+        default_xcode_configuration: The name of the the Xcode configuration to
+            use when building, if not overridden by custom schemes.
+        generator_name: The name of the `xcodeproj` generator target.
+        install_path: The workspace relative path to where the final
+            `.xcodeproj` will be written.
+        tool: The executable that will generate the output files.
+        xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
+            `list` of Xcode configuration names that the target is present in.
+        xcode_targets: A `dict` mapping `xcode_target.id` to `xcode_target`s.
+        xcode_targets_by_label: A `dict` mapping `xcode_target.label` to a
+            `dict` mapping `xcode_target.id` to `xcode_target`s.
+
+    Returns:
+        A tuple with two elements:
+
+        *   `pbxnativetargets`: A `list` of `File`s for the `PBNativeTarget`
+            `PBXProj` partials.
+        *   `buildfile_subidentifiers_files`: A `list` of `File`s that contain
+            serialized `[Identifiers.BuildFile.SubIdentifier]`s.
+    """
+    pbxnativetargets = []
+    buildfile_subidentifiers_files = []
+    for consolidation_map, labels in consolidation_maps.items():
+        (
+            label_pbxnativetargets,
+            label_buildfile_subidentifiers,
+        ) = _write_consolidation_map_targets(
+            actions = actions,
+            colorize = colorize,
+            consolidation_map = consolidation_map,
+            default_xcode_configuration = default_xcode_configuration,
+            generator_name = generator_name,
+            idx = consolidation_map.basename,
+            install_path = install_path,
+            labels = labels,
+            tool = tool,
+            xcode_target_configurations = xcode_target_configurations,
+            xcode_targets = xcode_targets,
+            xcode_targets_by_label = xcode_targets_by_label,
+        )
+
+        pbxnativetargets.append(label_pbxnativetargets)
+        buildfile_subidentifiers_files.append(label_buildfile_subidentifiers)
+
+    return (
+        pbxnativetargets,
+        buildfile_subidentifiers_files,
+    )
+
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_generated_xcfilelist = _write_generated_xcfilelist,
@@ -880,4 +1236,5 @@ pbxproj_partials = struct(
     write_pbxtargetdependencies = _write_pbxtargetdependencies,
     write_swift_debug_settings = _write_swift_debug_settings,
     write_target_build_settings = _write_target_build_settings,
+    write_targets = _write_targets,
 )
