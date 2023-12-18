@@ -61,15 +61,16 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
         ] = [
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: nil
+                testHostIdentifierWithoutComment: nil
             ),
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: identifiedTargetsMap["C"]!.identifier.full
+                testHostIdentifierWithoutComment:
+                    identifiedTargetsMap["C"]!.identifier.withoutComment
             ),
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: nil
+                testHostIdentifierWithoutComment: nil
             ),
         ]
 

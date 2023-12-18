@@ -60,7 +60,7 @@ extension Generator.CreateTargetAttributesObjects {
                 identifier: Identifiers.BazelDependencies.id,
                 content: createTargetAttributesContent(
                     createdOnToolsVersion: createdOnToolsVersion,
-                    testHostIdentifier: nil
+                    testHostIdentifierWithoutComment: nil
                 )
             ),
         ]
@@ -73,12 +73,13 @@ extension Generator.CreateTargetAttributesObjects {
                     identifier: target.identifier.full,
                     content: createTargetAttributesContent(
                         createdOnToolsVersion: createdOnToolsVersion,
-                        testHostIdentifier: try testHosts[anId].flatMap { id in
-                            return try identifiedTargetsMap
-                                .value(for: id, context: "Test host")
-                                .identifier
-                                .full
-                        }
+                        testHostIdentifierWithoutComment:
+                        try testHosts[anId].flatMap { id in
+                                return try identifiedTargetsMap
+                                    .value(for: id, context: "Test host")
+                                    .identifier
+                                    .withoutComment
+                            }
                     )
                 )
             )

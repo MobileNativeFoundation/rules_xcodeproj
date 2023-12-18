@@ -8,7 +8,7 @@ class CreateTargetAttributesContentTests: XCTestCase {
         // Arrange
 
         let createdOnToolsVersion = "13.0.0"
-        let testHostIdentifier: String? = nil
+        let testHostIdentifierWithoutComment: String? = nil
 
         // Shows that it's not responsible for sorting (this order is wrong)
         // The tabs for indenting are intentional
@@ -24,7 +24,8 @@ class CreateTargetAttributesContentTests: XCTestCase {
         let targetAttributes = Generator.CreateTargetAttributesContent
             .defaultCallable(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: testHostIdentifier
+                testHostIdentifierWithoutComment:
+                    testHostIdentifierWithoutComment
             )
 
         // Assert
@@ -35,11 +36,11 @@ class CreateTargetAttributesContentTests: XCTestCase {
         )
     }
 
-    func test_testHostIdentifier() {
+    func test_testHostIdentifierWithoutComment() {
         // Arrange
 
         let createdOnToolsVersion = "13.0.0"
-        let testHostIdentifier = "testHost_id /* testHost */"
+        let testHostIdentifierWithoutComment = "testHost_id /* testHost */"
 
         // The tabs for indenting are intentional
         let expectedTargetAttributes = #"""
@@ -55,7 +56,8 @@ class CreateTargetAttributesContentTests: XCTestCase {
         let targetAttributes = Generator.CreateTargetAttributesContent
             .defaultCallable(
                 createdOnToolsVersion: createdOnToolsVersion,
-                testHostIdentifier: testHostIdentifier
+                testHostIdentifierWithoutComment:
+                    testHostIdentifierWithoutComment
             )
 
         // Assert
