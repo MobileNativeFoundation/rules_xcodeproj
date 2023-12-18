@@ -236,6 +236,19 @@ def _write_files_and_groups(
         resolved_repositories_file,
     )
 
+def _write_generated_xcfilelist(*, actions, generator_name, infoplist_paths):
+    args = actions.args()
+    args.set_param_file_format("multiline")
+
+    args.add_all(infoplist_paths)
+
+    xcfilelist = actions.declare_file(
+        "{}-generated.xcfilelist".format(generator_name),
+    )
+    actions.write(xcfilelist, args)
+
+    return xcfilelist
+
 def _write_pbxproj_prefix(
         *,
         actions,
@@ -862,6 +875,7 @@ def _write_target_build_settings(
 
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
+    write_generated_xcfilelist = _write_generated_xcfilelist,
     write_pbxproj_prefix = _write_pbxproj_prefix,
     write_pbxtargetdependencies = _write_pbxtargetdependencies,
     write_swift_debug_settings = _write_swift_debug_settings,
