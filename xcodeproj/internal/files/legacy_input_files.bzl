@@ -6,27 +6,27 @@ load(
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
-load(":compilation_providers.bzl", "compilation_providers")
+load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
+load("//xcodeproj/internal:indexstore_filelists.bzl", "indexstore_filelists")
+load("//xcodeproj/internal:legacy_target_properties.bzl", "should_include_non_xcode_outputs")
 load(
-    ":files.bzl",
-    "FRAMEWORK_EXTENSIONS",
-    "RESOURCES_FOLDER_TYPE_EXTENSIONS",
-    "normalized_file_path",
-)
-load(":indexstore_filelists.bzl", "indexstore_filelists")
-load(":legacy_target_properties.bzl", "should_include_non_xcode_outputs")
-load(":linker_input_files.bzl", "linker_input_files")
-load(
-    ":memory_efficiency.bzl",
+    "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
     "EMPTY_DICT",
     "EMPTY_LIST",
     "EMPTY_STRING",
     "memory_efficient_depset",
 )
-load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
-load(":resources.bzl", "collect_resources")
-load(":xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
+load(
+    ":files.bzl",
+    "FRAMEWORK_EXTENSIONS",
+    "RESOURCES_FOLDER_TYPE_EXTENSIONS",
+    "normalized_file_path",
+)
+load(":legacy_output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
+load(":legacy_resources.bzl", resources_module = "legacy_resources")
 
 # Utility
 
@@ -100,7 +100,7 @@ CXX_EXTENSIONS = {
     "mm": None,
 }
 
-def _collect_input_files(
+def _collect_legacy_input_files(
         *,
         ctx,
         target,
@@ -414,7 +414,7 @@ def _collect_input_files(
     resource_bundles = None
     resource_bundle_dependencies = None
     if is_resource_bundle_consuming:
-        resources_result = collect_resources(
+        resources_result = resources_module.collect(
             platform = platform,
             resource_info = target[AppleResourceInfo],
             avoid_resource_infos = [
@@ -1028,8 +1028,8 @@ def _to_output_groups_fields(
 
     return output_groups
 
-input_files = struct(
-    collect = _collect_input_files,
+legacy_input_files = struct(
+    collect = _collect_legacy_input_files,
     from_resource_bundle = _from_resource_bundle,
     merge = _merge_input_files,
     to_output_groups_fields = _to_output_groups_fields,

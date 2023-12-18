@@ -3,13 +3,13 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:structs.bzl", "structs")
-load(":collections.bzl", "set_if_true", "uniq")
 load(
-    ":files.bzl",
+    "//xcodeproj/internal/files:files.bzl",
     "FRAMEWORK_EXTENSIONS",
     "build_setting_path",
     "normalized_file_path",
 )
+load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_DEPSET",

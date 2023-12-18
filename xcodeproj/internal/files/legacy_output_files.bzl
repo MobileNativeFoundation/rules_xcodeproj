@@ -1,8 +1,8 @@
 """Module containing functions dealing with target output files."""
 
-load(":indexstore_filelists.bzl", "indexstore_filelists")
+load("//xcodeproj/internal:indexstore_filelists.bzl", "indexstore_filelists")
 load(
-    ":memory_efficiency.bzl",
+    "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
     "EMPTY_STRING",
     "memory_efficient_depset",
@@ -114,7 +114,7 @@ def _has_dsym(debug_outputs):
 
 # API
 
-def _collect_output_files(
+def _collect_legacy_output_files(
         *,
         ctx,
         copy_product_transitively = False,
@@ -476,8 +476,8 @@ def swift_to_outputs(swift):
         getattr(module, "indexstore", None),
     )
 
-output_files = struct(
-    collect = _collect_output_files,
+legacy_output_files = struct(
+    collect = _collect_legacy_output_files,
     merge = _merge_output_files,
     to_output_groups_fields = _to_output_groups_fields,
 )

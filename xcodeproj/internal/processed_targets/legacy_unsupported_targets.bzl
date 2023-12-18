@@ -7,16 +7,22 @@ load(
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
-load("//xcodeproj/internal:input_files.bzl", "input_files")
 load(
     "//xcodeproj/internal:legacy_target_properties.bzl",
     "process_dependencies",
     "process_swiftmodules",
 )
-load("//xcodeproj/internal:linker_input_files.bzl", "linker_input_files")
 load("//xcodeproj/internal:lldb_contexts.bzl", "lldb_contexts")
-load("//xcodeproj/internal:output_files.bzl", "output_files")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
+load(
+    "//xcodeproj/internal/files:legacy_input_files.bzl",
+    input_files = "legacy_input_files",
+)
+load(
+    "//xcodeproj/internal/files:legacy_output_files.bzl",
+    output_files = "legacy_output_files",
+)
+load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
     ":legacy_processed_targets.bzl",
     processed_targets = "legacy_processed_targets",

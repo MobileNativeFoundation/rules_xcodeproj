@@ -1,16 +1,16 @@
-""" Functions for collecting resource usage information."""
+"""Module that collects resource file usage."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
-load(":configuration.bzl", "calculate_configuration")
+load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
+load("//xcodeproj/internal:memory_efficiency.bzl", "memory_efficient_depset")
+load("//xcodeproj/internal:target_id.bzl", "get_id")
 load(
     ":files.bzl",
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "join_paths_ignoring_empty",
     "normalized_file_path",
 )
-load(":memory_efficiency.bzl", "memory_efficient_depset")
-load(":target_id.bzl", "get_id")
 
 # Utility
 
@@ -290,7 +290,7 @@ def _add_unprocessed_resources(
 
 # API
 
-def collect_resources(
+def _collect_legacy_resources(
         *,
         platform,
         resource_info,
@@ -440,3 +440,7 @@ def collect_resources(
         xccurrentversions = xccurrentversions,
         extra_files = extra_files,
     )
+
+legacy_resources = struct(
+    collect = _collect_legacy_resources,
+)

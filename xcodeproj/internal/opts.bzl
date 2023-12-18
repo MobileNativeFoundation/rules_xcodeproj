@@ -1,8 +1,8 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
+load("//xcodeproj/internal/files:files.bzl", "build_setting_path", "is_relative_path", "quote_if_needed")
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "build_setting_path", "is_relative_path", "quote_if_needed")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
