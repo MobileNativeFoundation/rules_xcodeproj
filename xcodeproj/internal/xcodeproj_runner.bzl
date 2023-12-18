@@ -203,10 +203,13 @@ _target_transitions = make_xcodeproj_target_transitions(
         output = output,
         substitutions = {
             "%build_mode%": build_mode,
+            "%focused_labels%": str(attr.focused_labels),
             "%generator_name%": name,
             "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
+            "%owned_extra_files%": str(attr.owned_extra_files),
             "%target_transitions%": target_transitions,
+            "%unfocused_labels%": str(attr.unfocused_labels),
             "%xcodeproj_transitions%": (
                 "fixtures_transition" if is_fixture else "None"
             ),
@@ -247,14 +250,12 @@ def _write_generator_build_file(
             "%fail_for_invalid_extra_files_targets%": (
                 str(attr.fail_for_invalid_extra_files_targets)
             ),
-            "%focused_labels%": str(attr.focused_labels),
             "%install_directory%": attr.install_directory,
             "%install_path%": install_path,
             "%ios_device_cpus%": attr.ios_device_cpus,
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
             "%name%": name,
-            "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
             "%project_name%": attr.project_name,
@@ -271,7 +272,6 @@ def _write_generator_build_file(
             ),
             "%tvos_device_cpus%": attr.tvos_device_cpus,
             "%tvos_simulator_cpus%": attr.tvos_simulator_cpus,
-            "%unfocused_labels%": str(attr.unfocused_labels),
             "%unowned_extra_files%": str(attr.unowned_extra_files),
             "%visibility%": "{repo}//xcodeproj:__pkg__".format(repo = repo),
             "%watchos_device_cpus%": attr.watchos_device_cpus,
