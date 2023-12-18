@@ -18,6 +18,10 @@ load(
     "fixtures_transition",
 )
 
+_FOCUSED_LABELS = []
+_OWNED_EXTRA_FILES = {}
+_UNFOCUSED_LABELS = []
+
 # Transition
 
 _INPUTS = {}
@@ -54,8 +58,11 @@ _aspect = xcodeproj_factory.make_aspect(
 # Rule
 
 xcodeproj = xcodeproj_factory.make_rule(
+    focused_labels = _FOCUSED_LABELS,
     is_fixture = True,
+    owned_extra_files = _OWNED_EXTRA_FILES,
     target_transitions = _target_transitions,
+    unfocused_labels = _UNFOCUSED_LABELS,
     xcodeproj_aspect = _aspect,
     xcodeproj_transition = fixtures_transition,
 )
