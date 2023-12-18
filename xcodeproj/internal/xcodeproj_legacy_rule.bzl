@@ -1897,7 +1897,9 @@ def _xcodeproj_legacy_attrs(
         "_is_fixture": attr.bool(default = is_fixture),
         "_link_params_processor": attr.label(
             cfg = "exec",
-            default = Label("//tools/params_processors:link_params_processor"),
+            default = Label(
+                "//tools/params_processors:legacy_link_params_processor",
+            ),
             executable = True,
         ),
         "_swift_debug_settings_processor": attr.label(
