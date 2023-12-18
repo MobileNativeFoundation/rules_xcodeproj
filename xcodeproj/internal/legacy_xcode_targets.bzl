@@ -21,7 +21,7 @@ load(
 )
 load(":platforms.bzl", "platforms")
 
-def _make_xcode_target(
+def _make_legacy_xcode_target(
         *,
         id,
         label,
@@ -336,7 +336,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
         cxx_has_fortify_source = src_non_swift._cxx_has_fortify_source or cxx_has_fortify_source
         platform = src_non_swift.platform
 
-    return _make_xcode_target(
+    return _make_legacy_xcode_target(
         id = dest.id,
         label = dest.label,
         configuration = dest.configuration,
@@ -1019,7 +1019,7 @@ def _swift_to_dto(outputs):
 
     return dto
 
-def _get_top_level_static_libraries(xcode_target):
+def _get_legacy_top_level_static_libraries(xcode_target):
     """Returns the static libraries needed to link the target.
 
     Args:
@@ -1035,9 +1035,9 @@ Target '{}' requires `ObjcProvider` or `CcInfo`\
 """.format(xcode_target.label))
     return linker_inputs.static_libraries
 
-xcode_targets = struct(
-    get_top_level_static_libraries = _get_top_level_static_libraries,
-    make = _make_xcode_target,
+legacy_xcode_targets = struct(
+    get_top_level_static_libraries = _get_legacy_top_level_static_libraries,
+    make = _make_legacy_xcode_target,
     merge = _merge_xcode_target,
     to_dto = _xcode_target_to_dto,
 )

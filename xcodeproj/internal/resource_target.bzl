@@ -15,9 +15,9 @@ load(
     ":legacy_target_properties.bzl",
     "process_modulemaps",
 )
+load(":legacy_xcode_targets.bzl", xcode_targets = "legacy_xcode_targets")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 load(":product.bzl", "process_product")
-load(":xcode_targets.bzl", "xcode_targets")
 
 def _process_resource_bundle(bundle, *, bundle_id):
     name = bundle.name

@@ -1,4 +1,5 @@
-"""Functions for calculating a target's product."""
+"""Functions for calculating a target's product, when using \
+`generation_mode = "legacy"`."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
