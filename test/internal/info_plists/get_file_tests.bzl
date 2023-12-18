@@ -14,7 +14,7 @@ load(
 )
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:info_plists.bzl", "info_plists")
+load("//xcodeproj/internal/files:info_plists.bzl", "info_plists")
 
 # NOTE: It is not possible to create a dict with a key of apple_common.Objc.
 # So, we cannot test extracting of info plist via an ObjcProvider via get_file.
