@@ -57,7 +57,7 @@ extension Generator.CreateTargetAttributesObjects {
     ) throws -> [Object] {
         var targetAttributes: [Object] = [
             .init(
-                identifier: Identifiers.BazelDependencies.id,
+                identifier: Identifiers.BazelDependencies.idWithoutComment,
                 content: createTargetAttributesContent(
                     createdOnToolsVersion: createdOnToolsVersion,
                     testHostIdentifierWithoutComment: nil
@@ -70,7 +70,7 @@ extension Generator.CreateTargetAttributesObjects {
 
             targetAttributes.append(
                 Object(
-                    identifier: target.identifier.full,
+                    identifier: target.identifier.withoutComment,
                     content: createTargetAttributesContent(
                         createdOnToolsVersion: createdOnToolsVersion,
                         testHostIdentifierWithoutComment:

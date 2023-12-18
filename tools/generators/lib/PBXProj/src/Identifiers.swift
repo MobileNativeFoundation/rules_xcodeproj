@@ -48,7 +48,7 @@ import ToolCommon
 public enum Identifiers {
     public enum BazelDependencies {
         fileprivate static let name = "BazelDependencies"
-        fileprivate static let idWithoutComment = "FF0100000000000000000001"
+        public static let idWithoutComment = "FF0100000000000000000001"
         public static let id = #"\#(idWithoutComment) /* \#(name) */"#
 
         public static let buildConfigurationList = #"""
