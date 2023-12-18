@@ -1,7 +1,7 @@
 """Module containing functions dealing with target linker input files."""
 
-load(":collections.bzl", "flatten", "uniq")
-load(":memory_efficiency.bzl", "EMPTY_TUPLE")
+load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
+load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_TUPLE")
 
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
@@ -30,7 +30,8 @@ def _collect_linker_inputs(
             `target`.
         avoid_compilation_providers: A value from
             `compilation_providers.collect`. The linker inputs from these
-            providers will be excluded from the return list.
+            providers will be excluded from the return list. Should only be set
+            used `xcodeproj.generation_mode = "legacy"` is set.
         compilation_providers: A value returned by
             `compilation_providers.collect`.
         is_top_level: Whether `target` is the top-level target.

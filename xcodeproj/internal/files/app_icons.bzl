@@ -26,8 +26,9 @@ def _find_resource_set(app_icon_files):
 
     return None, None
 
+# TODO: Remove when dropping support for legacy generation mode
 def _should_find_default_icon_path(ctx):
-    return ctx.attr._build_mode != "xcode"
+    return getattr(ctx.attr, "_build_mode", None) != "xcode"
 
 _IMAGE_EXTS = {
     ".jpeg": None,

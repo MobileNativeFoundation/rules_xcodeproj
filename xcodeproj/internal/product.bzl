@@ -1,7 +1,7 @@
 """Functions for calculating a target's product."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":linker_input_files.bzl", "linker_input_files")
+load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(":memory_efficiency.bzl", "EMPTY_DEPSET")
 
 # Values here need to match those in `PBXProductType.swift`

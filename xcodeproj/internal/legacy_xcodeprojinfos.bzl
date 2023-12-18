@@ -8,6 +8,14 @@ load(
     "AppleBundleInfo",
 )
 load(
+    "//xcodeproj/internal/files:legacy_input_files.bzl",
+    input_files = "legacy_input_files",
+)
+load(
+    "//xcodeproj/internal/files:legacy_output_files.bzl",
+    output_files = "legacy_output_files",
+)
+load(
     "//xcodeproj/internal/processed_targets:legacy_library_targets.bzl",
     library_targets = "legacy_library_targets",
 )
@@ -22,7 +30,6 @@ load(
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":compilation_providers.bzl", "compilation_providers")
-load(":input_files.bzl", "input_files")
 load(":legacy_target_properties.bzl", "process_dependencies")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
@@ -31,7 +38,6 @@ load(
     "NONE_LIST",
     "memory_efficient_depset",
 )
-load(":output_files.bzl", "output_files")
 load(":targets.bzl", "targets")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 

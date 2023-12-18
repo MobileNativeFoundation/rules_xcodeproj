@@ -5,23 +5,29 @@ load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:collections.bzl", "set_if_true")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
-load("//xcodeproj/internal:files.bzl", "build_setting_path", "join_paths_ignoring_empty")
-load("//xcodeproj/internal:input_files.bzl", "input_files")
 load(
     "//xcodeproj/internal:legacy_target_properties.bzl",
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
 )
-load("//xcodeproj/internal:linker_input_files.bzl", "linker_input_files")
 load("//xcodeproj/internal:lldb_contexts.bzl", "lldb_contexts")
 load("//xcodeproj/internal:opts.bzl", "process_opts")
-load("//xcodeproj/internal:output_files.bzl", "output_files")
 load("//xcodeproj/internal:platforms.bzl", "platforms")
 load("//xcodeproj/internal:product.bzl", "process_product")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
 load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
 load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj/internal/files:files.bzl", "build_setting_path", "join_paths_ignoring_empty")
+load(
+    "//xcodeproj/internal/files:legacy_input_files.bzl",
+    input_files = "legacy_input_files",
+)
+load(
+    "//xcodeproj/internal/files:legacy_output_files.bzl",
+    output_files = "legacy_output_files",
+)
+load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
     ":legacy_processed_targets.bzl",
     processed_targets = "legacy_processed_targets",

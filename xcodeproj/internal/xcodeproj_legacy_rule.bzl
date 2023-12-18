@@ -9,6 +9,15 @@ load(
     "write_bazel_build_script",
     "write_create_xcode_overlay_script",
 )
+load("//xcodeproj/internal/files:files.bzl", "build_setting_path")
+load(
+    "//xcodeproj/internal/files:legacy_input_files.bzl",
+    input_files = "legacy_input_files",
+)
+load(
+    "//xcodeproj/internal/files:legacy_output_files.bzl",
+    output_files = "legacy_output_files",
+)
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
@@ -17,13 +26,10 @@ load(
     ":extension_point_identifiers.bzl",
     "write_extension_point_identifiers_file",
 )
-load(":files.bzl", "build_setting_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
-load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":logging.bzl", "warn")
 load(":memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
-load(":output_files.bzl", "output_files")
 load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
 load(":resource_target.bzl", "process_resource_bundles")
