@@ -14,11 +14,12 @@ extension Generator {
         /// Calculates a `PBXProject.targets` object content.
         func callAsFunction(
             createdOnToolsVersion: String,
-            testHostIdentifier: String?
+            testHostIdentifierWithoutComment: String?
         ) -> String {
             return callable(
                 /*createdOnToolsVersion:*/ createdOnToolsVersion,
-                /*testHostIdentifier:*/ testHostIdentifier
+                /*testHostIdentifierWithoutComment:*/
+                    testHostIdentifierWithoutComment
             )
         }
     }
@@ -29,17 +30,17 @@ extension Generator {
 extension Generator.CreateTargetAttributesContent {
     typealias Callable = (
         _ createdOnToolsVersion: String,
-        _ testHostIdentifier: String?
+        _ testHostIdentifierWithoutComment: String?
     ) -> String
 
     static func defaultCallable(
         createdOnToolsVersion: String,
-        testHostIdentifier: String?
+        testHostIdentifierWithoutComment: String?
     ) -> String {
         let testTargetID: String
-        if let testHostIdentifier = testHostIdentifier {
+        if let testHostIdentifierWithoutComment {
             testTargetID = #"""
-						TestTargetID = \#(testHostIdentifier);
+						TestTargetID = \#(testHostIdentifierWithoutComment);
 
 """#
         } else {

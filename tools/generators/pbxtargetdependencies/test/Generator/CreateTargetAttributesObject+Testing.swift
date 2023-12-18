@@ -8,7 +8,7 @@ extension Generator.CreateTargetAttributesContent {
     final class MockTracker {
         struct Called: Equatable {
             let createdOnToolsVersion: String
-            let testHostIdentifier: String?
+            let testHostIdentifierWithoutComment: String?
         }
 
         fileprivate(set) var called: [Called] = []
@@ -31,10 +31,12 @@ extension Generator.CreateTargetAttributesContent {
         let mockTracker = MockTracker(results: contents)
 
         let mocked = Self(
-            callable: { createdOnToolsVersion, testHostIdentifier in
+            callable: {
+                    createdOnToolsVersion, testHostIdentifierWithoutComment in
                 mockTracker.called.append(.init(
                     createdOnToolsVersion: createdOnToolsVersion,
-                    testHostIdentifier: testHostIdentifier
+                    testHostIdentifierWithoutComment:
+                        testHostIdentifierWithoutComment
                 ))
                 return mockTracker.nextResult()
             }
