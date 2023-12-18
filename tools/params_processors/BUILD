@@ -28,8 +28,8 @@ py_test(
 )
 
 py_binary(
-    name = "link_params_processor",
-    srcs = ["link_params_processor.py"],
+    name = "legacy_link_params_processor",
+    srcs = ["legacy_link_params_processor.py"],
     python_version = "PY3",
     srcs_version = "PY3",
     # TODO: Restrict visibility
