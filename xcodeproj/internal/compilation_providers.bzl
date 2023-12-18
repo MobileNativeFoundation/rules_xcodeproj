@@ -7,6 +7,11 @@ load(
     "memory_efficient_depset",
 )
 
+_PROPAGATE_PROVIDERS_PRODUCT_TYPES = {
+    "F": None,  # com.apple.product-type.framework.static
+    "f": None,  # com.apple.product-type.framework
+}
+
 _objc_has_linking_info = not bazel_features.cc.objc_linking_info_migrated
 
 def _legacy_merge_cc_compilation_context(
@@ -261,10 +266,14 @@ def _merge_compilation_providers(
         ),
     )
 
+def _should_propagate_providers(*, product_type):
+    return product_type in _PROPAGATE_PROVIDERS_PRODUCT_TYPES
+
 compilation_providers = struct(
     collect = _collect_compilation_providers,
     collect_implementation_compilation_context = (
         _collect_implementation_compilation_context
     ),
     merge = _merge_compilation_providers,
+    should_propagate_providers = _should_propagate_providers,
 )

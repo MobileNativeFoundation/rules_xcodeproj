@@ -59,7 +59,7 @@ else
 
   raw_labels=()
   raw_target_ids=()
-  output_groups=("target_ids_list")
+  output_groups=("index_import" "target_ids_list")
   indexstores_filelists=()
   for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
     raw_labels+=("${labels_and_output_groups[i]}")

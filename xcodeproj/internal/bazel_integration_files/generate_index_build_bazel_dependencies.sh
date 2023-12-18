@@ -22,6 +22,7 @@ readonly config="${BAZEL_CONFIG}_indexbuild"
 
 # Compiled outputs (i.e. swiftmodules) and generated inputs
 readonly output_groups=(
+  "index_import"
   "bc $BAZEL_TARGET_ID"
   "bi $BAZEL_TARGET_ID"
 )

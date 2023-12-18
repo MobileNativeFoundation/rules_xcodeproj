@@ -11,6 +11,7 @@ _DOC_COMPONENTS = [
     "xcode_build_settings",
     "xcode_schemes",
     "xcodeproj",
+    "xcschemes",
 ]
 
 [
@@ -33,6 +34,7 @@ genrule(
         ":project_options",
         ":xcode_schemes",
         ":xcode_build_settings",
+        ":xcschemes",
         ":providers",
     ],
     outs = ["bazel.generated.md"],

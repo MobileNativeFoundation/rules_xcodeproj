@@ -23,6 +23,7 @@ load(
     _xcodeproj = "xcodeproj",
 )
 load("//xcodeproj/internal:xcodeprojinfo.bzl", _XcodeProjInfo = "XcodeProjInfo")
+load("//xcodeproj/internal/xcschemes:xcschemes.bzl", _xcschemes = "xcschemes")
 
 # Re-exporting providers
 XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
@@ -37,3 +38,4 @@ xcode_provisioning_profile = _xcode_provisioning_profile
 
 # Re-exporting APIs
 xcode_schemes = _xcode_schemes
+xcschemes = _xcschemes

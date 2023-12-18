@@ -14,7 +14,11 @@ _UNFOCUSED_LABELS = %unfocused_labels%
 
 _aspect = xcodeproj_factory.make_aspect(
     build_mode = "%build_mode%",
+    focused_labels = _FOCUSED_LABELS,
     generator_name = "%generator_name%",
+    owned_extra_files = _OWNED_EXTRA_FILES,
+    unfocused_labels = _UNFOCUSED_LABELS,
+    use_incremental = %use_incremental%,
 )
 
 # Rule
@@ -25,6 +29,7 @@ xcodeproj = xcodeproj_factory.make_rule(
     owned_extra_files = _OWNED_EXTRA_FILES,
     target_transitions = _target_transitions,
     unfocused_labels = _UNFOCUSED_LABELS,
+    use_incremental = %use_incremental%,
     xcodeproj_aspect = _aspect,
     xcodeproj_transition = %xcodeproj_transitions%,
 )

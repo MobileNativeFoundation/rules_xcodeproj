@@ -85,9 +85,11 @@ should execute or test with.
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
 """,
+        # TODO: Remove when dropping legacy generation mode
         "codesign_inputs": """\
 An attribute name (or `None`) to collect the `codesign_inputs` `list` from.
 """,
+        # TODO: Remove when dropping legacy generation mode
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
 """,
@@ -130,6 +132,13 @@ collected and shown in the Xcode project.
         "is_top_level": """\
 Whether this target is a "top-level" (e.g. bundled or executable) target.
 """,
+        "label": """\
+The effective `Label` to use for the target. This should generally be
+`target.label`, but in the case of skipped wrapper rules (e.g. `*_unit_test`
+targets), you might want to rename the target to the skipped target's label.
+
+This is only used when `xcodeproj.generation_mode = "incremental"` is set.
+""",
         "launchdplists": """\
 A sequence of attribute names to collect `File`s from for the
 `launchdplists`-like attributes.
@@ -149,6 +158,12 @@ attribute.
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
+""",
+        "should_generate": """\
+If `is_supported` is `True`, this determines whether an Xcode target should be
+generated for this target.
+
+This is only used when `xcodeproj.generation_mode = "incremental"` is set.
 """,
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
@@ -260,7 +275,7 @@ _DEFAULT_XCODE_TARGETS = {
 def calculate_automatic_target_info(
         *,
         ctx,
-        build_mode,
+        build_mode = "bazel",
         rule_attr,
         rule_kind,
         target):
@@ -302,6 +317,7 @@ def calculate_automatic_target_info(
     infoplists = EMPTY_LIST
     is_supported = True
     is_top_level = False
+    label = target.label
     launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
     non_arc_srcs = EMPTY_LIST
@@ -340,7 +356,7 @@ def calculate_automatic_target_info(
     elif (AppleResourceBundleInfo in target and
           rule_kind != "apple_bundle_import"):
         is_supported = False
-        collect_uncategorized_files = True
+        collect_uncategorized_files = rule_kind != "apple_resource_bundle"
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
@@ -360,6 +376,16 @@ def calculate_automatic_target_info(
         is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _TEST_BUNDLE_XCODE_TARGETS
+
+        label = Label(
+            # This is an implementation detail, but we can update if rules_apple
+            # ever changes this. It's worth it to be able to do this change at
+            # the aspect level. We only support rules_apple versions greater
+            # than 2.5.0, if the `bundle_name` attribute is set, since
+            # 2.3.0-2.5.0 had the bundle name instead of target name as part of
+            # the label.
+            str(label).split(".__internal__.")[0],
+        )
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
         alternate_icons = "alternate_icons"
@@ -392,6 +418,7 @@ def calculate_automatic_target_info(
         xcode_targets = _PLUGINS_XCODE_TARGETS
     elif rule_kind == "apple_universal_binary":
         deps = _BINARY_DEPS_ATTRS
+        is_supported = False
         is_top_level = True
         xcode_targets = _BINARY_XCODE_TARGETS
     elif AppleFrameworkImportInfo in target:
@@ -441,11 +468,13 @@ def calculate_automatic_target_info(
         is_supported = is_supported,
         is_top_level = is_top_level,
         implementation_deps = implementation_deps,
+        label = label,
         launchdplists = launchdplists,
         link_mnemonics = link_mnemonics,
         non_arc_srcs = non_arc_srcs,
         pch = pch,
         provisioning_profile = provisioning_profile,
+        should_generate = True,
         srcs = srcs,
         target_type = this_target_type,
         xcode_targets = xcode_targets,
