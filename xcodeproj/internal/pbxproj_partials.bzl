@@ -41,31 +41,17 @@ def _keys_and_files(pair):
 
 # enum of flags, mainly to ensure the strings are frozen and reused
 _FLAGS = struct(
-    archs = "--archs",
     args_separator = "---",
     build_file_sub_identifiers_files = "--build-file-sub-identifiers-files",
     colorize = "--colorize",
     compile_stub_needed = "--compile-stub-needed",
-    consolidation_map_output_paths = "--consolidation-map-output-paths",
-    dependencies = "--dependencies",
-    dependency_counts = "--dependency-counts",
-    labels = "--labels",
-    label_counts = "--label-counts",
-    module_names = "--module-names",
     organization_name = "--organization-name",
-    os_versions = "--os-versions",
     platforms = "--platforms",
     post_build_script = "--post-build-script",
     pre_build_script = "--pre-build-script",
-    product_basenames = "--product-basenames",
-    product_paths = "--product-paths",
-    product_types = "--product-types",
     target_and_test_hosts = "--target-and-test-hosts",
     target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
-    target_counts = "--target-counts",
-    targets = "--targets",
     use_base_internationalization = "--use-base-internationalization",
-    xcode_configuration_counts = "--xcode-configuration-counts",
     xcode_configurations = "--xcode-configurations",
 )
 
