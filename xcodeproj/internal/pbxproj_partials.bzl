@@ -200,7 +200,8 @@ def _write_consolidation_map_targets(
             targets_args.add(xcode_target.product.name)
             targets_args.add(xcode_target.product.basename)
 
-            # FIXME: Don't send if it would be the same as `$(PRODUCT_NAME:c99extidentifier)`?
+            # TODO: Don't send if it would be the same as
+            # `$(PRODUCT_NAME:c99extidentifier)`?
             targets_args.add(xcode_target.module_name)
 
             targets_args.add(
@@ -264,7 +265,7 @@ def _write_consolidation_map_targets(
             targets_args.add(len(target_xcode_configurations))
             targets_args.add_all(target_xcode_configurations)
 
-            # FIXME: Only set for top level targets
+            # `outputs.product_path` is only set for top-level targets
             if xcode_target.outputs.product_path:
                 top_level_targets_args.add(xcode_target.id)
                 top_level_targets_args.add(
