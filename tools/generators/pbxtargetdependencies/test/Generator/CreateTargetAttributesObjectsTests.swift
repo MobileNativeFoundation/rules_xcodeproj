@@ -76,15 +76,17 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
 
         let expectedObjects: [Object] = [
             .init(
-                identifier: Identifiers.BazelDependencies.id,
+                identifier: Identifiers.BazelDependencies.idWithoutComment,
                 content: "{TA_BazelDependnencies}"
             ),
             .init(
-                identifier: identifiedTargetsMap["A"]!.identifier.full,
+                identifier:
+                    identifiedTargetsMap["A"]!.identifier.withoutComment,
                 content: "{TA_AB}"
             ),
             .init(
-                identifier: identifiedTargetsMap["C"]!.identifier.full,
+                identifier:
+                    identifiedTargetsMap["C"]!.identifier.withoutComment,
                 content: "{TA_C}"
             ),
         ]
