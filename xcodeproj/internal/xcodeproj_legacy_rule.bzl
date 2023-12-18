@@ -27,6 +27,7 @@ load(
     "write_extension_point_identifiers_file",
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
+load(":legacy_xcode_targets.bzl", xcode_targets = "legacy_xcode_targets")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":logging.bzl", "warn")
 load(":memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
@@ -34,7 +35,6 @@ load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
-load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility

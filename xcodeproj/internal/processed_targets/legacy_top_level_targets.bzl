@@ -15,6 +15,10 @@ load(
     "process_modulemaps",
     "process_swiftmodules",
 )
+load(
+    "//xcodeproj/internal:legacy_xcode_targets.bzl",
+    xcode_targets = "legacy_xcode_targets",
+)
 load("//xcodeproj/internal:lldb_contexts.bzl", "lldb_contexts")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
@@ -26,7 +30,6 @@ load("//xcodeproj/internal:platforms.bzl", "platforms")
 load("//xcodeproj/internal:product.bzl", "process_product")
 load("//xcodeproj/internal:provisioning_profiles.bzl", "provisioning_profiles")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
-load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
 load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal/files:app_icons.bzl", "app_icons")
 load("//xcodeproj/internal/files:files.bzl", "build_setting_path", "join_paths_ignoring_empty")
