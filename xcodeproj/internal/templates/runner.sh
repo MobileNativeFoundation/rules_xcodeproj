@@ -47,10 +47,6 @@ while (("$#")); do
       config="${1#*=}"
       shift 1
       ;;
-    --collect_specs=*)
-      specs_archive_path="${1#*=}"
-      shift 1
-      ;;
     -v|--verbose)
       verbose=1
       shift 1
@@ -64,11 +60,6 @@ while (("$#")); do
       ;;
   esac
 done
-
-if [[ -n "${specs_archive_path:-}" ]]; then
-  installer_flags+=(--collect_specs "$specs_archive_path")
-  original_arg_count=0
-fi
 
 if [[ $original_arg_count -gt 0 ]]; then
   if [[ $# -eq 0 ]]; then
