@@ -41,6 +41,7 @@ def _dict_to_xcode_target(d):
     return struct(
         id = d["id"],
         direct_dependencies = depset(d["direct_dependencies"]),
+        module_name_attribute = d["module_name_attribute"],
         platform = struct(
             apple_platform = d["apple_platform"],
             arch = d["arch"],
@@ -49,7 +50,6 @@ def _dict_to_xcode_target(d):
         product = struct(
             basename = d["product_basename"],
             original_basename = d["product_original_basename"],
-            module_name_attribute = d["module_name_attribute"],
             type = d["product_type"],
         ),
         test_host = d["test_host"],
@@ -75,7 +75,7 @@ def mock_xcode_target(
         apple_platform = apple_platform,
         arch = arch,
         direct_dependencies = direct_dependencies,
-        module_name_attribute = module_name_attribute,
+        module_name_attribute = module_name_attribute or "",
         os_version = os_version,
         product_basename = product_basename,
         product_original_basename = product_original_basename,
