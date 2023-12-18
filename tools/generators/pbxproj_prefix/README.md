@@ -80,7 +80,7 @@ Here is an example output:
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"build\" ]]; then\n  cd \"$SRCROOT\"\n  echo \"Hello from pre-build!\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FF0100000000000000000004 /* Bazel Build */ = {
+		FF0100000000000000000004 /* Generate Bazel Dependendencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -177,7 +177,7 @@ Here is an example output:
 			buildConfigurationList = FF0100000000000000000005 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				FF0100000000000000000003 /* Pre-build Run Script */,
-				FF0100000000000000000004 /* Bazel Build */,
+				FF0100000000000000000004 /* Generate Bazel Dependendencies */,
 				FF0100000000000000000005 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
