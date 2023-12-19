@@ -104,6 +104,9 @@ def _make_incremental_xcode_target(
         label: The `Label` of the `Target`.
         link_params: A value from `_create_link_params`, or `None`.
         mergeable_info: A value from `_calculate_mergeable_info`.
+        module_name: The derived module name of the target.
+        module_name_attribute: The raw value of the `module_name` attribute of
+            the target.
         outputs: A value from `output_files.collect`.
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.

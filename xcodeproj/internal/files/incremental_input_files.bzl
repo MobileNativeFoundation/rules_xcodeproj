@@ -298,24 +298,28 @@ def _collect_incremental_input_files(
         ctx: The aspect context.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            `target`.
+            the target.
         avoid_deps: A `list` of the targets that already consumed resources, and
-            their resources shouldn't be bundled with `target`.
+            their resources shouldn't be bundled with the target.
+        cc_info: The `CcInfo` provider for the target, or `None` if it doesn't
+            have one.
+        framework_files: A `depset` of framework files from
+            `AppleDynamicFramework.framework_files`, if the target has the
+            `AppleDynamicFramework` provider.
         id: A unique identifier for the target. Will be `None` for non-Xcode
             targets.
         infoplist: A `File` for a rules_xcodeproj modified Info.plist file, or
             None for non-top-level targets.
-        is_resource_bundle_consuming: Whether `target` is a resource bundle
-            consuming target (i.e. a bundle with a `AppleResourceInfo`
-            provider).
         label: The effective label of the target.
         linker_inputs: A value from `linker_file_inputs.collect`.
         platform: A value from `platforms.collect`.
-        product: A value from `process_product`.
+        resource_info: If the target is a bundle and has the `AppleResourceInfo`
+            provider, this is the provider.
         rule_attr: `ctx.rule.attr`.
-        target: The `Target` to collect inputs from.
+        swift_proto_info: The `SwiftProtoInfo` provider for the target, or
+            `None` if it doesn't have one.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
-            dependencies of `target`.
+            dependencies of the target.
 
     Returns:
         A `tuple` with two elements:
