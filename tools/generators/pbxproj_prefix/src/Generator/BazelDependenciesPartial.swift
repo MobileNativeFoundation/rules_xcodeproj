@@ -24,9 +24,9 @@ extension Generator {
         }
 
         buildPhases.append((
-            id: Identifiers.BazelDependencies.bazelBuild,
+            id: Identifiers.BazelDependencies.generateBazelDependencies,
             element: #"""
-		\#(Identifiers.BazelDependencies.bazelBuild) = {
+		\#(Identifiers.BazelDependencies.generateBazelDependencies) = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
