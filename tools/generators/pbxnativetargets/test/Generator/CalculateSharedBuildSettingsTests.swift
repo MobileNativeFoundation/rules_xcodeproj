@@ -73,8 +73,6 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
         )
     }
 
-    // FIXME: Test isResourceBundle
-
     func test_uiTest_withTestHost() {
         // Arrange
 

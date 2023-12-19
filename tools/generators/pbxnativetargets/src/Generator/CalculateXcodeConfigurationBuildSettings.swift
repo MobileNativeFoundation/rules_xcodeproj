@@ -121,8 +121,6 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
 """#
                 )
             )
-            // TODO: See if we can do the normal thing here instead
-            // (baseline is for the main platform)
             buildSettings.append(
                 .init(
                     key: "INCLUDED_SOURCE_FILE_NAMES",
