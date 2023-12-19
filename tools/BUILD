@@ -1,4 +1,4 @@
-load("//xcodeproj:defs.bzl", "xcode_schemes", "xcodeproj")
+load("//xcodeproj:defs.bzl", "xcodeproj", "xcschemes")
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
@@ -9,6 +9,7 @@ _TOOLS = {
     "pbxnativetargets": "//tools/generators/pbxnativetargets",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
+    "swift_debug_settings": "//tools/generators/swift_debug_settings",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
     "target_build_settings": "//tools/generators/target_build_settings",
     "xcschemes": "//tools/generators/xcschemes",
@@ -32,6 +33,9 @@ _TESTS = {
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxtargetdependencies:pbxtargetdependencies_tests",
     ],
+    "swift_debug_settings": [
+        "//tools/generators/swift_debug_settings:swift_debug_settings_tests",
+    ],
     "target_build_settings": [
         "//tools/generators/target_build_settings:target_build_settings_tests",
     ],
@@ -42,17 +46,20 @@ _TESTS = {
     ],
 }
 
-_SCHEME_DIAGNOSTICS = xcode_schemes.diagnostics(
-    sanitizers = xcode_schemes.sanitizers(
-        address = True,
-    ),
+_XCSCHEME_DIAGNOSTICS = xcschemes.diagnostics(
+    address_sanitizer = True,
 )
 
-_SCHEMES = [
-    xcode_schemes.scheme(
+_XCSCHEMES = [
+    xcschemes.scheme(
         name = "files_and_groups",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["files_and_groups"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["files_and_groups"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # knownRegionsOutputPath
                 "/tmp/pbxproj_partials/known_regions",
@@ -81,43 +88,43 @@ _SCHEMES = [
                 "/tmp/pbxproj_partials/buildfile_subidentifiers/0",
                 "/tmp/pbxproj_partials/buildfile_subidentifiers/1",
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["files_and_groups"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["files_and_groups"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["files_and_groups"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["files_and_groups"],
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "import_indexstores",
-        build_action = xcode_schemes.build_action(
-            targets = [
-                xcode_schemes.build_target(
-                    _TOOLS["import_indexstores"],
-                ),
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["import_indexstores"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
+            build_targets = [
+                xcschemes.top_level_build_target(_TOOLS["import_indexstores"]),
             ],
-        ),
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["import_indexstores"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
-        ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["import_indexstores"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["pbxnativetargets"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["import_indexstores"],
+            ),
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "pbxnativetargets",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["pbxnativetargets"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxnativetargets"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # targetsOutputPath
                 "/tmp/pbxproj_partials/pbxnativetargets/0",
@@ -134,21 +141,25 @@ _SCHEMES = [
                 # defaultXcodeConfiguration
                 "Debug",
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxnativetargets"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["pbxtargetdependencies"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["pbxnativetargets"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["pbxnativetargets"],
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "pbxproj_prefix",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["pbxproj_prefix"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxproj_prefix"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # outputPath
                 "/tmp/pbxproj_partials/pbxproj_prefix",
@@ -182,21 +193,25 @@ _SCHEMES = [
                 # preBuildScript
                 # postBuildScript
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxproj_prefix"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["pbxproj_prefix"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["pbxproj_prefix"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["pbxproj_prefix"],
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "pbxtargetdependencies",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["pbxtargetdependencies"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxtargetdependencies"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # targetDependenciesOutputPath
                 "/tmp/pbxproj_partials/pbxtargetdependencies",
@@ -212,42 +227,72 @@ _SCHEMES = [
                 "auto",
                 # targetAndTestHosts
                 "--target-and-test-hosts",
-                "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
-                "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+                "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+                "//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["pbxtargetdependencies"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["pbxtargetdependencies"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["pbxtargetdependencies"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["pbxtargetdependencies"],
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
+        name = "swift_debug_settings",
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["swift_debug_settings"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
+            args = [
+                # colorize
+                "0",
+                # outputPath
+                "/tmp/pbxproj_partials/Debug-target_build_settings.py",
+                # keysAndFiles
+            ],
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["swift_debug_settings"],
+            ),
+        ),
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["swift_debug_settings"],
+        ),
+    ),
+    xcschemes.scheme(
         name = "swiftc_stub",
-        build_action = xcode_schemes.build_action(
-            targets = [
-                xcode_schemes.build_target(
-                    _TOOLS["swiftc_stub"],
-                ),
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["swiftc_stub"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
+            build_targets = [
+                xcschemes.top_level_build_target(_TOOLS["swiftc_stub"]),
             ],
-        ),
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["swiftc_stub"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
-        ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["swiftc_stub"],
-            build_configuration = "Release",
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["swiftc_stub"],
+            ),
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "target_build_settings",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["target_build_settings"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["target_build_settings"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # colorize
                 "0",
@@ -390,21 +435,25 @@ _SCHEMES = [
                 "-ivfsoverlay",
                 "bazel-out/generated/overlay.yaml",
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["target_build_settings"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["target_build_settings"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["target_build_settings"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["target_build_settings"],
         ),
     ),
-    xcode_schemes.scheme(
+    xcschemes.scheme(
         name = "xcschemes",
-        launch_action = xcode_schemes.launch_action(
-            _TOOLS["xcschemes"],
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["xcschemes"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
             args = [
                 # outputDirectory
                 "/tmp/pbxproj_partials/xcschemes",
@@ -432,15 +481,14 @@ _SCHEMES = [
                 "/tmp/pbxproj_partials/consolidation_maps/1",
                 # targetAndExtensionHosts
             ],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["xcschemes"],
+            ),
         ),
-        profile_action = xcode_schemes.profile_action(
-            _TOOLS["xcschemes"],
-            build_configuration = "Release",
-        ),
-        test_action = xcode_schemes.test_action(
-            _TESTS["xcschemes"],
-            diagnostics = _SCHEME_DIAGNOSTICS,
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["xcschemes"],
         ),
     ),
 ]
@@ -479,6 +527,9 @@ xcodeproj(
         "//tools/generators/pbxtargetdependencies": [
             "//tools/generators/pbxtargetdependencies:README.md",
         ],
+        "//tools/generators/swift_debug_settings": [
+            "//tools/generators/swift_debug_settings:README.md",
+        ],
         "//tools/generators/target_build_settings": [
             "//tools/generators/target_build_settings:README.md",
         ],
@@ -489,11 +540,12 @@ xcodeproj(
     extra_files = [
         "//tools/generators:README.md",
     ],
+    generation_mode = "incremental",
     project_name = "tools",
     scheme_autogeneration_mode = "none",
-    schemes = _SCHEMES,
     top_level_targets = _TOOLS.values() + uniq(flatten(_TESTS.values())),
     xcode_configurations = _XCODE_CONFIGURATIONS,
+    xcschemes = _XCSCHEMES,
 )
 
 # Release
