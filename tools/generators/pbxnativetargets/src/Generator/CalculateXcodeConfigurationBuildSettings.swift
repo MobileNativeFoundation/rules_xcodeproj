@@ -60,8 +60,6 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
 
                 conditionalFiles
                     .formUnion(platformBuildSettings.conditionalFiles)
-                excludedSourceFileNames.append(#"$(\#(key))"#)
-
                 platformConditionalFiles.append(
                     (key, platformBuildSettings.conditionalFiles)
                 )
@@ -74,7 +72,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                             // the paths
                             platformBuildSettings.conditionalFiles
                                 .map { $0.path.quoteIfNeeded }
-                                // FIXME: See if we can not sort
+                                // TODO: See if we can not sort, or sort earlier
                                 .sorted()
                                 .joined(separator: " ")
                                 .pbxProjEscaped
@@ -95,6 +93,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                         value: #""$(\#(key))""#
                     )
                 )
+                excludedSourceFileNames.append(#""$(\#(key))""#)
             }
         }
 
@@ -102,9 +101,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         excludedSourceFileNames.append(
             contentsOf: allConditionalFiles
                 .subtracting(conditionalFiles)
-                .map { $0.path.quoteIfNeeded }
-                // FIXME: See if we can not sort
-                .sorted()
+                .map { $0.path.pbxProjEscaped }
         )
 
         // Set configuration-wide conditional files
@@ -112,10 +109,16 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
             buildSettings.append(
                 .init(
                     key: "EXCLUDED_SOURCE_FILE_NAMES",
-                    // FIXME: Xcode wants as an array if multiple item?
-                    value: excludedSourceFileNames
-                        .joined(separator: " ")
-                        .pbxProjEscaped
+                    // This will always have 2 or more items, so format as an
+                    // array
+                    value: #"""
+(
+					\#(
+    // TODO: See if we can not sort, or sort earlier
+    excludedSourceFileNames.sorted().joined(separator: ",\n\t\t\t\t\t")
+),
+				)
+"""#
                 )
             )
             // TODO: See if we can do the normal thing here instead
