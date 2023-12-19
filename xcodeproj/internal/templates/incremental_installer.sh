@@ -70,9 +70,19 @@ dest_dir="$(dirname "${dest}")"
   fail "The destination directory does not exist or is not a directory" \
     "${dest_dir}"
 
+# Copy over `xcschemes`
+readonly dest_xcschemes="$dest/xcshareddata/xcschemes"
+
+mkdir -p "$dest_xcschemes"
+rsync \
+  --archive \
+  --chmod=u+w,F-x \
+  --delete \
+  "$src_xcschemes" "$dest_xcschemes/"
+
 # Resolve the copy command (can't use `cp -c` if the files are on different
 # filesystems)
-if [[ $(stat -f '%d' "$src_xcworkspacedata") == $(stat -f '%d' "$dest/project.xcworkspace/contents.xcworkspacedata") ]]; then
+if [[ $(stat -f '%d' "$src_xcschemes") == $(stat -f '%d' "$dest_xcschemes") ]]; then
   readonly cp_cmd="cp -c"
 else
   readonly cp_cmd="cp"
@@ -83,16 +93,6 @@ readonly dest_project_pbxproj="$dest/project.pbxproj"
 
 $cp_cmd "$src_project_pbxproj" "$dest_project_pbxproj"
 chmod +w "$dest_project_pbxproj"
-
-# Copy over `xcschemes`
-readonly dest_xcschemes="$dest/xcshareddata/xcschemes"
-
-mkdir -p "$dest_xcschemes"
-rsync \
-  --archive \
-  --chmod=u+w,F-x \
-  --delete \
-  "$src_xcschemes" "$dest_xcschemes/"
 
 # Copy over `generated.xcfilelist`
 readonly dest_generated_xcfilelist="$dest/rules_xcodeproj/generated.xcfilelist"
