@@ -207,263 +207,6 @@ Project options for use in `xcodeproj.project_options`.
 A `dict` containing fields for the provided arguments.
 
 
-# Custom Xcode schemes (Legacy generation mode)
-
-To use these functions, `load` the `xcode_schemes` module from
-`xcodeproj/defs.bzl`:
-
-```starlark
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_schemes")
-```
-
-<a id="xcode_schemes.build_action"></a>
-
-## xcode_schemes.build_action
-
-<pre>
-xcode_schemes.build_action(<a href="#xcode_schemes.build_action-targets">targets</a>, <a href="#xcode_schemes.build_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.build_action-post_actions">post_actions</a>)
-</pre>
-
-Constructs a build action for an Xcode scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.build_action-targets"></a>targets |  A `sequence` of elements that are either `struct` values as created by `xcode_schemes.build_target`, or a target label as a `string` value.   |  none |
-| <a id="xcode_schemes.build_action-pre_actions"></a>pre_actions |  A `sequence` of `struct` values as created by `xcode_schemes.pre_action`.   |  `[]` |
-| <a id="xcode_schemes.build_action-post_actions"></a>post_actions |  A `sequence` of `struct` values as created by `xcode_schemes.post_action`.   |  `[]` |
-
-**RETURNS**
-
-A `struct` representing a build action.
-
-
-<a id="xcode_schemes.build_for"></a>
-
-## xcode_schemes.build_for
-
-<pre>
-xcode_schemes.build_for(<a href="#xcode_schemes.build_for-running">running</a>, <a href="#xcode_schemes.build_for-testing">testing</a>, <a href="#xcode_schemes.build_for-profiling">profiling</a>, <a href="#xcode_schemes.build_for-archiving">archiving</a>, <a href="#xcode_schemes.build_for-analyzing">analyzing</a>)
-</pre>
-
-Construct a `struct` representing the settings that dictate when Xcode     will build a target.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.build_for-running"></a>running |  Optional. A `bool` specifying whether to build for the running phase.   |  `None` |
-| <a id="xcode_schemes.build_for-testing"></a>testing |  Optional. A `bool` specifying whether to build for the testing phase.   |  `None` |
-| <a id="xcode_schemes.build_for-profiling"></a>profiling |  Optional. A `bool` specifying whether to build for the profiling phase.   |  `None` |
-| <a id="xcode_schemes.build_for-archiving"></a>archiving |  Optional. A `bool` specifying whether to build for the archiving phase.   |  `None` |
-| <a id="xcode_schemes.build_for-analyzing"></a>analyzing |  Optional. A `bool` specifying whether to build for the analyzing phase.   |  `None` |
-
-**RETURNS**
-
-A `struct`.
-
-
-<a id="xcode_schemes.build_target"></a>
-
-## xcode_schemes.build_target
-
-<pre>
-xcode_schemes.build_target(<a href="#xcode_schemes.build_target-label">label</a>, <a href="#xcode_schemes.build_target-build_for">build_for</a>)
-</pre>
-
-Constructs a build target for an Xcode scheme's build action.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.build_target-label"></a>label |  A target label as a `string` value.   |  none |
-| <a id="xcode_schemes.build_target-build_for"></a>build_for |  Optional. The settings that dictate when Xcode will build the target. It is a value returned by `xcode_schemes.build_for`.   |  `None` |
-
-**RETURNS**
-
-A `struct` representing a build target.
-
-
-<a id="xcode_schemes.diagnostics"></a>
-
-## xcode_schemes.diagnostics
-
-<pre>
-xcode_schemes.diagnostics(<a href="#xcode_schemes.diagnostics-sanitizers">sanitizers</a>)
-</pre>
-
-Constructs the scheme's diagnostics.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.diagnostics-sanitizers"></a>sanitizers |  Optional. A `struct` value as created by `xcode_schemes.sanitizers`.   |  `None` |
-
-**RETURNS**
-
-A `struct` representing scheme's diagnostics.
-
-
-<a id="xcode_schemes.launch_action"></a>
-
-## xcode_schemes.launch_action
-
-<pre>
-xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
-</pre>
-
-Constructs a launch action for an Xcode scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.launch_action-target"></a>target |  A target label as a `string` value.   |  none |
-| <a id="xcode_schemes.launch_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.   |  `None` |
-| <a id="xcode_schemes.launch_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
-| <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A value returned by `xcode_schemes.diagnostics`.   |  `None` |
-| <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.   |  `None` |
-| <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A `string` that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of `target`'s `BUILT_PRODUCTS_DIR`, which is unique to it.   |  `None` |
-
-**RETURNS**
-
-A `struct` representing a launch action.
-
-
-<a id="xcode_schemes.pre_post_action"></a>
-
-## xcode_schemes.pre_post_action
-
-<pre>
-xcode_schemes.pre_post_action(<a href="#xcode_schemes.pre_post_action-name">name</a>, <a href="#xcode_schemes.pre_post_action-script">script</a>, <a href="#xcode_schemes.pre_post_action-expand_variables_based_on">expand_variables_based_on</a>)
-</pre>
-
-Constructs a pre or post action for a step of the scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.pre_post_action-name"></a>name |  Title of the script.   |  `"Run Script"` |
-| <a id="xcode_schemes.pre_post_action-script"></a>script |  The script text.   |  none |
-| <a id="xcode_schemes.pre_post_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. The label of the target that environment variables will expand based on.   |  none |
-
-**RETURNS**
-
-A `struct` representing a scheme's step pre or post action.
-
-
-<a id="xcode_schemes.profile_action"></a>
-
-## xcode_schemes.profile_action
-
-<pre>
-xcode_schemes.profile_action(<a href="#xcode_schemes.profile_action-target">target</a>, <a href="#xcode_schemes.profile_action-args">args</a>, <a href="#xcode_schemes.profile_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.profile_action-env">env</a>, <a href="#xcode_schemes.profile_action-working_directory">working_directory</a>)
-</pre>
-
-Constructs a profile action for an Xcode scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.profile_action-target"></a>target |  A target label as a `string` value.   |  none |
-| <a id="xcode_schemes.profile_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.<br><br>If both this and `env` are `None` (not just empty), then the launch action's arguments will be inherited.   |  `None` |
-| <a id="xcode_schemes.profile_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
-| <a id="xcode_schemes.profile_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.<br><br>If both this and `args` are `None` (not just empty), then the launch action's environment variables will be inherited.   |  `None` |
-| <a id="xcode_schemes.profile_action-working_directory"></a>working_directory |  Optional. A `string` that will be set as the custom working directory in the Xcode scheme's launch action.<br><br>Relative paths will be relative to the value of `target`'s `BUILT_PRODUCTS_DIR`, which is unique to it.   |  `None` |
-
-**RETURNS**
-
-A `struct` representing a profile action.
-
-
-<a id="xcode_schemes.sanitizers"></a>
-
-## xcode_schemes.sanitizers
-
-<pre>
-xcode_schemes.sanitizers(<a href="#xcode_schemes.sanitizers-address">address</a>, <a href="#xcode_schemes.sanitizers-thread">thread</a>, <a href="#xcode_schemes.sanitizers-undefined_behavior">undefined_behavior</a>)
-</pre>
-
-Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.sanitizers-address"></a>address |  Optional. A boolean value representing whether the address sanitizer should be enabled or not.   |  `False` |
-| <a id="xcode_schemes.sanitizers-thread"></a>thread |  Optional. A boolean value representing whether the thread sanitizer should be enabled or not.   |  `False` |
-| <a id="xcode_schemes.sanitizers-undefined_behavior"></a>undefined_behavior |  Optional. A boolean value representing whether the undefined behavior sanitizer should be enabled or not.   |  `False` |
-
-
-<a id="xcode_schemes.scheme"></a>
-
-## xcode_schemes.scheme
-
-<pre>
-xcode_schemes.scheme(<a href="#xcode_schemes.scheme-name">name</a>, <a href="#xcode_schemes.scheme-build_action">build_action</a>, <a href="#xcode_schemes.scheme-launch_action">launch_action</a>, <a href="#xcode_schemes.scheme-profile_action">profile_action</a>, <a href="#xcode_schemes.scheme-test_action">test_action</a>)
-</pre>
-
-Returns a `struct` representing an Xcode scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.scheme-name"></a>name |  The user-visible name for the scheme as a `string`.   |  none |
-| <a id="xcode_schemes.scheme-build_action"></a>build_action |  Optional. A value returned by `xcode_schemes.build_action`.   |  `None` |
-| <a id="xcode_schemes.scheme-launch_action"></a>launch_action |  Optional. A value returned by `xcode_schemes.launch_action`.   |  `None` |
-| <a id="xcode_schemes.scheme-profile_action"></a>profile_action |  Optional. A value returned by `xcode_schemes.profile_action`.   |  `None` |
-| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A value returned by `xcode_schemes.test_action`.   |  `None` |
-
-**RETURNS**
-
-A `struct` representing an Xcode scheme.
-
-
-<a id="xcode_schemes.test_action"></a>
-
-## xcode_schemes.test_action
-
-<pre>
-xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>,
-                          <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>, <a href="#xcode_schemes.test_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.test_action-post_actions">post_actions</a>)
-</pre>
-
-Constructs a test action for an Xcode scheme.
-
-**PARAMETERS**
-
-
-| Name  | Description | Default Value |
-| :------------- | :------------- | :------------- |
-| <a id="xcode_schemes.test_action-targets"></a>targets |  A `sequence` of target labels as `string` values.   |  none |
-| <a id="xcode_schemes.test_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.<br><br>If both this and `env` are `None` (not just empty), then the launch action's arguments will be inherited.   |  `None` |
-| <a id="xcode_schemes.test_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
-| <a id="xcode_schemes.test_action-diagnostics"></a>diagnostics |  Optional. A value returned by `xcode_schemes.diagnostics`.   |  `None` |
-| <a id="xcode_schemes.test_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.<br><br>If both this and `args` are `None` (not just empty), then the launch action's environment variables will be inherited.   |  `None` |
-| <a id="xcode_schemes.test_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. One of the specified test target labels.<br><br>If no value is provided, one of the test targets will be selected. If no expansion context is desired, use the `string` value `none`.   |  `None` |
-| <a id="xcode_schemes.test_action-pre_actions"></a>pre_actions |  Optional. A `sequence` of `struct` values as created by `xcode_schemes.pre_post_action`.   |  `[]` |
-| <a id="xcode_schemes.test_action-post_actions"></a>post_actions |  Optional. A `sequence` of `struct` values as created by `xcode_schemes.pre_post_action`.   |  `[]` |
-
-**RETURNS**
-
-A `struct` representing a test action.
-
-
 # Custom Xcode schemes (Incremental generation mode)
 
 To use these functions, `load` the `xcschemes` module from `xcodeproj/defs.bzl`:
@@ -820,6 +563,263 @@ instead.
 | <a id="xcschemes.top_level_build_target-post_actions"></a>post_actions |  Post-actions to run when building or running the action this build target is a part of.<br><br>Elements of the `list` must be values returned by functions in [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).   |  `[]` |
 | <a id="xcschemes.top_level_build_target-pre_actions"></a>pre_actions |  Pre-actions to run when building or running the action this build target is a part of.<br><br>Elements of the `list` must be values returned by functions in [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).   |  `[]` |
 | <a id="xcschemes.top_level_build_target-target_environment"></a>target_environment |  The [target environment](#top_level_target-target_environments) to use when determining which version of the top-level target [`label`](#xcschemes.top_level_build_target-label) refers to.<br><br>If not set, the default target environment will be used (i.e. `"simulator"` if it's one of the available target environments, otherwise `"device"`).   |  `None` |
+
+
+# Custom Xcode schemes (Legacy generation mode)
+
+To use these functions, `load` the `xcode_schemes` module from
+`xcodeproj/defs.bzl`:
+
+```starlark
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_schemes")
+```
+
+<a id="xcode_schemes.build_action"></a>
+
+## xcode_schemes.build_action
+
+<pre>
+xcode_schemes.build_action(<a href="#xcode_schemes.build_action-targets">targets</a>, <a href="#xcode_schemes.build_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.build_action-post_actions">post_actions</a>)
+</pre>
+
+Constructs a build action for an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.build_action-targets"></a>targets |  A `sequence` of elements that are either `struct` values as created by `xcode_schemes.build_target`, or a target label as a `string` value.   |  none |
+| <a id="xcode_schemes.build_action-pre_actions"></a>pre_actions |  A `sequence` of `struct` values as created by `xcode_schemes.pre_action`.   |  `[]` |
+| <a id="xcode_schemes.build_action-post_actions"></a>post_actions |  A `sequence` of `struct` values as created by `xcode_schemes.post_action`.   |  `[]` |
+
+**RETURNS**
+
+A `struct` representing a build action.
+
+
+<a id="xcode_schemes.build_for"></a>
+
+## xcode_schemes.build_for
+
+<pre>
+xcode_schemes.build_for(<a href="#xcode_schemes.build_for-running">running</a>, <a href="#xcode_schemes.build_for-testing">testing</a>, <a href="#xcode_schemes.build_for-profiling">profiling</a>, <a href="#xcode_schemes.build_for-archiving">archiving</a>, <a href="#xcode_schemes.build_for-analyzing">analyzing</a>)
+</pre>
+
+Construct a `struct` representing the settings that dictate when Xcode     will build a target.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.build_for-running"></a>running |  Optional. A `bool` specifying whether to build for the running phase.   |  `None` |
+| <a id="xcode_schemes.build_for-testing"></a>testing |  Optional. A `bool` specifying whether to build for the testing phase.   |  `None` |
+| <a id="xcode_schemes.build_for-profiling"></a>profiling |  Optional. A `bool` specifying whether to build for the profiling phase.   |  `None` |
+| <a id="xcode_schemes.build_for-archiving"></a>archiving |  Optional. A `bool` specifying whether to build for the archiving phase.   |  `None` |
+| <a id="xcode_schemes.build_for-analyzing"></a>analyzing |  Optional. A `bool` specifying whether to build for the analyzing phase.   |  `None` |
+
+**RETURNS**
+
+A `struct`.
+
+
+<a id="xcode_schemes.build_target"></a>
+
+## xcode_schemes.build_target
+
+<pre>
+xcode_schemes.build_target(<a href="#xcode_schemes.build_target-label">label</a>, <a href="#xcode_schemes.build_target-build_for">build_for</a>)
+</pre>
+
+Constructs a build target for an Xcode scheme's build action.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.build_target-label"></a>label |  A target label as a `string` value.   |  none |
+| <a id="xcode_schemes.build_target-build_for"></a>build_for |  Optional. The settings that dictate when Xcode will build the target. It is a value returned by `xcode_schemes.build_for`.   |  `None` |
+
+**RETURNS**
+
+A `struct` representing a build target.
+
+
+<a id="xcode_schemes.diagnostics"></a>
+
+## xcode_schemes.diagnostics
+
+<pre>
+xcode_schemes.diagnostics(<a href="#xcode_schemes.diagnostics-sanitizers">sanitizers</a>)
+</pre>
+
+Constructs the scheme's diagnostics.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.diagnostics-sanitizers"></a>sanitizers |  Optional. A `struct` value as created by `xcode_schemes.sanitizers`.   |  `None` |
+
+**RETURNS**
+
+A `struct` representing scheme's diagnostics.
+
+
+<a id="xcode_schemes.launch_action"></a>
+
+## xcode_schemes.launch_action
+
+<pre>
+xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
+</pre>
+
+Constructs a launch action for an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.launch_action-target"></a>target |  A target label as a `string` value.   |  none |
+| <a id="xcode_schemes.launch_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.   |  `None` |
+| <a id="xcode_schemes.launch_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
+| <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A value returned by `xcode_schemes.diagnostics`.   |  `None` |
+| <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.   |  `None` |
+| <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A `string` that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of `target`'s `BUILT_PRODUCTS_DIR`, which is unique to it.   |  `None` |
+
+**RETURNS**
+
+A `struct` representing a launch action.
+
+
+<a id="xcode_schemes.pre_post_action"></a>
+
+## xcode_schemes.pre_post_action
+
+<pre>
+xcode_schemes.pre_post_action(<a href="#xcode_schemes.pre_post_action-name">name</a>, <a href="#xcode_schemes.pre_post_action-script">script</a>, <a href="#xcode_schemes.pre_post_action-expand_variables_based_on">expand_variables_based_on</a>)
+</pre>
+
+Constructs a pre or post action for a step of the scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.pre_post_action-name"></a>name |  Title of the script.   |  `"Run Script"` |
+| <a id="xcode_schemes.pre_post_action-script"></a>script |  The script text.   |  none |
+| <a id="xcode_schemes.pre_post_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. The label of the target that environment variables will expand based on.   |  none |
+
+**RETURNS**
+
+A `struct` representing a scheme's step pre or post action.
+
+
+<a id="xcode_schemes.profile_action"></a>
+
+## xcode_schemes.profile_action
+
+<pre>
+xcode_schemes.profile_action(<a href="#xcode_schemes.profile_action-target">target</a>, <a href="#xcode_schemes.profile_action-args">args</a>, <a href="#xcode_schemes.profile_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.profile_action-env">env</a>, <a href="#xcode_schemes.profile_action-working_directory">working_directory</a>)
+</pre>
+
+Constructs a profile action for an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.profile_action-target"></a>target |  A target label as a `string` value.   |  none |
+| <a id="xcode_schemes.profile_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.<br><br>If both this and `env` are `None` (not just empty), then the launch action's arguments will be inherited.   |  `None` |
+| <a id="xcode_schemes.profile_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
+| <a id="xcode_schemes.profile_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.<br><br>If both this and `args` are `None` (not just empty), then the launch action's environment variables will be inherited.   |  `None` |
+| <a id="xcode_schemes.profile_action-working_directory"></a>working_directory |  Optional. A `string` that will be set as the custom working directory in the Xcode scheme's launch action.<br><br>Relative paths will be relative to the value of `target`'s `BUILT_PRODUCTS_DIR`, which is unique to it.   |  `None` |
+
+**RETURNS**
+
+A `struct` representing a profile action.
+
+
+<a id="xcode_schemes.sanitizers"></a>
+
+## xcode_schemes.sanitizers
+
+<pre>
+xcode_schemes.sanitizers(<a href="#xcode_schemes.sanitizers-address">address</a>, <a href="#xcode_schemes.sanitizers-thread">thread</a>, <a href="#xcode_schemes.sanitizers-undefined_behavior">undefined_behavior</a>)
+</pre>
+
+Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.sanitizers-address"></a>address |  Optional. A boolean value representing whether the address sanitizer should be enabled or not.   |  `False` |
+| <a id="xcode_schemes.sanitizers-thread"></a>thread |  Optional. A boolean value representing whether the thread sanitizer should be enabled or not.   |  `False` |
+| <a id="xcode_schemes.sanitizers-undefined_behavior"></a>undefined_behavior |  Optional. A boolean value representing whether the undefined behavior sanitizer should be enabled or not.   |  `False` |
+
+
+<a id="xcode_schemes.scheme"></a>
+
+## xcode_schemes.scheme
+
+<pre>
+xcode_schemes.scheme(<a href="#xcode_schemes.scheme-name">name</a>, <a href="#xcode_schemes.scheme-build_action">build_action</a>, <a href="#xcode_schemes.scheme-launch_action">launch_action</a>, <a href="#xcode_schemes.scheme-profile_action">profile_action</a>, <a href="#xcode_schemes.scheme-test_action">test_action</a>)
+</pre>
+
+Returns a `struct` representing an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.scheme-name"></a>name |  The user-visible name for the scheme as a `string`.   |  none |
+| <a id="xcode_schemes.scheme-build_action"></a>build_action |  Optional. A value returned by `xcode_schemes.build_action`.   |  `None` |
+| <a id="xcode_schemes.scheme-launch_action"></a>launch_action |  Optional. A value returned by `xcode_schemes.launch_action`.   |  `None` |
+| <a id="xcode_schemes.scheme-profile_action"></a>profile_action |  Optional. A value returned by `xcode_schemes.profile_action`.   |  `None` |
+| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A value returned by `xcode_schemes.test_action`.   |  `None` |
+
+**RETURNS**
+
+A `struct` representing an Xcode scheme.
+
+
+<a id="xcode_schemes.test_action"></a>
+
+## xcode_schemes.test_action
+
+<pre>
+xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>,
+                          <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>, <a href="#xcode_schemes.test_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.test_action-post_actions">post_actions</a>)
+</pre>
+
+Constructs a test action for an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.test_action-targets"></a>targets |  A `sequence` of target labels as `string` values.   |  none |
+| <a id="xcode_schemes.test_action-args"></a>args |  Optional. A `list` of `string` arguments that should be passed to the target when executed.<br><br>If both this and `env` are `None` (not just empty), then the launch action's arguments will be inherited.   |  `None` |
+| <a id="xcode_schemes.test_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action.<br><br>If not set, then the configuration determined by `xcodeproj.default_xcode_configuration` will be used.   |  `None` |
+| <a id="xcode_schemes.test_action-diagnostics"></a>diagnostics |  Optional. A value returned by `xcode_schemes.diagnostics`.   |  `None` |
+| <a id="xcode_schemes.test_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.<br><br>If both this and `args` are `None` (not just empty), then the launch action's environment variables will be inherited.   |  `None` |
+| <a id="xcode_schemes.test_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. One of the specified test target labels.<br><br>If no value is provided, one of the test targets will be selected. If no expansion context is desired, use the `string` value `none`.   |  `None` |
+| <a id="xcode_schemes.test_action-pre_actions"></a>pre_actions |  Optional. A `sequence` of `struct` values as created by `xcode_schemes.pre_post_action`.   |  `[]` |
+| <a id="xcode_schemes.test_action-post_actions"></a>post_actions |  Optional. A `sequence` of `struct` values as created by `xcode_schemes.pre_post_action`.   |  `[]` |
+
+**RETURNS**
+
+A `struct` representing a test action.
 
 
 # Xcode build settings
