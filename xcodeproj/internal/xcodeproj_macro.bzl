@@ -1,5 +1,9 @@
 """Macro wrapper for the `xcodeproj` rule."""
 
+load(
+    "//xcodeproj/internal/xcschemes:xcscheme_labels.bzl",
+    "xcscheme_labels",
+)
 load(":bazel_labels.bzl", "bazel_labels")
 load(":logging.bzl", "warn")
 load(":project_options.bzl", _default_project_options = "project_options")
@@ -45,6 +49,7 @@ def xcodeproj(
         watchos_device_cpus = "arm64_32",
         watchos_simulator_cpus = None,
         xcode_configurations = {"Debug": {}},
+        xcschemes = [],
         **kwargs):
     """Creates an `.xcodeproj` file in the workspace when run.
 
@@ -245,10 +250,13 @@ def xcodeproj(
         schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
 
+            This and the `scheme_autogeneration_mode` argument together
+            customize how schemes for targets are generated, when using
+            `generation_mode = "legacy"`.
+
             Target labels listed in the schemes need to be from the transitive
             dependencies of the targets specified in the `top_level_targets`
-            argument. This and the `scheme_autogeneration_mode` argument
-            together customize how schemes for those targets are generated.
+            argument.
         target_name_mode: Optional. Specifies how Xcode targets names are
             represented:
 
@@ -340,11 +348,19 @@ def xcodeproj(
             Refer to the
             [bazel documentation](https://bazel.build/extending/config#defining)
             on how to define the transition settings dictionary.
+        xcschemes: Optional. A `list` of values returned by
+            `xcschemes.scheme`.
+
+            This and the `scheme_autogeneration_mode` argument together
+            customize how schemes for targets are generated, when using
+            `generation_mode = "incremental"`.
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
     is_fixture = kwargs.pop("is_fixture", False)
     testonly = kwargs.pop("testonly", True)
+    generation_mode = kwargs.pop("generation_mode", "legacy")
+    generation_shard_count = kwargs.pop("generation_shard_count", 10)
 
     if archived_bundles_allowed != None:
         warn("""\
@@ -449,7 +465,36 @@ configuration alphabetically ("{default}").
     ]
 
     schemes_json = None
-    if schemes:
+    xcschemes_json = "[]"
+    if generation_mode == "incremental":
+        if build_mode == "xcode":
+            fail("""
+{target}: `xcodeproj.generation_mode` = "incremental" is does not work with \
+`xcodeproj.build_mode` = "xcode".
+""".format(
+                target = bazel_labels.normalize_string(name),
+            ))
+
+        xcschemes = xcschemes or []
+        if type(xcschemes) != "list":
+            fail("`xcodeproj.xcschemes` must be a list.")
+
+        if schemes and len(schemes) != len(xcschemes):
+            warn("""\
+{target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
+({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
+have the same number of elements. Your schemes will not be the same as when \
+`xcodeproj.generation_mode = "legacy"` is set.
+""".format(
+                schemes_len = len(schemes),
+                target = bazel_labels.normalize_string(name),
+                xcschemes_len = len(xcschemes),
+            ))
+
+        xcschemes_json = json.encode(
+            xcscheme_labels.resolve_labels(xcschemes),
+        )
+    elif schemes:
         if unfocused_labels:
             schemes = unfocus_schemes(
                 schemes = schemes,
@@ -523,6 +568,8 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         default_xcode_configuration = default_xcode_configuration,
         fail_for_invalid_extra_files_targets = fail_for_invalid_extra_files_targets,
         focused_labels = focused_labels,
+        generation_mode = generation_mode,
+        generation_shard_count = generation_shard_count,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
@@ -548,5 +595,6 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         xcode_configuration_flags = xcode_configuration_flags,
         xcode_configuration_map = xcode_configuration_map,
         xcode_configurations = str(dedupped_xcode_configurations),
+        xcschemes_json = xcschemes_json,
         **kwargs
     )

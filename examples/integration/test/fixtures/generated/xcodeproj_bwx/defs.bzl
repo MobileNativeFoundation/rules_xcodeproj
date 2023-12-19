@@ -52,7 +52,11 @@ _target_transitions = make_xcodeproj_target_transitions(
 
 _aspect = xcodeproj_factory.make_aspect(
     build_mode = "xcode",
+    focused_labels = _FOCUSED_LABELS,
     generator_name = "xcodeproj_bwx",
+    owned_extra_files = _OWNED_EXTRA_FILES,
+    unfocused_labels = _UNFOCUSED_LABELS,
+    use_incremental = False,
 )
 
 # Rule
@@ -63,6 +67,7 @@ xcodeproj = xcodeproj_factory.make_rule(
     owned_extra_files = _OWNED_EXTRA_FILES,
     target_transitions = _target_transitions,
     unfocused_labels = _UNFOCUSED_LABELS,
+    use_incremental = False,
     xcodeproj_aspect = _aspect,
     xcodeproj_transition = fixtures_transition,
 )

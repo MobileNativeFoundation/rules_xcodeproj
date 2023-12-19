@@ -11,6 +11,7 @@ _DOC_COMPONENTS = [
     "xcode_build_settings",
     "xcode_schemes",
     "xcodeproj",
+    "xcschemes",
 ]
 
 [
@@ -31,6 +32,7 @@ genrule(
         ":xcodeproj",
         ":top_level_target",
         ":project_options",
+        ":xcschemes",
         ":xcode_schemes",
         ":xcode_build_settings",
         ":providers",

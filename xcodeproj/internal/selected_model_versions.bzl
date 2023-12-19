@@ -14,7 +14,7 @@ def write_selected_model_versions_file(
         actions: `ctx.actions`.
         name: The name of the target creating the file.
         tool: The executable to run to generate the file.
-        xccurrentversions_files: A `list` of `File`s containing the
+        xccurrentversions_files: A `depset` or `list` of `File`s containing the
             `xccurrentversion` files to read.
 
     Returns:

@@ -1,4 +1,4 @@
-"""# Custom Xcode schemes
+"""# Custom Xcode schemes (Legacy generation mode)
 
 To use these functions, `load` the `xcode_schemes` module from
 `xcodeproj/defs.bzl`:
