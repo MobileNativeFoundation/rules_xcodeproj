@@ -25,13 +25,19 @@ def _make_xcodeproj_aspect(
 
 def _make_xcodeproj_rule(
         *,
+        focused_labels,
         is_fixture = False,
+        owned_extra_files,
         target_transitions = None,
+        unfocused_labels,
         xcodeproj_aspect,
         xcodeproj_transition = None):
     attrs = xcodeproj_legacy_rule.attrs(
+        focused_labels = focused_labels,
         is_fixture = is_fixture,
+        owned_extra_files = owned_extra_files,
         target_transitions = target_transitions,
+        unfocused_labels = unfocused_labels,
         xcodeproj_aspect = xcodeproj_aspect,
     )
     impl = xcodeproj_legacy_rule.impl
