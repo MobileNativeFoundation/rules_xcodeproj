@@ -4,6 +4,7 @@ load(
     "@rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_targets",
     "xcode_schemes",
+    "xcschemes",
 )
 
 XCODEPROJ_TARGETS = [
@@ -31,6 +32,28 @@ IOS_BUNDLE_ID = "rules-xcodeproj.example"
 TEAMID = "V82V4GQZXM"
 
 SCHEME_AUTOGENERATION_MODE = "all"
+
+XCSCHEMES = [
+    xcschemes.scheme(
+        name = "iOSAppUnitTests_Scheme",
+        test = xcschemes.test(
+            env = {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+            },
+            test_targets = [
+                xcschemes.test_target(
+                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+                    post_actions = [
+                        xcschemes.pre_post_actions.launch_script(
+                            title = "Run After Tests",
+                            script_text = "echo \"Hi\"",
+                        ),
+                    ],
+                ),
+            ],
+        ),
+    ),
+]
 
 def get_xcode_schemes():
     return [

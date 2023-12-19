@@ -1,6 +1,6 @@
 """Exposes targets used by `xcodeproj` to allow use in fixture tests."""
 
-load("//xcodeproj:defs.bzl", "xcode_schemes")
+load("//xcodeproj:defs.bzl", "xcode_schemes", "xcschemes")
 
 UNFOCUSED_TARGETS = [
     "@com_github_tadija_aexml//:AEXML",
@@ -150,3 +150,66 @@ def get_xcode_schemes():
             ),
         ),
     ]
+
+XCSCHEMES = [
+    xcschemes.scheme(
+        name = "generator",
+        run = xcschemes.run(
+            launch_target = xcschemes.launch_target(
+                ":generator",
+                working_directory = "/tmp",
+            ),
+            xcode_configuration = "Release",
+            args = [
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_execution_root_file",
+                "/tmp/workspace",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_xccurrentversions",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_extensionpointidentifiers",
+                "/tmp/out.xcodeproj",
+                "/tmp/out.final.xcodeproj",
+                "bazel",
+                "0",
+                "0",
+                "/tmp/specs/xcodeproj-project_spec.json",
+                "/tmp/specs/custom_xcode_schemes.json",
+                "/tmp/specs/xcodeproj-targets_spec.0.json",
+                "/tmp/specs/xcodeproj-targets_spec.1.json",
+                "/tmp/specs/xcodeproj-targets_spec.2.json",
+                "/tmp/specs/xcodeproj-targets_spec.3.json",
+                "/tmp/specs/xcodeproj-targets_spec.4.json",
+                "/tmp/specs/xcodeproj-targets_spec.5.json",
+                "/tmp/specs/xcodeproj-targets_spec.6.json",
+                "/tmp/specs/xcodeproj-targets_spec.7.json",
+            ],
+            diagnostics = xcschemes.diagnostics(
+                address_sanitizer = True,
+            ),
+        ),
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                ":generator",
+                working_directory = "/tmp",
+            ),
+            xcode_configuration = "Profile",
+        ),
+        test = xcschemes.test(
+            test_targets = [
+                "//tools/generators/legacy/test:tests",
+            ],
+            diagnostics = xcschemes.diagnostics(
+                address_sanitizer = True,
+            ),
+        ),
+    ),
+    xcschemes.scheme(
+        name = "swiftc",
+        run = xcschemes.run(
+            launch_target = xcschemes.launch_target(
+                "//tools/swiftc_stub:swiftc",
+            ),
+            diagnostics = xcschemes.diagnostics(
+                address_sanitizer = True,
+            ),
+        ),
+    ),
+]

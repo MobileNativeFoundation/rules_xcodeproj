@@ -15,6 +15,7 @@ load(
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",
     "XCODE_CONFIGURATIONS",
+    "XCSCHEMES",
     "get_xcode_schemes",
 )
 
@@ -63,16 +64,25 @@ apple_universal_binary(
     visibility = ["//visibility:public"],
 )
 
-xcodeproj(
-    name = "xcodeproj",
-    project_name = "generator",
-    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
-    schemes = get_xcode_schemes(),
-    tags = ["manual"],
-    top_level_targets = TOP_LEVEL_TARGETS,
-    unfocused_targets = UNFOCUSED_TARGETS,
-    xcode_configurations = XCODE_CONFIGURATIONS,
-)
+[
+    xcodeproj(
+        name = "xcodeproj-{}".format(generation_mode),
+        build_mode = "bazel",
+        generation_mode = generation_mode,
+        project_name = "generator",
+        scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+        schemes = get_xcode_schemes(),
+        tags = ["manual"],
+        top_level_targets = TOP_LEVEL_TARGETS,
+        unfocused_targets = UNFOCUSED_TARGETS,
+        xcode_configurations = XCODE_CONFIGURATIONS,
+        xcschemes = XCSCHEMES,
+    )
+    for generation_mode in [
+        "legacy",
+        "incremental",
+    ]
+]
 
 # Release
 
