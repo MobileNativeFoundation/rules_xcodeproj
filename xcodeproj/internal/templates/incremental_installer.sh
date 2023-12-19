@@ -94,12 +94,6 @@ readonly dest_project_pbxproj="$dest/project.pbxproj"
 $cp_cmd "$src_project_pbxproj" "$dest_project_pbxproj"
 chmod +w "$dest_project_pbxproj"
 
-# Copy over `generated.xcfilelist`
-readonly dest_generated_xcfilelist="$dest/rules_xcodeproj/generated.xcfilelist"
-
-$cp_cmd "$src_generated_xcfilelist" "$dest_generated_xcfilelist"
-chmod u+w "$dest_generated_xcfilelist"
-
 # Copy over bazel integration files
 readonly bazel_integration_files=%bazel_integration_files%
 
@@ -115,6 +109,12 @@ else
 fi
 
 chmod u+w "$dest/rules_xcodeproj/bazel/"*
+
+# Copy over `generated.xcfilelist`
+readonly dest_generated_xcfilelist="$dest/rules_xcodeproj/generated.xcfilelist"
+
+$cp_cmd "$src_generated_xcfilelist" "$dest_generated_xcfilelist"
+chmod u+w "$dest_generated_xcfilelist"
 
 # - Keep only scripts as runnable
 find "$dest/rules_xcodeproj/bazel" \
