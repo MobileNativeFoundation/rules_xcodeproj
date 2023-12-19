@@ -1230,11 +1230,86 @@ def _write_targets(
         buildfile_subidentifiers_files,
     )
 
+# `project.pbxproj`
+
+def _write_project_pbxproj(
+        *,
+        actions,
+        files_and_groups,
+        generator_name,
+        pbxproj_prefix,
+        pbxproject_targets,
+        pbxproject_known_regions,
+        pbxproject_target_attributes,
+        pbxtargetdependencies,
+        targets):
+    """Creates a `project.pbxproj` `File`.
+
+    Args:
+        actions: `ctx.actions`.
+        files_and_groups: The `files_and_groups` `File` returned from
+            `pbxproj_partials.write_files_and_groups`.
+        generator_name: The name of the `xcodeproj` generator target.
+        pbxproj_prefix: The `File` returned from
+            `pbxproj_partials.write_pbxproj_prefix`.
+        pbxproject_known_regions: The `known_regions` `File` returned from
+            `pbxproj_partials.write_known_regions`.
+        pbxproject_target_attributes: The `pbxproject_target_attributes` `File`
+            returned from `pbxproj_partials.write_pbxproject_targets`.
+        pbxproject_targets: The `pbxproject_targets` `File` returned from
+            `pbxproj_partials.write_pbxproject_targets`.
+        pbxtargetdependencies: The `pbxtargetdependencies` `Files` returned from
+            `pbxproj_partials.write_pbxproject_targets`.
+        targets: The `targets` `list` of `Files` returned from
+            `pbxproj_partials.write_targets`.
+
+    Returns:
+        A `project.pbxproj` `File`.
+    """
+    output = actions.declare_file("{}.project.pbxproj".format(generator_name))
+
+    inputs = [
+        pbxproj_prefix,
+        pbxproject_target_attributes,
+        pbxproject_known_regions,
+        pbxproject_targets,
+    ] + targets + [
+        pbxtargetdependencies,
+        files_and_groups,
+    ]
+
+    args = actions.args()
+    args.use_param_file("%s")
+    args.set_param_file_format("multiline")
+    args.add_all(inputs)
+
+    actions.run_shell(
+        arguments = [args],
+        inputs = inputs,
+        outputs = [output],
+        command = """\
+cat "$@" > "{output}"
+""".format(output = output.path),
+        mnemonic = "WriteXcodeProjPBXProj",
+        progress_message = "Generating %{output}",
+        execution_requirements = {
+            # Running `cat` is faster than looking up and copying from cache
+            "no-cache": "1",
+            # Absolute paths
+            "no-remote": "1",
+            # Each file is directly referenced, so lets have some speed
+            "no-sandbox": "1",
+        },
+    )
+
+    return output
+
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_generated_xcfilelist = _write_generated_xcfilelist,
     write_pbxproj_prefix = _write_pbxproj_prefix,
     write_pbxtargetdependencies = _write_pbxtargetdependencies,
+    write_project_pbxproj = _write_project_pbxproj,
     write_swift_debug_settings = _write_swift_debug_settings,
     write_target_build_settings = _write_target_build_settings,
     write_targets = _write_targets,
