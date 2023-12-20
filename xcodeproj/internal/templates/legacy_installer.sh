@@ -135,6 +135,7 @@ rsync \
   --exclude=project.xcworkspace \
   --exclude=rules_xcodeproj/bazel \
   --exclude="*.xcbkptlist" \
+  --exclude="snap-*" \
   --delete \
   "$src/" "$dest/"
 
