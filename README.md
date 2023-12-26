@@ -67,6 +67,7 @@ the ruleset.
 - Cash App
 - Envoy Mobile
 - Ergatta
+- Gojek
 - Lyft
 - [Mercari](https://engineering.mercari.com/en/blog/entry/20221215-16cdd59909/)
 - Robinhood
