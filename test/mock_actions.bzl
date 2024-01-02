@@ -100,6 +100,8 @@ def _create():
                 flag_or_values,
                 values = None,
                 *,
+                # buildifier: disable=unused-variable
+                expand_directories = True,
                 format_each = None,
                 map_each = None,
                 omit_if_empty = True,

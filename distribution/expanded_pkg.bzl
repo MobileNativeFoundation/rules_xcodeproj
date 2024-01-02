@@ -6,7 +6,7 @@ def _impl(ctx):
 
     args = ctx.actions.args()
     args.add(input)
-    args.add(output.path)
+    args.add_all([output], expand_directories = False)
 
     ctx.actions.run_shell(
         inputs = [input],
