@@ -6,7 +6,7 @@ This directory holds several examples using rules_xcodeproj. To open an example,
     <br> Contains a command line tool written purely in C, exercising many possible use cases of the [cc rules in Bazel](https://bazel.build/reference/be/c-cpp) (consumes `cc_binary`, `cc_library`, external `cc_library`).
 
 * **integration**
-    <br> Contains many targets to exercise all of the [rules_apple](https://github.com/bazelbuild/rules_apple/tree/master/doc) rules, along with various ways of using rules_xcodeproj itself (e.g. multi-platform consolidated targets, SwiftUI Previews, device support, etc.).
+    <br> Contains many targets to exercise all of the [rules_apple](https://github.com/bazelbuild/rules_apple/tree/master/doc) rules, along with various ways of using rules_xcodeproj itself (e.g. multi-platform consolidated targets, Xcode Previews, device support, etc.).
 
 * **rules_ios**
     <br> Contains targets to exercise [rules_ios](https://github.com/bazel-ios/rules_ios) macros and rules.

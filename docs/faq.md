@@ -66,7 +66,7 @@ source files, so we need to add a stub one to allow Xcode to link to the proper
 library target.
 
 If this setup isn’t desired (e.g. wanting to have the target merged to enable
-SwiftUI Previews), there are a couple ways to fix it. For tests, setting the
+Xcode Previews), there are a couple ways to fix it. For tests, setting the
 first top level target as the `test_host` will allow for the library to merge.
 In other cases, refactor the build graph to have the shared code in its own
 library separate from the top level target’s primary library.

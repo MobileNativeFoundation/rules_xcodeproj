@@ -34,7 +34,7 @@ on it, or [file a new issue][file-an-issue]!
   - Test selection and running
   - Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - Dynamic frameworks
-  - SwiftUI Previews
+  - Xcode Previews
 - Focused Projects
   - Include a subset of your targets in Xcode
   - Unfocused targets are built with Bazel
