@@ -14,7 +14,7 @@ _FOLDER_TYPE_FILE_SUFFIXES = [
     ".docc/",
     ".framework/",
     ".scnassets/",
-    ".xcassets",
+    ".xcassets/",
 ]
 
 def _processed_resource_fields(resources_info):
@@ -66,7 +66,7 @@ def _process_resource(
     for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
         idx = path.find(suffix)
         if idx != -1:
-            bundle.folder_resources.append(path[:(idx + len(suffix))])
+            bundle.folder_resources.append(path[:(idx + len(suffix) - 1)])
             return None
 
     return file
