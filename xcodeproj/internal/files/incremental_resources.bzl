@@ -9,6 +9,14 @@ load(":files.bzl", "join_paths_ignoring_empty")
 
 # Utility
 
+_FOLDER_TYPE_FILE_SUFFIXES = [
+    ".bundle/",
+    ".docc/",
+    ".framework/",
+    ".scnassets/",
+    ".xcassets/",
+]
+
 def _processed_resource_fields(resources_info):
     return [
         f
@@ -26,6 +34,7 @@ def _processed_resource_fields(resources_info):
 
 def _process_resource(
         *,
+        bundle,
         bundle_path,
         file,
         bundle_metadata,
@@ -51,6 +60,15 @@ def _process_resource(
 
             return None
 
+    # If a file is a child of a folder-type file, the parent folder-type file
+    # should be added to the bundle instead of the child file
+    path = file.path
+    for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
+        idx = path.find(suffix)
+        if idx != -1:
+            bundle.folder_resources.append(path[:(idx + len(suffix) - 1)])
+            return None
+
     return file
 
 def _add_resources_to_bundle(
@@ -63,6 +81,7 @@ def _add_resources_to_bundle(
         xccurrentversions):
     for file in files.to_list():
         file = _process_resource(
+            bundle = bundle,
             bundle_path = bundle_path,
             file = file,
             bundle_metadata = bundle_metadata,
