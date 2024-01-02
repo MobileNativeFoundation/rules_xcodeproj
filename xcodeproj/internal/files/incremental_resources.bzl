@@ -62,8 +62,8 @@ def _process_resource(
 
     # If a file is a child of a folder-type file, the parent folder-type file
     # should be added to the bundle instead of the child file
+    path = file.path
     for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
-        path = file.path
         idx = path.find(suffix)
         if idx != -1:
             bundle.folder_resources.append(path[:(idx+len(suffix))])
