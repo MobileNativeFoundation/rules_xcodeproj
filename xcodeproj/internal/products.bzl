@@ -119,7 +119,7 @@ def _extract_archive(*, actions, archive, bundle_name, bundle_extension):
 
     args = actions.args()
     args.add(archive)
-    args.add(output.path)
+    args.add_all([output], expand_directories = False)
 
     actions.run_shell(
         inputs = [archive],

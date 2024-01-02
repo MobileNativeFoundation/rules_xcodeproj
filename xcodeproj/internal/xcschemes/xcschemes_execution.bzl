@@ -146,7 +146,7 @@ def _write_schemes(
     custom_scheme_args.set_param_file_format("multiline")
 
     # outputDirectory
-    args.add(output.path)
+    args.add_all([output], expand_directories = False)
 
     # schemeManagementOutputPath
     args.add(xcschememanagement)
