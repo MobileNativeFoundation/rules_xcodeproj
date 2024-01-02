@@ -66,7 +66,7 @@ def _process_resource(
     for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
         idx = path.find(suffix)
         if idx != -1:
-            bundle.folder_resources.append(path[:(idx+len(suffix))])
+            bundle.folder_resources.append(path[:(idx + len(suffix))])
             return None
 
     return file
