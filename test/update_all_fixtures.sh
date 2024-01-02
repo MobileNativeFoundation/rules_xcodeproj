@@ -13,5 +13,5 @@ for dir in examples/*/ ; do
     echo
     echo "Updating \"${dir%/}\" fixtures"
     echo
-    bazel run --config=cache //test/fixtures:update
+    USE_BAZEL_VERSION="6.4.0" bazel run --config=cache //test/fixtures:update
 done
