@@ -52,7 +52,6 @@ extension ElementCreator.CreateFileElement {
        "framework",
        "scnassets",
        "xcassets",
-       "xcdatamodel",
     ]
 
     typealias Callable = (
