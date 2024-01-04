@@ -131,9 +131,7 @@ def _collect_files(
     for xcode_target in all_targets:
         transitive_file_paths.append(xcode_target.inputs.extra_file_paths)
         transitive_files.append(xcode_target.inputs.extra_files)
-        transitive_files.append(xcode_target.inputs.non_arc_srcs)
         transitive_files.append(xcode_target.inputs.resources)
-        transitive_files.append(xcode_target.inputs.srcs)
         transitive_folders.append(xcode_target.inputs.folder_resources)
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)
@@ -144,13 +142,16 @@ def _collect_files(
 
         if xcode_target.compile_stub_needed:
             compile_stub_needed = True
+
+    srcs = depset(transitive = transitive_srcs)
+    transitive_files.append(srcs)
+
     file_paths = depset(transitive = transitive_file_paths)
     files = depset(
         unowned_extra_files,
         transitive = transitive_files,
     )
     folders = depset(transitive = transitive_folders)
-    srcs = depset(transitive = transitive_srcs)
 
     return (
         compile_stub_needed,
