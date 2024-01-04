@@ -100,9 +100,17 @@ extension Generator.CalculateSharedBuildSettings {
                 )
             )
         } else {
-            // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
+            // Used to work around CODE_SIGNING_ENABLED = YES for resource
+            // bundles in Xcode 14+
             buildSettings.append(
                 .init(key: "CODE_SIGNING_ALLOWED", value: "NO")
+            )
+        }
+
+        if productType == .uiTestBundle {
+            // UI tests require code signing to enable debugging
+            buildSettings.append(
+                .init(key: "CODE_SIGNING_ALLOWED", value: "YES")
             )
         }
 
