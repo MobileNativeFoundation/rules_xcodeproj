@@ -73,13 +73,14 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
         )
     }
 
-    func test_uiTest_withTestHost() {
+    func test_uiTest() {
         // Arrange
 
         let productType = PBXProductType.uiTestBundle
         let uiTestHostName = "Host (tvOS)"
 
         let expectedBuildSettings = baseBuildSettings.updating([
+            "CODE_SIGNING_ALLOWED": "YES",
             "TEST_TARGET_NAME": #""Host (tvOS)""#,
         ])
 
