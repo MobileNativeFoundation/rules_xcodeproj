@@ -127,6 +127,7 @@ def _collect_files(
     transitive_file_paths = []
     transitive_files = [unsupported_extra_files]
     transitive_folders = []
+    transitive_srcs = []
     for xcode_target in all_targets:
         transitive_file_paths.append(xcode_target.inputs.extra_file_paths)
         transitive_files.append(xcode_target.inputs.extra_files)
@@ -134,6 +135,8 @@ def _collect_files(
         transitive_files.append(xcode_target.inputs.resources)
         transitive_files.append(xcode_target.inputs.srcs)
         transitive_folders.append(xcode_target.inputs.folder_resources)
+        transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
+        transitive_srcs.append(xcode_target.inputs.srcs)
 
         infoplist_path = xcode_target.inputs.infoplist_path
         if infoplist_path:
@@ -147,8 +150,16 @@ def _collect_files(
         transitive = transitive_files,
     )
     folders = depset(transitive = transitive_folders)
+    srcs = depset(transitive = transitive_srcs)
 
-    return (compile_stub_needed, file_paths, files, folders, infoplist_paths)
+    return (
+        compile_stub_needed,
+        file_paths,
+        files,
+        folders,
+        infoplist_paths,
+        srcs,
+    )
 
 def _get_minimum_xcode_version(*, xcode_config):
     version = str(xcode_config.xcode_version())
@@ -318,6 +329,7 @@ def _write_project_contents(
         files,
         folders,
         infoplist_paths,
+        srcs,
     ) = _collect_files(
         resource_bundle_xcode_targets = resource_bundle_xcode_targets,
         unowned_extra_files = unowned_extra_files,
@@ -423,6 +435,7 @@ def _write_project_contents(
         actions = actions,
         generator_name = name,
         infoplist_paths = infoplist_paths,
+        srcs = srcs,
     )
 
     return (

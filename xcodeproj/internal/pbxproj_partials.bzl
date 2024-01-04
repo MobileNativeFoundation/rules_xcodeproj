@@ -52,6 +52,12 @@ def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
 
+def _generated_file_path(file):
+    if file.is_source:
+        return None
+
+    return "$(BAZEL_OUT){}".format(file.path[9:])
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -524,11 +530,23 @@ def _write_files_and_groups(
         resolved_repositories_file,
     )
 
-def _write_generated_xcfilelist(*, actions, generator_name, infoplist_paths):
+def _write_generated_xcfilelist(
+        *,
+        actions,
+        generator_name,
+        infoplist_paths,
+        srcs):
     args = actions.args()
     args.set_param_file_format("multiline")
 
+    # Info.plists are tracked as build files by Xcode, so top-level targets
+    # will fail the first time they are built if we don't track them
     args.add_all(infoplist_paths)
+
+    # Source files are tracked as build files by Xcode, so building targets that
+    # directly use generated source files will fail the first time they are
+    # built if we don't track them
+    args.add_all(srcs, map_each = _generated_file_path)
 
     xcfilelist = actions.declare_file(
         "{}-generated.xcfilelist".format(generator_name),
