@@ -193,6 +193,7 @@ _BUNDLE_DEPS_ATTRS = [
     "private_deps",
     "transitive_deps",
 ]
+_CMAKE_SRCS_ATTRS = ["lib_source"]
 _DEPS_ATTRS = ["deps"]
 _EXPORTED_SYMBOLS_LISTS_ATTRS = ["exported_symbols_lists"]
 _HDRS_DEPS_ATTRS = ["hdrs"]
@@ -431,6 +432,10 @@ def calculate_automatic_target_info(
         is_supported = False
         collect_uncategorized_files = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
+    elif rule_kind == "cmake":
+        is_supported = False
+        srcs = _CMAKE_SRCS_ATTRS
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     else:
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
