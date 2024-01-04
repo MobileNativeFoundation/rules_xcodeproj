@@ -19,6 +19,14 @@ build:rules_xcodeproj --experimental_action_cache_store_output_metadata
 # Xcode builds shouldn't mess with the workspace's symlinks
 build:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
+# Projects with large C/C++ target command-lines can fail to generate due
+# without using params files. While the targets themselves might use params
+# files, currently `Action.args` won't unless
+# `--experimental_use_cpp_compile_action_args_params_file` is set.
+# https://github.com/bazelbuild/bazel/issues/20746 would allow us to remove the
+# need for this flag.
+build:rules_xcodeproj --experimental_use_cpp_compile_action_args_params_file
+
 # Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
 # have to unzip an archive on each build). If this doesn't work for your
 # project, you can set `--define=apple.experimental.tree_artifact_outputs=0`
