@@ -251,8 +251,17 @@ def _process_files_and_deps(
             ),
         )
 
+        # We need to collect `headers` in `generated` in addition to the above
+        # collection of `direct_{public,private}_headers` to get all files
+        # needed for indexing, even if they are from unsupported transitive
+        # dependencies
+        transitive_generated = [compilation_context.headers]
+    else:
+        transitive_generated = EMPTY_LIST
+
     return (
         transitive_extra_files,
+        transitive_generated,
         uncategorized,
         xccurrentversions,
     )
@@ -462,6 +471,7 @@ def _collect_incremental_input_files(
 
     (
         transitive_extra_files,
+        transitive_generated,
         uncategorized,
         xccurrentversions,
     ) = _process_files_and_deps(
@@ -575,7 +585,7 @@ def _collect_incremental_input_files(
 
     generated_depset = memory_efficient_depset(
         generated,
-        transitive = [
+        transitive = transitive_generated + [
             info.inputs.generated
             for info in transitive_infos
         ],
@@ -706,6 +716,7 @@ def _collect_unsupported_input_files(
 
     (
         transitive_extra_files,
+        transitive_generated,
         uncategorized,
         xccurrentversions,
     ) = _process_files_and_deps(
@@ -767,7 +778,7 @@ def _collect_unsupported_input_files(
         ),
         generated = memory_efficient_depset(
             generated,
-            transitive = [
+            transitive = transitive_generated + [
                 info.inputs.generated
                 for info in transitive_infos
             ],

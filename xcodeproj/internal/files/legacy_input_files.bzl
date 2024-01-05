@@ -492,13 +492,35 @@ def _collect_legacy_input_files(
                 categorized_files[header] = None
     if CcInfo in target:
         compilation_context = target[CcInfo].compilation_context
-        extra_files.extend(_process_cc_info_headers(
-            (compilation_context.direct_private_headers +
-             compilation_context.direct_public_headers +
-             compilation_context.direct_textual_headers),
-            exclude_headers = categorized_files,
-            generated = generated,
-        ))
+        extra_files.extend(
+            _process_cc_info_headers(
+                compilation_context.direct_private_headers,
+                exclude_headers = categorized_files,
+                generated = generated,
+            ),
+        )
+        extra_files.extend(
+            _process_cc_info_headers(
+                compilation_context.direct_public_headers,
+                exclude_headers = categorized_files,
+                generated = generated,
+            ),
+        )
+        extra_files.extend(
+            _process_cc_info_headers(
+                compilation_context.direct_textual_headers,
+                exclude_headers = categorized_files,
+                generated = generated,
+            ),
+        )
+
+        # We need to collect `headers` in `generated` in addition to the above
+        # collection of `direct_{public,private}_headers` to get all files
+        # needed for indexing, even if they are from unsupported transitive
+        # dependencies
+        transitive_generated = [compilation_context.headers]
+    else:
+        transitive_generated = EMPTY_LIST
 
     should_produce_output_groups = is_bwx
 
@@ -611,7 +633,7 @@ def _collect_legacy_input_files(
 
     generated_depset = memory_efficient_depset(
         generated,
-        transitive = [
+        transitive = transitive_generated + [
             info.inputs.generated
             for info in transitive_infos
         ],
