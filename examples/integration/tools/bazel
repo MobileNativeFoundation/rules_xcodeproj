@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+handle_bazel_exit() {
+  exit_code=$?
+  case $exit_code in
+    0) ;;
+    # Ignore BES failures
+    38|45) ;;
+    *) exit $exit_code ;;
+  esac
+}
+
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
 readonly root_dir="${workspace_dir%/*/*}"
@@ -40,7 +50,8 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
     build \
     --config=cache \
     --remote_download_outputs=toplevel \
-    //distribution:opt_expanded_release
+    //distribution:opt_expanded_release \
+    || handle_bazel_exit
 
   if [[ $(uname -m) == "arm64" ]]; then
     repository_override="$archive_output_base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/expanded_release"
@@ -81,4 +92,4 @@ fi
 
 flags+=("--bazelrc=$override_bazelrc")
 
-exec "$BAZEL_REAL" "${flags[@]}" "$@"
+"$BAZEL_REAL" "${flags[@]}" "$@" || handle_bazel_exit
