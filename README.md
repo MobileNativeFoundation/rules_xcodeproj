@@ -46,17 +46,7 @@ on it, or [file a new issue][file-an-issue]!
   - rules_ios
   - Most likely your custom rules as well!
 - Minimal configuration needed (see the [usage](#usage) section below)
-- Multiple ways of building your project in Xcode
-  - Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
-  - Build your Bazel targets with Xcode, _not_ Bazel
-    (a.k.a. Build with Xcode or BwX mode)[^bwx_warning]
 - It “just works”
-
-[^bwx_warning]: Build with Bazel mode is the build mode with first class
-  support. We will try to make Build with Xcode mode work with every project, but
-  there are limitations that can
-  [make the experience subpar](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/main/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
-  or not work at all. We recommend using BwB mode if possible.
 
 We’ve also documented the [high-level design goals](docs/design-goals.md) of
 the ruleset.
