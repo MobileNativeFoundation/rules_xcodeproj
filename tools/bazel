@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+handle_bazel_exit() {
+  exit_code=$?
+  case $exit_code in
+    0) ;;
+    # Ignore BES failures
+    38|45) ;;
+    *) exit $exit_code ;;
+  esac
+}
+
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
 
@@ -22,4 +32,4 @@ if [[ -s "$workspace_bazelrc" ]]; then
   flags+=("--bazelrc=$workspace_bazelrc")
 fi
 
-exec "$BAZEL_REAL" "${flags[@]}" "$@"
+"$BAZEL_REAL" "${flags[@]}" "$@" || handle_bazel_exit
