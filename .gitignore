@@ -1,6 +1,7 @@
 .DS_Store
 
 /bazel-*
+MODULE.bazel.lock
 
 # We explicitly ignore these subdirectories to ensure they still apply when we
 # undo the `**/*.xcodeproj/*` ignore in `test/fixtures/.gitignore`

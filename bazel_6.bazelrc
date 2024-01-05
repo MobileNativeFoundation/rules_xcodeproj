@@ -7,6 +7,3 @@ build --enable_bzlmod
 build --apple_crosstool_top=@local_config_apple_cc//:toolchain
 build --crosstool_top=@local_config_apple_cc//:toolchain
 build --host_crosstool_top=@local_config_apple_cc//:toolchain
-
-# Disabled until bugs are fixed
-common --lockfile_mode=off
