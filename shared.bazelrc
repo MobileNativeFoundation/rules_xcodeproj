@@ -41,6 +41,7 @@ common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=no
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
+build:cache --bes_upload_mode=nowait_for_upload_complete
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
@@ -55,6 +56,7 @@ build:remote --remote_executor=grpcs://remote.buildbuddy.io
 
 # Configuration used for BuildBuddy workflows
 build:workflows --config=cache
+build:workflows --bes_upload_mode=wait_for_upload_complete
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
 build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
