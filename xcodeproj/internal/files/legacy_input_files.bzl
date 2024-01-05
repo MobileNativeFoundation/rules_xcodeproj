@@ -48,11 +48,9 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _process_cc_info_headers(headers, *, exclude_headers, generated):
+def _process_cc_info_headers(headers, *, exclude_headers):
     def _process_header(header):
         exclude_headers[header] = None
-        if not header.is_source:
-            generated.append(header)
         return normalized_file_path(
             header,
             folder_type_extensions = FRAMEWORK_EXTENSIONS,
@@ -496,21 +494,18 @@ def _collect_legacy_input_files(
             _process_cc_info_headers(
                 compilation_context.direct_private_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_public_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_textual_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
 

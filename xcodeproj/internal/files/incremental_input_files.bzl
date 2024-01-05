@@ -112,11 +112,9 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _process_cc_info_headers(headers, *, exclude_headers, generated):
+def _process_cc_info_headers(headers, *, exclude_headers):
     def _process_header(header_file):
         exclude_headers[header_file] = None
-        if not header_file.is_source:
-            generated.append(header_file)
         return header_file
 
     files = []
@@ -233,21 +231,18 @@ def _process_files_and_deps(
             _process_cc_info_headers(
                 compilation_context.direct_private_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_public_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_textual_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
 
