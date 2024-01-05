@@ -28,9 +28,13 @@ Not enough arguments, expected path to execution root
             if FileManager.default.fileExists(atPath: pidFile) {
                 let pid = try String(contentsOfFile: pidFile)
 
-                try runSubProcess("/bin/kill", [pid])
+                try runSubProcess("/bin/kill", [pid], ignoreStdErr: true)
                 while true {
-                    if try runSubProcess("/bin/kill", ["-0", pid]) != 0 {
+                    if try runSubProcess(
+                        "/bin/kill",
+                        ["-0", pid],
+                        ignoreStdErr: true
+                    ) != 0 {
                         break
                     }
                     sleep(1)
@@ -53,6 +57,13 @@ Not enough arguments, expected path to execution root
             var indexstores: [String: Set<String>] = [:]
             for filePath in args.dropFirst(2) {
                 let url = URL(fileURLWithPath: filePath)
+
+                if !FileManager.default.fileExists(atPath: url.path) {
+                        throw PreconditionError(message: """
+\(url.path) does not exist
+"""
+                        )
+                }
 
                 var iterator = url.allLines.makeAsyncIterator()
                 while let indexstore = try await iterator.next() {
