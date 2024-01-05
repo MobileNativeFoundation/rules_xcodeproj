@@ -15,7 +15,6 @@ load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
     "EMPTY_TUPLE",
-    "memory_efficient_depset",
 )
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load("//xcodeproj/internal:platforms.bzl", "platforms")
@@ -122,25 +121,6 @@ def _process_incremental_library_target(
         transitive_infos = transitive_infos,
     )
 
-    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
-    output_group_info = (
-        target[OutputGroupInfo] if OutputGroupInfo in target else None
-    )
-    (
-        target_outputs,
-        provider_outputs,
-        target_output_groups_metadata,
-    ) = output_files.collect(
-        actions = actions,
-        debug_outputs = debug_outputs,
-        id = id,
-        name = label.name,
-        output_group_info = output_group_info,
-        product = product,
-        swift_info = swift_info,
-        transitive_infos = transitive_infos,
-    )
-
     package_bin_dir = products.calculate_packge_bin_dir(
         bin_dir_path = bin_dir_path,
         label = label,
@@ -178,16 +158,26 @@ def _process_incremental_library_target(
         order = "topological",
     )
 
-    if params_files:
-        compiling_files = memory_efficient_depset(
-            params_files,
-            transitive = [provider_inputs.generated],
-        )
-    else:
-        compiling_files = provider_inputs.generated
-
+    (
+        target_outputs,
+        provider_outputs,
+        target_output_groups_metadata,
+    ) = output_files.collect(
+        actions = actions,
+        compile_params_files = params_files,
+        debug_outputs = (
+            target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
+        ),
+        id = id,
+        name = label.name,
+        output_group_info = (
+            target[OutputGroupInfo] if OutputGroupInfo in target else None
+        ),
+        product = product,
+        swift_info = swift_info,
+        transitive_infos = transitive_infos,
+    )
     target_output_groups = output_groups.collect(
-        compiling_files = compiling_files,
         metadata = target_output_groups_metadata,
         transitive_infos = transitive_infos,
     )

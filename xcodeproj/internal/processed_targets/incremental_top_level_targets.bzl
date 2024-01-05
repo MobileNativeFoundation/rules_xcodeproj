@@ -703,14 +703,6 @@ def _process_focused_top_level_target(
 
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
-    if params_files:
-        compiling_files = memory_efficient_depset(
-            params_files,
-            transitive = [provider_inputs.generated],
-        )
-    else:
-        compiling_files = provider_inputs.generated
-
     if apple_common.AppleDebugOutputs in target:
         debug_outputs = target[apple_common.AppleDebugOutputs]
     else:
@@ -734,6 +726,7 @@ def _process_focused_top_level_target(
         target_output_groups_metadata,
     ) = output_files.collect(
         actions = actions,
+        compile_params_files = params_files,
         copy_product_transitively = True,
         debug_outputs = debug_outputs,
         id = id,
@@ -748,9 +741,7 @@ def _process_focused_top_level_target(
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )
-
     target_output_groups = output_groups.collect(
-        compiling_files = compiling_files,
         metadata = target_output_groups_metadata,
         transitive_infos = transitive_infos,
     )

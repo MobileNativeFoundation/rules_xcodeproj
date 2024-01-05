@@ -22,12 +22,14 @@ else
     # Inputs for compiling, inputs for linking, and index store data
     readonly output_group_prefixes="xc,xl,xi"
   elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-    # Compiled outputs (i.e. swiftmodules) and generated inputs, products (i.e.
-    # bundles), index store data, and link params
+    # Compile params, products (i.e. bundles) and index store data, and link
+    # params
+    # TODO: Remove `bi` once we remove support for legacy generation mode
     readonly output_group_prefixes="bc,bp,bi,bl"
   else
-    # Compiled outputs (i.e. swiftmodules) and generated
-    # inputs, products (i.e. bundles), and index store data
+    # Products (i.e. bundles) and index store data
+    # TODO: Remove `bc` and `bi` once we remove support for legacy generation
+    # mode
     readonly output_group_prefixes="bc,bp,bi"
   fi
 
@@ -108,7 +110,18 @@ fi
 # Build
 
 build_pre_config_flags=(
-  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$|.*\.swift$"
+  # Include the following:
+  #
+  # - .indexstore directories to allow importing indexes
+  # - .swift{doc,sourceinfo} files for indexing
+  # - .a and .swiftmodule files for lldb
+  # - primary compilation input files (.c, .C, .cc, .cl, .cpp, .cu, .cxx, .c++,
+  #   .m, .mm, .swift) for Xcode build input checking
+  #
+  # This is brittle. If different file extensions are used for compilation
+  # inputs, they will need to be added to this list. Ideally we can stop doing
+  # this once Bazel adds support for a Remote Output Service.
+  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(a|c|C|cc|cl|cpp|cu|cxx|c++|m|mm|swift|swiftdoc|swiftmodule|swiftsourceinfo)$"
 )
 
 apply_sanitizers=1
