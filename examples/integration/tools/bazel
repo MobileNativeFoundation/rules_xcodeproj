@@ -35,10 +35,15 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
       "$global_bazel"
   )
 
+  flags=("--remote_download_outputs=toplevel")
+  if [[ $* =~ --config=(workflow|cache) ]]; then
+    flags+=("--config=cache")
+  fi
+
   "${root_bazel[@]}" \
     "--output_base=$archive_output_base" \
     build \
-    --config=cache \
+    "${flags[@]}" \
     --remote_download_outputs=toplevel \
     //distribution:opt_expanded_release
 
