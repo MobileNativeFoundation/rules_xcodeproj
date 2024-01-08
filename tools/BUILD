@@ -108,7 +108,7 @@ _XCSCHEMES = [
         ),
         run = xcschemes.run(
             build_targets = [
-                xcschemes.top_level_build_target(_TOOLS["import_indexstores"]),
+                _TOOLS["import_indexstores"],
             ],
             diagnostics = _XCSCHEME_DIAGNOSTICS,
             launch_target = xcschemes.launch_target(
@@ -276,7 +276,7 @@ _XCSCHEMES = [
         ),
         run = xcschemes.run(
             build_targets = [
-                xcschemes.top_level_build_target(_TOOLS["swiftc_stub"]),
+                _TOOLS["swiftc_stub"],
             ],
             diagnostics = _XCSCHEME_DIAGNOSTICS,
             launch_target = xcschemes.launch_target(
