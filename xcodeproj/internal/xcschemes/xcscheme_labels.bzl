@@ -7,6 +7,9 @@ load(
 )
 
 def _resolve_build_target_labels(build_target):
+    if type(build_target) == "string":
+        return _resolve_label(build_target)
+
     return struct(
         extension_host = _resolve_label(build_target.extension_host),
         include = build_target.include,
@@ -23,6 +26,7 @@ def _resolve_build_target_labels(build_target):
 def _resolve_label(label_str):
     if not label_str:
         return ""
+
     return str(native.package_relative_label(label_str))
 
 def _resolve_labels(schemes):
