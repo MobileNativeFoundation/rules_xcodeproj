@@ -123,6 +123,7 @@ def _has_dsym(debug_outputs):
 def _collect_incremental_output_files(
         *,
         actions,
+        compile_params_files,
         copy_product_transitively = False,
         debug_outputs,
         id,
@@ -139,6 +140,8 @@ def _collect_incremental_output_files(
 
     Args:
         actions: `ctx.actions`.
+        compile_params_files: A `list` of compiler params `File`s that should be
+            generated for Index Build and Xcode Previews.
         copy_product_transitively: Whether or not to copy the product
             transitively. Currently this should only be true for top-level
             targets.
@@ -149,7 +152,8 @@ def _collect_incremental_output_files(
             that override the indexstore for the target. This is used for merged
             targets.
         infoplist: A `File` or `None`.
-        link_params: A `File` or `None`.
+        link_params: A link params `File`, or `None`, that should be generated
+            for Xcode Previews.
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
@@ -173,34 +177,21 @@ def _collect_incremental_output_files(
         swift_info = swift_info,
     )
 
-    compiled = None
     direct_products = []
     dsym_files = EMPTY_DEPSET
-    indexstore = None
 
     is_framework = direct_outputs.is_framework
     swift = direct_outputs.swift
     if swift:
-        compiled, indexstore = swift_to_outputs(swift)
+        indexstore = swift.indexstore
+    else:
+        indexstore = None
 
     if direct_outputs.product:
         direct_products.append(direct_outputs.product)
 
     if direct_outputs.dsym_files:
         dsym_files = direct_outputs.dsym_files
-
-    if compiled:
-        # We only need the single swiftmodule in order to download
-        # everything from the remote cache (because of
-        # `--experimental_remote_download_regex`). Reducing the number of
-        # items in an output group keeps the BEP small.
-        closest_compiled = memory_efficient_depset(compiled[0:1])
-    else:
-        closest_compiled = memory_efficient_depset(transitive = [
-            info.outputs._closest_compiled
-            for info in transitive_infos
-            if not info.outputs._is_framework
-        ])
 
     if not indexstore_overrides and indexstore:
         indexstore_overrides = [(indexstore, EMPTY_STRING)]
@@ -230,11 +221,14 @@ def _collect_incremental_output_files(
             for info in transitive_infos
         ] + [dsym_files],
     )
-    products_depset = memory_efficient_depset(
-        direct_products if not copy_product_transitively else None,
-        transitive = [transitive_products],
-    )
 
+    transitive_compile_params = memory_efficient_depset(
+        compile_params_files,
+        transitive = [
+            info.outputs._transitive_compile_params
+            for info in transitive_infos
+        ],
+    )
     transitive_infoplists = memory_efficient_depset(
         [infoplist] if infoplist else None,
         transitive = [
@@ -250,7 +244,6 @@ def _collect_incremental_output_files(
         ],
     )
 
-    generated_output_group_name = "bc {}".format(direct_outputs.id)
     products_output_group_name = "bp {}".format(direct_outputs.id)
 
     indexstores_filelist = indexstore_filelists.write(
@@ -261,14 +254,20 @@ def _collect_incremental_output_files(
         rule_name = name,
     )
 
-    # We don't want to declare indexstore files as outputs, because they
-    # expand to individual files and blow up the BEP
-    indexstores_files = depset([indexstores_filelist])
-
-    compiled_and_generated_transitive = [closest_compiled]
+    products_depset = memory_efficient_depset(
+        (
+            # We don't want to declare indexstore files as outputs, because they
+            # expand to individual files and blow up the BEP. Instead they are
+            # declared as inputs to `indexstores_filelist`, ensuring they are
+            # downloaded as needed.
+            [indexstores_filelist] +
+            (direct_products if not copy_product_transitively else [])
+        ),
+        transitive = [transitive_products],
+    )
 
     direct_group_list = [
-        ("bi {}".format(direct_outputs.id), indexstores_files),
+        ("bc {}".format(direct_outputs.id), transitive_compile_params),
         ("bl {}".format(direct_outputs.id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]
@@ -280,8 +279,8 @@ def _collect_incremental_output_files(
             transitive_infoplists = transitive_infoplists,
         ),
         struct(
-            _closest_compiled = closest_compiled,
             _is_framework = is_framework,
+            _transitive_compile_params = transitive_compile_params,
             _transitive_indexstore_overrides = transitive_indexstore_overrides,
             _transitive_indexstores = transitive_indexstores,
             _transitive_infoplists = transitive_infoplists,
@@ -289,11 +288,7 @@ def _collect_incremental_output_files(
             _transitive_products = transitive_products,
         ),
         struct(
-            _compiled_and_generated_transitive = (
-                compiled_and_generated_transitive
-            ),
             _direct_group_list = direct_group_list,
-            _generated_output_group_name = generated_output_group_name,
         ),
     )
 
@@ -310,8 +305,13 @@ def _merge_output_files(*, transitive_infos):
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return struct(
-        _closest_compiled = EMPTY_DEPSET,
         _is_framework = False,
+        _transitive_compile_params = memory_efficient_depset(
+            transitive = [
+                info.outputs._transitive_compile_params
+                for info in transitive_infos
+            ],
+        ),
         _transitive_indexstore_overrides = EMPTY_DEPSET,
         _transitive_indexstores = EMPTY_DEPSET,
         _transitive_infoplists = memory_efficient_depset(
@@ -331,35 +331,15 @@ def _merge_output_files(*, transitive_infos):
 
 # Output groups
 
-def _collect_output_groups(
-        *,
-        compiling_files,
-        metadata,
-        transitive_infos):
-    compiled_and_generated_transitive = (
-        metadata._compiled_and_generated_transitive
-    )
-    compiled_and_generated_transitive.append(compiling_files)
-
-    direct_group_list = metadata._direct_group_list + [
-        (
-            metadata._generated_output_group_name,
-            memory_efficient_depset(
-                transitive = compiled_and_generated_transitive,
-            ),
-        ),
-    ]
-
-    output_group_list = memory_efficient_depset(
-        direct_group_list,
-        transitive = [
-            info.target_output_groups._output_group_list
-            for info in transitive_infos
-        ],
-    )
-
+def _collect_output_groups(*, metadata, transitive_infos):
     return struct(
-        _output_group_list = output_group_list,
+        _output_group_list = memory_efficient_depset(
+            metadata._direct_group_list,
+            transitive = [
+                info.target_output_groups._output_group_list
+                for info in transitive_infos
+            ],
+        ),
     )
 
 def _merge_output_groups(*, transitive_infos):
@@ -442,35 +422,6 @@ def parse_swift_info_module(module):
         generated_header = generated_header,
         indexstore = getattr(swift, "indexstore", None),
     )
-
-def swift_to_outputs(swift):
-    """Converts a Swift output struct to more easily consumable outputs.
-
-    Args:
-        swift: A value returned from `parse_swift_info_module`.
-
-    Returns:
-        A `tuple` containing two elements:
-
-        *   A `list` of `File`s that can be used for future compiles (e.g.
-            `.swiftmodule`, `-Swift.h`).
-        *   A `File`s that represent generated index store data, or `None`.
-    """
-    if not swift:
-        return ([], None)
-
-    module = swift.module
-
-    # `swiftmodule` is listed first, as it's used as the "source" of the others
-    compiled = [module.swiftmodule, module.swiftdoc]
-    if module.swiftsourceinfo:
-        compiled.append(module.swiftsourceinfo)
-    if module.swiftinterface:
-        compiled.append(module.swiftinterface)
-    if swift.generated_header:
-        compiled.append(swift.generated_header)
-
-    return (compiled, swift.indexstore)
 
 incremental_output_files = struct(
     collect = _collect_incremental_output_files,

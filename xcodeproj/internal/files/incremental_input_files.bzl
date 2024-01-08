@@ -40,7 +40,6 @@ def _collect_transitive_uncategorized(info):
 
 def _inner_merge_input_files(
         *,
-        generated,
         resource_bundles,
         transitive_infos,
         xccurrentversions):
@@ -60,13 +59,6 @@ def _inner_merge_input_files(
         _resource_bundle_uncategorized = memory_efficient_depset(
             transitive = [
                 info.inputs._resource_bundle_uncategorized
-                for info in transitive_infos
-            ],
-        ),
-        generated = memory_efficient_depset(
-            generated,
-            transitive = [
-                info.inputs.generated
                 for info in transitive_infos
             ],
         ),
@@ -112,11 +104,9 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _process_cc_info_headers(headers, *, exclude_headers, generated):
+def _process_cc_info_headers(headers, *, exclude_headers):
     def _process_header(header_file):
         exclude_headers[header_file] = None
-        if not header_file.is_source:
-            generated.append(header_file)
         return header_file
 
     files = []
@@ -136,7 +126,6 @@ def _process_files_and_deps(
         collect_uncategorized,
         extra_files,
         file_handlers,
-        generated,
         rule_attr,
         rule_file,
         rule_files):
@@ -167,8 +156,6 @@ def _process_files_and_deps(
                     xccurrentversions.append(file)
                 else:
                     uncategorized.append(file)
-        elif categorized:
-            generated.append(file)
 
     transitive_extra_files = []
 
@@ -233,21 +220,18 @@ def _process_files_and_deps(
             _process_cc_info_headers(
                 compilation_context.direct_private_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_public_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_textual_headers,
                 exclude_headers = categorized_files,
-                generated = generated,
             ),
         )
 
@@ -356,8 +340,6 @@ def _collect_incremental_input_files(
         *   A `struct`, which will end up in `XcodeProjInfo.inputs`, with the
             following fields:
 
-            *   `generated`: A `depset` of generated `File`s that are inputs to
-                `target` or its transitive dependencies.
             *   `important_generated`: A `depset` of important generated `File`s
                 that are inputs to `target` or its transitive dependencies.
                 These differ from `generated` in that they will be generated as
@@ -375,7 +357,6 @@ def _collect_incremental_input_files(
     entitlements = []
     c_sources = {}
     cxx_sources = {}
-    generated = []
     non_arc_srcs = []
     srcs = []
 
@@ -474,7 +455,6 @@ def _collect_incremental_input_files(
         ),
         extra_files = extra_files,
         file_handlers = file_handlers,
-        generated = generated,
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
@@ -497,11 +477,6 @@ def _collect_incremental_input_files(
             for file in linker_input_additional_files
             if file not in framework_files
         ]
-        generated.extend([
-            file
-            for file in linker_input_additional_files
-            if not file.is_source
-        ])
         extra_files.extend(linker_input_additional_files)
 
     if resource_info:
@@ -521,7 +496,6 @@ def _collect_incremental_input_files(
         resources = memory_efficient_depset(resources_result.resources)
         resource_bundles = resources_result.bundles
 
-        generated.extend(resources_result.generated)
         xccurrentversions.extend(resources_result.xccurrentversions)
 
         resource_bundle_labels = memory_efficient_depset(
@@ -573,14 +547,6 @@ def _collect_incremental_input_files(
         if not file.is_source
     ]
 
-    generated_depset = memory_efficient_depset(
-        generated,
-        transitive = [
-            info.inputs.generated
-            for info in transitive_infos
-        ],
-    )
-
     label_str = str(label)
 
     return (
@@ -626,7 +592,6 @@ def _collect_incremental_input_files(
                     for info in transitive_infos
                 ],
             ),
-            generated = generated_depset,
             important_generated = memory_efficient_depset(
                 important_generated,
                 transitive = [
@@ -678,7 +643,6 @@ def _collect_unsupported_input_files(
 
     A value similar to the second `struct` returned by `input_files.collect`.
     """
-    generated = []
     extra_file_paths = []
     extra_files = []
 
@@ -718,7 +682,6 @@ def _collect_unsupported_input_files(
         ),
         extra_files = extra_files,
         file_handlers = file_handlers,
-        generated = generated,
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
@@ -765,13 +728,6 @@ def _collect_unsupported_input_files(
                 for info in transitive_infos
             ],
         ),
-        generated = memory_efficient_depset(
-            generated,
-            transitive = [
-                info.inputs.generated
-                for info in transitive_infos
-            ],
-        ),
         important_generated = memory_efficient_depset(
             transitive = [
                 info.inputs.important_generated
@@ -800,21 +756,19 @@ def _collect_unsupported_input_files(
         ),
     )
 
-def _merge_input_files(*, extra_generated = None, transitive_infos):
+def _merge_input_files(*, transitive_infos):
     """Creates merged inputs.
 
     Args:
-        extra_generated: An optional `list` of `File`s to added to `generated`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
     Returns:
         A value similar to the one returned from `input_files.collect`. The
         values potentially include the inputs of the transitive dependencies,
-        via `transitive_infos` (e.g. `generated` and `extra_files`).
+        via `transitive_infos` (e.g. `extra_files`).
     """
     return _inner_merge_input_files(
-        generated = extra_generated,
         resource_bundles = None,
         transitive_infos = transitive_infos,
         xccurrentversions = None,
@@ -840,7 +794,7 @@ def _merge_top_level_input_files(
     Returns:
         A value similar to the one returned from `input_files.collect`. The
         values potentially include the inputs of the transitive dependencies,
-        via `transitive_infos` (e.g. `generated` and `extra_files`).
+        via `transitive_infos` (e.g. `extra_files`).
     """
     if resource_info:
         resources_result = resources_module.collect(
@@ -853,17 +807,14 @@ def _merge_top_level_input_files(
             ],
         )
 
-        generated = resources_result.generated
         resource_bundles = resources_result.bundles
 
         xccurrentversions = resources_result.xccurrentversions
     else:
-        generated = None
         resource_bundles = None
         xccurrentversions = None
 
     return _inner_merge_input_files(
-        generated = generated,
         resource_bundles = resource_bundles,
         transitive_infos = transitive_infos,
         xccurrentversions = xccurrentversions,

@@ -38,7 +38,6 @@ def _process_resource(
         bundle_path,
         file,
         bundle_metadata,
-        generated,
         xccurrentversions):
     if (file.basename == ".xccurrentversion" and
         file.dirname.endswith(".xcdatamodeld")):
@@ -46,7 +45,6 @@ def _process_resource(
         return None
 
     if not file.is_source:
-        generated.append(file)
         if bundle_path and file.basename == "Info.plist":
             path_components = file.path.split("/")
             label = file.owner
@@ -77,7 +75,6 @@ def _add_resources_to_bundle(
         bundle_path,
         files,
         bundle_metadata,
-        generated,
         xccurrentversions):
     for file in files.to_list():
         file = _process_resource(
@@ -85,7 +82,6 @@ def _add_resources_to_bundle(
             bundle_path = bundle_path,
             file = file,
             bundle_metadata = bundle_metadata,
-            generated = generated,
             xccurrentversions = xccurrentversions,
         )
         if file:
@@ -103,17 +99,13 @@ def _add_structured_resources_to_bundle(
         bundle,
         *,
         nested_path,
-        files,
-        generated):
+        files):
     if nested_path:
         inner_dir = nested_path.split("/")[0]
     else:
         inner_dir = None
 
     for file in files.to_list():
-        if not file.is_source:
-            generated.append(file)
-
         if not inner_dir:
             bundle.resources.append(file)
             continue
@@ -141,8 +133,7 @@ def _add_structured_resources(
         resource_bundle_targets,
         bundle_path,
         nested_path,
-        files,
-        generated):
+        files):
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
@@ -156,14 +147,12 @@ def _add_structured_resources(
             bundle,
             nested_path = nested_path,
             files = files,
-            generated = generated,
         )
     else:
         _add_structured_resources_to_bundle(
             root_bundle,
             nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
             files = files,
-            generated = generated,
         )
 
 def _add_processed_resources(
@@ -172,7 +161,6 @@ def _add_processed_resources(
         root_bundle,
         resource_bundle_targets,
         bundle_metadata,
-        generated,
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
@@ -181,7 +169,6 @@ def _add_processed_resources(
                 bundle_path = None,
                 files = files,
                 bundle_metadata = bundle_metadata,
-                generated = generated,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -193,7 +180,6 @@ def _add_processed_resources(
                 bundle_path = None,
                 files = files,
                 bundle_metadata = bundle_metadata,
-                generated = generated,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -205,7 +191,6 @@ def _add_processed_resources(
             bundle_path = bundle_path,
             files = files,
             bundle_metadata = bundle_metadata,
-            generated = generated,
             xccurrentversions = xccurrentversions,
         )
 
@@ -216,7 +201,6 @@ def _add_unprocessed_resources(
         resource_bundle_targets,
         parent_bundle_paths,
         bundle_metadata,
-        generated,
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
@@ -225,7 +209,6 @@ def _add_unprocessed_resources(
                 bundle_path = None,
                 files = files,
                 bundle_metadata = bundle_metadata,
-                generated = generated,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -244,7 +227,6 @@ def _add_unprocessed_resources(
             bundle_path = bundle_path,
             nested_path = nested_path,
             files = files,
-            generated = generated,
         )
 
 # API
@@ -269,12 +251,10 @@ def _collect_incremental_resources(
             `process_resource_bundles`.
         *   `resources`: A `list` of `file_path`s of resources that should be
             added to the target's bundle.
-        *   `generated`: A `list` of `file_path`s of generated resources.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
     """
     root_bundle = _create_bundle()
     resource_bundle_targets = {}
-    generated = []
     xccurrentversions = []
     bundle_metadata = {}
 
@@ -310,7 +290,6 @@ def _collect_incremental_resources(
                 resource_bundle_targets = resource_bundle_targets,
                 parent_bundle_paths = parent_bundle_paths,
                 bundle_metadata = bundle_metadata,
-                generated = generated,
                 xccurrentversions = xccurrentversions,
             )
         else:
@@ -319,7 +298,6 @@ def _collect_incremental_resources(
                 root_bundle = root_bundle,
                 resource_bundle_targets = resource_bundle_targets,
                 bundle_metadata = bundle_metadata,
-                generated = generated,
                 xccurrentversions = xccurrentversions,
             )
 
@@ -370,7 +348,6 @@ def _collect_incremental_resources(
         bundles = frozen_bundles,
         resources = root_bundle.resources,
         folder_resources = root_bundle.folder_resources,
-        generated = generated,
         xccurrentversions = xccurrentversions,
     )
 
