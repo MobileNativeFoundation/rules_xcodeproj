@@ -120,7 +120,7 @@ extension Generator.CreateScheme {
                 escapedScriptText:
                     executionAction.scriptText.schemeXmlEscaped,
                 expandVariablesBasedOn:
-                    executionAction.target.buildableReference
+                    executionAction.target?.buildableReference
             )
 
             switch (executionAction.action, executionAction.isPreAction) {

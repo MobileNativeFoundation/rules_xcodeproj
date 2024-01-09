@@ -23,6 +23,8 @@ def _dict_to_launch_target_info(d):
         return struct(
             is_path = "1",
             path = d["path"],
+            post_actions = _dicts_to_pre_post_action_infos(d["post_actions"]),
+            pre_actions = _dicts_to_pre_post_action_infos(d["pre_actions"]),
             working_directory = d["working_directory"],
         )
     else:

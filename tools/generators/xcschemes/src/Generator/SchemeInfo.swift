@@ -15,7 +15,7 @@ struct SchemeInfo: Equatable {
         let scriptText: String
         let action: Action
         let isPreAction: Bool
-        let target: Target
+        let target: Target?
         let order: Int?
     }
 

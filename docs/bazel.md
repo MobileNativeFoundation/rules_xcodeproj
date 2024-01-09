@@ -278,7 +278,7 @@ Defines an environment variable value.
 ## xcschemes.launch_path
 
 <pre>
-xcschemes.launch_path(<a href="#xcschemes.launch_path-path">path</a>, <a href="#xcschemes.launch_path-working_directory">working_directory</a>)
+xcschemes.launch_path(<a href="#xcschemes.launch_path-path">path</a>, <a href="#xcschemes.launch_path-post_actions">post_actions</a>, <a href="#xcschemes.launch_path-pre_actions">pre_actions</a>, <a href="#xcschemes.launch_path-working_directory">working_directory</a>)
 </pre>
 
 Defines the launch path for a pre-built executable.
@@ -289,6 +289,8 @@ Defines the launch path for a pre-built executable.
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcschemes.launch_path-path"></a>path |  Positional. The launch path for a launch target.<br><br>The path must be an absolute path to an executable file. It will be set as the runnable within a launch action.   |  none |
+| <a id="xcschemes.launch_path-post_actions"></a>post_actions |  Post-actions to run when running the launch path.<br><br>Elements of the `list` must be values returned by functions in [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).   |  `[]` |
+| <a id="xcschemes.launch_path-pre_actions"></a>pre_actions |  Pre-actions to run when running the launch path.<br><br>Elements of the `list` must be values returned by functions in [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).   |  `[]` |
 | <a id="xcschemes.launch_path-working_directory"></a>working_directory |  The working directory to use when running the launch target.<br><br>If not set, the Xcode default working directory will be used (i.e. some directory in `DerivedData`).   |  `None` |
 
 

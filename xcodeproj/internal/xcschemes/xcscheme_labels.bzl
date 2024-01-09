@@ -43,6 +43,8 @@ def _resolve_launch_target_labels(launch_target):
         return struct(
             is_path = TRUE_ARG,
             path = launch_target.path,
+            post_actions = launch_target.post_actions,
+            pre_actions = launch_target.pre_actions,
             working_directory = launch_target.working_directory,
         )
 

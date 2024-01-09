@@ -256,6 +256,7 @@ def _write_schemes(
             custom_scheme_args.add(build_target.id)
             _add_execution_actions(
                 build_target,
+                target_id = build_target.id,
                 action_name = action_name,
                 scheme_name = scheme_name,
             )
@@ -297,17 +298,17 @@ def _write_schemes(
             [action.title, action.script_text],
             map_each = _null_newlines,
         )
-        execution_actions_args.add(id)
+        execution_actions_args.add(id or "")
         execution_actions_args.add(action.order or "")
 
     # buildifier: disable=uninitialized
-    def _add_execution_actions(target, *, action_name, scheme_name):
+    def _add_execution_actions(target, *, target_id, action_name, scheme_name):
         # buildifier: disable=uninitialized
         for action in target.pre_actions:
             _add_execution_action(
                 action,
                 action_name = action_name,
-                id = target.id,
+                id = target_id,
                 is_pre_action = TRUE_ARG,
                 scheme_name = scheme_name,
             )
@@ -317,7 +318,7 @@ def _write_schemes(
             _add_execution_action(
                 action,
                 action_name = action_name,
-                id = target.id,
+                id = target_id,
                 is_pre_action = FALSE_ARG,
                 scheme_name = scheme_name,
             )
@@ -327,17 +328,21 @@ def _write_schemes(
         custom_scheme_args.add(launch_target.is_path)
 
         if launch_target.is_path == TRUE_ARG:
+            target_id = None
             custom_scheme_args.add(launch_target.path)
             custom_scheme_args.add(launch_target.working_directory)
         else:
-            custom_scheme_args.add(launch_target.id)
+            target_id = launch_target.id
+            custom_scheme_args.add(target_id)
             custom_scheme_args.add(launch_target.extension_host)
             custom_scheme_args.add(launch_target.working_directory)
-            _add_execution_actions(
-                launch_target,
-                action_name = action_name,
-                scheme_name = scheme_name,
-            )
+
+        _add_execution_actions(
+            launch_target,
+            target_id = target_id,
+            action_name = action_name,
+            scheme_name = scheme_name,
+        )
 
     custom_scheme_args.add(len(xcscheme_infos))
     for info in xcscheme_infos:
@@ -352,6 +357,7 @@ def _write_schemes(
             custom_scheme_args.add(test_target.enabled)
             _add_execution_actions(
                 test_target,
+                target_id = test_target.id,
                 action_name = _EXECUTION_ACTION_NAME.test,
                 scheme_name = scheme_name,
             )

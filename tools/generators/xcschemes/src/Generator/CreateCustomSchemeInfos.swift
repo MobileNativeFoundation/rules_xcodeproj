@@ -720,16 +720,19 @@ private extension Dictionary where
                 try rawArgs.consumeArg("target-id", as: TargetID.self, in: url)
             let order = try rawArgs.consumeArg("order", as: Int?.self, in: url)
 
+            // if target id is empty then there is no target associated with this pre/post action.
+            let target = try id.rawValue.isEmpty ? nil : targetsByID.value(
+                for: id,
+                context: "Execution action associated target ID"
+            )
+
             ret[schemeName, default: []].append(
                 .init(
                     title: title,
                     scriptText: scriptText,
                     action: action,
                     isPreAction: isPreAction,
-                    target: try targetsByID.value(
-                        for: id,
-                        context: "Execution action associated target ID"
-                    ),
+                    target: target,
                     order: order
                 )
             )

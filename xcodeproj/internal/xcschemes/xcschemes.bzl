@@ -539,6 +539,8 @@ def _test(
 def _launch_path(
         path,
         *,
+        post_actions = [],
+        pre_actions = [],
         working_directory = None):
     """Defines the launch path for a pre-built executable.
 
@@ -552,6 +554,14 @@ def _launch_path(
 
             If not set, the Xcode default working directory will be used (i.e.
             some directory in `DerivedData`).
+        post_actions: Post-actions to run when running the launch path.
+
+            Elements of the `list` must be values returned by functions in
+            [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).
+        pre_actions: Pre-actions to run when running the launch path.
+
+            Elements of the `list` must be values returned by functions in
+            [`xcschemes.pre_post_actions`](#xcschemes.pre_post_actions).
     """
 
     if not path:
@@ -562,6 +572,8 @@ def _launch_path(
     return struct(
         is_path = TRUE_ARG,
         path = path,
+        post_actions = post_actions,
+        pre_actions = pre_actions,
         working_directory = working_directory or "",
     )
 
