@@ -50,6 +50,8 @@ def _make_launch_target(
         return struct(
             is_path = TRUE_ARG,
             path = path,
+            post_actions = post_actions,
+            pre_actions = pre_actions,
             working_directory = working_directory,
         )
 
@@ -355,6 +357,12 @@ def _launch_target_info_from_dict(
         return (
             _make_launch_target(
                 path = launch_target["path"],
+                post_actions = _pre_post_action_info_from_dicts(
+                    launch_target["post_actions"],
+                ),
+                pre_actions = _pre_post_action_info_from_dicts(
+                    launch_target["pre_actions"],
+                ),
                 working_directory = launch_target["working_directory"],
             ),
             EMPTY_LIST,

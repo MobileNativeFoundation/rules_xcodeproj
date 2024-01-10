@@ -314,11 +314,57 @@ def info_constructors_test_suite(name):
     )
 
     _add_test(
-        name = "{}_make_launch_target_is_path".format(name),
+        name = "{}_make_launch_target_is_path_minimal".format(name),
 
         # Inputs
         info = xcscheme_infos_testable.make_launch_target(
             path = "/Foo/Bar.app",
+        ),
+
+        # Expected
+        expected_info = struct(
+            is_path = "1",
+            path = "/Foo/Bar.app",
+            post_actions = [],
+            pre_actions = [],
+            working_directory = "",
+        ),
+    )
+
+    _add_test(
+        name = "{}_make_launch_target_is_path_full".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_launch_target(
+            path = "/Foo/Bar.app",
+            post_actions = [
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = False,
+                    order = "",
+                    script_text = "script",
+                    title = "title",
+                ),
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = True,
+                    order = "1",
+                    script_text = "s",
+                    title = "t",
+                ),
+            ],
+            pre_actions = [
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = True,
+                    order = "2",
+                    script_text = "ss",
+                    title = "tt",
+                ),
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = False,
+                    order = "11",
+                    script_text = "sss",
+                    title = "ttt",
+                ),
+            ],
             working_directory = "/Foo",
         ),
 
@@ -326,6 +372,34 @@ def info_constructors_test_suite(name):
         expected_info = struct(
             is_path = "1",
             path = "/Foo/Bar.app",
+            post_actions = [
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = False,
+                    order = "",
+                    script_text = "script",
+                    title = "title",
+                ),
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = True,
+                    order = "1",
+                    script_text = "s",
+                    title = "t",
+                ),
+            ],
+            pre_actions = [
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = True,
+                    order = "2",
+                    script_text = "ss",
+                    title = "tt",
+                ),
+                xcscheme_infos_testable.make_pre_post_action(
+                    for_build = False,
+                    order = "11",
+                    script_text = "sss",
+                    title = "ttt",
+                ),
+            ],
             working_directory = "/Foo",
         ),
     )

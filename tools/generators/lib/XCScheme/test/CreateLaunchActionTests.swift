@@ -444,6 +444,76 @@ final class CreateLaunchActionTests: XCTestCase {
 
         XCTAssertNoDifference(action, expectedAction)
     }
+
+    func test_runnable_path_with_pre_and_postActions() {
+         // Arrange
+
+         let buildConfiguration = "Debug"
+         let runnable = Runnable.path(path: "/Foo/Bar.app")
+         let preActions: [ExecutionAction] = [
+               .init(
+                  title: "PRE_ACTION_TITLE",
+                  escapedScriptText: "PRE_ACTION_SCRIPT_TEXT",
+                  expandVariablesBasedOn: nil
+               ),
+         ]
+         let postActions: [ExecutionAction] = [
+               .init(
+                  title: "POST_ACTION_TITLE",
+                  escapedScriptText: "POST_ACTION_SCRIPT_TEXT",
+                  expandVariablesBasedOn: nil
+               ),
+         ]
+
+         let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "PRE_ACTION_TITLE"
+               scriptText = "PRE_ACTION_SCRIPT_TEXT">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "POST_ACTION_TITLE"
+               scriptText = "POST_ACTION_SCRIPT_TEXT">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Foo/Bar.app">
+      </PathRunnable>
+   </LaunchAction>
+"""#
+
+         // Act
+
+         let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            postActions: postActions,
+            preActions: preActions,
+            runnable: runnable
+         )
+
+         // Assert
+
+         XCTAssertNoDifference(action, expectedAction)
+    }
 }
 
 private func createLaunchActionWithDefaults(

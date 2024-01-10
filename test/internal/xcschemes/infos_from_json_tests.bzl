@@ -698,6 +698,93 @@ def infos_from_json_test_suite(name):
     )
 
     _add_test(
+        name = "{}_run_launch_path".format(name),
+
+        # Inputs
+        default_xcode_configuration = "AppStore",
+        json_str = json.encode([
+            {
+                "name": "A scheme",
+                "profile": None,
+                "run": struct(
+                    args = full_args,
+                    build_targets = full_build_targets,
+                    diagnostics = struct(
+                        address_sanitizer = "1",
+                        thread_sanitizer = "1",
+                        undefined_behavior_sanitizer = "1",
+                    ),
+                    env = full_env,
+                    env_include_defaults = "0",
+                    launch_target = struct(
+                        is_path = "1",
+                        path = "/path/to/App.app",
+                        post_actions = [
+                            xcscheme_infos_testable.make_pre_post_action(
+                                for_build = True,
+                                order = "",
+                                script_text = "ssss",
+                                title = "ttt",
+                            ),
+                        ],
+                        pre_actions = [
+                            xcscheme_infos_testable.make_pre_post_action(
+                                for_build = True,
+                                order = "7",
+                                script_text = "s",
+                                title = "tttt",
+                            ),
+                        ],
+                        working_directory = "wd",
+                    ),
+                    xcode_configuration = "custom",
+                ),
+                "test": None,
+            },
+        ]),
+        top_level_deps = top_level_deps,
+
+        # Expected
+        expected_infos = [
+            xcscheme_infos_testable.make_scheme(
+                name = "A scheme",
+                run = xcscheme_infos_testable.make_run(
+                    args = expected_full_args,
+                    build_targets = expected_full_build_targets,
+                    diagnostics = xcscheme_infos_testable.make_diagnostics(
+                        address_sanitizer = "1",
+                        thread_sanitizer = "1",
+                        undefined_behavior_sanitizer = "1",
+                    ),
+                    env = expected_full_env,
+                    env_include_defaults = "0",
+                    launch_target = xcscheme_infos_testable.make_launch_target(
+                        path = "/path/to/App.app",
+                        post_actions = [
+                            xcscheme_infos_testable.make_pre_post_action(
+                                for_build = True,
+                                order = "",
+                                script_text = "ssss",
+                                title = "ttt",
+                            ),
+                        ],
+                        pre_actions = [
+                            xcscheme_infos_testable.make_pre_post_action(
+                                for_build = True,
+                                order = "7",
+                                script_text = "s",
+                                title = "tttt",
+                            ),
+                        ],
+                        working_directory = "wd",
+                    ),
+                    xcode_configuration = "custom",
+                ),
+            ),
+        ],
+    )
+
+    _add_test(
         name = "{}_run_full".format(name),
 
         # Inputs

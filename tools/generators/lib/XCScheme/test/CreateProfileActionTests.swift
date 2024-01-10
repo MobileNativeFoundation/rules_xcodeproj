@@ -308,6 +308,72 @@ final class CreateProfileActionTests: XCTestCase {
 
         XCTAssertNoDifference(prefix, expectedPrefix)
     }
+
+    func test_runnable_path_with_pre_and_postActions() {
+        // Arrange
+
+        let buildConfiguration = "Debug"
+        let runnable = Runnable.path(path: "/Foo/Bar")
+          let preActions: [ExecutionAction] = [
+               .init(
+                  title: "PRE_ACTION_TITLE",
+                  escapedScriptText: "PRE_ACTION_SCRIPT_TEXT",
+                  expandVariablesBasedOn: nil
+               ),
+         ]
+         let postActions: [ExecutionAction] = [
+               .init(
+                  title: "POST_ACTION_TITLE",
+                  escapedScriptText: "POST_ACTION_SCRIPT_TEXT",
+                  expandVariablesBasedOn: nil
+               ),
+         ]
+
+        let expectedPrefix = #"""
+   <ProfileAction
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "PRE_ACTION_TITLE"
+               scriptText = "PRE_ACTION_SCRIPT_TEXT">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "POST_ACTION_TITLE"
+               scriptText = "POST_ACTION_SCRIPT_TEXT">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Foo/Bar">
+      </PathRunnable>
+   </ProfileAction>
+"""#
+
+        // Act
+
+        let prefix = createProfileActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            postActions: postActions,
+            preActions: preActions,
+            runnable: runnable
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(prefix, expectedPrefix)
+    }
 }
 
 private func createProfileActionWithDefaults(
