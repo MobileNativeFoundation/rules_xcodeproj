@@ -21,6 +21,7 @@ swift_library(
     deps = [
         "//tools/generators/lib/PBXProj",
         "//tools/lib/ToolCommon",
+        "@com_github_apple_swift_async_algorithms//:AsyncAlgorithms",
         "@com_github_apple_swift_argument_parser//:ArgumentParser",
         "@com_github_apple_swift_collections//:OrderedCollections",
     ],
