@@ -6,40 +6,13 @@ extension Generator {
     /// - Precondition: No element of `paths` is a duplicate. If `paths` wasn't
     ///   an `AsyncSequence` it would be a `Set`.
     static func calculatePathTree(
-        paths: AsyncChain2Sequence<AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>, AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>>
+        filePaths: AsyncLineSequence<URL.AsyncBytes>,
+        folderPaths: AsyncLineSequence<URL.AsyncBytes>
     ) async throws -> PathTreeNode {
-        var nodesByComponentCount = try await withThrowingTaskGroup(
-            of: [PathTreeNodeToVisit].self,
-            returning: [Int: [PathTreeNodeToVisit]].self
-        ) { group in
-            // We chunk because the amount of work for each task is pretty
-            // small, and we lose efficiency jumping between threads. We still
-            // get some concurrency this way though (~35% faster).
-            for try await chunk in paths.chunks(ofCount: 1024) {
-                group.addTask {
-                    return chunk.map { path in
-                        return PathTreeNodeToVisit(
-                            components:
-                                ArraySlice(path.path.split(separator: "/")),
-                            isFolder: path.isFolder,
-                            children: []
-                        )
-                    }
-                }
-            }
-
-            var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
-            for try await nodesToVisit in group {
-                for nodeToVisit in nodesToVisit {
-                    nodesByComponentCount[
-                        nodeToVisit.components.count,
-                        default: []
-                    ].append(nodeToVisit)
-                }
-            }
-
-            return nodesByComponentCount
-        }
+        var nodesByComponentCount = try await processPaths(
+            filePaths: filePaths,
+            folderPaths: folderPaths
+        )
 
         guard !nodesByComponentCount.isEmpty else {
             return PathTreeNode(name: "")
@@ -168,5 +141,52 @@ private class PathTreeNodeToVisit {
         self.components = components
         self.isFolder = isFolder
         self.children = children
+    }
+}
+
+private func processPaths(
+    filePaths: AsyncLineSequence<URL.AsyncBytes>,
+    folderPaths: AsyncLineSequence<URL.AsyncBytes>
+) async throws -> [Int: [PathTreeNodeToVisit]] {
+    return try await withThrowingTaskGroup(
+        of: [PathTreeNodeToVisit].self,
+        returning: [Int: [PathTreeNodeToVisit]].self
+    ) { group in
+        try await processPaths(in: &group, paths: filePaths, isFolder: false)
+        try await processPaths(in: &group, paths: folderPaths, isFolder: true)
+
+        var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
+        for try await nodesToVisit in group {
+            for nodeToVisit in nodesToVisit {
+                nodesByComponentCount[
+                    nodeToVisit.components.count,
+                    default: []
+                ].append(nodeToVisit)
+            }
+        }
+
+        return nodesByComponentCount
+    }
+}
+
+private func processPaths(
+    in group: inout ThrowingTaskGroup<[PathTreeNodeToVisit], Error>,
+    paths: AsyncLineSequence<URL.AsyncBytes>,
+    isFolder: Bool
+) async throws {
+    // We chunk because the amount of work for each task is pretty
+    // small, and we lose efficiency jumping between threads. We still
+    // get some concurrency this way though (~35% faster).
+    for try await chunk in paths.chunks(ofCount: 1024) {
+        group.addTask {
+            return chunk.map { path in
+                return PathTreeNodeToVisit(
+                    components:
+                        ArraySlice(path.split(separator: "/")),
+                    isFolder: isFolder,
+                    children: []
+                )
+            }
+        }
     }
 }

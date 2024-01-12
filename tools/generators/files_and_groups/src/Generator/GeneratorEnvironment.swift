@@ -12,7 +12,8 @@ extension Generator {
         let calculateTargetFilesPartial: CalculateTargetFilesPartial
 
         let calculatePathTree: (
-            _ paths: AsyncChain2Sequence<AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>, AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>>
+            _ filePaths: AsyncLineSequence<URL.AsyncBytes>,
+            _ folderPaths: AsyncLineSequence<URL.AsyncBytes>
         ) async throws -> PathTreeNode
 
         let createTargetFileObjects: CreateTargetFileObjects
