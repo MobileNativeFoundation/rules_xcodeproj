@@ -44,7 +44,12 @@ extension Generator.CalculateTargetFilesPartial {
         }
 
         return #"""
-\#(buildFiles.map { "\t\t\($0.identifier) = \($0.content);\n" }.joined())\#
+\#(
+    buildFiles
+        .sorted { $0.identifier < $1.identifier }
+        .map { "\t\t\($0.identifier) = \($0.content);\n" }
+        .joined()
+)\#
 		\#(Identifiers.FilesAndGroups.productsGroup) = {
 			isa = PBXGroup;
 			children = (
