@@ -74,20 +74,36 @@ extension StringProtocol {
         replacingOccurrences(of: "\0", with: "\n")
     }
 
+    public var needsPBXProjEscaping: Bool {
+        guard !isEmpty else {
+            return true
+        }
+
+        if rangeOfCharacter(from: invalidCharacters) == nil {
+            if rangeOfCharacter(from: specialCheckCharacters) == nil {
+                return false
+            } else if !contains("//") && !contains("___") {
+                return false
+            }
+        }
+
+        return true
+    }
+
     /// Copied from https://github.com/tuist/XcodeProj/blob/f570155209af12643309ac4e758b875c63dcbf50/Sources/XcodeProj/Utils/CommentedString.swift#L21-L69
     public var pbxProjEscaped: Self {
         guard !isEmpty else {
             return "\"\""
         }
 
-        if rangeOfCharacter(from: invalidCharacters) == nil {
-            if rangeOfCharacter(from: specialCheckCharacters) == nil {
-                return self
-            } else if !contains("//") && !contains("___") {
-                return self
-            }
+        guard needsPBXProjEscaping else {
+            return self
         }
 
+        return pbxProjEscapedWithoutCheck
+    }
+
+    public var pbxProjEscapedWithoutCheck: Self {
         let escaped = reduce(into: "") { escaped, character in
             // As an optimization, only look at the first scalar. This means
             // we're doing a numeric comparison instead of comparing

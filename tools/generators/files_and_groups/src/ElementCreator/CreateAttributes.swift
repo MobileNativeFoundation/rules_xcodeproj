@@ -3,7 +3,9 @@ import PBXProj
 struct ElementAttributes {
     let sourceTree: SourceTree
     let name: String?
+    let pbxProjEscapedName: String?
     let path: String
+    let pbxProjEscapedPath: String
 }
 
 extension ElementCreator {
@@ -53,6 +55,8 @@ extension ElementCreator {
         /// - Parameters:
         ///   - name: This element's `node.name`.
         ///   - bazelPath: The `BazelPath` for the node.
+        ///   - nameNeedsPBXProjEscaping: This element's
+        ///     `node.nameNeedsPBXProjEscaping`.
         ///   - isGroup: `true` if this a group element (e.g. `PBXGroup`,
         ///     `XCVersionGroup`, etc.).
         ///   - specialRootGroupType: The `SpecialRootGroupType` this element is
@@ -62,6 +66,7 @@ extension ElementCreator {
         ///     will be `nil`.
         func callAsFunction(
             name: String,
+            nameNeedsPBXProjEscaping: Bool,
             bazelPath: BazelPath,
             isGroup: Bool,
             specialRootGroupType: SpecialRootGroupType?
@@ -71,6 +76,7 @@ extension ElementCreator {
         ) {
             return callable(
                 /*name:*/ name,
+                /*nameNeedsPBXProjEscaping:*/ nameNeedsPBXProjEscaping,
                 /*bazelPath:*/ bazelPath,
                 /*isGroup:*/ isGroup,
                 /*specialRootGroupType:*/ specialRootGroupType,
@@ -88,6 +94,7 @@ extension ElementCreator {
 extension ElementCreator.CreateAttributes {
     typealias Callable = (
         _ name: String,
+        _ nameNeedsPBXProjEscaping: Bool,
         _ bazelPath: BazelPath,
         _ isGroup: Bool,
         _ specialRootGroupType: SpecialRootGroupType?,
@@ -102,6 +109,7 @@ extension ElementCreator.CreateAttributes {
 
     static func defaultCallable(
         name: String,
+        nameNeedsPBXProjEscaping: Bool,
         bazelPath: BazelPath,
         isGroup: Bool,
         specialRootGroupType: SpecialRootGroupType?,
@@ -140,12 +148,21 @@ extension ElementCreator.CreateAttributes {
             resolvedRepositoryPrefix = nil
         }
 
+        let pbxProjEscapedName: String
+        if nameNeedsPBXProjEscaping {
+            pbxProjEscapedName = name.pbxProjEscapedWithoutCheck
+        } else {
+            pbxProjEscapedName = name
+        }
+
         guard let symlinkDest = resolveSymlink(absolutePath) else {
             return (
                 elementAttributes: ElementAttributes(
                     sourceTree: .group,
                     name: nil,
-                    path: name
+                    pbxProjEscapedName: nil,
+                    path: name,
+                    pbxProjEscapedPath: pbxProjEscapedName
                 ),
                 resolvedRepository: nil
             )
@@ -165,7 +182,9 @@ extension ElementCreator.CreateAttributes {
             elementAttributes: ElementAttributes(
                 sourceTree: .absolute,
                 name: name,
-                path: symlinkDest
+                pbxProjEscapedName: pbxProjEscapedName,
+                path: symlinkDest,
+                pbxProjEscapedPath: symlinkDest.pbxProjEscaped
             ),
             resolvedRepository: resolvedRepository
         )

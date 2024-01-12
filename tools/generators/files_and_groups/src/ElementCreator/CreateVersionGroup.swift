@@ -101,6 +101,7 @@ extension ElementCreator.CreateVersionGroup {
             resolvedRepository
         ) = createVersionGroupElement(
             name: name,
+            nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType,
             identifier: identifier,

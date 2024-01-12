@@ -24,6 +24,7 @@ extension ElementCreator {
         /// Creates a `PBXFileReference` element.
         func callAsFunction(
             name: String,
+            nameNeedsPBXProjEscaping: Bool,
             ext: String?,
             bazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?
@@ -33,6 +34,7 @@ extension ElementCreator {
         ) {
             return callable(
                 /*name:*/ name,
+                /*nameNeedsPBXProjEscaping:*/ nameNeedsPBXProjEscaping,
                 /*ext:*/ ext,
                 /*bazelPath:*/ bazelPath,
                 /*specialRootGroupType:*/ specialRootGroupType,
@@ -56,6 +58,7 @@ extension ElementCreator.CreateFileElement {
 
     typealias Callable = (
         _ name: String,
+        _ nameNeedsPBXProjEscaping: Bool,
         _ ext: String?,
         _ bazelPath: BazelPath,
         _ specialRootGroupType: SpecialRootGroupType?,
@@ -68,6 +71,7 @@ extension ElementCreator.CreateFileElement {
 
     static func defaultCallable(
         name: String,
+        nameNeedsPBXProjEscaping: Bool,
         ext: String?,
         bazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
@@ -103,16 +107,17 @@ extension ElementCreator.CreateFileElement {
 
         let attributes = createAttributes(
             name: name,
+            nameNeedsPBXProjEscaping: nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             isGroup: false,
             specialRootGroupType: specialRootGroupType
         )
 
-        let maybeName: String
-        if let name = attributes.elementAttributes.name {
-            maybeName = "name = \(name.pbxProjEscaped); "
+        let nameAttribute: String
+        if let name = attributes.elementAttributes.pbxProjEscapedName {
+            nameAttribute = "name = \(name); "
         } else {
-            maybeName = ""
+            nameAttribute = ""
         }
 
             // TODO: Find a way to have this be escaped ahead of time. If we
@@ -121,8 +126,8 @@ extension ElementCreator.CreateFileElement {
         let content = """
 {isa = PBXFileReference; \
 \(fileTypeType) = \(fileType); \
-\(maybeName)\
-path = \(attributes.elementAttributes.path.pbxProjEscaped); \
+\(nameAttribute)\
+path = \(attributes.elementAttributes.pbxProjEscapedPath); \
 sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
 """
 

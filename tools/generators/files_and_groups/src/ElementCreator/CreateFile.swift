@@ -64,6 +64,7 @@ extension ElementCreator.CreateFile {
             resolvedRepository
         ) = createFileElement(
             name: node.name,
+            nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
             ext: node.extension(),
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType

@@ -21,13 +21,17 @@ extension ElementCreator {
         /// Creates a localized `PBXFileReference` element.
         func callAsFunction(
             name: String,
+            nameNeedsPBXProjEscaping: Bool,
             path: String,
+            pathNeedsPBXProjEscaping: Bool,
             ext: String?,
             bazelPath: BazelPath
         ) -> Element {
             return callable(
                 /*name:*/ name,
+                /*nameNeedsPBXProjEscaping:*/ nameNeedsPBXProjEscaping,
                 /*path:*/ path,
+                /*pathNeedsPBXProjEscaping:*/ pathNeedsPBXProjEscaping,
                 /*ext:*/ ext,
                 /*bazelPath:*/ bazelPath,
                 /*createIdentifier:*/ createIdentifier
@@ -41,7 +45,9 @@ extension ElementCreator {
 extension ElementCreator.CreateLocalizedFileElement {
     typealias Callable = (
         _ name: String,
+        _ nameNeedsPBXProjEscaping: Bool,
         _ path: String,
+        _ pathNeedsPBXProjEscaping: Bool,
         _ ext: String?,
         _ bazelPath: BazelPath,
         _ createIdentifier: ElementCreator.CreateIdentifier
@@ -49,7 +55,9 @@ extension ElementCreator.CreateLocalizedFileElement {
 
     static func defaultCallable(
         name: String,
+        nameNeedsPBXProjEscaping: Bool,
         path: String,
+        pathNeedsPBXProjEscaping: Bool,
         ext: String?,
         bazelPath: BazelPath,
         createIdentifier: ElementCreator.CreateIdentifier
@@ -77,8 +85,8 @@ extension ElementCreator.CreateLocalizedFileElement {
         let content = """
 {isa = PBXFileReference; \
 \(fileTypeType) = \(fileType); \
-name = \(name.pbxProjEscaped); \
-path = \(path.pbxProjEscaped); \
+name = \(nameNeedsPBXProjEscaping ? name.pbxProjEscapedWithoutCheck : name); \
+path = \(pathNeedsPBXProjEscaping ? path.pbxProjEscapedWithoutCheck : path); \
 sourceTree = "<group>"; }
 """
 

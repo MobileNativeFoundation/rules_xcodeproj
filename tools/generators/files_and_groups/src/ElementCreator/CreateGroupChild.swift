@@ -89,7 +89,8 @@ extension ElementCreator.CreateGroupChild {
                     for: node,
                     parentBazelPath: parentBazelPath,
                     specialRootGroupType: specialRootGroupType,
-                    region: basenameWithoutExt
+                    region: basenameWithoutExt,
+                    regionNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping
                 )
             )
 

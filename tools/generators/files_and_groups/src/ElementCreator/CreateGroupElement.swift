@@ -24,6 +24,7 @@ extension ElementCreator {
         /// Creates a `PBXGroup` element.
         func callAsFunction(
             name: String,
+            nameNeedsPBXProjEscaping: Bool,
             bazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
             childIdentifiers: [String]
@@ -33,6 +34,7 @@ extension ElementCreator {
         ) {
             return callable(
                 /*name:*/ name,
+                /*nameNeedsPBXProjEscaping:*/ nameNeedsPBXProjEscaping,
                 /*bazelPath:*/ bazelPath,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*childIdentifiers:*/ childIdentifiers,
@@ -48,6 +50,7 @@ extension ElementCreator {
 extension ElementCreator.CreateGroupElement {
     typealias Callable = (
         _ name: String,
+        _ nameNeedsPBXProjEscaping: Bool,
         _ bazelPath: BazelPath,
         _ specialRootGroupType: SpecialRootGroupType?,
         _ childIdentifiers: [String],
@@ -60,6 +63,7 @@ extension ElementCreator.CreateGroupElement {
 
     static func defaultCallable(
         name: String,
+        nameNeedsPBXProjEscaping: Bool,
         bazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
         childIdentifiers: [String],
@@ -71,25 +75,21 @@ extension ElementCreator.CreateGroupElement {
     ) {
         let attributes = createAttributes(
             name: name,
+            nameNeedsPBXProjEscaping: nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             isGroup: true,
             specialRootGroupType: specialRootGroupType
         )
 
         let nameAttribute: String
-        if let name = attributes.elementAttributes.name {
+        if let name = attributes.elementAttributes.pbxProjEscapedName {
             nameAttribute = #"""
-			name = \#(name.pbxProjEscaped);
+			name = \#(name);
 
 """#
         } else {
             nameAttribute = ""
         }
-
-        // TODO: Find a way to have attributes.elementAttributes.path be escaped
-        // ahead of time. If we know that any node name needs to be escaped, we
-        // can escape the full path. Should be faster to check each component
-        // once. Can apply to `name` above as well.
 
         // The tabs for indenting are intentional
         let content = #"""
@@ -99,7 +99,7 @@ extension ElementCreator.CreateGroupElement {
 \#(childIdentifiers.map { "\t\t\t\t\($0),\n" }.joined())\#
 			);
 \#(nameAttribute)\#
-			path = \#(attributes.elementAttributes.path.pbxProjEscaped);
+			path = \#(attributes.elementAttributes.pbxProjEscapedPath);
 			sourceTree = \#(attributes.elementAttributes.sourceTree.rawValue);
 		}
 """#

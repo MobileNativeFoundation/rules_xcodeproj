@@ -20,6 +20,7 @@ extension ElementCreator {
         /// Creates an `XCVersionGroup` element.
         func callAsFunction(
             name: String,
+            nameNeedsPBXProjEscaping: Bool,
             bazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
             identifier: String,
@@ -31,6 +32,7 @@ extension ElementCreator {
         ) {
             return callable(
                 /*name:*/ name,
+                /*nameNeedsPBXProjEscaping:*/ nameNeedsPBXProjEscaping,
                 /*bazelPath:*/ bazelPath,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*identifier:*/ identifier,
@@ -47,6 +49,7 @@ extension ElementCreator {
 extension ElementCreator.CreateVersionGroupElement {
     typealias Callable = (
         _ name: String,
+        _ nameNeedsPBXProjEscaping: Bool,
         _ bazelPath: BazelPath,
         _ specialRootGroupType: SpecialRootGroupType?,
         _ identifier: String,
@@ -60,6 +63,7 @@ extension ElementCreator.CreateVersionGroupElement {
 
     static func defaultCallable(
         name: String,
+        nameNeedsPBXProjEscaping: Bool,
         bazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
         identifier: String,
@@ -72,15 +76,16 @@ extension ElementCreator.CreateVersionGroupElement {
     ) {
         let attributes = createAttributes(
             name: name,
+            nameNeedsPBXProjEscaping: nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             isGroup: true,
             specialRootGroupType: specialRootGroupType
         )
 
         let nameAttribute: String
-        if let name = attributes.elementAttributes.name {
+        if let name = attributes.elementAttributes.pbxProjEscapedName {
             nameAttribute = #"""
-			name = \#(name.pbxProjEscaped);
+			name = \#(name);
 
 """#
         } else {
@@ -97,11 +102,6 @@ extension ElementCreator.CreateVersionGroupElement {
             currentVersionAttribute = ""
         }
 
-        // TODO: Find a way to have attributes.elementAttributes.path be escaped
-        // ahead of time. If we know that any node name needs to be escaped, we
-        // can escape the full path. Should be faster to check each component
-        // once. Can apply to `name` above as well.
-
         // The tabs for indenting are intentional
         let content = #"""
 {
@@ -111,7 +111,7 @@ extension ElementCreator.CreateVersionGroupElement {
 			);
 \#(currentVersionAttribute)\#
 \#(nameAttribute)\#
-			path = \#(attributes.elementAttributes.path.pbxProjEscaped);
+			path = \#(attributes.elementAttributes.pbxProjEscapedPath);
 			sourceTree = \#(attributes.elementAttributes.sourceTree.rawValue);
 			versionGroupType = wrapper.xcdatamodel;
 		}

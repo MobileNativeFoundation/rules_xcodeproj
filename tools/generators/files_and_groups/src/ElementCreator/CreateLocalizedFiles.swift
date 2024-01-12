@@ -25,13 +25,15 @@ extension ElementCreator {
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
-            region: String
+            region: String,
+            regionNeedsPBXProjEscaping: Bool
         ) -> [GroupChild.LocalizedFile] {
             return callable(
                 /*node:*/ node,
                 /*parentBazelPath:*/ parentBazelPath,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*region:*/ region,
+                /*regionNeedsPBXProjEscaping:*/ regionNeedsPBXProjEscaping,
                 /*collectBazelPaths:*/ collectBazelPaths,
                 /*createLocalizedFileElement:*/ createLocalizedFileElement
             )
@@ -47,6 +49,7 @@ extension ElementCreator.CreateLocalizedFiles {
         _ parentBazelPath: BazelPath,
         _ specialRootGroupType: SpecialRootGroupType?,
         _ region: String,
+        _ regionNeedsPBXProjEscaping: Bool,
         _ collectBazelPaths: ElementCreator.CollectBazelPaths,
         _ createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
     ) -> [GroupChild.LocalizedFile]
@@ -56,11 +59,13 @@ extension ElementCreator.CreateLocalizedFiles {
         parentBazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
         region: String,
+        regionNeedsPBXProjEscaping: Bool,
         collectBazelPaths: ElementCreator.CollectBazelPaths,
         createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
     ) -> [GroupChild.LocalizedFile] {
         let bazelPath = parentBazelPath + node
         let lprojPrefix = node.name
+        let lprojPrefixNeedsPBXProjEscaping = node.nameNeedsPBXProjEscaping
 
         let files =  node.children.map { node in
             let childBazelPath = bazelPath + node
@@ -74,7 +79,10 @@ extension ElementCreator.CreateLocalizedFiles {
 
             let element = createLocalizedFileElement(
                 name: region,
+                nameNeedsPBXProjEscaping: regionNeedsPBXProjEscaping,
                 path: "\(lprojPrefix)/\(node.name)",
+                pathNeedsPBXProjEscaping: lprojPrefixNeedsPBXProjEscaping ||
+                    node.nameNeedsPBXProjEscaping,
                 ext: ext,
                 bazelPath: childBazelPath
             )

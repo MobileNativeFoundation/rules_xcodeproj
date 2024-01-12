@@ -19,7 +19,8 @@ extension Generator {
                 group.addTask {
                     return chunk.map { path in
                         return PathTreeNodeToVisit(
-                            components: path.path.split(separator: "/"),
+                            components:
+                                ArraySlice(path.path.split(separator: "/")),
                             isFolder: path.isFolder,
                             children: []
                         )
@@ -83,7 +84,7 @@ extension Generator {
                 if parentComponents != collectingParentComponents {
                     nodesForNextComponentCount.append(
                         PathTreeNodeToVisit(
-                            components: Array(collectingParentComponents),
+                            components: collectingParentComponents,
                             children: collectingParentChildren
                         )
                     )
@@ -94,7 +95,8 @@ extension Generator {
 
                 collectingParentChildren.append(
                     PathTreeNode(
-                        name: String(node.components.last!),
+                        name: node.name,
+                        nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
                         isFolder: node.isFolder,
                         children: node.children
                     )
@@ -112,7 +114,7 @@ extension Generator {
             // Last node
             nodesForNextComponentCount.append(
                 PathTreeNodeToVisit(
-                    components: Array(collectingParentComponents),
+                    components: collectingParentComponents,
                     children: collectingParentChildren
                 )
             )
@@ -129,30 +131,40 @@ extension Generator {
 
 class PathTreeNode {
     let name: String
+    let nameNeedsPBXProjEscaping: Bool
+//    let pathNeedsPBXProjEscaping: Bool
     let isFolder: Bool
     let children: [PathTreeNode]
 
     init(
         name: String,
+        nameNeedsPBXProjEscaping: Bool = false,
         isFolder: Bool = false,
         children: [PathTreeNode] = []
     ) {
         self.name = name
+        self.nameNeedsPBXProjEscaping = nameNeedsPBXProjEscaping
+//        self.pathNeedsPBXProjEscaping = nameNeedsPBXProjEscaping ||
+//            children.contains { $0.pathNeedsPBXProjEscaping }
         self.isFolder = isFolder
         self.children = children
     }
 }
 
 private class PathTreeNodeToVisit {
-    let components: [String.SubSequence]
+    let name: String
+    let nameNeedsPBXProjEscaping: Bool
+    let components: ArraySlice<String.SubSequence>
     let isFolder: Bool
     let children: [PathTreeNode]
 
     init(
-        components: [String.SubSequence],
+        components: ArraySlice<String.SubSequence>,
         isFolder: Bool = false,
         children: [PathTreeNode]
     ) {
+        self.name = String(components.last!)
+        self.nameNeedsPBXProjEscaping = name.needsPBXProjEscaping
         self.components = components
         self.isFolder = isFolder
         self.children = children

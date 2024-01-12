@@ -82,6 +82,7 @@ extension ElementCreator.CreateGroup {
             resolvedRepository
         ) = createGroupElement(
             name: name,
+            nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType,
             childIdentifiers: children.elements.map(\.object.identifier)
