@@ -97,6 +97,11 @@ extension ElementCreator.CreateVersionGroupElement {
             currentVersionAttribute = ""
         }
 
+        // TODO: Find a way to have attributes.elementAttributes.path be escaped
+        // ahead of time. If we know that any node name needs to be escaped, we
+        // can escape the full path. Should be faster to check each component
+        // once. Can apply to `name` above as well.
+
         // The tabs for indenting are intentional
         let content = #"""
 {

@@ -121,6 +121,9 @@ extension ElementCreator.CreateFileElement {
             contentComponents.append("name = \(name.pbxProjEscaped);")
         }
         contentComponents.append(
+            // TODO: Find a way to have this be escaped ahead of time. If we
+            // know that any node name needs to be escaped, we can escape the
+            // full path. Should be faster to check each component once.
             "path = \(attributes.elementAttributes.path.pbxProjEscaped);"
         )
         contentComponents.append(
