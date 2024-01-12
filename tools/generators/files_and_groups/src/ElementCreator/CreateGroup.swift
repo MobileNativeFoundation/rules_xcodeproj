@@ -198,6 +198,8 @@ extension ElementCreator.ConcurrentlyCreateGroup {
                 }
             }
 
+            // We don't need to sort because `CreateGroupChildElements` will
+            // sort for us
             return await Array(group)
         }
 

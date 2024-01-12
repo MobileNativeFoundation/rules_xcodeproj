@@ -162,6 +162,8 @@ extension ElementCreator.CreateRootElements {
                 }
             }
 
+            // We don't need to sort because `CreateGroupChildElements` will
+            // sort for us
             var groupChildren = await Array(group)
 
             if includeCompileStub {
