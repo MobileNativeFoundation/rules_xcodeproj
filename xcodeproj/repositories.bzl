@@ -368,6 +368,9 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 swift_library(
     name = "Collections",
     srcs = glob(["Sources/Collections/**/*.swift"]),
+    deps = [
+        "@com_github_apple_swift_collections//:DequeModule",
+    ],
     visibility = ["//visibility:public"],
 )
 
