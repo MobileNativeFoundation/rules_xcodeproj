@@ -1,3 +1,4 @@
+import AsyncAlgorithms
 import Foundation
 import PBXProj
 import ToolCommon
@@ -10,7 +11,9 @@ extension Generator {
     struct Environment {
         let calculateTargetFilesPartial: CalculateTargetFilesPartial
 
-        let calculatePathTree: (_ paths: Set<BazelPath>) -> PathTreeNode
+        let calculatePathTree: (
+            _ paths: AsyncChain2Sequence<AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>, AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>>
+        ) async throws -> PathTreeNode
 
         let createTargetFileObjects: CreateTargetFileObjects
 

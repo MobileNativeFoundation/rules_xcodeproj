@@ -1,13 +1,15 @@
+import AsyncAlgorithms
+import Foundation
 import PBXProj
 
 extension Generator {
-    static func calculatePathTree(paths: Set<BazelPath>) -> PathTreeNode {
-        guard !paths.isEmpty else {
-            return PathTreeNode(name: "")
-        }
-
+    /// - Precondition: No element of `paths` is a duplicate. If `paths` wasn't
+    ///   an `AsyncSequence` it would be a `Set`.
+    static func calculatePathTree(
+        paths: AsyncChain2Sequence<AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>, AsyncMapSequence<AsyncLineSequence<URL.AsyncBytes>, BazelPath>>
+    ) async throws -> PathTreeNode {
         var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
-        for path in paths {
+        for try await path in paths {
             let components = path.path.split(separator: "/")
             nodesByComponentCount[components.count, default: []]
                 .append(PathTreeNodeToVisit(
@@ -15,6 +17,10 @@ extension Generator {
                     isFolder: path.isFolder,
                     children: []
                 ))
+        }
+
+        guard !nodesByComponentCount.isEmpty else {
+            return PathTreeNode(name: "")
         }
 
         for componentCount in (1...nodesByComponentCount.keys.max()!)

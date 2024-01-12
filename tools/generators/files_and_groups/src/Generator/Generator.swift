@@ -1,3 +1,4 @@
+import AsyncAlgorithms
 import Foundation
 import PBXProj
 
@@ -20,8 +21,8 @@ struct Generator {
     /// Then it writes them to disk.
     func generate(arguments: Arguments) async throws {
         let pathTree = try await environment.calculatePathTree(
-            /*paths:*/ Set(
-                environment.readFilePathsFile(arguments.filePathsFile) +
+            /*paths:*/ chain(
+                environment.readFilePathsFile(arguments.filePathsFile),
                 environment.readFolderPathsFile(arguments.folderPathsFile)
             )
         )
