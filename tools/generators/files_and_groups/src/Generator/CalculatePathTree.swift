@@ -21,21 +21,24 @@ extension Generator {
         for componentCount in (1...nodesByComponentCount.keys.max()!)
             .reversed()
         {
-            let nodes = nodesByComponentCount
+            var nodesToVisit = nodesByComponentCount
                 .removeValue(forKey: componentCount)!
 
-            let sortedNodes = nodes.sorted { lhs, rhs in
+            // We sort here instead of ahead of time because we end up looking
+            // at fewer nodes this way. This is because we prune down as we go
+            // down the levels.
+            nodesToVisit.sort { lhs, rhs in
                 // Already bucketed to have the same component count, so we
                 // don't sort on count first
 
                 for i in lhs.components.indices {
-                   let lhsComponent = lhs.components[i]
-                   let rhsComponent = rhs.components[i]
-                   guard lhsComponent == rhsComponent else {
-                       // We properly sort in `CreateGroupChildElements`, so we
-                       // do a simple version here
-                       return lhsComponent < rhsComponent
-                   }
+                    // We properly sort in `CreateGroupChildElements`, so we
+                    // do a simple version here
+                    let lhsComponent = lhs.components[i]
+                    let rhsComponent = rhs.components[i]
+                    guard lhsComponent == rhsComponent else {
+                        return lhsComponent < rhsComponent
+                    }
                 }
 
                 guard lhs.isFolder == rhs.isFolder else {
@@ -47,12 +50,12 @@ extension Generator {
 
             // Create parent nodes
 
-            let firstNode = sortedNodes[0]
+            let firstNode = nodesToVisit[0]
             var collectingParentComponents = firstNode.components.dropLast(1)
             var collectingParentChildren: [PathTreeNode] = []
             var nodesForNextComponentCount: [PathTreeNodeToVisit] = []
 
-            for node in sortedNodes {
+            for node in nodesToVisit {
                 let parentComponents = node.components.dropLast(1)
                 if parentComponents != collectingParentComponents {
                     nodesForNextComponentCount.append(
@@ -105,7 +108,6 @@ extension Generator {
 class PathTreeNode {
     let name: String
     let nameNeedsPBXProjEscaping: Bool
-//    let pathNeedsPBXProjEscaping: Bool
     let isFolder: Bool
     let children: [PathTreeNode]
 
@@ -117,8 +119,6 @@ class PathTreeNode {
     ) {
         self.name = name
         self.nameNeedsPBXProjEscaping = nameNeedsPBXProjEscaping
-//        self.pathNeedsPBXProjEscaping = nameNeedsPBXProjEscaping ||
-//            children.contains { $0.pathNeedsPBXProjEscaping }
         self.isFolder = isFolder
         self.children = children
     }
