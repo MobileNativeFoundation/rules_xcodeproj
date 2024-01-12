@@ -54,30 +54,19 @@ extension ElementCreator.CreateLocalizedFileElement {
         bazelPath: BazelPath,
         createIdentifier: ElementCreator.CreateIdentifier
     ) -> Element {
-        let lastKnownFileType = ext
-            .flatMap { Xcode.pbxProjEscapedFileType(extension: $0) } ?? "file"
-
-        let explicitFileType: String?
+        let fileType: String
+        let fileTypeType: String
         if name == "BUILD" {
-            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "bazel")
+            fileTypeType = "explicitFileType"
+            fileType = Xcode.pbxProjEscapedFileType(extension: "bazel")!
         } else if name == "Podfile" {
-            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "rb")
+            fileTypeType = "explicitFileType"
+            fileType = Xcode.pbxProjEscapedFileType(extension: "rb")!
         } else {
-            explicitFileType = nil
-        }
-
-        var contentComponents = [
-            "{isa = PBXFileReference;",
-        ]
-
-        if let explicitFileType {
-            contentComponents.append(
-                "explicitFileType = \(explicitFileType);"
-            )
-        } else {
-            contentComponents.append(
-                "lastKnownFileType = \(lastKnownFileType);"
-            )
+            fileTypeType = "lastKnownFileType"
+            fileType = ext
+                .flatMap { Xcode.pbxProjEscapedFileType(extension: $0) } ??
+                "file"
         }
 
         // TODO: Find a way to have path be escaped ahead of time. If we know
@@ -85,11 +74,13 @@ extension ElementCreator.CreateLocalizedFileElement {
         // Should be faster to check each component once. Can apply to `name` as
         // well.
 
-        contentComponents.append("""
+        let content = """
+{isa = PBXFileReference; \
+\(fileTypeType) = \(fileType); \
 name = \(name.pbxProjEscaped); \
 path = \(path.pbxProjEscaped); \
 sourceTree = "<group>"; }
-""")
+"""
 
         return .init(
             name: name,
@@ -99,7 +90,7 @@ sourceTree = "<group>"; }
                     name: name,
                     type: .localized
                 ),
-                content: contentComponents.joined(separator: " ")
+                content: content
             ),
             sortOrder: .fileLike
         )

@@ -88,27 +88,17 @@ extension ElementCreator.CreateFileElement {
             sortOrder = .fileLike
         }
 
-        let explicitFileType: String?
+        let fileType: String
+        let fileTypeType: String
         if name == "BUILD" {
-            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "bazel")
+            fileTypeType = "explicitFileType"
+            fileType = Xcode.pbxProjEscapedFileType(extension: "bazel")!
         } else if name == "Podfile" {
-            explicitFileType = Xcode.pbxProjEscapedFileType(extension: "rb")
+            fileTypeType = "explicitFileType"
+            fileType = Xcode.pbxProjEscapedFileType(extension: "rb")!
         } else {
-            explicitFileType = nil
-        }
-
-        var contentComponents = [
-            "{isa = PBXFileReference;",
-        ]
-
-        if let explicitFileType {
-            contentComponents.append(
-                "explicitFileType = \(explicitFileType);"
-            )
-        } else {
-            contentComponents.append(
-                "lastKnownFileType = \(lastKnownFileType);"
-            )
+            fileTypeType = "lastKnownFileType"
+            fileType = lastKnownFileType
         }
 
         let attributes = createAttributes(
@@ -117,20 +107,24 @@ extension ElementCreator.CreateFileElement {
             isGroup: false,
             specialRootGroupType: specialRootGroupType
         )
+
+        let maybeName: String
         if let name = attributes.elementAttributes.name {
-            contentComponents.append("name = \(name.pbxProjEscaped);")
+            maybeName = "name = \(name.pbxProjEscaped); "
+        } else {
+            maybeName = ""
         }
-        contentComponents.append(
+
             // TODO: Find a way to have this be escaped ahead of time. If we
             // know that any node name needs to be escaped, we can escape the
             // full path. Should be faster to check each component once.
-            "path = \(attributes.elementAttributes.path.pbxProjEscaped);"
-        )
-        contentComponents.append(
-            """
+        let content = """
+{isa = PBXFileReference; \
+\(fileTypeType) = \(fileType); \
+\(maybeName)\
+path = \(attributes.elementAttributes.path.pbxProjEscaped); \
 sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
 """
-        )
 
         return (
             element: .init(
@@ -142,7 +136,7 @@ sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
                             attributes.elementAttributes.path,
                         type: .fileReference
                     ),
-                    content: contentComponents.joined(separator: " ")
+                    content: content
                 ),
                 sortOrder: sortOrder
             ),
