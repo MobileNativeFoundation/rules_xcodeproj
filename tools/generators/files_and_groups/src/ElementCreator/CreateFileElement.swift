@@ -3,7 +3,7 @@ import PBXProj
 extension ElementCreator {
     struct CreateFileElement {
         private let createAttributes: CreateAttributes
-        private let createIdentifier: CreateIdentifier
+//        private let createIdentifier: CreateIdentifier
 
         private let callable: Callable
 
@@ -12,11 +12,11 @@ extension ElementCreator {
         ///     `callAsFunction()`.
         init(
             createAttributes: CreateAttributes,
-            createIdentifier: CreateIdentifier,
+//            createIdentifier: CreateIdentifier,
             callable: @escaping Callable
         ) {
             self.createAttributes = createAttributes
-            self.createIdentifier = createIdentifier
+//            self.createIdentifier = createIdentifier
 
             self.callable = callable
         }
@@ -27,7 +27,8 @@ extension ElementCreator {
             nameNeedsPBXProjEscaping: Bool,
             ext: String?,
             bazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            specialRootGroupType: SpecialRootGroupType?,
+            createIdentifier: CreateIdentifier
         ) -> (
             element: Element,
             resolvedRepository: ResolvedRepository?

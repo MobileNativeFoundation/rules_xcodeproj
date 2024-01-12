@@ -2,7 +2,7 @@ import PBXProj
 
 extension ElementCreator {
     struct CreateLocalizedFileElement {
-        private let createIdentifier: CreateIdentifier
+//        private let createIdentifier: CreateIdentifier
 
         private let callable: Callable
 
@@ -10,10 +10,10 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            createIdentifier: CreateIdentifier,
+//            createIdentifier: CreateIdentifier,
             callable: @escaping Callable
         ) {
-            self.createIdentifier = createIdentifier
+//            self.createIdentifier = createIdentifier
 
             self.callable = callable
         }
@@ -25,7 +25,8 @@ extension ElementCreator {
             path: String,
             pathNeedsPBXProjEscaping: Bool,
             ext: String?,
-            bazelPath: BazelPath
+            bazelPath: BazelPath,
+            createIdentifier: CreateIdentifier
         ) -> Element {
             return callable(
                 /*name:*/ name,

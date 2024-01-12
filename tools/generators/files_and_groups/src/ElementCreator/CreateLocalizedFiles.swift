@@ -26,7 +26,8 @@ extension ElementCreator {
             parentBazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
             region: String,
-            regionNeedsPBXProjEscaping: Bool
+            regionNeedsPBXProjEscaping: Bool,
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> [GroupChild.LocalizedFile] {
             return callable(
                 /*node:*/ node,
@@ -35,7 +36,8 @@ extension ElementCreator {
                 /*region:*/ region,
                 /*regionNeedsPBXProjEscaping:*/ regionNeedsPBXProjEscaping,
                 /*collectBazelPaths:*/ collectBazelPaths,
-                /*createLocalizedFileElement:*/ createLocalizedFileElement
+                /*createLocalizedFileElement:*/ createLocalizedFileElement,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -51,7 +53,9 @@ extension ElementCreator.CreateLocalizedFiles {
         _ region: String,
         _ regionNeedsPBXProjEscaping: Bool,
         _ collectBazelPaths: ElementCreator.CollectBazelPaths,
-        _ createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
+        _ createLocalizedFileElement:
+            ElementCreator.CreateLocalizedFileElement,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> [GroupChild.LocalizedFile]
 
     static func defaultCallable(
@@ -61,7 +65,8 @@ extension ElementCreator.CreateLocalizedFiles {
         region: String,
         regionNeedsPBXProjEscaping: Bool,
         collectBazelPaths: ElementCreator.CollectBazelPaths,
-        createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
+        createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> [GroupChild.LocalizedFile] {
         let bazelPath = parentBazelPath + node
         let lprojPrefix = node.name
@@ -84,7 +89,8 @@ extension ElementCreator.CreateLocalizedFiles {
                 pathNeedsPBXProjEscaping: lprojPrefixNeedsPBXProjEscaping ||
                     node.nameNeedsPBXProjEscaping,
                 ext: ext,
-                bazelPath: childBazelPath
+                bazelPath: childBazelPath,
+                createIdentifier: createIdentifier
             )
 
             return GroupChild.LocalizedFile(

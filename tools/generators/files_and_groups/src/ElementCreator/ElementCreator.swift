@@ -11,7 +11,7 @@ struct ElementCreator {
         pathTree: PathTreeNode,
         arguments: Arguments,
         compileStubNeeded: Bool
-    ) throws -> CreatedElements {
+    ) async throws -> CreatedElements {
         let executionRoot = try environment.readExecutionRootFile(
             arguments.executionRootFile
         )
@@ -29,7 +29,7 @@ struct ElementCreator {
                 ),
             workspace: arguments.workspace
         )
-        let rootElements = createRootElements(for: pathTree)
+        let rootElements = await createRootElements(for: pathTree)
 
         let mainGroup = environment.createMainGroupContent(
             childIdentifiers: rootElements.elements.map(\.object.identifier),

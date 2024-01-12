@@ -26,13 +26,15 @@ extension ElementCreator {
         func callAsFunction(
             parentBazelPath: BazelPath,
             groupChildren: [GroupChild],
-            resolvedRepositories: [ResolvedRepository] = []
+            resolvedRepositories: [ResolvedRepository] = [],
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> GroupChildElements {
             return callable(
                 /*parentBazelPath:*/ parentBazelPath,
                 /*groupChildren:*/ groupChildren,
                 /*resolvedRepositories:*/ resolvedRepositories,
-                /*createVariantGroup:*/ createVariantGroup
+                /*createVariantGroup:*/ createVariantGroup,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -51,14 +53,16 @@ extension ElementCreator.CreateGroupChildElements {
         _ parentBazelPath: BazelPath,
         _ groupChildren: [GroupChild],
         _ resolvedRepositories: [ResolvedRepository],
-        _ createVariantGroup: ElementCreator.CreateVariantGroup
+        _ createVariantGroup: ElementCreator.CreateVariantGroup,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChildElements
 
     static func defaultCallable(
         parentBazelPath: BazelPath,
         groupChildren: [GroupChild],
         resolvedRepositories: [ResolvedRepository],
-        createVariantGroup: ElementCreator.CreateVariantGroup
+        createVariantGroup: ElementCreator.CreateVariantGroup,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChildElements {
         var children: [GroupChild.ElementAndChildren] = []
         var localizedFiles: [GroupChild.LocalizedFile] = []
@@ -135,7 +139,8 @@ extension ElementCreator.CreateGroupChildElements {
                 createVariantGroup(
                     name: name,
                     parentBazelPath: parentBazelPath,
-                    localizedFiles: localizedFiles
+                    localizedFiles: localizedFiles,
+                    createIdentifier: createIdentifier
                 )
             )
         }

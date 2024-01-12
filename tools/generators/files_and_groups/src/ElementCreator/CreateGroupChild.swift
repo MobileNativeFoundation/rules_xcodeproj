@@ -29,7 +29,8 @@ extension ElementCreator {
         func callAsFunction(
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            specialRootGroupType: SpecialRootGroupType?,
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> GroupChild {
             return callable(
                 /*node:*/ node,
@@ -39,7 +40,8 @@ extension ElementCreator {
                 /*createGroup:*/ createGroup,
                 /*createGroupChild:*/ self,
                 /*createLocalizedFiles:*/ createLocalizedFiles,
-                /*createVersionGroup:*/ createVersionGroup
+                /*createVersionGroup:*/ createVersionGroup,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -56,7 +58,8 @@ extension ElementCreator.CreateGroupChild {
         _ createGroup: ElementCreator.CreateGroup,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
-        _ createVersionGroup: ElementCreator.CreateVersionGroup
+        _ createVersionGroup: ElementCreator.CreateVersionGroup,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild
 
     static func defaultCallable(
@@ -67,7 +70,8 @@ extension ElementCreator.CreateGroupChild {
         createGroup: ElementCreator.CreateGroup,
         createGroupChild: ElementCreator.CreateGroupChild,
         createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
-        createVersionGroup: ElementCreator.CreateVersionGroup
+        createVersionGroup: ElementCreator.CreateVersionGroup,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild {
         guard !node.children.isEmpty else {
             // File
@@ -75,7 +79,8 @@ extension ElementCreator.CreateGroupChild {
                 createFile(
                     for: node,
                     bazelPath: parentBazelPath + node,
-                    specialRootGroupType: specialRootGroupType
+                    specialRootGroupType: specialRootGroupType,
+                    createIdentifier: createIdentifier
                 )
             )
         }
@@ -90,7 +95,8 @@ extension ElementCreator.CreateGroupChild {
                     parentBazelPath: parentBazelPath,
                     specialRootGroupType: specialRootGroupType,
                     region: basenameWithoutExt,
-                    regionNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping
+                    regionNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
+                    createIdentifier: createIdentifier
                 )
             )
 
@@ -99,7 +105,8 @@ extension ElementCreator.CreateGroupChild {
                 createVersionGroup(
                     for: node,
                     parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType
+                    specialRootGroupType: specialRootGroupType,
+                    createIdentifier: createIdentifier
                 )
             )
 
@@ -109,7 +116,8 @@ extension ElementCreator.CreateGroupChild {
                     for: node,
                     parentBazelPath: parentBazelPath,
                     specialRootGroupType: specialRootGroupType,
-                    createGroupChild: createGroupChild
+                    createGroupChild: createGroupChild,
+                    createIdentifier: createIdentifier
                 )
             )
         }

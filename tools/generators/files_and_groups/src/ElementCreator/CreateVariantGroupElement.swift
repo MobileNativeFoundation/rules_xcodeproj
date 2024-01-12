@@ -2,7 +2,7 @@ import PBXProj
 
 extension ElementCreator {
     struct CreateVariantGroupElement {
-        private let createIdentifier: CreateIdentifier
+//        private let createIdentifier: CreateIdentifier
 
         private let callable: Callable
 
@@ -10,10 +10,10 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            createIdentifier: CreateIdentifier,
+//            createIdentifier: CreateIdentifier,
             callable: @escaping Callable
         ) {
-            self.createIdentifier = createIdentifier
+//            self.createIdentifier = createIdentifier
             self.callable = callable
         }
 
@@ -21,7 +21,8 @@ extension ElementCreator {
         func callAsFunction(
             name: String,
             path: String,
-            childIdentifiers: [String]
+            childIdentifiers: [String],
+            createIdentifier: CreateIdentifier
         ) -> Element {
             return callable(
                 /*name:*/ name,

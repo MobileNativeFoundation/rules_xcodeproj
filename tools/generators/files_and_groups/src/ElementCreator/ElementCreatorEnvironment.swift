@@ -33,7 +33,7 @@ extension ElementCreator {
         /// `CreateGroupChildElements.init()`.
         let createGroupChildElementsCallable: CreateGroupChildElements.Callable
 
-        let createIdentifier: CreateIdentifier
+//        let createIdentifier: CreateIdentifier
 
         let createInternalGroupCallable: CreateInternalGroup.Callable
 
@@ -101,7 +101,7 @@ extension ElementCreator.Environment {
 
         let createFileElement = ElementCreator.CreateFileElement(
             createAttributes: createAttributes,
-            createIdentifier: createIdentifier,
+//            createIdentifier: createIdentifier,
             callable: createFileElementCallable
         )
         let createFile = ElementCreator.CreateFile(
@@ -112,7 +112,7 @@ extension ElementCreator.Environment {
 
         let createVariantGroupElement = ElementCreator
             .CreateVariantGroupElement(
-                createIdentifier: createIdentifier,
+//                createIdentifier: createIdentifier,
                 callable: createVariantGroupElementCallable
             )
         let createVariantGroup = ElementCreator.CreateVariantGroup(
@@ -128,7 +128,7 @@ extension ElementCreator.Environment {
 
         let createGroupElement = ElementCreator.CreateGroupElement(
             createAttributes: createAttributes,
-            createIdentifier: createIdentifier,
+//            createIdentifier: createIdentifier,
             callable: createGroupElementCallable
         )
         let createGroup = ElementCreator.CreateGroup(
@@ -139,7 +139,7 @@ extension ElementCreator.Environment {
 
         let createLocalizedFileElement =
             ElementCreator.CreateLocalizedFileElement(
-                createIdentifier: createIdentifier,
+//                createIdentifier: createIdentifier,
                 callable: createLocalizedFileElementCallable
             )
 
@@ -156,7 +156,7 @@ extension ElementCreator.Environment {
             )
         let createVersionGroup = ElementCreator.CreateVersionGroup(
             createFile: createFile,
-            createIdentifier: createIdentifier,
+//            createIdentifier: createIdentifier,
             createVersionGroupElement: createVersionGroupElement,
             selectedModelVersions: selectedModelVersions,
             callable: createVersionGroupCallable
@@ -210,7 +210,7 @@ extension ElementCreator.Environment {
             ElementCreator.CreateGroupElement.defaultCallable,
         createGroupChildElementsCallable:
             ElementCreator.CreateGroupChildElements.defaultCallable,
-        createIdentifier: ElementCreator.CreateIdentifier(),
+//        createIdentifier: ElementCreator.CreateIdentifier(),
         createInternalGroupCallable:
             ElementCreator.CreateInternalGroup.defaultCallable,
         createLocalizedFileElementCallable:

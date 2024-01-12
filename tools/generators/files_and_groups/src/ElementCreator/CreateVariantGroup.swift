@@ -25,13 +25,15 @@ extension ElementCreator {
         func callAsFunction(
             name: String,
             parentBazelPath: BazelPath,
-            localizedFiles: [GroupChild.LocalizedFile]
+            localizedFiles: [GroupChild.LocalizedFile],
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*name:*/ name,
                 /*parentBazelPath:*/ parentBazelPath,
                 /*localizedFiles:*/ localizedFiles,
-                /*createVariantGroupElement:*/ createVariantGroupElement
+                /*createVariantGroupElement:*/ createVariantGroupElement,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -44,19 +46,22 @@ extension ElementCreator.CreateVariantGroup {
         _ name: String,
         _ parentBazelPath: BazelPath,
         _ localizedFiles: [GroupChild.LocalizedFile],
-        _ createVariantGroupElement: ElementCreator.CreateVariantGroupElement
+        _ createVariantGroupElement: ElementCreator.CreateVariantGroupElement,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
         name: String,
         parentBazelPath: BazelPath,
         localizedFiles: [GroupChild.LocalizedFile],
-        createVariantGroupElement: ElementCreator.CreateVariantGroupElement
+        createVariantGroupElement: ElementCreator.CreateVariantGroupElement,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren {
         let group = createVariantGroupElement(
             name: name,
             path: "\(parentBazelPath.path)/\(name)",
-            childIdentifiers: localizedFiles.map(\.element.object.identifier)
+            childIdentifiers: localizedFiles.map(\.element.object.identifier),
+            createIdentifier: createIdentifier
         )
 
         let bazelPathAndIdentifiers = localizedFiles

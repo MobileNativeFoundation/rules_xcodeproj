@@ -1,7 +1,7 @@
 import PBXProj
 
 extension ElementCreator {
-    struct CreateRootElements {
+    class CreateRootElements {
         private let includeCompileStub: Bool
         private let installPath: String
         private let workspace: String
@@ -38,8 +38,8 @@ extension ElementCreator {
 
         func callAsFunction(
             for pathTree: PathTreeNode
-        ) -> GroupChildElements {
-            return callable(
+        ) async -> GroupChildElements {
+            return await callable(
                 /*pathTree:*/ pathTree,
                 /*includeCompileStub:*/ includeCompileStub,
                 /*installPath:*/ installPath,
@@ -65,7 +65,7 @@ extension ElementCreator.CreateRootElements {
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
         _ createInternalGroup: ElementCreator.CreateInternalGroup,
         _ createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
-    ) -> GroupChildElements
+    ) async -> GroupChildElements
 
     static func defaultCallable(
         for pathTree: PathTreeNode,
@@ -76,64 +76,102 @@ extension ElementCreator.CreateRootElements {
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
         createInternalGroup: ElementCreator.CreateInternalGroup,
         createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
-    ) -> GroupChildElements {
+    ) async -> GroupChildElements {
         let bazelPath = BazelPath("")
+        let rootCreateIdentifier =
+            ElementCreator.CreateIdentifier(shard: UInt8.max)
 
-        var groupChildren: [GroupChild] = []
-        for node in pathTree.children {
-            switch node.name {
-            case "external":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .legacyBazelExternal
+        let groupChildren = await withTaskGroup(
+            of: GroupChild.self,
+            returning: [GroupChild].self
+        ) { group in
+            // FIXME: Pre-populate with shards
+            let shardedGroupCreators: [UInt8: ShardedGroupCreator] = [
+                0: ShardedGroupCreator(shard: 0, createGroupChild: createGroupChild),
+                1: ShardedGroupCreator(shard: 1, createGroupChild: createGroupChild),
+                2: ShardedGroupCreator(shard: 2, createGroupChild: createGroupChild),
+                3: ShardedGroupCreator(shard: 3, createGroupChild: createGroupChild),
+                4: ShardedGroupCreator(shard: 4, createGroupChild: createGroupChild),
+                5: ShardedGroupCreator(shard: 5, createGroupChild: createGroupChild),
+                6: ShardedGroupCreator(shard: 6, createGroupChild: createGroupChild),
+                7: ShardedGroupCreator(shard: 7, createGroupChild: createGroupChild),
+                8: ShardedGroupCreator(shard: 8, createGroupChild: createGroupChild),
+                9: ShardedGroupCreator(shard: 9, createGroupChild: createGroupChild),
+                10: ShardedGroupCreator(shard: 10, createGroupChild: createGroupChild),
+                11: ShardedGroupCreator(shard: 11, createGroupChild: createGroupChild),
+                12: ShardedGroupCreator(shard: 12, createGroupChild: createGroupChild),
+                13: ShardedGroupCreator(shard: 13, createGroupChild: createGroupChild),
+                14: ShardedGroupCreator(shard: 14, createGroupChild: createGroupChild),
+                15: ShardedGroupCreator(shard: 15, createGroupChild: createGroupChild),
+                16: ShardedGroupCreator(shard: 16, createGroupChild: createGroupChild),
+                17: ShardedGroupCreator(shard: 17, createGroupChild: createGroupChild),
+                18: ShardedGroupCreator(shard: 18, createGroupChild: createGroupChild),
+                19: ShardedGroupCreator(shard: 19, createGroupChild: createGroupChild),
+            ]
+
+            for node in pathTree.children {
+                group.addTask {
+                    switch node.name {
+                    case "external":
+                        return await .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: node,
+                                specialRootGroupType: .legacyBazelExternal,
+                                shardedGroupCreators: shardedGroupCreators,
+                                createIdentifier: rootCreateIdentifier
+                            )
                         )
-                    )
-                )
 
-            case "..":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .siblingBazelExternal
+                    case "..":
+                        return await .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: node,
+                                specialRootGroupType: .siblingBazelExternal,
+                                shardedGroupCreators: shardedGroupCreators,
+                                createIdentifier: rootCreateIdentifier
+                            )
                         )
-                    )
-                )
 
-            case "bazel-out":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .bazelGenerated
+                    case "bazel-out":
+                        return await .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: node,
+                                specialRootGroupType: .bazelGenerated,
+                                shardedGroupCreators: shardedGroupCreators,
+                                createIdentifier: rootCreateIdentifier
+                            )
                         )
-                    )
-                )
 
-            default:
+                    default:
+                        let shard = UInt8(abs(node.name.hash % 20))
+                        let shardedGroupCreator = shardedGroupCreators[shard]!
+
+                        return await shardedGroupCreator.createGroupChild(
+                            for: node,
+                            parentBazelPath: bazelPath,
+                            specialRootGroupType: nil
+                        )
+                    }
+                }
+            }
+
+            var groupChildren = await Array(group)
+
+            if includeCompileStub {
                 groupChildren.append(
-                    createGroupChild(
-                        for: node,
-                        parentBazelPath: bazelPath,
-                        specialRootGroupType: nil
-                    )
+                    createInternalGroup(installPath: installPath)
                 )
             }
-        }
 
-        if includeCompileStub {
-            groupChildren.append(
-                createInternalGroup(installPath: installPath)
-            )
+            return groupChildren
         }
 
         return createGroupChildElements(
             parentBazelPath: bazelPath,
             groupChildren: groupChildren,
             resolvedRepositories:
-                [.init(sourcePath: ".", mappedPath: workspace)]
+                [.init(sourcePath: ".", mappedPath: workspace)],
+            createIdentifier: rootCreateIdentifier
         )
     }
 }
@@ -141,4 +179,31 @@ extension ElementCreator.CreateRootElements {
 struct ResolvedRepository: Equatable {
     let sourcePath: String
     let mappedPath: String
+}
+
+actor ShardedGroupCreator {
+    // Each shard has it's own `CreateIdentifier`, which means it has it's own
+    // cache. The same groups need to be routed to the same
+    // `ShardedGroupCreator` to ensure stable hashes.
+    private let createIdentifier: ElementCreator.CreateIdentifier
+
+    private let actualCreateGroupChild: ElementCreator.CreateGroupChild
+
+    init(shard: UInt8, createGroupChild: ElementCreator.CreateGroupChild) {
+        self.createIdentifier = ElementCreator.CreateIdentifier(shard: shard)
+        self.actualCreateGroupChild = createGroupChild
+    }
+
+    func createGroupChild(
+        for node: PathTreeNode,
+        parentBazelPath: BazelPath,
+        specialRootGroupType: SpecialRootGroupType?
+    ) -> GroupChild {
+        return actualCreateGroupChild(
+            for: node,
+            parentBazelPath: parentBazelPath,
+            specialRootGroupType: specialRootGroupType,
+            createIdentifier: createIdentifier
+        )
+    }
 }

@@ -2,6 +2,7 @@ import PBXProj
 
 extension ElementCreator {
     class CreateIdentifier {
+        private let shard: UInt8
         private var hashCache: Set<String> = []
 
         private let callable: Callable
@@ -10,8 +11,10 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
+            shard: UInt8,
             callable: @escaping Callable = Identifiers.FilesAndGroups.element
         ) {
+            self.shard = shard
             self.callable = callable
         }
 
@@ -25,6 +28,7 @@ extension ElementCreator {
                 path,
                 /*name:*/ name,
                 /*type:*/ type,
+                /*shard:*/ shard,
                 /*hashCache:*/ &hashCache
             )
         }
@@ -38,6 +42,7 @@ extension ElementCreator.CreateIdentifier {
         _ path: String,
         _ name: String,
         _ type: Identifiers.FilesAndGroups.ElementType,
+        _ shard: UInt8,
         _ hashCache: inout Set<String>
     ) -> String
 }

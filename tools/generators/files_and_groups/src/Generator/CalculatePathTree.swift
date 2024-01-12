@@ -174,9 +174,9 @@ private func processPaths(
     paths: AsyncLineSequence<URL.AsyncBytes>,
     isFolder: Bool
 ) async throws {
-    // We chunk because the amount of work for each task is pretty
-    // small, and we lose efficiency jumping between threads. We still
-    // get some concurrency this way though (~35% faster).
+    // We chunk because the amount of work for each task is pretty small, and we
+    // lose efficiency jumping between threads. We still get some concurrency
+    // this way though (~35% faster).
     for try await chunk in paths.chunks(ofCount: 1024) {
         group.addTask {
             return chunk.map { path in

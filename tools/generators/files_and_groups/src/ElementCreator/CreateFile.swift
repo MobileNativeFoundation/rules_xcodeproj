@@ -25,7 +25,8 @@ extension ElementCreator {
             for node: PathTreeNode,
             bazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
-            identifierForBazelPaths: String? = nil
+            identifierForBazelPaths: String? = nil,
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*node:*/ node,
@@ -33,7 +34,8 @@ extension ElementCreator {
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*identifierForBazelPaths:*/ identifierForBazelPaths,
                 /*collectBazelPaths:*/ collectBazelPaths,
-                /*createFileElement:*/ createFileElement
+                /*createFileElement:*/ createFileElement,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -48,7 +50,8 @@ extension ElementCreator.CreateFile {
         _ specialRootGroupType: SpecialRootGroupType?,
         _ identifierForBazelPaths: String?,
         _ collectBazelPaths: ElementCreator.CollectBazelPaths,
-        _ createFileElement: ElementCreator.CreateFileElement
+        _ createFileElement: ElementCreator.CreateFileElement,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
@@ -57,7 +60,8 @@ extension ElementCreator.CreateFile {
         specialRootGroupType: SpecialRootGroupType?,
         identifierForBazelPaths: String?,
         collectBazelPaths: ElementCreator.CollectBazelPaths,
-        createFileElement: ElementCreator.CreateFileElement
+        createFileElement: ElementCreator.CreateFileElement,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren {
         let (
             element,
@@ -67,7 +71,8 @@ extension ElementCreator.CreateFile {
             nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
             ext: node.extension(),
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType
+            specialRootGroupType: specialRootGroupType,
+            createIdentifier: createIdentifier
         )
 
         let bazelPaths = collectBazelPaths(

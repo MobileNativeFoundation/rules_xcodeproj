@@ -292,16 +292,18 @@ FF0000000000000000000008 /* rules_xcodeproj */
         /// - Parameters:
         ///   - path: The file path for the element.
         ///   - type: The type of path being identified.
+        ///   - shard: The element shard the hashCache is associated with.
         ///   - hashCache: A cache that will be used to guarantee that the
         ///     identifier returned is unique.
         public static func element(
             _ path: String,
             name: String,
             type: ElementType,
+            shard: UInt8,
             hashCache: inout Set<String>
         ) -> String {
             let hash = elementHash(path + type.rawValue, hashCache: &hashCache)
-            return #"FE\#(hash) /* \#(name) */"#
+            return #"FE\#(byteHexStrings[shard]!)\#(hash) /* \#(name) */"#
         }
 
         /// Calculates a unique hash for the path encoded in `hashable`. The
@@ -338,12 +340,13 @@ FF0000000000000000000008 /* rules_xcodeproj */
 
             let digest = Insecure.MD5.hash(data: Data(content.utf8))
             return digest
-                // Xcode identifiers are 24 characters. We are using 2
-                // characters at the front for "FE". That leaves 22 characters
-                // that we can use. MD5 digests are 16 bytes (32 characters)
-                // long. So we need to truncate it to fit within the remaining
-                // 22 characters (by dropping 5 bytes).
-                .dropLast(5)
+                // Xcode identifiers are 24 characters. We are using 4
+                // characters at the front for "FE" plus two charactees for a
+                // shard. That leaves 20 characters that we can use. MD5 digests
+                // are 16 bytes (32 characters) long. So we need to truncate it
+                // to fit within the remaining 20 characters (by dropping 6
+                //bytes).
+                .dropLast(6)
                 .map { byteHexStrings[$0]! }
                 .joined()
         }

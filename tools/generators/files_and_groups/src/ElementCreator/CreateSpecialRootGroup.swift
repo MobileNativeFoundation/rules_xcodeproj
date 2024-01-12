@@ -1,3 +1,4 @@
+import AsyncAlgorithms
 import PBXProj
 
 extension ElementCreator {
@@ -26,14 +27,20 @@ extension ElementCreator {
 
         func callAsFunction(
             for node: PathTreeNode,
-            specialRootGroupType: SpecialRootGroupType
-        ) -> GroupChild.ElementAndChildren {
-            return callable(
+            specialRootGroupType: SpecialRootGroupType,
+            // FIXME: Move to init?
+            shardedGroupCreators: [UInt8: ShardedGroupCreator],
+            createIdentifier: ElementCreator.CreateIdentifier
+        ) async -> GroupChild.ElementAndChildren {
+            return await callable(
                 /*node:*/ node,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
-                /*createSpecialRootGroupElement:*/ createSpecialRootGroupElement
+                /*createSpecialRootGroupElement:*/
+                          createSpecialRootGroupElement,
+                /*createIdentifier:*/ createIdentifier,
+                /*shardedGroupCreators:*/ shardedGroupCreators
             )
         }
     }
@@ -48,8 +55,10 @@ extension ElementCreator.CreateSpecialRootGroup {
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
         _ createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement
-    ) -> GroupChild.ElementAndChildren
+            ElementCreator.CreateSpecialRootGroupElement,
+        _ createIdentifier: ElementCreator.CreateIdentifier,
+        _ shardedGroupCreators: [UInt8: ShardedGroupCreator]
+    ) async -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
         for node: PathTreeNode,
@@ -57,21 +66,37 @@ extension ElementCreator.CreateSpecialRootGroup {
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
         createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement
-    ) -> GroupChild.ElementAndChildren {
+            ElementCreator.CreateSpecialRootGroupElement,
+        createIdentifier: ElementCreator.CreateIdentifier,
+        shardedGroupCreators: [UInt8: ShardedGroupCreator]
+    ) async -> GroupChild.ElementAndChildren {
         let bazelPath = BazelPath(node.name)
 
-        let groupChildren = node.children.map { node in
-            return createGroupChild(
-                for: node,
-                parentBazelPath: bazelPath,
-                specialRootGroupType: specialRootGroupType
-            )
+        let groupChildren = await withTaskGroup(
+            of: GroupChild.self,
+            returning: [GroupChild].self
+        ) { group in
+            for node in node.children {
+                let shard = UInt8(abs(node.name.hash % 20))
+
+                let shardedGroupCreator = shardedGroupCreators[shard]!
+
+                group.addTask {
+                    return await shardedGroupCreator.createGroupChild(
+                        for: node,
+                        parentBazelPath: bazelPath,
+                        specialRootGroupType: specialRootGroupType
+                    )
+                }
+            }
+
+            return await Array(group)
         }
 
         let children = createGroupChildElements(
             parentBazelPath: bazelPath,
-            groupChildren: groupChildren
+            groupChildren: groupChildren,
+            createIdentifier: createIdentifier
         )
 
         let group = createSpecialRootGroupElement(

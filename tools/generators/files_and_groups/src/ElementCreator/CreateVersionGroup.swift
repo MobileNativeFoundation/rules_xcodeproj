@@ -3,7 +3,7 @@ import PBXProj
 extension ElementCreator {
     struct CreateVersionGroup {
         private let createFile: CreateFile
-        private let createIdentifier: CreateIdentifier
+//        private let createIdentifier: CreateIdentifier
         private let createVersionGroupElement: CreateVersionGroupElement
         private let selectedModelVersions: [BazelPath: String]
 
@@ -17,13 +17,13 @@ extension ElementCreator {
         ///     `callAsFunction()`.
         init(
             createFile: CreateFile,
-            createIdentifier: CreateIdentifier,
+//            createIdentifier: CreateIdentifier,
             createVersionGroupElement: CreateVersionGroupElement,
             selectedModelVersions: [BazelPath: String],
             callable: @escaping Callable
         ) {
             self.createFile = createFile
-            self.createIdentifier = createIdentifier
+//            self.createIdentifier = createIdentifier
             self.createVersionGroupElement = createVersionGroupElement
             self.selectedModelVersions = selectedModelVersions
 
@@ -33,7 +33,8 @@ extension ElementCreator {
         func callAsFunction(
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            specialRootGroupType: SpecialRootGroupType?,
+            createIdentifier: CreateIdentifier
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*node:*/ node,
@@ -87,7 +88,8 @@ extension ElementCreator.CreateVersionGroup {
                 for: node,
                 bazelPath: bazelPath + node,
                 specialRootGroupType: specialRootGroupType,
-                identifierForBazelPaths: identifier
+                identifierForBazelPaths: identifier,
+                createIdentifier: createIdentifier
             )
             children.append(result)
 

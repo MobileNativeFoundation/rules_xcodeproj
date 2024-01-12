@@ -27,7 +27,7 @@ struct Generator {
         let elementsCreator = ElementCreator(environment: environment.elements)
 
         let createElementsTask = Task {
-            return try elementsCreator.create(
+            return try await elementsCreator.create(
                 pathTree: pathTree,
                 arguments: arguments.elementCreatorArguments,
                 compileStubNeeded: arguments.compileStubNeeded

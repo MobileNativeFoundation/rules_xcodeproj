@@ -27,7 +27,8 @@ extension ElementCreator {
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
-            createGroupChild: CreateGroupChild
+            createGroupChild: CreateGroupChild,
+            createIdentifier: ElementCreator.CreateIdentifier
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*node:*/ node,
@@ -35,7 +36,8 @@ extension ElementCreator {
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
-                /*createGroupElement:*/ createGroupElement
+                /*createGroupElement:*/ createGroupElement,
+                /*createIdentifier:*/ createIdentifier
             )
         }
     }
@@ -50,7 +52,8 @@ extension ElementCreator.CreateGroup {
         _ specialRootGroupType: SpecialRootGroupType?,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        _ createGroupElement: ElementCreator.CreateGroupElement
+        _ createGroupElement: ElementCreator.CreateGroupElement,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
@@ -59,7 +62,8 @@ extension ElementCreator.CreateGroup {
         specialRootGroupType: SpecialRootGroupType?,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        createGroupElement: ElementCreator.CreateGroupElement
+        createGroupElement: ElementCreator.CreateGroupElement,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> GroupChild.ElementAndChildren {
         let bazelPath = parentBazelPath + node
         let name = node.name
@@ -68,13 +72,15 @@ extension ElementCreator.CreateGroup {
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,
-                specialRootGroupType: specialRootGroupType
+                specialRootGroupType: specialRootGroupType,
+                createIdentifier: createIdentifier
             )
         }
 
         let children = createGroupChildElements(
             parentBazelPath: bazelPath,
-            groupChildren: groupChildren
+            groupChildren: groupChildren,
+            createIdentifier: createIdentifier
         )
 
         let (
@@ -85,7 +91,8 @@ extension ElementCreator.CreateGroup {
             nameNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: children.elements.map(\.object.identifier)
+            childIdentifiers: children.elements.map(\.object.identifier),
+            createIdentifier: createIdentifier
         )
 
         return GroupChild.ElementAndChildren(
