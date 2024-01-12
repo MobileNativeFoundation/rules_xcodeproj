@@ -42,9 +42,11 @@ class CalculateTargetFilesPartialTests: XCTestCase {
         ]
 
         // The tabs for indenting are intentional
+        //
+        // Shows that it's responsible for sorting build files.
         let expectedFilesAndGroupsPartial = #"""
-		ID_2 = {BUILDFILE_2};
 		ID_1 = {BUILDFILE_1};
+		ID_2 = {BUILDFILE_2};
 		FF0000000000000000000004 /* Products */ = {
 			isa = PBXGroup;
 			children = (
