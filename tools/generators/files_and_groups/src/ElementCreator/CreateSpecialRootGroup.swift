@@ -78,7 +78,6 @@ extension ElementCreator.CreateSpecialRootGroup {
         ) { group in
             for node in node.children {
                 let shard = UInt8(abs(node.name.hash % 20))
-
                 let shardedGroupCreator = shardedGroupCreators[shard]!
 
                 group.addTask {

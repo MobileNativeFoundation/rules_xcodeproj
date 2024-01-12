@@ -11,6 +11,15 @@ extension ElementCreator {
 
         let collectBazelPaths: CollectBazelPaths
 
+        /// Passed to the `callable` parameter of
+        /// `ConcurrentlyCreateGroup.init()`.
+        let concurrentlyCreateGroupCallable: ConcurrentlyCreateGroup.Callable
+
+        /// Passed to the `callable` parameter of
+        /// `ConcurrentlyCreateGroupChild.init()`.
+        let concurrentlyCreateGroupChildCallable:
+            ConcurrentlyCreateGroupChild.Callable
+
         /// Passed to the `callable` parameter of `CreateAttributes.init()`.
         let createAttributesCallable: CreateAttributes.Callable
 
@@ -131,6 +140,11 @@ extension ElementCreator.Environment {
 //            createIdentifier: createIdentifier,
             callable: createGroupElementCallable
         )
+        let concurrentlyCreateGroup = ElementCreator.ConcurrentlyCreateGroup(
+            createGroupChildElements: createGroupChildElements,
+            createGroupElement: createGroupElement,
+            callable: concurrentlyCreateGroupCallable
+        )
         let createGroup = ElementCreator.CreateGroup(
             createGroupChildElements: createGroupChildElements,
             createGroupElement: createGroupElement,
@@ -169,6 +183,14 @@ extension ElementCreator.Environment {
             createVersionGroup: createVersionGroup,
             callable: createGroupChildCallable
         )
+        let concurrentlyCreateGroupChild = ElementCreator.ConcurrentlyCreateGroupChild(
+            concurrentlyCreateGroup: concurrentlyCreateGroup,
+            createFile: createFile,
+            createGroupChild: createGroupChild,
+            createLocalizedFiles: createLocalizedFiles,
+            createVersionGroup: createVersionGroup,
+            callable: concurrentlyCreateGroupChildCallable
+        )
 
         let createInternalGroup = ElementCreator.CreateInternalGroup(
             callable: createInternalGroupCallable
@@ -185,6 +207,7 @@ extension ElementCreator.Environment {
             includeCompileStub: includeCompileStub,
             installPath: installPath,
             workspace: workspace,
+            concurrentlyCreateGroupChild: concurrentlyCreateGroupChild,
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
             createInternalGroup: createInternalGroup,
@@ -198,6 +221,10 @@ extension ElementCreator.Environment {
     static let `default` = Self(
         calculatePartial: ElementCreator.CalculatePartial(),
         collectBazelPaths: ElementCreator.CollectBazelPaths(),
+        concurrentlyCreateGroupCallable:
+            ElementCreator.ConcurrentlyCreateGroup.defaultCallable,
+        concurrentlyCreateGroupChildCallable:
+            ElementCreator.ConcurrentlyCreateGroupChild.defaultCallable,
         createAttributesCallable:
             ElementCreator.CreateAttributes.defaultCallable,
         createGroupChildCallable:

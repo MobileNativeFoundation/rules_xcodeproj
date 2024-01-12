@@ -1,5 +1,7 @@
 import PBXProj
 
+// MARK: - CreateGroupChild
+
 extension ElementCreator {
     struct CreateGroupChild {
         private let createFile: CreateFile
@@ -47,7 +49,7 @@ extension ElementCreator {
     }
 }
 
-// MARK: - CreateGroupChild.Callable
+// MARK: CreateGroupChild.Callable
 
 extension ElementCreator.CreateGroupChild {
     typealias Callable = (
@@ -124,6 +126,142 @@ extension ElementCreator.CreateGroupChild {
     }
 }
 
+// MARK: - ConcurrentlyCreateGroupChild
+
+extension ElementCreator {
+    struct ConcurrentlyCreateGroupChild {
+        private let concurrentlyCreateGroup: ConcurrentlyCreateGroup
+        private let createFile: CreateFile
+        private let createGroupChild: CreateGroupChild
+        private let createLocalizedFiles: CreateLocalizedFiles
+        private let createVersionGroup: CreateVersionGroup
+
+        private let callable: Callable
+
+        /// - Parameters:
+        ///   - callable: The function that will be called in
+        ///     `callAsFunction()`.
+        init(
+            concurrentlyCreateGroup: ConcurrentlyCreateGroup,
+            createFile: CreateFile,
+            createGroupChild: CreateGroupChild,
+            createLocalizedFiles: CreateLocalizedFiles,
+            createVersionGroup: CreateVersionGroup,
+            callable: @escaping Callable
+        ) {
+            self.concurrentlyCreateGroup = concurrentlyCreateGroup
+            self.createFile = createFile
+            self.createGroupChild = createGroupChild
+            self.createLocalizedFiles = createLocalizedFiles
+            self.createVersionGroup = createVersionGroup
+            self.callable = callable
+        }
+
+        func callAsFunction(
+            for node: PathTreeNode,
+            parentBazelPath: BazelPath,
+            specialRootGroupType: SpecialRootGroupType?,
+            createIdentifier: ElementCreator.CreateIdentifier,
+            shardedGroupCreators: [UInt8: ShardedGroupCreator]
+        ) async -> GroupChild {
+            return await callable(
+                /*node:*/ node,
+                /*parentBazelPath:*/ parentBazelPath,
+                /*specialRootGroupType:*/ specialRootGroupType,
+                /*concurrentlyCreateGroup:*/ concurrentlyCreateGroup,
+                /*createFile:*/ createFile,
+                /*createGroupChild:*/ createGroupChild,
+                /*createLocalizedFiles:*/ createLocalizedFiles,
+                /*createVersionGroup:*/ createVersionGroup,
+                /*createIdentifier:*/ createIdentifier,
+                /*shardedGroupCreators:*/ shardedGroupCreators
+            )
+        }
+    }
+}
+
+// MARK: ConcurrentlyCreateGroupChild.Callable
+
+extension ElementCreator.ConcurrentlyCreateGroupChild {
+    typealias Callable = (
+        _ node: PathTreeNode,
+        _ parentBazelPath: BazelPath,
+        _ specialRootGroupType: SpecialRootGroupType?,
+        _ concurrentlyCreateGroup: ElementCreator.ConcurrentlyCreateGroup,
+        _ createFile: ElementCreator.CreateFile,
+        _ createGroupChild: ElementCreator.CreateGroupChild,
+        _ createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
+        _ createVersionGroup: ElementCreator.CreateVersionGroup,
+        _ createIdentifier: ElementCreator.CreateIdentifier,
+        _ shardedGroupCreators: [UInt8: ShardedGroupCreator]
+    ) async -> GroupChild
+
+    static func defaultCallable(
+        for node: PathTreeNode,
+        parentBazelPath: BazelPath,
+        specialRootGroupType: SpecialRootGroupType?,
+        concurrentlyCreateGroup: ElementCreator.ConcurrentlyCreateGroup,
+        createFile: ElementCreator.CreateFile,
+        createGroupChild: ElementCreator.CreateGroupChild,
+        createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
+        createVersionGroup: ElementCreator.CreateVersionGroup,
+        createIdentifier: ElementCreator.CreateIdentifier,
+        shardedGroupCreators: [UInt8: ShardedGroupCreator]
+    ) async -> GroupChild {
+        guard !node.children.isEmpty else {
+            // File
+            return .elementAndChildren(
+                createFile(
+                    for: node,
+                    bazelPath: parentBazelPath + node,
+                    specialRootGroupType: specialRootGroupType,
+                    createIdentifier: createIdentifier
+                )
+            )
+        }
+
+        // Group
+        let (basenameWithoutExt, ext) = node.splitExtension()
+        switch ext {
+        case "lproj":
+            return .localizedRegion(
+                createLocalizedFiles(
+                    for: node,
+                    parentBazelPath: parentBazelPath,
+                    specialRootGroupType: specialRootGroupType,
+                    region: basenameWithoutExt,
+                    regionNeedsPBXProjEscaping: node.nameNeedsPBXProjEscaping,
+                    createIdentifier: createIdentifier
+                )
+            )
+
+        case "xcdatamodeld":
+            return .elementAndChildren(
+                createVersionGroup(
+                    for: node,
+                    parentBazelPath: parentBazelPath,
+                    specialRootGroupType: specialRootGroupType,
+                    createIdentifier: createIdentifier
+                )
+            )
+
+        default:
+            return await .elementAndChildren(
+                concurrentlyCreateGroup(
+                    for: node,
+                    parentBazelPath: parentBazelPath,
+                    specialRootGroupType: specialRootGroupType,
+                    createGroupChild: createGroupChild,
+                    createIdentifier: createIdentifier,
+                    shardedGroupCreators: shardedGroupCreators
+                )
+            )
+        }
+    }
+}
+
+// MARK: - Element
+
 struct Element: Equatable {
     enum SortOrder: Comparable {
         case groupLike
@@ -137,6 +275,8 @@ struct Element: Equatable {
     let object: Object
     let sortOrder: SortOrder
 }
+
+// MARK: - GroupChild
 
 enum GroupChild: Equatable {
     struct ElementAndChildren {

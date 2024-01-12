@@ -5,6 +5,7 @@ extension ElementCreator {
         private let includeCompileStub: Bool
         private let installPath: String
         private let workspace: String
+        private let concurrentlyCreateGroupChild: ConcurrentlyCreateGroupChild
         private let createGroupChild: CreateGroupChild
         private let createGroupChildElements: CreateGroupChildElements
         private let createInternalGroup: CreateInternalGroup
@@ -19,6 +20,7 @@ extension ElementCreator {
             includeCompileStub: Bool,
             installPath: String,
             workspace: String,
+            concurrentlyCreateGroupChild: ConcurrentlyCreateGroupChild,
             createGroupChild: CreateGroupChild,
             createGroupChildElements: CreateGroupChildElements,
             createInternalGroup: CreateInternalGroup,
@@ -28,6 +30,7 @@ extension ElementCreator {
             self.includeCompileStub = includeCompileStub
             self.installPath = installPath
             self.workspace = workspace
+            self.concurrentlyCreateGroupChild = concurrentlyCreateGroupChild
             self.createGroupChild = createGroupChild
             self.createGroupChildElements = createGroupChildElements
             self.createInternalGroup = createInternalGroup
@@ -44,6 +47,7 @@ extension ElementCreator {
                 /*includeCompileStub:*/ includeCompileStub,
                 /*installPath:*/ installPath,
                 /*workspace:*/ workspace,
+                /*concurrentlyCreateGroupChild:*/ concurrentlyCreateGroupChild,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
                 /*createInternalGroup:*/ createInternalGroup,
@@ -61,6 +65,8 @@ extension ElementCreator.CreateRootElements {
         _ includeCompileStub: Bool,
         _ installPath: String,
         _ workspace: String,
+        _ concurrentlyCreateGroupChild:
+            ElementCreator.ConcurrentlyCreateGroupChild,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
         _ createInternalGroup: ElementCreator.CreateInternalGroup,
@@ -72,6 +78,8 @@ extension ElementCreator.CreateRootElements {
         includeCompileStub: Bool,
         installPath: String,
         workspace: String,
+        concurrentlyCreateGroupChild:
+            ElementCreator.ConcurrentlyCreateGroupChild,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
         createInternalGroup: ElementCreator.CreateInternalGroup,
@@ -143,13 +151,12 @@ extension ElementCreator.CreateRootElements {
                         )
 
                     default:
-                        let shard = UInt8(abs(node.name.hash % 20))
-                        let shardedGroupCreator = shardedGroupCreators[shard]!
-
-                        return await shardedGroupCreator.createGroupChild(
+                        return await concurrentlyCreateGroupChild(
                             for: node,
                             parentBazelPath: bazelPath,
-                            specialRootGroupType: nil
+                            specialRootGroupType: nil,
+                            createIdentifier: rootCreateIdentifier,
+                            shardedGroupCreators: shardedGroupCreators
                         )
                     }
                 }
