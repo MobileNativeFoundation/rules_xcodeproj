@@ -361,6 +361,29 @@ swift_library(
 
     _maybe(
         http_archive,
+        name = "com_github_apple_swift_async_algorithms",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "AsyncAlgorithms",
+    srcs = glob(["Sources/AsyncAlgorithms/**/*.swift"]),
+    deps = [
+        "@com_github_apple_swift_collections//:Collections",
+        "@com_github_apple_swift_collections//:DequeModule",
+        "@com_github_apple_swift_collections//:OrderedCollections",
+    ],
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "5c3ddba08c3612e1e88d674587d49ae1250caa9fc04028855041172af475a21d",
+        strip_prefix = "swift-async-algorithms-1.0.0",
+        url = "https://github.com/apple/swift-async-algorithms/archive/refs/tags/1.0.0.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
         name = "com_github_apple_swift_collections",
         build_file_content = """\
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")

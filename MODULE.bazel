@@ -80,6 +80,7 @@ use_repo(apple_cc_configure, "local_config_apple_cc")
 use_repo(
     non_module_deps,
     "com_github_apple_swift_argument_parser",
+    "com_github_apple_swift_async_algorithms",
     "com_github_apple_swift_collections",
     "com_github_kylef_pathkit",
     "com_github_michaeleisel_jjliso8601dateformatter",
