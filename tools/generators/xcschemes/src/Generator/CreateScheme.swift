@@ -157,9 +157,12 @@ extension Generator.CreateScheme {
             defaultXcodeConfiguration
 
         let launchRunnable: Runnable?
+        let canUseLaunchSchemeArgsEnv: Bool
         let wasCreatedForAppExtension: Bool
         switch schemeInfo.run.launchTarget {
         case let .target(primary, extensionHost):
+            canUseLaunchSchemeArgsEnv = true
+
             let buildableReference = primary.buildableReference
 
             adjustBuildActionEntry(
@@ -197,10 +200,12 @@ extension Generator.CreateScheme {
                 .appendUpdateLldbInitAndCopyDSYMs(for: buildableReference)
         case let .path(path):
             launchRunnable = .path(path: path)
+            canUseLaunchSchemeArgsEnv = false
             wasCreatedForAppExtension = false
 
         case .none:
             launchRunnable = nil
+            canUseLaunchSchemeArgsEnv = false
             wasCreatedForAppExtension = false
         }
 
@@ -262,6 +267,9 @@ extension Generator.CreateScheme {
             )
         }
 
+        let profileUseLaunchSchemeArgsEnv =
+            canUseLaunchSchemeArgsEnv && schemeInfo.profile.useRunArgsAndEnv
+
         // MARK: Test
 
         for buildOnlyTarget in schemeInfo.test.buildTargets {
@@ -294,6 +302,9 @@ extension Generator.CreateScheme {
             testPreActions
                 .appendUpdateLldbInitAndCopyDSYMs(for: buildableReference)
         }
+
+        let testUseLaunchSchemeArgsEnv =
+            canUseLaunchSchemeArgsEnv && schemeInfo.test.useRunArgsAndEnv
 
         // MARK: Execution actions
 
@@ -362,7 +373,7 @@ extension Generator.CreateScheme {
                 enableThreadSanitizer: schemeInfo.test.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.test.enableUBSanitizer,
                 environmentVariables: schemeInfo.test.environmentVariables,
-                expandVariablesBasedOn: schemeInfo.test.useRunArgsAndEnv ?
+                expandVariablesBasedOn: testUseLaunchSchemeArgsEnv ?
                     nil : testables.first?.buildableReference,
                 postActions: testPostActions
                     .sorted(by: compareExecutionActions)
@@ -371,7 +382,7 @@ extension Generator.CreateScheme {
                     .sorted(by: compareExecutionActions)
                     .map(\.action),
                 testables: testables,
-                useLaunchSchemeArgsEnv: schemeInfo.test.useRunArgsAndEnv
+                useLaunchSchemeArgsEnv: testUseLaunchSchemeArgsEnv
             ),
             launchAction: createLaunchAction(
                 buildConfiguration: launchBuildConfiguration,
@@ -401,7 +412,7 @@ extension Generator.CreateScheme {
                 preActions: profilePreActions
                     .sorted(by: compareExecutionActions)
                     .map(\.action),
-                useLaunchSchemeArgsEnv: true,
+                useLaunchSchemeArgsEnv: profileUseLaunchSchemeArgsEnv,
                 runnable: profileRunnable
             ),
             analyzeAction: createAnalyzeAction(

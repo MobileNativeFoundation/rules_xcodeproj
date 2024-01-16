@@ -177,6 +177,10 @@ def _profile(
             will be used if [`args`](#xcschemes.profile-args) and
             [`env`](#xcschemes.profile-env) are both `"inherit"`, otherwise
             `False` will be used.
+
+            A value of `True` will be ignored (i.e. treated as `False`) if
+            [`run.launch_target`](#xcschemes.run-launch_target) is not set to a
+            target.
         xcode_configuration: The name of the Xcode configuration to use to build
             the targets referenced in the Profile action (i.e in the
             [`build_targets`](#xcschemes.profile-build_targets) and
@@ -511,6 +515,10 @@ def _test(
             will be used if [`args`](#xcschemes.test-args) and
             [`env`](#xcschemes.test-env) are both `"inherit"`, otherwise
             `False` will be used.
+
+            A value of `True` will be ignored (i.e. treated as `False`) if
+            [`run.launch_target`](#xcschemes.run-launch_target) is not set to a
+            target.
         xcode_configuration: The name of the Xcode configuration to use to build
             the targets referenced in the Test action (i.e in the
             [`build_targets`](#xcschemes.test-build_targets) and
