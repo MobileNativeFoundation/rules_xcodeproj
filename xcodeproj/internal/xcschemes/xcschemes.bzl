@@ -157,7 +157,8 @@ def _profile(
         env_include_defaults: Whether to include the rules_xcodeproj provided
             default Bazel environment variables (e.g.
             `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in
-            addition to any set by [`env`](#xcschemes.profile-env).
+            addition to any set by [`env`](#xcschemes.profile-env). This does
+            not apply to [`xcschemes.launch_path`](#xcschemes.launch_path)s.
         launch_target: The target to launch when profiling.
 
             Can be `None`, a label string, a value returned by
@@ -323,7 +324,8 @@ def _run(
         env_include_defaults: Whether to include the rules_xcodeproj provided
             default Bazel environment variables (e.g.
             `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in
-            addition to any set by [`env`](#xcschemes.run-env).
+            addition to any set by [`env`](#xcschemes.run-env). This does
+            not apply to [`xcschemes.launch_path`](#xcschemes.launch_path)s.
         launch_target: The target to launch when running.
 
             Can be `None`, a label string, a value returned by
