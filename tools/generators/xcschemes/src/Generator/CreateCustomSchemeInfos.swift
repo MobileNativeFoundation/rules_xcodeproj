@@ -417,7 +417,9 @@ set
             in: url
         )
 
-        if environmentVariablesIncludeDefaults {
+        if let launchTarget, launchTarget.canExpandMacros &&
+            environmentVariablesIncludeDefaults
+        {
             environmentVariables.insert(
                 contentsOf: Array.defaultEnvironmentVariables,
                 at: 0
@@ -509,7 +511,9 @@ set
             in: url
         )
 
-        if environmentVariablesIncludeDefaults {
+        if let launchTarget,
+            launchTarget.canExpandMacros && environmentVariablesIncludeDefaults
+        {
             environmentVariables.insert(
                 contentsOf: Array.defaultEnvironmentVariables,
                 at: 0
@@ -669,7 +673,7 @@ set
             environmentVariables = []
         }
 
-        if environmentVariablesIncludeDefaults {
+        if environmentVariablesIncludeDefaults && !testTargets.isEmpty {
             environmentVariables.insert(
                 contentsOf: Array.defaultEnvironmentVariables,
                 at: 0
@@ -753,6 +757,15 @@ private extension PBXProductType {
             return true
         default:
             return false
+        }
+    }
+}
+
+private extension SchemeInfo.LaunchTarget {
+    var canExpandMacros: Bool {
+        switch self {
+        case .target: return true
+        case .path: return false
         }
     }
 }

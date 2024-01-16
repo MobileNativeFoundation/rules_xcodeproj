@@ -386,12 +386,14 @@ extension Generator.CreateScheme {
             ),
             launchAction: createLaunchAction(
                 buildConfiguration: launchBuildConfiguration,
-                commandLineArguments: schemeInfo.run.commandLineArguments,
+                commandLineArguments: launchRunnable == nil ?
+                    [] : schemeInfo.run.commandLineArguments,
                 customWorkingDirectory: schemeInfo.run.customWorkingDirectory,
                 enableAddressSanitizer: schemeInfo.run.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.run.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.run.enableUBSanitizer,
-                environmentVariables: schemeInfo.run.environmentVariables,
+                environmentVariables: launchRunnable == nil ?
+                    [] : schemeInfo.run.environmentVariables,
                 postActions: launchPostActions
                     .sorted(by: compareExecutionActions)
                     .map(\.action),
@@ -403,9 +405,11 @@ extension Generator.CreateScheme {
             profileAction: createProfileAction(
                 buildConfiguration: schemeInfo.profile.xcodeConfiguration ??
                     defaultXcodeConfiguration,
-                commandLineArguments: schemeInfo.run.commandLineArguments,
-                customWorkingDirectory: schemeInfo.run.customWorkingDirectory,
-                environmentVariables: schemeInfo.run.environmentVariables,
+                commandLineArguments: profileRunnable == nil ?
+                    [] : schemeInfo.profile.commandLineArguments,
+                customWorkingDirectory: schemeInfo.profile.customWorkingDirectory,
+                environmentVariables: profileRunnable == nil ?
+                    [] : schemeInfo.profile.environmentVariables,
                 postActions: profilePostActions
                     .sorted(by: compareExecutionActions)
                     .map(\.action),
