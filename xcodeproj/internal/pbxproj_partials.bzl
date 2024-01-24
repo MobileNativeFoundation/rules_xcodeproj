@@ -841,6 +841,13 @@ def _write_pbxtargetdependencies(
             consolidation_map_args.add(len(xcode_targets))
 
             for xcode_target in xcode_targets:
+                if not xcode_target.product.original_basename:
+                    fail("""\
+"{}" does not have `product.original_basename` set.
+Please file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
+""".format(xcode_target.label))
+
                 consolidation_map_args.add(xcode_target.id)
                 consolidation_map_args.add(xcode_target.product.type)
                 consolidation_map_args.add(
