@@ -349,6 +349,24 @@ def _create_link_params(
         product.xcode_product.type == "com.apple.product-type.framework"
     )
 
+    def _create_link_sub_params(idx, idx_link_args):
+        output = actions.declare_file(
+            "{}.rules_xcodeproj.link.sub-{}.params".format(
+                target_name,
+                idx,
+            ),
+        )
+        actions.write(
+            output = output,
+            content = idx_link_args,
+        )
+        return output
+
+    link_sub_params = [
+        _create_link_sub_params(idx, idx_link_args)
+        for idx, idx_link_args in enumerate(link_args)
+    ]
+
     link_params = actions.declare_file(
         "{}.rules_xcodeproj.link.params".format(target_name),
     )
@@ -357,16 +375,17 @@ def _create_link_params(
     args.add(link_params)
     args.add(generated_product_paths_file)
     args.add(TRUE_ARG if is_framework else FALSE_ARG)
+    args.add_all(link_sub_params)
 
     actions.run(
         executable = tool,
-        arguments = [args] + link_args,
+        arguments = [args],
         mnemonic = "ProcessLinkParams",
         progress_message = "Generating %{output}",
         inputs = (
             [generated_product_paths_file] +
             list(top_level_values.link_args_inputs)
-        ),
+        ) + link_sub_params,
         outputs = [link_params],
     )
 

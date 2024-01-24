@@ -29,19 +29,21 @@ _LD_SKIP_OPTS = {
 }
 
 
-def _parse_args(args: List[str]) -> List[str]:
-    expanded_args = []
-    # Drop first argument since it's the linker executable
-    for line in args[1:]:
-        if line.startswith("@"):
-            # Sometimes arguments might be a params file
-            with open(line[1:], encoding = "utf-8") as f:
-                expanded_args.extend(f.read().splitlines())
-        else:
-            expanded_args.append(line)
+def _parse_args(args_files: List[str]) -> List[str]:
+    args = []
+    for args_path in args_files:
+        # Each argument is a path to a file containing the actual arguments
+        with open(args_path, encoding = "utf-8") as fp:
+            lines = fp.read().splitlines()
+            if lines[0].startswith("@"):
+                # Sometimes those arguments might be also be a redirect
+                with open(lines[0][1:], encoding = "utf-8") as f:
+                    args.extend(f.read().splitlines())
+            else:
+                # First argument is the tool name
+                args.extend(lines[1:])
 
-    return expanded_args
-
+    return args
 
 def _quote_if_needed(opt: str) -> str:
     if " " in opt or ("$(" in opt and ")" in opt):
@@ -145,13 +147,13 @@ def _main(
         output_path: str,
         generated_product_paths_file: str,
         is_framework: bool,
-        args: List[str]
+        args_files: List[str]
     ) -> None:
     with open(generated_product_paths_file, encoding = "utf-8") as fp:
         generated_product_paths = json.load(fp)
 
     linkopts = _process_linkopts(
-        linkopts = _parse_args(args),
+        linkopts = _parse_args(args_files),
         is_framework = is_framework,
         generated_product_paths = generated_product_paths,
     )
@@ -162,11 +164,11 @@ def _main(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 8:
+    if len(sys.argv) < 5:
         print(
             f"""
 Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework> \
-<args...>\
+<args_files...>\
 """,
             file = sys.stderr,
         )
