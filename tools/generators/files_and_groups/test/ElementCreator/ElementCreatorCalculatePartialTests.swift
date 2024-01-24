@@ -69,15 +69,15 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
 
         // The tabs for indenting are intentional.
         //
-        // Shows that it's not responsible for sorting (this order is wrong).
+        // Shows that it's responsible for sorting.
         let expectedElementsPartial = #"""
 		FF0000000000000000000003 /* /Users/TimApple/StarBoard */ = {MAIN_GROUP_ELEMENT};
-		i /* internal */ = {i_ELEMENT};
 		a1 /* file_or_folder1 */ = {a1_ELEMENT};
-		b /* bazel-out */ = {b_ELEMENT};
 		a2 /* file_or_folder1 */ = {a2_ELEMENT};
 		a3 /* file_or_folder2 */ = {a3_ELEMENT};
+		b /* bazel-out */ = {b_ELEMENT};
 		e /* ../../external */ = {e_ELEMENT};
+		i /* internal */ = {i_ELEMENT};
 
 """#
 
