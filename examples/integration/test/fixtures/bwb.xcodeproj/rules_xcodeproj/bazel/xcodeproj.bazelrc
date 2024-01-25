@@ -111,7 +111,7 @@ build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable
 # `rules_xcodeproj` instead. This config exists solely to allow project-level
 # configs to work correctly.
 
-build:_rules_xcodeproj_build --config=rules_xcodeproj
+common:_rules_xcodeproj_build --config=rules_xcodeproj
 
 ### Project specific configs
 
