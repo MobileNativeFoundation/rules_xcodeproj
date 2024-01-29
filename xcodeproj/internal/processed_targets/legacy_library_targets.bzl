@@ -107,13 +107,6 @@ def _process_legacy_library_target(
         compilation_providers = target_compilation_providers,
     )
 
-    cpp = ctx.fragments.cpp
-
-    # TODO: Get the value for device builds, even when active config is not for
-    # device, as Xcode only uses this value for device builds
-    if str(cpp.apple_bitcode_mode) != "none":
-        build_settings["ENABLE_BITCODE"] = True
-
     platform = platforms.collect(ctx = ctx)
     product = process_product(
         actions = ctx.actions,
