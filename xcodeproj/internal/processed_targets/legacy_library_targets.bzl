@@ -107,8 +107,6 @@ def _process_legacy_library_target(
         compilation_providers = target_compilation_providers,
     )
 
-    cpp = ctx.fragments.cpp
-
     platform = platforms.collect(ctx = ctx)
     product = process_product(
         actions = ctx.actions,
