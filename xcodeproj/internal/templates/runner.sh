@@ -127,6 +127,7 @@ fi
 
 bazelrcs=(
   --noworkspace_rc
+  "--bazelrc=$generator_package_directory/pre_xcodeproj.bazelrc"
   "--bazelrc=$xcodeproj_bazelrc"
 )
 if [[ -s ".bazelrc" ]]; then
@@ -137,19 +138,22 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
 fi
 
 developer_dir=$(xcode-select -p)
-pre_config_flags=(
-  # Be explicit about our desired Xcode version
-  "--xcode_version=%xcode_version%"
 
-  # Set `DEVELOPER_DIR` in case a bazel wrapper filters it
-  "--repo_env=DEVELOPER_DIR=$developer_dir"
+# We write to a `.bazelrc` file instead of passing flags directly in order to
+# support all Bazel commands via the `common` pseudo-command
+cat > "$generator_package_directory/pre_xcodeproj.bazelrc" <<EOF
+# Be explicit about our desired Xcode version
+common:rules_xcodeproj --xcode_version=%xcode_version%
 
-  # Work around https://github.com/bazelbuild/bazel/issues/8902
-  # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
-  # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=USE_CLANG_CL=%xcode_version%"
-  "--repo_env=XCODE_VERSION=%xcode_version%"
-)
+# Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
+common:rules_xcodeproj --repo_env=DEVELOPER_DIR=$developer_dir
+
+# Work around https://github.com/bazelbuild/bazel/issues/8902
+# \`USE_CLANG_CL\` is only used on Windows, we set it here to cause Bazel to
+# re-evaluate the cc_toolchain for a different Xcode version
+common:rules_xcodeproj --repo_env=USE_CLANG_CL=%xcode_version%
+common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
+EOF
 
 bazel_cmd=(
   env
@@ -173,7 +177,6 @@ if [[ $original_arg_count -eq 0 ]]; then
 
   "${bazel_cmd[@]}" \
     run \
-    "${pre_config_flags[@]}" \
     "--config=%config%_generator" \
     %extra_generator_flags% \
     "%generator_label%" \
@@ -198,9 +201,8 @@ else
   cmd="${cmd_args[0]}"
 
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
-    pre_config_flags+=(
+    pre_config_flags=(
       "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$|.*\.swift$"
-      "--config=$bazel_config"
     )
 
     # `--output_groups`
@@ -210,11 +212,7 @@ else
       "%generator_label%"
     )
   else
-    if [[ $cmd == "dump" || $cmd == "shutdown" || $cmd == "sync" ]]; then
-      pre_config_flags=()
-    else
-      pre_config_flags=("--config=$bazel_config")
-    fi
+    pre_config_flags=()
     post_config_flags=("${cmd_args[@]:1}")
   fi
 
@@ -226,5 +224,6 @@ else
   "${bazel_cmd[@]}" \
     "$cmd" \
     ${pre_config_flags:+"${pre_config_flags[@]}"} \
+    "--config=$bazel_config" \
     ${post_config_flags:+"${post_config_flags[@]}"}
 fi
