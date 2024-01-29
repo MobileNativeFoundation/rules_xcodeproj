@@ -471,11 +471,6 @@ def _process_legacy_top_level_target(
 
     cpp = ctx.fragments.cpp
 
-    # TODO: Get the value for device builds, even when active config is not for
-    # device, as Xcode only uses this value for device builds
-    if str(cpp.apple_bitcode_mode) != "none":
-        build_settings["ENABLE_BITCODE"] = True
-
     # We don't have access to `CcInfo`/`SwiftInfo` here, so we have to make
     # a best guess at `-g` being used
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
