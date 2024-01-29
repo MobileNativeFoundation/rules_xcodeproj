@@ -125,9 +125,13 @@ WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
 EOF
 fi
 
+pre_xcodeproj_bazelrc_dir=$(mktemp -d)
+readonly pre_xcodeproj_bazelrc_dir
+trap 'rm -r "$pre_xcodeproj_bazelrc_dir"' EXIT
+
 bazelrcs=(
   --noworkspace_rc
-  "--bazelrc=$generator_package_directory/pre_xcodeproj.bazelrc"
+  "--bazelrc=$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
   "--bazelrc=$xcodeproj_bazelrc"
 )
 if [[ -s ".bazelrc" ]]; then
@@ -141,7 +145,7 @@ developer_dir=$(xcode-select -p)
 
 # We write to a `.bazelrc` file instead of passing flags directly in order to
 # support all Bazel commands via the `common` pseudo-command
-cat > "$generator_package_directory/pre_xcodeproj.bazelrc" <<EOF
+cat > "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
 # Be explicit about our desired Xcode version
 common:rules_xcodeproj --xcode_version=%xcode_version%
 
