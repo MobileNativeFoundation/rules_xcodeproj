@@ -17,10 +17,10 @@ x_templates:
       env: {}
     - &bazel_previous_lts
       env:
-        USE_BAZEL_VERSION: latest-1
+        USE_BAZEL_VERSION: 6.x
     - &bazel_lts
       env:
-        USE_BAZEL_VERSION: latest
+        USE_BAZEL_VERSION: 7.x
     - &bazel_head
       env:
         USE_BAZEL_VERSION: last_green
