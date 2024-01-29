@@ -38,6 +38,8 @@ def _write_xcodeproj_bazelrc(name, actions, config, template):
 
     if config != "rules_xcodeproj":
         project_configs = """
+# Set `--verbose_failures` on `common` as the closest to a "no-op" config as
+# possible, until https://github.com/bazelbuild/bazel/issues/12844 is fixed
 common:{config} --verbose_failures
 
 # Inherit from base configs
