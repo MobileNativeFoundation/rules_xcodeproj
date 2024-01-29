@@ -3227,7 +3227,6 @@
 		AC06BA6E5E0A1DE3D686B5D4 /* Google_Protobuf_NullValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Google_Protobuf_NullValue+Extensions.swift"; sourceTree = "<group>"; };
 		AC2CC667BD4A4DFD9F7ADF30 /* x509_d2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = x509_d2.c; sourceTree = "<group>"; };
 		AC44F0CE58456635C8898D90 /* v3_pci.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = v3_pci.c; sourceTree = "<group>"; };
-		AC61BB15DB71DB012160B206 /* libSwiftProtobuf.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libSwiftProtobuf.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.15.1~non_module_deps~com_github_apple_swift_protobuf/libSwiftProtobuf.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC95CAE2D439B300932C8B12 /* CNIOBoringSSL_hkdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_hkdf.h; sourceTree = "<group>"; };
 		ACAA96A8DAF16A2E865B6661 /* cpu_arm_linux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpu_arm_linux.h; sourceTree = "<group>"; };
 		ACFAF062054F94356A2B3732 /* CNIOBoringSSL_cmac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_cmac.h; sourceTree = "<group>"; };
@@ -3459,6 +3458,7 @@
 		CB1973B93728F830BEF4C998 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		CB38C7FF0302F53A6AAE579F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB3DC152A3E3107BA02D60A1 /* macOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB5D883CCC6339A49BE10C56 /* libecho_proto.swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libecho_proto.swift.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/GRPC/libecho_proto.swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC4D2A3185C3891B353A2E2 /* chacha20_poly1305_armv8.linux.aarch64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = chacha20_poly1305_armv8.linux.aarch64.S; sourceTree = "<group>"; };
 		CBE59FEFE0025058815EC856 /* tasn_fre.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tasn_fre.c; sourceTree = "<group>"; };
 		CC2036D8388236CF8C46E5D7 /* FXPageControl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = FXPageControl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -3476,6 +3476,7 @@
 		CD5A8AEEBBC84BFF4E6977F2 /* Google_Protobuf_ListValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Google_Protobuf_ListValue+Extensions.swift"; sourceTree = "<group>"; };
 		CD6E6DB8E2BA8DE2239B87D5 /* LoggingServerErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingServerErrorDelegate.swift; sourceTree = "<group>"; };
 		CDC50BE75D67D98C5F6486BE /* NIOSSLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOSSLHandler.swift; sourceTree = "<group>"; };
+		CDFC9D73D658F5804F79B57E /* libperson_proto.swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libperson_proto.swift.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/Proto/libperson_proto.swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3AD2A64D900139EF4340D3 /* WidgetExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		CE4A14888255719989CF83E7 /* echo_server.80.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = echo_server.80.link.params; sourceTree = "<group>"; };
 		CEA3B5B86605752BE48FA932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3663,7 +3664,6 @@
 		E851D6F2D8F78F93161DEF2C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E859AFBD1F2E1DD6CB726F77 /* SwiftProtobuf.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftProtobuf.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		E896D884482570FC2D4B4940 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
-		E8B5467033B0B11B7EC5EE06 /* libSwiftProtobuf.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libSwiftProtobuf.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.15.1~non_module_deps~com_github_apple_swift_protobuf/libSwiftProtobuf.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8CD90810D130F99C235FC07 /* p256-nistz.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "p256-nistz.c"; sourceTree = "<group>"; };
 		E8D83EB2DD53F65417886BBD /* CNIOLinux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOLinux.h; sourceTree = "<group>"; };
 		E8F2568FAD59657CEA8BBC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -8384,6 +8384,7 @@
 				2C93446E877912D08E6B6307 /* libCNIOWindows.a */,
 				4604D1026FB35950DBFF3006 /* libDequeModule.a */,
 				9C493F8766B53632637000EB /* libecho_client_services_swift.a */,
+				CB5D883CCC6339A49BE10C56 /* libecho_proto.swift.a */,
 				D269C6D851AEDF67591F617A /* libecho_server_services_swift.a */,
 				1D1177806FD1B277EEDB91BB /* LibFramework.tvOS.framework */,
 				222CF04F551342682A2DEA9D /* LibFramework.watchOS.framework */,
@@ -8413,6 +8414,7 @@
 				450ECBB95ADEF00FFBA5AB4D /* libNIOSSL.a */,
 				5C498781EB7BF3FB13E34D67 /* libNIOTLS.a */,
 				8B01A05F94BACAC98AE8C975 /* libNIOTransportServices.a */,
+				CDFC9D73D658F5804F79B57E /* libperson_proto.swift.a */,
 				5E6C4E6525A4986135D3D464 /* libprivate_lib.a */,
 				C2B2DE96EAD2CCE2B80B9B69 /* libprivate_lib.a */,
 				A0F9E920EF76C06757221FE8 /* libprivate_lib.a */,
@@ -8420,8 +8422,6 @@
 				E71F84FFB56CB1AF81716ACD /* libprivate_swift_lib.a */,
 				E935C728123E221B11BB3F50 /* libprivate_swift_lib.a */,
 				38BF455ECE701651677082E9 /* libSwiftProtobuf.a */,
-				E8B5467033B0B11B7EC5EE06 /* libSwiftProtobuf.a */,
-				AC61BB15DB71DB012160B206 /* libSwiftProtobuf.a */,
 				65CCA655A0F98731633FFED4 /* libTestingUtils.a */,
 				76A6058986733DDA4336DEE1 /* libUtils.a */,
 				5E55DA8F79F29EE0A6752C35 /* macOSApp.app */,

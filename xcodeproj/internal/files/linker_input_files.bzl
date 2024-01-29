@@ -85,8 +85,15 @@ def _compute_primary_static_library(
     # target, but sometimes another rule creates the output and this rule
     # outputs it. So far the first library has always been the correct one.
     if objc_libraries:
-        for library in objc_libraries:
-            if library.is_source:
+        generated_libraries = [f for f in objc_libraries if not f.is_source]
+        ignore_swift_protobuf = len(generated_libraries) > 1
+        for library in generated_libraries:
+            if (ignore_swift_protobuf and
+                library.basename == "libSwiftProtobuf.a"):
+                # rules_swift sometimes places SwiftProtobuf before the actual
+                # library, so we need to ignore it. When parsing
+                # `cc_linker_inputs`, we correctly get the "newest" library
+                # first.
                 continue
             return library
     elif cc_linker_inputs:
