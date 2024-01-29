@@ -1,4 +1,7 @@
 tasks:
   verify_targets_macos:
     name: Verify build targets
+    bazel: 7.x
     platform: macos
+    build_targets:
+    - '@rules_xcodeproj//tools/generators/pbxproj_prefix:universal_pbxproj_prefix'
