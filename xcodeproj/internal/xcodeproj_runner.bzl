@@ -25,7 +25,7 @@ def _process_extra_flags(*, attr, content, setting, config, config_suffix):
     extra_flags = getattr(attr, setting)[BuildSettingInfo].value
     if extra_flags:
         content.append(
-            "build:{}{} {}".format(config, config_suffix, extra_flags),
+            "common:{}{} {}".format(config, config_suffix, extra_flags),
         )
 
 def _serialize_nullable_string(value):
@@ -38,28 +38,28 @@ def _write_xcodeproj_bazelrc(name, actions, config, template):
 
     if config != "rules_xcodeproj":
         project_configs = """
-# Set `--verbose_failures` on `info` as the closest to a "no-op" config as
+# Set `--verbose_failures` on `common` as the closest to a "no-op" config as
 # possible, until https://github.com/bazelbuild/bazel/issues/12844 is fixed
-info:{config} --verbose_failures
+common:{config} --verbose_failures
 
 # Inherit from base configs
-build:{config}_generator --config=rules_xcodeproj_generator
-build:{config}_generator --config={config}
-build:{config}_indexbuild --config=rules_xcodeproj_indexbuild
-build:{config}_indexbuild --config={config}
-build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
-build:{config}_swiftuipreviews --config={config}
-build:{config}_asan --config=rules_xcodeproj_asan
-build:{config}_asan --config={config}
-build:{config}_tsan --config=rules_xcodeproj_tsan
-build:{config}_tsan --config={config}
-build:{config}_ubsan --config=rules_xcodeproj_ubsan
-build:{config}_ubsan --config={config}
+common:{config}_generator --config=rules_xcodeproj_generator
+common:{config}_generator --config={config}
+common:{config}_indexbuild --config=rules_xcodeproj_indexbuild
+common:{config}_indexbuild --config={config}
+common:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
+common:{config}_swiftuipreviews --config={config}
+common:{config}_asan --config=rules_xcodeproj_asan
+common:{config}_asan --config={config}
+common:{config}_tsan --config=rules_xcodeproj_tsan
+common:{config}_tsan --config={config}
+common:{config}_ubsan --config=rules_xcodeproj_ubsan
+common:{config}_ubsan --config={config}
 
 # Private implementation detail. Don't adjust this config, adjust
 # `{config}` instead.
-build:_{config}_build --config=_rules_xcodeproj_build
-build:_{config}_build --config={config}
+common:_{config}_build --config=_rules_xcodeproj_build
+common:_{config}_build --config={config}
 """.format(config = config)
     else:
         project_configs = ""
