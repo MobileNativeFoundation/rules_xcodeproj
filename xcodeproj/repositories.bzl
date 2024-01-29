@@ -111,15 +111,6 @@ def xcodeproj_rules_dependencies(
     if include_bzlmod_ready_dependencies:
         _maybe(
             http_archive,
-            name = "bazel_features",
-            sha256 = "62c26e427e5cbc751024446927622e398a9dcdf32c64325238815709d11c11a8",
-            strip_prefix = "bazel_features-1.1.1",
-            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.1.1/bazel_features-v1.1.1.tar.gz",
-            ignore_version_differences = ignore_version_differences,
-        )
-
-        _maybe(
-            http_archive,
             name = "bazel_skylib",
             sha256 = "66ffd9315665bfaafc96b52278f57c7e2dd09f5ede279ea6d39b2be471e7e3aa",
             url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz",
@@ -139,6 +130,15 @@ def xcodeproj_rules_dependencies(
             name = "build_bazel_rules_apple",
             sha256 = "9c4f1e1ec4fdfeac5bddb07fa0e872c398e3d8eb0ac596af9c463f9123ace292",
             url = "https://github.com/bazelbuild/rules_apple/releases/download/3.2.1/rules_apple.3.2.1.tar.gz",
+            ignore_version_differences = ignore_version_differences,
+        )
+
+        _maybe(
+            http_archive,
+            name = "bazel_features",
+            sha256 = "4912fc2f5d17199a043e65c108d3f0a2896061296d4c335aee5e6a3a71cc4f0d",
+            strip_prefix = "bazel_features-1.4.0",
+            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.4.0/bazel_features-v1.4.0.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
