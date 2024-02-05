@@ -60,6 +60,7 @@ the ruleset.
 - Gojek
 - Lyft
 - [Mercari](https://engineering.mercari.com/en/blog/entry/20221215-16cdd59909/)
+- Reddit
 - Robinhood
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Snap
