@@ -64,6 +64,16 @@ def _make_launch_target(
         working_directory = working_directory,
     )
 
+def _make_same_as_run_launch_target(run_launch_target):
+    return struct(
+        extension_host = run_launch_target.extension_host,
+        id = run_launch_target.id,
+        is_path = run_launch_target.is_path,
+        post_actions = EMPTY_LIST,
+        pre_actions = EMPTY_LIST,
+        working_directory = run_launch_target.working_directory,
+    )
+
 def _make_pre_post_action(
         *,
         for_build,
@@ -463,7 +473,9 @@ def _profile_info_from_dict(
     if profile == "same_as_run":
         return _make_profile(
             build_targets = run.build_targets,
-            launch_target = run.launch_target,
+            launch_target = _make_same_as_run_launch_target(
+                run.launch_target,
+            ),
         )
 
     if not profile:

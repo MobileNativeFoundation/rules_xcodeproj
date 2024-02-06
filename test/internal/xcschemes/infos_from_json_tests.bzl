@@ -348,6 +348,15 @@ def infos_from_json_test_suite(name):
         ],
         working_directory = "wd",
     )
+    expected_profile_same_as_run_launch_target = (
+        xcscheme_infos_testable.make_launch_target(
+            extension_host = "device eh",
+            id = "device lt",
+            post_actions = [],
+            pre_actions = [],
+            working_directory = "wd",
+        )
+    )
     expected_full_launch_build_targets = [
         xcscheme_infos_testable.make_build_target(
             id = "device lt lib",
@@ -598,7 +607,7 @@ def infos_from_json_test_suite(name):
                         expected_full_build_targets
                     ),
                     env_include_defaults = "0",
-                    launch_target = expected_full_launch_target,
+                    launch_target = expected_profile_same_as_run_launch_target,
                     use_run_args_and_env = "1",
                 ),
                 run = xcscheme_infos_testable.make_run(
