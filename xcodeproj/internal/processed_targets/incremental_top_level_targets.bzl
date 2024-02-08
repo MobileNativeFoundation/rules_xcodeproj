@@ -1223,7 +1223,7 @@ def _process_incremental_top_level_target(
         ),
     ]
 
-    extension_targets = getattr(rule_attr, "extensions", [])
+    extension_targets = list(getattr(rule_attr, "extensions", []))
     extension_target = getattr(rule_attr, "extension", None)
     if extension_target:
         extension_targets.append(extension_target)
