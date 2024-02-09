@@ -100,6 +100,7 @@ _TEST_HOST_PRODUCT_TYPES = {
 def _cc_mergeable_info(*, id, mergeable_info):
     return struct(
         compile_target_ids = mergeable_info.id,
+        compile_target_ids_list = [mergeable_info.id],
         conly_args = mergeable_info.args.conly,
         cxx_args = mergeable_info.args.cxx,
         extra_file_paths = mergeable_info.inputs.extra_file_paths,
@@ -213,6 +214,7 @@ def _calculate_mergeable_info(
 
         return struct(
             compile_target_ids = swift.id + " " + cc.id,
+            compile_target_ids_list = [swift.id, cc.id],
             conly_args = cc.args.conly,
             cxx_args = cc.args.cxx,
             extra_file_paths = memory_efficient_depset(
@@ -454,6 +456,7 @@ def _swift_mergeable_info(
 
     return struct(
         compile_target_ids = mergeable_info.id,
+        compile_target_ids_list = [mergeable_info.id],
         conly_args = EMPTY_LIST,
         cxx_args = EMPTY_LIST,
         extra_file_paths = mergeable_info.inputs.extra_file_paths,
@@ -485,6 +488,7 @@ def _process_focused_top_level_target(
         deps_infos,
         direct_dependencies,
         extension_infos,
+        focused_library_deps,
         id,
         label,
         platform,
@@ -495,7 +499,6 @@ def _process_focused_top_level_target(
         target,
         target_compilation_providers,
         test_host,
-        top_level_focused_deps,
         top_level_infos,
         transitive_dependencies,
         transitive_infos,
@@ -641,6 +644,24 @@ def _process_focused_top_level_target(
             (indexstore, indexstore_override_path)
             for indexstore in mergeable_info.indexstores
         ]
+
+        merged_ids = mergeable_info.compile_target_ids_list
+        top_level_focused_deps = [
+            struct(
+                id = id,
+                label = str(label),
+                deps = tuple([
+                    struct(
+                        # Map the label of merged library targets to the id of
+                        # the destination. This allows custom schemes to
+                        # reference the merged target.
+                        id = id if dep_id in merged_ids else dep_id,
+                        label = label,
+                    )
+                    for label, dep_id in focused_library_deps.items()
+                ]),
+            ),
+        ]
     else:
         package_bin_dir = actual_package_bin_dir
         args = compiler_args.collect(
@@ -659,6 +680,17 @@ def _process_focused_top_level_target(
             ],
             order = "topological",
         )
+
+        top_level_focused_deps = [
+            struct(
+                id = id,
+                label = str(label),
+                deps = tuple([
+                    struct(id = id, label = label)
+                    for label, id in focused_library_deps.items()
+                ]),
+            ),
+        ]
 
     (
         target_build_settings,
@@ -923,6 +955,8 @@ def _process_unfocused_top_level_target(
         avoid_deps,
         direct_dependencies,
         deps_infos,
+        focused_library_deps,
+        id,
         is_bundle,
         label,
         platform,
@@ -930,7 +964,6 @@ def _process_unfocused_top_level_target(
         props,
         provider_compilation_providers,
         target,
-        top_level_focused_deps,
         top_level_infos,
         transitive_dependencies,
         transitive_infos):
@@ -1021,6 +1054,17 @@ def _process_unfocused_top_level_target(
         resource_info = resource_info,
         transitive_infos = transitive_infos,
     )
+
+    top_level_focused_deps = [
+        struct(
+            id = id,
+            label = str(label),
+            deps = tuple([
+                struct(id = id, label = label)
+                for label, id in focused_library_deps.items()
+            ]),
+        ),
+    ]
 
     return processed_targets.make(
         compilation_providers = provider_compilation_providers,
@@ -1212,17 +1256,6 @@ def _process_incremental_top_level_target(
         ).to_list()
     }
 
-    top_level_focused_deps = [
-        struct(
-            id = id,
-            label = str(label),
-            deps = tuple([
-                struct(id = id, label = label)
-                for label, id in focused_library_deps.items()
-            ]),
-        ),
-    ]
-
     extension_targets = list(getattr(rule_attr, "extensions", []))
     extension_target = getattr(rule_attr, "extension", None)
     if extension_target:
@@ -1259,6 +1292,7 @@ def _process_incremental_top_level_target(
             deps_infos = deps_infos,
             direct_dependencies = direct_dependencies,
             extension_infos = extension_infos,
+            focused_library_deps = focused_library_deps,
             id = id,
             label = label,
             platform = platform,
@@ -1269,7 +1303,6 @@ def _process_incremental_top_level_target(
             target = target,
             target_compilation_providers = target_compilation_providers,
             test_host = test_host,
-            top_level_focused_deps = top_level_focused_deps,
             top_level_infos = top_level_infos,
             transitive_dependencies = transitive_dependencies,
             transitive_infos = transitive_infos,
@@ -1282,6 +1315,8 @@ def _process_incremental_top_level_target(
             avoid_deps = avoid_deps,
             deps_infos = deps_infos,
             direct_dependencies = direct_dependencies,
+            focused_library_deps = focused_library_deps,
+            id = id,
             is_bundle = bundle_info != None,
             label = label,
             platform = platform,
@@ -1289,7 +1324,6 @@ def _process_incremental_top_level_target(
             props = props,
             provider_compilation_providers = provider_compilation_providers,
             target = target,
-            top_level_focused_deps = top_level_focused_deps,
             top_level_infos = top_level_infos,
             transitive_dependencies = transitive_dependencies,
             transitive_infos = transitive_infos,
