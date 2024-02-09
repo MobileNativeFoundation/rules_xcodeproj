@@ -115,6 +115,8 @@ fi
 
 # Build
 
+echo "Starting Bazel build"
+
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
