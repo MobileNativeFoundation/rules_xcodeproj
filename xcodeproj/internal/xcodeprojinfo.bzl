@@ -98,8 +98,10 @@ This is only set and used when `xcodeproj.generation_mode = "incremental"` is
 set.
 """,
         "merged_target_ids": """\
-A `depset` of target IDs (see `xcode_target.id`) of targets that have been
-merged into another target.
+A `depset` of `tuple`s. The first element is the target ID (see
+`xcode_target.id`) of the target being merged into. The second element is a list
+of target IDs that have been merged into the target referenced by the first
+element.
 
 This is only set and used when `xcodeproj.generation_mode = "incremental"` is
 set.

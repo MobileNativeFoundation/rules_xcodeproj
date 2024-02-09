@@ -261,7 +261,7 @@ def _dicts_from_xcode_configurations(
             (xcode_configuration, focused_xcode_targets),
         )
 
-    dest_merged_target_ids = {
+    library_merged_target_ids = {
         src: None
         for srcs in merged_target_ids.values()
         for src in srcs
@@ -282,7 +282,7 @@ def _dicts_from_xcode_configurations(
         configuration_xcode_targets = {
             xcode_target.id: xcode_target
             for xcode_target in focused_xcode_targets
-            if xcode_target.id not in dest_merged_target_ids
+            if xcode_target.id not in library_merged_target_ids
         }
         xcode_targets.update(configuration_xcode_targets)
 
