@@ -254,8 +254,13 @@ def _write_schemes(
 
     # buildifier: disable=uninitialized
     def _add_build_targets(build_targets, *, action_name, scheme_name):
+        # A build target can be listed multiple times, in the case of target
+        # merging, or different pre/post action declarations. Let's unique the
+        # ids before sending them over.
+        for id in {t.id: None for t in build_targets}:
+            custom_scheme_args.add(id)
+
         for build_target in build_targets:
-            custom_scheme_args.add(build_target.id)
             _add_execution_actions(
                 build_target,
                 target_id = build_target.id,
