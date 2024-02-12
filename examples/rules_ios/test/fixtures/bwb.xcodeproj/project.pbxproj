@@ -421,6 +421,7 @@
 		315B28AA9FC30D18FDB97C8A /* Lib_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Lib_vfs.yaml; sourceTree = "<group>"; };
 		32436C8FF6EB5ACF790F24F7 /* CoreUtilsObjC-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreUtilsObjC-umbrella.h"; sourceTree = "<group>"; };
 		32B5973C0F1E937A3A5BBBDF /* iOSAppObjCUnitTestSuite_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTestSuite_swift_vfs.yaml; sourceTree = "<group>"; };
+		334F17D5682FBA02F584DE45 /* resource_bundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = resource_bundle.plist; sourceTree = "<group>"; };
 		3423B69557C97C31CE6F81A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		362A9114638000121904D2C8 /* MixedAnswer-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-umbrella.h"; sourceTree = "<group>"; };
 		36DD4B04383C3204BE5291E0 /* UI_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_vfs.yaml; sourceTree = "<group>"; };
@@ -500,7 +501,6 @@
 		76B8432C1EB86DADA12E77E3 /* LibDynamic_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_vfs.yaml; sourceTree = "<group>"; };
 		77BF92755261B04F8662A0F7 /* UI_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		788FC887077E2ECEA09C1D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7903387B40A06F8CEF4C8FBD /* resource_bundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = resource_bundle.plist; sourceTree = "<group>"; };
 		794A3B9947D6DB6A3FCD4693 /* Lib_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib_public_hmap.hmap; sourceTree = "<group>"; };
 		7A15D2F3DA24A7A2D616D92C /* CoreUtilsObjC_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CoreUtilsObjC_vfs.yaml; sourceTree = "<group>"; };
 		7AB63D429560EC3E75651895 /* iOSAppObjCUnitTestSuite_macro.29.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTestSuite_macro.29.link.params; sourceTree = "<group>"; };
@@ -551,12 +551,12 @@
 		9877BC55C1A485EACBB411C7 /* iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		9976EDECD75BB7E69C34D585 /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		9C7432B79789CDD2B692D6B6 /* common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.pch; sourceTree = "<group>"; };
 		9D8A39DA7DDD47BCCA6C441E /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3454EA530F699EDA98407D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FADC50F83228A0BC2F03239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FB807E65788589E5F03DF37 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
-		9FBB7B8DCADA378AA55D37EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A1571E88A5152EAEA4E0D7A6 /* iOSAppUITestSuite.26.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.26.link.params; sourceTree = "<group>"; };
 		A26DACD3F1D9FEEC54AA0A82 /* CoreUtilsObjC-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreUtilsObjC-umbrella.h"; sourceTree = "<group>"; };
 		A3A0C908BC8E33C1CA64C46F /* UI_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_swift_vfs.yaml; sourceTree = "<group>"; };
@@ -583,7 +583,6 @@
 		B567E39BDD671DCCA2B55806 /* iOSAppMixedUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
 		B675338F06046E743DB54DB7 /* iOSAppSwiftUnitTestSuite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppSwiftUnitTestSuite-Swift.h"; sourceTree = "<group>"; };
 		B809EEC3C7BDE467DAF5DF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B94CF086914F2DD1C6400046 /* common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.pch; sourceTree = "<group>"; };
 		BA031FF5D359F0739BBBD037 /* libLib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib_swift.a; path = "bazel-out/CONFIGURATION-STABLE-1/bin/Lib/libLib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA911CBDC169E2E6F6CB7987 /* iOSAppObjCUnitTests.20.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTests.20.link.params; sourceTree = "<group>"; };
 		BAE28C31A066FEBABF05E350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -641,6 +640,7 @@
 		EA249C429ED191D3BFB1B5A2 /* iOSAppUITests_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITests_macro_vfs.yaml; sourceTree = "<group>"; };
 		ED2123B7E06414B018AFE772 /* MixedAnswer_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_vfs.yaml; sourceTree = "<group>"; };
 		EFF4BFDCF8382A896D92518B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F1D4DB0A2C5C4C1172D773F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F23583DD9145DC9DE4E80F04 /* iOSAppUITestSuite_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_vfs.yaml; sourceTree = "<group>"; };
 		F5BE79708CCB1EAD234C9A68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F633A3579A098CB9CC4B106D /* iOSAppObjCUnitTests_macro_with_bundle_name_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_with_bundle_name_swift_vfs.yaml; sourceTree = "<group>"; };
@@ -688,14 +688,6 @@
 				930A52F1C2814B98802A80A4 /* Resources.swift */,
 			);
 			path = Lib;
-			sourceTree = "<group>";
-		};
-		0B1026228AC1A8B9200D078F /* rules_ios~3.2.1 */ = {
-			isa = PBXGroup;
-			children = (
-				2F397195C3DA69BD1F8AF47F /* rules */,
-			);
-			path = "rules_ios~3.2.1";
 			sourceTree = "<group>";
 		};
 		0EE0FDEBA43DD9C86264D29F /* WidgetExtension */ = {
@@ -832,15 +824,6 @@
 				3E78F614B0F11CADE4EF0B06 /* Lib.modulemap */,
 			);
 			path = "Lib-modulemap";
-			sourceTree = "<group>";
-		};
-		2F397195C3DA69BD1F8AF47F /* rules */ = {
-			isa = PBXGroup;
-			children = (
-				8965EEEE9E07A5F7EAAF975B /* library */,
-				55240337BA336773881CB159 /* test_host_app */,
-			);
-			path = rules;
 			sourceTree = "<group>";
 		};
 		33466399BFDFA42D0601A518 /* ObjCUnitTests */ = {
@@ -1026,14 +1009,6 @@
 				E943F215AEDF12BE12F30E42 /* UITests */,
 			);
 			path = Test;
-			sourceTree = "<group>";
-		};
-		55240337BA336773881CB159 /* test_host_app */ = {
-			isa = PBXGroup;
-			children = (
-				9FBB7B8DCADA378AA55D37EC /* Info.plist */,
-			);
-			path = test_host_app;
 			sourceTree = "<group>";
 		};
 		55BEA77AF2E74EA793DF2494 /* CONFIGURATION-STABLE-7 */ = {
@@ -1295,15 +1270,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8965EEEE9E07A5F7EAAF975B /* library */ = {
-			isa = PBXGroup;
-			children = (
-				B94CF086914F2DD1C6400046 /* common.pch */,
-				7903387B40A06F8CEF4C8FBD /* resource_bundle.plist */,
-			);
-			path = library;
-			sourceTree = "<group>";
-		};
 		90334C5D671D852CF177CCB0 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1445,6 +1411,14 @@
 			path = "MixedAnswer-modulemap";
 			sourceTree = "<group>";
 		};
+		AD0C14230471CAAF4EA3D93E /* rules_ios~ */ = {
+			isa = PBXGroup;
+			children = (
+				F69AF31D8DFCC0D666D2A7B1 /* rules */,
+			);
+			path = "rules_ios~";
+			sourceTree = "<group>";
+		};
 		AD10C8FEFCF9951D35F3DB4F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1569,6 +1543,14 @@
 			path = "CONFIGURATION-STABLE-0";
 			sourceTree = "<group>";
 		};
+		CF4E7FC40A94DFF43B99B3FE /* test_host_app */ = {
+			isa = PBXGroup;
+			children = (
+				F1D4DB0A2C5C4C1172D773F1 /* Info.plist */,
+			);
+			path = test_host_app;
+			sourceTree = "<group>";
+		};
 		D10D703C2F00F8A154BED111 /* iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1637,6 +1619,15 @@
 			path = VendoredFramework.xcframework;
 			sourceTree = "<group>";
 		};
+		D844E49BA7E769401F7AC5B7 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				9C7432B79789CDD2B692D6B6 /* common.pch */,
+				334F17D5682FBA02F584DE45 /* resource_bundle.plist */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
 		DB047C3BBB8EB2921A7A477D /* Test */ = {
 			isa = PBXGroup;
 			children = (
@@ -1703,7 +1694,7 @@
 		E35FE3EB7C97DE1172A312B1 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				0B1026228AC1A8B9200D078F /* rules_ios~3.2.1 */,
+				AD0C14230471CAAF4EA3D93E /* rules_ios~ */,
 			);
 			name = "Bazel External Repositories";
 			path = ../../external;
@@ -1861,6 +1852,15 @@
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		F69AF31D8DFCC0D666D2A7B1 /* rules */ = {
+			isa = PBXGroup;
+			children = (
+				D844E49BA7E769401F7AC5B7 /* library */,
+				CF4E7FC40A94DFF43B99B3FE /* test_host_app */,
+			);
+			path = rules;
 			sourceTree = "<group>";
 		};
 		FAED19CC3C3F441140BACE79 /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */ = {

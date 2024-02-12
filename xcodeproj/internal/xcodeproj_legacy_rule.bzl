@@ -239,6 +239,22 @@ def _process_extra_files(
             extra_idx = [0]
 
         def _normalize_path(path):
+            if path.startswith("external/"):
+                path_components = path.split("/")
+                if len(path_components) < 2:
+                    return path
+
+                repo = path_components[1]
+                repo_components = repo.split("~")
+                if len(repo_components) < 2:
+                    return path
+
+                if repo_components[0] == "_main":
+                    return path
+
+                repo = "~".join([repo_components[0], ""] + repo_components[2:])
+                return "/".join([path_components[0], repo] + path_components[2:])
+
             # bazel-out/darwin_x86_64-dbg-ST-deadbeaf/bin -> bazel-out/darwin_x86_64-dbg-STABLE-1/bin
             if not path.startswith("bazel-out/"):
                 return path
@@ -254,6 +270,15 @@ def _process_extra_files(
                 )
                 extra_idx[0] = extra_idx[0] + 1
                 configurations_map[configuration] = configuration_replacement
+
+            # TODO: Remove version stripping once we drop Bazel 7 support
+            suffix_components = suffix.split("/")
+            if len(suffix_components) > 2:
+                repo = suffix_components[2]
+                repo_components = repo.split("~")
+                if len(repo_components) > 1:
+                    repo = "~".join([repo_components[0], ""] + repo_components[2:])
+                suffix = "/".join(suffix_components[0:2] + [repo] + suffix_components[3:])
 
             return (
                 "bazel-out/" + configuration_replacement + "/" + suffix

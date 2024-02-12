@@ -94,7 +94,8 @@ if [[ $for_fixture -eq 1 ]]; then
   mkdir -p "$dest_generator_package_directory"
   cp -r "$src_generator_package_directory" "$dest_generator_package_directory"
   sed -i '' 's|visibility = \[.*\]|visibility = ["//test:__subpackages__"]|' "$dest_generator_package/BUILD"
-  sed -i '' 's|WORKSPACE_DIRECTORY = ".*"|WORKSPACE_DIRECTORY = "FIXTURE_WORKSPACE_DIRECTORY"|' "$dest_generator_package/defs.bzl"
+  # TODO: Remove version stripping once we drop Bazel 7 support
+  sed -i '' -e 's|WORKSPACE_DIRECTORY = ".*"|WORKSPACE_DIRECTORY = "FIXTURE_WORKSPACE_DIRECTORY"|' -e 's|@@rules_xcodeproj~override|@@rules_xcodeproj~|' "$dest_generator_package/defs.bzl"
 
   # Bazel versions can change the Starlark hashes, so we store replacements
   # per version

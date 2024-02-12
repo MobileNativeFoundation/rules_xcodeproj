@@ -3333,12 +3333,12 @@
 		0B773299CFEE74058BE44430 /* CNIOBoringSSL_ec_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_ec_key.h; sourceTree = "<group>"; };
 		0B7D062F1F3AA3618F6E7F4C /* Google_Protobuf_Wrappers+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Google_Protobuf_Wrappers+Extensions.swift"; sourceTree = "<group>"; };
 		0B8F1B22E867BE873B1050D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		0B9BC38C723FF3A098FFD113 /* CNIOLLHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOLLHTTP.h; sourceTree = "<group>"; };
 		0BBD803B6004ADC208A2F909 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		0BD403D59FD279723BD9B059 /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		0BE8C8EF60C2F3195FB67812 /* dtls_method.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dtls_method.cc; sourceTree = "<group>"; };
 		0C26EDCC84FD4B44D4FA54A8 /* MarkedCircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkedCircularBuffer.swift; sourceTree = "<group>"; };
 		0C35BAE44A9F83FAA3470A74 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
+		0C724B077D7028E1DE78A972 /* boringssl_prefix_symbols_nasm.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boringssl_prefix_symbols_nasm.inc; sourceTree = "<group>"; };
 		0C771F66BE475442A79FCB67 /* ReceivingHeadersState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivingHeadersState.swift; sourceTree = "<group>"; };
 		0C7AF5D9C760E1DA1C49AEFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0CAFEF0F325F4DD3305F200F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3375,7 +3375,6 @@
 		11607B727515E665911A6946 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		116A54B3B0CF9FE2F3FE4EE2 /* exported-symbols.lds */ = {isa = PBXFileReference; lastKnownFileType = file; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		11796D68B6771984C2BB0389 /* StreamLender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamLender.swift; sourceTree = "<group>"; };
-		11A42BFC9A688E8864DDDA79 /* boringssl_prefix_symbols_nasm.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boringssl_prefix_symbols_nasm.inc; sourceTree = "<group>"; };
 		120A41CE630072C71925D202 /* GRPC.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = GRPC.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		120CB9A9548AA2EA5A1F00BC /* CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		120DEA1CFCFDB0950F2748D7 /* x86_64-gcc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "x86_64-gcc.c"; sourceTree = "<group>"; };
@@ -3404,6 +3403,7 @@
 		1588BB854BB6B6ECC2AD3B1F /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		1595295C8308BD6D66857D77 /* PlatformSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSupport.swift; sourceTree = "<group>"; };
 		1598B769C2DEDD39517BE1D9 /* CNIOBoringSSL_siphash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_siphash.h; sourceTree = "<group>"; };
+		15A9954A33E835E0B13338E1 /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		15CB86A5709B825FB8F1CD02 /* JSONRPCFraming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRPCFraming.swift; sourceTree = "<group>"; };
 		165FFE61D8C34CB4238C6C68 /* defines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = defines.c; sourceTree = "<group>"; };
 		166ABDF214503216E79A015C /* ghashv8-armx32.ios.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghashv8-armx32.ios.arm.S"; sourceTree = "<group>"; };
@@ -3504,7 +3504,6 @@
 		217370817D19BDB8AA2F139C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		21759FF1FCCE45014C89C400 /* Atomics.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Atomics.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		217CA1B6469A6F75414848E9 /* x509_vfy.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = x509_vfy.c; sourceTree = "<group>"; };
-		21B9D762371D39B46B6C1910 /* CNIODarwin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIODarwin.h; sourceTree = "<group>"; };
 		221A099BEDECCB6DEC9228A2 /* TextFormatDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatDecodingError.swift; sourceTree = "<group>"; };
 		22358369305D482256F8E15D /* EventLoop+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLoop+Deprecated.swift"; sourceTree = "<group>"; };
 		223CC0DC8B03FEA11103B34D /* ExtensionFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionFields.swift; sourceTree = "<group>"; };
@@ -3513,6 +3512,7 @@
 		227FE30A2A9D3437C84BA6CF /* JSONMapEncodingVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMapEncodingVisitor.swift; sourceTree = "<group>"; };
 		2283C778437B6BE3239A496A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		228BE17A779BE053C7D405C8 /* dsa.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dsa.c; sourceTree = "<group>"; };
+		232D5E8DF66D32D0BE812D2D /* c_nio_llhttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_nio_llhttp.h; sourceTree = "<group>"; };
 		2336EB92E670272196BDFFAA /* d1_lib.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d1_lib.cc; sourceTree = "<group>"; };
 		233DA6812B185B9AB56243FF /* add.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = add.c; sourceTree = "<group>"; };
 		234542794D6E390AAC48E15D /* iOSAppSwiftUnitTests.273.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTests.273.link.params; sourceTree = "<group>"; };
@@ -3609,6 +3609,7 @@
 		2F0153DE4A7DCBC8DECD50D4 /* tvOSAppUnitTests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSAppUnitTests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		2F2934BC8F1F918C99B613F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F43CF7476674E5FCD5C5FBB /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
+		2F810CCBE1BDC79E7E6F7235 /* _AtomicsShims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _AtomicsShims.h; sourceTree = "<group>"; };
 		2FC2CF3732195F8453A5D1BB /* cbs.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cbs.c; sourceTree = "<group>"; };
 		30089D451F0546E84FE14A2B /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		30250F94A5B19A19DCAA7B74 /* ByteBuffer-views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteBuffer-views.swift"; sourceTree = "<group>"; };
@@ -3625,6 +3626,7 @@
 		321B74A7FBC6306ED2EB8657 /* TCPOptions+SocketChannelOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCPOptions+SocketChannelOption.swift"; sourceTree = "<group>"; };
 		3238F06709A47B4063F3CFB2 /* iOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		327E933DAF15B12C0FA5F76F /* fips.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fips.c; sourceTree = "<group>"; };
+		3289BC9A54B0ABD83DCA974C /* CNIODarwin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIODarwin.h; sourceTree = "<group>"; };
 		329569943591BDB90CCDBF46 /* client_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = client_main.swift; sourceTree = "<group>"; };
 		32B39D731EE2E8B00073ED03 /* _DequeBufferHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DequeBufferHeader.swift; sourceTree = "<group>"; };
 		32C0AF930D80BB306EE23843 /* sha256-586.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha256-586.linux.x86.S"; sourceTree = "<group>"; };
@@ -3634,7 +3636,6 @@
 		32D9FBF9BEADC35603466764 /* GetaddrinfoResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetaddrinfoResolver.swift; sourceTree = "<group>"; };
 		334222820F58971173F96AD6 /* evp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = evp.c; sourceTree = "<group>"; };
 		336969291CE46E2795F52CE7 /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
-		33B3D9D95D13B6D06FE4FB21 /* CNIOAtomics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOAtomics.h; sourceTree = "<group>"; };
 		33CB9C42B68A1CEE6313C3A0 /* Zeroization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zeroization.swift; sourceTree = "<group>"; };
 		33CC50BE1DE2E073356DEDEB /* QuiescingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuiescingState.swift; sourceTree = "<group>"; };
 		33F88ADEDB7809198F344595 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/CONFIGURATION-STABLE-26/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3642,7 +3643,6 @@
 		342C582176F3679844610A49 /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		34304F17C5A12CB981B2915C /* GRPCStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCStatus.swift; sourceTree = "<group>"; };
 		34785377216F4EEC4337C1D8 /* pkcs8.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pkcs8.c; sourceTree = "<group>"; };
-		34A333FC87CB0501CE8A1102 /* CNIOLinux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOLinux.h; sourceTree = "<group>"; };
 		34BA97AF6D69025DF7759CB5 /* iOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		34BEA2430486659A87B9ACF5 /* bio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio.c; sourceTree = "<group>"; };
 		34BEB391AB4C390B4F907E23 /* Message+TextFormatAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+TextFormatAdditions.swift"; sourceTree = "<group>"; };
@@ -3687,6 +3687,7 @@
 		39B7ECCDE059D5E62AF88077 /* LibFramework.tvOS.168.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = LibFramework.tvOS.168.link.params; sourceTree = "<group>"; };
 		39CF628C6B36D16700C96063 /* p5_pbev2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = p5_pbev2.c; sourceTree = "<group>"; };
 		39FC3FDBB7068F44EC6A141A /* chacha20_poly1305_x86_64.mac.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = chacha20_poly1305_x86_64.mac.x86_64.S; sourceTree = "<group>"; };
+		3A7E103585C728A29C003D56 /* liburing_nio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liburing_nio.h; sourceTree = "<group>"; };
 		3A828A8A46946E5A2C0F66E7 /* JSONEncodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingError.swift; sourceTree = "<group>"; };
 		3A936B067D96DE6A16797A4C /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		3AC325BCDFCAB16EAEBCC269 /* Visitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
@@ -3855,7 +3856,6 @@
 		4F5E5FD77FF231245FB7C7DF /* gcd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gcd.c; sourceTree = "<group>"; };
 		4F74726943589DC94AFC5170 /* ghashv8-armx32.linux.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghashv8-armx32.linux.arm.S"; sourceTree = "<group>"; };
 		4F9CEB0D45DC2A6F9527DFAC /* ghash-ssse3-x86.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghash-ssse3-x86.linux.x86.S"; sourceTree = "<group>"; };
-		4FA17825BD389D3143A1173E /* disable_signing_resource_rules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = disable_signing_resource_rules.plist; sourceTree = "<group>"; };
 		4FE7E7BE1EFCF937C4E86E76 /* ghash-ssse3-x86_64.mac.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ghash-ssse3-x86_64.mac.x86_64.S"; sourceTree = "<group>"; };
 		50B1B219249A14D519AC43D8 /* AtomicOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicOptional.swift; sourceTree = "<group>"; };
 		50DD3B37EADCC859EDA6F452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -3876,7 +3876,6 @@
 		52ABA9BC02432801B0CB0C62 /* echo_server.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = echo_server.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		532F6EE4A54142F05F530536 /* HTTP2StreamMultiplexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2StreamMultiplexer.swift; sourceTree = "<group>"; };
 		53895468A9D943C9111993D4 /* spake25519.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = spake25519.c; sourceTree = "<group>"; };
-		538AC780760D3D219B1E0563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		54051162DDEAE7E4CE082D0D /* NIOTransportServices.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = NIOTransportServices.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		5409E5BFC3EF63D79A0E2656 /* hexdump.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hexdump.c; sourceTree = "<group>"; };
 		541E48CBB57D40A4F23D992B /* FrameworkCoreUtilsObjC.123.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = FrameworkCoreUtilsObjC.123.link.params; sourceTree = "<group>"; };
@@ -3898,6 +3897,7 @@
 		561A5D73EA6A422E37A59C83 /* SocketAddress+NWEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocketAddress+NWEndpoint.swift"; sourceTree = "<group>"; };
 		5627F4475330326E2A9E948E /* WidgetExtension.25.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.25.link.params; sourceTree = "<group>"; };
 		562F3ED8584A0629B685EAC6 /* UIFramework.tvOS.40.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UIFramework.tvOS.40.link.params; sourceTree = "<group>"; };
+		563E93802230DA3BD6ED85F1 /* disable_signing_resource_rules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = disable_signing_resource_rules.plist; sourceTree = "<group>"; };
 		56536CB2462EAA046E5504D5 /* armv4-mont.linux.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "armv4-mont.linux.arm.S"; sourceTree = "<group>"; };
 		56569E0826346A0E85CBFC14 /* GRPCClient+AsyncAwaitSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GRPCClient+AsyncAwaitSupport.swift"; sourceTree = "<group>"; };
 		56B67B12A033710EAA61FC5C /* BasicTests.245.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = BasicTests.245.link.params; sourceTree = "<group>"; };
@@ -3942,6 +3942,7 @@
 		5C34580BED61635DC81DC4D5 /* BidirectionalStreamingCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalStreamingCall.swift; sourceTree = "<group>"; };
 		5C49D09241330215C2D25262 /* x86-mont.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "x86-mont.linux.x86.S"; sourceTree = "<group>"; };
 		5C4C91FDB9CD30A5E377DC88 /* cpu_aarch64_apple.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cpu_aarch64_apple.c; sourceTree = "<group>"; };
+		5C8DF6374393B8B865675B79 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		5CC6956C5DD8D7741C73B855 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		5CDC0B8FA09A55EA97C36B03 /* MixedAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedAnswer.h; sourceTree = "<group>"; };
 		5CE1B4651CB25F4BB27132F2 /* CNIOBoringSSL_dh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_dh.h; sourceTree = "<group>"; };
@@ -3982,7 +3983,6 @@
 		6215FD88E99133AB94CA1D1E /* libNIOConcurrencyHelpers.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libNIOConcurrencyHelpers.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio/libNIOConcurrencyHelpers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		623D45E65502BD8F47147F6E /* NIOThrowingAsyncSequenceProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOThrowingAsyncSequenceProducer.swift; sourceTree = "<group>"; };
 		624780D70A5A5EA79BE75B1A /* ConnectionPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionPool.swift; sourceTree = "<group>"; };
-		62682747100850667890466E /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		62A3C5C493B100E4AD17EDBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		62B205E413809B5D9BF8DB46 /* rand_extra.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = rand_extra.c; sourceTree = "<group>"; };
 		62C2B9CB4408434FA39B6EC5 /* voprf.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = voprf.c; sourceTree = "<group>"; };
@@ -4029,7 +4029,6 @@
 		68DE5F312FB11D7F63559EB0 /* Linux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linux.swift; sourceTree = "<group>"; };
 		6905F8EAA9F5C72849172F18 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		694690BBC8FF84BB221CD3C2 /* x509_att.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = x509_att.c; sourceTree = "<group>"; };
-		69546DF1D3F741021DF722F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6967CE8C0135DD62801208C9 /* pem_all.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pem_all.c; sourceTree = "<group>"; };
 		69D3E97CC8C328FFC97BFE72 /* ExampleNestedResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = ExampleNestedResources.bundle; sourceTree = "<group>"; };
 		69DFB186783AB86403E1E897 /* iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -4057,7 +4056,6 @@
 		6C24C8C9FE5E31A1421D3C3B /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		6C319BCFC22AFE80F338C0AF /* server_main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = server_main.swift; sourceTree = "<group>"; };
 		6C522A4DC8D4BC342CAF0BD7 /* iOSAppSwiftUnitTestSuite.191.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTestSuite.191.link.params; sourceTree = "<group>"; };
-		6C8AAE694CE67E4C2505DDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6C90D56C6C21F9CC88235617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6CA54C93C6F98AE580A67B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6CBB7FDB99188624B1355206 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -4208,7 +4206,6 @@
 		7D0C7467622788AEAB58D662 /* pem_x509.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pem_x509.c; sourceTree = "<group>"; };
 		7D3524FA2E7A8CF54FDD5C14 /* ServerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerBuilder.swift; sourceTree = "<group>"; };
 		7D8A6BE82C5C8CD908575AC4 /* duration.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = duration.pb.swift; sourceTree = "<group>"; };
-		7DAA997895D2DD611B08617C /* cpp_magic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpp_magic.h; sourceTree = "<group>"; };
 		7DACBA6B3FDD7E40DAFD8018 /* conf.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = conf.c; sourceTree = "<group>"; };
 		7DAF84DA134C3F81F2FA8614 /* ecdh.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ecdh.c; sourceTree = "<group>"; };
 		7E16D0C3B1A292BBEE1E86A9 /* UIFramework.tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4229,7 +4226,6 @@
 		807B72F7D525C8AEBBE89262 /* digest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = digest.c; sourceTree = "<group>"; };
 		80917ED0A96183672E52C90B /* iMessageAppExtension.49.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iMessageAppExtension.49.link.params; sourceTree = "<group>"; };
 		8098DA3E9C604C5149E46879 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
-		80A59322F5B4CB13A8CE3ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80CD9E22655AC7C34DD76876 /* any.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = any.pb.swift; sourceTree = "<group>"; };
 		80E1FED1E31C1D8A42AB20F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		810A1ADBD5C4D51314F1F544 /* bn_asn1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_asn1.c; sourceTree = "<group>"; };
@@ -4313,7 +4309,6 @@
 		8B9A1FF6C477751214412FDC /* Logging.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Logging.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		8BACF62D75893C355C6DDABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8BBAFB35828502E96528E13D /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
-		8BD27F75CF5A4741DEE8D32E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8BF9E867B524FAFB96186891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8C4BE4CE32DBE8ADD0DF4D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8C50F5483548D395FA570633 /* _GRPCClientCodecHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _GRPCClientCodecHandler.swift; sourceTree = "<group>"; };
@@ -4431,7 +4426,6 @@
 		99E2337032E558F62FD5C809 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		9A420A9969D47E1E4D81BFF4 /* Codable+ByteBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+ByteBuffer.swift"; sourceTree = "<group>"; };
 		9A448C0F1DFCEA5B24F933C0 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
-		9A484DA335EADE2544BAF121 /* _AtomicsShims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _AtomicsShims.h; sourceTree = "<group>"; };
 		9A5D2F21EE10B516E8DF3D14 /* NIOTLS.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = NIOTLS.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		9ACA1EF06889A05593547D7E /* tool.20.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tool.20.link.params; sourceTree = "<group>"; };
 		9ACC84BEACAFAEE37C1B4D8E /* NIOSendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOSendable.swift; sourceTree = "<group>"; };
@@ -4484,7 +4478,6 @@
 		A0C77ACC4F4419DD10B7AC95 /* e_des.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = e_des.c; sourceTree = "<group>"; };
 		A0C8B7F9E0F8F72F92685833 /* lib_impl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_impl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		A0C90356AF67E181898DFAA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A0D8F9A3BF39A65713DAC228 /* liburing_nio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liburing_nio.h; sourceTree = "<group>"; };
 		A0F8F7533505AD37BB93CBD1 /* bsaes-armv7.ios.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "bsaes-armv7.ios.arm.S"; sourceTree = "<group>"; };
 		A106D2F1D32627333D0985E9 /* p256-armv8-asm.linux.aarch64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "p256-armv8-asm.linux.aarch64.S"; sourceTree = "<group>"; };
 		A148484B0492EF405BAD782B /* StateManagedChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManagedChannel.swift; sourceTree = "<group>"; };
@@ -4507,6 +4500,7 @@
 		A3971AA35E49D49E46D37CB0 /* sha256-armv4.linux.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha256-armv4.linux.arm.S"; sourceTree = "<group>"; };
 		A3A8F955ECA9F6549EA20583 /* err_data.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = err_data.c; sourceTree = "<group>"; };
 		A3B675393E50685E4B8B226E /* chacha-armv4.ios.arm.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "chacha-armv4.ios.arm.S"; sourceTree = "<group>"; };
+		A3C99A9ECFC1A77BB1722031 /* CNIOAtomics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOAtomics.h; sourceTree = "<group>"; };
 		A41D4E3E75FBDBC7189D965A /* GRPCIdleHandlerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCIdleHandlerStateMachine.swift; sourceTree = "<group>"; };
 		A481A6CADD4CB6239DED9B3F /* CGRPCZlib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = CGRPCZlib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		A4854B7BC8759DDD37CFCFB2 /* iMessageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4528,6 +4522,7 @@
 		A60113A59CA87E0B9C55EB15 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		A6199218DC333CA1A8036585 /* impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impl.h; sourceTree = "<group>"; };
 		A62948C7114E8348E2B255D8 /* JSONSerialization+ByteBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+ByteBuffer.swift"; sourceTree = "<group>"; };
+		A63CA3AD17E7B93B1A8012C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A64935A1355521DAF2D0F153 /* PoolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolManager.swift; sourceTree = "<group>"; };
 		A64C0C8E886C7169029BFCFF /* sha1-586.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha1-586.linux.x86.S"; sourceTree = "<group>"; };
 		A661A82B2D12E0B7DF8169F0 /* GRPCChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCChannel.swift; sourceTree = "<group>"; };
@@ -4551,6 +4546,7 @@
 		A805AB251BFFC72417570B25 /* proto.193.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = proto.193.link.params; sourceTree = "<group>"; };
 		A8125F86E8E00002C972A497 /* aesni-x86.linux.x86.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "aesni-x86.linux.x86.S"; sourceTree = "<group>"; };
 		A82636781F42D61A3F8193EA /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A83FE4528A20854911644C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A89CF199A3717444698BC978 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B6E3F101081355C7B1477D /* UIFramework.watchOS.128.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UIFramework.watchOS.128.link.params; sourceTree = "<group>"; };
 		A8BB1AFB8BE22330970E1A3D /* TextFormatEncodingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatEncodingOptions.swift; sourceTree = "<group>"; };
@@ -4603,6 +4599,7 @@
 		AF8F31F2D242CD7DEA2E1B42 /* String+unsafeUninitializedCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+unsafeUninitializedCapacity.swift"; sourceTree = "<group>"; };
 		AF9AEDDF6015C39B09A60ED1 /* SSLCallbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSLCallbacks.swift; sourceTree = "<group>"; };
 		AFB2FD8E7173B976C865986F /* CommandLineToolTests.246.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = CommandLineToolTests.246.link.params; sourceTree = "<group>"; };
+		AFC2BE6BF21E52E9EAAD18DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AFC91AC75D43337F473B92CC /* sha256-x86_64.linux.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha256-x86_64.linux.x86_64.S"; sourceTree = "<group>"; };
 		AFCF517EF0A82C199389B152 /* BasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD0A99DE8BB844BE15724E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -4674,7 +4671,6 @@
 		B827B4E8A00181D6FE73F475 /* sha512-x86_64.linux.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha512-x86_64.linux.x86_64.S"; sourceTree = "<group>"; };
 		B840E3AC9611D33DD845AD92 /* a_digest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_digest.c; sourceTree = "<group>"; };
 		B88DBA883CBDEEFA046899A2 /* ResponseContainers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContainers.swift; sourceTree = "<group>"; };
-		B8D55907B349A0FD9F2E70AE /* CGRPCZlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGRPCZlib.h; sourceTree = "<group>"; };
 		B8DAE70C3D477B9B5636FA79 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		B8E615C6502F4E7E262E5C44 /* x86_64-mont5.mac.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "x86_64-mont5.mac.x86_64.S"; sourceTree = "<group>"; };
 		B90ECA2EF57EAA2CD2893B5A /* montgomery_inv.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = montgomery_inv.c; sourceTree = "<group>"; };
@@ -4714,6 +4710,7 @@
 		BD36EE597932F675A970C4C9 /* iOSAppObjCUnitTests.46.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTests.46.link.params; sourceTree = "<group>"; };
 		BD8A3F3B24D3A9007545CB9F /* ApplicationProtocolNegotiationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationProtocolNegotiationHandler.swift; sourceTree = "<group>"; };
 		BDC4CD45F5584C736CBC663E /* sha512-armv8.ios.aarch64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha512-armv8.ios.aarch64.S"; sourceTree = "<group>"; };
+		BDCA965A9E44CCE44900C1F8 /* CNIOBoringSSLShims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSLShims.h; sourceTree = "<group>"; };
 		BDF84D403FB564F3B4404E08 /* tvOSAppUnitTests.186.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSAppUnitTests.186.link.params; sourceTree = "<group>"; };
 		BE0E5E4E95DBBDD0221EF330 /* GRPCAsyncRequestStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCAsyncRequestStream.swift; sourceTree = "<group>"; };
 		BE0E9AF79C73E5967E3ABF0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -4738,10 +4735,10 @@
 		C10493148E20E1C2BA8FD468 /* Deque+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deque+Codable.swift"; sourceTree = "<group>"; };
 		C13BF79649B9882F1704CE02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C14F7592DEA4D8A6C3E2689A /* libCNIOBoringSSL.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCNIOBoringSSL.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio_ssl/libCNIOBoringSSL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1977EFD9A59036871C486A4 /* c_nio_llhttp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_nio_llhttp.h; sourceTree = "<group>"; };
 		C1D261E2739DDAE91DC03ADC /* HTTP2ConnectionStateChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2ConnectionStateChange.swift; sourceTree = "<group>"; };
 		C1E6A2BCBB8EAFBE34704F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C1E7792B0E6DA03250D7FA28 /* tvOS.134.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOS.134.link.params; sourceTree = "<group>"; };
+		C1E8E76145022645922C5905 /* cpp_magic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpp_magic.h; sourceTree = "<group>"; };
 		C226D0F1BBACB5AD32CCAF07 /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
 		C2693D15379BB7F90E6A9754 /* MixedAnswer.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswer.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		C2B0EBF53602E03CB8D23D36 /* NIOThreadPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIOThreadPool.swift; sourceTree = "<group>"; };
@@ -4758,11 +4755,11 @@
 		C44238A947329286C1BBBB6E /* UnsafeRawPointer+Shims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsafeRawPointer+Shims.swift"; sourceTree = "<group>"; };
 		C47483AF587C2EDF32DEEDC5 /* x_all.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = x_all.c; sourceTree = "<group>"; };
 		C48C266A9067E9B3B242206D /* e_aesccm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = e_aesccm.c; sourceTree = "<group>"; };
-		C4E89B34DC414FB99E1D0A3F /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		C4F4F17DE938549BBE6F4536 /* iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		C506982708DE348EEA9B7B9B /* socket_helper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = socket_helper.c; sourceTree = "<group>"; };
 		C51DE00DD9F2595DE205E039 /* ServerHandlerStateMachine+Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerHandlerStateMachine+Handling.swift"; sourceTree = "<group>"; };
 		C53676ED7E3AD26521BDFE66 /* sha512.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sha512.c; sourceTree = "<group>"; };
+		C540946BFE35E43E3544C021 /* CNIOLinux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOLinux.h; sourceTree = "<group>"; };
 		C56AA39912B743770F6601AB /* FXPageControl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = FXPageControl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		C58013A2CC090484AB83F7C9 /* watchOSAppExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = watchOSAppExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		C586718051DB9520986D7811 /* iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -4818,11 +4815,11 @@
 		CC2843824C2DB7C0F2502369 /* fork_detect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fork_detect.h; sourceTree = "<group>"; };
 		CC2D98CCCA1E69131C9118AD /* libcc_lib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libcc_lib_impl.lo; path = "bazel-out/CONFIGURATION-STABLE-2/bin/cc/lib/impl/libcc_lib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3742A6A226185AB40D37CC /* p_ec_asn1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = p_ec_asn1.c; sourceTree = "<group>"; };
+		CC39DA671888543DFEE48A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CC54CE0F6F1C99F57A1BC775 /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		CC99FF8CBEA78DA64F180E8A /* dsa_asn1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dsa_asn1.c; sourceTree = "<group>"; };
 		CC9AF05550E8C5A5897C52B1 /* p_x25519.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = p_x25519.c; sourceTree = "<group>"; };
 		CCA0AFFB869BA2BFCED1897C /* chacha-armv8.ios.aarch64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "chacha-armv8.ios.aarch64.S"; sourceTree = "<group>"; };
-		CCB0FB84E6D2C1314A62C5AB /* CNIOBoringSSLShims.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSLShims.h; sourceTree = "<group>"; };
 		CCCCD204F2C186F97C157019 /* GRPCWebToHTTP2ServerCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCWebToHTTP2ServerCodec.swift; sourceTree = "<group>"; };
 		CCE87302DD400A927D780233 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CCED27A26E228E3D1E6C8C63 /* CNIOBoringSSL_evp_errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_evp_errors.h; sourceTree = "<group>"; };
@@ -4839,6 +4836,7 @@
 		CE4EA48FD9B012135CD33DC9 /* CNIOBoringSSL_mem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_mem.h; sourceTree = "<group>"; };
 		CE551A899B2A95E41DE00D31 /* sha256-armv8.ios.aarch64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sha256-armv8.ios.aarch64.S"; sourceTree = "<group>"; };
 		CE5C7FA633009F456D7C4262 /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
+		CE6980F3F7B41767EDA8A1E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE862DECAE52FD9AA0673C9C /* watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		CEE2F058F69A6FCC1072105A /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		CF32052B2995B91DB2D9F41A /* internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
@@ -4859,6 +4857,7 @@
 		D07A206BA3808B0DBCDEB5EF /* BSDSocketAPIWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSDSocketAPIWindows.swift; sourceTree = "<group>"; };
 		D09470FEAB16B699E9041373 /* v3_akeya.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = v3_akeya.c; sourceTree = "<group>"; };
 		D09E8292912FC7FBBB9489E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D0B0598D58AD350820C3BFAA /* CGRPCZlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGRPCZlib.h; sourceTree = "<group>"; };
 		D0CF42EEFE438C9552BEE22A /* ssl_x509.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ssl_x509.cc; sourceTree = "<group>"; };
 		D0FC7740EBACA991EED08B1C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D1677F9348EEC268BA18E8B0 /* tool.binary */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool.binary; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4938,6 +4937,7 @@
 		D98B97CF4F781C796FBC7076 /* WatermarkedFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkedFlowController.swift; sourceTree = "<group>"; };
 		D9AA7F2399754CF62CEF07B3 /* CNIOBoringSSL_service_indicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_service_indicator.h; sourceTree = "<group>"; };
 		D9C2012E40857CEF89EC2D95 /* simple_mul.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = simple_mul.c; sourceTree = "<group>"; };
+		DA2640BE1E03C900AD93E88B /* CNIOLLHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOLLHTTP.h; sourceTree = "<group>"; };
 		DA26EAAA1DD8FE1B98932235 /* fips_shared_support.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fips_shared_support.c; sourceTree = "<group>"; };
 		DA284133646C1AD4890DE0F2 /* libNIOHTTP1.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libNIOHTTP1.a; path = "bazel-out/CONFIGURATION-STABLE-22/bin/external/rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio/libNIOHTTP1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3180A70A87A6426535E154 /* ReceivingDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivingDataState.swift; sourceTree = "<group>"; };
@@ -5029,7 +5029,6 @@
 		E4ACA2FA277F0CCADC1C386B /* GRPCChannelPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCChannelPool.swift; sourceTree = "<group>"; };
 		E4F46D9B23A1E2E3F89C26A2 /* HTTP2Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP2Error.swift; sourceTree = "<group>"; };
 		E4FACF26E2C3BD9723330BE5 /* BSDSocketAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSDSocketAPI.swift; sourceTree = "<group>"; };
-		E5446B74743DBACC031C52DB /* CNIOWindows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOWindows.h; sourceTree = "<group>"; };
 		E54B158BB554CC17AD0CB0AC /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		E55B82F22279C382E1C833E4 /* CNIOBoringSSL_ec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOBoringSSL_ec.h; sourceTree = "<group>"; };
 		E56337FFD63CBCE4B823915D /* a_octet.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_octet.c; sourceTree = "<group>"; };
@@ -5125,6 +5124,7 @@
 		F2C83DC4C739F98B678FAE9B /* MessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtension.swift; sourceTree = "<group>"; };
 		F2D154DC2408B8E08F0FEA80 /* tool.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tool.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		F2D87D6341EC78C5CABAC288 /* rdrand-x86_64.linux.x86_64.S */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rdrand-x86_64.linux.x86_64.S"; sourceTree = "<group>"; };
+		F2D9100F7FF1D4F664B0663A /* CNIOWindows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNIOWindows.h; sourceTree = "<group>"; };
 		F2EE835FEF0775387EBC965F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		F3356D7E03C802F0EC83CB5C /* stack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
 		F338EDF19182559073FAD14F /* tasn_dec.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tasn_dec.c; sourceTree = "<group>"; };
@@ -5225,6 +5225,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		002DE48D91C6EA1EED30A7B6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F60C71F8C637EF1BB16226BC /* _AtomicsShims */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		00BE75A2F25B3A76785A91C6 /* iOSAppUITestSuite.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -5293,14 +5301,6 @@
 				5AD87E929F5A7CE4171EBEEC /* dynamic */,
 			);
 			path = dist;
-			sourceTree = "<group>";
-		};
-		02DE693077B3CDE13226B842 /* ExternalResources-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				436A5289C819C4999372708C /* ExternalResources.bundle */,
-			);
-			path = "ExternalResources-intermediates";
 			sourceTree = "<group>";
 		};
 		02E5A8ACD14AD03563E1B8DA /* autogenerated */ = {
@@ -5390,9 +5390,17 @@
 			isa = PBXGroup;
 			children = (
 				CE77E58FA89680E1D10A15C4 /* _main~non_module_deps~FXPageControl */,
-				A11D507DE70612078F6E17CB /* examples_ios_app_external~override */,
+				5C3AFABC85FC231172C1A72D /* examples_ios_app_external~ */,
 			);
 			path = external;
+			sourceTree = "<group>";
+		};
+		0614DD035129834E2AB994FE /* CNIOBoringSSL */ = {
+			isa = PBXGroup;
+			children = (
+				C5EEE9BB5643F770A9FE519B /* include */,
+			);
+			path = CNIOBoringSSL;
 			sourceTree = "<group>";
 		};
 		065AFF0F44C80FDAE6CE4B66 /* Proto */ = {
@@ -5440,6 +5448,15 @@
 			path = "ExampleNestedResources-intermediates";
 			sourceTree = "<group>";
 		};
+		07F36EF25D3A934003530D79 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0614DD035129834E2AB994FE /* CNIOBoringSSL */,
+				3E3641E02FD5EEF679679790 /* CNIOBoringSSLShims */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		07FB83F2D84CF80590DE099F /* iMessageApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -5458,6 +5475,14 @@
 				23826CB10A18BBBC9B832EB8 /* poly1305.c */,
 			);
 			path = poly1305;
+			sourceTree = "<group>";
+		};
+		08577DAE7280BBE28FA516D9 /* rules_swift~~non_module_deps~com_github_apple_swift_nio */ = {
+			isa = PBXGroup;
+			children = (
+				C760754279AD776C8BF0D67E /* Sources */,
+			);
+			path = "rules_swift~~non_module_deps~com_github_apple_swift_nio";
 			sourceTree = "<group>";
 		};
 		0889DB5D5C1BAB5E29629863 /* SwiftUnitTests */ = {
@@ -5531,7 +5556,6 @@
 		0B9F3E35CA5D45D9DF513EBD /* CNIOBoringSSLShims */ = {
 			isa = PBXGroup;
 			children = (
-				96DBDD6B512E54F805858580 /* include */,
 				010427D4822899FF8AE84CC4 /* shims.c */,
 			);
 			path = CNIOBoringSSLShims;
@@ -5578,6 +5602,14 @@
 			path = AppClip;
 			sourceTree = "<group>";
 		};
+		0CCB7C76E42AF254C1789067 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3289BC9A54B0ABD83DCA974C /* CNIODarwin.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		0CF32ED010D38DC093373B52 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -5591,7 +5623,6 @@
 		0D17E05A4F765BC66267C822 /* _AtomicsShims */ = {
 			isa = PBXGroup;
 			children = (
-				D8A3142085EFCE02B8F24D15 /* include */,
 				7A566A80BB0CF7AF852568B3 /* src */,
 			);
 			path = _AtomicsShims;
@@ -5689,19 +5720,11 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		10234212A03F1FB993DE2F3A /* examples_ios_app_external~override */ = {
-			isa = PBXGroup;
-			children = (
-				96D28538BECC208C0CBCA504 /* ExternalResources-intermediates */,
-			);
-			path = "examples_ios_app_external~override";
-			sourceTree = "<group>";
-		};
 		10690390C527193C58D79157 /* external */ = {
 			isa = PBXGroup;
 			children = (
 				018CA64A786C3F6C36FBC630 /* _main~non_module_deps~FXPageControl */,
-				A499AC224994E1A170DA97DB /* examples_ios_app_external~override */,
+				8F189F50FEFD43CEFAD69025 /* examples_ios_app_external~ */,
 			);
 			path = external;
 			sourceTree = "<group>";
@@ -5947,7 +5970,6 @@
 		1A14A728BF8FB269B5AC12F5 /* CNIODarwin */ = {
 			isa = PBXGroup;
 			children = (
-				A28B668C488E879E1372B284 /* include */,
 				865236F166E9B55C6309DD4D /* shim.c */,
 			);
 			path = CNIODarwin;
@@ -6032,6 +6054,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		1CF0C4BF8299F1AE9F545464 /* codesigningtool */ = {
+			isa = PBXGroup;
+			children = (
+				563E93802230DA3BD6ED85F1 /* disable_signing_resource_rules.plist */,
+			);
+			path = codesigningtool;
+			sourceTree = "<group>";
+		};
 		1D85CE986740BAF5AB51A007 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -6048,6 +6078,14 @@
 				B598689429F68B622F138BD6 /* Info.plist */,
 			);
 			path = LibFramework.tvOS;
+			sourceTree = "<group>";
+		};
+		1E3DF8D5DD916BFA5D4D9742 /* rules_swift~~non_module_deps~com_github_grpc_grpc_swift */ = {
+			isa = PBXGroup;
+			children = (
+				755A8835676BE97E0AF929E8 /* Sources */,
+			);
+			path = "rules_swift~~non_module_deps~com_github_grpc_grpc_swift";
 			sourceTree = "<group>";
 		};
 		1E49048C9F0AF678ECD27273 /* Source */ = {
@@ -6070,7 +6108,6 @@
 		1E9FB5423A9B3A56D250670A /* CNIOLLHTTP */ = {
 			isa = PBXGroup;
 			children = (
-				E18D231506E11D112F0ADFD9 /* include */,
 				24B452359D31D4EA587236F8 /* c_nio_api.c */,
 				E97C7411339082262E3A3271 /* c_nio_http.c */,
 				AB38350C788545049735DEDE /* c_nio_llhttp.c */,
@@ -6206,7 +6243,6 @@
 		2291314E9D0FD8F3BFBD5EA7 /* CNIOLinux */ = {
 			isa = PBXGroup;
 			children = (
-				D67F4509EDD2D7D07F55A984 /* include */,
 				9159411D6C169FD89DE12D35 /* liburing_shims.c */,
 				0EB843D612D40ABC3126D0C9 /* shim.c */,
 			);
@@ -6259,6 +6295,14 @@
 			path = "CONFIGURATION-STABLE-26";
 			sourceTree = "<group>";
 		};
+		24FF7CFDB2C4277BB82AC694 /* examples_ios_app_external~ */ = {
+			isa = PBXGroup;
+			children = (
+				D38AAD7F7E4F6BC436909B1D /* ExternalResources-intermediates */,
+			);
+			path = "examples_ios_app_external~";
+			sourceTree = "<group>";
+		};
 		25665EA2456C4A94D033C28D /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -6277,6 +6321,14 @@
 				B46E5056A48A1EFF9DE94D1A /* iOSApp.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		261EFB04383765A5BC24880D /* rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl */ = {
+			isa = PBXGroup;
+			children = (
+				07F36EF25D3A934003530D79 /* Sources */,
+			);
+			path = "rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl";
 			sourceTree = "<group>";
 		};
 		2689444CBD522AB1A4A3C7BB /* macOSApp */ = {
@@ -6412,10 +6464,16 @@
 				59D56D81F9C66126777EBF3C /* _main~non_module_deps~com_github_krzyzanowskim_cryptoswift */,
 				773111BCA0D8CC30CA1563D3 /* _main~non_module_deps~com_google_google_maps */,
 				435F14525BFA3B8923F59737 /* _main~non_module_deps~FXPageControl */,
+				C13328E25F30F9CB85783175 /* examples_cc_external~ */,
 				2B082467953AC477DB23EFE0 /* examples_cc_external~override */,
 				FA47373B50FC690CBA91CBAE /* examples_command_line_external */,
+				790D8ACBEF6BC82B9C972B9B /* examples_ios_app_external~ */,
 				D7993E8317E652D3C1DDA857 /* examples_ios_app_external~override */,
-				5344FE1C517F201D1A9D57E1 /* rules_apple~3.2.1 */,
+				8C41688815CD4FA738D1CAB7 /* rules_apple~ */,
+				39A1164EF41C0F782818247C /* rules_swift~~non_module_deps~com_github_apple_swift_atomics */,
+				08577DAE7280BBE28FA516D9 /* rules_swift~~non_module_deps~com_github_apple_swift_nio */,
+				261EFB04383765A5BC24880D /* rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl */,
+				1E3DF8D5DD916BFA5D4D9742 /* rules_swift~~non_module_deps~com_github_grpc_grpc_swift */,
 				2E3DC49B138F15968A7BC550 /* rules_swift~1.15.1~non_module_deps~com_github_apple_swift_atomics */,
 				C9F0D07C1D43779FA74BC79E /* rules_swift~1.15.1~non_module_deps~com_github_apple_swift_collections */,
 				F15E55BDCC93F3A80B156EC3 /* rules_swift~1.15.1~non_module_deps~com_github_apple_swift_log */,
@@ -6479,7 +6537,6 @@
 			children = (
 				E8617026CF5F97D7DBE69744 /* private */,
 				264FBB623C659E66DC08211F /* lib.c */,
-				62682747100850667890466E /* lib.h */,
 			);
 			name = "examples_cc_external~override";
 			path = cc/external;
@@ -6617,14 +6674,6 @@
 			path = SwiftUnitTests;
 			sourceTree = "<group>";
 		};
-		2ED9B9BF324FB0A55D42D1E7 /* ExternalResources-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				BFB360BCCEC8C7C4C53BBCF3 /* ExternalResources.bundle */,
-			);
-			path = "ExternalResources-intermediates";
-			sourceTree = "<group>";
-		};
 		2F443574D856847BBB79B590 /* UIFramework.tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -6734,6 +6783,14 @@
 				25B3503CDAE1B539BDEB9479 /* iOSApp.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		31FD5034E69855EDAAEF7EC0 /* CGRPCZlib */ = {
+			isa = PBXGroup;
+			children = (
+				9F49330FF15B7AD6D71965D2 /* include */,
+			);
+			path = CGRPCZlib;
 			sourceTree = "<group>";
 		};
 		32027210F106D6BFA0411CCE /* Lib */ = {
@@ -6982,7 +7039,6 @@
 		3803DC16EAB87890F87AF90A /* CNIOAtomics */ = {
 			isa = PBXGroup;
 			children = (
-				9D6D6616AE2609DF2D344A8B /* include */,
 				C169E04C55FB980DF02821AD /* src */,
 			);
 			path = CNIOAtomics;
@@ -7051,6 +7107,14 @@
 				1FADCC9434D5880C6968ADB5 /* Zlib.swift */,
 			);
 			path = Compression;
+			sourceTree = "<group>";
+		};
+		39A1164EF41C0F782818247C /* rules_swift~~non_module_deps~com_github_apple_swift_atomics */ = {
+			isa = PBXGroup;
+			children = (
+				002DE48D91C6EA1EED30A7B6 /* Sources */,
+			);
+			path = "rules_swift~~non_module_deps~com_github_apple_swift_atomics";
 			sourceTree = "<group>";
 		};
 		3A3B28BFAC76C08F3C1235FF /* Lib */ = {
@@ -7227,6 +7291,22 @@
 			path = bn_extra;
 			sourceTree = "<group>";
 		};
+		3DF292CEEB848FCFCE95CA54 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				BDCA965A9E44CCE44900C1F8 /* CNIOBoringSSLShims.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		3E3641E02FD5EEF679679790 /* CNIOBoringSSLShims */ = {
+			isa = PBXGroup;
+			children = (
+				3DF292CEEB848FCFCE95CA54 /* include */,
+			);
+			path = CNIOBoringSSLShims;
+			sourceTree = "<group>";
+		};
 		3EA69346C03A55DDCEBEC813 /* ExampleNestedResources.bundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -7256,7 +7336,6 @@
 		402273161B5D476E86059BDD /* CNIOWindows */ = {
 			isa = PBXGroup;
 			children = (
-				EAB20740B7B325DD950826B8 /* include */,
 				E307377C3C29BE982BA0106B /* shim.c */,
 				8983C04E2F0C7F2296FCC877 /* WSAStartup.c */,
 			);
@@ -7330,14 +7409,6 @@
 				FFB48A4BF71015682DEA9A87 /* FXPageControl */,
 			);
 			path = "_main~non_module_deps~FXPageControl";
-			sourceTree = "<group>";
-		};
-		436A5289C819C4999372708C /* ExternalResources.bundle */ = {
-			isa = PBXGroup;
-			children = (
-				8BD27F75CF5A4741DEE8D32E /* Info.plist */,
-			);
-			path = ExternalResources.bundle;
 			sourceTree = "<group>";
 		};
 		4377F5192A5B40DE1BAF1944 /* CONFIGURATION-STABLE-21 */ = {
@@ -7483,6 +7554,14 @@
 				2FE1248C2AA6F5AC01813551 /* OnlyStructuredResources-intermediates */,
 			);
 			path = OnlyStructuredResources;
+			sourceTree = "<group>";
+		};
+		4436452E1E39AF59A3673781 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A3C99A9ECFC1A77BB1722031 /* CNIOAtomics.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		4438C125C68EC6FB2FE3917E /* rules_xcodeproj */ = {
@@ -7752,12 +7831,12 @@
 			path = tvOSAppUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
-		4CEC7A149E22A41E64F236EE /* ExternalResources.bundle */ = {
+		4C9C6067E4B578AC98910C5B /* examples_ios_app_external~ */ = {
 			isa = PBXGroup;
 			children = (
-				6C8AAE694CE67E4C2505DDAC /* Info.plist */,
+				8F41A3909BF6A89E0A1DF312 /* ExternalResources-intermediates */,
 			);
-			path = ExternalResources.bundle;
+			path = "examples_ios_app_external~";
 			sourceTree = "<group>";
 		};
 		4CF6F21977A15E3371FB51E8 /* aes */ = {
@@ -7832,6 +7911,14 @@
 				3EA69346C03A55DDCEBEC813 /* ExampleNestedResources.bundle */,
 			);
 			path = "ExampleNestedResources-intermediates";
+			sourceTree = "<group>";
+		};
+		4E898B226DF48B335D721C2F /* ExternalResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				CE6980F3F7B41767EDA8A1E1 /* Info.plist */,
+			);
+			path = ExternalResources.bundle;
 			sourceTree = "<group>";
 		};
 		4F6FCD6C4AD4C2E98783443F /* rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio_ssl */ = {
@@ -7993,15 +8080,6 @@
 				BD3E491789EBB492B376FA03 /* tvOS */,
 			);
 			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		5344FE1C517F201D1A9D57E1 /* rules_apple~3.2.1 */ = {
-			isa = PBXGroup;
-			children = (
-				65B1FB9D8708B710D4BAB025 /* apple */,
-				5F1F6ED7A0964E6B17ED77DE /* tools */,
-			);
-			path = "rules_apple~3.2.1";
 			sourceTree = "<group>";
 		};
 		53B218B5882470318CD4CF5A /* OnlyStructuredResources.bundle */ = {
@@ -8377,6 +8455,14 @@
 			path = crypto;
 			sourceTree = "<group>";
 		};
+		5C3AFABC85FC231172C1A72D /* examples_ios_app_external~ */ = {
+			isa = PBXGroup;
+			children = (
+				89FACEFF780AC1E40268C642 /* ExternalResources-intermediates */,
+			);
+			path = "examples_ios_app_external~";
+			sourceTree = "<group>";
+		};
 		5C96E31D60786B9064329747 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -8427,14 +8513,6 @@
 				1D8D39BEEE365BEBB4045831 /* Info.plist */,
 			);
 			path = LibFramework.iOS;
-			sourceTree = "<group>";
-		};
-		5F1F6ED7A0964E6B17ED77DE /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				E60706DF3C6E390A45E3EAFA /* codesigningtool */,
-			);
-			path = tools;
 			sourceTree = "<group>";
 		};
 		5F88EFE031C98F3DDA490280 /* ios-arm64_x86_64-simulator */ = {
@@ -8570,6 +8648,14 @@
 			path = AppClip;
 			sourceTree = "<group>";
 		};
+		638A25B72AFD4D5EA01DC8BE /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				15A9954A33E835E0B13338E1 /* DefaultTestBundle.plist */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
 		63A7F12BBC6A1BA6AD61F50D /* Proto */ = {
 			isa = PBXGroup;
 			children = (
@@ -8669,7 +8755,6 @@
 		657B72FB6DB41B823F933EE6 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				11A42BFC9A688E8864DDDA79 /* boringssl_prefix_symbols_nasm.inc */,
 				7C662F809D98A0CD3E05FD6E /* CNIOBoringSSL_aead.h */,
 				43551331DA3844297298617F /* CNIOBoringSSL_aes.h */,
 				F6750FE9674E50D1BE519560 /* CNIOBoringSSL_arm_arch.h */,
@@ -8757,14 +8842,6 @@
 				420E1F011360A4CBF41703FA /* CNIOBoringSSL.h */,
 			);
 			path = include;
-			sourceTree = "<group>";
-		};
-		65B1FB9D8708B710D4BAB025 /* apple */ = {
-			isa = PBXGroup;
-			children = (
-				770F89C6F453FBABC14E6490 /* testing */,
-			);
-			path = apple;
 			sourceTree = "<group>";
 		};
 		65C4A9D9662E9104C89032AB /* echo_proto.protoc_gen_pb_swift */ = {
@@ -9256,6 +9333,14 @@
 			path = cc_lib_impl;
 			sourceTree = "<group>";
 		};
+		71741946F324231E40959147 /* CNIOLinux */ = {
+			isa = PBXGroup;
+			children = (
+				BBA39B09456BE9FDEDFDF9B2 /* include */,
+			);
+			path = CNIOLinux;
+			sourceTree = "<group>";
+		};
 		7193A4FE1077C9DCA1D7A983 /* echo_server.merged_infoplist-intermediates */ = {
 			isa = PBXGroup;
 			children = (
@@ -9321,6 +9406,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		755A8835676BE97E0AF929E8 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				31FD5034E69855EDAAEF7EC0 /* CGRPCZlib */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		758CB92A8FE8F541D8384352 /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -9344,7 +9437,7 @@
 			isa = PBXGroup;
 			children = (
 				AC407ED48059FD3ED286EE9B /* _main~non_module_deps~FXPageControl */,
-				10234212A03F1FB993DE2F3A /* examples_ios_app_external~override */,
+				24FF7CFDB2C4277BB82AC694 /* examples_ios_app_external~ */,
 			);
 			path = external;
 			sourceTree = "<group>";
@@ -9374,14 +9467,6 @@
 				499EC08CF717C8379433DC07 /* p256_64.h */,
 			);
 			path = fiat;
-			sourceTree = "<group>";
-		};
-		770F89C6F453FBABC14E6490 /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				C4E89B34DC414FB99E1D0A3F /* DefaultTestBundle.plist */,
-			);
-			path = testing;
 			sourceTree = "<group>";
 		};
 		773111BCA0D8CC30CA1563D3 /* _main~non_module_deps~com_google_google_maps */ = {
@@ -9444,6 +9529,22 @@
 				611A60266CDE17EEDB887FFB /* OnlyStructuredResources */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		790D8ACBEF6BC82B9C972B9B /* examples_ios_app_external~ */ = {
+			isa = PBXGroup;
+			children = (
+				A63CA3AD17E7B93B1A8012C9 /* Info.plist */,
+			);
+			path = "examples_ios_app_external~";
+			sourceTree = "<group>";
+		};
+		791FDE46D5ACF058DB105887 /* ExternalResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				CC39DA671888543DFEE48A69 /* Info.plist */,
+			);
+			path = ExternalResources.bundle;
 			sourceTree = "<group>";
 		};
 		796B7879E81CE1E06E6F9E8A /* FrameworkCoreUtilsObjC */ = {
@@ -9751,6 +9852,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		847F47C4FE4866E42A70E55E /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				D58448C5416934DF5C3901AA /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
+			sourceTree = "<group>";
+		};
 		84CF6772F9DD2E037127837C /* watchOSAppExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -9904,6 +10013,14 @@
 			path = OnlyStructuredResources.bundle;
 			sourceTree = "<group>";
 		};
+		89FACEFF780AC1E40268C642 /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				4E898B226DF48B335D721C2F /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
+			sourceTree = "<group>";
+		};
 		8A55C11D9A4A0646EC1D3106 /* digest_extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -9953,6 +10070,15 @@
 				63A7F12BBC6A1BA6AD61F50D /* Proto */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		8C41688815CD4FA738D1CAB7 /* rules_apple~ */ = {
+			isa = PBXGroup;
+			children = (
+				B2D21D0F557471230DD39CA7 /* apple */,
+				93FFB3C743F4FB623AB94BD6 /* tools */,
+			);
+			path = "rules_apple~";
 			sourceTree = "<group>";
 		};
 		8C6E2E7E1233184E6297D816 /* AsyncSequences */ = {
@@ -10054,6 +10180,22 @@
 				7830F02D9D61B5357A97F7E9 /* Test */,
 			);
 			path = macOSApp;
+			sourceTree = "<group>";
+		};
+		8F189F50FEFD43CEFAD69025 /* examples_ios_app_external~ */ = {
+			isa = PBXGroup;
+			children = (
+				847F47C4FE4866E42A70E55E /* ExternalResources-intermediates */,
+			);
+			path = "examples_ios_app_external~";
+			sourceTree = "<group>";
+		};
+		8F41A3909BF6A89E0A1DF312 /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				791FDE46D5ACF058DB105887 /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
 			sourceTree = "<group>";
 		};
 		8F56DCC164579896C72689B4 /* Test */ = {
@@ -10269,6 +10411,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		93FFB3C743F4FB623AB94BD6 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				1CF0C4BF8299F1AE9F545464 /* codesigningtool */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
 		94425E92DC9E717D31F31472 /* SwiftProtobuf */ = {
 			isa = PBXGroup;
 			children = (
@@ -10458,22 +10608,6 @@
 			path = dist;
 			sourceTree = "<group>";
 		};
-		96D28538BECC208C0CBCA504 /* ExternalResources-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				4CEC7A149E22A41E64F236EE /* ExternalResources.bundle */,
-			);
-			path = "ExternalResources-intermediates";
-			sourceTree = "<group>";
-		};
-		96DBDD6B512E54F805858580 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				CCB0FB84E6D2C1314A62C5AB /* CNIOBoringSSLShims.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		97014881A5DE4E7E3DB5D6C1 /* modes */ = {
 			isa = PBXGroup;
 			children = (
@@ -10509,7 +10643,6 @@
 		990BC517E7A9E0A531B853C1 /* CGRPCZlib */ = {
 			isa = PBXGroup;
 			children = (
-				EC69003A7C745E410185C8D1 /* include */,
 				E719ED55C1F2CB6819F5A176 /* empty.c */,
 			);
 			path = CGRPCZlib;
@@ -10652,14 +10785,6 @@
 			path = self_check;
 			sourceTree = "<group>";
 		};
-		9D6D6616AE2609DF2D344A8B /* include */ = {
-			isa = PBXGroup;
-			children = (
-				33B3D9D95D13B6D06FE4FB21 /* CNIOAtomics.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		9D976C1F37CD46FB9B1D284A /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -10747,6 +10872,14 @@
 			path = "dir with space";
 			sourceTree = "<group>";
 		};
+		9F49330FF15B7AD6D71965D2 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D0B0598D58AD350820C3BFAA /* CGRPCZlib.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		9F9B93E4E6A8580AB37A5099 /* NIOHTTP1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -10810,28 +10943,12 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		A094521730A74D794D7EF759 /* ExternalResources-intermediates */ = {
-			isa = PBXGroup;
-			children = (
-				BD7DFF4D1067967446FE0C5D /* ExternalResources.bundle */,
-			);
-			path = "ExternalResources-intermediates";
-			sourceTree = "<group>";
-		};
 		A0E426F9CEB445768A60B649 /* CONFIGURATION-STABLE-18 */ = {
 			isa = PBXGroup;
 			children = (
 				FB7219C5639ED50D13C59B29 /* bin */,
 			);
 			path = "CONFIGURATION-STABLE-18";
-			sourceTree = "<group>";
-		};
-		A11D507DE70612078F6E17CB /* examples_ios_app_external~override */ = {
-			isa = PBXGroup;
-			children = (
-				A094521730A74D794D7EF759 /* ExternalResources-intermediates */,
-			);
-			path = "examples_ios_app_external~override";
 			sourceTree = "<group>";
 		};
 		A126F24124BB83EE2F19E98D /* GRPC */ = {
@@ -10907,14 +11024,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		A28B668C488E879E1372B284 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				21B9D762371D39B46B6C1910 /* CNIODarwin.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		A2D0593C883A5B4752E1C9D6 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -10947,14 +11056,6 @@
 				11796D68B6771984C2BB0389 /* StreamLender.swift */,
 			);
 			path = ConnectionPool;
-			sourceTree = "<group>";
-		};
-		A499AC224994E1A170DA97DB /* examples_ios_app_external~override */ = {
-			isa = PBXGroup;
-			children = (
-				02DE693077B3CDE13226B842 /* ExternalResources-intermediates */,
-			);
-			path = "examples_ios_app_external~override";
 			sourceTree = "<group>";
 		};
 		A4A4F9D60604DEECAA2D8AE9 /* MixedAnswer */ = {
@@ -11136,6 +11237,22 @@
 			path = echo_client;
 			sourceTree = "<group>";
 		};
+		ABB16A3D5958013D2A4E730A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				2F810CCBE1BDC79E7E6F7235 /* _AtomicsShims.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		ABCB9A7A3858F55CEA129BA6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C1E8E76145022645922C5905 /* cpp_magic.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		AC0077080FC641B8A875B006 /* _virtual_includes */ = {
 			isa = PBXGroup;
 			children = (
@@ -11202,7 +11319,7 @@
 			isa = PBXGroup;
 			children = (
 				A764BA5C7812B35A6DBD052B /* _main~non_module_deps~FXPageControl */,
-				C2A2CB6FFB277B3B4E0252B5 /* examples_ios_app_external~override */,
+				4C9C6067E4B578AC98910C5B /* examples_ios_app_external~ */,
 			);
 			path = external;
 			sourceTree = "<group>";
@@ -11365,6 +11482,14 @@
 				70C30CC624B546E01F1FF77C /* ExampleResources.bundle */,
 			);
 			path = "ExampleResources-intermediates";
+			sourceTree = "<group>";
+		};
+		B2D21D0F557471230DD39CA7 /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				638A25B72AFD4D5EA01DC8BE /* testing */,
+			);
+			path = apple;
 			sourceTree = "<group>";
 		};
 		B2EE91219CA54A10F391A50A /* rsa_extra */ = {
@@ -11679,6 +11804,14 @@
 			path = LibFramework.tvOS;
 			sourceTree = "<group>";
 		};
+		BB5ABCA2B879DD7A85BEED58 /* CNIODarwin */ = {
+			isa = PBXGroup;
+			children = (
+				0CCB7C76E42AF254C1789067 /* include */,
+			);
+			path = CNIODarwin;
+			sourceTree = "<group>";
+		};
 		BB85247A9694A3475FCE75C5 /* watchOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -11686,6 +11819,15 @@
 				26EE7A30D79B5E88699D943C /* Info.withbundleid.plist */,
 			);
 			path = watchOSApp;
+			sourceTree = "<group>";
+		};
+		BBA39B09456BE9FDEDFDF9B2 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C540946BFE35E43E3544C021 /* CNIOLinux.h */,
+				3A7E103585C728A29C003D56 /* liburing_nio.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		BBC2BE0F331D3D4B79755E8A /* Utils */ = {
@@ -11766,14 +11908,6 @@
 			path = tvOSAppUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
-		BD7DFF4D1067967446FE0C5D /* ExternalResources.bundle */ = {
-			isa = PBXGroup;
-			children = (
-				538AC780760D3D219B1E0563 /* Info.plist */,
-			);
-			path = ExternalResources.bundle;
-			sourceTree = "<group>";
-		};
 		BDAC4E9A6ED602EAB5EEA6F5 /* test */ = {
 			isa = PBXGroup;
 			children = (
@@ -11844,14 +11978,6 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		BFB360BCCEC8C7C4C53BBCF3 /* ExternalResources.bundle */ = {
-			isa = PBXGroup;
-			children = (
-				80A59322F5B4CB13A8CE3ABF /* Info.plist */,
-			);
-			path = ExternalResources.bundle;
-			sourceTree = "<group>";
-		};
 		C028428073B2F7A748170757 /* swift_c_module */ = {
 			isa = PBXGroup;
 			children = (
@@ -11860,12 +11986,27 @@
 			path = swift_c_module;
 			sourceTree = "<group>";
 		};
+		C0B12417466F04D632863FCE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F2D9100F7FF1D4F664B0663A /* CNIOWindows.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C13328E25F30F9CB85783175 /* examples_cc_external~ */ = {
+			isa = PBXGroup;
+			children = (
+				5C8DF6374393B8B865675B79 /* lib.h */,
+			);
+			path = "examples_cc_external~";
+			sourceTree = "<group>";
+		};
 		C169E04C55FB980DF02821AD /* src */ = {
 			isa = PBXGroup;
 			children = (
 				1FA9396EBF578421EDFBE7DF /* c-atomics.c */,
 				AC37AB528220CFB6B9984FDD /* c-nioatomics.c */,
-				7DAA997895D2DD611B08617C /* cpp_magic.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -11895,14 +12036,6 @@
 				44DC18FA5ABD731665EC160E /* Bundle */,
 			);
 			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		C2A2CB6FFB277B3B4E0252B5 /* examples_ios_app_external~override */ = {
-			isa = PBXGroup;
-			children = (
-				2ED9B9BF324FB0A55D42D1E7 /* ExternalResources-intermediates */,
-			);
-			path = "examples_ios_app_external~override";
 			sourceTree = "<group>";
 		};
 		C350BC98808FF103CCC7EED5 /* swift_c_module */ = {
@@ -12104,6 +12237,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C5EEE9BB5643F770A9FE519B /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0C724B077D7028E1DE78A972 /* boringssl_prefix_symbols_nasm.inc */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		C651F427F31BC1AE00BF1E20 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -12206,12 +12347,32 @@
 			path = UnitTests;
 			sourceTree = "<group>";
 		};
+		C760754279AD776C8BF0D67E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EE5B7A068B14AA3176D7333F /* CNIOAtomics */,
+				BB5ABCA2B879DD7A85BEED58 /* CNIODarwin */,
+				71741946F324231E40959147 /* CNIOLinux */,
+				C7BAAF4C611052AD0E25DB22 /* CNIOLLHTTP */,
+				D20C6994A14D884D09D061F1 /* CNIOWindows */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		C793C8450EA482A7A11B6AA2 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
 				CBC8F67F08F0318F81DD4600 /* tvOSAppUnitTests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		C7BAAF4C611052AD0E25DB22 /* CNIOLLHTTP */ = {
+			isa = PBXGroup;
+			children = (
+				D36610C57DA8B71617D52392 /* include */,
+			);
+			path = CNIOLLHTTP;
 			sourceTree = "<group>";
 		};
 		C7BDD0303AAA7CC8145D275B /* _virtual_includes */ = {
@@ -12474,6 +12635,14 @@
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
+		D20C6994A14D884D09D061F1 /* CNIOWindows */ = {
+			isa = PBXGroup;
+			children = (
+				C0B12417466F04D632863FCE /* include */,
+			);
+			path = CNIOWindows;
+			sourceTree = "<group>";
+		};
 		D249597054F63F00C7E6301E /* blake2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -12506,6 +12675,23 @@
 				E1D149A3A236942B558566A3 /* Info.plist */,
 			);
 			path = LibFramework.watchOS;
+			sourceTree = "<group>";
+		};
+		D36610C57DA8B71617D52392 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				232D5E8DF66D32D0BE812D2D /* c_nio_llhttp.h */,
+				DA2640BE1E03C900AD93E88B /* CNIOLLHTTP.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D38AAD7F7E4F6BC436909B1D /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				ECAC921CDC02A794D500A30B /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
 			sourceTree = "<group>";
 		};
 		D3EE0870275E6782F9795855 /* CoreUtilsMixed */ = {
@@ -12547,6 +12733,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		D58448C5416934DF5C3901AA /* ExternalResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				AFC2BE6BF21E52E9EAAD18DB /* Info.plist */,
+			);
+			path = ExternalResources.bundle;
+			sourceTree = "<group>";
+		};
 		D5AB6239DC49D4BC4A8B15A7 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -12570,15 +12764,6 @@
 				0A2A8B25215D55377A243667 /* Info.plist */,
 			);
 			path = iOSAppObjCUnitTestSuite.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
-		D67F4509EDD2D7D07F55A984 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				34A333FC87CB0501CE8A1102 /* CNIOLinux.h */,
-				A0D8F9A3BF39A65713DAC228 /* liburing_nio.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		D6D3E6A65B598DDD6688F62A /* Tests */ = {
@@ -12620,7 +12805,6 @@
 				BC480026E65895A3410C283C /* bundles */,
 				311344A8E4A3913F06421A42 /* nested */,
 				74A3DF395E3D5D50857214BC /* Assets.xcassets */,
-				69546DF1D3F741021DF722F3 /* Info.plist */,
 			);
 			name = "examples_ios_app_external~override";
 			path = iOSApp/external;
@@ -12649,14 +12833,6 @@
 				2461571BD1B42EE29D8C79C8 /* Info.plist */,
 			);
 			path = FrameworkCoreUtilsObjC;
-			sourceTree = "<group>";
-		};
-		D8A3142085EFCE02B8F24D15 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9A484DA335EADE2544BAF121 /* _AtomicsShims.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		D8C699F068F3D03C51A4FFD6 /* Source */ = {
@@ -13030,15 +13206,6 @@
 			path = "rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio_transport_services";
 			sourceTree = "<group>";
 		};
-		E18D231506E11D112F0ADFD9 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				C1977EFD9A59036871C486A4 /* c_nio_llhttp.h */,
-				0B9BC38C723FF3A098FFD113 /* CNIOLLHTTP.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		E1A55F518E0C2786DA0B00E1 /* AppClip */ = {
 			isa = PBXGroup;
 			children = (
@@ -13174,14 +13341,6 @@
 				DA942E34F10FB94BF73BC7A1 /* UI.rules_xcodeproj.swift.compile.params */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		E60706DF3C6E390A45E3EAFA /* codesigningtool */ = {
-			isa = PBXGroup;
-			children = (
-				4FA17825BD389D3143A1173E /* disable_signing_resource_rules.plist */,
-			);
-			path = codesigningtool;
 			sourceTree = "<group>";
 		};
 		E69E5713CDD3F19F1A3547E1 /* rules_swift~1.15.1~non_module_deps~com_github_apple_swift_nio_extras */ = {
@@ -13324,14 +13483,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		EAB20740B7B325DD950826B8 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				E5446B74743DBACC031C52DB /* CNIOWindows.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		EAE3CBE66B2D11EEA05D927F /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -13361,12 +13512,12 @@
 			path = "ExampleNestedResources-intermediates";
 			sourceTree = "<group>";
 		};
-		EC69003A7C745E410185C8D1 /* include */ = {
+		ECAC921CDC02A794D500A30B /* ExternalResources.bundle */ = {
 			isa = PBXGroup;
 			children = (
-				B8D55907B349A0FD9F2E70AE /* CGRPCZlib.h */,
+				A83FE4528A20854911644C60 /* Info.plist */,
 			);
-			path = include;
+			path = ExternalResources.bundle;
 			sourceTree = "<group>";
 		};
 		ED533AB6696A99E318BBB2A3 /* Bundle */ = {
@@ -13421,6 +13572,15 @@
 				A265B8D2ACFA922DDE6C8049 /* lib3.h */,
 			);
 			path = lib3;
+			sourceTree = "<group>";
+		};
+		EE5B7A068B14AA3176D7333F /* CNIOAtomics */ = {
+			isa = PBXGroup;
+			children = (
+				4436452E1E39AF59A3673781 /* include */,
+				ABCB9A7A3858F55CEA129BA6 /* src */,
+			);
+			path = CNIOAtomics;
 			sourceTree = "<group>";
 		};
 		EEB0874F25434C26EDA9DFB8 /* rules_xcodeproj */ = {
@@ -13623,6 +13783,14 @@
 				5A1DE8230903D34ABF2C220B /* Preview Assets.xcassets */,
 			);
 			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		F60C71F8C637EF1BB16226BC /* _AtomicsShims */ = {
+			isa = PBXGroup;
+			children = (
+				ABB16A3D5958013D2A4E730A /* include */,
+			);
+			path = _AtomicsShims;
 			sourceTree = "<group>";
 		};
 		F63C1F35E824D92DAAFF8486 /* rules_xcodeproj */ = {
