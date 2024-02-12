@@ -10,8 +10,14 @@ for dir in examples/*/ ; do
       continue
     fi
 
+    if [[ "$dir" == "examples/rules_ios/" ]]; then
+      bazel_version="6.4.0"
+    else
+      bazel_version="last_green"
+    fi
+
     echo
     echo "Updating \"${dir%/}\" fixtures"
     echo
-    USE_BAZEL_VERSION="6.4.0" bazel run --config=cache //test/fixtures:update
+    USE_BAZEL_VERSION="$bazel_version" bazel run --config=cache //test/fixtures:update
 done

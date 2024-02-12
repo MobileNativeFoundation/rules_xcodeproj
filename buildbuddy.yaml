@@ -49,6 +49,7 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
+    - &generate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:update"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows //..."
@@ -113,7 +114,8 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      # Not validate since Bazel 8 Bzlmod paths are different
+      - *generate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS
     <<: *bazel_lts
@@ -122,7 +124,8 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      # Not validate since Bazel 8 Bzlmod paths are different
+      - *generate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS using WORKSPACE
     <<: *bazel_lts
