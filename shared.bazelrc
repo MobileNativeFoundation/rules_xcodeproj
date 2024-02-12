@@ -36,7 +36,7 @@ test --remote_download_outputs=toplevel
 build:rules_xcodeproj --remote_download_outputs=toplevel
 
 common:nobzlmod --noexperimental_enable_bzlmod
-common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=nobzlmod'
+common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_common_flags='--config=nobzlmod'
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
