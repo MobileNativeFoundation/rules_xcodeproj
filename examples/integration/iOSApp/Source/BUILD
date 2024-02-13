@@ -8,6 +8,10 @@ load(
     "IOS_BUNDLE_ID",
     "TEAMID",
 )
+load(
+    ":localizable.bzl",
+    "localizable_resources",
+)
 
 config_setting(
     name = "release_build",
@@ -68,7 +72,7 @@ ios_application(
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
-    resources = [":ExampleResourceGroup"] + glob(
+    resources = [":ExampleResourceGroup", ":FrenchLocalizableResources"] + glob(
         [
             "Assets.xcassets/**",
             "Model.xcdatamodeld/**",
@@ -140,6 +144,11 @@ swift_library(
         "//iOSApp/Source/CoreUtilsObjC",
         "@com_google_google_maps//:GoogleMaps",
     ],
+)
+
+localizable_resources(
+    name = "FrenchLocalizableResources",
+    localizable_directory_name = "fr.lproj",
 )
 
 apple_resource_group(
