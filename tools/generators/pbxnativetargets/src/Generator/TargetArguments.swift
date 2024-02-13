@@ -80,19 +80,22 @@ extension Dictionary<TargetID, TargetArguments> {
                 try rawArgs.consumeArg("has-c-params", as: Bool.self, in: url)
             let hasCxxParams =
                 try rawArgs.consumeArg("has-cxx-params", as: Bool.self, in: url)
-            let srcs =
-                try rawArgs.consumeArgs("srcs", as: BazelPath.self, in: url)
-            let nonArcSrcs = try rawArgs.consumeArgs(
+            let srcs = try rawArgs.consumeArgsUntilNull(
+                "srcs",
+                as: BazelPath.self,
+                in: url
+            )
+            let nonArcSrcs = try rawArgs.consumeArgsUntilNull(
                 "non-arc-srcs",
                 as: BazelPath.self,
                 in: url
             )
-            let resources = try rawArgs.consumeArgs(
+            let resources = try rawArgs.consumeArgsUntilNull(
                 "resources",
                 as: BazelPath.self,
                 in: url
             )
-            let folderResources = try rawArgs.consumeArgs(
+            let folderResources = try rawArgs.consumeArgsUntilNull(
                 "folder-resources",
                 as: BazelPath.self,
                 in: url
