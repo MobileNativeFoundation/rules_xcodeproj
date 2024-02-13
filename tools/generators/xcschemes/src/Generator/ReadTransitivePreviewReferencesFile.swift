@@ -49,7 +49,7 @@ extension Generator.ReadTransitivePreviewReferencesFile {
         while !rawArgs.isEmpty {
             let id =
                 try rawArgs.consumeArg("target-id", as: TargetID.self, in: url)
-            let buildableReferences = try rawArgs.consumeArgs(
+            let buildableReferences = try rawArgs.consumeArgsUntilNull(
                 "buildable-references",
                 as: BuildableReference.self,
                 in: url,

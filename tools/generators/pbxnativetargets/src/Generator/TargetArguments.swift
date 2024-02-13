@@ -100,8 +100,10 @@ extension Dictionary<TargetID, TargetArguments> {
                 as: BazelPath.self,
                 in: url
             )
-            let xcodeConfigurations =
-                try rawArgs.consumeArgs("xcode-configurations", in: url)
+            let xcodeConfigurations = try rawArgs.consumeArgsUntilNull(
+                "xcode-configurations",
+                in: url
+            )
 
             var buildSettings: [PlatformVariantBuildSetting] = []
             if let buildSettingsFile {

@@ -1618,10 +1618,8 @@ def write_schemes_test_suite(name):
                 # id
                 "IOS_APP",
                 # buildableReferences
-                # - count
-                "1",
-                # - id
                 "IOS_FRAMEWORK",
+                "\0",
             ]) + "\n",
         },
     )

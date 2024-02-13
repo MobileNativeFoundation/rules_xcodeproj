@@ -200,8 +200,11 @@ def _write_schemes(
                 ]
                 if ids:
                     transitive_preview_targets_args.add(xcode_target.id)
-                    transitive_preview_targets_args.add(len(ids))
-                    transitive_preview_targets_args.add_all(ids)
+                    transitive_preview_targets_args.add_all(
+                        ids,
+                        omit_if_empty = False,
+                        terminate_with = "\0",
+                    )
 
         actions.write(
             transitive_preview_targets_file,

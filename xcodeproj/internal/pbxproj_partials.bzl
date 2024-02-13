@@ -265,11 +265,11 @@ def _write_consolidation_map_targets(
                 terminate_with = "\0",
             )
 
-            target_xcode_configurations = (
-                xcode_target_configurations[xcode_target.id]
+            targets_args.add_all(
+                xcode_target_configurations[xcode_target.id],
+                omit_if_empty = False,
+                terminate_with = "\0",
             )
-            targets_args.add(len(target_xcode_configurations))
-            targets_args.add_all(target_xcode_configurations)
 
             # `outputs.product_path` is only set for top-level targets
             if xcode_target.outputs.product_path:
@@ -822,9 +822,10 @@ def _write_pbxtargetdependencies(
     consolidation_map_args = actions.args()
     consolidation_map_args.set_param_file_format("multiline")
 
-    consolidation_map_args.add(len(consolidation_maps))
     consolidation_map_args.add_all(
         consolidation_maps.keys(),
+        omit_if_empty = False,
+        terminate_with = "\0",
     )
 
     target_and_test_hosts = []
@@ -861,16 +862,15 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                 consolidation_map_args.add(xcode_target.product.original_basename)
                 consolidation_map_args.add(xcode_target.product.basename)
                 consolidation_map_args.add_all(
-                    [xcode_target.direct_dependencies],
-                    map_each = _depset_len,
+                    xcode_target.direct_dependencies,
+                    omit_if_empty = False,
+                    terminate_with = "\0",
                 )
-                consolidation_map_args.add_all(xcode_target.direct_dependencies)
-
-                target_xcode_configurations = (
-                    xcode_target_configurations[xcode_target.id]
+                consolidation_map_args.add_all(
+                    xcode_target_configurations[xcode_target.id],
+                    omit_if_empty = False,
+                    terminate_with = "\0",
                 )
-                consolidation_map_args.add(len(target_xcode_configurations))
-                consolidation_map_args.add_all(target_xcode_configurations)
 
                 if xcode_target.test_host:
                     target_and_test_hosts.append(xcode_target.id)

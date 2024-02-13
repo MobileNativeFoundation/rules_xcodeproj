@@ -254,7 +254,7 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
 
     public mutating func consumeArgsUntilNull<Output: ExpressibleByArgument>(
         _ name: String,
-        as type: Output.Type,
+        as type: Output.Type = String.self,
         in url: URL? = nil,
         file: StaticString = #filePath,
         line: UInt = #line
