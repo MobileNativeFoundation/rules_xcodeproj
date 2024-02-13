@@ -245,25 +245,25 @@ def _write_consolidation_map_targets(
             )
 
             targets_args.add_all(
-                [xcode_target.inputs.srcs],
-                map_each = _depset_len,
+                xcode_target.inputs.srcs,
+                omit_if_empty = False,
+                terminate_with = "\0",
             )
-            targets_args.add_all(xcode_target.inputs.srcs)
             targets_args.add_all(
-                [xcode_target.inputs.non_arc_srcs],
-                map_each = _depset_len,
+                xcode_target.inputs.non_arc_srcs,
+                omit_if_empty = False,
+                terminate_with = "\0",
             )
-            targets_args.add_all(xcode_target.inputs.non_arc_srcs)
             targets_args.add_all(
-                [xcode_target.inputs.resources],
-                map_each = _depset_len,
+                xcode_target.inputs.resources,
+                omit_if_empty = False,
+                terminate_with = "\0",
             )
-            targets_args.add_all(xcode_target.inputs.resources)
             targets_args.add_all(
-                [xcode_target.inputs.folder_resources],
-                map_each = _depset_len,
+                xcode_target.inputs.folder_resources,
+                omit_if_empty = False,
+                terminate_with = "\0",
             )
-            targets_args.add_all(xcode_target.inputs.folder_resources)
 
             target_xcode_configurations = (
                 xcode_target_configurations[xcode_target.id]

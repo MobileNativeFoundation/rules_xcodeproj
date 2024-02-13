@@ -84,6 +84,54 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
         )
     }
 
+    // MARK: - consumeArgUnlessNull
+
+    public mutating func consumeArgUnlessNull<Output> (
+        _ name: String,
+        as type: Output.Type,
+        in url: URL? = nil,
+        transform: (String) throws -> Output,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> Output? {
+        guard let rawArg = popFirst() else {
+            throw PreconditionError(
+                message: url.prefixMessage("Missing <\(name)>"),
+                file: file,
+                line: line
+            )
+        }
+        guard rawArg != "\0" else {
+            return nil
+        }
+        return try transform(rawArg)
+    }
+
+    public mutating func consumeArgUnlessNull<Output: ExpressibleByArgument>(
+        _ name: String,
+        as type: Output.Type = String.self,
+        in url: URL? = nil,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> Output? {
+        return try consumeArgUnlessNull(
+            name,
+            as: type,
+            in: url,
+            transform: { arg in
+                return try Self.argumentTransform(
+                    arg,
+                    name: name,
+                    in: url,
+                    file: file,
+                    line: line
+                )
+            },
+            file: file,
+            line: line
+        )
+    }
+
     // MARK: - consumeArgs
 
     public mutating func consumeArgs<Output>(
@@ -172,6 +220,58 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
             as: type,
             count: count,
             in: url,
+            file: file,
+            line: line
+        )
+    }
+
+    // MARK: - consumeArgsUntilNull
+
+    public mutating func consumeArgsUntilNull<Output>(
+        _ name: String,
+        as type: Output.Type,
+        in url: URL? = nil,
+        transform: (String) throws -> Output,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [Output] {
+        var args: [Output] = []
+        while true {
+            guard let arg = try consumeArgUnlessNull(
+                name,
+                as: type,
+                in: url,
+                transform: transform,
+                file: file,
+                line: line
+            ) else {
+                break
+            }
+            args.append(arg)
+        }
+        return args
+    }
+
+    public mutating func consumeArgsUntilNull<Output: ExpressibleByArgument>(
+        _ name: String,
+        as type: Output.Type,
+        in url: URL? = nil,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [Output] {
+        return try consumeArgsUntilNull(
+            name,
+            as: type,
+            in: url,
+            transform: { arg in
+                return try Self.argumentTransform(
+                    arg,
+                    name: name,
+                    in: url,
+                    file: file,
+                    line: line
+                )
+            },
             file: file,
             line: line
         )
