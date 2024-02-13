@@ -39,9 +39,6 @@ struct Generator {
                 "include-self-swift-debug-settings",
                 as: Bool.self
             )
-            // This doesn't use `consumeArgsUntilNull` because these arguments
-            // are normally passed on the command-line, and Bazel can't handle
-            // passing \0 on the command-line
             transitiveSwiftDebugSettingPaths = try rawArguments.consumeArgs(
                 "transitive-swift-debug-setting-paths",
                 as: URL.self

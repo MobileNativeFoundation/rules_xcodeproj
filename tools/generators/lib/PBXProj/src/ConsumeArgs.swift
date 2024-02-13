@@ -84,13 +84,14 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
         )
     }
 
-    // MARK: - consumeArgUnlessNull
+    // MARK: - consumeArgUnlessTerminator
 
-    public mutating func consumeArgUnlessNull<Output> (
+    public mutating func consumeArgUnlessTerminator<Output> (
         _ name: String,
         as type: Output.Type,
         in url: URL? = nil,
         transform: (String) throws -> Output,
+        terminator: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> Output? {
@@ -101,20 +102,21 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
                 line: line
             )
         }
-        guard rawArg != "\0" else {
+        guard rawArg != terminator else {
             return nil
         }
         return try transform(rawArg)
     }
 
-    public mutating func consumeArgUnlessNull<Output: ExpressibleByArgument>(
+    public mutating func consumeArgUnlessTerminator<Output: ExpressibleByArgument>(
         _ name: String,
         as type: Output.Type = String.self,
         in url: URL? = nil,
+        terminator: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> Output? {
-        return try consumeArgUnlessNull(
+        return try consumeArgUnlessTerminator(
             name,
             as: type,
             in: url,
@@ -127,6 +129,7 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
                     line: line
                 )
             },
+            terminator: terminator,
             file: file,
             line: line
         )
@@ -137,111 +140,20 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
     public mutating func consumeArgs<Output>(
         _ name: String,
         as type: Output.Type,
-        count: Int,
         in url: URL? = nil,
         transform: (String) throws -> Output,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws -> [Output] {
-        var args: [Output] = []
-        for _ in (0..<count) {
-            let arg = try consumeArg(
-                name,
-                as: type,
-                in: url,
-                transform: transform,
-                file: file,
-                line: line
-            )
-            args.append(arg)
-        }
-        return args
-    }
-
-    public mutating func consumeArgs<Output: ExpressibleByArgument>(
-        _ name: String,
-        as type: Output.Type,
-        count: Int,
-        in url: URL? = nil,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws -> [Output] {
-        return try consumeArgs(
-            name,
-            as: type,
-            count: count,
-            in: url,
-            transform: { arg in
-                return try Self.argumentTransform(
-                    arg,
-                    name: name,
-                    in: url,
-                    file: file,
-                    line: line
-                )
-            },
-            file: file,
-            line: line
-        )
-    }
-
-    public mutating func consumeArgs<Output>(
-        _ name: String,
-        as type: Output.Type,
-        in url: URL? = nil,
-        transform: (String) throws -> Output,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws -> [Output] {
-        let count = try consumeArg("\(name)-count", as: Int.self, in: url)
-
-        return try consumeArgs(
-            name,
-            as: type,
-            count: count,
-            in: url,
-            transform: transform,
-            file: file,
-            line: line
-        )
-    }
-
-    public mutating func consumeArgs<Output: ExpressibleByArgument>(
-        _ name: String,
-        as type: Output.Type = String.self,
-        in url: URL? = nil,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws -> [Output] {
-        let count = try consumeArg("\(name)-count", as: Int.self, in: url)
-
-        return try consumeArgs(
-            name,
-            as: type,
-            count: count,
-            in: url,
-            file: file,
-            line: line
-        )
-    }
-
-    // MARK: - consumeArgsUntilNull
-
-    public mutating func consumeArgsUntilNull<Output>(
-        _ name: String,
-        as type: Output.Type,
-        in url: URL? = nil,
-        transform: (String) throws -> Output,
+        terminator: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
         var args: [Output] = []
         while true {
-            guard let arg = try consumeArgUnlessNull(
+            guard let arg = try consumeArgUnlessTerminator(
                 name,
                 as: type,
                 in: url,
                 transform: transform,
+                terminator: terminator,
                 file: file,
                 line: line
             ) else {
@@ -252,14 +164,15 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
         return args
     }
 
-    public mutating func consumeArgsUntilNull<Output: ExpressibleByArgument>(
+    public mutating func consumeArgs<Output: ExpressibleByArgument>(
         _ name: String,
         as type: Output.Type = String.self,
         in url: URL? = nil,
+        terminator: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [Output] {
-        return try consumeArgsUntilNull(
+        return try consumeArgs(
             name,
             as: type,
             in: url,
@@ -272,6 +185,7 @@ Failed to parse "\(rawArg)" as \(Output.Type.self) for <\(name)>
                     line: line
                 )
             },
+            terminator: terminator,
             file: file,
             line: line
         )

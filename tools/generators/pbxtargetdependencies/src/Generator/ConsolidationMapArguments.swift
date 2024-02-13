@@ -16,7 +16,7 @@ extension Array<ConsolidationMapArguments> {
     ) async throws -> Self {
         var rawArgs = ArraySlice(try await url.allLines.collect())
 
-        let outputPaths = try rawArgs.consumeArgsUntilNull(
+        let outputPaths = try rawArgs.consumeArgs(
             "output-paths",
             as: URL.self,
             in: url,
@@ -71,12 +71,12 @@ extension Array<ConsolidationMapArguments> {
                     )
                     let productBasename =
                         try rawArgs.consumeArg("product-basename", in: url)
-                    let dependencies = try rawArgs.consumeArgsUntilNull(
+                    let dependencies = try rawArgs.consumeArgs(
                         "dependencies",
                         as: TargetID.self,
                         in: url
                     )
-                    let xcodeConfigurations = try rawArgs.consumeArgsUntilNull(
+                    let xcodeConfigurations = try rawArgs.consumeArgs(
                         "xcode-configurations",
                         in: url
                     )

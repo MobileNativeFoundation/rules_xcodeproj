@@ -43,13 +43,13 @@ extension Generator.ReadTransitivePreviewReferencesFile {
             return [:]
         }
 
-        var rawArgs = ArraySlice(try await url.lines.collect())
+        var rawArgs = ArraySlice(try await url.allLines.collect())
 
         var keysWithValues: [(TargetID, [BuildableReference])] = []
         while !rawArgs.isEmpty {
             let id =
                 try rawArgs.consumeArg("target-id", as: TargetID.self, in: url)
-            let buildableReferences = try rawArgs.consumeArgsUntilNull(
+            let buildableReferences = try rawArgs.consumeArgs(
                 "buildable-references",
                 as: BuildableReference.self,
                 in: url,
