@@ -815,8 +815,8 @@ def write_schemes_test_suite(name):
                 "Scheme 2",
                 # - test - testTargetCount
                 "0",
-                # - test - buildTargets count
-                "0",
+                # - test - buildTargets
+                "",
                 # - test - commandLineArguments count
                 "-1",
                 # - test - environmentVariables count
@@ -833,8 +833,8 @@ def write_schemes_test_suite(name):
                 "0",
                 # - test - xcodeConfiguration
                 "",
-                # - run - buildTargets count
-                "0",
+                # - run - buildTargets
+                "",
                 # - run - commandLineArguments count
                 "-1",
                 # - run - environmentVariables count
@@ -857,8 +857,8 @@ def write_schemes_test_suite(name):
                 "",
                 # - run - customWorkingDirectory
                 "",
-                # - profile - buildTargets count
-                "0",
+                # - profile - buildTargets
+                "",
                 # - profile - commandLineArguments count
                 "-1",
                 # - profile - environmentVariables count
@@ -890,12 +890,10 @@ def write_schemes_test_suite(name):
                 "test tt 2",
                 # - test - testTargets - enabled
                 "1",
-                # - test - buildTargets count
-                "2",
-                # - test - buildTargets id
+                # - test - buildTargets
                 "test bt 2",
-                # - test - buildTargets id
                 "test bt 1",
+                "",
                 # - test - commandLineArguments count
                 "1",
                 # - test - commandLineArguments - value
@@ -922,10 +920,9 @@ def write_schemes_test_suite(name):
                 "1",
                 # - test - xcodeConfiguration
                 "Test",
-                # - run - buildTargets count
-                "1",
-                # - run - buildTargets id
+                # - run - buildTargets
                 "run bt",
+                "",
                 # - run - commandLineArguments count
                 "2",
                 # - run - commandLineArguments - value
@@ -968,10 +965,9 @@ def write_schemes_test_suite(name):
                 "run extension host id",
                 # - run - customWorkingDirectory
                 "run working dir",
-                # - profile - buildTargets count
-                "1",
-                # - profile - buildTargets id
+                # - profile - buildTargets
                 "profile bt",
+                "",
                 # - profile - commandLineArguments count
                 "2",
                 # - profile - commandLineArguments - value
@@ -1009,8 +1005,8 @@ def write_schemes_test_suite(name):
                 "Scheme 3",
                 # - test - testTargetCount
                 "0",
-                # - test - buildTargets count
-                "0",
+                # - test - buildTargets
+                "",
                 # - test - commandLineArguments count
                 "-1",
                 # - test - environmentVariables count
@@ -1027,8 +1023,8 @@ def write_schemes_test_suite(name):
                 "0",
                 # - test - xcodeConfiguration
                 "",
-                # - run - buildTargets count
-                "0",
+                # - run - buildTargets
+                "",
                 # - run - commandLineArguments count
                 "-1",
                 # - run - environmentVariables count
@@ -1049,8 +1045,8 @@ def write_schemes_test_suite(name):
                 "/Foo/Bar.app",
                 # - run - customWorkingDirectory
                 "",
-                # - profile - buildTargets count
-                "0",
+                # - profile - buildTargets
+                "",
                 # - profile - commandLineArguments count
                 "-1",
                 # - profile - environmentVariables count
@@ -1618,10 +1614,8 @@ def write_schemes_test_suite(name):
                 # id
                 "IOS_APP",
                 # buildableReferences
-                # - count
-                "1",
-                # - id
                 "IOS_FRAMEWORK",
+                "",
             ]) + "\n",
         },
     )

@@ -76,8 +76,10 @@ extension Array<ConsolidationMapArguments> {
                         as: TargetID.self,
                         in: url
                     )
-                    let xcodeConfigurations =
-                        try rawArgs.consumeArgs("xcode-configurations", in: url)
+                    let xcodeConfigurations = try rawArgs.consumeArgs(
+                        "xcode-configurations",
+                        in: url
+                    )
 
                     let uiTestHost: TargetID?
                     if productType == .uiTestBundle {

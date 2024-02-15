@@ -200,8 +200,11 @@ def _write_schemes(
                 ]
                 if ids:
                     transitive_preview_targets_args.add(xcode_target.id)
-                    transitive_preview_targets_args.add(len(ids))
-                    transitive_preview_targets_args.add_all(ids)
+                    transitive_preview_targets_args.add_all(
+                        ids,
+                        omit_if_empty = False,
+                        terminate_with = "",
+                    )
 
         actions.write(
             transitive_preview_targets_file,
@@ -251,7 +254,6 @@ def _write_schemes(
 
     # buildifier: disable=uninitialized
     def _add_build_targets(build_targets, *, action_name, scheme_name):
-        custom_scheme_args.add(len(build_targets))
         for build_target in build_targets:
             custom_scheme_args.add(build_target.id)
             _add_execution_actions(
@@ -260,6 +262,7 @@ def _write_schemes(
                 action_name = action_name,
                 scheme_name = scheme_name,
             )
+        custom_scheme_args.add("")
 
     def _add_diagnostics(diagnostics):
         custom_scheme_args.add(diagnostics.address_sanitizer)

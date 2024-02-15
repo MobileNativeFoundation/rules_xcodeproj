@@ -43,7 +43,7 @@ extension Generator.ReadTransitivePreviewReferencesFile {
             return [:]
         }
 
-        var rawArgs = ArraySlice(try await url.lines.collect())
+        var rawArgs = ArraySlice(try await url.allLines.collect())
 
         var keysWithValues: [(TargetID, [BuildableReference])] = []
         while !rawArgs.isEmpty {

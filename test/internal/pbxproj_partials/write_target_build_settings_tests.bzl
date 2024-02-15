@@ -509,9 +509,8 @@ def write_target_build_settings_test_suite(name):
             _DEBUG_SETTINGS_DECLARED_FILE.path,
             # includeSelfSwiftDebugSettings
             "0",
-            # transitiveSwiftDebugSettingPathsCount
-            "0",
             # transitiveSwiftDebugSettingPaths
+            "",
             # deviceFamily
             "",
             # extensionSafe
@@ -618,9 +617,8 @@ def write_target_build_settings_test_suite(name):
             _DEBUG_SETTINGS_DECLARED_FILE.path,
             # includeSelfSwiftDebugSettings
             "1",
-            # transitiveSwiftDebugSettingPathsCount
-            "0",
             # transitiveSwiftDebugSettingPaths
+            "",
             # deviceFamily
             "",
             # extensionSafe
@@ -674,11 +672,10 @@ def write_target_build_settings_test_suite(name):
             _DEBUG_SETTINGS_DECLARED_FILE.path,
             # includeSelfSwiftDebugSettings
             "1",
-            # transitiveSwiftDebugSettingPathsCount
-            "2",
             # transitiveSwiftDebugSettingPaths
             "transitive_debug_settings/2",
             "transitive_debug_settings/1",
+            "",
             # deviceFamily
             "",
             # extensionSafe
@@ -749,12 +746,11 @@ def write_target_build_settings_test_suite(name):
             _DEBUG_SETTINGS_DECLARED_FILE.path,
             # includeSelfSwiftDebugSettings
             "0",
-            # transitiveSwiftDebugSettingPathsCount
-            "3",
             # transitiveSwiftDebugSettingPaths
             "transitive_debug_settings/3",
             "transitive_debug_settings/1",
             "transitive_debug_settings/2",
+            "",
             # deviceFamily
             "1,2",
             # extensionSafe
