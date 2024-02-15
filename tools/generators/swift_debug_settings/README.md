@@ -13,7 +13,7 @@ The generator accepts the following command-line arguments:
 
 Here is an example invocation:
 
-```shellsession
+```shell
 $ swift_debug_settings \
     0 \
     /tmp/pbxproj_partials/Debug-swift_debug_settings.py \

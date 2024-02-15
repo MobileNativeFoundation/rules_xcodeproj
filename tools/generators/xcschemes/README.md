@@ -26,7 +26,7 @@ details):
 
 Here is an example invocation:
 
-```shellsession
+```shell
 $ xcschemes \
     /tmp/pbxproj_partials/xcschemes \
     /tmp/pbxproj_partials/xcschememanagement.plist \

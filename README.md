@@ -160,7 +160,7 @@ swift_library(
 
 You can then create the Xcode project with:
 
-```shellsession
+```shell
 $ bazel run //:xcodeproj
 ```
 

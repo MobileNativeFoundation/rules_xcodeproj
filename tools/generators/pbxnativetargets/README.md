@@ -31,7 +31,7 @@ The generator accepts the following command-line arguments (see
 
 Here is an example invocation:
 
-```shellsession
+```shell
 $ pbxnativetargets \
     /tmp/pbxproj_partials/pbxnativetargets/0 \
     /tmp/pbxproj_partials/buildfile_subidentifiers/0 \

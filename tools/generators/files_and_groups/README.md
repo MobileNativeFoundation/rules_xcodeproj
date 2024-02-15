@@ -32,7 +32,7 @@ The generator accepts the following command-line arguments (see
 
 Here is an example invocation:
 
-```shellsession
+```shell
 $ files_and_groups \
     /tmp/pbxproj_partials/pbxproject_known_regions \
     /tmp/pbxproj_partials/files_and_groups \

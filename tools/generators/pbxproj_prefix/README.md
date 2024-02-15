@@ -29,7 +29,7 @@ The generator accepts the following command-line arguments (see
 
 Here is an example invocation:
 
-```shellsession
+```shell
 $ pbxproj_prefix \
     /tmp/pbxproj_partials/pbxproj_prefix \
 	rules_xcodeproj \
