@@ -160,8 +160,8 @@ swift_library(
 
 You can then create the Xcode project with:
 
-```shell
-bazel run //:xcodeproj
+```shellsession
+$ bazel run //:xcodeproj
 ```
 
 The generated project will be in the workspace next to the `BUILD` file at

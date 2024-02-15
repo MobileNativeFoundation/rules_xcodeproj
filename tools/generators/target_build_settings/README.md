@@ -39,7 +39,7 @@ C++/Objective-C++ `CppCompile`/`ObjcCompile` action
 
 Here is an example invocation:
 
-```shell
+```shellsession
 $ target_build_settings \
     0 \
     /tmp/pbxproj_partials/target_build_settings \

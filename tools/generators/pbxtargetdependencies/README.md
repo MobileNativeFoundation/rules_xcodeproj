@@ -27,7 +27,7 @@ details):
 
 Here is an example invocation:
 
-```shell
+```shellsession
 $ pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxtargetdependencies \
     /tmp/pbxproj_partials/pbxtargetdependencies \
