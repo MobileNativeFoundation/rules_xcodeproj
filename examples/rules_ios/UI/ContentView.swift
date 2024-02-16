@@ -2,11 +2,15 @@ import Lib
 import SwiftUI
 
 public struct ContentView: View {
-    public init() {}
+    let text: String
+
+    public init(text: String = "Hello world") {
+        self.text = text
+    }
 
     public var body: some View {
         VStack {
-            Text("Hello world")
+            Text(text)
         }
             .padding(64)
             .multilineTextAlignment(.center)
@@ -15,6 +19,6 @@ public struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(text: "Hello world from the previews!")
     }
 }

@@ -30,6 +30,7 @@
 		087060092882CB8D6E9A667E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */; };
 		1972A7D03444AF43C32D0D4F /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5960C3F416397EFB313F138 /* SwiftUnitTests.swift */; };
 		2002E756165569A83F474D27 /* Intents.Intent.output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C52E65312BF4D81C8867A /* Intents.Intent.output.swift */; };
+		25EBDBFB1B5A996E8245501E /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		2CA1D1790DE1D13037DE1DD0 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		2E162D883F2B5F2B4A431F51 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		35867F258437FC1961FC41E5 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */; };
@@ -45,7 +46,6 @@
 		9C21BCAC6B001DDEEF57C765 /* Intents.Intent.output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E664DF447AE790D7509B15 /* Intents.Intent.output.swift */; };
 		A3DD915D7DA423F9D2DC73CA /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		A5A1B784A9AD05C5360BED2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43483C0C029D669DC6D9079A /* ContentView.swift */; };
-		AB121CB18198D4F7B9E44FB0 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		B0B558B3386C91C77B6A125D /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881EEC5A32BE56448E19924 /* UITests.swift */; };
 		B3BCF5194CFE77BD9ED43AA2 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		B57BEBDCCED2712EC6550D85 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881EEC5A32BE56448E19924 /* UITests.swift */; };
@@ -126,6 +126,13 @@
 			remoteInfo = BazelDependencies;
 		};
 		40C259B62EE2DAC395887C4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		47E5A9924DABD3F03785B3DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -286,13 +293,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		B53B11FD43A7CE476157AE8C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
 		B62D9F805AAF77942B44BBCF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -389,6 +389,7 @@
 		171DC209575A8873D0033314 /* iOSApp.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSApp.library-umbrella.h"; sourceTree = "<group>"; };
 		17D8CF5F0919C0090EECE1A3 /* iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		18AE20E410D5E4ABA9C7432F /* iOSAppSwiftUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTests_vfs.yaml; sourceTree = "<group>"; };
+		199016FA698F69A3AAD71A59 /* UI.3.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.3.link.params; sourceTree = "<group>"; };
 		19932048DF773314FA535F2A /* CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params; sourceTree = "<group>"; };
 		19AA7E117699E23F19C5A872 /* iOSApp.library_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.library_public_hmap.hmap; sourceTree = "<group>"; };
 		1A5613440A1B0892181F4375 /* iOSAppObjCUnitTestSuite_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTestSuite_macro_swift_vfs.yaml; sourceTree = "<group>"; };
@@ -433,6 +434,7 @@
 		3CE3DD09C50EEC9B0EC2AA74 /* iOSApp.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSApp.library-umbrella.h"; sourceTree = "<group>"; };
 		3D8E3E1921D3E24A6BC2B821 /* UI.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = UI.modulemap; sourceTree = "<group>"; };
 		3E78F614B0F11CADE4EF0B06 /* Lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Lib.modulemap; sourceTree = "<group>"; };
+		3EF21A012ABD3A64BEFB6BB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3F68C8BB10B9590AC5475B87 /* UI-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-umbrella.h"; sourceTree = "<group>"; };
 		3FF225DE66D224D524FF5D77 /* MixedAnswer_swift_doublequote_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswer_swift_doublequote_hmap.hmap; sourceTree = "<group>"; };
 		4074E3E9E300B3261D1E1333 /* CoreUtilsObjC_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreUtilsObjC_public_hmap.hmap; sourceTree = "<group>"; };
@@ -549,7 +551,7 @@
 		97DC554A57A7E90F4D17CEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		980A5293BDC4C0F8E16BD84F /* iOSApp_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_vfs.yaml; sourceTree = "<group>"; };
 		9877BC55C1A485EACBB411C7 /* iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
-		9976EDECD75BB7E69C34D585 /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9976EDECD75BB7E69C34D585 /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		9D8A39DA7DDD47BCCA6C441E /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -581,6 +583,7 @@
 		B46D0BEF6DE511C36F339E1E /* VendoredFramework_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = VendoredFramework_swift_vfs.yaml; sourceTree = "<group>"; };
 		B4A618DD7C0368EB1019F141 /* Lib-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lib-Swift.h"; sourceTree = "<group>"; };
 		B567E39BDD671DCCA2B55806 /* iOSAppMixedUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
+		B5E1E7E70C5D484638103E8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B675338F06046E743DB54DB7 /* iOSAppSwiftUnitTestSuite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppSwiftUnitTestSuite-Swift.h"; sourceTree = "<group>"; };
 		B809EEC3C7BDE467DAF5DF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B94CF086914F2DD1C6400046 /* common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.pch; sourceTree = "<group>"; };
@@ -640,6 +643,7 @@
 		E9F244CC00F8B2E6185AFFA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EA249C429ED191D3BFB1B5A2 /* iOSAppUITests_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITests_macro_vfs.yaml; sourceTree = "<group>"; };
 		ED2123B7E06414B018AFE772 /* MixedAnswer_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_vfs.yaml; sourceTree = "<group>"; };
+		EF58B3B490A493F7CD2540F3 /* UI.35.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.35.link.params; sourceTree = "<group>"; };
 		EFF4BFDCF8382A896D92518B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F23583DD9145DC9DE4E80F04 /* iOSAppUITestSuite_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_vfs.yaml; sourceTree = "<group>"; };
 		F5BE79708CCB1EAD234C9A68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -661,6 +665,7 @@
 		0502CACB1CD5C3493E9DD4B5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				948FF16ECDFFC105788F72D7 /* rules_xcodeproj */,
 				A1294501D9F23B0F731A896C /* UI-modulemap */,
 				85132E2284980A651AB53EE6 /* UI_public_hmap.hmap */,
 				A3A0C908BC8E33C1CA64C46F /* UI_swift_vfs.yaml */,
@@ -1121,6 +1126,22 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		6536DA24C5DC2E9E9E1B3B93 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				A319A7DB7973349643A081ED /* UI */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		656F686BADFF93203514C607 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B5E1E7E70C5D484638103E8E /* Info.plist */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		680B9771F21E6593ADB11455 /* Vendored */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,6 +1358,14 @@
 			path = "Lib-modulemap";
 			sourceTree = "<group>";
 		};
+		948FF16ECDFFC105788F72D7 /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				656F686BADFF93203514C607 /* UI */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		99817B2F8FEA7B7C504740BA /* iOSAppUITestSuite.__internal__.__test_bundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1394,6 +1423,14 @@
 				436DAB46447363D77685AB31 /* iOSAppSwiftUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		A319A7DB7973349643A081ED /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3EF21A012ABD3A64BEFB6BB1 /* Info.plist */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		A4C6E6CC8AF3B10873058FDF /* iOSAppUITests_macro.__internal__.__test_bundle */ = {
@@ -1509,6 +1546,7 @@
 		BFA2FD30E74638187F82CCFE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6536DA24C5DC2E9E9E1B3B93 /* rules_xcodeproj */,
 				696DDD69C2B186E2F7B12356 /* UI-modulemap */,
 				587675F3714B6FA55BC2070A /* UI_public_hmap.hmap */,
 				63773BC9EC4F334D104821B3 /* UI_swift_vfs.yaml */,
@@ -1811,6 +1849,8 @@
 				A1571E88A5152EAEA4E0D7A6 /* iOSAppUITestSuite.26.link.params */,
 				6A1A73E3FE3CC24538DA8ADA /* LibDynamic.15.link.params */,
 				E27B3291675398975CF6F7FB /* LibDynamic.47.link.params */,
+				199016FA698F69A3AAD71A59 /* UI.3.link.params */,
+				EF58B3B490A493F7CD2540F3 /* UI.35.link.params */,
 				AB976A22BE50848592058175 /* WidgetExtension.13.link.params */,
 				AE3FF3099E647DFE44323039 /* WidgetExtension.45.link.params */,
 			);
@@ -2299,6 +2339,24 @@
 			productName = iOSAppSwiftUnitTestSuite_swift;
 			productType = "com.apple.product-type.library.static";
 		};
+		BE484C4890DC08DCD61FADA6 /* UI (Framework) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB67FB23188801515116A8ED /* Build configuration list for PBXNativeTarget "UI (Framework)" */;
+			buildPhases = (
+				63ADCDFAFF3012BCACCC7C20 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				97B706CCEEA20F11CEFB6DC8 /* Create Link Dependencies */,
+				F859964C4090A02D4044BF58 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8C1B51D4306C9A6500CEC7F /* PBXTargetDependency */,
+			);
+			name = "UI (Framework)";
+			productName = UI;
+			productReference = 9976EDECD75BB7E69C34D585 /* UI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		C2EE7F6992F657EC5BCB9FD2 /* iOSApp (Static Framework) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 838D3AC1B155CDBD2A1ADE98 /* Build configuration list for PBXNativeTarget "iOSApp (Static Framework)" */;
@@ -2331,23 +2389,6 @@
 			name = CoreUtils;
 			productName = CoreUtils;
 			productReference = 44E8E6F22845E8D0F4478E74 /* CoreUtils.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D7D7DAEDBC9AFCBE77A8C81E /* UI (Static Framework) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4351B5A5FFC3CD81C327CB66 /* Build configuration list for PBXNativeTarget "UI (Static Framework)" */;
-			buildPhases = (
-				211E52DB50A358F4D737DEAC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
-				1907DFFBF505C24208EE2C3F /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8B68EFC401C5499F1E3FB03F /* PBXTargetDependency */,
-			);
-			name = "UI (Static Framework)";
-			productName = UI;
-			productReference = 9976EDECD75BB7E69C34D585 /* UI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		DA666D88C570756E2583A25B /* iOSAppSwiftUnitTestSuite (Unit Tests) */ = {
@@ -2588,15 +2629,15 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					BE484C4890DC08DCD61FADA6 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
 					C2EE7F6992F657EC5BCB9FD2 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
 					CC4C6C2A28BA30B1838E405C = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					D7D7DAEDBC9AFCBE77A8C81E = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -2674,8 +2715,8 @@
 				628AC6468917578F7DB130A1 /* MixedAnswer (Library) */,
 				5F5E03447CE38BB9BC46DED5 /* MixedAnswer (Static Framework) */,
 				5475A870C308B2BFA9D62783 /* MixedAnswer_objc */,
+				BE484C4890DC08DCD61FADA6 /* UI (Framework) */,
 				10DC82E859570071BF24E7D2 /* UI (Library) */,
-				D7D7DAEDBC9AFCBE77A8C81E /* UI (Static Framework) */,
 				34820134F30D904FFA06D27A /* Utils */,
 				444B572E5394391A6C6F27AE /* Utils_objc */,
 				65580AC6D3F14E15B18BECBE /* WidgetExtension (App Extension) */,
@@ -2838,23 +2879,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		211E52DB50A358F4D737DEAC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		22BDBE7ACEA3A31043764190 /* Generate Bazel Dependencies */ = {
@@ -3111,6 +3135,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"$BAZEL_INTEGRATION_DIR/app.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		63ADCDFAFF3012BCACCC7C20 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"$BAZEL_INTEGRATION_DIR/framework.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		65376271CCF0F818990B56BE /* Create Link Dependencies */ = {
@@ -3397,6 +3438,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		97B706CCEEA20F11CEFB6DC8 /* Create Link Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create Link Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+				"$(DERIVED_FILE_DIR)/_CompileStub_.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99CC3E65202A45FF81EA946C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -3842,14 +3901,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1907DFFBF505C24208EE2C3F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AB121CB18198D4F7B9E44FB0 /* _CompileStub_.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		20983986EAEF9E9ED44E8ECB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4095,6 +4146,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F859964C4090A02D4044BF58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25EBDBFB1B5A996E8245501E /* _CompileStub_.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCA87D1D3F9507D43148952C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4220,12 +4279,6 @@
 			target = 3748F894E3DA974CB6A80689 /* iOSApp (App) */;
 			targetProxy = 7035CDA9843F5D1A9B40682B /* PBXContainerItemProxy */;
 		};
-		8B68EFC401C5499F1E3FB03F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = B53B11FD43A7CE476157AE8C /* PBXContainerItemProxy */;
-		};
 		90383196DFEDC8F8E447133E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -4297,6 +4350,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 30087F9F61B91DEBA2A3BB7D /* PBXContainerItemProxy */;
+		};
+		C8C1B51D4306C9A6500CEC7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 47E5A9924DABD3F03785B3DE /* PBXContainerItemProxy */;
 		};
 		C9A0DE6B03887E1111815599 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4687,6 +4746,38 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGET_NAME = CoreUtilsObjC;
+			};
+			name = Debug;
+		};
+		4CDD763A5CD08E6EC6A6D186 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				BAZEL_LABEL = "@@//UI:UI";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.framework";
+				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework";
+				BAZEL_OUTPUTS_PRODUCT_BASENAME = UI.framework;
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/UI";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/UI";
+				BAZEL_TARGET_ID = "@@//UI:UI CONFIGURATION-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//UI:UI CONFIGURATION-STABLE-2";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = UI;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/rules_xcodeproj/UI/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/rules_xcodeproj/UI/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.3.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.35.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PREVIEW_FRAMEWORK_PATHS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.UI;
+				PRODUCT_MODULE_NAME = UI_UI;
+				PRODUCT_NAME = UI;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGET_NAME = UI;
 			};
 			name = Debug;
 		};
@@ -5104,29 +5195,6 @@
 			};
 			name = Debug;
 		};
-		BD607D919DD6020811A76676 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_LABEL = "@@//UI:UI";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/CONFIGURATION-STABLE-1/bin/UI";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/CONFIGURATION-STABLE-2/bin/UI";
-				BAZEL_TARGET_ID = "@@//UI:UI CONFIGURATION-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//UI:UI CONFIGURATION-STABLE-2";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = UI;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MACH_O_TYPE = staticlib;
-				PRODUCT_MODULE_NAME = UI_UI;
-				PRODUCT_NAME = UI;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				TARGET_NAME = UI;
-			};
-			name = Debug;
-		};
 		C633F02F4F27D2648882E195 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5440,14 +5508,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4351B5A5FFC3CD81C327CB66 /* Build configuration list for PBXNativeTarget "UI (Static Framework)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BD607D919DD6020811A76676 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		452DEDF251837055F0CA7F44 /* Build configuration list for PBXNativeTarget "iOSAppUITestSuite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -5564,6 +5624,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7196640062AB6434C2BD9F44 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AB67FB23188801515116A8ED /* Build configuration list for PBXNativeTarget "UI (Framework)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CDD763A5CD08E6EC6A6D186 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
