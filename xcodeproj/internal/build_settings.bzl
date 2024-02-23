@@ -40,6 +40,12 @@ def get_product_module_name(*, rule_attr, target):
         return (module_name, module_name)
 
     if SwiftProtoInfo in target:
+        # The new swift_proto_library implementation exposes
+        # the derived module name via the provider.
+        swift_proto_info = target[SwiftProtoInfo]
+        if hasattr(swift_proto_info, "module_name"):
+            return (None, module_name)
+
         # A `swift_proto_library` target must only have exactly one target in
         # the deps attribute. This is already validated in
         # `swift_proto_library`'s implementation.
