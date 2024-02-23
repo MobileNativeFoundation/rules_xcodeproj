@@ -131,7 +131,6 @@ def _collect_files(
     for xcode_target in all_targets:
         transitive_file_paths.append(xcode_target.inputs.extra_file_paths)
         transitive_files.append(xcode_target.inputs.extra_files)
-        transitive_files.append(xcode_target.inputs.resources)
         transitive_folders.append(xcode_target.inputs.folder_resources)
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)

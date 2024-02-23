@@ -24,12 +24,11 @@ def _from_resource_bundle(bundle):
         compile_stub_needed = False,
         inputs = struct(
             entitlements = EMPTY_DEPSET,
-            extra_files = EMPTY_DEPSET,
+            extra_files = bundle.resources,
             extra_file_paths = EMPTY_DEPSET,
             folder_resources = bundle.folder_resources,
             infoplist_path = None,
             non_arc_srcs = EMPTY_DEPSET,
-            resources = bundle.resources,
             srcs = EMPTY_DEPSET,
         ),
     )
@@ -183,7 +182,6 @@ def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
         folder_resources = dest_inputs.folder_resources,
         infoplist_path = dest_inputs.infoplist_path,
         non_arc_srcs = mergeable_info.non_arc_srcs,
-        resources = dest_inputs.resources,
         srcs = mergeable_info.srcs,
     )
 
