@@ -331,9 +331,6 @@ def _collect_incremental_input_files(
                     attributes.
                 *   `non_arc_srcs`: A `list` of `File`s that are inputs to
                     `target`'s `non_arc_srcs`-like attributes.
-                *   `resources`: A `depset` of `File`s that are inputs to
-                    `target`'s `resources`-like and `structured_resources`-like
-                    attributes.
                 *   `srcs`: A `list` of `File`s that are inputs to `target`'s
                     `srcs`-like attributes.
 
@@ -493,7 +490,7 @@ def _collect_incremental_input_files(
         folder_resources = memory_efficient_depset(
             resources_result.folder_resources,
         )
-        resources = memory_efficient_depset(resources_result.resources)
+        extra_files.extend(resources_result.resources)
         resource_bundles = resources_result.bundles
 
         xccurrentversions.extend(resources_result.xccurrentversions)
@@ -526,7 +523,6 @@ def _collect_incremental_input_files(
         ])
     else:
         folder_resources = EMPTY_DEPSET
-        resources = EMPTY_DEPSET
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
                 info.inputs._resource_bundle_labels
@@ -570,7 +566,6 @@ def _collect_incremental_input_files(
                     "$(BAZEL_OUT){}".format(infoplist.path[9:]) if infoplist else None
                 ),
                 non_arc_srcs = memory_efficient_depset(non_arc_srcs),
-                resources = resources,
                 srcs = memory_efficient_depset(srcs),
             ),
         ),
