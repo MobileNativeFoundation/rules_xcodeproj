@@ -251,11 +251,6 @@ def _write_consolidation_map_targets(
                 omit_if_empty = False,
                 terminate_with = "",
             )
-            targets_args.add_all(
-                xcode_target.inputs.folder_resources,
-                omit_if_empty = False,
-                terminate_with = "",
-            )
 
             targets_args.add_all(
                 xcode_target_configurations[xcode_target.id],
