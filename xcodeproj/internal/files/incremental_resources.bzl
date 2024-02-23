@@ -60,12 +60,10 @@ def _process_resource(
 
     # If a file is a child of a folder-type file, the parent folder-type file
     # should be added to the bundle instead of the child file
-    path = file.path
-    for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
-        idx = path.find(suffix)
-        if idx != -1:
-            bundle.folder_resources.append(path[:(idx + len(suffix) - 1)])
-            return None
+    folder_type_prefix = _folder_type_prefix(file)
+    if folder_type_prefix:
+        bundle.folder_resources.append(folder_type_prefix)
+        return None
 
     return file
 
@@ -351,6 +349,15 @@ def _collect_incremental_resources(
         xccurrentversions = xccurrentversions,
     )
 
+def _folder_type_prefix(file):
+    path = file.path
+    for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
+        idx = path.find(suffix)
+        if idx != -1:
+            return path[:(idx + len(suffix) - 1)]
+    return None
+
 incremental_resources = struct(
     collect = _collect_incremental_resources,
+    folder_type_prefix = _folder_type_prefix,
 )

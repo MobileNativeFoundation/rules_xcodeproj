@@ -56,9 +56,15 @@ def _inner_merge_input_files(
                 for info in transitive_infos
             ],
         ),
-        _resource_bundle_uncategorized = memory_efficient_depset(
+        _resource_bundle_uncategorized_files = memory_efficient_depset(
             transitive = [
-                info.inputs._resource_bundle_uncategorized
+                info.inputs._resource_bundle_uncategorized_files
+                for info in transitive_infos
+            ],
+        ),
+        _resource_bundle_uncategorized_folders = memory_efficient_depset(
+            transitive = [
+                info.inputs._resource_bundle_uncategorized_folders
                 for info in transitive_infos
             ],
         ),
@@ -488,9 +494,6 @@ def _collect_incremental_input_files(
         )
 
         extra_files.extend(resources_result.resources)
-        extra_folders = memory_efficient_depset(
-            resources_result.folder_resources,
-        )
         resource_bundles = resources_result.bundles
 
         xccurrentversions.extend(resources_result.xccurrentversions)
@@ -510,17 +513,32 @@ def _collect_incremental_input_files(
             for label in resource_bundle_labels.to_list()
         }
 
-        resource_bundle_uncategorized = EMPTY_DEPSET
-        transitive_extra_files.extend([
+        resource_bundle_uncategorized_files = EMPTY_DEPSET
+        transitive_extra_files = [
             d
             for label, d in depset(
                 transitive = [
-                    info.inputs._resource_bundle_uncategorized
+                    info.inputs._resource_bundle_uncategorized_files
                     for info in transitive_infos
                 ],
             ).to_list()
             if label not in bundle_labels
-        ])
+        ]
+
+        resource_bundle_uncategorized_folders = EMPTY_DEPSET
+        extra_folders = memory_efficient_depset(
+            resources_result.folder_resources,
+            transitive = [
+                d
+                for label, d in depset(
+                    transitive = [
+                        info.inputs._resource_bundle_uncategorized_folders
+                        for info in transitive_infos
+                    ],
+                ).to_list()
+                if label not in bundle_labels
+            ],
+        )
     else:
         extra_folders = EMPTY_DEPSET
         resource_bundle_labels = memory_efficient_depset(
@@ -529,9 +547,15 @@ def _collect_incremental_input_files(
                 for info in transitive_infos
             ],
         )
-        resource_bundle_uncategorized = memory_efficient_depset(
+        resource_bundle_uncategorized_files = memory_efficient_depset(
             transitive = [
-                info.inputs._resource_bundle_uncategorized
+                info.inputs._resource_bundle_uncategorized_files
+                for info in transitive_infos
+            ],
+        )
+        resource_bundle_uncategorized_folders = memory_efficient_depset(
+            transitive = [
+                info.inputs._resource_bundle_uncategorized_folders
                 for info in transitive_infos
             ],
         )
@@ -572,7 +596,12 @@ def _collect_incremental_input_files(
         struct(
             _product_framework_files = product_framework_files,
             _resource_bundle_labels = resource_bundle_labels,
-            _resource_bundle_uncategorized = resource_bundle_uncategorized,
+            _resource_bundle_uncategorized_files = (
+                resource_bundle_uncategorized_files
+            ),
+            _resource_bundle_uncategorized_folders = (
+                resource_bundle_uncategorized_folders
+            ),
             _uncategorized = memory_efficient_depset(
                 uncategorized,
                 transitive = [
@@ -683,18 +712,44 @@ def _collect_unsupported_input_files(
     )
 
     if is_resource_bundle:
-        if uncategorized:
-            resource_bundle_uncategorized = [
+        uncategorized_files = []
+        uncategorized_folders = []
+
+        def _process_uncategorized_resource(resource):
+            # If a file is a child of a folder-type file, the parent
+            # folder-type file should be collected instead of the child file
+            folder_type_prefix = resources_module.folder_type_prefix(resource)
+            if folder_type_prefix:
+                uncategorized_folders.append(folder_type_prefix)
+                return
+            uncategorized_files.append(resource)
+
+        for file in uncategorized:
+            _process_uncategorized_resource(file)
+
+        if uncategorized_files:
+            resource_bundle_uncategorized_files = [
                 (
                     label,
-                    memory_efficient_depset(uncategorized),
+                    memory_efficient_depset(uncategorized_files),
                 ),
             ]
         else:
-            resource_bundle_uncategorized = None
+            resource_bundle_uncategorized_files = None
+
+        if uncategorized_folders:
+            resource_bundle_uncategorized_folders = [
+                (
+                    label,
+                    memory_efficient_depset(uncategorized_folders),
+                ),
+            ]
+        else:
+            resource_bundle_uncategorized_folders = None
         uncategorized = None
     else:
-        resource_bundle_uncategorized = None
+        resource_bundle_uncategorized_files = None
+        resource_bundle_uncategorized_folders = None
 
     return struct(
         _product_framework_files = memory_efficient_depset(
@@ -709,10 +764,17 @@ def _collect_unsupported_input_files(
                 for info in transitive_infos
             ],
         ),
-        _resource_bundle_uncategorized = memory_efficient_depset(
-            resource_bundle_uncategorized,
+        _resource_bundle_uncategorized_files = memory_efficient_depset(
+            resource_bundle_uncategorized_files,
             transitive = [
-                info.inputs._resource_bundle_uncategorized
+                info.inputs._resource_bundle_uncategorized_files
+                for info in transitive_infos
+            ],
+        ),
+        _resource_bundle_uncategorized_folders = memory_efficient_depset(
+            resource_bundle_uncategorized_folders,
+            transitive = [
+                info.inputs._resource_bundle_uncategorized_folders
                 for info in transitive_infos
             ],
         ),
