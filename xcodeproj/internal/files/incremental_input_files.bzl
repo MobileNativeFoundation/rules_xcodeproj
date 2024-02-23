@@ -326,9 +326,9 @@ def _collect_incremental_input_files(
                 *   `extra_files`: A `depset` of `File` that aren't covered
                     under the other attributes, but should be included in the
                     project navigator.
-                *   `folder_resources`: A `depset` of folder path strings that
-                    are inputs to `target`'s `structured_resources`-like
-                    attributes.
+                *   `extra_folders`: A `depset` of folder path strings that
+                    aren't covered under the other attributes, but should be
+                    included in the project navigator.
                 *   `non_arc_srcs`: A `list` of `File`s that are inputs to
                     `target`'s `non_arc_srcs`-like attributes.
                 *   `srcs`: A `list` of `File`s that are inputs to `target`'s
@@ -487,10 +487,10 @@ def _collect_incremental_input_files(
             ],
         )
 
-        folder_resources = memory_efficient_depset(
+        extra_files.extend(resources_result.resources)
+        extra_folders = memory_efficient_depset(
             resources_result.folder_resources,
         )
-        extra_files.extend(resources_result.resources)
         resource_bundles = resources_result.bundles
 
         xccurrentversions.extend(resources_result.xccurrentversions)
@@ -522,7 +522,7 @@ def _collect_incremental_input_files(
             if label not in bundle_labels
         ])
     else:
-        folder_resources = EMPTY_DEPSET
+        extra_folders = EMPTY_DEPSET
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
                 info.inputs._resource_bundle_labels
@@ -560,7 +560,7 @@ def _collect_incremental_input_files(
                         if file_label_str == label_str
                     ] + transitive_extra_files,
                 ),
-                folder_resources = folder_resources,
+                extra_folders = extra_folders,
                 infoplist_path = (
                     # Removing "bazel-out" prefix
                     "$(BAZEL_OUT){}".format(infoplist.path[9:]) if infoplist else None

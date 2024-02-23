@@ -27,7 +27,6 @@ struct TargetArguments: Equatable {
     // FIXME: Extract to `Inputs` type
     let srcs: [BazelPath]
     let nonArcSrcs: [BazelPath]
-    let folderResources: [BazelPath]
 
     let dSYMPathsBuildSetting: String
 }
@@ -89,11 +88,6 @@ extension Dictionary<TargetID, TargetArguments> {
                 as: BazelPath.self,
                 in: url
             )
-            let folderResources = try rawArgs.consumeArgs(
-                "folder-resources",
-                as: BazelPath.self,
-                in: url
-            )
             let xcodeConfigurations = try rawArgs.consumeArgs(
                 "xcode-configurations",
                 in: url
@@ -136,7 +130,6 @@ extension Dictionary<TargetID, TargetArguments> {
                         hasCxxParams: hasCxxParams,
                         srcs: srcs,
                         nonArcSrcs: nonArcSrcs,
-                        folderResources: folderResources,
                         dSYMPathsBuildSetting: dSYMPathsBuildSetting
                     )
                 )
