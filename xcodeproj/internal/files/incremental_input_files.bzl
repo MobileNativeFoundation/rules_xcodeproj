@@ -714,6 +714,7 @@ def _collect_unsupported_input_files(
     if is_resource_bundle:
         uncategorized_files = []
         uncategorized_folders = []
+
         def _process_uncategorized_resource(resource):
             # If a file is a child of a folder-type file, the parent
             # folder-type file should be collected instead of the child file
