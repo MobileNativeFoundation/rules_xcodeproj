@@ -161,10 +161,34 @@ extension Generator.ProcessArgs {
         }
 
         if !infoPlist.isEmpty {
+            // Let Xcode auto-generate the `Info.plist` when building for Xcode
+            // previews. This supports the use case where the project is
+            // generated with dynamic framework targets, but besides for
+            // previews, Bazel actually builds it as a static framework (which
+            // doesn't have an `Info.plist` file).
+            buildSettings.append(
+                ("GENERATE_INFOPLIST_FILE", #""$(ENABLE_PREVIEWS)""#)
+            )
+
+            buildSettings.append(
+                (
+                    "INFOPLIST_FILE_FOR_PREVIEWS__",
+                    #""$(INFOPLIST_FILE_FOR_PREVIEWS__NO)""#
+                )
+            )
+            buildSettings.append(
+                (
+                    "INFOPLIST_FILE_FOR_PREVIEWS__NO",
+                    infoPlist.buildSettingPath().pbxProjEscaped
+                )
+            )
+            buildSettings.append(
+                ("INFOPLIST_FILE_FOR_PREVIEWS__YES", #""""#)
+            )
             buildSettings.append(
                 (
                     "INFOPLIST_FILE",
-                    infoPlist.buildSettingPath().pbxProjEscaped
+                    #""$(INFOPLIST_FILE_FOR_PREVIEWS__$(ENABLE_PREVIEWS))""#
                 )
             )
         }
