@@ -102,6 +102,9 @@ precompiled_apple_resource_bundle(
 rules_ios_apple_framework(
     name = "iOSApp.library",
     srcs = glob(["**/*.swift"]),
+    data = [
+        ":PrecompiledResourceBundle",
+    ],
     module_name = "iOSApp",
     platforms = {
         "ios": "15.0",
@@ -113,9 +116,6 @@ rules_ios_apple_framework(
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
     ],
-    data = [
-        ":PrecompiledResourceBundle"
-    ]
 )
 
 rules_ios_apple_framework(
