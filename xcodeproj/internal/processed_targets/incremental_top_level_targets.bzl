@@ -276,27 +276,6 @@ def _calculate_product_type(*, target_files, bundle_info):
 
     return "T"  # com.apple.product-type.tool
 
-def _compute_enabled_features(*, requested_features, unsupported_features):
-    """Returns a list of features for the given build.
-
-    Args:
-        requested_features: A list of features requested. Typically from
-            `ctx.features`.
-        unsupported_features: A list of features to ignore. Typically from
-            `ctx.disabled_features`.
-
-    Returns:
-        A set (`dict` of `None`) containing the subset of features that should
-        be used.
-    """
-    unsupported_features = {f: None for f in unsupported_features}
-    enabled_features = {
-        f: None
-        for f in requested_features
-        if f not in unsupported_features
-    }
-    return enabled_features
-
 def _create_link_params(
         *,
         actions,
