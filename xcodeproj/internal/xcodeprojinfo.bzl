@@ -8,8 +8,7 @@ XcodeProjInfo = provider(
     """\
 Provides information needed to generate an Xcode project.
 
-> **Warning**
->
+> [!WARNING]
 > This provider currently has an unstable API and may change in the future. If
 > you are using this provider, please let us know so we can prioritize
 > stabilizing it.
