@@ -46,6 +46,8 @@ def xcodeproj(
         tvos_device_cpus = "arm64",
         tvos_simulator_cpus = None,
         unfocused_targets = [],
+        visionos_device_cpus = "arm64",
+        visionos_simulator_cpus = "sim_arm64",
         watchos_device_cpus = "arm64_32",
         watchos_simulator_cpus = None,
         xcode_configurations = {"Debug": {}},
@@ -306,6 +308,24 @@ def xcodeproj(
             in the `top_level_targets` argument with a matching label will be
             excluded from the generated project. This overrides any targets
             specified in the `focused_targets` argument.
+        visionos_device_cpus: Optional. The value to use for `--visionos_cpus`
+            when building the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with the `"device"`
+            `target_environment`.
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"device"`
+            `target_environment`, even if they aren't visionOS targets.
+        visionos_simulator_cpus: Optional. The value to use for `--visionos_cpus`
+            when building the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with the `"simulator"`
+            `target_environment`.
+
+            **Warning:** Changing this value will affect the Starlark transition
+            hash of all transitive dependencies of the targets specified in the
+            `top_level_targets` argument with the `"simulator"`
+            `target_environment`, even if they aren't visionOS targets.
         watchos_device_cpus: Optional. The value to use for `--watchos_cpus`
             when building the transitive dependencies of the targets specified
             in the `top_level_targets` argument with the `"device"`
@@ -590,6 +610,8 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_labels = unfocused_labels,
         unowned_extra_files = unowned_extra_files,
+        visionos_device_cpus = visionos_device_cpus,
+        visionos_simulator_cpus = visionos_simulator_cpus,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         xcode_configuration_flags = xcode_configuration_flags,

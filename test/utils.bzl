@@ -6,6 +6,8 @@ _PLATFORM_NAME = {
     "MACOS": "macosx",
     "TVOS_DEVICE": "appletvos",
     "TVOS_SIMULATOR": "appletvsimulator",
+    "VISIONOS_DEVICE": "xros",
+    "VISIONOS_SIMULATOR": "xrsimulator",
     "WATCHOS_DEVICE": "watchos",
     "WATCHOS_SIMULATOR": "watchsimulator",
 }

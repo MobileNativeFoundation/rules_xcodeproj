@@ -5,6 +5,7 @@ public enum Platform: String, ExpressibleByArgument {
         case macOS
         case iOS
         case tvOS
+        case visionOS
         case watchOS
     }
 
@@ -13,6 +14,8 @@ public enum Platform: String, ExpressibleByArgument {
     case iOSSimulator = "iphonesimulator"
     case tvOSDevice = "appletvos"
     case tvOSSimulator = "appletvsimulator"
+    case visionOSDevice = "xros"
+    case visionOSSimulator = "xrsimulator"
     case watchOSDevice = "watchos"
     case watchOSSimulator = "watchsimulator"
 }
@@ -28,6 +31,8 @@ extension Platform {
         case .iOSSimulator: return Self.simulatorEnvironment
         case .tvOSDevice: return Self.deviceEnvironment
         case .tvOSSimulator: return Self.simulatorEnvironment
+        case .visionOSDevice: return Self.deviceEnvironment
+        case .visionOSSimulator: return Self.simulatorEnvironment
         case .watchOSDevice: return Self.deviceEnvironment
         case .watchOSSimulator: return Self.simulatorEnvironment
         }
@@ -38,6 +43,7 @@ extension Platform {
         case .macOS: return .macOS
         case .iOSDevice, .iOSSimulator: return .iOS
         case .tvOSDevice, .tvOSSimulator: return .tvOS
+        case .visionOSDevice, .visionOSSimulator: return .visionOS
         case .watchOSDevice, .watchOSSimulator: return .watchOS
         }
     }
@@ -63,6 +69,10 @@ extension Platform: Comparable {
         case (_, .tvOSSimulator): return false
         case (.tvOSDevice, _): return true
         case (_, .tvOSDevice): return false
+        case (.visionOSSimulator, _): return true
+        case (_, .visionOSSimulator): return false
+        case (.visionOSDevice, _): return true
+        case (_, .visionOSDevice): return false
         case (.watchOSSimulator, _): return true
         case (_, .watchOSSimulator): return false
         case (.watchOSDevice, _): return true

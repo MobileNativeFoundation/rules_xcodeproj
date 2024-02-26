@@ -40,6 +40,8 @@ xcodeproj(
     tvos_simulator_cpus = "%tvos_simulator_cpus%",
     unowned_extra_files = %unowned_extra_files%,
     visibility = ["%visibility%"],
+    visionos_device_cpus = "%visionos_device_cpus%",
+    visionos_simulator_cpus = "%visionos_simulator_cpus%",
     watchos_device_cpus = "%watchos_device_cpus%",
     watchos_simulator_cpus = "%watchos_simulator_cpus%",
     workspace_directory = WORKSPACE_DIRECTORY,

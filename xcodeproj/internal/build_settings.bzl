@@ -15,6 +15,7 @@ _DEVICE_FAMILY_VALUES = {
     "ipad": "2",
     "tv": "3",
     "watch": "4",
+    "vision": "7",
     # We want `get_targeted_device_family` to find `None` for the valid "mac"
     # family since macOS doesn't use "TARGETED_DEVICE_FAMILY", but we still want
     # to catch invalid families with a `KeyError`.

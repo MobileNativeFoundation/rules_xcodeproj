@@ -5,6 +5,7 @@ load(
     "IosXcTestBundleInfo",
     "MacosXcTestBundleInfo",
     "TvosXcTestBundleInfo",
+    "VisionosXcTestBundleInfo",
     "WatchosXcTestBundleInfo",
 )
 
@@ -55,6 +56,7 @@ def _is_test_bundle(target, deps):
         _is_test_bundle_with_provider(target, deps, IosXcTestBundleInfo) or
         _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo) or
         _is_test_bundle_with_provider(target, deps, TvosXcTestBundleInfo) or
+        _is_test_bundle_with_provider(target, deps, VisionosXcTestBundleInfo) or
         _is_test_bundle_with_provider(target, deps, WatchosXcTestBundleInfo)
     )
 

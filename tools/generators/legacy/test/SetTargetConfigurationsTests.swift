@@ -328,6 +328,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
                     case .macOS: return .macOS
                     case .iOS: return .iOSDevice
                     case .tvOS: return .tvOSDevice
+                    case .visionOS: return .visionOSDevice
                     case .watchOS: return .watchOSDevice
                     }
                 }

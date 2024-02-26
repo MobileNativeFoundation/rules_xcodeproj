@@ -716,6 +716,7 @@ private extension Platform.OS {
         case .macOS: return "macosx"
         case .iOS: return "iphoneos"
         case .tvOS: return "appletvos"
+        case .visionOS: return "xros"
         case .watchOS: return "watchos"
         }
     }
@@ -760,6 +761,7 @@ private let nonInheritableKeys: Set<String> = [
     "IPHONEOS_DEPLOYMENT_TARGET",
     "MACOSX_DEPLOYMENT_TARGET",
     "TVOS_DEPLOYMENT_TARGET",
+    "XROS_DEPLOYMENT_TARGET",
     "WATCHOS_DEPLOYMENT_TARGET",
 ]
 

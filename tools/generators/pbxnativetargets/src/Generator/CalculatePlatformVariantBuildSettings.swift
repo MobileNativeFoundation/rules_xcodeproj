@@ -200,6 +200,7 @@ private extension Platform.OS {
         case .macOS: return "MACOSX_DEPLOYMENT_TARGET"
         case .iOS: return "IPHONEOS_DEPLOYMENT_TARGET"
         case .tvOS: return "TVOS_DEPLOYMENT_TARGET"
+        case .visionOS: return "XROS_DEPLOYMENT_TARGET"
         case .watchOS: return "WATCHOS_DEPLOYMENT_TARGET"
         }
     }
@@ -209,6 +210,7 @@ private extension Platform.OS {
         case .macOS: return "macosx"
         case .iOS: return "iphoneos"
         case .tvOS: return "appletvos"
+        case .visionOS: return "xros"
         case .watchOS: return "watchos"
         }
     }
