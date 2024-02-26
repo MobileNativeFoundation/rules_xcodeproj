@@ -99,15 +99,17 @@ extension Generator.CalculateSharedBuildSettings {
                     value: label.description.pbxProjEscaped
                 )
             )
-        } else {
-            // Used to work around CODE_SIGNING_ENABLED = YES for resource
-            // bundles in Xcode 14+
-            buildSettings.append(
-                .init(key: "CODE_SIGNING_ALLOWED", value: "NO")
-            )
         }
 
-        if productType == .uiTestBundle {
+        if productType == .framework {
+            // Xcode previews require frameworks to be code signed
+            buildSettings.append(
+                .init(
+                    key: "CODE_SIGNING_ALLOWED",
+                    value: #""$(ENABLE_PREVIEWS)""#
+                )
+            )
+        } else if productType == .uiTestBundle {
             // UI tests require code signing to enable debugging
             buildSettings.append(
                 .init(key: "CODE_SIGNING_ALLOWED", value: "YES")
