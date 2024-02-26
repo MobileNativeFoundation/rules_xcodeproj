@@ -73,6 +73,29 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
         )
     }
 
+    func test_framework() {
+        // Arrange
+
+        let productType = PBXProductType.framework
+
+        let expectedBuildSettings = baseBuildSettings.updating([
+            "CODE_SIGNING_ALLOWED": #""$(ENABLE_PREVIEWS)""#,
+        ])
+
+        // Act
+
+        let buildSettings = calculateSharedBuildSettingsWithDefaults(
+            productType: productType
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
     func test_uiTest() {
         // Arrange
 
