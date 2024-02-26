@@ -21,8 +21,7 @@ can be customized with configs in `.bazelrc` files.
 The `rules_xcodeproj` config is used when building the project inside of Xcode.
 It’s also inherited by all of the other `rules_xcodeproj_*` configs.
 
-> **Warning**
->
+> [!WARNING]
 > Build affecting flags need to be the same between all `rules_xcodeproj{_*}`
 > configs, so it’s usually better to adjust this config (`rules_xcodeproj`) over
 > the other ones, unless you actually need to target them specifically.
