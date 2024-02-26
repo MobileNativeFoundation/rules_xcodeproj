@@ -197,7 +197,14 @@ extension Generator.CreateXcodeConfigurations {
 
                 return createBuildSettingsAttribute(
                     buildSettings:
-                        sharedBuildSettings + configurationBuildSettings
+                        // Apply `sharedBuildSettings` after
+                        // `configurationBuildSettings` to ensure that
+                        // `CODE_SIGNING_ALLOWED` is set correctly. If we ever
+                        // need `target_build_settings` to override what we set
+                        // in `sharedBuildSettings`, we'll need to flip this and
+                        // change the logic in `target_build_settings` to
+                        // account for product type.
+                        configurationBuildSettings + sharedBuildSettings
                 )
             }
 
