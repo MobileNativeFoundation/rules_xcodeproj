@@ -31,7 +31,10 @@ rules_ios_apple_framework(
     name = "LibDynamic",
     bundle_id = "rules-xcodeproj.LibFramework",
     infoplists = ["//Lib:Info.plist"],
-    link_dynamic = True,
+    link_dynamic = select({
+        "//:running_in_swiftuipreviews": True,
+        "//conditions:default": False,
+    }),
     module_name = "Lib",
     platforms = {
         "ios": "15.0",

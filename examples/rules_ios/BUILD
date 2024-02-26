@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
@@ -26,3 +27,17 @@ exports_files(["README.md"])
         "incremental",
     ]
 ]
+
+# Creates a flag which will be set when running via Xcode.
+# This is useful for rules that need to behave differently when running via Xcode.
+bool_flag(
+    name = "is_running_in_swiftuipreviews",
+    build_setting_default = 0,
+)
+
+config_setting(
+    name = "running_in_swiftuipreviews",
+    flag_values = {
+        ":is_running_in_swiftuipreviews": "1",
+    },
+)

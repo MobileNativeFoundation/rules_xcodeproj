@@ -9,5 +9,9 @@ build --features apple.virtualize_frameworks
 build --features apple.arm64_simulator_use_device_deps
 build --apple_platform_type=ios
 
+# Enable determining when running in Xcode Previews.
+common --@rules_xcodeproj//xcodeproj:extra_generator_flags='--//:is_running_in_swiftuipreviews=1'
+common --@rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--//:is_running_in_swiftuipreviews=1'
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc

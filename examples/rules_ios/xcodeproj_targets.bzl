@@ -53,6 +53,14 @@ XCSCHEMES = [
             ],
         ),
     ),
+    xcschemes.scheme(
+        name = "LibDyanmic (Previews)",
+        run = xcschemes.run(
+            build_targets = [
+                xcschemes.top_level_build_target("//Lib:LibDynamic"),
+            ],
+        ),
+    ),
 ]
 
 def get_xcode_schemes():
