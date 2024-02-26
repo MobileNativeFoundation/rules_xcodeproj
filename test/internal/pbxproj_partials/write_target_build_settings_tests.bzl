@@ -95,7 +95,6 @@ def _write_target_build_settings_test_impl(ctx):
         previews_include_path = ctx.attr.previews_include_path,
         provisioning_profile_is_xcode_managed = ctx.attr.provisioning_profile_is_xcode_managed,
         provisioning_profile_name = ctx.attr.provisioning_profile_name,
-        skip_codesigning = ctx.attr.skip_codesigning,
         swift_args = swift_args,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = ctx.attr.team_id,
@@ -184,7 +183,6 @@ write_target_build_settings_test = unittest.make(
         "previews_include_path": attr.string(mandatory = True),
         "provisioning_profile_is_xcode_managed": attr.bool(mandatory = True),
         "provisioning_profile_name": attr.string(),
-        "skip_codesigning": attr.bool(mandatory = True),
         "swift_debug_settings_to_merge": attr.string_list(mandatory = True),
         "swift_args": attr.string_list(mandatory = True),
         "team_id": attr.string(),
@@ -228,7 +226,6 @@ def write_target_build_settings_test_suite(name):
             previews_include_path = "",
             provisioning_profile_is_xcode_managed = False,
             provisioning_profile_name = None,
-            skip_codesigning = False,
             swift_args,
             swift_debug_settings_to_merge = [],
             team_id = None,
@@ -260,7 +257,6 @@ def write_target_build_settings_test_suite(name):
             previews_include_path = previews_include_path,
             provisioning_profile_is_xcode_managed = provisioning_profile_is_xcode_managed,
             provisioning_profile_name = provisioning_profile_name,
-            skip_codesigning = skip_codesigning,
             swift_args = swift_args,
             swift_debug_settings_to_merge = swift_debug_settings_to_merge,
             team_id = team_id,
@@ -324,8 +320,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -373,8 +367,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -420,8 +412,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -467,8 +457,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -521,8 +509,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -551,7 +537,6 @@ def write_target_build_settings_test_suite(name):
         generate_build_settings = True,
         provisioning_profile_is_xcode_managed = True,
         provisioning_profile_name = "a profile",
-        skip_codesigning = True,
         swift_args = [],
         team_id = "12345-a 54",
 
@@ -576,8 +561,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "some/app.entitlements",
-            # skipCodesigning
-            "1",
             # certificateName
             "best certificate",
             # provisioningProfileName
@@ -629,8 +612,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -686,8 +667,6 @@ def write_target_build_settings_test_suite(name):
             "",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
@@ -761,8 +740,6 @@ def write_target_build_settings_test_suite(name):
             "some/Info.plist",
             # entitlements
             "",
-            # skipCodesigning
-            "0",
             # certificateName
             "",
             # provisioningProfileName
