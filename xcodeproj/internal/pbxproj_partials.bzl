@@ -974,7 +974,6 @@ def _write_target_build_settings(
         previews_include_path = EMPTY_STRING,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
-        skip_codesigning = False,
         swift_args,
         swift_debug_settings_to_merge,
         team_id = None,
@@ -1010,7 +1009,6 @@ def _write_target_build_settings(
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
             for code signing.
-        skip_codesigning: If `True`, `CODE_SIGNING_ALLOWED = NO` will be set.
         swift_args: A `list` of `Args` for the `SwiftCompile` action for this
             target.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
@@ -1097,9 +1095,6 @@ def _write_target_build_settings(
 
     # entitlements
     args.add(entitlements or EMPTY_STRING)
-
-    # skipCodesigning
-    args.add(TRUE_ARG if skip_codesigning else FALSE_ARG)
 
     # certificateName
     args.add(certificate_name or EMPTY_STRING)

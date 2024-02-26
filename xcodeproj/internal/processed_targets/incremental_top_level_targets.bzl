@@ -721,14 +721,6 @@ def _process_focused_top_level_target(
             provisioning_profile_props.is_xcode_managed
         ),
         provisioning_profile_name = provisioning_profile_props.name,
-        skip_codesigning = _should_skip_codesigning(
-            ctx = ctx,
-            bundle_info = bundle_info,
-            is_missing_provisioning_profile = (
-                provisioning_profile_props.is_missing_profile
-            ),
-            platform = platform,
-        ),
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = provisioning_profile_props.team_id,
@@ -1086,42 +1078,6 @@ def _process_unfocused_top_level_target(
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )
-
-def _should_skip_codesigning(
-        *,
-        ctx,
-        bundle_info,
-        is_missing_provisioning_profile,
-        platform):
-    """Returns whether we should skip cosigning for this target.
-
-    Args:
-        ctx: The aspect context.
-        bundle_info: An instance of `BundleInfo`.
-        is_missing_provisioning_profile: Whether a provisioning profile is
-            is able to be set on the target, and it's missing.
-        platform: A value from `platforms.collect`.
-
-    Returns:
-        A `bool` indicating if we should skip codesigning.
-    """
-    if not bundle_info:
-        return False
-
-    if (is_missing_provisioning_profile and
-        bundle_info.product_type == "com.apple.product-type.framework"):
-        return True
-
-    if not platforms.is_simulator(platform):
-        return (is_missing_provisioning_profile and
-                platforms.is_not_macos(platform))
-
-    enabled_features = _compute_enabled_features(
-        requested_features = ctx.features,
-        unsupported_features = ctx.disabled_features,
-    )
-
-    return "apple.skip_codesign_simulator_bundles" in enabled_features
 
 # API
 
