@@ -93,8 +93,6 @@ extension Generator.ProcessArgs {
             try rawArguments.consumeArg("generates-dsyms", as: Bool.self)
         let infoPlist = try rawArguments.consumeArg("info-plist")
         let entitlements = try rawArguments.consumeArg("entitlements")
-        let skipCodesigning =
-            try rawArguments.consumeArg("skip-codesigning", as: Bool.self)
         let certificateName = try rawArguments.consumeArg("certificate-name")
         let provisioningProfileName =
             try rawArguments.consumeArg("provisioning-profile-name")
@@ -188,10 +186,6 @@ extension Generator.ProcessArgs {
             buildSettings.append(
                 ("CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION", "YES")
             )
-        }
-
-        if skipCodesigning {
-            buildSettings.append(("CODE_SIGNING_ALLOWED", "NO"))
         }
 
         if !certificateName.isEmpty {
