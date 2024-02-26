@@ -6,7 +6,9 @@ load(
 rules_ios_apple_framework(
     name = "UI",
     srcs = glob(["*.swift"]),
+    bundle_id = "com.example.UI",
     infoplists = ["Info.plist"],
+    link_dynamic = True,
     module_name = "UI",
     platforms = {
         "ios": "15.0",

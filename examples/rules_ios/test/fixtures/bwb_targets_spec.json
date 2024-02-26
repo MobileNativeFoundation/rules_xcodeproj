@@ -105,7 +105,13 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.3.link.params",
         "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UI.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/rules_xcodeproj/UI/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.UI",
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "CONFIGURATION-STABLE-1",
@@ -117,11 +123,14 @@
             }
         },
         "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ],
             "e": "UI",
             "m": "UI",
             "n": "UI",
             "p": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.framework",
-            "t": "com.apple.product-type.framework.static"
+            "t": "com.apple.product-type.framework"
         }
     },
     "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift CONFIGURATION-STABLE-1",
@@ -308,6 +317,11 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "b": {
             "PRODUCT_MODULE_NAME": "iOSApp_Source_iOSApp_library"
         },
@@ -433,8 +447,14 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.14.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1"
         ],
         "b": {
@@ -603,8 +623,14 @@
                 "n": "iOSAppMixedUnitTests_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppMixedUnitTests.19.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -656,8 +682,14 @@
                 "n": "iOSAppObjCUnitTests_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.20.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -738,8 +770,14 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.22.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -780,8 +818,14 @@
                 "n": "iOSAppObjCUnitTestSuite_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.23.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -862,8 +906,14 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.25.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -961,8 +1011,14 @@
                 "n": "iOSAppObjCUnitTests_macro_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.27.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -1014,8 +1070,14 @@
                 "n": "iOSAppObjCUnitTests_macro_with_bundle_name_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.28.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -1067,8 +1129,14 @@
                 "n": "iOSAppObjCUnitTestSuite_macro_objc"
             }
         ],
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.29.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
@@ -1326,7 +1394,13 @@
             "m": "15.0",
             "v": "iphoneos"
         },
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.35.link.params",
         "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UI.framework",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/rules_xcodeproj/UI/Info.plist",
+            "PREVIEW_FRAMEWORK_PATHS": [],
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.UI",
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "CONFIGURATION-STABLE-2",
@@ -1338,11 +1412,14 @@
             }
         },
         "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
+            ],
             "e": "UI",
             "m": "UI",
             "n": "UI",
             "p": "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework",
-            "t": "com.apple.product-type.framework.static"
+            "t": "com.apple.product-type.framework"
         }
     },
     "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift CONFIGURATION-STABLE-2",
@@ -1529,6 +1606,11 @@
             "m": "15.0",
             "v": "iphoneos"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "b": {
             "PRODUCT_MODULE_NAME": "iOSApp_Source_iOSApp_library"
         },
@@ -1655,8 +1737,14 @@
             "m": "15.0",
             "v": "iphoneos"
         },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
+            ]
+        },
         "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.46.link.params",
         "7": [
+            "@@//UI:UI CONFIGURATION-STABLE-2",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-2"
         ],
         "b": {

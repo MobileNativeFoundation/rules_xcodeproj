@@ -47,7 +47,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"arm64-apple-ios UI.framework": {
+	"arm64-apple-ios UI.framework/UI": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
@@ -127,7 +127,7 @@ _SETTINGS = {
 			"/build_bazel_rules_ios/frameworks"
 		]
 	},
-	"x86_64-apple-ios-simulator UI.framework": {
+	"x86_64-apple-ios-simulator UI.framework/UI": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -D__SWIFTC__ -I$(PROJECT_DIR) -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -I$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"/build_bazel_rules_ios/frameworks"
