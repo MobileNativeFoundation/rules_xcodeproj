@@ -8,6 +8,7 @@ load(
     "@build_bazel_rules_ios//rules:framework.bzl",
     rules_ios_apple_framework = "apple_framework",
 )
+load("@build_bazel_rules_ios//rules:precompiled_apple_resource_bundle.bzl", "precompiled_apple_resource_bundle")
 load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_provisioning_profile")
 load(
     "//:xcodeproj_targets.bzl",
@@ -89,9 +90,21 @@ apple_resource_group(
     ),
 )
 
+precompiled_apple_resource_bundle(
+    name = "PrecompiledResourceBundle",
+    resources = glob(
+        [
+            "AssetsPrecompiled.xcassets/**",
+        ],
+    ),
+)
+
 rules_ios_apple_framework(
     name = "iOSApp.library",
     srcs = glob(["**/*.swift"]),
+    data = [
+        ":PrecompiledResourceBundle",
+    ],
     module_name = "iOSApp",
     platforms = {
         "ios": "15.0",
