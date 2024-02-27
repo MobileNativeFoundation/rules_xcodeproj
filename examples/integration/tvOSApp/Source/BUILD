@@ -34,6 +34,7 @@ tvos_application(
         "//conditions:default": None,
     }),
     resources = ["//tvOSApp/Resources:ResourceGroup"],
+    version = "//iOSApp:Version",
     visibility = [
         "//tvOSApp:__subpackages__",
         "@rules_xcodeproj//xcodeproj:generated",
