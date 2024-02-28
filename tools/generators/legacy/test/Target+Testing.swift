@@ -77,6 +77,7 @@ extension Platform {
             case .macOS: preconditionFailure("use `.macOS`")
             case .iOS: return .iOSSimulator
             case .tvOS: return .tvOSSimulator
+            case .visionOS: return .visionOSSimulator
             case .watchOS: return .watchOSSimulator
             }
         }
@@ -99,6 +100,7 @@ extension Platform {
             case .macOS: preconditionFailure("use `.macOS`")
             case .iOS: return .iOSDevice
             case .tvOS: return .tvOSDevice
+            case .visionOS: return .visionOSDevice
             case .watchOS: return .watchOSDevice
             }
         }

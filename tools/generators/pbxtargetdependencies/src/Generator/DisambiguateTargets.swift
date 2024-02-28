@@ -736,6 +736,7 @@ private extension Platform.OS {
         switch self {
         case .macOS: return "macOS"
         case .iOS: return "iOS"
+        case .visionOS: return "visionOS"
         case .watchOS: return "watchOS"
         case .tvOS: return "tvOS"
         }

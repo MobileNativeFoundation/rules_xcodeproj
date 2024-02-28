@@ -5,6 +5,7 @@ struct Platform: Equatable, Hashable {
         case macOS
         case iOS
         case tvOS
+        case visionOS
         case watchOS
     }
 
@@ -14,6 +15,8 @@ struct Platform: Equatable, Hashable {
         case iOSSimulator = "iphonesimulator"
         case tvOSDevice = "appletvos"
         case tvOSSimulator = "appletvsimulator"
+        case visionOSDevice = "xros"
+        case visionOSSimulator = "xrsimulator"
         case watchOSDevice = "watchos"
         case watchOSSimulator = "watchsimulator"
     }
@@ -30,6 +33,7 @@ extension Platform.OS {
         case .macOS: return "MACOSX_DEPLOYMENT_TARGET"
         case .iOS: return "IPHONEOS_DEPLOYMENT_TARGET"
         case .tvOS: return "TVOS_DEPLOYMENT_TARGET"
+        case .visionOS: return "XROS_DEPLOYMENT_TARGET"
         case .watchOS: return "WATCHOS_DEPLOYMENT_TARGET"
         }
     }
@@ -46,6 +50,8 @@ extension Platform.Variant {
         case .iOSSimulator: return Self.simulatorEnvironment
         case .tvOSDevice: return Self.deviceEnvironment
         case .tvOSSimulator: return Self.simulatorEnvironment
+        case .visionOSDevice: return Self.deviceEnvironment
+        case .visionOSSimulator: return Self.simulatorEnvironment
         case .watchOSDevice: return Self.deviceEnvironment
         case .watchOSSimulator: return Self.simulatorEnvironment
         }
@@ -91,6 +97,10 @@ extension Platform.Variant: Comparable {
         case (_, .tvOSSimulator): return false
         case (.tvOSDevice, _): return true
         case (_, .tvOSDevice): return false
+        case (.visionOSSimulator, _): return true
+        case (_, .visionOSSimulator): return false
+        case (.visionOSDevice, _): return true
+        case (_, .visionOSDevice): return false
         case (.watchOSSimulator, _): return true
         case (_, .watchOSSimulator): return false
         case (.watchOSDevice, _): return true
@@ -120,6 +130,7 @@ extension Platform: Decodable {
         case .iOSSimulator, .iOSDevice: os = .iOS
         case .macOS: os = .macOS
         case .watchOSSimulator, .watchOSDevice: os = .watchOS
+        case .visionOSSimulator, .visionOSDevice: os = .visionOS
         case .tvOSSimulator, .tvOSDevice: os = .tvOS
         }
     }
