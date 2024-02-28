@@ -7,3 +7,6 @@ build --enable_bzlmod
 build --apple_crosstool_top=@local_config_apple_cc//:toolchain
 build --crosstool_top=@local_config_apple_cc//:toolchain
 build --host_crosstool_top=@local_config_apple_cc//:toolchain
+
+# Work around https://github.com/bazelbuild/bazel/issues/13912
+build --experimental_action_cache_store_output_metadata

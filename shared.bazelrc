@@ -7,9 +7,6 @@ build --experimental_convenience_symlinks=ignore
 # Faster digest hashing with BLAKE3
 startup --digest_function=blake3
 
-# Work around https://github.com/bazelbuild/bazel/issues/13912
-build --experimental_action_cache_store_output_metadata
-
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_13.0/1
 
