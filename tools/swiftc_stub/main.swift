@@ -9,13 +9,17 @@ enum PathKey: String {
     case sdk = "-sdk"
 }
 
-func processArgs(
-    _ args: [String]
-) async throws -> (
-    isPreviewThunk: Bool,
-    isWMO: Bool,
-    paths: [PathKey: URL]
-) {
+enum CallMode {
+    case compile(isWMO: Bool, paths: [PathKey: URL])
+    case previewThunk(paths: [PathKey: URL])
+    case versionCheck
+}
+
+func processArgs(_ args: [String]) async throws -> CallMode {
+    guard args.count < 2 || args[1] != "-v" else {
+        return .versionCheck
+    }
+
     var isPreviewThunk = false
     var isWMO = false
     var paths: [PathKey: URL] = [:]
@@ -55,11 +59,11 @@ func processArgs(
         }
     }
 
-    return (
-        !paths.keys.contains(.outputFileMap) && isPreviewThunk,
-        isWMO,
-        paths
-    )
+    if !paths.keys.contains(.outputFileMap) && isPreviewThunk {
+        return .previewThunk(paths: paths)
+    }
+
+    return .compile(isWMO: isWMO, paths: paths)
 }
 
 extension URL {
@@ -140,7 +144,7 @@ func runSubProcess(executable: String, args: [String]) throws -> Int32 {
 func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Never {
     guard let sdkPath = paths[PathKey.sdk]?.path else {
         fputs(
-            "error: No such argument '-sdk'. Using /usr/bin/swiftc.",
+            "error: No such argument '-sdk'. Using /usr/bin/swiftc.\n",
             stderr
         )
         exit(1)
@@ -158,6 +162,7 @@ func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Ne
         fputs(
             """
 error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
+
 """,
             stderr
         )
@@ -173,12 +178,9 @@ error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
     ))
 }
 
-// MARK: - Main
-
-let args = CommandLine.arguments
-if args.count == 2, args.last == "-v" {
+func handleVersionCheck(_ args: [String]) throws -> Never {
     guard let path = ProcessInfo.processInfo.environment["PATH"] else {
-        fputs("error: PATH not set", stderr)
+        fputs("error: PATH not set\n", stderr)
         exit(1)
     }
 
@@ -186,7 +188,7 @@ if args.count == 2, args.last == "-v" {
     let pathComponents = path.split(separator: ":", maxSplits: 1)
     let xcodeBinPath = pathComponents[0]
     guard xcodeBinPath.hasSuffix("/Contents/Developer/usr/bin") else {
-        fputs("error: Xcode based bin PATH not set", stderr)
+        fputs("error: Xcode based bin PATH not set\n", stderr)
         exit(1)
     }
 
@@ -198,19 +200,29 @@ if args.count == 2, args.last == "-v" {
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 """
 
-    try exit(runSubProcess(executable: swiftcPath, args: ["-v"]))
+    // fputs("Hi\nthere\nbob\n", stderr)
+    // dump(ProcessInfo.processInfo.environment)
+    // exit(1)
+
+    try exit(
+        runSubProcess(executable: swiftcPath, args: Array(args.dropFirst()))
+    )
 }
 
-let (
-    isPreviewThunk,
-    isWMO,
-    paths
-) = try await processArgs(args)
+// MARK: - Main
 
-guard !isPreviewThunk else {
+let args = CommandLine.arguments
+let callMode = try await processArgs(args)
+
+switch try await processArgs(args) {
+case .compile(let isWMO, let paths):
+    try touchDepsFiles(isWMO: isWMO, paths: paths)
+    try touchSwiftmoduleArtifacts(paths: paths)
+
+case .previewThunk(let paths):
     // Pass through for Xcode Preview thunk compilation
     try handleXcodePreviewThunk(args: args, paths: paths)
-}
 
-try touchDepsFiles(isWMO: isWMO, paths: paths)
-try touchSwiftmoduleArtifacts(paths: paths)
+case .versionCheck:
+    try handleVersionCheck(args)
+}
