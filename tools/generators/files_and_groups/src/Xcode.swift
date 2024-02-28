@@ -267,11 +267,24 @@ enum Xcode {
         "zip": "archive.zip",
     ]
 
+    private static let pbxProjImpliedFileExtensions = [
+        "BUILD": "bazel",
+        "Podfile": "rb",
+    ]
+
     /// Returns the Xcode file type for any given extension.
     ///
     /// - Parameters:
     ///   - extension: The file extension.
     public static func pbxProjEscapedFileType(extension: String) -> String? {
         pbxProjEscapedFileTypes[`extension`]
+    }
+
+    /// Returns the implied file extension for any given file name.
+    ///
+    /// - Parameters:
+    ///   - basename: The file name.
+    public static func impliedExtension(basename: String) -> String? {
+        pbxProjImpliedFileExtensions[basename]
     }
 }

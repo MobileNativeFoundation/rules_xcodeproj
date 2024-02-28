@@ -178,9 +178,9 @@ final class CreateFileElementTests: XCTestCase {
     func test_element_content_lastKnownFileType_file() {
         // Arrange
 
-        let name = "node_name.bazel"
-        let ext = "bazel"
-        let bazelPath = BazelPath("a/bazel/path/node_name.bazel")
+        let name = "node_name.foo"
+        let ext = "foo"
+        let bazelPath = BazelPath("a/bazel/path/node_name.foo")
         let createAttributes = ElementCreator.CreateAttributes.stub(
             elementAttributes: ElementAttributes(
                 sourceTree: .group, name: nil, path: "a_path"
@@ -189,7 +189,40 @@ final class CreateFileElementTests: XCTestCase {
         )
 
         let expectedContent = #"""
-{isa = PBXFileReference; lastKnownFileType = text.script.python; path = a_path; sourceTree = "<group>"; }
+{isa = PBXFileReference; lastKnownFileType = file; path = a_path; sourceTree = "<group>"; }
+"""#
+
+        // Act
+
+        let result = ElementCreator.CreateFileElement.defaultCallable(
+            name: name,
+            ext: ext,
+            bazelPath: bazelPath,
+            specialRootGroupType: nil,
+            createAttributes: createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
+        )
+
+        // Assert
+
+        XCTAssertEqual(result.element.object.content, expectedContent)
+    }
+
+    func test_element_content_lastKnownFileType_knownExtension() {
+        // Arrange
+
+        let name = "node_name.rb"
+        let ext = "rb"
+        let bazelPath = BazelPath("a/bazel/path/node_name.rb")
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedContent = #"""
+{isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = a_path; sourceTree = "<group>"; }
 """#
 
         // Act
@@ -275,6 +308,72 @@ final class CreateFileElementTests: XCTestCase {
     }
 
     // MARK: element.content - explicitFileType
+    
+    func test_element_content_explicitFileType_bazel() {
+        // Arrange
+
+        let name = "node_name.bazel"
+        let ext = "bazel"
+        let bazelPath = BazelPath("a/bazel/path/node_name.bazel")
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedContent = #"""
+{isa = PBXFileReference; explicitFileType = text.script.python; path = a_path; sourceTree = "<group>"; }
+"""#
+
+        // Act
+
+        let result = ElementCreator.CreateFileElement.defaultCallable(
+            name: name,
+            ext: ext,
+            bazelPath: bazelPath,
+            specialRootGroupType: nil,
+            createAttributes: createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
+        )
+
+        // Assert
+
+        XCTAssertEqual(result.element.object.content, expectedContent)
+    }
+    
+    func test_element_content_explicitFileType_bzl() {
+        // Arrange
+
+        let name = "node_name.bzl"
+        let ext = "bzl"
+        let bazelPath = BazelPath("a/bazel/path/node_name.bzl")
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedContent = #"""
+{isa = PBXFileReference; explicitFileType = text.script.python; path = a_path; sourceTree = "<group>"; }
+"""#
+
+        // Act
+
+        let result = ElementCreator.CreateFileElement.defaultCallable(
+            name: name,
+            ext: ext,
+            bazelPath: bazelPath,
+            specialRootGroupType: nil,
+            createAttributes: createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
+        )
+
+        // Assert
+
+        XCTAssertEqual(result.element.object.content, expectedContent)
+    }
 
     func test_element_content_explicitFileType_BUILD() {
         // Arrange
