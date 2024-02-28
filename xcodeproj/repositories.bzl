@@ -120,8 +120,8 @@ def xcodeproj_rules_dependencies(
         _maybe(
             http_archive,
             name = "build_bazel_rules_swift",
-            sha256 = "e2eee463839483dfe1b05ce406a4f2fb3fd748ddcaa311cc8768fa7f041af0ff",
-            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.15.1/rules_swift.1.15.1.tar.gz",
+            sha256 = "7aabe3bbef8d2e07c9ee07acb386f0a257bd2f76ea8e21005688b506dc8da67b",
+            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.16.0/rules_swift.1.16.0.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
