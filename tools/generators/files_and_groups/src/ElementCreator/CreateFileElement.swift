@@ -54,6 +54,11 @@ extension ElementCreator.CreateFileElement {
        "xcassets",
     ]
 
+    private static let explicitFileTypeExtensions: Set<String?> = [
+        "bazel",
+        "bzl",
+    ]
+
     typealias Callable = (
         _ name: String,
         _ ext: String?,
@@ -77,28 +82,16 @@ extension ElementCreator.CreateFileElement {
         element: Element,
         resolvedRepository: ResolvedRepository?
     ) {
-        let lastKnownFileType: String
+        let impliedExt = ext ?? Xcode.impliedExtension(basename: name)
+        let fileTypeType = calculateFileTypeType(basename: name, extension: impliedExt)
+        let fileType: String
         let sortOrder: Element.SortOrder
         if bazelPath.isFolder && !folderTypeFileExtensions.contains(ext) {
-            lastKnownFileType = "folder"
+            fileType = "folder"
             sortOrder = .groupLike
         } else {
-            lastKnownFileType = ext.flatMap { Xcode.pbxProjEscapedFileType(extension: $0) } ??
-                "file"
+            fileType = impliedExt.flatMap(Xcode.pbxProjEscapedFileType) ?? "file"
             sortOrder = .fileLike
-        }
-
-        let fileType: String
-        let fileTypeType: String
-        if name == "BUILD" {
-            fileTypeType = "explicitFileType"
-            fileType = Xcode.pbxProjEscapedFileType(extension: "bazel")!
-        } else if name == "Podfile" {
-            fileTypeType = "explicitFileType"
-            fileType = Xcode.pbxProjEscapedFileType(extension: "rb")!
-        } else {
-            fileTypeType = "lastKnownFileType"
-            fileType = lastKnownFileType
         }
 
         let attributes = createAttributes(
@@ -138,5 +131,16 @@ sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
             ),
             resolvedRepository: attributes.resolvedRepository
         )
+    }
+
+    private static func calculateFileTypeType(
+        basename: String,
+        extension: String?
+    ) -> String {
+        if basename == "Podfile" || explicitFileTypeExtensions.contains(`extension`) {
+            return "explicitFileType"
+        } else {
+            return "lastKnownFileType"
+        }
     }
 }
