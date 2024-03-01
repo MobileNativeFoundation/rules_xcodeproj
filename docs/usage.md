@@ -316,6 +316,23 @@ For example, this will build all targets the same way that Xcode does:
 bazel run //:xcodeproj -- --generator_output_groups=all_targets build
 ```
 
+### `--download_intermediates`
+
+By default, when using
+[`--generator_output_groups`][#--generator_output_groups],
+intermediate outputs (such as generated files and index stores) won't be
+downloaded from a remote cache if `--remote_download_toplevel` or
+`--remote_download_minimal` is used. This is to support the common use case of
+using the command-line API to warm a remote cache on a CI job that uses
+`--remote_download_minimal` and doesn't want anything downloaded.
+
+To cause intermediates to be downloaded the same way that a normal Xcode build
+downloads them, pass the `--download_intermediates` flag:
+
+```
+bazel run //:xcodeproj -- --generator_output_groups=all_targets --download_intermediates build
+```
+
 ## Substitutions
 
 In your command, any reference to these variables will be expanded:
