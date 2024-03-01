@@ -83,6 +83,20 @@ if [[ -z "$bazel_path" ]]; then
   exit 1
 fi
 
+if [[ "${BAZEL_REAL:-}" == "$bazel_path" && \
+      -n "${BAZELISK_SKIP_WRAPPER:-}" && \
+      -f "tools/bazel" ]]
+then
+  echo "WARNING: 'bazelisk' was called recursively while a \"tools/bazel\"" \
+    "wrapper is in use, but \$BAZELISK_SKIP_WRAPPER=$BAZELISK_SKIP_WRAPPER" \
+    "was still set. This prevents rules_xcodeproj from properly detecting the" \
+    "wrapper script. Assuming \"./tools/bazel\" for 'bazel_path'. To remove" \
+    "this warning, use \$BAZEL_REAL if set when calling bazel, or unset" \
+    "\$BAZELISK_SKIP_WRAPPER if you really do want to call bazelisk" \
+    "recursively." >&2
+  bazel_path="./tools/bazel"
+fi
+
 installer_flags+=(--bazel_path "$bazel_path")
 
 execution_root=$(<"$execution_root_file")
