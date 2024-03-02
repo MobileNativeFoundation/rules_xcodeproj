@@ -32,6 +32,7 @@ installer_flags=(
 
 config="build"
 original_arg_count=$#
+download_intermediates=0
 verbose=0
 while (("$#")); do
   case "$1" in
@@ -45,6 +46,10 @@ while (("$#")); do
       ;;
     --config=*)
       config="${1#*=}"
+      shift 1
+      ;;
+    --download_intermediates)
+      download_intermediates=1
       shift 1
       ;;
     -v|--verbose)
@@ -219,9 +224,13 @@ else
   cmd="${cmd_args[0]}"
 
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
-    pre_config_flags=(
-      "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$|.*\.swift$"
-    )
+    if [[ $download_intermediates -eq 1 ]]; then
+      pre_config_flags=(
+        "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(a|c|C|cc|cl|cpp|cu|cxx|c++|m|mm|swift|swiftdoc|swiftmodule|swiftsourceinfo)$"
+      )
+    else
+      pre_config_flags=()
+    fi
 
     # `--output_groups`
     post_config_flags=(
