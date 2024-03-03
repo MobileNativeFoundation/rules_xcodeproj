@@ -57,6 +57,7 @@ extension ElementCreator.CreateFileElement {
     private static let explicitFileTypeExtensions: Set<String?> = [
         "bazel",
         "bzl",
+        "podspec",
     ]
 
     typealias Callable = (

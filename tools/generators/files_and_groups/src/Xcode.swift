@@ -175,6 +175,7 @@ enum Xcode {
         "pluginkit": #""wrapper.app-extension""#,
         "pm": "text.script.perl",
         "png": "image.png",
+        "podspec": "text.script.ruby",
         "pp": "sourcecode.pascal",
         "ppob": "archive.ppob",
         "proto": "sourcecode.protobuf",

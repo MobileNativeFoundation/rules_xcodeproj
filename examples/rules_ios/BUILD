@@ -4,6 +4,7 @@ load(
     "SCHEME_AUTOGENERATION_MODE",
     "XCODEPROJ_TARGETS",
     "XCSCHEMES",
+    "get_extra_files",
     "get_xcode_schemes",
 )
 
@@ -13,6 +14,7 @@ exports_files(["README.md"])
     xcodeproj(
         name = "xcodeproj-{}".format(generation_mode),
         build_mode = "bazel",
+        extra_files = get_extra_files(),
         generation_mode = generation_mode,
         project_name = "rules_ios",
         scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
