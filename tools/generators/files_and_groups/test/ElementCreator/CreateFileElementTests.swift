@@ -308,7 +308,7 @@ final class CreateFileElementTests: XCTestCase {
     }
 
     // MARK: element.content - explicitFileType
-    
+
     func test_element_content_explicitFileType_bazel() {
         // Arrange
 
@@ -341,7 +341,7 @@ final class CreateFileElementTests: XCTestCase {
 
         XCTAssertEqual(result.element.object.content, expectedContent)
     }
-    
+
     func test_element_content_explicitFileType_bzl() {
         // Arrange
 
@@ -424,6 +424,39 @@ final class CreateFileElementTests: XCTestCase {
         let expectedContent = #"""
 {isa = PBXFileReference; explicitFileType = text.script.ruby; path = a_path; sourceTree = "<group>"; }
 """#
+
+        // Act
+
+        let result = ElementCreator.CreateFileElement.defaultCallable(
+            name: name,
+            ext: ext,
+            bazelPath: bazelPath,
+            specialRootGroupType: nil,
+            createAttributes: createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
+        )
+
+        // Assert
+
+        XCTAssertEqual(result.element.object.content, expectedContent)
+    }
+
+    func test_element_content_explicitFileType_podspec() {
+        // Arrange
+
+        let name = "Example"
+        let ext: String? = "podspec"
+        let bazelPath = BazelPath("a/bazel/path/Example.podspec")
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedContent = #"""
+    {isa = PBXFileReference; explicitFileType = text.script.ruby; path = a_path; sourceTree = "<group>"; }
+    """#
 
         // Act
 

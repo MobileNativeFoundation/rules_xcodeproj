@@ -76,3 +76,8 @@ def get_xcode_schemes():
             ),
         ),
     ]
+
+def get_extra_files():
+    return [
+        "//iOSApp:extra_files",
+    ]

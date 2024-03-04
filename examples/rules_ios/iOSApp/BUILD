@@ -17,3 +17,9 @@ apple_bundle_version(
     short_version_string = "123.4",
     visibility = ["//:__subpackages__"],
 )
+
+filegroup(
+    name = "extra_files",
+    srcs = ["iOSApp.podspec"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+)
