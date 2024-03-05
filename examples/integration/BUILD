@@ -32,16 +32,15 @@ string_flag(
 #
 #      register_execution_platforms("@build_bazel_apple_support//platforms:macos_x86_64")
 #
-# 2. Create a `platform_mappings` file.
-# 3. Add `build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools`
+# 2. Add `build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools`
 #    flag to your `.bazelrc`/`xcodeproj.bazelrc`.
-# 4. Define an `xcodeproj` target for each macOS platform, e.g.
+# 3. Define an `xcodeproj` target for each macOS platform, e.g.
 #    `xcodeproj-x86_64` and `xcodeproj-sim_arm64`. Even if you don't need to
 #    support any of iOS, tvOS, or watchOS platforms, you still need to set all
 #    of the `ios_simulator_cpus`, `tvos_simulator_cpus`, and
 #    `watchos_simulator_cpus` to avoid Starlark transition effect. See
 #    https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/1094.
-# 5. Run each of the following commands to produce a cache for each macOS host
+# 4. Run each of the following commands to produce a cache for each macOS host
 #    platform. This can be run from an Intel or Apple silicon Mac.
 #
 #      bazel run --config=cache //:xcodeproj-incremental-bazel-x86_64 \
