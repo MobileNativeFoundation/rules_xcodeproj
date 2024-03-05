@@ -51,12 +51,9 @@ common:rules_xcodeproj --features=relative_ast_path
 common:rules_xcodeproj --features=swift.cacheable_swiftmodules
 
 # `swift.index-while-building` passes `-index-store-path` to `swiftc`, which
-# generates index store data. We enable this globally, and don't disable it in
-# `rules_xcodeproj_indexbuild`, even though we only need it for the normal
-# build, because it's better to get cache hits between normal and Index Build
-# builds than it is to save some time in an uncached Index Build build. We only
-# download the outputs in the normal build though, saving some bandwidth/disk
-# space.
+# generates index store data. We enable this globally, because we import indexes
+# in Index Build as well. And even if we didn't, we would still want it enabled
+# to get cache hits between normal and Index Build builds.
 common:rules_xcodeproj --features=swift.index_while_building
 common:rules_xcodeproj --features=swift.use_global_index_store
 
