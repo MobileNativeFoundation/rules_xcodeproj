@@ -4,6 +4,7 @@ load("//xcodeproj:defs.bzl", "xcodeproj", "xcschemes")
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
+    "calculate_output_groups": "//tools/calculate_output_groups",
     "files_and_groups": "//tools/generators/files_and_groups",
     "import_indexstores": "//tools/import_indexstores",
     "pbxnativetargets": "//tools/generators/pbxnativetargets",
@@ -51,6 +52,38 @@ _XCSCHEME_DIAGNOSTICS = xcschemes.diagnostics(
 )
 
 _XCSCHEMES = [
+    xcschemes.scheme(
+        name = "calculate_output_groups",
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["calculate_output_groups"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
+            args = [
+                # colorDiagnostics
+                "NO",
+                # xcodeVersionActual
+                "1520",
+                # nonPreviewObjRoot
+                "/Users/brentley/Library/Developer/Xcode/DerivedData/tools-exxvdkcaoxdlhndlfnwxqvucohsr/Build/Intermediates.noindex",
+                # baseObjRoot
+                "/Users/brentley/Library/Developer/Xcode/DerivedData/tools-exxvdkcaoxdlhndlfnwxqvucohsr/Build/Intermediates.noindex",
+                # buildMarkerFile
+                "/Users/brentley/Library/Developer/Xcode/DerivedData/tools-exxvdkcaoxdlhndlfnwxqvucohsr/Build/Intermediates.noindex/build_marker",
+                # outputGroupPrefixes
+                "bc,bp,bi",
+            ],
+            build_targets = [
+                _TOOLS["calculate_output_groups"],
+            ],
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["calculate_output_groups"],
+            ),
+        ),
+    ),
     xcschemes.scheme(
         name = "files_and_groups",
         profile = xcschemes.profile(
@@ -561,6 +594,7 @@ xcodeproj(
 filegroup(
     name = "release_files",
     srcs = [
+        "//" + package_name() + "/calculate_output_groups:release_files",
         "//" + package_name() + "/extension_point_identifiers_parser:release_files",
         "//" + package_name() + "/generators:release_files",
         "//" + package_name() + "/import_indexstores:release_files",
