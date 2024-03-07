@@ -73,8 +73,7 @@ if [[ "$ACTION" != indexbuild ]]; then
       # Source: https://github.com/bazelbuild/tulsi/commit/27354027fada7aa3ec3139fd686f85cc5039c564
       # TODO: Pass the exact list of files to touch to this script
       readonly plugins_dir="$TARGET_BUILD_DIR/${PLUGINS_FOLDER_PATH:-}"
-      if [[ "${TARGET_DEVICE_PLATFORM_NAME:-}" == "iphoneos" && \
-            -d "$plugins_dir" ]]; then
+      if [[ -d "$plugins_dir" ]]; then
         find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
       fi
 
