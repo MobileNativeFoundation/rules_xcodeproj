@@ -571,7 +571,8 @@ set
         for _ in (0..<testTargetCount) {
             let id =
                 try consumeArg("test-target-id", as: TargetID.self, in: url)
-            let enabled = try consumeArg("test-enabled", as: Bool.self, in: url)
+            let isEnabled =
+                try consumeArg("test-isEnabled", as: Bool.self, in: url)
 
             testTargets.append(
                 .init(
@@ -579,7 +580,7 @@ set
                         for: id,
                         context: "Test target"
                     ),
-                    enabled: enabled
+                    isEnabled: isEnabled
                 )
             )
         }

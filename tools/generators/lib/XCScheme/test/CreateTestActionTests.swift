@@ -36,7 +36,7 @@ final class CreateTestActionTests: XCTestCase {
         let buildConfiguration = "Debug"
         let commandLineArguments: [CommandLineArgument] = [
             .init(value: "-ARGUMENT_1"),
-            .init(value: "ARGUMENT_A", enabled: false),
+            .init(value: "ARGUMENT_A", isEnabled: false),
             .init(value: "'ARGUMENT 2'"),
         ]
 
@@ -175,7 +175,7 @@ final class CreateTestActionTests: XCTestCase {
             .init(
                 key: "BUILD_WORKING_DIRECTORY",
                 value: "$(BUILT_PRODUCTS_DIR)",
-                enabled: false
+                isEnabled: false
             ),
             .init(key: "VAR", value: "'Value 1'"),
         ]
@@ -270,7 +270,7 @@ final class CreateTestActionTests: XCTestCase {
                     blueprintName: "BLUEPRINT_NAME_3",
                     referencedContainer: "REFERENCED_CONTAINER_3"
                 ),
-                skipped: false
+                isSkipped: false
             ),
             .init(
                 buildableReference: .init(
@@ -279,7 +279,7 @@ final class CreateTestActionTests: XCTestCase {
                     blueprintName: "BLUEPRINT_NAME_1",
                     referencedContainer: "REFERENCED_CONTAINER_1"
                 ),
-                skipped: true
+                isSkipped: true
             ),
         ]
 

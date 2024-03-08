@@ -41,7 +41,7 @@ final class CreateLaunchActionTests: XCTestCase {
             .init(value: "-ARGUMENT_3"),
             .init(value: ""),
             .init(value: "multi\nline\nargument"),
-            .init(value: "ARGUMENT_Z", enabled: false),
+            .init(value: "ARGUMENT_Z", isEnabled: false),
             .init(value: "something with spaces"),
             .init(value: "'ARGUMENT 1'"),
         ]

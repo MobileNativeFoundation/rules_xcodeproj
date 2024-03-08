@@ -272,8 +272,9 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
             )
         )
         let commandLineArguments: [CommandLineArgument] = [
-            .init(value: "S", enabled: false),
-            .init(value: "A", enabled: true),
+            .init(value: "S", isEnabled: false),
+            .init(value: "A", isEnabled: true),
+            .init(value: "G A", isLiteralString: false),
         ]
 
         let expectedSchemeInfo = SchemeInfo(
@@ -345,8 +346,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
             )
         )
         let environmentVariables: [EnvironmentVariable] = [
-            .init(key: "D", value: "999", enabled: true),
-            .init(key: "H", value: "2 2", enabled: false),
+            .init(key: "D", value: "999", isEnabled: true),
+            .init(key: "H", value: "2 2", isEnabled: false),
         ]
 
         let expectedSchemeInfo = SchemeInfo(
@@ -494,7 +495,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
-                testTargets: [.init(target: test, enabled: true)],
+                testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),
@@ -547,8 +548,9 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
             )
         )
         let commandLineArguments: [CommandLineArgument] = [
-            .init(value: "B", enabled: false),
-            .init(value: "F", enabled: true),
+            .init(value: "B", isEnabled: false),
+            .init(value: "G AA", isLiteralString: false),
+            .init(value: "F", isEnabled: true),
         ]
 
         let expectedSchemeInfo = SchemeInfo(
@@ -560,7 +562,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
-                testTargets: [.init(target: test, enabled: true)],
+                testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),
@@ -614,8 +616,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
             )
         )
         let environmentVariables: [EnvironmentVariable] = [
-            .init(key: "Z", value: "1", enabled: true),
-            .init(key: "A", value: "2", enabled: false),
+            .init(key: "Z", value: "1", isEnabled: true),
+            .init(key: "A", value: "2", isEnabled: false),
         ]
 
         let expectedSchemeInfo = SchemeInfo(
@@ -628,7 +630,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
-                testTargets: [.init(target: test, enabled: true)],
+                testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),

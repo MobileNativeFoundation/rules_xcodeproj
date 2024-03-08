@@ -292,7 +292,7 @@ extension Generator.CreateScheme {
             testables.append(
                 .init(
                     buildableReference: buildableReference,
-                    skipped: !testTarget.enabled
+                    isSkipped: !testTarget.isEnabled
                 )
             )
         }
