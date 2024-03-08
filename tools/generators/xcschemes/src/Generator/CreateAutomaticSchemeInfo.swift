@@ -121,7 +121,7 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableUBSanitizer: false,
                 environmentVariables: testEnvironmentVariables,
                 testTargets: isTest ?
-                    [.init(target: target, enabled: true)] : [],
+                    [.init(target: target, isEnabled: true)] : [],
                 useRunArgsAndEnv: testUseRunArgsAndEnv,
                 xcodeConfiguration: nil
             ),

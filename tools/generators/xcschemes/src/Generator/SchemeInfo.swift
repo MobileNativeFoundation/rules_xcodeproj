@@ -48,7 +48,7 @@ struct SchemeInfo: Equatable {
 
     struct TestTarget: Equatable {
         let target: Target
-        let enabled: Bool
+        let isEnabled: Bool
     }
 
     struct Run: Equatable {

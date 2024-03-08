@@ -158,8 +158,15 @@ private extension ArraySlice where Element == String {
                 file: file,
                 line: line
             ).nullsToNewlines
-            let enabled = try consumeArg(
-                "\(namePrefix)-arg-enabled",
+            let isEnabled = try consumeArg(
+                "\(namePrefix)-arg-isEnabled",
+                as: Bool.self,
+                in: url,
+                file: file,
+                line: line
+            )
+            let isLiteralString = try consumeArg(
+                "\(namePrefix)-arg-isLiteralString",
                 as: Bool.self,
                 in: url,
                 file: file,
@@ -167,7 +174,11 @@ private extension ArraySlice where Element == String {
             )
 
             commandLineArguments.append(
-                .init(value: value, enabled: enabled)
+                .init(
+                    value: value,
+                    isEnabled: isEnabled,
+                    isLiteralString: isLiteralString
+                )
             )
         }
 
@@ -208,8 +219,8 @@ private extension ArraySlice where Element == String {
                 file: file,
                 line: line
             ).nullsToNewlines
-            let enabled = try consumeArg(
-                "\(namePrefix)-env-var-enabled",
+            let isEnabled = try consumeArg(
+                "\(namePrefix)-env-var-isEnabled",
                 as: Bool.self,
                 in: url,
                 file: file,
@@ -217,7 +228,7 @@ private extension ArraySlice where Element == String {
             )
 
             environmentVariables.append(
-                .init(key: key, value: value, enabled: enabled)
+                .init(key: key, value: value, isEnabled: isEnabled)
             )
         }
 
@@ -560,7 +571,8 @@ set
         for _ in (0..<testTargetCount) {
             let id =
                 try consumeArg("test-target-id", as: TargetID.self, in: url)
-            let enabled = try consumeArg("test-enabled", as: Bool.self, in: url)
+            let isEnabled =
+                try consumeArg("test-isEnabled", as: Bool.self, in: url)
 
             testTargets.append(
                 .init(
@@ -568,7 +580,7 @@ set
                         for: id,
                         context: "Test target"
                     ),
-                    enabled: enabled
+                    isEnabled: isEnabled
                 )
             )
         }

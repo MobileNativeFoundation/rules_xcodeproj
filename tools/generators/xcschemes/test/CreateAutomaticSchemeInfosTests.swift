@@ -169,21 +169,22 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
 
         let commandLineArguments: [TargetID: [CommandLineArgument]] = [
             "A": [
-                .init(value: "-v", enabled: true),
-                .init(value: "version", enabled: false),
+                .init(value: "-v", isEnabled: true),
+                .init(value: "version", isEnabled: false),
+                .init(value: "grouped arg", isLiteralString: false),
             ],
             "C": [],
-            "Z": [.init(value: "No", enabled: false)],
+            "Z": [.init(value: "No", isEnabled: false)],
         ]
         let customSchemeNames: Set<String> = [
             "Z",
         ]
         let environmentVariables: [TargetID: [EnvironmentVariable]] = [
             "B": [
-                .init(key: "VAR", value: "not enabled", enabled: false),
-                .init(key: "ENV VAR", value: "1", enabled: true),
+                .init(key: "VAR", value: "not enabled", isEnabled: false),
+                .init(key: "ENV VAR", value: "1", isEnabled: true),
             ],
-            "Z": [.init(key: "X", value: "No", enabled: false)],
+            "Z": [.init(key: "X", value: "No", isEnabled: false)],
         ]
         let extensionHostIDs: [TargetID : [TargetID]] = [
             "XyZ": ["3", "WWW"],
@@ -230,8 +231,9 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
             ),
             .init(
                 commandLineArguments: [
-                    .init(value: "-v", enabled: true),
-                    .init(value: "version", enabled: false),
+                    .init(value: "-v", isEnabled: true),
+                    .init(value: "version", isEnabled: false),
+                    .init(value: "grouped arg", isLiteralString: false),
                 ],
                 customSchemeNames: customSchemeNames,
                 environmentVariables: [],
@@ -245,8 +247,8 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 commandLineArguments: [],
                 customSchemeNames: customSchemeNames,
                 environmentVariables: [
-                    .init(key: "VAR", value: "not enabled", enabled: false),
-                    .init(key: "ENV VAR", value: "1", enabled: true),
+                    .init(key: "VAR", value: "not enabled", isEnabled: false),
+                    .init(key: "ENV VAR", value: "1", isEnabled: true),
                 ],
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "B", productType: .appExtension),

@@ -125,14 +125,14 @@ buildConfiguration = "\#(buildConfiguration)"
 
 public struct Testable {
     public let buildableReference: BuildableReference
-    let skipped: Bool
+    let isSkipped: Bool
 
     public init(
         buildableReference: BuildableReference,
-        skipped: Bool
+        isSkipped: Bool
     ) {
         self.buildableReference = buildableReference
-        self.skipped = skipped
+        self.isSkipped = isSkipped
     }
 }
 
@@ -142,7 +142,7 @@ private func createTestableElement(_ testable: Testable) -> String {
     // 3 spaces for indentation is intentional
     return #"""
          <TestableReference
-            skipped = "\#(testable.skipped.xmlString)">
+            skipped = "\#(testable.isSkipped.xmlString)">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "\#(reference.blueprintIdentifier)"

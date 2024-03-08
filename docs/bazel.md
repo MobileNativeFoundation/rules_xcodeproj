@@ -223,7 +223,7 @@ load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcschemes")
 ## xcschemes.arg
 
 <pre>
-xcschemes.arg(<a href="#xcschemes.arg-value">value</a>, <a href="#xcschemes.arg-enabled">enabled</a>)
+xcschemes.arg(<a href="#xcschemes.arg-value">value</a>, <a href="#xcschemes.arg-enabled">enabled</a>, <a href="#xcschemes.arg-literal_string">literal_string</a>)
 </pre>
 
 Defines a command-line argument.
@@ -235,6 +235,7 @@ Defines a command-line argument.
 | :------------- | :------------- | :------------- |
 | <a id="xcschemes.arg-value"></a>value |  Positional. The command-line argument.<br><br>Arguments with quotes, spaces, or newlines will be escaped. You should not use additional quotes around arguments with spaces. If you include quotes around your argument, those quotes will be part of the argument.   |  none |
 | <a id="xcschemes.arg-enabled"></a>enabled |  Whether the command-line argument is enabled.<br><br>If `True`, the checkbox for the argument will be checked in the scheme. An unchecked checkbox means Xcode won't include that argument when running a target.   |  `True` |
+| <a id="xcschemes.arg-literal_string"></a>literal_string |  Whether `value` should be interpreted as a literal string.<br><br>If `True`, any spaces will be escaped. This means that `value` will be passed to the launch target as a single string. If `False`, any spaces will not be escaped. This is useful to group multiple arguments under a single checkbox in Xcode.   |  `True` |
 
 
 <a id="xcschemes.diagnostics"></a>

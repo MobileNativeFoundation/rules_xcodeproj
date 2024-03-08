@@ -251,6 +251,7 @@ def _write_schemes(
         for arg in args:
             custom_scheme_args.add_all([arg.value], map_each = _null_newlines)
             custom_scheme_args.add(arg.enabled)
+            custom_scheme_args.add(arg.literal_string)
 
     # buildifier: disable=uninitialized
     def _add_build_targets(build_targets, *, action_name, scheme_name):

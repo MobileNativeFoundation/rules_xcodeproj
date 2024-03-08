@@ -35,7 +35,7 @@ final class CreateProfileActionTests: XCTestCase {
         let buildConfiguration = "Debug"
         let commandLineArguments: [CommandLineArgument] = [
             .init(value: "-ARGUMENT_42"),
-            .init(value: "ARGUMENT_F", enabled: false),
+            .init(value: "ARGUMENT_F", isEnabled: false),
             .init(value: "'ARGUMENT 3'"),
         ]
 

@@ -1,6 +1,6 @@
 """Utility test functions for xcshemes tests."""
 
-def _dict_of_dicts_to_arg_env_infos(dict_of_dicts):
+def _dict_of_dicts_to_env_infos(dict_of_dicts):
     if dict_of_dicts == None:
         return None
     return {
@@ -39,9 +39,9 @@ def _dict_to_launch_target_info(d):
 
 def _dict_to_profile_info(d):
     return struct(
-        args = _dicts_to_arg_env_infos(d["args"]),
+        args = _dicts_to_arg_infos(d["args"]),
         build_targets = _dicts_to_build_target_infos(d["build_targets"]),
-        env = _dict_of_dicts_to_arg_env_infos(d["env"]),
+        env = _dict_of_dicts_to_env_infos(d["env"]),
         env_include_defaults = d["env_include_defaults"],
         launch_target = _dict_to_launch_target_info(d["launch_target"]),
         use_run_args_and_env = d["use_run_args_and_env"],
@@ -50,10 +50,10 @@ def _dict_to_profile_info(d):
 
 def _dict_to_run_info(d):
     return struct(
-        args = _dicts_to_arg_env_infos(d["args"]),
+        args = _dicts_to_arg_infos(d["args"]),
         build_targets = _dicts_to_build_target_infos(d["build_targets"]),
         diagnostics = _dict_to_diagnostics_info(d["diagnostics"]),
-        env = _dict_of_dicts_to_arg_env_infos(d["env"]),
+        env = _dict_of_dicts_to_env_infos(d["env"]),
         env_include_defaults = d["env_include_defaults"],
         launch_target = _dict_to_launch_target_info(d["launch_target"]),
         xcode_configuration = d["xcode_configuration"],
@@ -61,10 +61,10 @@ def _dict_to_run_info(d):
 
 def _dict_to_test_info(d):
     return struct(
-        args = _dicts_to_arg_env_infos(d["args"]),
+        args = _dicts_to_arg_infos(d["args"]),
         build_targets = _dicts_to_build_target_infos(d["build_targets"]),
         diagnostics = _dict_to_diagnostics_info(d["diagnostics"]),
-        env = _dict_of_dicts_to_arg_env_infos(d["env"]),
+        env = _dict_of_dicts_to_env_infos(d["env"]),
         env_include_defaults = d["env_include_defaults"],
         test_targets = _dicts_to_test_target_infos(d["test_targets"]),
         use_run_args_and_env = d["use_run_args_and_env"],
@@ -89,12 +89,13 @@ def _dicts_to_build_target_infos(dicts):
         for d in dicts
     ]
 
-def _dicts_to_arg_env_infos(dicts):
+def _dicts_to_arg_infos(dicts):
     if dicts == None:
         return None
     return [
         struct(
             enabled = d["enabled"],
+            literal_string = d["literal_string"],
             value = d["value"],
         )
         for d in dicts

@@ -151,29 +151,31 @@ def infos_from_json_test_suite(name):
 
     full_args = [
         "-a\nnewline",
-        xcscheme_infos_testable.make_arg_env(
+        xcscheme_infos_testable.make_arg(
             "B",
+            literal_string = "0",
             enabled = "0",
         ),
     ]
     expected_full_args = [
-        xcscheme_infos_testable.make_arg_env("-a\nnewline"),
-        xcscheme_infos_testable.make_arg_env(
+        xcscheme_infos_testable.make_arg("-a\nnewline"),
+        xcscheme_infos_testable.make_arg(
             "B",
+            literal_string = "0",
             enabled = "0",
         ),
     ]
 
     full_env = {
         "A": "B",
-        "ENV\nVAR": xcscheme_infos_testable.make_arg_env(
+        "ENV\nVAR": xcscheme_infos_testable.make_env(
             "1\n2",
             enabled = "0",
         ),
     }
     expected_full_env = {
-        "A": xcscheme_infos_testable.make_arg_env("B"),
-        "ENV\nVAR": xcscheme_infos_testable.make_arg_env(
+        "A": xcscheme_infos_testable.make_env("B"),
+        "ENV\nVAR": xcscheme_infos_testable.make_env(
             "1\n2",
             enabled = "0",
         ),
@@ -611,7 +613,7 @@ def infos_from_json_test_suite(name):
                     use_run_args_and_env = "1",
                 ),
                 run = xcscheme_infos_testable.make_run(
-                    args = [xcscheme_infos_testable.make_arg_env("-v")],
+                    args = [xcscheme_infos_testable.make_arg("-v")],
                     build_targets = (
                         expected_full_launch_build_targets +
                         expected_full_build_targets
@@ -619,7 +621,7 @@ def infos_from_json_test_suite(name):
                     diagnostics = xcscheme_infos_testable.make_diagnostics(
                         address_sanitizer = "1",
                     ),
-                    env = {"A": xcscheme_infos_testable.make_arg_env("B")},
+                    env = {"A": xcscheme_infos_testable.make_env("B")},
                     env_include_defaults = "1",
                     launch_target = expected_full_launch_target,
                     xcode_configuration = "custom",

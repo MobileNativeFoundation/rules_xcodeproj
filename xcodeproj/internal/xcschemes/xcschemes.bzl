@@ -1081,7 +1081,7 @@ _pre_post_actions = struct(
 
 # Other
 
-def _arg(value, *, enabled = True):
+def _arg(value, *, enabled = True, literal_string = True):
     """Defines a command-line argument.
 
     Args:
@@ -1096,6 +1096,13 @@ def _arg(value, *, enabled = True):
             If `True`, the checkbox for the argument will be
             checked in the scheme. An unchecked checkbox means Xcode won't
             include that argument when running a target.
+        literal_string: Whether `value` should be interpreted as a literal
+            string.
+
+            If `True`, any spaces will be escaped. This means that `value` will
+            be passed to the launch target as a single string. If `False`, any
+            spaces will not be escaped. This is useful to group multiple
+            arguments under a single checkbox in Xcode.
     """
     if not value:
         fail("""
@@ -1104,6 +1111,7 @@ def _arg(value, *, enabled = True):
 
     return struct(
         enabled = TRUE_ARG if enabled else FALSE_ARG,
+        literal_string = TRUE_ARG if literal_string else FALSE_ARG,
         value = value,
     )
 
