@@ -68,13 +68,47 @@ def info_constructors_test_suite(name):
             expected_info = json.encode(expected_info),
         )
 
-    # make_arg_env
+    # make_arg
 
     _add_test(
-        name = "{}_make_arg_env_minimal".format(name),
+        name = "{}_make_arg_minimal".format(name),
 
         # Inputs
-        info = xcscheme_infos_testable.make_arg_env(value = "a\nnew line"),
+        info = xcscheme_infos_testable.make_arg(value = "a\nnew line"),
+
+        # Expected
+        expected_info = struct(
+            enabled = "1",
+            literal_string = "1",
+            value = "a\nnew line",
+        ),
+    )
+
+    _add_test(
+        name = "{}_make_arg_full".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_arg(
+            enabled = "0",
+            literal_string = "0",
+            value = "b",
+        ),
+
+        # Expected
+        expected_info = struct(
+            enabled = "0",
+            literal_string = "0",
+            value = "b",
+        ),
+    )
+
+    # make_env
+
+    _add_test(
+        name = "{}_make_env_minimal".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_env(value = "a\nnew line"),
 
         # Expected
         expected_info = struct(
@@ -84,10 +118,10 @@ def info_constructors_test_suite(name):
     )
 
     _add_test(
-        name = "{}_make_arg_env_full".format(name),
+        name = "{}_make_env_full".format(name),
 
         # Inputs
-        info = xcscheme_infos_testable.make_arg_env(
+        info = xcscheme_infos_testable.make_env(
             enabled = "0",
             value = "b",
         ),
@@ -452,11 +486,11 @@ def info_constructors_test_suite(name):
         # Inputs
         info = xcscheme_infos_testable.make_profile(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -466,8 +500,8 @@ def info_constructors_test_suite(name):
                 xcscheme_infos_testable.make_build_target("bt 0"),
             ],
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
@@ -478,11 +512,11 @@ def info_constructors_test_suite(name):
         # Expected
         expected_info = struct(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -492,8 +526,8 @@ def info_constructors_test_suite(name):
                 xcscheme_infos_testable.make_build_target("bt 0"),
             ],
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
@@ -528,11 +562,11 @@ def info_constructors_test_suite(name):
         # Inputs
         info = xcscheme_infos_testable.make_run(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -545,8 +579,8 @@ def info_constructors_test_suite(name):
                 undefined_behavior_sanitizer = "1",
             ),
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
@@ -556,11 +590,11 @@ def info_constructors_test_suite(name):
         # Expected
         expected_info = struct(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -573,8 +607,8 @@ def info_constructors_test_suite(name):
                 undefined_behavior_sanitizer = "1",
             ),
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target(
@@ -660,11 +694,11 @@ def info_constructors_test_suite(name):
         # Inputs
         info = xcscheme_infos_testable.make_test(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -677,8 +711,8 @@ def info_constructors_test_suite(name):
                 thread_sanitizer = "1",
             ),
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
             test_targets = [
@@ -693,11 +727,11 @@ def info_constructors_test_suite(name):
         # Expected
         expected_info = struct(
             args = [
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "1",
                     value = "a\nnew line",
                 ),
-                xcscheme_infos_testable.make_arg_env(
+                xcscheme_infos_testable.make_arg(
                     enabled = "0",
                     value = "b",
                 ),
@@ -710,8 +744,8 @@ def info_constructors_test_suite(name):
                 thread_sanitizer = "1",
             ),
             env = {
-                "VAR\n0": xcscheme_infos_testable.make_arg_env("value 0"),
-                "VAR 1": xcscheme_infos_testable.make_arg_env("value\n1"),
+                "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
+                "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
             test_targets = [

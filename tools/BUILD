@@ -180,8 +180,10 @@ _XCSCHEMES = [
                 # developmentRegion
                 "enGB",
                 # organizationName
-                "--organization-name",
-                "MobileNativeFoundation",
+                xcschemes.arg(
+                    "--organization-name MobileNativeFoundation",
+                    literal_string = False,
+                ),
                 # platforms
                 "--platforms",
                 "macosx",

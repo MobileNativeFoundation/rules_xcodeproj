@@ -10,7 +10,14 @@ load(
 
 # Constructors
 
-def _make_arg_env(value, *, enabled = TRUE_ARG):
+def _make_arg(value, *, enabled = TRUE_ARG, literal_string = TRUE_ARG):
+    return struct(
+        enabled = enabled,
+        literal_string = literal_string,
+        value = value,
+    )
+
+def _make_env(value, *, enabled = TRUE_ARG):
     return struct(
         enabled = enabled,
         value = value,
@@ -174,21 +181,33 @@ def _make_scheme(
 
 # JSON
 
-def _arg_env_info_from_dict(arg_env):
-    if type(arg_env) == "string":
-        return _make_arg_env(
-            value = arg_env,
+def _arg_info_from_dict(arg):
+    if type(arg) == "string":
+        return _make_arg(
+            value = arg,
         )
 
-    return _make_arg_env(
-        enabled = arg_env["enabled"],
-        value = arg_env["value"],
+    return _make_arg(
+        enabled = arg["enabled"],
+        literal_string = arg["literal_string"],
+        value = arg["value"],
+    )
+
+def _env_info_from_dict(env):
+    if type(env) == "string":
+        return _make_env(
+            value = env,
+        )
+
+    return _make_env(
+        enabled = env["enabled"],
+        value = env["value"],
     )
 
 def _arg_infos_from_list(args):
     if args == "inherit":
         return None
-    return [_arg_env_info_from_dict(arg) for arg in args]
+    return [_arg_info_from_dict(arg) for arg in args]
 
 def _build_target_infos_from_dict(
         build_target,
@@ -259,7 +278,7 @@ def _env_infos_from_dict(env):
     if env == "inherit":
         return None
     return {
-        key: _arg_env_info_from_dict(value)
+        key: _env_info_from_dict(value)
         for key, value in env.items()
     }
 
@@ -715,8 +734,9 @@ xcscheme_infos = struct(
 
 # These functions are exposed only for access in unit tests
 xcscheme_infos_testable = struct(
-    make_arg_env = _make_arg_env,
+    make_arg = _make_arg,
     make_build_target = _make_build_target,
+    make_env = _make_env,
     make_diagnostics = _make_diagnostics,
     make_launch_target = _make_launch_target,
     make_pre_post_action = _make_pre_post_action,

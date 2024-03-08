@@ -491,11 +491,16 @@ def write_schemes_test_suite(name):
                 name = "Scheme 1",
                 profile = xcscheme_infos_testable.make_profile(
                     args = [
-                        xcscheme_infos_testable.make_arg_env(
+                        xcscheme_infos_testable.make_arg(
                             enabled = "1",
                             value = "simple value",
                         ),
-                        xcscheme_infos_testable.make_arg_env(
+                        xcscheme_infos_testable.make_arg(
+                            enabled = "1",
+                            literal_string = "0",
+                            value = "simple value",
+                        ),
+                        xcscheme_infos_testable.make_arg(
                             enabled = "0",
                             value = "value\nwith\nnewlines",
                         ),
@@ -534,7 +539,7 @@ def write_schemes_test_suite(name):
                         ),
                     ],
                     env = {
-                        "B": xcscheme_infos_testable.make_arg_env(
+                        "B": xcscheme_infos_testable.make_env(
                             enabled = "1",
                             value = "a",
                         ),
@@ -578,11 +583,11 @@ def write_schemes_test_suite(name):
                 ),
                 run = xcscheme_infos_testable.make_run(
                     args = [
-                        xcscheme_infos_testable.make_arg_env(
+                        xcscheme_infos_testable.make_arg(
                             enabled = "0",
                             value = "a",
                         ),
-                        xcscheme_infos_testable.make_arg_env(
+                        xcscheme_infos_testable.make_arg(
                             enabled = "1",
                             value = "bb",
                         ),
@@ -626,11 +631,11 @@ def write_schemes_test_suite(name):
                         undefined_behavior_sanitizer = "1",
                     ),
                     env = {
-                        "A": xcscheme_infos_testable.make_arg_env(
+                        "A": xcscheme_infos_testable.make_env(
                             enabled = "0",
                             value = "value with spaces",
                         ),
-                        "VAR WITH SPACES": xcscheme_infos_testable.make_arg_env(
+                        "VAR WITH SPACES": xcscheme_infos_testable.make_env(
                             enabled = "1",
                             value = "value\nwith\nnewlines",
                         ),
@@ -673,7 +678,7 @@ def write_schemes_test_suite(name):
                 ),
                 test = xcscheme_infos_testable.make_test(
                     args = [
-                        xcscheme_infos_testable.make_arg_env(
+                        xcscheme_infos_testable.make_arg(
                             enabled = "0",
                             value = "-v",
                         ),
@@ -720,7 +725,7 @@ def write_schemes_test_suite(name):
                         undefined_behavior_sanitizer = "1",
                     ),
                     env = {
-                        "VAR\nWITH\nNEWLINES": xcscheme_infos_testable.make_arg_env(
+                        "VAR\nWITH\nNEWLINES": xcscheme_infos_testable.make_env(
                             enabled = "0",
                             value = "simple",
                         ),
@@ -900,6 +905,8 @@ def write_schemes_test_suite(name):
                 "-v",
                 # - test - commandLineArguments - enabled
                 "0",
+                # - test - commandLineArguments - literalString
+                "1",
                 # - test - environmentVariables count
                 "1",
                 # - test - environmentVariables - key
@@ -929,9 +936,13 @@ def write_schemes_test_suite(name):
                 "a",
                 # - run - commandLineArguments - enabled
                 "0",
+                # - run - commandLineArguments - literalString
+                "1",
                 # - run - commandLineArguments - value
                 "bb",
                 # - run - commandLineArguments - enabled
+                "1",
+                # - run - commandLineArguments - literalString
                 "1",
                 # - run - environmentVariables count
                 "2",
@@ -969,15 +980,25 @@ def write_schemes_test_suite(name):
                 "profile bt",
                 "",
                 # - profile - commandLineArguments count
-                "2",
+                "3",
                 # - profile - commandLineArguments - value
                 "simple value",
                 # - profile - commandLineArguments - enabled
                 "1",
+                # - profile - commandLineArguments - literalString
+                "1",
+                # - profile - commandLineArguments - value
+                "simple value",
+                # - profile - commandLineArguments - enabled
+                "1",
+                # - profile - commandLineArguments - literalString
+                "0",
                 # - profile - commandLineArguments - value
                 "value\0with\0newlines",
                 # - profile - commandLineArguments - enabled
                 "0",
+                # - profile - commandLineArguments - literalString
+                "1",
                 # - profile - environmentVariables count
                 "1",
                 # - profile - environmentVariables - key

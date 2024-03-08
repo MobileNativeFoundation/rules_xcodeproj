@@ -1,10 +1,16 @@
 public struct CommandLineArgument: Equatable {
     let value: String
-    let enabled: Bool
+    let isEnabled: Bool
+    let isLiteralString: Bool
 
-    public init(value: String, enabled: Bool = true) {
+    public init(
+        value: String,
+        isEnabled: Bool = true,
+        isLiteralString: Bool = true
+    ) {
         self.value = value
-        self.enabled = enabled
+        self.isEnabled = isEnabled
+        self.isLiteralString = isLiteralString
     }
 }
 
@@ -27,7 +33,9 @@ extension Array where Element == CommandLineArgument {
 
 private func createCommandLineArgument(_ arg: CommandLineArgument) -> String {
     let argument: String
-    if arg.value.isEmpty {
+    if !arg.isLiteralString {
+        argument = arg.value.schemeXmlEscaped
+    } else if arg.value.isEmpty {
         argument = "''"
     } else {
         argument = arg.value
@@ -41,7 +49,7 @@ private func createCommandLineArgument(_ arg: CommandLineArgument) -> String {
     return #"""
          <CommandLineArgument
             argument = "\#(argument)"
-            isEnabled = "\#(arg.enabled.xmlString)">
+            isEnabled = "\#(arg.isEnabled.xmlString)">
          </CommandLineArgument>
 """#
 }
