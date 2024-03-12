@@ -31,6 +31,7 @@ def _from_resource_bundle(bundle):
             non_arc_srcs = EMPTY_DEPSET,
             srcs = EMPTY_DEPSET,
         ),
+        label = None,
     )
 
 def _from_resource_bundles(bundles, *, resource_bundle_ids):
