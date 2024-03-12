@@ -141,9 +141,11 @@ def _collect_files(
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)
 
-        extra_files = target_extra_files.get(str(xcode_target.label))
-        if extra_files:
-            transitive_files.append(extra_files)
+        label = xcode_target.label
+        if label:
+            extra_files = target_extra_files.get(str(label))
+            if extra_files:
+                transitive_files.append(extra_files)
 
         infoplist_path = xcode_target.inputs.infoplist_path
         if infoplist_path:
