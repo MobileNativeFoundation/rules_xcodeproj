@@ -247,6 +247,7 @@ def _make_skipped_target_xcodeprojinfo(
         *,
         automatic_target_info,
         rule_attr,
+        skip_type,
         test_env,
         transitive_infos):
     """Passes through existing target info fields, not collecting new ones.
@@ -258,6 +259,7 @@ def _make_skipped_target_xcodeprojinfo(
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `the target.
         rule_attr: `ctx.rule.attr`.
+        skip_type: A value returned by `_get_skip_type`.
         test_env: `ctx.configuration.test_env`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
@@ -281,6 +283,42 @@ def _make_skipped_target_xcodeprojinfo(
         info
         for _, info in transitive_infos
     ]
+
+    # Test bundles already collect their focused library deps, so we shouldn't
+    # here, otherwise we will override their id with whatever is picked here.
+    # Collecting `top_level_focused_deps` here allows using `*_build_test` rules
+    # in `xcschemes.top_level_anchor_target`.
+    if skip_type != _SKIP_TYPE.apple_test_bundle:
+        first_id = None
+        for info in valid_transitive_infos:
+            if info.xcode_target:
+                first_id = info.xcode_target.id
+                break
+
+        print(automatic_target_info.label, first_id)
+
+        focused_library_deps = {
+            s.label: s.id
+            for s in depset(
+                order = "postorder",
+                transitive = [
+                    info.focused_library_deps
+                    for info in valid_transitive_infos
+                ],
+            ).to_list()
+        }
+        top_level_focused_deps = [
+            struct(
+                id = first_id,
+                label = str(automatic_target_info.label),
+                deps = tuple([
+                    struct(id = id, label = label)
+                    for label, id in focused_library_deps.items()
+                ]),
+            ),
+        ]
+    else:
+        top_level_focused_deps = None
 
     direct_dependencies, transitive_dependencies = dependencies.collect(
         transitive_infos = valid_transitive_infos,
@@ -410,6 +448,7 @@ def _make_skipped_target_xcodeprojinfo(
         ),
         target_type = target_type.compile,
         top_level_focused_deps = memory_efficient_depset(
+            top_level_focused_deps,
             transitive = [
                 info.top_level_focused_deps
                 for info in valid_transitive_infos
@@ -685,6 +724,7 @@ def _make_xcodeprojinfo(
         info_fields = _make_skipped_target_xcodeprojinfo(
             automatic_target_info = automatic_target_info,
             rule_attr = rule_attr,
+            skip_type = target_skip_type,
             test_env = ctx.configuration.test_env,
             transitive_infos = transitive_infos,
         )
