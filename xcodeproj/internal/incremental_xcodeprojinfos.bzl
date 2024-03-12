@@ -83,6 +83,11 @@ _SKIP_TYPE = struct(
     test_suite = "test_suite",
 )
 
+_FOCUSED_DEPS_COLLECTION_SKIPPED_TYPES = {
+    _SKIP_TYPE.apple_build_test: None,
+    _SKIP_TYPE.apple_binary_no_deps: None,
+}
+
 def _get_skip_type(*, rule_attr, rule_kind, target):
     """Determines if the given target should be skipped for target generation.
 
@@ -288,7 +293,7 @@ def _make_skipped_target_xcodeprojinfo(
     # here, otherwise we will override their id with whatever is picked here.
     # Collecting `top_level_focused_deps` here allows using `*_build_test` rules
     # in `xcschemes.top_level_anchor_target`.
-    if skip_type != _SKIP_TYPE.apple_test_bundle:
+    if skip_type in _FOCUSED_DEPS_COLLECTION_SKIPPED_TYPES:
         first_id = None
         for info in valid_transitive_infos:
             if info.xcode_target:
