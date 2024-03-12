@@ -19,7 +19,7 @@ exports_files(
 
 ios_build_test(
     name = "ios_Lib",
-    minimum_os_version = "15.0",
+    minimum_os_version = "16.0",
     tags = ["manual"],
     targets = [":Lib"],
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
