@@ -1522,7 +1522,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         is_fixture = is_fixture,
         link_params_processor = ctx.executable._link_params_processor,
         name = name,
-        owned_extra_files = ctx.attr._owned_extra_files,
+        owned_extra_files = ctx.attr.owned_extra_files,
         replacement_labels = replacement_labels,
         unfocused_labels = unfocused_labels,
     )

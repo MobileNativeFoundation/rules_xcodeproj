@@ -24,6 +24,7 @@ xcodeproj(
     ios_device_cpus = "arm64",
     ios_simulator_cpus = "",
     minimum_xcode_version = "13.0",
+    owned_extra_files = {},
     post_build = """""",
     pre_build = """""",
     project_name = "bwb",
