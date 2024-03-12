@@ -292,6 +292,10 @@ def _make_skipped_target_xcodeprojinfo(
         first_id = None
         for info in valid_transitive_infos:
             if info.xcode_target:
+                # If this target gets listed in something like
+                # `xcschemes.top_level_build_target`, we use the first available
+                # target id. This isn't really a supported use case. We could
+                # maybe handle multiple ids, but that requires a bit more work.
                 first_id = info.xcode_target.id
                 break
 
