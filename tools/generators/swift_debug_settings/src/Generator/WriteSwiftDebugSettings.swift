@@ -110,7 +110,7 @@ class StopHook:
         if not module:
             return
 
-        module_name = module.file.__get_fullpath__()
+        module_name = module.file.GetDirectory() + "/" + module.file.GetFilename()
         versionless_triple = _TRIPLE_MATCH.sub(r"\1\2\3", module.GetTriple())
         executable_path = _get_relative_executable_path(module_name)
         key = f"{versionless_triple} {executable_path}"
