@@ -295,8 +295,6 @@ def _make_skipped_target_xcodeprojinfo(
                 first_id = info.xcode_target.id
                 break
 
-        print(automatic_target_info.label, first_id)
-
         focused_library_deps = {
             s.label: s.id
             for s in depset(
