@@ -251,4 +251,17 @@ XCSCHEMES = [
             ],
         ),
     ),
+    xcschemes.scheme(
+        name = "ios_build_test",
+        run = xcschemes.run(
+            build_targets = [
+                xcschemes.top_level_anchor_target(
+                    "//Lib:ios_Lib",
+                    library_targets = [
+                        "//Lib",
+                    ],
+                ),
+            ],
+        ),
+    )
 ]
