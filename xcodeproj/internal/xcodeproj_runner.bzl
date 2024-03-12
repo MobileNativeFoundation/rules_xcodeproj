@@ -208,7 +208,6 @@ _target_transitions = make_xcodeproj_target_transitions(
             "%generator_name%": name,
             "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
-            "%owned_extra_files%": str(attr.owned_extra_files),
             "%target_transitions%": target_transitions,
             "%unfocused_labels%": str(attr.unfocused_labels),
             "%use_incremental%": str(use_incremental),
@@ -261,6 +260,7 @@ def _write_generator_build_file(
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
             "%name%": name,
+            "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
             # TODO: Remove after dropping legacy generation mode

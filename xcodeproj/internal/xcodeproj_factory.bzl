@@ -12,14 +12,12 @@ def _make_xcodeproj_aspect(
         build_mode,
         focused_labels,
         generator_name,
-        owned_extra_files,
         unfocused_labels,
         use_incremental):
     if use_incremental:
         attrs = xcodeproj_incremental_aspect.attrs(
             focused_labels = focused_labels,
             generator_name = generator_name,
-            owned_extra_files = owned_extra_files,
             unfocused_labels = unfocused_labels,
         )
         implementation = xcodeproj_incremental_aspect.impl
@@ -42,7 +40,6 @@ def _make_xcodeproj_rule(
         *,
         focused_labels,
         is_fixture = False,
-        owned_extra_files,
         target_transitions = None,
         unfocused_labels,
         use_incremental,
@@ -59,7 +56,6 @@ def _make_xcodeproj_rule(
         attrs = xcodeproj_legacy_rule.attrs(
             focused_labels = focused_labels,
             is_fixture = is_fixture,
-            owned_extra_files = owned_extra_files,
             target_transitions = target_transitions,
             unfocused_labels = unfocused_labels,
             xcodeproj_aspect = xcodeproj_aspect,

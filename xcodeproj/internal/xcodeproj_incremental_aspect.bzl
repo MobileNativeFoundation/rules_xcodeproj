@@ -57,7 +57,6 @@ def _xcodeproj_incremental_aspect_attrs(
         *,
         focused_labels,
         generator_name,
-        owned_extra_files,
         unfocused_labels):
     return {
         "_cc_compiler_params_processor": attr.label(
@@ -82,10 +81,6 @@ def _xcodeproj_incremental_aspect_attrs(
                 "//tools/params_processors:incremental_link_params_processor",
             ),
             executable = True,
-        ),
-        "_owned_extra_files": attr.label_keyed_string_dict(
-            allow_files = True,
-            default = owned_extra_files,
         ),
         "_target_build_settings_generator": attr.label(
             cfg = "exec",
