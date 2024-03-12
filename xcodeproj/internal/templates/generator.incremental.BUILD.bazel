@@ -23,6 +23,7 @@ xcodeproj(
     ios_device_cpus = "%ios_device_cpus%",
     ios_simulator_cpus = "%ios_simulator_cpus%",
     minimum_xcode_version = "%minimum_xcode_version%",
+    owned_extra_files = %owned_extra_files%,
     post_build = """%post_build%""",
     pre_build = """%pre_build%""",
     project_options = %project_options%,

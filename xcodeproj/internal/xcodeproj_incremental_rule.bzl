@@ -116,10 +116,16 @@ def _calculate_infos_and_top_level_deps(
 
 def _collect_files(
         *,
+        owned_extra_files,
         resource_bundle_xcode_targets,
         unowned_extra_files,
         unsupported_extra_files,
         xcode_targets):
+    target_extra_files = {
+        target_label_str: files_target.files
+        for files_target, target_label_str in owned_extra_files.items()
+    }
+
     all_targets = xcode_targets.values() + resource_bundle_xcode_targets
 
     compile_stub_needed = False
@@ -134,6 +140,10 @@ def _collect_files(
         transitive_folders.append(xcode_target.inputs.extra_folders)
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)
+
+        extra_files = target_extra_files.get(str(xcode_target.label))
+        if extra_files:
+            transitive_files.append(extra_files)
 
         infoplist_path = xcode_target.inputs.infoplist_path
         if infoplist_path:
@@ -286,6 +296,7 @@ def _write_project_contents(
         install_path,
         minimum_xcode_version,
         name,
+        owned_extra_files,
         pbxnativetargets_generator,
         pbxproj_prefix_generator,
         pbxtargetdependencies_generator,
@@ -331,6 +342,7 @@ def _write_project_contents(
         infoplist_paths,
         srcs,
     ) = _collect_files(
+        owned_extra_files = owned_extra_files,
         resource_bundle_xcode_targets = resource_bundle_xcode_targets,
         unowned_extra_files = unowned_extra_files,
         unsupported_extra_files = unsupported_extra_files,
@@ -596,6 +608,7 @@ After removing unfocused targets, no targets remain. Please check your \
             )
         ),
         name = name,
+        owned_extra_files = ctx.attr.owned_extra_files,
         pbxnativetargets_generator = (
             ctx.executable._pbxnativetargets_generator
         ),
@@ -732,6 +745,7 @@ def _xcodeproj_incremental_attrs(
         "generation_shard_count": attr.int(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
+        "owned_extra_files": attr.label_keyed_string_dict(allow_files = True),
         "post_build": attr.string(mandatory = True),
         "pre_build": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),

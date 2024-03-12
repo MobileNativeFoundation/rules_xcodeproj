@@ -567,8 +567,6 @@ def _collect_incremental_input_files(
         if not file.is_source
     ]
 
-    label_str = str(label)
-
     return (
         struct(
             c_sources = c_sources,
@@ -578,11 +576,7 @@ def _collect_incremental_input_files(
                 extra_file_paths = memory_efficient_depset(extra_file_paths),
                 extra_files = memory_efficient_depset(
                     extra_files,
-                    transitive = [
-                        t.files
-                        for t, file_label_str in ctx.attr._owned_extra_files.items()
-                        if file_label_str == label_str
-                    ] + transitive_extra_files,
+                    transitive = transitive_extra_files,
                 ),
                 extra_folders = extra_folders,
                 infoplist_path = (

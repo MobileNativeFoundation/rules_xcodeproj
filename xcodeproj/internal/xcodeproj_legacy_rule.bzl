@@ -1522,7 +1522,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         is_fixture = is_fixture,
         link_params_processor = ctx.executable._link_params_processor,
         name = name,
-        owned_extra_files = ctx.attr._owned_extra_files,
+        owned_extra_files = ctx.attr.owned_extra_files,
         replacement_labels = replacement_labels,
         unfocused_labels = unfocused_labels,
     )
@@ -1797,7 +1797,6 @@ def _xcodeproj_legacy_attrs(
         *,
         focused_labels,
         is_fixture = False,
-        owned_extra_files,
         target_transitions = None,
         unfocused_labels,
         xcodeproj_aspect):
@@ -1812,6 +1811,7 @@ def _xcodeproj_legacy_attrs(
         "fail_for_invalid_extra_files_targets": attr.bool(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
+        "owned_extra_files": attr.label_keyed_string_dict(allow_files = True),
         "post_build": attr.string(mandatory = True),
         "pre_build": attr.string(mandatory = True),
         "project_name": attr.string(mandatory = True),
@@ -1899,10 +1899,6 @@ def _xcodeproj_legacy_attrs(
                 "//tools/params_processors:legacy_link_params_processor",
             ),
             executable = True,
-        ),
-        "_owned_extra_files": attr.label_keyed_string_dict(
-            allow_files = True,
-            default = owned_extra_files,
         ),
         "_swift_debug_settings_processor": attr.label(
             cfg = "exec",

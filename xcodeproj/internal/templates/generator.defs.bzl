@@ -3,7 +3,6 @@
 %loads%
 
 _FOCUSED_LABELS = %focused_labels%
-_OWNED_EXTRA_FILES = %owned_extra_files%
 _UNFOCUSED_LABELS = %unfocused_labels%
 
 # Transition
@@ -16,7 +15,6 @@ _aspect = xcodeproj_factory.make_aspect(
     build_mode = "%build_mode%",
     focused_labels = _FOCUSED_LABELS,
     generator_name = "%generator_name%",
-    owned_extra_files = _OWNED_EXTRA_FILES,
     unfocused_labels = _UNFOCUSED_LABELS,
     use_incremental = %use_incremental%,
 )
@@ -26,7 +24,6 @@ _aspect = xcodeproj_factory.make_aspect(
 xcodeproj = xcodeproj_factory.make_rule(
     focused_labels = _FOCUSED_LABELS,
     is_fixture = %is_fixture%,
-    owned_extra_files = _OWNED_EXTRA_FILES,
     target_transitions = _target_transitions,
     unfocused_labels = _UNFOCUSED_LABELS,
     use_incremental = %use_incremental%,
