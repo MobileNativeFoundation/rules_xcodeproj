@@ -55,7 +55,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
     build \
     "${flags[@]}" \
     --remote_download_outputs=toplevel \
-    //distribution:opt_expanded_release \
+    //distribution:release_expanded_release \
     || handle_bazel_exit
 
   repository_override="$archive_output_base/execroot/_main/$(
@@ -64,7 +64,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
       cquery \
       "${flags[@]}" \
       --remote_download_outputs=toplevel \
-      //distribution:opt_expanded_release \
+      //distribution:release_expanded_release \
       --output files \
       2>/dev/null
   )"

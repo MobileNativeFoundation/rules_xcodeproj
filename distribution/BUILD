@@ -2,9 +2,9 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load(":expanded_pkg.bzl", "expanded_pkg")
-load(":opt_wrapper.bzl", "opt_wrapper")
+load(":release_wrapper.bzl", "release_wrapper")
 
-opt_wrapper(
+release_wrapper(
     name = "release",
     dep = ":release_filegroup",
     tags = ["manual"],
@@ -86,8 +86,8 @@ expanded_pkg(
     tags = ["manual"],
 )
 
-opt_wrapper(
-    name = "opt_expanded_release",
+release_wrapper(
+    name = "release_expanded_release",
     dep = ":expanded_release",
     tags = ["manual"],
 )
