@@ -387,13 +387,13 @@ def xcodeproj(
 {target}: `archived_bundles_allowed` is deprecated and is now a no-op. It will \
 be removed in a future release. Adjust the setting of \
 `--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
-in your `.bazelrc` or `xcodeproj.bazelrc` file.
+in your `.bazelrc` or `xcodeproj.bazelrc` file.\
 """.format(target = bazel_labels.normalize_string(name)))
 
     if temporary_directory != None:
         warn("""\
 {target}: `temporary_directory` is deprecated and is now a no-op. It will be \
-removed in a future release.
+removed in a future release.\
 """.format(target = bazel_labels.normalize_string(name)))
 
     # Apply defaults
@@ -489,7 +489,7 @@ configuration alphabetically ("{default}").
     if generation_mode == "incremental":
         if build_mode == "xcode":
             fail("""
-{target}: `xcodeproj.generation_mode` = "incremental" is does not work with \
+{target}: `xcodeproj.generation_mode` = "incremental" does not work with \
 `xcodeproj.build_mode` = "xcode".
 """.format(
                 target = bazel_labels.normalize_string(name),
@@ -497,14 +497,18 @@ configuration alphabetically ("{default}").
 
         xcschemes = xcschemes or []
         if type(xcschemes) != "list":
-            fail("`xcodeproj.xcschemes` must be a list.")
+            fail("""
+{target}: `xcodeproj.xcschemes` must be a list.
+""".format(
+                target = bazel_labels.normalize_string(name),
+            ))
 
         if schemes and len(schemes) != len(xcschemes):
             warn("""\
 {target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
 ({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
 have the same number of elements. Your schemes will not be the same as when \
-`xcodeproj.generation_mode = "legacy"` is set.
+`xcodeproj.generation_mode = "legacy"` is set.\
 """.format(
                 schemes_len = len(schemes),
                 target = bazel_labels.normalize_string(name),
