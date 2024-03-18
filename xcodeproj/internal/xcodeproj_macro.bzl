@@ -430,7 +430,7 @@ removed in a future release.\
         fail("""
 {target}: `default_xcode_configuration` ("{configuration}") must be one of the \
 keys in `xcode_configurations` ({keys}), or `None` to select the first \
-configuration alphabetically ("{default}").\
+configuration alphabetically ("{default}").
 """.format(
             configuration = default_xcode_configuration,
             default = keys[0],
@@ -440,7 +440,7 @@ configuration alphabetically ("{default}").\
 
     if not top_level_targets:
         fail("""
-{target}: `top_level_targets` cannot be empty.\
+{target}: `top_level_targets` cannot be empty.
 """.format(target = bazel_labels.normalize_string(name)))
 
     actual_top_level_targets = []
@@ -489,22 +489,26 @@ configuration alphabetically ("{default}").\
     if generation_mode == "incremental":
         if build_mode == "xcode":
             fail("""
-{target}: `xcodeproj.generation_mode` = "incremental" is does not work with \
-`xcodeproj.build_mode` = "xcode".\
+{target}: `xcodeproj.generation_mode` = "incremental" does not work with \
+`xcodeproj.build_mode` = "xcode".
 """.format(
                 target = bazel_labels.normalize_string(name),
             ))
 
         xcschemes = xcschemes or []
         if type(xcschemes) != "list":
-            fail("`xcodeproj.xcschemes` must be a list.")
+            fail("""
+{target}: `xcodeproj.xcschemes` must be a list.
+""".format(
+                target = bazel_labels.normalize_string(name),
+            ))
 
         if schemes and len(schemes) != len(xcschemes):
-            warn("""\
+            warn("""
 {target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
 ({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
 have the same number of elements. Your schemes will not be the same as when \
-`xcodeproj.generation_mode = "legacy"` is set.\
+`xcodeproj.generation_mode = "legacy"` is set.
 """.format(
                 schemes_len = len(schemes),
                 target = bazel_labels.normalize_string(name),
