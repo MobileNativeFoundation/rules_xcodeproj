@@ -387,13 +387,13 @@ def xcodeproj(
 {target}: `archived_bundles_allowed` is deprecated and is now a no-op. It will \
 be removed in a future release. Adjust the setting of \
 `--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
-in your `.bazelrc` or `xcodeproj.bazelrc` file.
+in your `.bazelrc` or `xcodeproj.bazelrc` file.\
 """.format(target = bazel_labels.normalize_string(name)))
 
     if temporary_directory != None:
         warn("""\
 {target}: `temporary_directory` is deprecated and is now a no-op. It will be \
-removed in a future release.
+removed in a future release.\
 """.format(target = bazel_labels.normalize_string(name)))
 
     # Apply defaults
@@ -430,7 +430,7 @@ removed in a future release.
         fail("""
 {target}: `default_xcode_configuration` ("{configuration}") must be one of the \
 keys in `xcode_configurations` ({keys}), or `None` to select the first \
-configuration alphabetically ("{default}").
+configuration alphabetically ("{default}").\
 """.format(
             configuration = default_xcode_configuration,
             default = keys[0],
@@ -440,7 +440,7 @@ configuration alphabetically ("{default}").
 
     if not top_level_targets:
         fail("""
-{target}: `top_level_targets` cannot be empty.
+{target}: `top_level_targets` cannot be empty.\
 """.format(target = bazel_labels.normalize_string(name)))
 
     actual_top_level_targets = []
@@ -490,7 +490,7 @@ configuration alphabetically ("{default}").
         if build_mode == "xcode":
             fail("""
 {target}: `xcodeproj.generation_mode` = "incremental" is does not work with \
-`xcodeproj.build_mode` = "xcode".
+`xcodeproj.build_mode` = "xcode".\
 """.format(
                 target = bazel_labels.normalize_string(name),
             ))
@@ -504,7 +504,7 @@ configuration alphabetically ("{default}").
 {target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
 ({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
 have the same number of elements. Your schemes will not be the same as when \
-`xcodeproj.generation_mode = "legacy"` is set.
+`xcodeproj.generation_mode = "legacy"` is set.\
 """.format(
                 schemes_len = len(schemes),
                 target = bazel_labels.normalize_string(name),
