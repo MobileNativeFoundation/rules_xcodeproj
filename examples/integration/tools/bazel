@@ -64,7 +64,7 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
       cquery \
       "${flags[@]}" \
       --remote_download_outputs=toplevel \
-      //distribution:release_expanded_release \
+      //distribution:opt_expanded_release \
       --output files \
       2>/dev/null
   )"
