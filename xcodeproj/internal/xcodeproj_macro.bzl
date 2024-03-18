@@ -508,7 +508,7 @@ configuration alphabetically ("{default}").
 {target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
 ({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
 have the same number of elements. Your schemes will not be the same as when \
-`xcodeproj.generation_mode = "legacy"` is set.
+`xcodeproj.generation_mode = "legacy"` is set.\
 """.format(
                 schemes_len = len(schemes),
                 target = bazel_labels.normalize_string(name),
