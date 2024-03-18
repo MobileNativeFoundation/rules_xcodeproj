@@ -579,10 +579,7 @@ def _collect_incremental_input_files(
                     transitive = transitive_extra_files,
                 ),
                 extra_folders = extra_folders,
-                infoplist_path = (
-                    # Removing "bazel-out" prefix
-                    "$(BAZEL_OUT){}".format(infoplist.path[9:]) if infoplist else None
-                ),
+                infoplist = infoplist,
                 non_arc_srcs = memory_efficient_depset(non_arc_srcs),
                 srcs = memory_efficient_depset(srcs),
             ),

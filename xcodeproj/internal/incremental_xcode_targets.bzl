@@ -27,7 +27,7 @@ def _from_resource_bundle(bundle):
             extra_files = bundle.resources,
             extra_file_paths = EMPTY_DEPSET,
             extra_folders = bundle.folder_resources,
-            infoplist_path = None,
+            infoplist = None,
             non_arc_srcs = EMPTY_DEPSET,
             srcs = EMPTY_DEPSET,
         ),
@@ -181,7 +181,7 @@ def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
             ],
         ),
         extra_folders = dest_inputs.extra_folders,
-        infoplist_path = dest_inputs.infoplist_path,
+        infoplist = dest_inputs.infoplist,
         non_arc_srcs = mergeable_info.non_arc_srcs,
         srcs = mergeable_info.srcs,
     )
