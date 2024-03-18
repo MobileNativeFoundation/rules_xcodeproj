@@ -40,8 +40,8 @@ def _maybe(repo_rule, name, ignore_version_differences, **kwargs):
 {existing}. You may run into compatibility issues. To silence this warning, \
 pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 """.format(
-                    existing = yellow(existing),
-                    expected = green(expected),
+                    existing = yellow(existing, bold = True),
+                    expected = green(expected, bold = True),
                     repo = name,
                 ))
         return
