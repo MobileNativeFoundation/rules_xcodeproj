@@ -504,7 +504,7 @@ configuration alphabetically ("{default}").
             ))
 
         if schemes and len(schemes) != len(xcschemes):
-            warn("""
+            warn("""\
 {target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
 ({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
 have the same number of elements. Your schemes will not be the same as when \
