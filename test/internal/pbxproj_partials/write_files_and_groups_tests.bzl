@@ -263,6 +263,12 @@ def write_files_and_groups_test_suite(name):
             "an/execution/root/file",
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
+            # indentWidth
+            "",
+            # tabWidth
+            "",
+            # usesTabs
+            "",
             # filePathsFile
             _FILE_PATHS_FILE.path,
             # folderPathsFile
@@ -310,6 +316,9 @@ def write_files_and_groups_test_suite(name):
         install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
+            "indent_width": "2",
+            "tab_width": "3",
+            "uses_tabs": "0",
         },
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
@@ -330,6 +339,12 @@ def write_files_and_groups_test_suite(name):
             "an/execution/root/file",
             # selectedModelVersionsFile
             "some/selected_model_versions_file",
+            # indentWidth
+            "2",
+            # tabWidth
+            "3",
+            # usesTabs
+            "0",
             # filePathsFile
             _FILE_PATHS_FILE.path,
             # folderPathsFile

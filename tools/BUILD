@@ -75,6 +75,12 @@ _XCSCHEMES = [
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_execution_root_file",
                 # selectedModelVersionsFile
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/selected_model_versions_file",
+                # indentWidth
+                "2",
+                # tabWidth
+                "3",
+                # usesTabs
+                "1",
                 # filePathsFile
                 "/tmp/pbxproj_partials/file_paths_file",
                 # folderPathsFile
