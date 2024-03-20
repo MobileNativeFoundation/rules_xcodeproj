@@ -566,6 +566,7 @@ filegroup(
         "//" + package_name() + "/import_indexstores:release_files",
         "//" + package_name() + "/params_processors:release_files",
         "//" + package_name() + "/swiftc_stub:release_files",
+        "//" + package_name() + "/unique_directories:release_files",
         "//" + package_name() + "/xccurrentversions_parser:release_files",
     ],
     tags = ["manual"],

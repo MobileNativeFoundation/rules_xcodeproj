@@ -49,11 +49,23 @@ def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
 
+def _dirname(file):
+    return file.dirname
+
+def _generated_dirname(file):
+    if file.is_source:
+        return None
+
+    return file.dirname
+
+def _always_generated_file_path(file):
+    return "$(BAZEL_OUT){}".format(file.path[9:])
+
 def _generated_file_path(file):
     if file.is_source:
         return None
 
-    return "$(BAZEL_OUT){}".format(file.path[9:])
+    return _always_generated_file_path(file)
 
 # Partials
 
@@ -526,18 +538,54 @@ def _write_files_and_groups(
         resolved_repositories_file,
     )
 
+def _write_generated_directories_filelist(
+        *,
+        actions,
+        generator_name,
+        infoplists,
+        install_path,
+        srcs,
+        tool):
+    directories_args = actions.args()
+    directories_args.set_param_file_format("multiline")
+    directories_args.use_param_file("%s", use_always = True)
+
+    directories_args.add_all(infoplists, map_each = _dirname)
+    directories_args.add_all(srcs, map_each = _generated_dirname)
+
+    filelist = actions.declare_file(
+        "{}-generated_directories.filelist".format(generator_name),
+    )
+
+    args = actions.args()
+    args.add(filelist)
+
+    message = (
+        "Generating {} generated directories filelist".format(install_path)
+    )
+
+    actions.run(
+        arguments = [directories_args, args],
+        executable = tool,
+        outputs = [filelist],
+        mnemonic = "WriteGeneratedDirectoriesFilelist",
+        progress_message = message,
+    )
+
+    return filelist
+
 def _write_generated_xcfilelist(
         *,
         actions,
         generator_name,
-        infoplist_paths,
+        infoplists,
         srcs):
     args = actions.args()
     args.set_param_file_format("multiline")
 
     # Info.plists are tracked as build files by Xcode, so top-level targets
     # will fail the first time they are built if we don't track them
-    args.add_all(infoplist_paths)
+    args.add_all(infoplists, map_each = _always_generated_file_path)
 
     # Source files are tracked as build files by Xcode, so building targets that
     # directly use generated source files will fail the first time they are
@@ -1325,6 +1373,9 @@ cat "$@" > "{output}"
 
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
+    write_generated_directories_filelist = (
+        _write_generated_directories_filelist
+    ),
     write_generated_xcfilelist = _write_generated_xcfilelist,
     write_pbxproj_prefix = _write_pbxproj_prefix,
     write_pbxtargetdependencies = _write_pbxtargetdependencies,

@@ -55,6 +55,7 @@ fi
 
 # Resolve the inputs
 readonly src_generated_xcfilelist="$PWD/%generated_xcfilelist%"
+readonly src_generated_directories_filelist="$PWD/%generated_directories_filelist%"
 readonly src_project_pbxproj="$PWD/%project_pbxproj%"
 readonly src_xcschememanagement="$PWD/%xcschememanagement%"
 readonly src_xcschemes="$PWD/%xcschemes%/"
@@ -179,21 +180,16 @@ readonly indexbuild_exec_root="$output_base/rules_xcodeproj.noindex/indexbuild_o
 mkdir -p "$indexbuild_exec_root"
 
 # Create folder structure in bazel-out to work around Xcode red generated files
-if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
+if [[ -s "$src_generated_directories_filelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  readonly nested_build_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
-  readonly bazel_out="$nested_build_output_base/execroot/$workspace_name/bazel-out"
+  readonly nested_execution_root="$output_base/rules_xcodeproj.noindex/build_output_base/execroot/$workspace_name"
 
   # Create directory structure in bazel-out
-  cd "$bazel_out"
-  sed 's|^\$(BAZEL_OUT)\/\(.*\)\/[^\/]*$|\1|' \
-    "$dest/rules_xcodeproj/generated.xcfilelist" \
-    | uniq \
-    | while IFS= read -r dir
-  do
+  cd "$nested_execution_root"
+  while IFS= read -r dir; do
     mkdir -p "$dir"
-  done
+  done < "$src_generated_directories_filelist"
 fi
 
 echo 'Updated project at "%output_path%"'

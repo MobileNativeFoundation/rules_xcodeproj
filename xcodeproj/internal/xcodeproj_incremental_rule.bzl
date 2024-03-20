@@ -129,7 +129,7 @@ def _collect_files(
     all_targets = xcode_targets.values() + resource_bundle_xcode_targets
 
     compile_stub_needed = False
-    infoplist_paths = []
+    infoplists = []
     transitive_file_paths = []
     transitive_files = [unsupported_extra_files]
     transitive_folders = []
@@ -147,9 +147,9 @@ def _collect_files(
             if extra_files:
                 transitive_files.append(extra_files)
 
-        infoplist_path = xcode_target.inputs.infoplist_path
-        if infoplist_path:
-            infoplist_paths.append(infoplist_path)
+        infoplist = xcode_target.inputs.infoplist
+        if infoplist:
+            infoplists.append(infoplist)
 
         if xcode_target.compile_stub_needed:
             compile_stub_needed = True
@@ -169,7 +169,7 @@ def _collect_files(
         file_paths,
         files,
         folders,
-        infoplist_paths,
+        infoplists,
         srcs,
     )
 
@@ -244,6 +244,7 @@ def _write_installer(
         bazel_integration_files,
         config,
         contents_xcworkspacedata,
+        generated_directories_filelist,
         generated_xcfilelist,
         install_path,
         is_fixture,
@@ -266,6 +267,9 @@ def _write_installer(
             ),
             "%config%": config,
             "%contents_xcworkspacedata%": contents_xcworkspacedata.short_path,
+            "%generated_directories_filelist%": (
+                generated_directories_filelist.short_path
+            ),
             "%generated_xcfilelist%": generated_xcfilelist.short_path,
             "%is_fixture%": "1" if is_fixture else "0",
             "%output_path%": install_path,
@@ -277,6 +281,7 @@ def _write_installer(
 
     runfiles = bazel_integration_files + [
         contents_xcworkspacedata,
+        generated_directories_filelist,
         generated_xcfilelist,
         project_pbxproj,
         xcschememanagement,
@@ -309,6 +314,7 @@ def _write_project_contents(
         resource_bundle_xcode_targets,
         selected_model_versions_generator,
         target_name_mode,
+        unique_directories,
         unowned_extra_files,
         unsupported_extra_files,
         workspace_directory,
@@ -341,7 +347,7 @@ def _write_project_contents(
         file_paths,
         files,
         folders,
-        infoplist_paths,
+        infoplists,
         srcs,
     ) = _collect_files(
         owned_extra_files = owned_extra_files,
@@ -445,15 +451,26 @@ def _write_project_contents(
 
     # `.xcfilelist`s
 
+    (
+        generated_directories_filelist
+    ) = pbxproj_partials.write_generated_directories_filelist(
+        actions = actions,
+        generator_name = name,
+        infoplists = infoplists,
+        install_path = install_path,
+        srcs = srcs,
+        tool = unique_directories,
+    )
     generated_xcfilelist = pbxproj_partials.write_generated_xcfilelist(
         actions = actions,
         generator_name = name,
-        infoplist_paths = infoplist_paths,
+        infoplists = infoplists,
         srcs = srcs,
     )
 
     return (
         project_pbxproj,
+        generated_directories_filelist,
         generated_xcfilelist,
         consolidation_maps.keys(),
         target_ids_list,
@@ -588,6 +605,7 @@ After removing unfocused targets, no targets remain. Please check your \
 
     (
         project_pbxproj,
+        generated_directories_filelist,
         generated_xcfilelist,
         consolidation_maps,
         target_ids_list,
@@ -637,6 +655,7 @@ After removing unfocused targets, no targets remain. Please check your \
             ctx.executable._selected_model_versions_generator
         ),
         target_name_mode = ctx.attr.target_name_mode,
+        unique_directories = ctx.executable._unique_directories,
         unowned_extra_files = ctx.files.unowned_extra_files,
         unsupported_extra_files = inputs.unsupported_extra_files,
         workspace_directory = workspace_directory,
@@ -697,6 +716,7 @@ After removing unfocused targets, no targets remain. Please check your \
         bazel_integration_files = bazel_integration_files,
         config = config,
         contents_xcworkspacedata = ctx.file._contents_xcworkspacedata,
+        generated_directories_filelist = generated_directories_filelist,
         generated_xcfilelist = generated_xcfilelist,
         install_path = install_path,
         is_fixture = is_fixture,
@@ -861,6 +881,11 @@ def _xcodeproj_incremental_attrs(
             default = Label(
                 "//tools/generators/swift_debug_settings:universal_swift_debug_settings",
             ),
+            executable = True,
+        ),
+        "_unique_directories": attr.label(
+            cfg = "exec",
+            default = Label("//tools/unique_directories"),
             executable = True,
         ),
         "_xcode_config": attr.label(
