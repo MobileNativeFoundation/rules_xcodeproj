@@ -33,6 +33,9 @@ struct ElementCreator {
 
         let mainGroup = environment.createMainGroupContent(
             childIdentifiers: rootElements.elements.map(\.object.identifier),
+            indentWidth: arguments.indentWidth,
+            tabWidth: arguments.tabWidth,
+            usesTabs: arguments.usesTabs,
             workspace: arguments.workspace
         )
 

@@ -465,6 +465,15 @@ def _write_files_and_groups(
     # selectedModelVersionsFile
     args.add(selected_model_versions_file)
 
+    # indentWidth
+    args.add(project_options.get("indent_width", EMPTY_STRING))
+
+    # tabWidth
+    args.add(project_options.get("tab_width", EMPTY_STRING))
+
+    # usesTabs
+    args.add(project_options.get("uses_tabs", EMPTY_STRING))
+
     # filePathsFile
     args.add(file_paths_file)
 

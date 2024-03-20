@@ -29,5 +29,17 @@ Path to a file that contains a JSON representation of \
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
         var selectedModelVersionsFile: URL
+
+        @Argument(help: "Custom indent width for the project.")
+        var indentWidth: UInt?
+
+        @Argument(help: "Custom tab width for the project.")
+        var tabWidth: UInt?
+
+        @Argument(
+            help: "If the project uses tabs instead of spaces.",
+            transform: { $0 == "" ? nil : $0 == "1" }
+        )
+        var usesTabs: Bool?
     }
 }
