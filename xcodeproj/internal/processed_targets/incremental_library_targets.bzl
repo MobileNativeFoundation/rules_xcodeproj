@@ -115,6 +115,7 @@ def _process_incremental_library_target(
         linker_inputs = linker_inputs,
         platform = platform,
         rule_attr = rule_attr,
+        swift_info = swift_info,
         swift_proto_info = (
             target[SwiftProtoInfo] if SwiftProtoInfo in target else None
         ),
