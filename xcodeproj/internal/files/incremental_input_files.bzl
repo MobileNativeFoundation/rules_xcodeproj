@@ -693,6 +693,7 @@ def _collect_unsupported_input_files(
         attrs = attrs,
         cc_info = None,
         collect_uncategorized = (
+            include_extra_files and
             automatic_target_info.collect_uncategorized_files
         ),
         extra_files = extra_files,
