@@ -511,13 +511,10 @@ def _make_non_skipped_target_xcodeprojinfo(
         ))
     ]
 
-    generate_target = (
-        automatic_target_info.should_generate and
-        _is_focused(
-            focused_labels = aspect_attr._focused_labels,
-            label = automatic_target_info.label,
-            unfocused_labels = aspect_attr._unfocused_labels,
-        )
+    is_focused = _is_focused(
+        focused_labels = aspect_attr._focused_labels,
+        label = automatic_target_info.label,
+        unfocused_labels = aspect_attr._unfocused_labels,
     )
 
     if not automatic_target_info.is_supported:
@@ -526,7 +523,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            is_focused = generate_target,
+            is_focused = is_focused,
             rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
@@ -544,7 +541,9 @@ def _make_non_skipped_target_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            generate_target = generate_target,
+            generate_target = (
+                automatic_target_info.should_generate and is_focused
+            ),
             rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
@@ -554,7 +553,9 @@ def _make_non_skipped_target_xcodeprojinfo(
             ctx = ctx,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            generate_target = generate_target,
+            generate_target = (
+                automatic_target_info.should_generate and is_focused
+            ),
             target = target,
             transitive_infos = valid_transitive_infos,
             rule_attr = rule_attr,
