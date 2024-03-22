@@ -71,8 +71,11 @@ return an `XcodeProjInfo` provider instance instead.
 > stabilizing it.
 """,
     fields = {
+        # TODO: Remove when dropping legacy generation mode
         "alternate_icons": """\
 An attribute name (or `None`) to collect the application alternate icons.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "app_icons": """\
 An attribute name (or `None`) to collect the application icons.
@@ -87,10 +90,14 @@ An attribute name (or `None`) to collect the bundle id string from.
         # TODO: Remove when dropping legacy generation mode
         "codesign_inputs": """\
 An attribute name (or `None`) to collect the `codesign_inputs` `list` from.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         # TODO: Remove when dropping legacy generation mode
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "collect_uncategorized_files": """\
 Whether to collect files from uncategorized attributes.
@@ -107,21 +114,36 @@ An attribute name (or `None`) to collect `File`s from for the
 A `dict` representing the environment variables that this target should execute
 or test with.
 """,
+        # TODO: Remove when dropping legacy generation mode
         "exported_symbols_lists": """\
 A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
+        "extra_files": """\
+A sequence of attribute names to collect `File`s from to include in the project,
+which don't fall under other categorized attributes.
+
+This is only used when `xcodeproj.generation_mode = "incremental"` is set.
+""",
+        # TODO: Remove when dropping legacy generation mode
         "hdrs": """\
 A sequence of attribute names to collect `File`s from for `hdrs`-like
 attributes.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "implementation_deps": """\
 A sequence of attribute names to collect `Target`s from for
 `implementation_deps`-like attributes.
 """,
+        # TODO: Remove when dropping legacy generation mode
         "infoplists": """\
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "is_supported": """\
 Whether an Xcode target can be generated for this target. Even if this value is
@@ -138,9 +160,12 @@ targets), you might want to rename the target to the skipped target's label.
 
 This is only used when `xcodeproj.generation_mode = "incremental"` is set.
 """,
+        # TODO: Remove when dropping legacy generation mode
         "launchdplists": """\
 A sequence of attribute names to collect `File`s from for the
 `launchdplists`-like attributes.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "link_mnemonics": """\
 A sequence of mnemonic (action) names to gather link parameters. The first
@@ -153,6 +178,8 @@ attributes.
         "pch": """\
 An attribute name (or `None`) to collect `File`s from for the `pch`-like
 attribute.
+
+This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
@@ -201,6 +228,29 @@ _INFOPLISTS_ATTRS = ["infoplists"]
 _LAUNCHDPLISTS_ATTRS = ["launchdplists"]
 _NON_ARC_SRCS_ATTRS = ["non_arc_srcs"]
 _SRCS_ATTRS = ["srcs"]
+
+_BUNDLE_EXTRA_FILES_ATTRS = [
+    "alternate_icons",
+    "exported_symbols_lists",
+    "hdrs",
+    "infoplists",
+    "launchdplists",
+]
+_COMMAND_LINE_EXTRA_FILES_ATTRS = [
+    "exported_symbols_lists",
+    "launchdplists",
+    "infoplists",
+]
+_OBJC_LIBRARY_EXTRA_FILES_ATTRS = [
+    "pch",
+]
+_RESOURCE_BUNDLE_EXTRA_FILES_ATTRS = [
+    "infoplists",
+]
+_TEST_EXTRA_FILES_ATTRS = [
+    "exported_symbols_lists",
+    "infoplists",
+]
 
 _LINK_MNEMONICS = ["ObjcLink", "CppLink"]
 
@@ -311,6 +361,7 @@ def calculate_automatic_target_info(
     deps = _DEPS_ATTRS
     entitlements = None
     env = None
+    extra_files = EMPTY_LIST
     exported_symbols_lists = EMPTY_LIST
     hdrs = EMPTY_LIST
     implementation_deps = EMPTY_LIST
@@ -333,6 +384,7 @@ def calculate_automatic_target_info(
             _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
     elif rule_kind == "objc_library":
+        extra_files = _OBJC_LIBRARY_EXTRA_FILES_ATTRS
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         non_arc_srcs = _NON_ARC_SRCS_ATTRS
         pch = "pch"
@@ -358,6 +410,7 @@ def calculate_automatic_target_info(
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
+        extra_files = _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS
         infoplists = _INFOPLISTS_ATTRS
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif rule_kind == "apple_resource_group":
@@ -369,6 +422,7 @@ def calculate_automatic_target_info(
         codesignopts = "codesignopts"
         entitlements = "entitlements"
         env = "env"
+        extra_files = _TEST_EXTRA_FILES_ATTRS
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
         is_top_level = True
@@ -392,6 +446,7 @@ def calculate_automatic_target_info(
         codesignopts = "codesignopts"
         deps = _BUNDLE_DEPS_ATTRS
         entitlements = "entitlements"
+        extra_files = _BUNDLE_EXTRA_FILES_ATTRS
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         hdrs = _HDRS_DEPS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
@@ -405,6 +460,7 @@ def calculate_automatic_target_info(
     elif rule_kind == "macos_command_line_application":
         codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
+        extra_files = _COMMAND_LINE_EXTRA_FILES_ATTRS
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
         is_top_level = True
@@ -463,6 +519,7 @@ def calculate_automatic_target_info(
         deps = deps,
         entitlements = entitlements,
         env = env,
+        extra_files = extra_files,
         exported_symbols_lists = exported_symbols_lists,
         hdrs = hdrs,
         infoplists = infoplists,
