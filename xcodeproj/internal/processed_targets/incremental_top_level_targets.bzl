@@ -549,6 +549,8 @@ def _process_focused_top_level_target(
         rule_attr = rule_attr,
     )
 
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+
     (target_inputs, provider_inputs) = input_files.collect(
         ctx = ctx,
         attrs = attrs,
@@ -565,6 +567,7 @@ def _process_focused_top_level_target(
             target[AppleResourceInfo] if is_bundle and AppleResourceInfo in target else None
         ),
         rule_attr = rule_attr,
+        swift_info = swift_info,
         swift_proto_info = (
             target[SwiftProtoInfo] if SwiftProtoInfo in target else None
         ),
@@ -722,8 +725,6 @@ def _process_focused_top_level_target(
             for info in top_level_infos
         ],
     )
-
-    swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     if apple_common.AppleDebugOutputs in target:
         debug_outputs = target[apple_common.AppleDebugOutputs]

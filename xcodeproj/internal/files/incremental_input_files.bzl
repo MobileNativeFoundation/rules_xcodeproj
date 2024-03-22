@@ -134,7 +134,8 @@ def _process_files_and_deps(
         file_handlers,
         rule_attr,
         rule_file,
-        rule_files):
+        rule_files,
+        swift_info):
     categorized_files = {}
     uncategorized = []
     xccurrentversions = []
@@ -221,23 +222,34 @@ def _process_files_and_deps(
                 _handle_dep(list_dep)
 
     if cc_info:
+        exclude_headers = {file: None for file in categorized_files}
+
+        if swift_info:
+            for module in swift_info.direct_modules:
+                clang = module.clang
+                if not clang:
+                    continue
+                for header in clang.compilation_context.direct_public_headers:
+                    # Exclude Swift generated headers
+                    exclude_headers[header] = None
+
         compilation_context = cc_info.compilation_context
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_private_headers,
-                exclude_headers = categorized_files,
+                exclude_headers = exclude_headers,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_public_headers,
-                exclude_headers = categorized_files,
+                exclude_headers = exclude_headers,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_textual_headers,
-                exclude_headers = categorized_files,
+                exclude_headers = exclude_headers,
             ),
         )
 
@@ -280,6 +292,7 @@ def _collect_incremental_input_files(
         platform,
         resource_info = None,
         rule_attr,
+        swift_info,
         swift_proto_info,
         transitive_infos):
     """Collects all of the inputs of a target.
@@ -306,6 +319,8 @@ def _collect_incremental_input_files(
         resource_info: If the target is a bundle and has the `AppleResourceInfo`
             provider, this is the provider.
         rule_attr: `ctx.rule.attr`.
+        swift_info: The `SwiftInfo` provider for the target, or `None` if it
+            doesn't have one.
         swift_proto_info: The `SwiftProtoInfo` provider for the target, or
             `None` if it doesn't have one.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -461,6 +476,7 @@ def _collect_incremental_input_files(
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
+        swift_info = swift_info,
     )
 
     product_framework_files = memory_efficient_depset(
@@ -701,6 +717,7 @@ def _collect_unsupported_input_files(
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
+        swift_info = None,
     )
 
     if is_resource_bundle:
