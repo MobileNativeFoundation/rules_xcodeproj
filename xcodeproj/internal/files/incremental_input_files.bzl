@@ -423,8 +423,8 @@ def _collect_incremental_input_files(
 
     file_handlers = {}
 
-    for attr in automatic_target_info.extra_files:
-        file_handlers[attr] = _handle_extrafiles_file
+    # for attr in automatic_target_info.extra_files:
+    #     file_handlers[attr] = _handle_extrafiles_file
     for attr in automatic_target_info.srcs:
         file_handlers[attr] = _handle_srcs_file
     for attr in automatic_target_info.non_arc_srcs:
@@ -678,8 +678,8 @@ def _collect_unsupported_input_files(
         file_handlers[attr] = _handle_extrafiles_file
     for attr in automatic_target_info.non_arc_srcs:
         file_handlers[attr] = _handle_extrafiles_file
-    for attr in automatic_target_info.extra_files:
-        file_handlers[attr] = _handle_extrafiles_file
+    # for attr in automatic_target_info.extra_files:
+    #     file_handlers[attr] = _handle_extrafiles_file
 
     (
         transitive_extra_files,
