@@ -310,7 +310,7 @@ _OBJC_LIBRARY_XCODE_TARGETS = {
     "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
     "runtime_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
-_PLUGINS_XCODE_TARGETS = {
+_SWIFT_BINARY_OR_TEST_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "plugins": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
 }
@@ -333,6 +333,198 @@ _DEFAULT_XCODE_TARGETS = {
     target_type.compile: _DEPS_XCODE_TARGETS,
     None: {"deps": NONE_LIST},
 }
+
+def _make_automatic_target_info(
+        *,
+        alternate_icons = None,
+        app_icons = None,
+        args = None,
+        bundle_id = None,
+        codesign_inputs = None,
+        codesignopts = None,
+        collect_uncategorized_files = False,
+        deps = _DEPS_ATTRS,
+        entitlements = None,
+        env = None,
+        extra_files = EMPTY_LIST,
+        exported_symbols_lists = EMPTY_LIST,
+        hdrs = EMPTY_LIST,
+        infoplists = EMPTY_LIST,
+        is_supported = True,
+        is_top_level = False,
+        implementation_deps = EMPTY_LIST,
+        label,
+        launchdplists = EMPTY_LIST,
+        link_mnemonics = _LINK_MNEMONICS,
+        non_arc_srcs = EMPTY_LIST,
+        pch = None,
+        provisioning_profile = None,
+        should_generate = True,
+        srcs = EMPTY_LIST,
+        target_type,
+        xcode_targets):
+    return XcodeProjAutomaticTargetProcessingInfo(
+        alternate_icons = alternate_icons,
+        app_icons = app_icons,
+        args = args,
+        bundle_id = bundle_id,
+        codesign_inputs = codesign_inputs,
+        codesignopts = codesignopts,
+        collect_uncategorized_files = collect_uncategorized_files,
+        deps = deps,
+        entitlements = entitlements,
+        env = env,
+        extra_files = extra_files,
+        exported_symbols_lists = exported_symbols_lists,
+        hdrs = hdrs,
+        infoplists = infoplists,
+        is_supported = is_supported,
+        is_top_level = is_top_level,
+        implementation_deps = implementation_deps,
+        label = label,
+        launchdplists = launchdplists,
+        link_mnemonics = link_mnemonics,
+        non_arc_srcs = non_arc_srcs,
+        pch = pch,
+        provisioning_profile = provisioning_profile,
+        should_generate = should_generate,
+        srcs = srcs,
+        target_type = target_type,
+        xcode_targets = xcode_targets,
+    )
+
+def _handle_cc_library(target, *, rule_files, target_type):
+    # FIXME: Needs to check after filtering out headers
+    is_supported = bool(target.files) and rule_files.srcs
+
+    # Xcode doesn't support some source types that Bazel supports
+    if is_supported:
+        for file in rule_files.srcs:
+            if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
+                is_supported = False
+                break
+
+    return _make_automatic_target_info(
+        extra_files = _CC_LIBRARY_EXTRA_FILES_ATTRS,
+        is_supported = is_supported,
+        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS,
+        label = target.label,
+        srcs = _SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _CC_LIBRARY_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_cmake(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        label = target.label,
+        is_supported = False,
+        srcs = _CMAKE_SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _DEFAULT_XCODE_TARGETS[target_type],
+    )
+
+# buildifier: disable=unused-variable
+def _handle_command_line_application(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        codesign_inputs = "codesign_inputs",
+        codesignopts = "codesignopts",
+        extra_files = _COMMAND_LINE_EXTRA_FILES_ATTRS,
+        exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS,
+        infoplists = _INFOPLISTS_ATTRS,
+        is_top_level = True,
+        label = target.label,
+        launchdplists = _LAUNCHDPLISTS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _DEPS_XCODE_TARGETS,
+    )
+
+def _handle_objc_library(target, *, rule_files, target_type):
+    # FIXME: Needs to check after filtering out headers
+    is_supported = (bool(target.files) and
+                    (rule_files.srcs or rule_files.non_arc_srcs))
+
+    # Xcode doesn't support some source types that Bazel supports
+    if is_supported:
+        for file in rule_files.srcs:
+            if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
+                is_supported = False
+                break
+    if is_supported:
+        for file in rule_files.non_arc_srcs:
+            if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
+                is_supported = False
+                break
+
+    return _make_automatic_target_info(
+        extra_files = _OBJC_LIBRARY_EXTRA_FILES_ATTRS,
+        is_supported = is_supported,
+        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS,
+        label = target.label,
+        non_arc_srcs = _NON_ARC_SRCS_ATTRS,
+        pch = "pch",
+        srcs = _SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_resource_group(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        is_supported = False,
+        label = target.label,
+        target_type = target_type,
+        xcode_targets = _EMPTY_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_swift_binary_or_test(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS,
+        label = target.label,
+        is_top_level = True,
+        srcs = _SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _SWIFT_BINARY_OR_TEST_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_swift_grpc_library(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        label = target.label,
+        target_type = target_type,
+        xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_swift_library(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS,
+        label = target.label,
+        srcs = _SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_swift_proto_library(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        label = target.label,
+        srcs = _SRCS_ATTRS,
+        target_type = target_type,
+        xcode_targets = _DEPS_XCODE_TARGETS,
+    )
+
+# buildifier: disable=unused-variable
+def _handle_universal_binary(target, *, rule_files, target_type):
+    return _make_automatic_target_info(
+        deps = _BINARY_DEPS_ATTRS,
+        is_supported = False,
+        is_top_level = True,
+        label = target.label,
+        target_type = target_type,
+        xcode_targets = _BINARY_XCODE_TARGETS,
+    )
 
 def calculate_automatic_target_info(
         *,
@@ -387,36 +579,38 @@ def calculate_automatic_target_info(
     pch = None
     provisioning_profile = None
 
-    if rule_kind == "cc_library":
-        extra_files = _CC_LIBRARY_EXTRA_FILES_ATTRS
-        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
-        xcode_targets = _CC_LIBRARY_XCODE_TARGETS
+    rule_files = ctx.rule.files
 
-        is_supported = (
-            bool(target.files) and
-            _has_values_in(_SRCS_ATTRS, attr = rule_attr)
+    if rule_kind == "cc_library":
+        return _handle_cc_library(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
         )
     elif rule_kind == "objc_library":
-        extra_files = _OBJC_LIBRARY_EXTRA_FILES_ATTRS
-        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
-        non_arc_srcs = _NON_ARC_SRCS_ATTRS
-        pch = "pch"
-        xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
-
-        is_supported = (
-            bool(target.files) and (
-                _has_values_in(_SRCS_ATTRS, attr = rule_attr) or
-                _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
-            )
+        return _handle_objc_library(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
         )
     elif rule_kind == "swift_library":
-        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
-        xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
+        return _handle_swift_library(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif rule_kind == "swift_grpc_library":
-        srcs = EMPTY_LIST
-        xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS
+        return _handle_swift_grpc_library(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif rule_kind == "swift_proto_library":
-        xcode_targets = _DEPS_XCODE_TARGETS
+        return _handle_swift_proto_library(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif (AppleResourceBundleInfo in target and
           rule_kind != "apple_bundle_import"):
         is_supported = False
@@ -428,8 +622,11 @@ def calculate_automatic_target_info(
         infoplists = _INFOPLISTS_ATTRS
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif rule_kind == "apple_resource_group":
-        is_supported = False
-        xcode_targets = _EMPTY_XCODE_TARGETS
+        return _handle_resource_group(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif _is_test_target(target):
         args = "args"
         codesign_inputs = "codesign_inputs"
@@ -472,24 +669,23 @@ def calculate_automatic_target_info(
         collect_uncategorized_files = rule_kind != "apple_bundle_import"
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif rule_kind == "macos_command_line_application":
-        codesign_inputs = "codesign_inputs"
-        codesignopts = "codesignopts"
-        extra_files = _COMMAND_LINE_EXTRA_FILES_ATTRS
-        exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
-        infoplists = _INFOPLISTS_ATTRS
-        is_top_level = True
-        launchdplists = _LAUNCHDPLISTS_ATTRS
-        xcode_targets = _DEPS_XCODE_TARGETS
+        return _handle_command_line_application(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif rule_kind in _SWIFT_BINARY_RULES:
-        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
-        srcs = _SRCS_ATTRS
-        is_top_level = True
-        xcode_targets = _PLUGINS_XCODE_TARGETS
+        return _handle_swift_binary_or_test(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif rule_kind == "apple_universal_binary":
-        deps = _BINARY_DEPS_ATTRS
-        is_supported = False
-        is_top_level = True
-        xcode_targets = _BINARY_XCODE_TARGETS
+        return _handle_universal_binary(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     elif AppleFrameworkImportInfo in target:
         if (getattr(rule_attr, "bundle_only", False) and
             build_mode == "xcode"):
@@ -500,9 +696,11 @@ def calculate_automatic_target_info(
         is_supported = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     elif rule_kind == "cmake":
-        is_supported = False
-        srcs = _CMAKE_SRCS_ATTRS
-        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
+        return _handle_cmake(
+            target,
+            rule_files = rule_files,
+            target_type = this_target_type,
+        )
     else:
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
@@ -516,14 +714,7 @@ def calculate_automatic_target_info(
 
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
 
-    # Xcode doesn't support some source types that Bazel supports
-    for attr in srcs:
-        for file in getattr(ctx.rule.files, attr, []):
-            if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
-                is_supported = False
-                break
-
-    return XcodeProjAutomaticTargetProcessingInfo(
+    return _make_automatic_target_info(
         alternate_icons = alternate_icons,
         app_icons = app_icons,
         args = args,
@@ -547,7 +738,6 @@ def calculate_automatic_target_info(
         non_arc_srcs = non_arc_srcs,
         pch = pch,
         provisioning_profile = provisioning_profile,
-        should_generate = True,
         srcs = srcs,
         target_type = this_target_type,
         xcode_targets = xcode_targets,
