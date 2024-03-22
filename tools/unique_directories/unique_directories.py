@@ -26,8 +26,11 @@ def _main(input_filelist, output_filelist):
     _trie_to_list(trie, [], directories)
 
     with open(output_filelist, 'w', encoding='utf-8') as fp:
-        fp.write("\n".join(directories))
-        fp.write("\n")
+        if directories:
+            fp.write("\n".join(directories))
+            fp.write("\n")
+        else:
+            fp.write("")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
