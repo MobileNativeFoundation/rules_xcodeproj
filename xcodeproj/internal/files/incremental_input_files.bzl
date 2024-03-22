@@ -435,23 +435,11 @@ def _collect_incremental_input_files(
         for attr in automatic_target_info.non_arc_srcs:
             file_handlers[attr] = _handle_extrafiles_file
 
-    if automatic_target_info.pch:
-        file_handlers[automatic_target_info.pch] = _handle_extrafiles_file
-    for attr in automatic_target_info.hdrs:
-        file_handlers[attr] = _handle_extrafiles_file
-    for attr in automatic_target_info.infoplists:
-        file_handlers[attr] = _handle_extrafiles_file
-    for attr in automatic_target_info.launchdplists:
-        file_handlers[attr] = _handle_extrafiles_file
-    if automatic_target_info.alternate_icons:
-        file_handlers[automatic_target_info.alternate_icons] = (
-            _handle_extrafiles_file
-        )
     if automatic_target_info.entitlements:
         file_handlers[automatic_target_info.entitlements] = (
             _handle_entitlements_file
         )
-    for attr in automatic_target_info.exported_symbols_lists:
+    for attr in automatic_target_info.extra_files:
         file_handlers[attr] = _handle_extrafiles_file
 
     if swift_proto_info:
@@ -696,7 +684,7 @@ def _collect_unsupported_input_files(
         file_handlers[attr] = _handle_extrafiles_file
     for attr in automatic_target_info.non_arc_srcs:
         file_handlers[attr] = _handle_extrafiles_file
-    for attr in automatic_target_info.hdrs:
+    for attr in automatic_target_info.extra_files:
         file_handlers[attr] = _handle_extrafiles_file
 
     (
