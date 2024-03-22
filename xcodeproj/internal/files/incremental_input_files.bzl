@@ -285,7 +285,6 @@ def _collect_incremental_input_files(
         avoid_deps = EMPTY_LIST,
         cc_info,
         framework_files = EMPTY_DEPSET,
-        id,
         infoplist = None,
         label,
         linker_inputs,
@@ -309,7 +308,6 @@ def _collect_incremental_input_files(
         framework_files: A `depset` of framework files from
             `AppleDynamicFramework.framework_files`, if the target has the
             `AppleDynamicFramework` provider.
-        id: A unique identifier for the target.
         infoplist: A `File` for a rules_xcodeproj modified Info.plist file, or
             None for non-top-level targets.
         label: The effective label of the target.
