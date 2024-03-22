@@ -529,16 +529,13 @@ def _process_focused_top_level_target(
         rule_attr = rule_attr,
     )
 
-    infoplists_attrs = automatic_target_info.infoplists
-    if (infoplists_attrs and bundle_info and
+    if (infoplist and bundle_info and
         bundle_info.bundle_extension == ".appex"):
         extension_infoplists = [
             struct(
                 id = id,
                 infoplist = infoplist,
-            )
-            for attr in infoplists_attrs
-            for infoplist in getattr(ctx.rule.files, attr, [])
+            ),
         ]
     else:
         extension_infoplists = None
