@@ -499,9 +499,6 @@ def _make_non_skipped_target_xcodeprojinfo(
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
-    if not _should_create_provider(rule_kind = rule_kind, target = target):
-        return None
-
     valid_transitive_infos = [
         info
         for attr, info in transitive_infos
@@ -660,9 +657,11 @@ def _make_non_skipped_target_xcodeprojinfo(
         ),
     )
 
-# Just a slight optimization to not process things we know don't need to have
-# our provider
-def _should_create_provider(*, rule_kind, target):
+def _should_create_provider(*, bin_dir_path, rule_kind, target):
+    if "-exec-" in bin_dir_path:
+        # We don't want to include "tools" (exec configuration) targets
+        return False
+
     if rule_kind in _INTERNAL_RULE_KINDS:
         return False
     if BuildSettingInfo in target:
@@ -716,6 +715,13 @@ def _make_xcodeprojinfo(
         An `XcodeProjInfo` populated with information from `target` and
         `transitive_infos`.
     """
+    if not _should_create_provider(
+            bin_dir_path = ctx.bin_dir.path,
+            rule_kind = rule_kind,
+            target = target
+        ):
+        return None
+
     automatic_target_info = calculate_automatic_target_info(
         ctx = ctx,
         rule_attr = rule_attr,
@@ -747,9 +753,6 @@ def _make_xcodeprojinfo(
             target = target,
             transitive_infos = transitive_infos,
         )
-
-    if not info_fields:
-        return None
 
     return XcodeProjInfo(
         **info_fields
