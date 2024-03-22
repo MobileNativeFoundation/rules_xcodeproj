@@ -249,6 +249,7 @@ _COMMAND_LINE_EXTRA_FILES_ATTRS = [
     "infoplists",
 ]
 _OBJC_LIBRARY_EXTRA_FILES_ATTRS = [
+    "module_map",
     "pch",
 ]
 _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS = [
