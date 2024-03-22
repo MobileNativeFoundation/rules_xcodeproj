@@ -716,10 +716,10 @@ def _make_xcodeprojinfo(
         `transitive_infos`.
     """
     if not _should_create_provider(
-            bin_dir_path = ctx.bin_dir.path,
-            rule_kind = rule_kind,
-            target = target
-        ):
+        bin_dir_path = ctx.bin_dir.path,
+        rule_kind = rule_kind,
+        target = target,
+    ):
         return None
 
     automatic_target_info = calculate_automatic_target_info(
