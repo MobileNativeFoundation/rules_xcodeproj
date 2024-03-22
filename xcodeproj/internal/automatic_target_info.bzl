@@ -332,7 +332,6 @@ def calculate_automatic_target_info(
             bool(target.files) and
             _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
-        collect_uncategorized_files = not is_supported
     elif rule_kind == "objc_library":
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         non_arc_srcs = _NON_ARC_SRCS_ATTRS
@@ -345,7 +344,6 @@ def calculate_automatic_target_info(
                 _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
             )
         )
-        collect_uncategorized_files = not is_supported
     elif rule_kind == "swift_library":
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_grpc_library":
@@ -429,7 +427,6 @@ def calculate_automatic_target_info(
 """.format(target.label))
 
         is_supported = False
-        collect_uncategorized_files = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     elif rule_kind == "cmake":
         is_supported = False
