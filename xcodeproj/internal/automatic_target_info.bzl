@@ -247,6 +247,9 @@ _OBJC_LIBRARY_EXTRA_FILES_ATTRS = [
 _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS = [
     "infoplists",
 ]
+_SWIFT_COMPILATION_EXTRA_FILES_ATTRS = [
+    "swiftc_inputs",
+]
 _TEST_EXTRA_FILES_ATTRS = [
     "exported_symbols_lists",
     "infoplists",
@@ -397,6 +400,7 @@ def calculate_automatic_target_info(
             )
         )
     elif rule_kind == "swift_library":
+        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_grpc_library":
         srcs = EMPTY_LIST
@@ -467,6 +471,7 @@ def calculate_automatic_target_info(
         launchdplists = _LAUNCHDPLISTS_ATTRS
         xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind in _SWIFT_BINARY_RULES:
+        extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
         srcs = _SRCS_ATTRS
         is_top_level = True
         xcode_targets = _PLUGINS_XCODE_TARGETS
