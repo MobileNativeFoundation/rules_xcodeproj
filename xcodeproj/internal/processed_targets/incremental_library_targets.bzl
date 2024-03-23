@@ -110,7 +110,6 @@ def _process_incremental_library_target(
         attrs = attrs,
         automatic_target_info = automatic_target_info,
         cc_info = cc_info,
-        id = id,
         label = label,
         linker_inputs = linker_inputs,
         platform = platform,

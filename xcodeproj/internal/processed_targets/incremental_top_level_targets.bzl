@@ -555,7 +555,6 @@ def _process_focused_top_level_target(
         avoid_deps = avoid_deps,
         cc_info = cc_info,
         framework_files = framework_files,
-        id = id,
         infoplist = infoplist,
         label = label,
         linker_inputs = linker_inputs,
