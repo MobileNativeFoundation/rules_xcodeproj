@@ -230,12 +230,17 @@ _NON_ARC_SRCS_ATTRS = ["non_arc_srcs"]
 _SRCS_ATTRS = ["srcs"]
 
 _BUNDLE_EXTRA_FILES_ATTRS = [
+    "additional_linker_inputs",
     "alternate_icons",
     "codesign_inputs",
     "exported_symbols_lists",
     "hdrs",
     "infoplists",
     "launchdplists",
+]
+_CC_LIBRARY_EXTRA_FILES_ATTRS = [
+    "additional_compiler_inputs",
+    "additional_linker_inputs",
 ]
 _COMMAND_LINE_EXTRA_FILES_ATTRS = [
     "codesign_inputs",
@@ -382,6 +387,7 @@ def calculate_automatic_target_info(
     provisioning_profile = None
 
     if rule_kind == "cc_library":
+        extra_files = _CC_LIBRARY_EXTRA_FILES_ATTRS
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         xcode_targets = _CC_LIBRARY_XCODE_TARGETS
 
