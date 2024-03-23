@@ -222,8 +222,6 @@ def _process_files_and_deps(
                 _handle_dep(list_dep)
 
     if cc_info:
-        exclude_headers = {file: None for file in categorized_files}
-
         if swift_info:
             for module in swift_info.direct_modules:
                 clang = module.clang
@@ -231,25 +229,25 @@ def _process_files_and_deps(
                     continue
                 for header in clang.compilation_context.direct_public_headers:
                     # Exclude Swift generated headers
-                    exclude_headers[header] = None
+                    categorized_files[header] = None
 
         compilation_context = cc_info.compilation_context
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_private_headers,
-                exclude_headers = exclude_headers,
+                exclude_headers = categorized_files,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_public_headers,
-                exclude_headers = exclude_headers,
+                exclude_headers = categorized_files,
             ),
         )
         extra_files.extend(
             _process_cc_info_headers(
                 compilation_context.direct_textual_headers,
-                exclude_headers = exclude_headers,
+                exclude_headers = categorized_files,
             ),
         )
 
