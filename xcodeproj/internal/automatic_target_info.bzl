@@ -231,12 +231,14 @@ _SRCS_ATTRS = ["srcs"]
 
 _BUNDLE_EXTRA_FILES_ATTRS = [
     "alternate_icons",
+    "codesign_inputs",
     "exported_symbols_lists",
     "hdrs",
     "infoplists",
     "launchdplists",
 ]
 _COMMAND_LINE_EXTRA_FILES_ATTRS = [
+    "codesign_inputs",
     "exported_symbols_lists",
     "launchdplists",
     "infoplists",
@@ -248,6 +250,7 @@ _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS = [
     "infoplists",
 ]
 _TEST_EXTRA_FILES_ATTRS = [
+    "codesign_inputs",
     "exported_symbols_lists",
     "infoplists",
 ]
