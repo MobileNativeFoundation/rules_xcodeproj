@@ -23,6 +23,11 @@ bazel_dep(
     version = "3.2.1",
     repo_name = "build_bazel_rules_ios",
 )
+git_override(
+    module_name = "build_bazel_rules_ios",
+    commit = "1f245d0605ea4120a32b1c6e9a38b1209484ed8e",
+    remote = "https://github.com/karim-alweheshy/rules_ios",
+)
 
 apple_cc_configure = use_extension(
     "@build_bazel_apple_support//crosstool:setup.bzl",
