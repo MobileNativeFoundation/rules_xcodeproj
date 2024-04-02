@@ -9,9 +9,10 @@ load(
     "xcschemes",
 )
 
+# @unsorted-dict-items
 BAZEL_ENV = {
-    "MULTILINE": """one line
-two line""",
+    # Inheriting any `TERM`
+    "TERM": None,
     # Inheriting any `NOT_SET`, but won't find any
     "NOT_SET": None,
     # Overriding `PATH`
@@ -21,8 +22,13 @@ two line""",
     "QUOTES_VAR2": 'foo "bar"',
     "QUOTES_VAR3": "foo 'bar'",
     "SLASHES_VAR": "value/with\\slashes",
-    # Inheriting any `TERM`
-    "TERM": None,
+    "MULTILINE": """one line
+two line""",
+    "TRIPLE_QUOTES": "foo \"\"\"bar\"\"\"",
+    # Using other environment variables
+    "BASED_ON_HOME": "$HOME/.cache",
+    # Escaping to not use environment variables
+    "NOT_BASED_ON_HOME": "\\$HOME/.cache",
 }
 
 CONFIG = "rules_xcodeproj_integration"

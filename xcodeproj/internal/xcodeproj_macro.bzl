@@ -106,8 +106,11 @@ def xcodeproj(
 
             The keys are the names of the environment variables, and the values
             are the values of the environment variables. If a value
-            is `None`, the environment variable will be picked up from the
-            current environment.
+            is `None`, the environment variable will be resolved from the
+            current environment as the project is generated. If a value
+            references environment variables, those will be resolved from the
+            current environment as the project is generated. If you want to use
+            a literal `$` in a value, you must escape it with two backslashes.
 
             If project generation succeeds, but building inside of Xcode fails
             because of missing environment variables, you probably have to set
