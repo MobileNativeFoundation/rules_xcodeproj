@@ -383,7 +383,7 @@ def xcodeproj(
     if "PATH" not in bazel_env:
         bazel_env["PATH"] = "/bin:/usr/bin"
     if not build_mode:
-        build_mode = "xcode"
+        build_mode = "bazel"
     if install_directory == None:
         install_directory = native.package_name()
     if not project_name:
