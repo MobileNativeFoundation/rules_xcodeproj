@@ -35,9 +35,10 @@ def _processed_resource_fields(resources_info):
 def _process_resource(
         *,
         bundle,
+        bundle_metadata,
         bundle_path,
         file,
-        bundle_metadata,
+        focused_resource_short_paths,
         xccurrentversions):
     if (file.basename == ".xccurrentversion" and
         file.dirname.endswith(".xcdatamodeld")):
@@ -58,6 +59,9 @@ def _process_resource(
 
             return None
 
+    if file.short_path not in focused_resource_short_paths:
+        return None
+
     # If a file is a child of a folder-type file, the parent folder-type file
     # should be added to the bundle instead of the child file
     folder_type_prefix = _folder_type_prefix(file)
@@ -70,16 +74,18 @@ def _process_resource(
 def _add_resources_to_bundle(
         *,
         bundle,
+        bundle_metadata,
         bundle_path,
         files,
-        bundle_metadata,
+        focused_resource_short_paths,
         xccurrentversions):
     for file in files.to_list():
         file = _process_resource(
             bundle = bundle,
+            bundle_metadata = bundle_metadata,
             bundle_path = bundle_path,
             file = file,
-            bundle_metadata = bundle_metadata,
+            focused_resource_short_paths = focused_resource_short_paths,
             xccurrentversions = xccurrentversions,
         )
         if file:
@@ -96,14 +102,18 @@ def _create_bundle(name = None):
 def _add_structured_resources_to_bundle(
         bundle,
         *,
-        nested_path,
-        files):
+        files,
+        focused_resource_short_paths,
+        nested_path):
     if nested_path:
         inner_dir = nested_path.split("/")[0]
     else:
         inner_dir = None
 
     for file in files.to_list():
+        if file.short_path not in focused_resource_short_paths:
+            continue
+
         if not inner_dir:
             bundle.resources.append(file)
             continue
@@ -127,11 +137,12 @@ def _add_structured_resources_to_bundle(
 
 def _add_structured_resources(
         *,
-        root_bundle,
-        resource_bundle_targets,
         bundle_path,
+        files,
+        focused_resource_short_paths,
         nested_path,
-        files):
+        resource_bundle_targets,
+        root_bundle):
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
@@ -143,30 +154,34 @@ def _add_structured_resources(
             return
         _add_structured_resources_to_bundle(
             bundle,
-            nested_path = nested_path,
             files = files,
+            focused_resource_short_paths = focused_resource_short_paths,
+            nested_path = nested_path,
         )
     else:
         _add_structured_resources_to_bundle(
             root_bundle,
-            nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
             files = files,
+            focused_resource_short_paths = focused_resource_short_paths,
+            nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
         )
 
 def _add_processed_resources(
         *,
-        resources,
-        root_bundle,
-        resource_bundle_targets,
         bundle_metadata,
+        focused_resource_short_paths,
+        resources,
+        resource_bundle_targets,
+        root_bundle,
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
             _add_resources_to_bundle(
                 bundle = root_bundle,
+                bundle_metadata = bundle_metadata,
                 bundle_path = None,
                 files = files,
-                bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -175,9 +190,10 @@ def _add_processed_resources(
         if not ext:
             _add_resources_to_bundle(
                 bundle = root_bundle,
+                bundle_metadata = bundle_metadata,
                 bundle_path = None,
                 files = files,
-                bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -186,27 +202,30 @@ def _add_processed_resources(
         bundle = resource_bundle_targets[bundle_path]
         _add_resources_to_bundle(
             bundle = bundle,
+            bundle_metadata = bundle_metadata,
             bundle_path = bundle_path,
             files = files,
-            bundle_metadata = bundle_metadata,
+            focused_resource_short_paths = focused_resource_short_paths,
             xccurrentversions = xccurrentversions,
         )
 
 def _add_unprocessed_resources(
         *,
+        bundle_metadata,
+        focused_resource_short_paths,
+        parent_bundle_paths,
+        resource_bundle_targets,
         resources,
         root_bundle,
-        resource_bundle_targets,
-        parent_bundle_paths,
-        bundle_metadata,
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
             _add_resources_to_bundle(
                 bundle = root_bundle,
+                bundle_metadata = bundle_metadata,
                 bundle_path = None,
                 files = files,
-                bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
                 xccurrentversions = xccurrentversions,
             )
             continue
@@ -220,41 +239,59 @@ def _add_unprocessed_resources(
                 break
 
         _add_structured_resources(
-            root_bundle = root_bundle,
-            resource_bundle_targets = resource_bundle_targets,
             bundle_path = bundle_path,
-            nested_path = nested_path,
             files = files,
+            focused_resource_short_paths = focused_resource_short_paths,
+            nested_path = nested_path,
+            resource_bundle_targets = resource_bundle_targets,
+            root_bundle = root_bundle,
         )
 
 # API
 
 def _collect_incremental_resources(
         *,
+        avoid_resource_infos,
+        focused_labels,
+        label_str,
         platform,
-        resource_info,
-        avoid_resource_infos):
+        resource_info):
     """Collects resource information for a target.
 
     Args:
-        platform: A value returned from `platforms.collect`.
-        resource_info: The `AppleResourceInfo` provider for the target.
         avoid_resource_infos: A `list` of `AppleResourceInfo` providers from
             targets that should be avoided (e.g. test hosts).
+        focused_labels: A `depset` of label strings of focused targets. This
+            will include the current target (if focused) and any focused
+            dependencies of the current target.
+        label_str: The label string for the target.
+        platform: A value returned from `platforms.collect`.
+        resource_info: The `AppleResourceInfo` provider for the target.
 
     Returns:
         A `struct` with the following fields:
 
         *   `bundles`: A `list` of `struct`s that are to be passed to
             `process_resource_bundles`.
-        *   `resources`: A `list` of `file_path`s of resources that should be
-            added to the target's bundle.
+        *   `folder_resources`: A `list` of two element `tuple`s. The first
+            element is the label of the target that owns the resource. The
+            second element is a file path string of a folder resource.
+        *   `resources`:  A `list` of two element `tuple`s. The first
+            element is the label of the target that owns the resource. The
+            second element is a `File` for a resource.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
     """
     root_bundle = _create_bundle()
     resource_bundle_targets = {}
     xccurrentversions = []
     bundle_metadata = {}
+
+    focused_labels = {ls: None for ls in focused_labels.to_list()}
+    focused_resource_short_paths = {
+        f: None
+        for f, owner in resource_info.owners.to_list()
+        if (owner or label_str) in focused_labels
+    }
 
     processed_fields = _processed_resource_fields(resource_info)
 
@@ -283,19 +320,21 @@ def _collect_incremental_resources(
             return
         if field == "unprocessed":
             _add_unprocessed_resources(
+                bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
+                parent_bundle_paths = parent_bundle_paths,
+                resource_bundle_targets = resource_bundle_targets,
                 resources = deduplicated,
                 root_bundle = root_bundle,
-                resource_bundle_targets = resource_bundle_targets,
-                parent_bundle_paths = parent_bundle_paths,
-                bundle_metadata = bundle_metadata,
                 xccurrentversions = xccurrentversions,
             )
         else:
             _add_processed_resources(
-                resources = deduplicated,
-                root_bundle = root_bundle,
-                resource_bundle_targets = resource_bundle_targets,
                 bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
+                resources = deduplicated,
+                resource_bundle_targets = resource_bundle_targets,
+                root_bundle = root_bundle,
                 xccurrentversions = xccurrentversions,
             )
 

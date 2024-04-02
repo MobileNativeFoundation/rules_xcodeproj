@@ -467,6 +467,7 @@ def _process_focused_top_level_target(
         deps_infos,
         direct_dependencies,
         extension_infos,
+        focused_labels,
         focused_library_deps,
         id,
         label,
@@ -474,6 +475,7 @@ def _process_focused_top_level_target(
         product_type,
         props,
         provider_compilation_providers,
+        resource_info,
         rule_attr,
         target,
         target_compilation_providers,
@@ -488,8 +490,6 @@ def _process_focused_top_level_target(
         is_top_level = True,
         target = target,
     )
-
-    is_bundle = bundle_info != None
 
     product = products.collect(
         actions = actions,
@@ -554,14 +554,13 @@ def _process_focused_top_level_target(
         automatic_target_info = automatic_target_info,
         avoid_deps = avoid_deps,
         cc_info = cc_info,
+        focused_labels = focused_labels,
         framework_files = framework_files,
         infoplist = infoplist,
         label = label,
         linker_inputs = linker_inputs,
         platform = platform,
-        resource_info = (
-            target[AppleResourceInfo] if is_bundle and AppleResourceInfo in target else None
-        ),
+        resource_info = resource_info,
         rule_attr = rule_attr,
         swift_info = swift_info,
         swift_proto_info = (
@@ -797,6 +796,9 @@ def _process_focused_top_level_target(
         rule_attr = rule_attr,
         target = target,
     )
+    module_name_attribute = (
+        props.product_name if bundle_info != None else module_name_attribute
+    )
 
     return processed_targets.make(
         compilation_providers = provider_compilation_providers,
@@ -830,7 +832,7 @@ def _process_focused_top_level_target(
             mergeable_info = mergeable_info,
             module_name = module_name,
             module_name_attribute = (
-                props.product_name if is_bundle else module_name_attribute
+                props.product_name if bundle_info != None else module_name_attribute
             ),
             outputs = target_outputs,
             package_bin_dir = package_bin_dir,
@@ -923,14 +925,15 @@ def _process_unfocused_top_level_target(
         avoid_deps,
         direct_dependencies,
         deps_infos,
+        focused_labels,
         focused_library_deps,
         id,
-        is_bundle,
         label,
         platform,
         product_type,
         props,
         provider_compilation_providers,
+        resource_info,
         target,
         top_level_infos,
         transitive_dependencies,
@@ -1011,13 +1014,9 @@ def _process_unfocused_top_level_target(
         ],
     )
 
-    if is_bundle and AppleResourceInfo in target:
-        resource_info = target[AppleResourceInfo]
-    else:
-        resource_info = None
-
     provider_inputs = input_files.merge_top_level(
         avoid_deps = avoid_deps,
+        focused_labels = focused_labels,
         platform = platform,
         resource_info = resource_info,
         transitive_infos = transitive_infos,
@@ -1063,6 +1062,7 @@ def _process_incremental_top_level_target(
         target,
         attrs,
         automatic_target_info,
+        focused_labels,
         generate_target,
         rule_attr,
         transitive_infos):
@@ -1074,6 +1074,9 @@ def _process_incremental_top_level_target(
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        focused_labels: A `depset` of label strings of focused targets. This
+            will include the current target (if focused) and any focused
+            dependencies of the current target.
         generate_target: Whether an Xcode target should be generated for this
             target.
         rule_attr: `ctx.rule.attr`.
@@ -1210,6 +1213,11 @@ def _process_incremental_top_level_target(
         bundle_info = bundle_info,
     )
 
+    if bundle_info != None and AppleResourceInfo in target:
+        resource_info = target[AppleResourceInfo]
+    else:
+        resource_info = None
+
     if generate_target:
         return _process_focused_top_level_target(
             ctx = ctx,
@@ -1224,6 +1232,7 @@ def _process_incremental_top_level_target(
             deps_infos = deps_infos,
             direct_dependencies = direct_dependencies,
             extension_infos = extension_infos,
+            focused_labels = focused_labels,
             focused_library_deps = focused_library_deps,
             id = id,
             label = label,
@@ -1231,6 +1240,7 @@ def _process_incremental_top_level_target(
             product_type = product_type,
             props = props,
             provider_compilation_providers = provider_compilation_providers,
+            resource_info = resource_info,
             rule_attr = rule_attr,
             target = target,
             target_compilation_providers = target_compilation_providers,
@@ -1247,14 +1257,15 @@ def _process_incremental_top_level_target(
             avoid_deps = avoid_deps,
             deps_infos = deps_infos,
             direct_dependencies = direct_dependencies,
+            focused_labels = focused_labels,
             focused_library_deps = focused_library_deps,
             id = id,
-            is_bundle = bundle_info != None,
             label = label,
             platform = platform,
             product_type = product_type,
             props = props,
             provider_compilation_providers = provider_compilation_providers,
+            resource_info = resource_info,
             target = target,
             top_level_infos = top_level_infos,
             transitive_dependencies = transitive_dependencies,

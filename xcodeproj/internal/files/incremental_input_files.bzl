@@ -283,6 +283,7 @@ def _collect_incremental_input_files(
         avoid_deps = EMPTY_LIST,
         cc_info,
         framework_files = EMPTY_DEPSET,
+        focused_labels = EMPTY_DEPSET,
         infoplist = None,
         label,
         linker_inputs,
@@ -306,6 +307,10 @@ def _collect_incremental_input_files(
         framework_files: A `depset` of framework files from
             `AppleDynamicFramework.framework_files`, if the target has the
             `AppleDynamicFramework` provider.
+        focused_labels: A `depset` of label strings of focused targets. This
+            will include the current target (if focused) and any focused
+            dependencies of the current target. This is only set for top-level
+            targets.
         infoplist: A `File` for a rules_xcodeproj modified Info.plist file, or
             None for non-top-level targets.
         label: The effective label of the target.
@@ -475,13 +480,15 @@ def _collect_incremental_input_files(
 
     if resource_info:
         resources_result = resources_module.collect(
-            platform = platform,
-            resource_info = resource_info,
             avoid_resource_infos = [
                 dep[AppleResourceInfo]
                 for dep in avoid_deps
                 if AppleResourceInfo in dep
             ],
+            label_str = str(label),
+            focused_labels = focused_labels,
+            platform = platform,
+            resource_info = resource_info,
         )
 
         extra_files.extend(resources_result.resources)
@@ -818,6 +825,7 @@ def _merge_input_files(*, transitive_infos):
 def _merge_top_level_input_files(
         *,
         avoid_deps,
+        focused_labels,
         platform,
         resource_info,
         transitive_infos):
@@ -826,6 +834,9 @@ def _merge_top_level_input_files(
     Args:
         avoid_deps: A `list` of the targets that already consumed resources, and
             their resources shouldn't be bundled with `target`.
+        focused_labels: A `depset` of label strings of focused targets. This
+            will include the current target (if focused) and any focused
+            dependencies of the current target.
         platform: A value from `platforms.collect`.
         resource_info: The `AppleResourceInfo` provider for the target if it is
             resource bundle consuming.
@@ -839,13 +850,15 @@ def _merge_top_level_input_files(
     """
     if resource_info:
         resources_result = resources_module.collect(
-            platform = platform,
-            resource_info = resource_info,
             avoid_resource_infos = [
                 dep[AppleResourceInfo]
                 for dep in avoid_deps
                 if AppleResourceInfo in dep
             ],
+            focused_labels = focused_labels,
+            label_str = None,
+            platform = platform,
+            resource_info = resource_info,
         )
 
         resource_bundles = resources_result.bundles
