@@ -333,6 +333,11 @@ xcschemes.library_target(<a href="#xcschemes.library_target-label">label</a>, <a
 
 Defines a library target to build.
 
+A library target is any target not classified as a top-level target.
+Normally these targets are created with rules similar to `swift_library`
+or `objc_library`.
+
+
 **PARAMETERS**
 
 
