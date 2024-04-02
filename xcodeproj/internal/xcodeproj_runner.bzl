@@ -326,42 +326,42 @@ if [[ -n "${{{key}:-}}" ]]; then
 fi
 """.format(key = key))
         else:
-            base_def_env_values.append('  "{}": """{}""",'.format(
+            base_def_env_values.append('  \\"{}\\": \\"\\"\\"{}\\"\\"\\",'.format(
                 key,
-                (value
-                    .replace(
-                    # Escape backslashes for bzl
-                    "\\",
-                    "\\\\",
-                )
-                    .replace(
-                    # Escape double quotes for bzl
-                    "\"",
-                    "\\\"",
-                )
-                    .replace(
-                    # Escape single quotes for bash
-                    "'",
-                    "'\"'\"'",
-                )),
+                (
+                    value.replace(
+                        # Escape backslashes for bash and bzl
+                        "\\",
+                        "\\\\\\\\",
+                    ).replace(
+                        # Properly escape `\$` for bash
+                        "\\\\\\\\$",
+                        "\\$",
+                    ).replace(
+                        # Escape double quotes for bash and bzl
+                        "\"",
+                        "\\\\\\\"",
+                    )
+                ),
             ))
-            base_envs_values.append("  '{}={}'".format(
+            base_envs_values.append("  \"{}={}\"".format(
                 key,
-                (value
-                    .replace(
-                    # Escape single quotes for bash
-                    "'",
-                    "'\"'\"'",
-                )),
+                (
+                    value.replace(
+                        # Escape double quotes for bash
+                        "\"",
+                        "\\\"",
+                    )
+                ),
             ))
 
     collect_bazel_env = """\
 envs=(
 {base_envs_values}
 )
-def_env='{{
+def_env="{{
 {base_def_env_values}
-'
+"
 
 {collect_statements}
 def_env+='}}'""".format(
