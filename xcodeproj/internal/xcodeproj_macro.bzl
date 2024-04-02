@@ -29,7 +29,7 @@ def xcodeproj(
         extra_files = [],
         fail_for_invalid_extra_files_targets = True,
         focused_targets = [],
-        generation_mode = "legacy",
+        generation_mode = "incremental",
         install_directory = None,
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
@@ -408,7 +408,7 @@ def xcodeproj(
     if "PATH" not in bazel_env:
         bazel_env["PATH"] = "/bin:/usr/bin"
     if not generation_mode:
-        generation_mode = "legacy"
+        generation_mode = "incremental"
     if not build_mode:
         build_mode = "bazel"
     if install_directory == None:
