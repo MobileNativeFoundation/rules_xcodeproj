@@ -684,6 +684,10 @@ def _launch_target(
 def _library_target(label, *, post_actions = [], pre_actions = []):
     """Defines a library target to build.
 
+    A library target is any target not classified as a top-level target.
+    Normally these targets are created with rules similar to `swift_library`
+    or `objc_library`.
+
     Args:
         label: Positional. The label string of the library target.
 
