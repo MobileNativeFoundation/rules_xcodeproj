@@ -20,7 +20,6 @@ def xcodeproj(
         *,
         name,
         adjust_schemes_for_swiftui_previews = True,
-        archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
         bazel_env = {"PATH": "/bin:/usr/bin"},
@@ -41,7 +40,6 @@ def xcodeproj(
         scheme_autogeneration_mode = "auto",
         schemes = [],
         target_name_mode = "auto",
-        temporary_directory = None,
         top_level_targets,
         tvos_device_cpus = "arm64",
         tvos_simulator_cpus = None,
@@ -84,11 +82,6 @@ def xcodeproj(
             For example, this changes a scheme for an single application target
             to also include any app clip, app extension, framework, or watchOS
             app dependencies.
-        archived_bundles_allowed: This argument is deprecated and is now a
-            no-op. It will be removed in a future release. Adjust the setting of
-            `--define=apple.experimental.tree_artifact_outputs` on
-            `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
-            file.
         associated_extra_files: Optional. A `dict` of files to be added to the
             project.
 
@@ -275,8 +268,6 @@ def xcodeproj(
               `label`: Always use full label for Xcode targets names.
             </li>
             </ul>
-        temporary_directory: This argument is deprecated and is now a no-op. It
-            will be removed in a future release.
         top_level_targets: A `list` of a list of top-level targets.
 
             Each target can be specified as either a `Label` (or label-like
@@ -384,20 +375,6 @@ def xcodeproj(
     testonly = kwargs.pop("testonly", True)
     generation_mode = kwargs.pop("generation_mode", "legacy")
     generation_shard_count = kwargs.pop("generation_shard_count", 10)
-
-    if archived_bundles_allowed != None:
-        warn("""\
-{target}: `archived_bundles_allowed` is deprecated and is now a no-op. It will \
-be removed in a future release. Adjust the setting of \
-`--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
-in your `.bazelrc` or `xcodeproj.bazelrc` file.\
-""".format(target = bazel_labels.normalize_string(name)))
-
-    if temporary_directory != None:
-        warn("""\
-{target}: `temporary_directory` is deprecated and is now a no-op. It will be \
-removed in a future release.\
-""".format(target = bazel_labels.normalize_string(name)))
 
     # Apply defaults
     if not bazel_path:
