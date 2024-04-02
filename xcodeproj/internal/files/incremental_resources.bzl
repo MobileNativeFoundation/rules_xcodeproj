@@ -17,19 +17,21 @@ _FOLDER_TYPE_FILE_SUFFIXES = [
     ".xcassets/",
 ]
 
+_IGNORED_RESOURCE_FIELDS = {
+    "infoplists": None,
+    "owners": None,
+    "processed_origins": None,
+    "to_json": None,
+    "to_proto": None,
+    "unowned_resources": None,
+    "unprocessed": None,
+}
+
 def _processed_resource_fields(resources_info):
     return [
         f
         for f in dir(resources_info)
-        if f not in [
-            "infoplists",
-            "owners",
-            "processed_origins",
-            "unowned_resources",
-            "unprocessed",
-            "to_json",
-            "to_proto",
-        ]
+        if f not in _IGNORED_RESOURCE_FIELDS
     ]
 
 def _process_resource(
