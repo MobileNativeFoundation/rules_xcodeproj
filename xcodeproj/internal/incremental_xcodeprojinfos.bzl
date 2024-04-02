@@ -137,6 +137,7 @@ def _target_info_fields(
         envs,
         extension_infoplists,
         framework_product_mappings,
+        focused_labels,
         focused_library_deps,
         hosted_targets,
         inputs,
@@ -169,6 +170,7 @@ def _target_info_fields(
             `XcodeProjInfo.extension_infoplists` field.
         framework_product_mappings: Maps to the
             `XcodeProjInfo.framework_product_mappings` field.
+        focused_labels: Maps to the `XcodeProjInfo.focused_labels` field.
         focused_library_deps: Maps to the `XcodeProjInfo.focused_library_deps`
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
@@ -204,6 +206,7 @@ def _target_info_fields(
         *   `envs`
         *   `extension_infoplists`
         *   `framework_product_mappings`
+        *   `focused_labels`
         *   `focused_library_deps`
         *   `hosted_targets`
         *   `inputs`
@@ -228,6 +231,7 @@ def _target_info_fields(
         "direct_dependencies": direct_dependencies,
         "envs": envs,
         "extension_infoplists": extension_infoplists,
+        "focused_labels": focused_labels,
         "focused_library_deps": focused_library_deps,
         "framework_product_mappings": framework_product_mappings,
         "hosted_targets": hosted_targets,
@@ -407,6 +411,12 @@ def _make_skipped_target_xcodeprojinfo(
                 for info in valid_transitive_infos
             ],
         ),
+        focused_labels = memory_efficient_depset(
+            transitive = [
+                info.focused_labels
+                for info in valid_transitive_infos
+            ],
+        ),
         focused_library_deps = memory_efficient_depset(
             transitive = [
                 info.focused_library_deps
@@ -508,10 +518,19 @@ def _make_non_skipped_target_xcodeprojinfo(
         ))
     ]
 
+    label_str = str(automatic_target_info.label)
     is_focused = _is_focused(
         focused_labels = aspect_attr._focused_labels,
-        label = automatic_target_info.label,
+        label_str = label_str,
         unfocused_labels = aspect_attr._unfocused_labels,
+    )
+
+    focused_labels = memory_efficient_depset(
+        [label_str] if is_focused else None,
+        transitive = [
+            info.focused_labels
+            for _, info in transitive_infos
+        ],
     )
 
     if not automatic_target_info.is_supported:
@@ -538,6 +557,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
+            focused_labels = focused_labels,
             generate_target = (
                 automatic_target_info.should_generate and is_focused
             ),
@@ -561,7 +581,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             [
                 struct(
                     id = processed_target.xcode_target.id,
-                    label = str(target.label),
+                    label = label_str,
                 ),
             ] if processed_target.xcode_target else None,
             # We want the last one specified to be the one used
@@ -580,6 +600,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             ],
         ),
         compilation_providers = processed_target.compilation_providers,
+        focused_labels = focused_labels,
         focused_library_deps = focused_library_deps,
         direct_dependencies = processed_target.direct_dependencies,
         envs = memory_efficient_depset(
@@ -677,11 +698,10 @@ def _should_create_provider(*, bin_dir_path, rule_kind, target):
 
     return True
 
-def _is_focused(*, focused_labels, label, unfocused_labels):
+def _is_focused(*, focused_labels, label_str, unfocused_labels):
     if not focused_labels and not unfocused_labels:
         return True
 
-    label_str = str(label)
     if label_str in unfocused_labels:
         return False
 

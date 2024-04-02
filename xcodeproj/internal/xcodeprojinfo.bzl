@@ -36,6 +36,13 @@ A `depset` of `struct`s with `id` and `infoplist` fields. The `id` field is the
 target ID (see `xcode_target.id`) of the application extension target. The
 `infoplist` field is a `File` for the Info.plist for the target.
 """,
+        "focused_labels": """\
+A `depset` of label strings of focused targets. This will include the current
+target (if focused) and any focused dependencies of the current target.
+
+This is only set and used when `xcodeproj.generation_mode = "incremental"` is
+set.
+""",
         "focused_library_deps": """\
 A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
 target ID (see `xcode_target.id`) of a focused library target. The `label`
