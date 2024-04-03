@@ -121,14 +121,28 @@ def xcodeproj(
             prepend the path with `./` (e.g. `"./bazelw"`).
         build_mode: Optional. The build mode the generated project should use.
 
-            If this is set to `"xcode"`, the project will use the Xcode build
-            system to build targets. Generated files and unfocused targets (see
-            the `focused_targets` and `unfocused_targets` arguments) will be
-            built with Bazel.
+            <ul>
+            <li>
+                `bazel`: The project will use Bazel to build targets, inside of
+                Xcode. The Xcode build system still unavoidably orchestrates
+                some things at a high level.
+            </li>
+            <li>
+                `xcode`: The project will use the Xcode build system to build
+                targets. Generated files and unfocused targets (see the
+                [`focused_targets`](#xcodeproj-focused_targets) and
+                [`unfocused_targets`](#xcodeproj-unfocused_targets) attributes)
+                will be built with Bazel.
 
-            If this is set to `"bazel"`, the project will use Bazel to build
-            targets, inside of Xcode. The Xcode build system still unavoidably
-            orchestrates some things at a high level.
+                **Note:** This mode is does not work with Bazel 7+.
+
+                **Note:** This mode is does not work with `generation_mode =
+                "incremental"`.
+
+                **Note:** This mode is deprecated and will be removed in a
+                future version of **rules_xcodeproj**.
+            </li>
+            </ul>
         config: Optional. The Bazel config to use when generating the project or
             invoking `bazel` inside of Xcode.
 
