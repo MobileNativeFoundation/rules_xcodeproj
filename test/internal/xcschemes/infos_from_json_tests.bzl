@@ -708,6 +708,35 @@ def infos_from_json_test_suite(name):
         ],
     )
 
+    expected_launch_path = xcscheme_infos_testable.make_launch_target(
+        path = "/path/to/App.app",
+        post_actions = [
+            xcscheme_infos_testable.make_pre_post_action(
+                for_build = True,
+                order = "",
+                script_text = "ssss",
+                title = "ttt",
+            ),
+        ],
+        pre_actions = [
+            xcscheme_infos_testable.make_pre_post_action(
+                for_build = True,
+                order = "7",
+                script_text = "s",
+                title = "tttt",
+            ),
+        ],
+        working_directory = "wd",
+    )
+    expected_profile_same_as_run_launch_path = (
+        xcscheme_infos_testable.make_launch_target(
+            path = "/path/to/App.app",
+            post_actions = [],
+            pre_actions = [],
+            working_directory = "wd",
+        )
+    )
+
     _add_test(
         name = "{}_run_launch_path".format(name),
 
@@ -716,7 +745,7 @@ def infos_from_json_test_suite(name):
         json_str = json.encode([
             {
                 "name": "A scheme",
-                "profile": None,
+                "profile": "same_as_run",
                 "run": struct(
                     args = full_args,
                     build_targets = full_build_targets,
@@ -759,6 +788,11 @@ def infos_from_json_test_suite(name):
         expected_infos = [
             xcscheme_infos_testable.make_scheme(
                 name = "A scheme",
+                profile = xcscheme_infos_testable.make_profile(
+                    build_targets = expected_full_build_targets,
+                    env_include_defaults = "0",
+                    launch_target = expected_profile_same_as_run_launch_path,
+                ),
                 run = xcscheme_infos_testable.make_run(
                     args = expected_full_args,
                     build_targets = expected_full_build_targets,
@@ -769,26 +803,7 @@ def infos_from_json_test_suite(name):
                     ),
                     env = expected_full_env,
                     env_include_defaults = "0",
-                    launch_target = xcscheme_infos_testable.make_launch_target(
-                        path = "/path/to/App.app",
-                        post_actions = [
-                            xcscheme_infos_testable.make_pre_post_action(
-                                for_build = True,
-                                order = "",
-                                script_text = "ssss",
-                                title = "ttt",
-                            ),
-                        ],
-                        pre_actions = [
-                            xcscheme_infos_testable.make_pre_post_action(
-                                for_build = True,
-                                order = "7",
-                                script_text = "s",
-                                title = "tttt",
-                            ),
-                        ],
-                        working_directory = "wd",
-                    ),
+                    launch_target = expected_launch_path,
                     xcode_configuration = "custom",
                 ),
             ),
