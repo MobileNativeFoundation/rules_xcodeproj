@@ -193,10 +193,11 @@ def _write_schemes(
                 ids = [
                     id
                     for id in xcode_target.transitive_dependencies.to_list()
-                    if _is_same_platform_xcode_preview_target(
-                        platform = xcode_target.platform,
-                        xcode_target = xcode_targets.get(id),
-                    )
+                    if (id != xcode_target.test_host and
+                        _is_same_platform_xcode_preview_target(
+                            platform = xcode_target.platform,
+                            xcode_target = xcode_targets.get(id),
+                        ))
                 ]
                 if ids:
                     transitive_preview_targets_args.add(xcode_target.id)
