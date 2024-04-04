@@ -317,6 +317,12 @@ extension Generator.CreateScheme {
         for reference in schemeInfo.run.transitivePreviewReferences {
             adjustBuildActionEntry(for: reference, include: .running)
         }
+        for reference in schemeInfo.profile.transitivePreviewReferences {
+            adjustBuildActionEntry(for: reference, include: .profiling)
+        }
+        for reference in schemeInfo.test.transitivePreviewReferences {
+            adjustBuildActionEntry(for: reference, include: .testing)
+        }
 
         // MARK: Build
 

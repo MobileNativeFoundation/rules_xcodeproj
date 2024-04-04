@@ -27,6 +27,7 @@ extension SchemeInfo.Profile {
         customWorkingDirectory: String? = nil,
         environmentVariables: [EnvironmentVariable] = [],
         launchTarget: SchemeInfo.LaunchTarget? = nil,
+        transitivePreviewReferences: [BuildableReference] = [],
         useRunArgsAndEnv: Bool = true,
         xcodeConfiguration: String? = nil
     ) -> Self {
@@ -36,6 +37,7 @@ extension SchemeInfo.Profile {
             customWorkingDirectory: customWorkingDirectory,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
+            transitivePreviewReferences: transitivePreviewReferences,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration
         )
@@ -80,6 +82,7 @@ extension SchemeInfo.Test {
         enableUBSanitizer: Bool = false,
         environmentVariables: [EnvironmentVariable] = [],
         testTargets: [SchemeInfo.TestTarget] = [],
+        transitivePreviewReferences: [BuildableReference] = [],
         useRunArgsAndEnv: Bool = true,
         xcodeConfiguration: String? = nil
     ) -> Self {
@@ -91,6 +94,7 @@ extension SchemeInfo.Test {
             enableUBSanitizer: enableUBSanitizer,
             environmentVariables: environmentVariables,
             testTargets: testTargets,
+            transitivePreviewReferences: transitivePreviewReferences,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration
         )

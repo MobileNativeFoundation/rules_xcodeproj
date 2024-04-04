@@ -90,25 +90,31 @@ extension Generator.CreateAutomaticSchemeInfo {
 
         let testCommandLineArguments: [CommandLineArgument]
         let testEnvironmentVariables: [EnvironmentVariable]
+        let testTransitivePreviewReferences: [BuildableReference]
         let testUseRunArgsAndEnv: Bool
         let runCommandLineArguments: [CommandLineArgument]
         let runEnvironmentVariables: [EnvironmentVariable]
+        let runTransitivePreviewReferences: [BuildableReference]
         if isTest {
             testUseRunArgsAndEnv = false
             testCommandLineArguments = commandLineArguments
             testEnvironmentVariables =
                 .defaultEnvironmentVariables + environmentVariables
+            testTransitivePreviewReferences = transitivePreviewReferences
 
             runCommandLineArguments = []
             runEnvironmentVariables = []
+            runTransitivePreviewReferences = []
         } else {
             testUseRunArgsAndEnv = true
             testCommandLineArguments = []
             testEnvironmentVariables = []
+            testTransitivePreviewReferences = []
 
             runCommandLineArguments = commandLineArguments
             runEnvironmentVariables =
                 .defaultEnvironmentVariables + environmentVariables
+            runTransitivePreviewReferences = transitivePreviewReferences
         }
 
         return SchemeInfo(
@@ -122,6 +128,7 @@ extension Generator.CreateAutomaticSchemeInfo {
                 environmentVariables: testEnvironmentVariables,
                 testTargets: isTest ?
                     [.init(target: target, isEnabled: true)] : [],
+                transitivePreviewReferences: testTransitivePreviewReferences,
                 useRunArgsAndEnv: testUseRunArgsAndEnv,
                 xcodeConfiguration: nil
             ),
@@ -134,7 +141,7 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableUBSanitizer: false,
                 environmentVariables: runEnvironmentVariables,
                 launchTarget: launchTarget,
-                transitivePreviewReferences: transitivePreviewReferences,
+                transitivePreviewReferences: runTransitivePreviewReferences,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -143,6 +150,7 @@ extension Generator.CreateAutomaticSchemeInfo {
                 customWorkingDirectory: nil,
                 environmentVariables: [],
                 launchTarget: launchTarget,
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
