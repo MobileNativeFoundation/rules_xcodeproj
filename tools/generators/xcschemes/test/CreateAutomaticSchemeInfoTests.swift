@@ -135,6 +135,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: [],
                 testTargets: [],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -162,6 +163,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -213,6 +215,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: [],
                 testTargets: [],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -240,6 +243,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: extensionHost
                 ),
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -287,6 +291,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: [],
                 testTargets: [],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -314,6 +319,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -360,6 +366,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: [],
                 testTargets: [],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -388,6 +395,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -432,6 +440,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: [],
                 testTargets: [],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -453,6 +462,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 customWorkingDirectory: nil,
                 environmentVariables: [],
                 launchTarget: nil,
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -496,6 +506,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),
@@ -517,6 +528,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 customWorkingDirectory: nil,
                 environmentVariables: [],
                 launchTarget: nil,
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -563,6 +575,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 environmentVariables: baseEnvironmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),
@@ -584,6 +597,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 customWorkingDirectory: nil,
                 environmentVariables: [],
                 launchTarget: nil,
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
@@ -631,6 +645,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
             ),
@@ -652,6 +667,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 customWorkingDirectory: nil,
                 environmentVariables: [],
                 launchTarget: nil,
+                transitivePreviewReferences: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
