@@ -50,6 +50,7 @@ def _dict_to_xcode_target(d):
         product = struct(
             type = d["product_type"],
         ),
+        test_host = depset(d["test_host"]),
         transitive_dependencies = depset(d["transitive_dependencies"]),
     )
 
@@ -88,11 +89,13 @@ def _mock_xcode_target(
         id,
         apple_platform,
         product_type,
+        test_host = None,
         transitive_dependencies = []):
     return struct(
         id = id,
         apple_platform = apple_platform,
         product_type = product_type,
+        test_host = test_host,
         transitive_dependencies = transitive_dependencies,
     )
 
