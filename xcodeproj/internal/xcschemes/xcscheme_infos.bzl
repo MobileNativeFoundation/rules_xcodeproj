@@ -72,6 +72,15 @@ def _make_launch_target(
     )
 
 def _make_same_as_run_launch_target(run_launch_target):
+    if run_launch_target.is_path == TRUE_ARG:
+        return struct(
+            is_path = TRUE_ARG,
+            path = run_launch_target.path,
+            post_actions = EMPTY_LIST,
+            pre_actions = EMPTY_LIST,
+            working_directory = run_launch_target.working_directory,
+        )
+
     return struct(
         extension_host = run_launch_target.extension_host,
         id = run_launch_target.id,
