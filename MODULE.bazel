@@ -1,6 +1,7 @@
 module(
     name = "rules_xcodeproj",
     version = "0.0.0",
+    bazel_compatibility = [">=6.3.0"],
     compatibility_level = 1,
     repo_name = "rules_xcodeproj",
 )
