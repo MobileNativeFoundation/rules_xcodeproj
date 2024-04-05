@@ -28,6 +28,8 @@ $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift.rules_xcodeproj.swift.comp
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/_Lib.0.info.plist
+$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/_LibDynamic.0.info.plist
+$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI-Swift.h
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI-modulemap/UI-umbrella.h
 $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI-modulemap/UI.modulemap
@@ -146,6 +148,8 @@ $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift.rules_xcodeproj.swift.comp
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/_Lib.0.info.plist
+$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/_LibDynamic.0.info.plist
+$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI-Swift.h
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI-modulemap/UI-umbrella.h
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI-modulemap/UI.modulemap
@@ -194,10 +198,6 @@ $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp_swift_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp_vfs.yaml
 $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist
-$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/_LibDynamic.0.info.plist
-$(BAZEL_OUT)/CONFIGURATION-STABLE-5/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist
-$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib/_LibDynamic.0.info.plist
-$(BAZEL_OUT)/CONFIGURATION-STABLE-6/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist
-$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator_vfs.yaml
-$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/iOSApp/Source/VendoredFramework_swift_vfs.yaml
-$(BAZEL_OUT)/CONFIGURATION-STABLE-7/bin/iOSApp/Source/VendoredFramework_vfs.yaml
+$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator_vfs.yaml
+$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/VendoredFramework_swift_vfs.yaml
+$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/VendoredFramework_vfs.yaml
