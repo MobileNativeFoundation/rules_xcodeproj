@@ -53,8 +53,8 @@ load(
     processed_targets = "incremental_processed_targets",
 )
 
-_APPLICATION_PRODUCT_TYPE = "a" # com.apple.product-type.application
-_APP_EXTENSION_PRODUCT_TYPE = "e" # com.apple.product-type.app-extension
+_APPLICATION_PRODUCT_TYPE = "a"  # com.apple.product-type.application
+_APP_EXTENSION_PRODUCT_TYPE = "e"  # com.apple.product-type.app-extension
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 _UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
 _WATCHKIT_APP_PRODUCT_TYPE = "w"  # com.apple.product-type.application.watchapp2
@@ -804,16 +804,16 @@ def _process_focused_top_level_target(
 
     # Extensions need to be explicit dependencies for Xcode Previews to work
     if product_type == _APPLICATION_PRODUCT_TYPE:
-        focused = { t: True for t in focused_labels.to_list() }
+        focused = {t: True for t in focused_labels.to_list()}
         app_extensions = [
             info.xcode_target.id
             for info in extension_infos
             if (info.xcode_target and
-            info.xcode_target.product.type == _APP_EXTENSION_PRODUCT_TYPE and
-            str(info.xcode_target.label) in focused)
+                info.xcode_target.product.type == _APP_EXTENSION_PRODUCT_TYPE and
+                str(info.xcode_target.label) in focused)
         ]
         merged_direct_dependencies = memory_efficient_depset(
-            direct_dependencies.to_list() + app_extensions
+            direct_dependencies.to_list() + app_extensions,
         )
     else:
         merged_direct_dependencies = direct_dependencies
