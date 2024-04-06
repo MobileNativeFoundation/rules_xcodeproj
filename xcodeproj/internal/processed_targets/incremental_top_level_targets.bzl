@@ -804,12 +804,13 @@ def _process_focused_top_level_target(
 
     # Extensions need to be explicit dependencies for Xcode Previews to work
     if product_type == _APPLICATION_PRODUCT_TYPE:
+        focused = { t: True for t in focused_labels.to_list() }
         app_extensions = [
             info.xcode_target.id
-            for info in focused_extension_infos
-            if info.xcode_target.product.type == (
-                _APP_EXTENSION_PRODUCT_TYPE
-            )
+            for info in extension_infos
+            if (info.xcode_target and
+            info.xcode_target.product.type == _APP_EXTENSION_PRODUCT_TYPE and
+            str(info.xcode_target.label) in focused)
         ]
         merged_direct_dependencies = memory_efficient_depset(
             direct_dependencies.to_list() + app_extensions
