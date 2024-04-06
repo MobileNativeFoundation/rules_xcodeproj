@@ -55,8 +55,15 @@ struct WidgetExtension: Widget {
 }
 
 struct WidgetExtension_Previews: PreviewProvider {
-    static var previews: some View {
-        WidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+	static var previews: some View {
+        let widget = WidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        if #available(iOS 17.0, *) {
+            return widget
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .containerBackground(.fill.secondary, for: .widget)
+        } else {
+            return widget
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+        }
     }
 }

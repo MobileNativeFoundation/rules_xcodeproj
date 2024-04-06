@@ -53,6 +53,8 @@ load(
     processed_targets = "incremental_processed_targets",
 )
 
+_APPLICATION_PRODUCT_TYPE = "a" # com.apple.product-type.application
+_APP_EXTENSION_PRODUCT_TYPE = "e" # com.apple.product-type.app-extension
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 _UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
 _WATCHKIT_APP_PRODUCT_TYPE = "w"  # com.apple.product-type.application.watchapp2
@@ -800,9 +802,24 @@ def _process_focused_top_level_target(
         props.product_name if bundle_info != None else module_name_attribute
     )
 
+    # Extensions need to be explicit dependencies for Xcode Previews to work
+    if product_type == _APPLICATION_PRODUCT_TYPE:
+        app_extensions = [
+            info.xcode_target.id
+            for info in focused_extension_infos
+            if info.xcode_target.product.type == (
+                _APP_EXTENSION_PRODUCT_TYPE
+            )
+        ]
+        merged_direct_dependencies = memory_efficient_depset(
+            direct_dependencies.to_list() + app_extensions
+        )
+    else:
+        merged_direct_dependencies = direct_dependencies
+
     return processed_targets.make(
         compilation_providers = provider_compilation_providers,
-        direct_dependencies = direct_dependencies,
+        direct_dependencies = merged_direct_dependencies,
         extension_infoplists = extension_infoplists,
         framework_product_mappings = framework_product_mappings,
         hosted_targets = hosted_targets,
@@ -821,7 +838,7 @@ def _process_focused_top_level_target(
             build_settings_file = target_build_settings,
             bundle_id = props.bundle_id,
             configuration = configuration,
-            direct_dependencies = direct_dependencies,
+            direct_dependencies = merged_direct_dependencies,
             has_c_params = bool(args.conly),
             has_cxx_params = bool(args.cxx),
             id = id,
