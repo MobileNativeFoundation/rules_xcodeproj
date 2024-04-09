@@ -57,7 +57,7 @@ bazel_dep(
 # To support Bazel 8 tests
 single_version_override(
     module_name = "rules_apple",
-    version = "3.5.0",
+    version = "3.5.1",
 )
 
 single_version_override(
