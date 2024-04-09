@@ -109,7 +109,7 @@ def _cc_mergeable_info(*, id, mergeable_info):
         ids = [(id, (mergeable_info.id,))],
         module_name = mergeable_info.module_name,
         non_arc_srcs = mergeable_info.inputs.non_arc_srcs,
-        package_bin_dir = EMPTY_STRING,
+        package_bin_dir = mergeable_info.package_bin_dir,
         previews_dynamic_frameworks = EMPTY_LIST,
         previews_include_path = EMPTY_STRING,
         product_files = (mergeable_info.product_file,),
