@@ -29,8 +29,7 @@ extension Generator {
             extensionHostIDs: [TargetID: [TargetID]],
             target: Target,
             targetsByID: [TargetID: Target],
-            targetsByKey: [Target.Key: Target],
-            transitivePreviewReferences: [TargetID: [BuildableReference]]
+            targetsByKey: [Target.Key: Target]
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -40,7 +39,6 @@ extension Generator {
                 /*target:*/ target,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
-                /*transitivePreviewReferences:*/ transitivePreviewReferences,
                 /*createAutomaticSchemeInfo:*/ createAutomaticSchemeInfo
             )
         }
@@ -58,7 +56,6 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         _ target: Target,
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
-        _ transitivePreviewReferences: [TargetID: [BuildableReference]],
         _ createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo]
 
@@ -70,7 +67,6 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         target: Target,
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]],
         createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo] {
         let extensionHostKeys: Set<Target.Key>
@@ -91,21 +87,13 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
             )
         }
 
-        let id = target.key.sortedIds.first!
-
-        let transitivePreviewReferences = transitivePreviewReferences[
-            id,
-            default: []
-        ]
-
         if extensionHostKeys.isEmpty {
             guard let schemeInfo = try createAutomaticSchemeInfo(
                 commandLineArguments: commandLineArguments,
                 customSchemeNames: customSchemeNames,
                 environmentVariables: environmentVariables,
                 extensionHost: nil,
-                target: target,
-                transitivePreviewReferences: transitivePreviewReferences
+                target: target
             ) else {
                 return []
             }
@@ -117,8 +105,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables,
                     extensionHost: targetsByKey[key]!,
-                    target: target,
-                    transitivePreviewReferences: transitivePreviewReferences
+                    target: target
                 )
             }
         }

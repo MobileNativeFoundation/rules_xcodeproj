@@ -22,6 +22,7 @@ _aspect = xcodeproj_factory.make_aspect(
 # Rule
 
 xcodeproj = xcodeproj_factory.make_rule(
+    adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
     focused_labels = _FOCUSED_LABELS,
     is_fixture = %is_fixture%,
     target_transitions = _target_transitions,

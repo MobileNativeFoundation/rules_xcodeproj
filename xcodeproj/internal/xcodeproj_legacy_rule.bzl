@@ -1514,7 +1514,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         focused_labels = focused_labels,
         include_swiftui_previews_scheme_targets = (
             build_mode == "bazel" and
-            ctx.attr.adjust_schemes_for_swiftui_previews
+            ctx.attr._adjust_schemes_for_swiftui_previews
         ),
         infos = infos,
         infos_per_xcode_configuration = infos_per_xcode_configuration,
@@ -1795,13 +1795,13 @@ done
 
 def _xcodeproj_legacy_attrs(
         *,
+        adjust_schemes_for_swiftui_previews,
         focused_labels,
         is_fixture = False,
         target_transitions = None,
         unfocused_labels,
         xcodeproj_aspect):
     return {
-        "adjust_schemes_for_swiftui_previews": attr.bool(mandatory = True),
         "bazel_env": attr.string_dict(mandatory = True),
         "bazel_path": attr.string(mandatory = True),
         "build_mode": attr.string(mandatory = True),
@@ -1839,6 +1839,9 @@ def _xcodeproj_legacy_attrs(
         ),
         "workspace_directory": attr.string(mandatory = True),
         "xcode_configuration_map": attr.string_list_dict(mandatory = True),
+        "_adjust_schemes_for_swiftui_previews": attr.bool(
+            default = adjust_schemes_for_swiftui_previews,
+        ),
         "_allowlist_function_transition": attr.label(
             default = Label(
                 "@bazel_tools//tools/allowlists/function_transition_allowlist",

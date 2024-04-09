@@ -22,9 +22,6 @@ extension Generator {
 
         let readTargetsFromConsolidationMaps: ReadTargetsFromConsolidationMaps
 
-        let readTransitivePreviewReferencesFile:
-            ReadTransitivePreviewReferencesFile
-
         let writeSchemeManagement: WriteSchemeManagement
 
         let writeSchemes: WriteSchemes
@@ -49,8 +46,6 @@ extension Generator.Environment {
         readTargetArgsAndEnvFile: Generator.ReadTargetArgsAndEnvFile(),
         readTargetsFromConsolidationMaps:
             Generator.ReadTargetsFromConsolidationMaps(),
-        readTransitivePreviewReferencesFile:
-            Generator.ReadTransitivePreviewReferencesFile(),
         writeSchemeManagement: Generator.WriteSchemeManagement(
             createSchemeManagement: CreateSchemeManagement(),
             write: Write()

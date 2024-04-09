@@ -167,27 +167,4 @@ final class CalculateConsolidationMapsTests: XCTestCase {
 
         XCTAssertNoDifference(consolidationMaps, expectedConsolidationMaps)
     }
-
-    func test_missingDependency_throws() {
-        // Arrange
-
-        let identifiedTargets: [IdentifiedTarget] = [
-            .mock(key: ["A"], dependencies: ["B"]),
-        ]
-        let identifiedTargetsMap: OrderedDictionary<
-            TargetID,
-            IdentifiedTarget
-        > = [
-            "A": identifiedTargets[0],
-        ]
-
-        // Act/Assert
-
-        XCTAssertThrowsError(
-            try Generator.CalculateConsolidationMaps.defaultCallable(
-                identifiedTargets: identifiedTargets,
-                identifiedTargetsMap: identifiedTargetsMap
-            )
-        )
-    }
 }

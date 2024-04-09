@@ -32,27 +32,9 @@ _OUTPUT_DECLARED_DIRECTORY = mock_actions.mock_file(
 _TARGETS_ARGS_ENV_DECLARED_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/targets_args_env_file",
 )
-_TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE = mock_actions.mock_file(
-    "a_generator_name_pbxproj_partials/transitive_preview_targets_file",
-)
 _XCSCHEMEMANAGEMENT_DECLARED_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/xcschememanagement.plist",
 )
-
-def _dict_to_xcode_target(d):
-    return struct(
-        id = d["id"],
-        platform = struct(
-            apple_platform = struct(
-                platform_type = d["apple_platform"],
-            ),
-        ),
-        product = struct(
-            type = d["product_type"],
-        ),
-        test_host = depset(d["test_host"]),
-        transitive_dependencies = depset(d["transitive_dependencies"]),
-    )
 
 def _json_to_hosted_targets(json_str):
     return [
@@ -72,31 +54,10 @@ def _json_to_targets_env(json_str):
         for id, env in json.decode(json_str).items()
     }
 
-def _json_to_xcode_targets_by_id(json_str):
-    return {
-        id: _dict_to_xcode_target(xcode_target_dict)
-        for id, xcode_target_dict in json.decode(json_str).items()
-    }
-
 def _hosted_target(*, host, hosted):
     return struct(
         host = host,
         hosted = hosted,
-    )
-
-def _mock_xcode_target(
-        *,
-        id,
-        apple_platform,
-        product_type,
-        test_host = None,
-        transitive_dependencies = []):
-    return struct(
-        id = id,
-        apple_platform = apple_platform,
-        product_type = product_type,
-        test_host = test_host,
-        transitive_dependencies = transitive_dependencies,
     )
 
 # Test
@@ -128,15 +89,6 @@ def _write_schemes_test_impl(ctx):
         _XCSCHEMEMANAGEMENT_DECLARED_FILE,
     ]
 
-    include_transitive_preview_targets = (
-        ctx.attr.include_transitive_preview_targets
-    )
-    if include_transitive_preview_targets:
-        expected_declared_files[_TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE] = (
-            None
-        )
-        expected_inputs.append(_TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE)
-
     # Act
 
     (
@@ -155,13 +107,11 @@ def _write_schemes_test_impl(ctx):
         hosted_targets = depset(
             _json_to_hosted_targets(ctx.attr.hosted_targets),
         ),
-        include_transitive_preview_targets = include_transitive_preview_targets,
         install_path = ctx.attr.install_path,
         targets_args = ctx.attr.targets_args,
         targets_env = _json_to_targets_env(ctx.attr.targets_env),
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
-        xcode_targets = _json_to_xcode_targets_by_id(ctx.attr.xcode_targets),
         xcscheme_infos = json_to_xcscheme_infos(ctx.attr.xcscheme_infos),
     )
 
@@ -256,12 +206,10 @@ write_schemes_test = unittest.make(
         "default_xcode_configuration": attr.string(mandatory = True),
         "extension_point_identifiers_file": attr.string(mandatory = True),
         "hosted_targets": attr.string(mandatory = True),
-        "include_transitive_preview_targets": attr.bool(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "targets_args": attr.string_list_dict(mandatory = True),
         "targets_env": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
-        "xcode_targets": attr.string(mandatory = True),
         "xcscheme_infos": attr.string(mandatory = True),
 
         # Expected
@@ -290,12 +238,10 @@ def write_schemes_test_suite(name):
             default_xcode_configuration,
             extension_point_identifiers_file,
             hosted_targets = [],
-            include_transitive_preview_targets = False,
             install_path,
             targets_args = {},
             targets_env = {},
             workspace_directory,
-            xcode_targets,
             xcscheme_infos = [],
 
             # Expected
@@ -312,14 +258,10 @@ def write_schemes_test_suite(name):
             default_xcode_configuration = default_xcode_configuration,
             extension_point_identifiers_file = extension_point_identifiers_file,
             hosted_targets = json.encode(hosted_targets),
-            include_transitive_preview_targets = (
-                include_transitive_preview_targets
-            ),
             install_path = install_path,
             targets_args = targets_args,
             targets_env = json.encode(targets_env),
             workspace_directory = workspace_directory,
-            xcode_targets = json.encode(xcode_targets),
             xcscheme_infos = json.encode(xcscheme_infos),
 
             # Expected
@@ -329,80 +271,6 @@ def write_schemes_test_suite(name):
                 for file, content in expected_writes.items()
             },
         )
-
-    # @unsorted-dict-items
-    xcode_targets = {
-        "IOS_APP": _mock_xcode_target(
-            id = "IOS_APP",
-            apple_platform = "IOS",
-            product_type = "a",
-            transitive_dependencies = [
-                "IOS_FRAMEWORK",
-                "WATCHOS_FRAMEWORK",
-                "IOS_STATIC_LIBRARY",
-            ],
-        ),
-        "MACOS_APP": _mock_xcode_target(
-            id = "ID_1",
-            apple_platform = "MACOS",
-            product_type = "u",
-            transitive_dependencies = ["IOS_APP"],
-        ),
-        "IOS_FRAMEWORK": _mock_xcode_target(
-            id = "ISO_FRAMEWORK",
-            apple_platform = "IOS",
-            product_type = "f",
-            transitive_dependencies = ["IOS_STATIC_LIBRARY"],
-        ),
-        "WATCHOS_FRAMEWORK": _mock_xcode_target(
-            id = "WATCHOS_FRAMEWORK",
-            apple_platform = "WATCHOS",
-            product_type = "f",
-        ),
-        "IOS_STATIC_LIBRARY": _mock_xcode_target(
-            id = "IOS_STATIC_LIBRARY",
-            apple_platform = "IOS",
-            product_type = "l",
-        ),
-    }
-
-    # This set of targets differs from `xcode_targets`, in that `IOS_APP`
-    # doesn't have a framework target of the same platform in its transitive
-    # dependencies.
-    # @unsorted-dict-items
-    xcode_targets_no_matching_transitive_previews = {
-        "IOS_APP": _mock_xcode_target(
-            id = "IOS_APP",
-            apple_platform = "IOS",
-            product_type = "a",
-            transitive_dependencies = [
-                "WATCHOS_FRAMEWORK",
-                "IOS_STATIC_LIBRARY",
-            ],
-        ),
-        "MACOS_APP": _mock_xcode_target(
-            id = "ID_1",
-            apple_platform = "MACOS",
-            product_type = "u",
-            transitive_dependencies = ["IOS_APP"],
-        ),
-        "IOS_FRAMEWORK": _mock_xcode_target(
-            id = "ISO_FRAMEWORK",
-            apple_platform = "IOS",
-            product_type = "f",
-            transitive_dependencies = ["IOS_STATIC_LIBRARY"],
-        ),
-        "WATCHOS_FRAMEWORK": _mock_xcode_target(
-            id = "WATCHOS_FRAMEWORK",
-            apple_platform = "WATCHOS",
-            product_type = "f",
-        ),
-        "IOS_STATIC_LIBRARY": _mock_xcode_target(
-            id = "IOS_STATIC_LIBRARY",
-            apple_platform = "IOS",
-            product_type = "l",
-        ),
-    }
 
     no_custom_schemes_content = "\n".join([
         # schemeCount
@@ -432,7 +300,6 @@ def write_schemes_test_suite(name):
         extension_point_identifiers_file = "a/extension_point_identifiers_file",
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -456,8 +323,6 @@ def write_schemes_test_suite(name):
             _TARGETS_ARGS_ENV_DECLARED_FILE.path,
             # customSchemesFile
             _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            "",
             # consolidationMaps
             "--consolidation-maps",
             "some/consolidation_maps/0",
@@ -487,7 +352,6 @@ def write_schemes_test_suite(name):
         extension_point_identifiers_file = "a/extension_point_identifiers_file",
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets,
         xcscheme_infos = [
             xcscheme_infos_testable.make_scheme(name = "Scheme 2"),
             xcscheme_infos_testable.make_scheme(
@@ -808,8 +672,6 @@ def write_schemes_test_suite(name):
             _TARGETS_ARGS_ENV_DECLARED_FILE.path,
             # customSchemesFile
             _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            "",
             # consolidationMaps
             "--consolidation-maps",
             "some/consolidation_maps/0",
@@ -1484,7 +1346,6 @@ def write_schemes_test_suite(name):
         ],
         install_path = "best/vision.xcodeproj",
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -1508,8 +1369,6 @@ def write_schemes_test_suite(name):
             _TARGETS_ARGS_ENV_DECLARED_FILE.path,
             # customSchemesFile
             _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            "",
             # consolidationMaps
             "--consolidation-maps",
             "some/consolidation_maps/0",
@@ -1527,120 +1386,6 @@ def write_schemes_test_suite(name):
             _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
             _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
-        },
-    )
-
-    # include_transitive_preview_targets
-
-    _add_test(
-        name = "{}_include_transitive_preview_targets_no_matches".format(name),
-
-        # Inputs
-        autogeneration_mode = "auto",
-        consolidation_maps = [
-            "some/consolidation_maps/0",
-            "some/consolidation_maps/1",
-        ],
-        default_xcode_configuration = "AppStore",
-        extension_point_identifiers_file = "a/extension_point_identifiers_file",
-        include_transitive_preview_targets = True,
-        install_path = "best/vision.xcodeproj",
-        workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets_no_matching_transitive_previews,
-
-        # Expected
-        expected_args = [
-            # outputDirectory
-            _OUTPUT_DECLARED_DIRECTORY.path,
-            # schemeManagementOutputPath
-            _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
-            # autogenerationMode
-            "auto",
-            # defaultXcodeConfiguration
-            "AppStore",
-            # workspace
-            "/Users/TimApple/StarBoard",
-            # installPath
-            "best/vision.xcodeproj",
-            # extensionPointIdentifiersFile
-            "a/extension_point_identifiers_file",
-            # executionActionsFile
-            _EXECUTION_ACTIONS_DECLARED_FILE.path,
-            # targetsArgsEnvFile
-            _TARGETS_ARGS_ENV_DECLARED_FILE.path,
-            # customSchemesFile
-            _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            _TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE.path,
-            # consolidationMaps
-            "--consolidation-maps",
-            "some/consolidation_maps/0",
-            "some/consolidation_maps/1",
-        ],
-        expected_writes = {
-            _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
-            _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
-            _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
-            _TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE: "\n",
-        },
-    )
-
-    _add_test(
-        name = "{}_include_transitive_preview_targets_matches".format(name),
-
-        # Inputs
-        autogeneration_mode = "auto",
-        consolidation_maps = [
-            "some/consolidation_maps/0",
-            "some/consolidation_maps/1",
-        ],
-        default_xcode_configuration = "AppStore",
-        extension_point_identifiers_file = "a/extension_point_identifiers_file",
-        include_transitive_preview_targets = True,
-        install_path = "best/vision.xcodeproj",
-        workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets,
-
-        # Expected
-        expected_args = [
-            # outputDirectory
-            _OUTPUT_DECLARED_DIRECTORY.path,
-            # schemeManagementOutputPath
-            _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
-            # autogenerationMode
-            "auto",
-            # defaultXcodeConfiguration
-            "AppStore",
-            # workspace
-            "/Users/TimApple/StarBoard",
-            # installPath
-            "best/vision.xcodeproj",
-            # extensionPointIdentifiersFile
-            "a/extension_point_identifiers_file",
-            # executionActionsFile
-            _EXECUTION_ACTIONS_DECLARED_FILE.path,
-            # targetsArgsEnvFile
-            _TARGETS_ARGS_ENV_DECLARED_FILE.path,
-            # customSchemesFile
-            _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            _TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE.path,
-            # consolidationMaps
-            "--consolidation-maps",
-            "some/consolidation_maps/0",
-            "some/consolidation_maps/1",
-        ],
-        expected_writes = {
-            _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
-            _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
-            _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
-            _TRANSITIVE_PREVIEW_TARGETS_DECLARED_FILE: "\n".join([
-                # id
-                "IOS_APP",
-                # buildableReferences
-                "IOS_FRAMEWORK",
-                "",
-            ]) + "\n",
         },
     )
 
@@ -1675,7 +1420,6 @@ def write_schemes_test_suite(name):
             ],
         },
         workspace_directory = "/Users/TimApple/StarBoard",
-        xcode_targets = xcode_targets,
 
         # Expected
         expected_args = [
@@ -1699,8 +1443,6 @@ def write_schemes_test_suite(name):
             _TARGETS_ARGS_ENV_DECLARED_FILE.path,
             # customSchemesFile
             _CUSTOM_SCHEMES_DECLARED_FILE.path,
-            # transitivePreviewTargetsFile
-            "",
             # consolidationMaps
             "--consolidation-maps",
             "some/consolidation_maps/0",

@@ -58,11 +58,14 @@ extension Generator.CalculateConsolidationMaps {
                 .bazelDependencies,
             ]
             depSubIdentifiers
-                .append(contentsOf: try target.dependencies.map { id in
-                    return try identifiedTargetsMap
-                        .value(for: id ,context: "Dependency")
-                        .identifier
-                        .subIdentifier
+                .append(contentsOf: target.dependencies.compactMap { id in
+                    guard let dependency = identifiedTargetsMap[id] else {
+                        // We don't throw here because the dependency was
+                        // probably a "potential test host" that became
+                        // unfocused
+                        return nil
+                    }
+                    return dependency.identifier.subIdentifier
                 })
 
             consolidationMaps[target.consolidationMapOutputPath, default: []]

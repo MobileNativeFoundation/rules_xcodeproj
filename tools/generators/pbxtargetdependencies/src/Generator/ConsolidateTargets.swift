@@ -140,11 +140,11 @@ extension Generator.ConsolidateTargets {
         func resolveDependency(
             _ depID: TargetID,
             for id: TargetID
-        ) throws -> PotentialConsolidatedTargetKey {
+        ) throws -> PotentialConsolidatedTargetKey? {
             guard let dependencyKey = targetIDMapping[depID] else {
-                throw PreconditionError(message: """
-Target "\(id)" dependency on "\(depID)" not found in `targetIDMapping`
-""")
+                // We don't throw here because the dependency was probably a
+                // "potential test host" that became unfocused
+                return nil
             }
             return dependencyKey
         }
@@ -164,7 +164,7 @@ Target "\(id)" dependency on "\(depID)" not found in `targetIDMapping`
             }
 
             let dependencies: Set<PotentialConsolidatedTargetKey> = try .init(
-                target.dependencies.map { depID in
+                target.dependencies.compactMap { depID in
                     return try resolveDependency(depID, for: id)
                 }
             )

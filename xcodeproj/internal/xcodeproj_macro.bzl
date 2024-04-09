@@ -83,6 +83,8 @@ def xcodeproj(
             For example, this changes a scheme for an single application target
             to also include any app clip, app extension, framework, or watchOS
             app dependencies.
+
+            This is only used when `generation_mode = "legacy"`.
         associated_extra_files: Optional. A `dict` of files to be added to the
             project.
 

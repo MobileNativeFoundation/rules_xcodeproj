@@ -1,25 +1,6 @@
 """Module for defining custom Xcode schemes (`.xcscheme`s)."""
 
-load(
-    "//xcodeproj/internal:memory_efficiency.bzl",
-    "EMPTY_STRING",
-    "FALSE_ARG",
-    "TRUE_ARG",
-)
-load("//xcodeproj/internal:platforms.bzl", "platforms")
-
-_XCODE_PREVIEW_PRODUCT_TYPES = {
-    "A": None,  # com.apple.product-type.application.on-demand-install-capable
-    "B": None,  # com.apple.product-type.bundle
-    "E": None,  # com.apple.product-type.extensionkit-extension
-    "T": None,  # com.apple.product-type.tool
-    "a": None,  # com.apple.product-type.application
-    "e": None,  # com.apple.product-type.app-extension
-    "f": None,  # com.apple.product-type.framework
-    "t": None,  # com.apple.product-type.tv-app-extension
-    "u": None,  # com.apple.product-type.bundle.unit-test
-    "w": None,  # com.apple.product-type.application.watchapp2
-}
+load("//xcodeproj/internal:memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
 
 _EXECUTION_ACTION_NAME = struct(
     build = "build",
@@ -38,13 +19,6 @@ _FLAGS = struct(
 def _hosted_target(hosted_target):
     return [hosted_target.hosted, hosted_target.host]
 
-def _is_same_platform_xcode_preview_target(*, platform, xcode_target):
-    if not xcode_target:
-        return False
-    if not platforms.is_same_type(platform, xcode_target.platform):
-        return False
-    return xcode_target.product.type in _XCODE_PREVIEW_PRODUCT_TYPES
-
 def _null_newlines(str):
     return str.replace("\n", "\0")
 
@@ -60,13 +34,11 @@ def _write_schemes(
         extension_point_identifiers_file,
         generator_name,
         hosted_targets,
-        include_transitive_preview_targets,
         install_path,
         targets_args,
         targets_env,
         tool,
         workspace_directory,
-        xcode_targets,
         xcscheme_infos):
     """Creates the `.xcscheme` `File`s for a project.
 
@@ -85,9 +57,6 @@ def _write_schemes(
         hosted_targets: A `depset` of `struct`s with `host` and `hosted` fields.
             The `host` field is the target ID of the hosting target. The
             `hosted` field is the target ID of the hosted target.
-        include_transitive_preview_targets: Whether to adjust schemes to
-            explicitly include transitive dependencies that are able to run
-            Xcode Previews.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
         targets_args: A `dict` mapping `xcode_target.id` to `list` of
@@ -97,7 +66,6 @@ def _write_schemes(
         tool: The executable that will generate the output files.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
-        xcode_targets: A `dict` mapping `xcode_target.id` to `xcode_target`s.
         xcscheme_infos: A `list` of `struct`s as returned` by
             `xcscheme_infos.from_json`.
 
@@ -174,45 +142,6 @@ def _write_schemes(
 
     # customSchemesFile
     args.add(custom_schemes_file)
-
-    # transitivePreviewTargetsFile
-    if include_transitive_preview_targets:
-        transitive_preview_targets_file = actions.declare_file(
-            "{}_pbxproj_partials/transitive_preview_targets_file".format(
-                generator_name,
-            ),
-        )
-        inputs.append(transitive_preview_targets_file)
-        args.add(transitive_preview_targets_file)
-
-        transitive_preview_targets_args = actions.args()
-        transitive_preview_targets_args.set_param_file_format("multiline")
-
-        for xcode_target in xcode_targets.values():
-            if xcode_target.product.type in _XCODE_PREVIEW_PRODUCT_TYPES:
-                ids = [
-                    id
-                    for id in xcode_target.transitive_dependencies.to_list()
-                    if (id != xcode_target.test_host and
-                        _is_same_platform_xcode_preview_target(
-                            platform = xcode_target.platform,
-                            xcode_target = xcode_targets.get(id),
-                        ))
-                ]
-                if ids:
-                    transitive_preview_targets_args.add(xcode_target.id)
-                    transitive_preview_targets_args.add_all(
-                        ids,
-                        omit_if_empty = False,
-                        terminate_with = "",
-                    )
-
-        actions.write(
-            transitive_preview_targets_file,
-            transitive_preview_targets_args,
-        )
-    else:
-        args.add(EMPTY_STRING)
 
     # consolidationMaps
     args.add_all(_FLAGS.consolidation_maps, consolidation_maps)

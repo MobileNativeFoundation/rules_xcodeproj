@@ -201,16 +201,6 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
         let targetsByKey: [Target.Key: Target] = [
             ["1", "D"]: .mock(key: ["1", "D"]),
         ]
-        let transitivePreviewReferences: [TargetID : [BuildableReference]] = [
-            "aBc": [
-                .init(
-                    blueprintIdentifier: "1",
-                    buildableName: "2",
-                    blueprintName: "3",
-                    referencedContainer: "4"
-                ),
-            ],
-        ]
 
         // The order these are called is based on the sorting of `targets`,
         // first on the product type, then on
@@ -226,8 +216,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "C", productType: .application),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByKey: targetsByKey
             ),
             .init(
                 commandLineArguments: [
@@ -240,8 +229,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "A", productType: .messagesExtension),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByKey: targetsByKey
             ),
             .init(
                 commandLineArguments: [],
@@ -253,8 +241,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "B", productType: .appExtension),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByKey: targetsByKey
             ),
         ]
         let createTargetAutomaticSchemeInfos =
@@ -283,7 +270,6 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
             targets: targets,
             targetsByID: targetsByID,
             targetsByKey: targetsByKey,
-            transitivePreviewReferences: transitivePreviewReferences,
             createTargetAutomaticSchemeInfos:
                 createTargetAutomaticSchemeInfos.mock
         )
@@ -307,7 +293,6 @@ private func createAutomaticSchemeInfosWithDefaults(
     targets: [Target],
     targetsByID: [TargetID : Target] = [:],
     targetsByKey: [Target.Key : Target] = [:],
-    transitivePreviewReferences: [TargetID: [BuildableReference]] = [:],
     createTargetAutomaticSchemeInfos: Generator.CreateTargetAutomaticSchemeInfos
 ) throws -> [SchemeInfo] {
     return try Generator.CreateAutomaticSchemeInfos.defaultCallable(
@@ -319,7 +304,6 @@ private func createAutomaticSchemeInfosWithDefaults(
         targets: targets,
         targetsByID: targetsByID,
         targetsByKey: targetsByKey,
-        transitivePreviewReferences: transitivePreviewReferences,
         createTargetAutomaticSchemeInfos: createTargetAutomaticSchemeInfos
     )
 }

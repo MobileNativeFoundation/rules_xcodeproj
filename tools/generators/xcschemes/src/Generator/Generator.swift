@@ -33,11 +33,6 @@ struct Generator {
         ) = try await environment
             .readTargetArgsAndEnvFile(arguments.targetsArgsEnvFile)
         let extensionHostIDs = arguments.calculateExtensionHostIDs()
-        let transitivePreviewReferences: [TargetID: [BuildableReference]] =
-            try await environment.readTransitivePreviewReferencesFile(
-                arguments.transitivePreviewTargetsFile,
-                targetsByID: targetsByID
-            )
 
         let customSchemeInfos = try await environment.createCustomSchemeInfos(
             commandLineArguments: commandLineArguments,
@@ -45,8 +40,7 @@ struct Generator {
             environmentVariables: environmentVariables,
             executionActionsFile: arguments.executionActionsFile,
             extensionHostIDs: extensionHostIDs,
-            targetsByID: targetsByID,
-            transitivePreviewReferences: transitivePreviewReferences
+            targetsByID: targetsByID
         )
 
         let automaticSchemeInfos = try environment.createAutomaticSchemeInfos(
@@ -57,8 +51,7 @@ struct Generator {
             extensionHostIDs: extensionHostIDs,
             targets: targets,
             targetsByID: targetsByID,
-            targetsByKey: targetsByKey,
-            transitivePreviewReferences: transitivePreviewReferences
+            targetsByKey: targetsByKey
         )
 
         let schemeInfos = customSchemeInfos + automaticSchemeInfos
