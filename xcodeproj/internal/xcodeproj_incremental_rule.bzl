@@ -121,10 +121,12 @@ def _collect_files(
         unowned_extra_files,
         unsupported_extra_files,
         xcode_targets):
-    target_extra_files = {
-        target_label_str: files_target.files
-        for files_target, target_label_str in owned_extra_files.items()
-    }
+    target_extra_files = {}
+    for files_target, target_label_str in owned_extra_files.items():
+        if target_label_str in target_extra_files:
+            target_extra_files[target_label_str] += files_target.files.to_list()
+        else:
+            target_extra_files[target_label_str] = files_target.files.to_list()
 
     all_targets = xcode_targets.values() + resource_bundle_xcode_targets
 
@@ -145,7 +147,7 @@ def _collect_files(
         if label:
             extra_files = target_extra_files.get(str(label))
             if extra_files:
-                transitive_files.append(extra_files)
+                transitive_files.append(depset(extra_files))
 
         infoplist = xcode_target.inputs.infoplist
         if infoplist:
