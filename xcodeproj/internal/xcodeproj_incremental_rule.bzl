@@ -581,6 +581,9 @@ def _xcodeproj_incremental_impl(ctx):
         fail("""\
 After removing unfocused targets, no targets remain. Please check your \
 `xcodeproj.focused_targets` and `xcodeproj.unfocused_targets` attributes.
+
+Are you using an `alias`? `xcodeproj.focused_targets` and \
+`xcodeproj.unfocused_targets` requires labels of the actual targets.
 """)
 
     # Shared values
