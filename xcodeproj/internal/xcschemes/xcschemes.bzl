@@ -1157,12 +1157,12 @@ def _diagnostics(
 
             If `True`,
             [`thread_sanitizer`](#xcschemes.diagnostics-thread_sanitizer) must
-            be `False.
+            be `False`.
         thread_sanitizer: Whether to enable Thread Sanitizer.
 
             If `True`,
             [`address_sanitizer`](#xcschemes.diagnostics-address_sanitizer) must
-            be `False.
+            be `False`.
         undefined_behavior_sanitizer: Whether to enable Undefined Behavior
             Sanitizer.
     """
