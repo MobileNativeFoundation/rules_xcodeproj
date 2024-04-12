@@ -24,7 +24,7 @@ xcodeproj(
     ios_device_cpus = "arm64",
     ios_simulator_cpus = "",
     minimum_xcode_version = "13.0",
-    owned_extra_files = {"@@//Lib:README.md": "@@//Lib:Lib", "@@//iOSApp:ownership.yaml": "@@//iOSApp/Source:iOSApp"},
+    owned_extra_files = {"@@//Lib:README.md": "@@//Lib:Lib", "@@//iOSApp:info.yaml": "@@//iOSApp/Source:iOSApp", "@@//iOSApp:ownership.yaml": "@@//iOSApp/Source:iOSApp"},
     post_build = """""",
     pre_build = """set -euo pipefail
 
