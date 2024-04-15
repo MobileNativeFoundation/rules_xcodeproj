@@ -157,6 +157,8 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
 
         let platforms: OrderedSet<Platform> = [
             .tvOSSimulator,
+            .visionOSDevice,
+            .visionOSSimulator,
             .macOS,
             .watchOSDevice,
             .iOSSimulator,
@@ -167,7 +169,7 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
         // function
         let expectedBuildSettings = baseBuildSettings.updating([
             "SDKROOT": "appletvos",
-            "SUPPORTED_PLATFORMS": #""appletvsimulator appletvos macosx watchos iphonesimulator iphoneos""#,
+            "SUPPORTED_PLATFORMS": #""appletvsimulator appletvos xros xrsimulator macosx watchos iphonesimulator iphoneos""#,
             "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
         ])
 
