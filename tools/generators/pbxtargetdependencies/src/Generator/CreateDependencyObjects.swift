@@ -84,13 +84,13 @@ extension Generator.CreateDependencyObjects {
 
             addElements(from: identifier, to: .bazelDependencies)
 
-            for dependency in target.dependencies {
-                let dependencyIdentifier = try identifiedTargetsMap.value(
-                    for: dependency,
-                    context: "Dependency"
-                ).identifier
-
-                addElements(from: identifier, to: dependencyIdentifier)
+            for depID in target.dependencies {
+                guard let dependency = identifiedTargetsMap[depID] else {
+                    // We don't throw here because the dependency was probably a
+                    // "potential test host" that became unfocused
+                    continue
+                }
+                addElements(from: identifier, to: dependency.identifier)
             }
         }
 

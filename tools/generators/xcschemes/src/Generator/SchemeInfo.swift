@@ -30,7 +30,6 @@ struct SchemeInfo: Equatable {
         let customWorkingDirectory: String?
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
-        let transitivePreviewReferences: [BuildableReference]
         let useRunArgsAndEnv: Bool
         let xcodeConfiguration: String?
     }
@@ -43,7 +42,6 @@ struct SchemeInfo: Equatable {
         let enableUBSanitizer: Bool
         let environmentVariables: [EnvironmentVariable]
         let testTargets: [TestTarget]
-        let transitivePreviewReferences: [BuildableReference]
         let useRunArgsAndEnv: Bool
         let xcodeConfiguration: String?
     }
@@ -62,7 +60,6 @@ struct SchemeInfo: Equatable {
         let enableUBSanitizer: Bool
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
-        let transitivePreviewReferences: [BuildableReference]
         let xcodeConfiguration: String?
     }
 

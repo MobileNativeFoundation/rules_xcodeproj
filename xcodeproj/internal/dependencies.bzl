@@ -6,6 +6,18 @@ load(":memory_efficiency.bzl", "memory_efficient_depset")
 _WATCHKIT2 = "w"  # "com.apple.product-type.application.watchapp2"
 _WATCHKIT2_EXTENSION = "W"  # "com.apple.product-type.watchkit2-extension"
 
+_XCODE_PREVIEW_PRODUCT_TYPES = {
+    "A": None,  # com.apple.product-type.application.on-demand-install-capable
+    "B": None,  # com.apple.product-type.bundle
+    "E": None,  # com.apple.product-type.extensionkit-extension
+    "a": None,  # com.apple.product-type.application
+    "e": None,  # com.apple.product-type.app-extension
+    "f": None,  # com.apple.product-type.framework
+    "t": None,  # com.apple.product-type.tv-app-extension
+    "u": None,  # com.apple.product-type.bundle.unit-test
+    "w": None,  # com.apple.product-type.application.watchapp2
+}
+
 def _collect_dependencies(
         *,
         top_level_product_type = None,
@@ -40,7 +52,10 @@ def _collect_dependencies(
                 test_host == xcode_target.id or
                 # watchOS 2 App Extensions need to be embedded
                 (top_level_product_type == _WATCHKIT2 and
-                 xcode_target.product.type == _WATCHKIT2_EXTENSION)
+                 xcode_target.product.type == _WATCHKIT2_EXTENSION) or
+                # For Xcode previews to work seemlessly, we need target
+                # dependencies on transitive preview-hosting targets
+                xcode_target.product.type in _XCODE_PREVIEW_PRODUCT_TYPES
             ):
                 direct_dependencies.append(xcode_target.id)
             transitive_direct_dependencies.append(xcode_target.id)

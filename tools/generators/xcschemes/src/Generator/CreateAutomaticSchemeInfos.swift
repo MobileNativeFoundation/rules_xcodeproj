@@ -32,8 +32,7 @@ extension Generator {
             extensionHostIDs: [TargetID: [TargetID]],
             targets: [Target],
             targetsByID: [TargetID: Target],
-            targetsByKey: [Target.Key: Target],
-            transitivePreviewReferences: [TargetID: [BuildableReference]]
+            targetsByKey: [Target.Key: Target]
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*autogenerationMode:*/ autogenerationMode,
@@ -44,7 +43,6 @@ extension Generator {
                 /*targets:*/ targets,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
-                /*transitivePreviewReferences:*/ transitivePreviewReferences,
                 /*createTargetAutomaticSchemeInfos:*/
                     createTargetAutomaticSchemeInfos
             )
@@ -64,7 +62,6 @@ extension Generator.CreateAutomaticSchemeInfos {
         _ targets: [Target],
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
-        _ transitivePreviewReferences: [TargetID: [BuildableReference]],
         _ createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos
     ) throws -> [SchemeInfo]
@@ -78,7 +75,6 @@ extension Generator.CreateAutomaticSchemeInfos {
         targets: [Target],
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]],
         createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos
     ) throws -> [SchemeInfo] {
@@ -122,9 +118,7 @@ extension Generator.CreateAutomaticSchemeInfos {
                     extensionHostIDs: extensionHostIDs,
                     target: target,
                     targetsByID: targetsByID,
-                    targetsByKey: targetsByKey,
-                    transitivePreviewReferences:
-                        transitivePreviewReferences
+                    targetsByKey: targetsByKey
                 )
             }
     }

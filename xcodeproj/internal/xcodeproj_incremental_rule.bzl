@@ -485,13 +485,11 @@ def _write_schemes(
         consolidation_maps,
         default_xcode_configuration,
         extension_point_identifiers_parser,
-        include_transitive_preview_targets,
         infos,
         install_path,
         name,
         top_level_deps,
         workspace_directory,
-        xcode_targets,
         xcschemes_generator,
         xcschemes_json):
     extension_point_identifiers_file = write_extension_point_identifiers_file(
@@ -523,7 +521,6 @@ def _write_schemes(
         hosted_targets = depset(
             transitive = [info.hosted_targets for info in infos],
         ),
-        include_transitive_preview_targets = include_transitive_preview_targets,
         install_path = install_path,
         targets_args = {
             s.id: s.args
@@ -541,7 +538,6 @@ def _write_schemes(
         },
         tool = xcschemes_generator,
         workspace_directory = workspace_directory,
-        xcode_targets = xcode_targets,
         xcscheme_infos = xcscheme_infos,
     )
 
@@ -681,15 +677,11 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         extension_point_identifiers_parser = (
             ctx.attr._extension_point_identifiers_parser[DefaultInfo].files_to_run
         ),
-        include_transitive_preview_targets = (
-            ctx.attr.adjust_schemes_for_swiftui_previews
-        ),
         infos = infos,
         install_path = install_path,
         name = name,
         top_level_deps = top_level_deps,
         workspace_directory = workspace_directory,
-        xcode_targets = xcode_targets,
         xcschemes_generator = ctx.executable._xcschemes_generator,
         xcschemes_json = ctx.attr.xcschemes_json,
     )
@@ -762,7 +754,6 @@ def _xcodeproj_incremental_attrs(
         target_transitions,
         xcodeproj_aspect):
     return {
-        "adjust_schemes_for_swiftui_previews": attr.bool(mandatory = True),
         "bazel_env": attr.string_dict(mandatory = True),
         "bazel_path": attr.string(mandatory = True),
         "colorize": attr.bool(mandatory = True),

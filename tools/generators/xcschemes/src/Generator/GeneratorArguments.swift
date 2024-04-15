@@ -79,20 +79,6 @@ Path to a file that contains arguments for custom schemes.
         )
         var customSchemesFile: URL
 
-        @Argument(
-            help: """
-Path to a file containing `[TargetID: [TargetID]]`, which maps a target to a \
-list of addition targets to include for Xcode Preview support.
-""",
-            transform: { path in
-                guard !path.isEmpty else {
-                    return nil
-                }
-                return URL(fileURLWithPath: path, isDirectory: false)
-            }
-        )
-        var transitivePreviewTargetsFile: URL?
-
         @Option(
             parsing: .upToNextOption,
             help: "Path to the consolidation maps.",

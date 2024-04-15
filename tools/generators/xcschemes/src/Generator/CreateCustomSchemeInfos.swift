@@ -23,8 +23,7 @@ extension Generator {
             environmentVariables: [TargetID: [EnvironmentVariable]],
             executionActionsFile: URL,
             extensionHostIDs: [TargetID: [TargetID]],
-            targetsByID: [TargetID: Target],
-            transitivePreviewReferences: [TargetID: [BuildableReference]]
+            targetsByID: [TargetID: Target]
         ) async throws -> [SchemeInfo] {
             try await callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -32,8 +31,7 @@ extension Generator {
                 /*environmentVariables:*/ environmentVariables,
                 /*executionActionsFile:*/ executionActionsFile,
                 /*extensionHostIDs:*/ extensionHostIDs,
-                /*targetsByID:*/ targetsByID,
-                /*transitivePreviewReferences:*/ transitivePreviewReferences
+                /*targetsByID:*/ targetsByID
             )
         }
     }
@@ -48,8 +46,7 @@ extension Generator.CreateCustomSchemeInfos {
         _ environmentVariables: [TargetID: [EnvironmentVariable]],
         _ executionActionsFile: URL,
         _ extensionHostIDs: [TargetID: [TargetID]],
-        _ targetsByID: [TargetID: Target],
-        _ transitivePreviewReferences: [TargetID: [BuildableReference]]
+        _ targetsByID: [TargetID: Target]
     ) async throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -58,8 +55,7 @@ extension Generator.CreateCustomSchemeInfos {
         environmentVariables: [TargetID: [EnvironmentVariable]],
         executionActionsFile: URL,
         extensionHostIDs: [TargetID: [TargetID]],
-        targetsByID: [TargetID: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]]
+        targetsByID: [TargetID: Target]
     ) async throws -> [SchemeInfo] {
         let executionActions: [String: [SchemeInfo.ExecutionAction]] =
             try await .parse(
@@ -88,8 +84,7 @@ extension Generator.CreateCustomSchemeInfos {
                 allTargetIDs: &allTargetIDs,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByID: targetsByID
             )
 
             let run = try rawArgs.consumeArg(
@@ -100,8 +95,7 @@ extension Generator.CreateCustomSchemeInfos {
                 name: name,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByID: targetsByID
             )
 
             let profile = try rawArgs.consumeArg(
@@ -112,8 +106,7 @@ extension Generator.CreateCustomSchemeInfos {
                 name: name,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID,
-                transitivePreviewReferences: transitivePreviewReferences
+                targetsByID: targetsByID
             )
 
             schemeInfos.append(
@@ -369,7 +362,6 @@ set
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Profile {
@@ -384,8 +376,7 @@ set
                 )
             }
         )
-        let targetIDs = buildTargets.map(\.key.sortedIds.first!)
-        allTargetIDs.formUnion(targetIDs)
+        allTargetIDs.formUnion(buildTargets.map(\.key.sortedIds.first!))
 
         let specifiedCommandLineArguments =
             try consumeArgs("profile", as: CommandLineArgument.self, in: url)
@@ -440,19 +431,12 @@ set
             )
         }
 
-        let transitivePreviewReferences = Array(Set(
-            targetIDs.flatMap { id in
-                return transitivePreviewReferences[id, default: []]
-            }
-        ))
-
         return SchemeInfo.Profile(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
             customWorkingDirectory: customWorkingDirectory,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
-            transitivePreviewReferences: transitivePreviewReferences,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration
         )
@@ -469,7 +453,6 @@ set
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Run {
@@ -482,8 +465,7 @@ set
                     .value(for: TargetID(id), context: "Run build target")
             }
         )
-        let targetIDs = buildTargets.map(\.key.sortedIds.first!)
-        allTargetIDs.formUnion(targetIDs)
+        allTargetIDs.formUnion(buildTargets.map(\.key.sortedIds.first!))
 
         let specifiedCommandLineArguments =
             try consumeArgs("run", as: CommandLineArgument.self, in: url)
@@ -542,12 +524,6 @@ set
             )
         }
 
-        let transitivePreviewReferences = Array(Set(
-            targetIDs.flatMap { id in
-                return transitivePreviewReferences[id, default: []]
-            }
-        ))
-
         return SchemeInfo.Run(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
@@ -557,7 +533,6 @@ set
             enableUBSanitizer: enableUBSanitizer,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
-            transitivePreviewReferences: transitivePreviewReferences,
             xcodeConfiguration: xcodeConfiguration
         )
     }
@@ -571,7 +546,6 @@ set
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
-        transitivePreviewReferences: [TargetID: [BuildableReference]],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Test {
@@ -595,7 +569,7 @@ set
                 )
             )
         }
-        var targetIDs = testTargets.map(\.target.key.sortedIds.first!)
+        allTargetIDs.formUnion(testTargets.map(\.target.key.sortedIds.first!))
 
         let buildTargets = try consumeArgs(
             "test-build-targets",
@@ -606,9 +580,7 @@ set
                     .value(for: TargetID(id), context: "Test build target")
             }
         )
-        targetIDs.append(contentsOf: buildTargets.map(\.key.sortedIds.first!))
-
-        allTargetIDs.formUnion(targetIDs)
+        allTargetIDs.formUnion(buildTargets.map(\.key.sortedIds.first!))
 
         let specifiedCommandLineArguments =
             try consumeArgs("test", as: CommandLineArgument.self, in: url)
@@ -704,12 +676,6 @@ set
             )
         }
 
-        let transitivePreviewReferences = Array(Set(
-            targetIDs.flatMap { id in
-                return transitivePreviewReferences[id, default: []]
-            }
-        ))
-
         return SchemeInfo.Test(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
@@ -718,7 +684,6 @@ set
             enableUBSanitizer: enableUBSanitizer,
             environmentVariables: environmentVariables,
             testTargets: testTargets,
-            transitivePreviewReferences: transitivePreviewReferences,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration
         )

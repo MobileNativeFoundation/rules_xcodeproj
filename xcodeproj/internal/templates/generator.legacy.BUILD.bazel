@@ -12,7 +12,6 @@ load(
 xcodeproj(
     name = "%name%",
     testonly = %testonly%,
-    adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
     bazel_env = BAZEL_ENV,
     bazel_path = BAZEL_PATH,
     build_mode = "%build_mode%",

@@ -38,6 +38,7 @@ def _make_xcodeproj_aspect(
 
 def _make_xcodeproj_rule(
         *,
+        adjust_schemes_for_swiftui_previews,
         focused_labels,
         is_fixture = False,
         target_transitions = None,
@@ -54,6 +55,9 @@ def _make_xcodeproj_rule(
         impl = xcodeproj_incremental_rule.impl
     else:
         attrs = xcodeproj_legacy_rule.attrs(
+            adjust_schemes_for_swiftui_previews = (
+                adjust_schemes_for_swiftui_previews
+            ),
             focused_labels = focused_labels,
             is_fixture = is_fixture,
             target_transitions = target_transitions,

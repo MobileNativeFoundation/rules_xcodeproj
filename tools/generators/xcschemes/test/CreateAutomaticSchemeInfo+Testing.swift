@@ -13,7 +13,6 @@ extension Generator.CreateAutomaticSchemeInfo {
             let environmentVariables: [EnvironmentVariable]
             let extensionHost: Target?
             let target: Target
-            let transitivePreviewReferences: [BuildableReference]
         }
 
         fileprivate(set) var called: [Called] = []
@@ -43,15 +42,13 @@ extension Generator.CreateAutomaticSchemeInfo {
                     customSchemeNames,
                     environmentVariables,
                     extensionHost,
-                    target,
-                    transitivePreviewReferences in
+                    target in
                 mockTracker.called.append(.init(
                     commandLineArguments: commandLineArguments,
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables,
                     extensionHost: extensionHost,
-                    target: target,
-                    transitivePreviewReferences: transitivePreviewReferences
+                    target: target
                 ))
                 return mockTracker.nextResult()
             }

@@ -203,6 +203,9 @@ _target_transitions = make_xcodeproj_target_transitions(
         template = template,
         output = output,
         substitutions = {
+            "%adjust_schemes_for_swiftui_previews%": (
+                str(attr.adjust_schemes_for_swiftui_previews)
+            ),
             "%build_mode%": build_mode,
             "%focused_labels%": str(attr.focused_labels),
             "%generator_name%": name,
@@ -239,9 +242,6 @@ def _write_generator_build_file(
         template = template,
         output = output,
         substitutions = {
-            "%adjust_schemes_for_swiftui_previews%": (
-                str(attr.adjust_schemes_for_swiftui_previews)
-            ),
             # TODO: Remove after dropping legacy generation mode
             "%build_mode%": attr.build_mode,
             "%colorize%": str(attr._colorize[BuildSettingInfo].value),
