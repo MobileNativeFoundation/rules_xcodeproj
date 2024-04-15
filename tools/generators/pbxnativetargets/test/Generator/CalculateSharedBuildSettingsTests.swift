@@ -152,6 +152,42 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
         )
     }
 
+    func test_platforms_appExtension() {
+        // Arrange
+
+        let platforms: OrderedSet<Platform> = [
+            .tvOSSimulator,
+            .visionOSDevice,
+            .visionOSSimulator,
+            .macOS,
+            .watchOSDevice,
+            .iOSSimulator,
+        ]
+        let productType = PBXProductType.appExtension
+
+        // Order is wrong, but it shows that we don't do sorting in this
+        // function
+        let expectedBuildSettings = baseBuildSettings.updating([
+            "SDKROOT": "appletvos",
+            "SUPPORTED_PLATFORMS": #""appletvsimulator appletvos xros xrsimulator macosx watchos iphonesimulator iphoneos""#,
+            "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
+        ])
+
+        // Act
+
+        let buildSettings = calculateSharedBuildSettingsWithDefaults(
+            platforms: platforms,
+            productType: productType
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
     func test_staticFramework() {
         // Arrange
 
@@ -237,17 +273,17 @@ class CalculateSharedBuildSettingsTests: XCTestCase {
 private func calculateSharedBuildSettingsWithDefaults(
         name: String = "A",
         label: BazelLabel = "@//A",
+        platforms: OrderedSet<Platform> = [.macOS],
         productType: PBXProductType = .staticLibrary,
         productName: String = "product_name",
-        platforms: OrderedSet<Platform> = [.macOS],
         uiTestHostName: String? = nil
 ) -> [BuildSetting] {
     return Generator.CalculateSharedBuildSettings.defaultCallable(
         name: name,
         label: label,
+        platforms: platforms,
         productType: productType,
         productName: productName,
-        platforms: platforms,
         uiTestHostName: uiTestHostName
     )
 }
