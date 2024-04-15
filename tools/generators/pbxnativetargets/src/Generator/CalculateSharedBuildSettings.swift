@@ -18,17 +18,17 @@ extension Generator {
         func callAsFunction(
             name: String,
             label: BazelLabel,
+            platforms: OrderedSet<Platform>,
             productType: PBXProductType,
             productName: String,
-            platforms: OrderedSet<Platform>,
             uiTestHostName: String?
         ) -> [BuildSetting] {
             return callable(
                 /*name:*/ name,
                 /*label:*/ label,
+                /*platforms:*/ platforms,
                 /*productType:*/ productType,
                 /*productName:*/ productName,
-                /*platforms:*/ platforms,
                 /*uiTestHostName:*/ uiTestHostName
             )
         }
@@ -41,18 +41,18 @@ extension Generator.CalculateSharedBuildSettings {
     typealias Callable = (
         _ name: String,
         _ label: BazelLabel,
+        _ platforms: OrderedSet<Platform>,
         _ productType: PBXProductType,
         _ productName: String,
-        _ platforms: OrderedSet<Platform>,
         _ uiTestHostName: String?
     ) -> [BuildSetting]
 
     static func defaultCallable(
         name: String,
         label: BazelLabel,
+        platforms: OrderedSet<Platform>,
         productType: PBXProductType,
         productName: String,
-        platforms: OrderedSet<Platform>,
         uiTestHostName: String?
     ) -> [BuildSetting] {
         var buildSettings: [BuildSetting] = []
@@ -73,10 +73,33 @@ extension Generator.CalculateSharedBuildSettings {
         buildSettings.append(
             .init(key: "SDKROOT", value: platforms.first!.os.sdkRoot)
         )
+
+        var supportedPlatforms = platforms
+        if productType == .appExtension {
+            // Xcode has a bug where if we don't include device platforms in
+            // app extension targets, then it will fail to install the hosting
+            // application
+            if let index = supportedPlatforms.firstIndex(of: .iOSSimulator) {
+                supportedPlatforms.insert(.iOSDevice, at: index + 1)
+            }
+            if let index = supportedPlatforms.firstIndex(of: .tvOSSimulator) {
+                supportedPlatforms.insert(.tvOSDevice, at: index + 1)
+            }
+            if let index = supportedPlatforms.firstIndex(
+                of: .watchOSSimulator
+            ) {
+                supportedPlatforms.insert(.watchOSDevice, at: index + 1)
+            }
+            if let index = supportedPlatforms.firstIndex(
+                of: .visionOSSimulator
+            ) {
+                supportedPlatforms.insert(.visionOSDevice, at: index + 1)
+            }
+        }
         buildSettings.append(
             .init(
                 key: "SUPPORTED_PLATFORMS",
-                value: platforms.map(\.rawValue).joined(separator: " ")
+                value: supportedPlatforms.map(\.rawValue).joined(separator: " ")
                     .pbxProjEscaped
             )
         )

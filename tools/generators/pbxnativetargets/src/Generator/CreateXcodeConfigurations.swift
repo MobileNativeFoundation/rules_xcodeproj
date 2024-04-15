@@ -155,11 +155,11 @@ extension Generator.CreateXcodeConfigurations {
         let sharedBuildSettings = calculateSharedBuildSettings(
             name: name,
             label: label,
-            productType: productType,
-            productName: productName,
             platforms: OrderedSet(
                 platformVariants.map(\.platform).sorted()
             ),
+            productType: productType,
+            productName: productName,
             uiTestHostName: uiTestHostName
         )
 
