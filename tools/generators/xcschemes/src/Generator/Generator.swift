@@ -1,5 +1,6 @@
 import PBXProj
 import XCScheme
+import Foundation
 
 /// A type that generates and writes to disk `.xcscheme` files for a project.
 ///
@@ -54,7 +55,24 @@ struct Generator {
             targetsByKey: targetsByKey
         )
 
-        let schemeInfos = customSchemeInfos + automaticSchemeInfos
+        // Apply scheme auto-generation exclude patterns
+        let schemeInfos = (customSchemeInfos + automaticSchemeInfos).filter { s in
+            // Scheme name exclude patterns
+            let schemeName = s.name
+            let schemeNameFullRange = NSRange(schemeName.startIndex..., in: schemeName)
+
+            for pattern in arguments.autogenerationModeExcludePatternsTargetName {
+                let matches = try? NSRegularExpression(
+                    pattern: pattern
+                ).matches(in: schemeName, range: schemeNameFullRange) ?? []
+
+                if (matches?.count ?? 0) != 0 {
+                    return false
+                }
+            }
+
+            return true
+        }
 
         let writeSchemesTask = Task {
             try await environment.writeSchemes(

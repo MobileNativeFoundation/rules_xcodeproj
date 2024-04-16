@@ -39,6 +39,7 @@ def xcodeproj(
         project_name = None,
         project_options = None,
         scheme_autogeneration_mode = "auto",
+        scheme_autogeneration_config = None,
         schemes = [],
         target_name_mode = "auto",
         top_level_targets,
@@ -285,6 +286,18 @@ def xcodeproj(
             <li>
               `all`: A scheme is generated for every buildable target even if
               custom schemes are provided.
+            </li>
+            </ul>
+        scheme_autogeneration_config: Optional. A struct returned by
+            `xcschemes.autogeneration_config`.
+
+            Allows further configuration of `scheme_autogeneration_mode`.
+
+            Available configurations:
+
+            <ul>
+            <li>
+              `xcschemes.autogeneration_exclude_patterns`: Used to skip creating schemes matching provided regex patterns.
             </li>
             </ul>
         schemes: Optional. A `list` of values returned by
@@ -633,6 +646,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         project_name = project_name,
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
+        scheme_autogeneration_config = scheme_autogeneration_config,
         schemes_json = schemes_json,
         target_name_mode = target_name_mode,
         testonly = testonly,

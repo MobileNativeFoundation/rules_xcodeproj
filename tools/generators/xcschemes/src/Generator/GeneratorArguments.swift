@@ -92,6 +92,12 @@ Path to a file that contains arguments for custom schemes.
         )
         private var targetAndExtensionHosts: [TargetID] = []
 
+        @Option(
+            parsing: .upToNextOption,
+            help: "List of exclude patterns to be applied on <target> name."
+        )
+        var autogenerationModeExcludePatternsTargetName: [String] = []
+
         mutating func validate() throws {
             guard targetAndExtensionHosts.count.isMultiple(of: 2) else {
                 throw ValidationError("""

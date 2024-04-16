@@ -269,6 +269,7 @@ def _write_generator_build_file(
             "%runner_build_file%": build_file_path,
             "%runner_label%": runner_label,
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
+            "%scheme_autogeneration_config%": str(attr.scheme_autogeneration_config),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
@@ -561,6 +562,7 @@ xcodeproj_runner = rule(
             default = "auto",
             values = ["auto", "none", "all"],
         ),
+        "scheme_autogeneration_config": attr.string_list_dict(),
         "schemes_json": attr.string(),
         "target_name_mode": attr.string(
             default = "auto",

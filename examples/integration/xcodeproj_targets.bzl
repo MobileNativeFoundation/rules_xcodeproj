@@ -146,6 +146,14 @@ TVOS_BUNDLE_ID = IOS_BUNDLE_ID
 WATCHOS_BUNDLE_ID = "{}.watch".format(IOS_BUNDLE_ID)
 
 SCHEME_AUTOGENERATION_MODE = "all"
+SCHEME_AUTOGENERATION_CONFIG = xcschemes.autogeneration_config(
+    exclude_patterns = xcschemes.autogeneration_exclude_patterns(
+        target_name = [
+            ".*UndesiredScheme.*",
+            ".*UnwantedScheme.*",
+        ]
+    ),
+)
 
 def get_xcode_schemes():
     return [

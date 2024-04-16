@@ -145,6 +145,8 @@ swift_library(
         "//UI",
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
+        "//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "//Lib/UndesiredSchemes:UnwantedScheme_Swift",
         "@com_google_google_maps//:GoogleMaps",
     ],
 )

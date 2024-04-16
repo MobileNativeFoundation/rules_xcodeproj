@@ -482,6 +482,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
+        autogeneration_mode_config,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -514,6 +515,7 @@ def _write_schemes(
     return xcschemes_execution.write_schemes(
         actions = actions,
         autogeneration_mode = autogeneration_mode,
+        autogeneration_mode_config = autogeneration_mode_config,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
@@ -672,6 +674,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     (xcschemes, xcschememanagement) = _write_schemes(
         actions = actions,
         autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
+        autogeneration_mode_config = ctx.attr.scheme_autogeneration_config,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
@@ -770,6 +773,7 @@ def _xcodeproj_incremental_attrs(
         "runner_build_file": attr.string(mandatory = True),
         "runner_label": attr.string(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
+        "scheme_autogeneration_config": attr.string_list_dict(),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,

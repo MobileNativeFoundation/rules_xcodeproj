@@ -1,6 +1,11 @@
 """Module for defining custom Xcode schemes (`.xcscheme`s)."""
 
-load("//xcodeproj/internal:memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
+load(
+    "//xcodeproj/internal:memory_efficiency.bzl",
+    "EMPTY_LIST",
+    "FALSE_ARG",
+    "TRUE_ARG",
+)
 
 _EXECUTION_ACTION_NAME = struct(
     build = "build",
@@ -14,6 +19,7 @@ _FLAGS = struct(
     colorize = "--colorize",
     consolidation_maps = "--consolidation-maps",
     target_and_extension_hosts = "--target-and-extension-hosts",
+    autogeneration_mode_exclude_patterns_target_name = "--autogeneration-mode-exclude-patterns-target-name",
 )
 
 def _hosted_target(hosted_target):
@@ -28,6 +34,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
+        autogeneration_mode_config,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -46,6 +53,8 @@ def _write_schemes(
         actions: `ctx.actions`.
         autogeneration_mode: Specifies how Xcode schemes are automatically
             generated.
+        autogeneration_mode_config: Contains scheme auto-generation configurations
+            from `xcschemes.autogeneration_config`.
         colorize: A `bool` indicating whether to colorize the output.
         consolidation_maps: A `list` of `File`s containing target consolidation
             maps.
@@ -152,6 +161,9 @@ def _write_schemes(
         hosted_targets,
         map_each = _hosted_target,
     )
+
+    # autogenerationModeExcludePatternsTargetName
+    args.add_all(_FLAGS.autogeneration_mode_exclude_patterns_target_name, autogeneration_mode_config.get("exclude_patterns_target_name", EMPTY_LIST))
 
     # TargetArgsAndEnv
 
