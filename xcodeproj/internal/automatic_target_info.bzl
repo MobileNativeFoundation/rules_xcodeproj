@@ -241,6 +241,8 @@ _BUNDLE_EXTRA_FILES_ATTRS = [
 _CC_LIBRARY_EXTRA_FILES_ATTRS = [
     "additional_compiler_inputs",
     "additional_linker_inputs",
+    "hdrs",
+    "textual_hdrs",
 ]
 _CC_IMPORT_EXTRA_FILES_ATTRS = [
     "hdrs",
@@ -252,7 +254,10 @@ _COMMAND_LINE_EXTRA_FILES_ATTRS = [
     "infoplists",
 ]
 _OBJC_LIBRARY_EXTRA_FILES_ATTRS = [
+    "hdrs",
+    "module_map",
     "pch",
+    "textual_hdrs",
 ]
 _OBJC_IMPORT_EXTRA_FILES_ATTRS = [
     "hdrs",
