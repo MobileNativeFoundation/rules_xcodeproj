@@ -110,33 +110,16 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _process_cc_info_headers(headers, *, exclude_headers):
-    def _process_header(header_file):
-        exclude_headers[header_file] = None
-        return header_file
-
-    files = []
-    for header in headers:
-        if header in exclude_headers:
-            continue
-        files.append(_process_header(header))
-
-    return files
-
 def _process_files_and_deps(
         *,
         additional_src_files,
         additional_src_file_handler,
         attrs,
-        cc_info,
         collect_uncategorized,
-        extra_files,
         file_handlers,
         rule_attr,
         rule_file,
-        rule_files,
-        swift_info):
-    categorized_files = {}
+        rule_files):
     uncategorized = []
     xccurrentversions = []
 
@@ -148,7 +131,6 @@ def _process_files_and_deps(
         if handler:
             handler(file)
             categorized = True
-            categorized_files[file] = None
         else:
             categorized = False
 
@@ -220,36 +202,6 @@ def _process_files_and_deps(
                 continue
             for list_dep in dep:
                 _handle_dep(list_dep)
-
-    if cc_info:
-        if swift_info:
-            for module in swift_info.direct_modules:
-                clang = module.clang
-                if not clang:
-                    continue
-                for header in clang.compilation_context.direct_public_headers:
-                    # Exclude Swift generated headers
-                    categorized_files[header] = None
-
-        compilation_context = cc_info.compilation_context
-        extra_files.extend(
-            _process_cc_info_headers(
-                compilation_context.direct_private_headers,
-                exclude_headers = categorized_files,
-            ),
-        )
-        extra_files.extend(
-            _process_cc_info_headers(
-                compilation_context.direct_public_headers,
-                exclude_headers = categorized_files,
-            ),
-        )
-        extra_files.extend(
-            _process_cc_info_headers(
-                compilation_context.direct_textual_headers,
-                exclude_headers = categorized_files,
-            ),
-        )
 
     return (
         transitive_extra_files,
@@ -447,16 +399,13 @@ def _collect_incremental_input_files(
         additional_src_files = additional_src_files,
         additional_src_file_handler = _handle_srcs_file,
         attrs = attrs,
-        cc_info = cc_info,
         collect_uncategorized = (
             automatic_target_info.collect_uncategorized_files
         ),
-        extra_files = extra_files,
         file_handlers = file_handlers,
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
-        swift_info = swift_info,
     )
 
     product_framework_files = memory_efficient_depset(
@@ -689,17 +638,14 @@ def _collect_unsupported_input_files(
         additional_src_files = EMPTY_LIST,
         additional_src_file_handler = None,
         attrs = attrs,
-        cc_info = None,
         collect_uncategorized = (
             include_extra_files and
             automatic_target_info.collect_uncategorized_files
         ),
-        extra_files = extra_files,
         file_handlers = file_handlers,
         rule_attr = rule_attr,
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
-        swift_info = None,
     )
 
     if is_resource_bundle:
