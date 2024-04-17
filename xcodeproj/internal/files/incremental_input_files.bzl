@@ -233,7 +233,6 @@ def _collect_incremental_input_files(
         attrs,
         automatic_target_info,
         avoid_deps = EMPTY_LIST,
-        cc_info,
         framework_files = EMPTY_DEPSET,
         focused_labels = EMPTY_DEPSET,
         infoplist = None,
@@ -242,7 +241,6 @@ def _collect_incremental_input_files(
         platform,
         resource_info = None,
         rule_attr,
-        swift_info,
         swift_proto_info,
         transitive_infos):
     """Collects all of the inputs of a target.

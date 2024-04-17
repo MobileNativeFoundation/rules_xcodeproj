@@ -553,7 +553,6 @@ def _process_focused_top_level_target(
         attrs = attrs,
         automatic_target_info = automatic_target_info,
         avoid_deps = avoid_deps,
-        cc_info = cc_info,
         focused_labels = focused_labels,
         framework_files = framework_files,
         infoplist = infoplist,
@@ -562,7 +561,6 @@ def _process_focused_top_level_target(
         platform = platform,
         resource_info = resource_info,
         rule_attr = rule_attr,
-        swift_info = swift_info,
         swift_proto_info = (
             target[SwiftProtoInfo] if SwiftProtoInfo in target else None
         ),
