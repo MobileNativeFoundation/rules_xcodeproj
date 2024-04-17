@@ -252,8 +252,6 @@ def _collect_incremental_input_files(
             the target.
         avoid_deps: A `list` of the targets that already consumed resources, and
             their resources shouldn't be bundled with the target.
-        cc_info: The `CcInfo` provider for the target, or `None` if it doesn't
-            have one.
         framework_files: A `depset` of framework files from
             `AppleDynamicFramework.framework_files`, if the target has the
             `AppleDynamicFramework` provider.
@@ -269,8 +267,6 @@ def _collect_incremental_input_files(
         resource_info: If the target is a bundle and has the `AppleResourceInfo`
             provider, this is the provider.
         rule_attr: `ctx.rule.attr`.
-        swift_info: The `SwiftInfo` provider for the target, or `None` if it
-            doesn't have one.
         swift_proto_info: The `SwiftProtoInfo` provider for the target, or
             `None` if it doesn't have one.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
