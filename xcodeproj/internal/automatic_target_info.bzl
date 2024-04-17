@@ -242,6 +242,9 @@ _CC_LIBRARY_EXTRA_FILES_ATTRS = [
     "additional_compiler_inputs",
     "additional_linker_inputs",
 ]
+_OBJC_IMPORT_EXTRA_FILES_ATTRS = [
+    "hdrs",
+]
 _COMMAND_LINE_EXTRA_FILES_ATTRS = [
     "codesign_inputs",
     "exported_symbols_lists",
@@ -250,6 +253,10 @@ _COMMAND_LINE_EXTRA_FILES_ATTRS = [
 ]
 _OBJC_LIBRARY_EXTRA_FILES_ATTRS = [
     "pch",
+]
+_OBJC_IMPORT_EXTRA_FILES_ATTRS = [
+    "hdrs",
+    "textual_hdrs",
 ]
 _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS = [
     "infoplists",
@@ -395,6 +402,10 @@ def calculate_automatic_target_info(
             bool(target.files) and
             _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
+    elif rule_kind == "cc_import":
+        extra_files = _CC_IMPORT_EXTRA_FILES_ATTRS
+        is_supported = False
+        xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind == "objc_library":
         extra_files = _OBJC_LIBRARY_EXTRA_FILES_ATTRS
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
@@ -408,6 +419,10 @@ def calculate_automatic_target_info(
                 _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
             )
         )
+    elif rule_kind == "objc_import":
+        extra_files = _OBJC_IMPORT_EXTRA_FILES_ATTRS
+        is_supported = False
+        xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind == "swift_library":
         extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
