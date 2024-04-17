@@ -242,7 +242,7 @@ _CC_LIBRARY_EXTRA_FILES_ATTRS = [
     "additional_compiler_inputs",
     "additional_linker_inputs",
 ]
-_OBJC_IMPORT_EXTRA_FILES_ATTRS = [
+_CC_IMPORT_EXTRA_FILES_ATTRS = [
     "hdrs",
 ]
 _COMMAND_LINE_EXTRA_FILES_ATTRS = [
