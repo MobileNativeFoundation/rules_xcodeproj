@@ -462,7 +462,6 @@ def _process_focused_top_level_target(
         avoid_deps,
         bin_dir_path,
         bundle_info,
-        cc_info,
         configuration,
         deps_infos,
         direct_dependencies,
@@ -553,7 +552,6 @@ def _process_focused_top_level_target(
         attrs = attrs,
         automatic_target_info = automatic_target_info,
         avoid_deps = avoid_deps,
-        cc_info = cc_info,
         focused_labels = focused_labels,
         framework_files = framework_files,
         infoplist = infoplist,
@@ -562,7 +560,6 @@ def _process_focused_top_level_target(
         platform = platform,
         resource_info = resource_info,
         rule_attr = rule_attr,
-        swift_info = swift_info,
         swift_proto_info = (
             target[SwiftProtoInfo] if SwiftProtoInfo in target else None
         ),
@@ -1227,7 +1224,6 @@ def _process_incremental_top_level_target(
             avoid_deps = avoid_deps,
             bin_dir_path = bin_dir_path,
             bundle_info = bundle_info,
-            cc_info = cc_info,
             configuration = configuration,
             deps_infos = deps_infos,
             direct_dependencies = direct_dependencies,
