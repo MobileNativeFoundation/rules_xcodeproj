@@ -11,7 +11,7 @@ for dir in examples/*/ ; do
     fi
 
     if [[ "$dir" == "examples/rules_ios/" ]]; then
-      bazel_version="6.4.0"
+      bazel_version="7.1.1"
     else
       bazel_version="last_green"
     fi

@@ -160,27 +160,28 @@ actions:
     <<: *normal_resources
     <<: *examples_rules_ios_workspace
     bazel_commands:
+      # Not validate since Bazel 7 Bzlmod paths are different
+      - *generate_integration
+      - *build_all
+  - name: Integration Test - "examples/rules_ios" - Bazel LTS
+    <<: *bazel_lts
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_rules_ios_workspace
+    bazel_commands:
       - *validate_integration
       - *build_all
-  ## Uncomment when rules_ios performs ObjcProvider -> CcInfo linking migration
-  # - name: Integration Test - "examples/rules_ios" - Bazel LTS
-  #   <<: *bazel_lts
-  #   <<: *arm64
-  #   <<: *action_base
-  #   <<: *normal_resources
-  #   <<: *examples_rules_ios_workspace
-  #   bazel_commands:
-  #     - *validate_integration
-  #     - *build_all
-  # - name: Integration Test - "examples/rules_ios" - Bazel LTS using WORKSPACE
-  #   <<: *bazel_lts
-  #   <<: *arm64
-  #   <<: *action_base
-  #   <<: *normal_resources
-  #   <<: *examples_rules_ios_workspace
-  #   bazel_commands:
-  #     - *validate_integration
-  #     - *nobzlmod_build_all
+  - name: Integration Test - "examples/rules_ios" - Bazel LTS using WORKSPACE
+    <<: *bazel_lts
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_rules_ios_workspace
+    bazel_commands:
+      - *validate_integration
+      - *nobzlmod_build_all
+  ## Uncomment once rules_ios supports Bazel 8
   # - name: Integration Test - "examples/rules_ios" - Bazel HEAD
   #   <<: *bazel_head
   #   <<: *action_base

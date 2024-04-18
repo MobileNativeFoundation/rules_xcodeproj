@@ -1,9 +1,6 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
-# https://github.com/bazel-ios/rules_ios/issues/672
-build --noexperimental_strict_conflict_checks
-
 # rules_ios
 build --features apple.virtualize_frameworks
 build --features apple.arm64_simulator_use_device_deps
