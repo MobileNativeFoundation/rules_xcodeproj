@@ -277,7 +277,7 @@ _TEST_EXTRA_FILES_ATTRS = [
 
 _LINK_MNEMONICS = ["ObjcLink", "CppLink"]
 
-_SWIFT_BINARY_RULES = {
+_SWIFT_BINARY_OR_TEST_RULES = {
     "swift_binary": None,
     "swift_test": None,
 }
@@ -321,7 +321,7 @@ _OBJC_LIBRARY_XCODE_TARGETS = {
     "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
     "runtime_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
-_PLUGINS_XCODE_TARGETS = {
+_SWIFT_BINARY_OR_TEST_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "plugins": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
 }
@@ -499,11 +499,11 @@ def calculate_automatic_target_info(
         is_top_level = True
         launchdplists = _LAUNCHDPLISTS_ATTRS
         xcode_targets = _DEPS_XCODE_TARGETS
-    elif rule_kind in _SWIFT_BINARY_RULES:
+    elif rule_kind in _SWIFT_BINARY_OR_TEST_RULES:
         extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
         srcs = _SRCS_ATTRS
         is_top_level = True
-        xcode_targets = _PLUGINS_XCODE_TARGETS
+        xcode_targets = _SWIFT_BINARY_OR_TEST_XCODE_TARGETS
     elif rule_kind == "apple_universal_binary":
         deps = _BINARY_DEPS_ATTRS
         is_supported = False
