@@ -1,5 +1,6 @@
 import ArgumentParser
 import Darwin
+import Foundation
 import ToolCommon
 
 @main
