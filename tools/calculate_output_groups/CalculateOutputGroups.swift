@@ -14,16 +14,18 @@ struct CalculateOutputGroups: AsyncParsableCommand {
     @OptionGroup var arguments: OutputGroupsCalculator.Arguments
 
     func run() async throws {
+        var output = StdoutOutputStream()
         let logger = DefaultLogger(
             standardError: StderrOutputStream(),
-            standardOutput: StdoutOutputStream(),
+            standardOutput: output,
             colorize: colorDiagnostics
         )
 
-        let calculator = OutputGroupsCalculator()
+        let calculator = OutputGroupsCalculator(logger: logger)
 
         do {
-            try await calculator.calculateOutputGroups(arguments: arguments)
+            let groups = try await calculator.calculateOutputGroups(arguments: arguments)
+            print(groups, to: &output)
         } catch {
             logger.logError(error.localizedDescription)
             Darwin.exit(1)

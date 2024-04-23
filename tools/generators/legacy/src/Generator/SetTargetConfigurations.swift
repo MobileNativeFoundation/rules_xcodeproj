@@ -283,7 +283,7 @@ $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
         buildSettings.set("TARGET_NAME", to: target.name)
 
         if !target.product.isResourceBundle {
-            // This is used in `calculate_output_groups.py`. We only want to set
+            // This is used in `calculate_output_groups`. We only want to set
             // it on buildable targets
             buildSettings.set("BAZEL_LABEL", to: target.label.description)
         }
