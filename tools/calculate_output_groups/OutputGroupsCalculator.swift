@@ -3,7 +3,9 @@ import ToolCommon
 import ZippyJSON
 
 struct OutputGroupsCalculator {
-    func calculateOutputGroups(arguments: Arguments) async throws {
+    let logger: Logger
+    
+    func calculateOutputGroups(arguments: Arguments) async throws -> String {
         let pifCache = arguments.baseObjRoot.appendingPathComponent("XCBuildData/PIFCache")
         let projectCache = pifCache.appendingPathComponent("project")
         let targetCache = pifCache.appendingPathComponent("target")
@@ -19,7 +21,6 @@ struct OutputGroupsCalculator {
         else {
             throw UsageError.pifCache(pifCache.path)
         }
-
         async let buildRequest = loadBuildRequestFile(
             inPath: arguments.baseObjRoot.appendingPathComponent("XCBuildData"),
             since: markerDate
@@ -30,23 +31,31 @@ struct OutputGroupsCalculator {
             targetCache: targetCache
         )
 
-        let output = try await outputGroups(
+        return try await outputGroups(
             buildRequest: buildRequest,
             targets: targetMap,
             prefixes: arguments.outputGroupPrefixes
         )
-        print(output)
     }
 
     private func loadBuildRequestFile(inPath path: URL, since: Date) async throws -> BuildRequest {
         @Sendable func findBuildRequestURL() -> URL? {
-            path.newestDescendent(recursive: true, matching: { url in
+            guard let xcbuilddata = path.newestDescendent(matching: { url in
                 guard 
-                    url.path.hasSuffix(".xcbuilddata/build-request.json"),
+                    url.path.hasSuffix(".xcbuilddata"),
                     let date = url.modificationDate
                 else { return false }
                 return date >= since
-            })
+            }) else { 
+                return nil
+            }
+
+            let buildRequest = xcbuilddata.appendingPathComponent("build-request.json")
+            if FileManager.default.fileExists(atPath: buildRequest.path) {
+                return buildRequest
+            } else { 
+                return nil 
+            }
         }
 
         if let url = findBuildRequestURL() {
@@ -54,22 +63,33 @@ struct OutputGroupsCalculator {
         }
 
         // If the file was not immediately found, kick off a process to wait for the file to be created (or time out).
-        let findTask = Task {
-            while true {
-                try Task.checkCancellation()
-                try await Task.sleep(for: .seconds(1))
-                if let buildRequestURL = findBuildRequestURL() {
-                    return buildRequestURL
+        do {
+            let findTask = Task {
+                logger.logWarning("The latest build-request.json file has not been updated yet. Waiting…")
+                while true {
+                    try Task.checkCancellation()
+                    try await Task.sleep(for: .seconds(1))
+                    if let buildRequestURL = findBuildRequestURL() {
+                        return buildRequestURL
+                    }
                 }
             }
-        }
-        let timeoutTask = Task {
-            try await Task.sleep(for: .seconds(10))
-            findTask.cancel()
-        }
+            let waitingTask = Task {
+                try await Task.sleep(for: .seconds(10))
+                try Task.checkCancellation()
+                logger.logWarning("""
+The latest build-request.json file has still not been updated after 10 seconds. If this happens frequently, please file a bug report here:
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
+""")
+            }
+            let timeoutTask = Task {
+                try await Task.sleep(for: .seconds(30))
+                guard !Task.isCancelled else { return }
+                findTask.cancel()
+            }
 
-        do {
             let result = try await findTask.value
+            waitingTask.cancel()
             timeoutTask.cancel()
             return try result.decode(BuildRequest.self)
         } catch {

@@ -49,7 +49,8 @@ else
   # writes to it can happen during indexing, which breaks the off-by-one-by-design
   # nature of it
   IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
-    <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
+    <( "$BAZEL_INTEGRATION_DIR/calculate_output_groups" \
+        "$COLOR_DIAGNOSTICS" \
         "$XCODE_VERSION_ACTUAL" \
         "$non_preview_objroot" \
         "$base_objroot" \
