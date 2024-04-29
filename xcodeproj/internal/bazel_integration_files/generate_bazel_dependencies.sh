@@ -136,6 +136,14 @@ else
   readonly config="_${BAZEL_CONFIG}_build"
 fi
 
+# Respect the "Continue building after errors" setting
+continue_building_value="$(defaults read com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors 2>/dev/null)"
+if [ "$continue_building_value" == "1" ]; then
+  build_pre_config_flags+=("--keep_going")
+else
+  build_pre_config_flags+=("--nokeep_going")
+fi
+
 # Runtime Sanitizers
 if [[ $apply_sanitizers -eq 1 ]]; then
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
