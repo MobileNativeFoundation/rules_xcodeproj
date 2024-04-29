@@ -140,6 +140,8 @@ fi
 continue_building_value="$(defaults read com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors 2>/dev/null)"
 if [ "$continue_building_value" == "1" ]; then
   build_pre_config_flags+=("--keep_going")
+else
+  build_pre_config_flags+=("--nokeep_going")
 fi
 
 # Runtime Sanitizers
