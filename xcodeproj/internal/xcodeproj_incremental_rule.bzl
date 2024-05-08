@@ -122,10 +122,11 @@ def _collect_files(
         unsupported_extra_files,
         xcode_targets):
     target_extra_files = {}
-    for files_target, target_label_str in owned_extra_files.items():
-        target_extra_files.setdefault(target_label_str, []).append(
-            files_target.files,
-        )
+    for files_target, target_label_strs_json in owned_extra_files.items():
+        for target_label_str in json.decode(target_label_strs_json):
+            target_extra_files.setdefault(target_label_str, []).append(
+                files_target.files,
+            )
 
     all_targets = xcode_targets.values() + resource_bundle_xcode_targets
 
