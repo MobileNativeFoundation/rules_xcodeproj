@@ -137,7 +137,7 @@ else
 fi
 
 # Respect the "Continue building after errors" setting
-continue_building_value="$(defaults read com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors 2>/dev/null)"
+continue_building_value="$(defaults read com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors 2>/dev/null || echo 0)"
 if [ "$continue_building_value" == "1" ]; then
   build_pre_config_flags+=("--keep_going")
 else
