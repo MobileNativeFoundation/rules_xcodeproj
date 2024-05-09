@@ -397,8 +397,11 @@ def _process_targets(
     }
 
     owned_extra_files = {
-        key: bazel_labels.normalize_label(Label(label_str))
-        for key, label_str in owned_extra_files.items()
+        key: [
+            bazel_labels.normalize_label(Label(label_str))
+            for label_str in json.decode(label_strs_json)
+        ]
+        for key, label_strs_json in owned_extra_files.items()
     }
 
     if focused_labels or owned_extra_files:
@@ -429,7 +432,8 @@ targets.
 
         invalid_extra_files_targets = [
             label
-            for label in owned_extra_files.values()
+            for labels in owned_extra_files.values()
+            for label in labels
             if label not in label_strs
         ]
         if invalid_extra_files_targets:
@@ -604,14 +608,17 @@ targets.
         label = xcode_target_labels[xcode_target.id]
         label_str = xcode_target_label_strs[xcode_target.id]
 
-        for file, owner_label in owned_extra_files.items():
-            if label_str == owner_label:
-                focused_targets_extra_files.append(
-                    (
-                        label,
-                        depset([file.path for file in file.files.to_list()]),
-                    ),
-                )
+        for file, owner_labels in owned_extra_files.items():
+            for owner_label in owner_labels:
+                if label_str == owner_label:
+                    focused_targets_extra_files.append(
+                        (
+                            label,
+                            depset(
+                                [file.path for file in file.files.to_list()],
+                            ),
+                        ),
+                    )
 
     # Filter `target_merge_dests` after processing focused targets
     for dest, srcs in target_merge_dests.items():

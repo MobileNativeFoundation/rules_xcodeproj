@@ -498,9 +498,14 @@ configuration alphabetically ("{default}").
     owned_extra_files = {}
     for label, files in associated_extra_files.items():
         for f in files:
-            owned_extra_files[bazel_labels.normalize_string(f)] = (
-                bazel_labels.normalize_string(label)
-            )
+            owned_extra_files.setdefault(
+                bazel_labels.normalize_string(f),
+                [],
+            ).append(bazel_labels.normalize_string(label))
+    owned_extra_files = {
+        f: json.encode(labels)
+        for f, labels in owned_extra_files.items()
+    }
 
     unowned_extra_files = [
         bazel_labels.normalize_string(f)
