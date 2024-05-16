@@ -142,11 +142,11 @@ swift_library(
     tags = ["manual"],
     visibility = ["//iOSApp/Test:__subpackages__"],
     deps = [
+        "//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "//Lib/UndesiredSchemes:UnwantedScheme_Swift",
         "//UI",
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
-        "//Lib/UndesiredSchemes:UndesiredScheme_Swift",
-        "//Lib/UndesiredSchemes:UnwantedScheme_Swift",
         "@com_google_google_maps//:GoogleMaps",
     ],
 )

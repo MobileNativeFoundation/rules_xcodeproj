@@ -151,7 +151,7 @@ SCHEME_AUTOGENERATION_CONFIG = xcschemes.autogeneration_config(
         target_name = [
             ".*UndesiredScheme.*",
             ".*UnwantedScheme.*",
-        ]
+        ],
     ),
 )
 

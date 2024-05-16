@@ -772,8 +772,8 @@ def _xcodeproj_incremental_attrs(
         "project_options": attr.string_dict(mandatory = True),
         "runner_build_file": attr.string(mandatory = True),
         "runner_label": attr.string(mandatory = True),
-        "scheme_autogeneration_mode": attr.string(mandatory = True),
         "scheme_autogeneration_config": attr.string_list_dict(),
+        "scheme_autogeneration_mode": attr.string(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
