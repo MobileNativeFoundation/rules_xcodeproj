@@ -56,9 +56,9 @@ struct Generator {
         )
 
         // Apply scheme auto-generation exclude patterns
-        let schemeInfos = (customSchemeInfos + automaticSchemeInfos).filter { s in
+        let schemeInfos = (customSchemeInfos + automaticSchemeInfos).filter { scheme in
             // Scheme name exclude patterns
-            let schemeName = s.name
+            let schemeName = scheme.name
             let schemeNameFullRange = NSRange(schemeName.startIndex..., in: schemeName)
 
             for pattern in arguments.autogenerationModeExcludePatternsTargetName {
@@ -66,7 +66,7 @@ struct Generator {
                     pattern: pattern
                 ).matches(in: schemeName, range: schemeNameFullRange) ?? []
 
-                if (matches?.count ?? 0) != 0 {
+                if let matches, matches.count > 0 {
                     return false
                 }
             }
