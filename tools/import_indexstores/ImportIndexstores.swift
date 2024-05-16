@@ -127,7 +127,7 @@ Intermediates\.noindex/Previews/[^/]*/Intermediates\.noindex
             }
 
             let xcodeOutputBase = xcodeExecutionRoot
-                .split(separator: "/")
+                .split(separator: "/", omittingEmptySubsequences: false)
                 .dropLast(2)
                 .joined(separator: "/")
 
