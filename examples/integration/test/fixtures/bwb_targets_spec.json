@@ -232,6 +232,70 @@
             "t": "com.apple.product-type.application.on-demand-install-capable"
         }
     },
+    "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift CONFIGURATION-STABLE-3",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/UndesiredScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UndesiredScheme_Swift"
+        },
+        "c": "CONFIGURATION-STABLE-3",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UndesiredScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "n": "UndesiredScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UndesiredScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UndesiredScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/libUndesiredScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift CONFIGURATION-STABLE-3",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/UnwantedScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UnwantedScheme_Swift"
+        },
+        "c": "CONFIGURATION-STABLE-3",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UnwantedScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift",
+        "n": "UnwantedScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UnwantedScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UnwantedScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes/libUnwantedScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift CONFIGURATION-STABLE-3",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params",
@@ -311,7 +375,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.9.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.11.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -373,7 +437,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.10.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.12.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -436,7 +500,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.11.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.13.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -536,7 +600,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.13.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.15.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -592,7 +656,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.14.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.16.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-4"
         ],
@@ -666,7 +730,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.15.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.17.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -780,7 +844,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.17.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.19.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
@@ -812,7 +876,7 @@
                 "--digest-algorithm=sha1",
                 "--resource-rules=external/rules_apple~/tools/codesigningtool/disable_signing_resource_rules.plist"
             ],
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source",
@@ -915,7 +979,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.19.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.21.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/Lib.framework",
@@ -995,7 +1059,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.21.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.23.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/Lib.framework",
@@ -1040,7 +1104,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.22.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.24.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/Lib.framework",
@@ -1085,7 +1149,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.23.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.25.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -1141,7 +1205,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.24.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.26.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6"
         ],
@@ -1215,7 +1279,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.25.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.27.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-6"
@@ -1281,7 +1345,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.26.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.28.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-7/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -1426,7 +1490,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.30.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.32.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
@@ -1498,7 +1562,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.31.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.33.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -1605,7 +1669,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.33.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.35.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -1712,7 +1776,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.35.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.37.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
@@ -1737,7 +1801,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests",
@@ -1828,7 +1892,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.37.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.39.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/Lib.framework",
@@ -1881,7 +1945,7 @@
                 "bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/frameworks/Lib.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.38.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.40.link.params",
         "7": [
             "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-7"
         ],
@@ -1947,7 +2011,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.39.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.41.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
@@ -2006,7 +2070,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.40.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.42.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -2074,7 +2138,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.41.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.43.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-6",
@@ -2143,7 +2207,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.42.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.44.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -2211,7 +2275,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.43.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.45.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-4",
             "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-4"
@@ -2272,7 +2336,7 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.44.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.46.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -2346,7 +2410,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.45.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.47.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
@@ -2426,7 +2490,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.46.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.48.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
@@ -2451,7 +2515,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Test/SwiftUnitTests",
@@ -2509,7 +2573,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.47.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.49.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/Proto/proto.dSYM\""
@@ -2558,7 +2622,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.48.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.50.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client.dSYM\""
@@ -2608,7 +2672,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.49.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.51.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server.dSYM\""
@@ -2801,7 +2865,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.55.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.57.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -2991,7 +3055,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.61.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.63.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3175,7 +3239,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.67.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.69.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3210,7 +3274,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.68.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.70.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-33/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -3247,7 +3311,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.69.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.71.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -3344,7 +3408,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.71.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.73.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -3393,6 +3457,70 @@
             "n": "AppClip",
             "p": "bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
+        }
+    },
+    "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift CONFIGURATION-STABLE-8",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/UndesiredScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UndesiredScheme_Swift"
+        },
+        "c": "CONFIGURATION-STABLE-8",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UndesiredScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "n": "UndesiredScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UndesiredScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UndesiredScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/libUndesiredScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift CONFIGURATION-STABLE-8",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/UnwantedScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UnwantedScheme_Swift"
+        },
+        "c": "CONFIGURATION-STABLE-8",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UnwantedScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift",
+        "n": "UnwantedScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UnwantedScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UnwantedScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes/libUnwantedScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift CONFIGURATION-STABLE-8",
@@ -3474,7 +3602,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.74.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.78.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3537,7 +3665,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.75.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.79.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -3600,7 +3728,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.76.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.80.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3700,7 +3828,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.78.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.82.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3756,7 +3884,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.79.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.83.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-9"
         ],
@@ -3830,7 +3958,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.80.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.84.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3946,7 +4074,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.82.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.86.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -3979,7 +4107,7 @@
                 "--digest-algorithm=sha1",
                 "--resource-rules=external/rules_apple~/tools/codesigningtool/disable_signing_resource_rules.plist"
             ],
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source",
@@ -4082,7 +4210,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.84.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.88.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/Lib.framework",
@@ -4162,7 +4290,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.86.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.90.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/Lib.framework",
@@ -4207,7 +4335,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.87.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.91.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/Lib.framework",
@@ -4252,7 +4380,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.88.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.92.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4308,7 +4436,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.89.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.93.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11"
         ],
@@ -4382,7 +4510,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.90.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.94.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-11"
@@ -4548,7 +4676,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.94.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.98.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -4620,7 +4748,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.95.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.99.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -4695,7 +4823,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.96.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.100.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -4720,7 +4848,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Test/SwiftUnitTests",
@@ -4881,7 +5009,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.101.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.105.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool_codesigned",
@@ -4965,7 +5093,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.103.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.107.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -5013,6 +5141,78 @@
             "n": "AppClip",
             "p": "bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift CONFIGURATION-STABLE-12",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/UndesiredScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UndesiredScheme_Swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-12",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UndesiredScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "n": "UndesiredScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UndesiredScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UndesiredScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/libUndesiredScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift CONFIGURATION-STABLE-12",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/UnwantedScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UnwantedScheme_Swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-12",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UnwantedScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift",
+        "n": "UnwantedScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UnwantedScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UnwantedScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes/libUnwantedScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
         },
         "x": [
             "AppStore"
@@ -5104,7 +5304,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.106.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.112.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5170,7 +5370,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.107.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.113.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -5236,7 +5436,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.108.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.114.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5344,7 +5544,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.110.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.116.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5403,7 +5603,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.111.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.117.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13"
         ],
@@ -5481,7 +5681,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.112.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.118.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5602,7 +5802,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.114.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.120.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -5630,7 +5830,7 @@
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source",
@@ -5740,7 +5940,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.116.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.122.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/Lib.framework",
@@ -5827,7 +6027,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.118.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.124.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic/Lib.framework",
@@ -5875,7 +6075,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.119.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.125.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/Lib.framework",
@@ -5923,7 +6123,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.120.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.126.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5982,7 +6182,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.121.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.127.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15"
         ],
@@ -6060,7 +6260,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.122.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.128.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15"
@@ -6129,7 +6329,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.123.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.129.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-16/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -6287,7 +6487,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.127.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.133.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -6362,7 +6562,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.128.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.134.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -6477,7 +6677,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.130.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.136.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -6591,7 +6791,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.132.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.138.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -6616,7 +6816,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests",
@@ -6715,7 +6915,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.134.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.140.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/Lib.framework",
@@ -6771,7 +6971,7 @@
                 "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/frameworks/Lib.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.135.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.141.link.params",
         "7": [
             "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-16"
         ],
@@ -6840,7 +7040,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.136.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.142.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
@@ -6903,7 +7103,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.137.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.143.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -6975,7 +7175,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.138.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.144.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15",
@@ -7048,7 +7248,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.139.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.145.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7120,7 +7320,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.140.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.146.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13",
             "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-13"
@@ -7185,7 +7385,7 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.141.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.147.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -7263,7 +7463,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.142.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.148.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -7346,7 +7546,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.143.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.149.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -7371,7 +7571,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Test/SwiftUnitTests",
@@ -7433,7 +7633,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.144.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.150.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/Proto/proto.dSYM\""
@@ -7486,7 +7686,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.145.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.151.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client.dSYM\""
@@ -7540,7 +7740,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.146.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.152.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server.dSYM\""
@@ -7754,7 +7954,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.152.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.158.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -7964,7 +8164,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.158.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.164.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8168,7 +8368,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.164.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.170.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8206,7 +8406,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.165.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.171.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-34/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -8247,7 +8447,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.166.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.172.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -8352,7 +8552,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.168.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.174.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -8401,6 +8601,78 @@
             "n": "AppClip",
             "p": "bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift CONFIGURATION-STABLE-17",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/UndesiredScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UndesiredScheme_Swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-17",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UndesiredScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UndesiredScheme_Swift",
+        "n": "UndesiredScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UndesiredScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UndesiredScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/libUndesiredScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift CONFIGURATION-STABLE-17",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/UnwantedScheme_Swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "Lib_UndesiredSchemes_UnwantedScheme_Swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-17",
+        "i": {
+            "s": [
+                "Lib/UndesiredSchemes/UnwantedScheme.swift"
+            ]
+        },
+        "l": "@@//Lib/UndesiredSchemes:UnwantedScheme_Swift",
+        "n": "UnwantedScheme_Swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/Lib_UndesiredSchemes_UnwantedScheme_Swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "UnwantedScheme_Swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes/libUnwantedScheme_Swift.a",
+            "t": "com.apple.product-type.library.static"
         },
         "x": [
             "AppStore"
@@ -8492,7 +8764,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.171.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.179.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8559,7 +8831,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.172.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.180.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -8625,7 +8897,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.173.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.181.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8733,7 +9005,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.175.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.183.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8792,7 +9064,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.176.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.184.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-18"
         ],
@@ -8870,7 +9142,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.177.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.185.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8993,7 +9265,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.179.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.187.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
@@ -9022,7 +9294,7 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_google_google_maps -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source",
@@ -9132,7 +9404,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.181.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.189.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/dist/dynamic/Lib.framework",
@@ -9219,7 +9491,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.183.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.191.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/dist/dynamic/Lib.framework",
@@ -9267,7 +9539,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.184.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.192.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/dist/dynamic/Lib.framework",
@@ -9315,7 +9587,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.185.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.193.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9374,7 +9646,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.186.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.194.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20"
         ],
@@ -9452,7 +9724,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.187.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.195.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-20"
@@ -9631,7 +9903,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.191.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.199.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
@@ -9706,7 +9978,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.192.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.200.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -9785,7 +10057,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.193.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.201.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
@@ -9810,7 +10082,7 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/usr/lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib/UndesiredSchemes -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/Lib -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/UI -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source -I$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Test/TestingUtils -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I -Xcc $(SRCROOT)/iOSApp/Source/CoreUtilsObjC -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_google_google_maps -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~FXPageControl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~FXPageControl -Xcc \"-DNEEDS_QUOTES=Two words\" -Xcc -DAWESOME -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Test/SwiftUnitTests",
