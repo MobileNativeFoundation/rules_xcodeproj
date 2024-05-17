@@ -23,7 +23,7 @@ x_templates:
         USE_BAZEL_VERSION: 7.x
     - &bazel_head
       env:
-        USE_BAZEL_VERSION: last_green
+        USE_BAZEL_VERSION: dd2464a5933e0a5a6765024573832717b71989bf
 
     - &normal_resources
       resource_requests: { memory: 6GB }
