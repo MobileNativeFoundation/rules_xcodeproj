@@ -97,6 +97,7 @@ def _write_schemes_test_impl(ctx):
     ) = xcschemes_execution.write_schemes(
         actions = actions.mock,
         autogeneration_mode = ctx.attr.autogeneration_mode,
+        autogeneration_mode_config = ctx.attr.autogeneration_mode_config,
         colorize = ctx.attr.colorize,
         consolidation_maps = ctx.attr.consolidation_maps,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
@@ -201,6 +202,7 @@ write_schemes_test = unittest.make(
     attrs = {
         # Inputs
         "autogeneration_mode": attr.string(mandatory = True),
+        "autogeneration_mode_config": attr.string_list_dict(mandatory = True),
         "colorize": attr.bool(mandatory = True),
         "consolidation_maps": attr.string_list(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
@@ -233,6 +235,7 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode,
+            autogeneration_mode_config,
             colorize = False,
             consolidation_maps,
             default_xcode_configuration,
@@ -253,6 +256,7 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode = autogeneration_mode,
+            autogeneration_mode_config = autogeneration_mode_config,
             colorize = colorize,
             consolidation_maps = consolidation_maps,
             default_xcode_configuration = default_xcode_configuration,
@@ -291,6 +295,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "none",
+        autogeneration_mode_config = {"exclude_patterns_target_name": [".*foo.*"]},
         colorize = True,
         consolidation_maps = [
             "some/consolidation_maps/0",
@@ -327,6 +332,9 @@ def write_schemes_test_suite(name):
             "--consolidation-maps",
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
+            # autogenerationModeExcludePatternsTargetName
+            "--autogeneration-mode-exclude-patterns-target-name",
+            ".*foo.*",
             # colorize
             "--colorize",
         ],
@@ -344,6 +352,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_mode_config = {},
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1324,6 +1333,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_mode_config = {},
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1396,6 +1406,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_mode_config = {},
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
