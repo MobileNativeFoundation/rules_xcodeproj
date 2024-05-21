@@ -1179,7 +1179,7 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
         ),
     )
 
-def _autogeneration_config(exclude_patterns = None):
+def _autogeneration_config(scheme_name_exclude_patterns = None):
     """Dictionary containing scheme auto-generation configurations
 
     Args:
@@ -1189,24 +1189,10 @@ def _autogeneration_config(exclude_patterns = None):
         A dictionary where keys are strings and the values are lists of strings
     """
     d = {}
-    if exclude_patterns:
-        d["exclude_patterns_target_name"] = exclude_patterns.target_name
+    if scheme_name_exclude_patterns:
+        d["scheme_name_exclude_patterns"] = scheme_name_exclude_patterns
 
     return d
-
-def _autogeneration_exclude_patterns(target_name = []):
-    """API for scheme auto-generation exclude patterns
-
-    Args:
-        target_name: list of regex patterns to match on target name
-
-    Returns:
-        Struct holding all scheme auto-generation exclude patterns
-    """
-
-    return struct(
-        target_name = target_name,
-    )
 
 # API
 
@@ -1222,7 +1208,6 @@ xcschemes = struct(
     run = _run,
     scheme = _scheme,
     autogeneration_config = _autogeneration_config,
-    autogeneration_exclude_patterns = _autogeneration_exclude_patterns,
     test = _test,
     test_target = _test_target,
     top_level_anchor_target = _top_level_anchor_target,

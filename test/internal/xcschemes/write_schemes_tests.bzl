@@ -295,7 +295,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "none",
-        autogeneration_mode_config = {"exclude_patterns_target_name": [".*foo.*"]},
+        autogeneration_mode_config = {"scheme_name_exclude_patterns": [".*foo.*"]},
         colorize = True,
         consolidation_maps = [
             "some/consolidation_maps/0",
@@ -332,8 +332,8 @@ def write_schemes_test_suite(name):
             "--consolidation-maps",
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
-            # autogenerationModeExcludePatternsTargetName
-            "--autogeneration-mode-exclude-patterns-target-name",
+            # autogenerationSchemeNameExcludePatterns
+            "--autogeneration-scheme-name-exclude-patterns",
             ".*foo.*",
             # colorize
             "--colorize",

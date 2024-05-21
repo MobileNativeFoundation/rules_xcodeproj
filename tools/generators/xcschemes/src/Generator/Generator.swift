@@ -61,10 +61,10 @@ struct Generator {
             let schemeName = scheme.name
             let schemeNameFullRange = NSRange(schemeName.startIndex..., in: schemeName)
 
-            for pattern in arguments.autogenerationModeExcludePatternsTargetName {
+            for pattern in arguments.autogenerationSchemeNameExcludePatterns {
                 let matches = try? NSRegularExpression(
                     pattern: pattern
-                ).matches(in: schemeName, range: schemeNameFullRange) ?? []
+                ).matches(in: schemeName, range: schemeNameFullRange)
 
                 if let matches, matches.count > 0 {
                     return false

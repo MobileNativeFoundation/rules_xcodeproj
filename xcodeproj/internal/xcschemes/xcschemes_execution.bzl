@@ -19,7 +19,7 @@ _FLAGS = struct(
     colorize = "--colorize",
     consolidation_maps = "--consolidation-maps",
     target_and_extension_hosts = "--target-and-extension-hosts",
-    autogeneration_mode_exclude_patterns_target_name = "--autogeneration-mode-exclude-patterns-target-name",
+    autogeneration_scheme_name_exclude_patterns = "--autogeneration-scheme-name-exclude-patterns",
 )
 
 def _hosted_target(hosted_target):
@@ -162,8 +162,8 @@ def _write_schemes(
         map_each = _hosted_target,
     )
 
-    # autogenerationModeExcludePatternsTargetName
-    args.add_all(_FLAGS.autogeneration_mode_exclude_patterns_target_name, autogeneration_mode_config.get("exclude_patterns_target_name", EMPTY_LIST))
+    # autogenerationSchemeNameExcludePatterns
+    args.add_all(_FLAGS.autogeneration_scheme_name_exclude_patterns, autogeneration_mode_config.get("scheme_name_exclude_patterns", EMPTY_LIST))
 
     # TargetArgsAndEnv
 
