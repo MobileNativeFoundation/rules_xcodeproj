@@ -297,7 +297,7 @@ def xcodeproj(
 
             <ul>
             <li>
-              `xcschemes.autogeneration_exclude_patterns`: Used to skip creating schemes matching provided regex patterns.
+              `scheme_name_exclude_patterns`: Used to skip creating schemes matching provided regex patterns.
             </li>
             </ul>
         schemes: Optional. A `list` of values returned by

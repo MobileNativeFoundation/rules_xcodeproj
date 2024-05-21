@@ -1183,7 +1183,7 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
     """Dictionary containing scheme auto-generation configurations
 
     Args:
-        exclude_patterns: struct returned by `xcschemes.autogeneration_exclude_patterns`
+        scheme_name_exclude_patterns: Dictionary containing configuration options.
 
     Returns:
         A dictionary where keys are strings and the values are lists of strings
