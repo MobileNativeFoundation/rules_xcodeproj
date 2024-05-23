@@ -1,5 +1,5 @@
-import Foundation
 import PBXProj
+import ToolCommon
 import XCScheme
 
 /// A type that generates and writes to disk `.xcscheme` files for a project.
@@ -55,19 +55,20 @@ struct Generator {
             targetsByKey: targetsByKey
         )
 
-        // Apply scheme auto-generation exclude patterns
-        let schemeInfos = (customSchemeInfos + automaticSchemeInfos).filter { scheme in
-            // Scheme name exclude patterns
-            let schemeName = scheme.name
-            let schemeNameFullRange = NSRange(schemeName.startIndex..., in: schemeName)
-
+        let schemeInfos = try (customSchemeInfos + automaticSchemeInfos).filter { scheme in
+            // Apply scheme auto-generation exclude patterns
             for pattern in arguments.autogenerationSchemeNameExcludePatterns {
-                let matches = try? NSRegularExpression(
-                    pattern: pattern
-                ).matches(in: schemeName, range: schemeNameFullRange)
+                do {
+                    let regex = try Regex(pattern)
+                    let matches = scheme.name.matches(of: regex)
 
-                if let matches, matches.count > 0 {
-                    return false
+                    if matches.count > 0 {
+                        return false
+                    }
+                } catch {
+                    throw PreconditionError(message: """
+Failed to skip scheme auto-generation using pattern \"\(pattern)\" with error: \(error.localizedDescription)
+""")
                 }
             }
 
