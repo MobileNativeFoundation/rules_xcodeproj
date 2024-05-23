@@ -1183,7 +1183,20 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
     """Dictionary containing scheme auto-generation configurations
 
     Args:
-        scheme_name_exclude_patterns: Dictionary containing configuration options.
+        scheme_name_exclude_patterns: A list containg regex patterns used to
+        skip creating matching schemes.
+
+        Example:
+
+        xcodeproj(
+            ...
+            scheme_name_exclude_patterns = xcschemes.autogeneration_config(
+                scheme_name_exclude_patterns = [
+                    ".*somePattern.*",
+                    "^anotherPattern.*",
+                ],
+            )
+        )
 
     Returns:
         A dictionary where keys are strings and the values are lists of strings

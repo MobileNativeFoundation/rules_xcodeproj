@@ -292,14 +292,6 @@ def xcodeproj(
             `xcschemes.autogeneration_config`.
 
             Allows further configuration of `scheme_autogeneration_mode`.
-
-            Available configurations:
-
-            <ul>
-            <li>
-              `scheme_name_exclude_patterns`: Used to skip creating schemes matching provided regex patterns.
-            </li>
-            </ul>
         schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
 
