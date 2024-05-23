@@ -16,10 +16,10 @@ _EXECUTION_ACTION_NAME = struct(
 
 # enum of flags, mainly to ensure the strings are frozen and reused
 _FLAGS = struct(
+    autogeneration_scheme_name_exclude_patterns = "--autogeneration-scheme-name-exclude-patterns",
     colorize = "--colorize",
     consolidation_maps = "--consolidation-maps",
     target_and_extension_hosts = "--target-and-extension-hosts",
-    autogeneration_scheme_name_exclude_patterns = "--autogeneration-scheme-name-exclude-patterns",
 )
 
 def _hosted_target(hosted_target):

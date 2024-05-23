@@ -1,6 +1,6 @@
+import Foundation
 import PBXProj
 import XCScheme
-import Foundation
 
 /// A type that generates and writes to disk `.xcscheme` files for a project.
 ///

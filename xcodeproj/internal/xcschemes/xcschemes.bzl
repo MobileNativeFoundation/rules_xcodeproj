@@ -1211,6 +1211,7 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
 
 xcschemes = struct(
     arg = _arg,
+    autogeneration_config = _autogeneration_config,
     diagnostics = _diagnostics,
     env_value = _env_value,
     launch_path = _launch_path,
@@ -1220,7 +1221,6 @@ xcschemes = struct(
     profile = _profile,
     run = _run,
     scheme = _scheme,
-    autogeneration_config = _autogeneration_config,
     test = _test,
     test_target = _test_target,
     top_level_anchor_target = _top_level_anchor_target,
