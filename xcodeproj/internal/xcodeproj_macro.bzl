@@ -288,8 +288,8 @@ def xcodeproj(
               custom schemes are provided.
             </li>
             </ul>
-        scheme_autogeneration_config: Optional. A struct returned by
-            `xcschemes.autogeneration_config`.
+        scheme_autogeneration_config: Optional. A value returned by
+            [`xcschemes.autogeneration_config`](#xcschemes.autogeneration_config).
 
             Allows further configuration of `scheme_autogeneration_mode`.
         schemes: Optional. A `list` of values returned by
