@@ -55,9 +55,13 @@ struct Generator {
             targetsByKey: targetsByKey
         )
 
+        let autogenerationConfigArguments = try await AutogenerationConfigArguments.parse(
+            from: arguments.autogenerationConfigFile
+        )
+
         let schemeInfos = try (customSchemeInfos + automaticSchemeInfos).filter { scheme in
             // Apply scheme auto-generation exclude patterns
-            for pattern in arguments.autogenerationSchemeNameExcludePatterns {
+            for pattern in autogenerationConfigArguments.schemeNameExcludePatterns {
                 do {
                     let regex = try Regex(pattern)
                     let matches = scheme.name.matches(of: regex)

@@ -16,7 +16,6 @@ _EXECUTION_ACTION_NAME = struct(
 
 # enum of flags, mainly to ensure the strings are frozen and reused
 _FLAGS = struct(
-    autogeneration_scheme_name_exclude_patterns = "--autogeneration-scheme-name-exclude-patterns",
     colorize = "--colorize",
     consolidation_maps = "--consolidation-maps",
     target_and_extension_hosts = "--target-and-extension-hosts",
@@ -34,7 +33,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
-        autogeneration_mode_config,
+        autogeneration_config_file,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -53,8 +52,7 @@ def _write_schemes(
         actions: `ctx.actions`.
         autogeneration_mode: Specifies how Xcode schemes are automatically
             generated.
-        autogeneration_mode_config: Contains scheme auto-generation configurations
-            from `xcschemes.autogeneration_config`.
+        autogeneration_config_file: A `File` containing `AutogenerationConfigArguments` inputs.
         colorize: A `bool` indicating whether to colorize the output.
         consolidation_maps: A `list` of `File`s containing target consolidation
             maps.
@@ -103,6 +101,7 @@ def _write_schemes(
     )
 
     inputs = consolidation_maps + [
+        autogeneration_config_file,
         custom_schemes_file,
         execution_actions_file,
         extension_point_identifiers_file,
@@ -130,6 +129,9 @@ def _write_schemes(
 
     # autogenerationMode
     args.add(autogeneration_mode)
+
+    # autogenerationConfigFile
+    args.add(autogeneration_config_file)
 
     # defaultXcodeConfiguration
     args.add(default_xcode_configuration)
@@ -161,9 +163,6 @@ def _write_schemes(
         hosted_targets,
         map_each = _hosted_target,
     )
-
-    # autogenerationSchemeNameExcludePatterns
-    args.add_all(_FLAGS.autogeneration_scheme_name_exclude_patterns, autogeneration_mode_config.get("scheme_name_exclude_patterns", EMPTY_LIST))
 
     # TargetArgsAndEnv
 

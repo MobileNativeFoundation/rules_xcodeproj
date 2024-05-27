@@ -34,6 +34,12 @@ schemes are provided.
         )
         var autogenerationMode: AutogenerationMode
 
+        @Argument(
+            help: "Path to a file containing `AutogenerationConfigArguments` inputs.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var autogenerationConfigFile: URL
+
         @Argument(help: "Name of the default Xcode configuration.")
         var defaultXcodeConfiguration: String
 
@@ -91,12 +97,6 @@ Path to a file that contains arguments for custom schemes.
             help: "Pairs of <target> <extension-host> target IDs."
         )
         private var targetAndExtensionHosts: [TargetID] = []
-
-        @Option(
-            parsing: .upToNextOption,
-            help: "List of exclude patterns to be applied on the scheme name."
-        )
-        var autogenerationSchemeNameExcludePatterns: [String] = []
 
         mutating func validate() throws {
             guard targetAndExtensionHosts.count.isMultiple(of: 2) else {

@@ -206,6 +206,27 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 # Actions
 
+def _write_autogeneration_config_file(
+    actions,
+    config,
+    name):
+    content = ""
+    autogeneration_config_file = actions.declare_file(
+        "{}-autogeneration-config-file".format(name),
+    )
+    if "scheme_name_exclude_patterns" in config:
+        for pattern in config["scheme_name_exclude_patterns"]:
+            content += "{}\n".format(pattern)
+
+    content += "\n"
+
+    actions.write(
+        content = content,
+        output = autogeneration_config_file,
+    )
+    return autogeneration_config_file
+
+
 def _write_bazel_integration_files(
         *,
         actions,
@@ -482,7 +503,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
-        autogeneration_mode_config,
+        autogeneration_config_file,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -515,7 +536,7 @@ def _write_schemes(
     return xcschemes_execution.write_schemes(
         actions = actions,
         autogeneration_mode = autogeneration_mode,
-        autogeneration_mode_config = autogeneration_mode_config,
+        autogeneration_config_file = autogeneration_config_file,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
@@ -671,10 +692,16 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
 
     # Schemes
 
+    autogeneration_config_file = _write_autogeneration_config_file(
+        actions = actions,
+        config = ctx.attr.scheme_autogeneration_config,
+        name = name,
+    )
+
     (xcschemes, xcschememanagement) = _write_schemes(
         actions = actions,
         autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
-        autogeneration_mode_config = ctx.attr.scheme_autogeneration_config,
+        autogeneration_config_file = autogeneration_config_file,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
