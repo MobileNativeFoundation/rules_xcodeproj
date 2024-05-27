@@ -252,7 +252,7 @@ Dictionary containing scheme auto-generation configurations
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="xcschemes.autogeneration_config-scheme_name_exclude_patterns"></a>scheme_name_exclude_patterns |  A list containg regex patterns used to skip creating matching schemes.<br><br>Example:<br><br>xcodeproj(     ...     scheme_name_exclude_patterns = xcschemes.autogeneration_config(         scheme_name_exclude_patterns = [             ".*somePattern.*",             "^anotherPattern.*",         ],     ) )   |  `None` |
+| <a id="xcschemes.autogeneration_config-scheme_name_exclude_patterns"></a>scheme_name_exclude_patterns |  A list containg regex patterns used to skip creating matching schemes. These exclusion patterns do not apply to custom schemes.<br><br>Example:<br><br>xcodeproj(     ...     scheme_name_exclude_patterns = xcschemes.autogeneration_config(         scheme_name_exclude_patterns = [             ".*somePattern.*",             "^anotherPattern.*",         ],     ) )   |  `None` |
 
 **RETURNS**
 
