@@ -13,7 +13,10 @@ for dir in examples/*/ ; do
     if [[ "$dir" == "examples/rules_ios/" ]]; then
       bazel_version="7.1.1"
     else
-      bazel_version="last_green"
+      # See https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3029
+      #
+      # Temporary change to make CI pass until the fix is in `last_green`
+      bazel_version="dd2464a5933e0a5a6765024573832717b71989bf"
     fi
 
     echo
