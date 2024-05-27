@@ -59,7 +59,7 @@ struct Generator {
             from: arguments.autogenerationConfigFile
         )
 
-        let schemeInfos = try (customSchemeInfos + automaticSchemeInfos).filter { scheme in
+        let filteredAutomaticSchemeInfos = try automaticSchemeInfos.filter { scheme in
             // Apply scheme auto-generation exclude patterns
             for pattern in autogenerationConfigArguments.schemeNameExcludePatterns {
                 do {
@@ -78,6 +78,8 @@ Failed to skip scheme auto-generation using pattern \"\(pattern)\" with error: \
 
             return true
         }
+
+        let schemeInfos = customSchemeInfos + filteredAutomaticSchemeInfos
 
         let writeSchemesTask = Task {
             try await environment.writeSchemes(

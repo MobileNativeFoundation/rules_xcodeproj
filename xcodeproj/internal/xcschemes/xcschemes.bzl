@@ -1184,7 +1184,8 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
 
     Args:
         scheme_name_exclude_patterns: A list containg regex patterns used to skip
-            creating matching schemes.
+            creating matching schemes. These exclusion patterns do not apply to custom
+            schemes.
 
             Example:
 
