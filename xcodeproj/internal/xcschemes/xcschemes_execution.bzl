@@ -2,7 +2,6 @@
 
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
-    "EMPTY_LIST",
     "FALSE_ARG",
     "TRUE_ARG",
 )

@@ -207,9 +207,9 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 # Actions
 
 def _write_autogeneration_config_file(
-    actions,
-    config,
-    name):
+        actions,
+        config,
+        name):
     content = ""
     autogeneration_config_file = actions.declare_file(
         "{}-autogeneration-config-file".format(name),
@@ -225,7 +225,6 @@ def _write_autogeneration_config_file(
         output = autogeneration_config_file,
     )
     return autogeneration_config_file
-
 
 def _write_bazel_integration_files(
         *,
