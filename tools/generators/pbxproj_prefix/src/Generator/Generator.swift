@@ -49,6 +49,8 @@ struct Generator {
         let pbxProjectPrefixPartial = environment.pbxProjectPrefixPartial(
             /*buildSettings:*/ environment.pbxProjectBuildSettings(
                 /*config:*/ arguments.config,
+                /*importIndexBuildIndexstores:*/ arguments
+                    .importIndexBuildIndexstores,
                 /*indexImport:*/ arguments.indexImport,
                 /*indexingProjectDir:*/ environment.indexingProjectDir(
                     /*projectDir:*/ projectDir

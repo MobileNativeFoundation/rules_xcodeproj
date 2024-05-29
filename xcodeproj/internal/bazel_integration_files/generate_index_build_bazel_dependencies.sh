@@ -35,7 +35,10 @@ readonly output_groups=(
 )
 
 readonly targetid_regex='@{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
-if [[ "$BAZEL_TARGET_ID" =~ $targetid_regex ]]; then
+
+indexstores_filelists=()
+if [[ "$IMPORT_INDEX_BUILD_INDEXSTORES" == "YES" && \
+      "$BAZEL_TARGET_ID" =~ $targetid_regex ]]; then
   repo="${BASH_REMATCH[1]}"
   if [[ "$repo" == "@" ]]; then
     repo=""

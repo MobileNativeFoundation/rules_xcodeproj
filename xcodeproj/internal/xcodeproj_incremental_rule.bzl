@@ -321,6 +321,7 @@ def _write_project_contents(
         default_xcode_configuration,
         files_and_groups_generator,
         generation_shard_count,
+        import_index_build_indexstores,
         index_import,
         install_path,
         minimum_xcode_version,
@@ -443,6 +444,7 @@ def _write_project_contents(
         default_xcode_configuration = default_xcode_configuration,
         execution_root_file = execution_root_file,
         generator_name = name,
+        import_index_build_indexstores = import_index_build_indexstores,
         index_import = index_import,
         install_path = install_path,
         minimum_xcode_version = minimum_xcode_version,
@@ -646,6 +648,9 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         default_xcode_configuration = default_xcode_configuration,
         files_and_groups_generator = ctx.executable._files_and_groups_generator,
         generation_shard_count = ctx.attr.generation_shard_count,
+        import_index_build_indexstores = (
+            ctx.attr.import_index_build_indexstores
+        ),
         index_import = index_import,
         install_path = install_path,
         minimum_xcode_version = (
@@ -790,6 +795,7 @@ def _xcodeproj_incremental_attrs(
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
         "generation_shard_count": attr.int(mandatory = True),
+        "import_index_build_indexstores": attr.bool(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "owned_extra_files": attr.label_keyed_string_dict(allow_files = True),

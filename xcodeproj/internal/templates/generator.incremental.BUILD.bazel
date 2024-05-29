@@ -18,6 +18,7 @@ xcodeproj(
     config = "%config%",
     default_xcode_configuration = %default_xcode_configuration%,
     generation_shard_count = %generation_shard_count%,
+    import_index_build_indexstores = %import_index_build_indexstores%,
     install_path = "%install_path%",
     ios_device_cpus = "%ios_device_cpus%",
     ios_simulator_cpus = "%ios_simulator_cpus%",

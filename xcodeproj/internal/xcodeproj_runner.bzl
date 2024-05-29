@@ -254,6 +254,9 @@ def _write_generator_build_file(
                 str(attr.fail_for_invalid_extra_files_targets)
             ),
             "%generation_shard_count%": str(attr.generation_shard_count),
+            "%import_index_build_indexstores%": str(
+                attr.import_index_build_indexstores,
+            ),
             "%install_directory%": attr.install_directory,
             "%install_path%": install_path,
             "%ios_device_cpus%": attr.ios_device_cpus,
@@ -548,6 +551,7 @@ xcodeproj_runner = rule(
             mandatory = True,
         ),
         "generation_shard_count": attr.int(mandatory = True),
+        "import_index_build_indexstores": attr.bool(mandatory = True),
         "install_directory": attr.string(mandatory = True),
         "ios_device_cpus": attr.string(mandatory = True),
         "ios_simulator_cpus": attr.string(),
