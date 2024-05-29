@@ -70,7 +70,7 @@ struct Generator {
                         return false
                     }
                 } catch {
-                    throw PreconditionError(message: """
+                    throw UsageError(message: """
 Failed to skip scheme auto-generation using pattern \"\(pattern)\" with error: \(error.localizedDescription)
 """)
                 }
