@@ -502,7 +502,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
-        autogeneration_config_file,
+        autogeneration_config,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -530,6 +530,12 @@ def _write_schemes(
         xcschemes_json,
         default_xcode_configuration = default_xcode_configuration,
         top_level_deps = top_level_deps,
+    )
+
+    autogeneration_config_file = _write_autogeneration_config_file(
+        actions = actions,
+        config = autogeneration_config,
+        name = name,
     )
 
     return xcschemes_execution.write_schemes(
@@ -691,16 +697,10 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
 
     # Schemes
 
-    autogeneration_config_file = _write_autogeneration_config_file(
-        actions = actions,
-        config = ctx.attr.scheme_autogeneration_config,
-        name = name,
-    )
-
     (xcschemes, xcschememanagement) = _write_schemes(
         actions = actions,
         autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
-        autogeneration_config_file = autogeneration_config_file,
+        autogeneration_config = ctx.attr.scheme_autogeneration_config,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
