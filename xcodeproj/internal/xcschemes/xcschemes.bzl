@@ -1188,15 +1188,17 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
 
             Example:
 
+            ```starlark
             xcodeproj(
                 ...
                 scheme_name_exclude_patterns = xcschemes.autogeneration_config(
                     scheme_name_exclude_patterns = [
                         ".*somePattern.*",
-                        "^anotherPattern.*",
+                        "^AnotherPattern.*",
                     ],
                 )
             )
+            ```
 
     Returns:
         An opaque value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
