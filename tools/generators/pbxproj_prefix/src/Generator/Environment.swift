@@ -31,6 +31,7 @@ extension Generator {
 
         let pbxProjectBuildSettings: (
             _ config: String,
+            _ importIndexBuildIndexstores: Bool,
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ projectDir: String,

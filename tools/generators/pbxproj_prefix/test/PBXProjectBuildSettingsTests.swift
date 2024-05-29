@@ -10,6 +10,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         // Arrange
 
         let config = "rxcp_custom_config"
+        let importIndexBuildIndexstores = false
         let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project dir"
         let projectDir = "/some/project dir"
@@ -45,6 +46,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				IMPORT_INDEX_BUILD_INDEXSTORES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "/some/project dir";
 				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
@@ -82,6 +84,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
+            importIndexBuildIndexstores: importIndexBuildIndexstores,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             projectDir: projectDir,

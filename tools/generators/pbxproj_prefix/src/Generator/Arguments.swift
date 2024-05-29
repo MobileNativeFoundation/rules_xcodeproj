@@ -47,6 +47,12 @@ Minimum Xcode version that the generated project supports.
 """)
         var minimumXcodeVersion: SemanticVersion
 
+        @Argument(
+            help: "Whether to import index build indexstores.",
+            transform: { $0 == "1" }
+        )
+        var importIndexBuildIndexstores: Bool
+
         @Argument(help: "Name of the default Xcode configuration.")
         var defaultXcodeConfiguration: String
 

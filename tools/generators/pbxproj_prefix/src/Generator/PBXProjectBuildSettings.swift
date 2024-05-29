@@ -7,6 +7,8 @@ extension Generator {
     ///
     /// - Parameters:
     ///   - config: The value to be used for the `BAZEL_CONFIG` build setting.
+    ///   - importIndexBuildIndexstores: Whether to import index build
+    ///     indexstores.
     ///   - indexImport: The Bazel execution root relative path to the
     ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
@@ -17,6 +19,7 @@ extension Generator {
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         config: String,
+        importIndexBuildIndexstores: Bool,
         indexImport: String,
         indexingProjectDir: String,
         projectDir: String,
@@ -92,6 +95,10 @@ extension Generator {
             .init(
                 key: "LIBTOOL",
                 value: #""$(BAZEL_INTEGRATION_DIR)/libtool.sh""#
+            ),
+            .init(
+                key: "IMPORT_INDEX_BUILD_INDEXSTORES",
+                value: importIndexBuildIndexstores ? "YES" : "NO"
             ),
             .init(
                 key: "INDEXING_PROJECT_DIR__",
