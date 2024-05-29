@@ -558,7 +558,7 @@ xcodeproj_runner = rule(
         "pre_build": attr.string(),
         "project_name": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
-        "scheme_autogeneration_config": attr.string_list_dict(),
+        "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(
             default = "auto",
             values = ["auto", "none", "all"],

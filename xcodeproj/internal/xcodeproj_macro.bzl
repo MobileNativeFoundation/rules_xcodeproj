@@ -39,7 +39,7 @@ def xcodeproj(
         project_name = None,
         project_options = None,
         scheme_autogeneration_mode = "auto",
-        scheme_autogeneration_config = None,
+        scheme_autogeneration_config = {},
         schemes = [],
         target_name_mode = "auto",
         top_level_targets,
