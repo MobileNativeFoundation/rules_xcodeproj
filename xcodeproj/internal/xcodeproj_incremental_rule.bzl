@@ -210,20 +210,20 @@ def _write_autogeneration_config_file(
         actions,
         config,
         name):
-    content = ""
     autogeneration_config_file = actions.declare_file(
         "{}-autogeneration-config-file".format(name),
     )
-    if "scheme_name_exclude_patterns" in config:
-        for pattern in config["scheme_name_exclude_patterns"]:
-            content += "{}\n".format(pattern)
 
-    content += "\n"
+    args = actions.args()
+    args.set_param_file_format("multiline")
 
-    actions.write(
-        content = content,
-        output = autogeneration_config_file,
+    args.add_all(
+        config.get("scheme_name_exclude_patterns", []),
+        omit_if_empty = False,
+        terminate_with = "",
     )
+    actions.write(autogeneration_config_file, args)
+
     return autogeneration_config_file
 
 def _write_bazel_integration_files(
