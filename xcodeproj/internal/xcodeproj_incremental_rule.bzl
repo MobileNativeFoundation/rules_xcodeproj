@@ -206,6 +206,26 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 # Actions
 
+def _write_autogeneration_config_file(
+        actions,
+        config,
+        name):
+    autogeneration_config_file = actions.declare_file(
+        "{}-autogeneration-config-file".format(name),
+    )
+
+    args = actions.args()
+    args.set_param_file_format("multiline")
+
+    args.add_all(
+        config.get("scheme_name_exclude_patterns", []),
+        omit_if_empty = False,
+        terminate_with = "",
+    )
+    actions.write(autogeneration_config_file, args)
+
+    return autogeneration_config_file
+
 def _write_bazel_integration_files(
         *,
         actions,
@@ -482,6 +502,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
+        autogeneration_config,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -511,9 +532,16 @@ def _write_schemes(
         top_level_deps = top_level_deps,
     )
 
+    autogeneration_config_file = _write_autogeneration_config_file(
+        actions = actions,
+        config = autogeneration_config,
+        name = name,
+    )
+
     return xcschemes_execution.write_schemes(
         actions = actions,
         autogeneration_mode = autogeneration_mode,
+        autogeneration_config_file = autogeneration_config_file,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
@@ -672,6 +700,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     (xcschemes, xcschememanagement) = _write_schemes(
         actions = actions,
         autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
+        autogeneration_config = ctx.attr.scheme_autogeneration_config,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
@@ -769,6 +798,7 @@ def _xcodeproj_incremental_attrs(
         "project_options": attr.string_dict(mandatory = True),
         "runner_build_file": attr.string(mandatory = True),
         "runner_label": attr.string(mandatory = True),
+        "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(

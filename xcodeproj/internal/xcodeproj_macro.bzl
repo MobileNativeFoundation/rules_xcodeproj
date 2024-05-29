@@ -39,6 +39,7 @@ def xcodeproj(
         project_name = None,
         project_options = None,
         scheme_autogeneration_mode = "auto",
+        scheme_autogeneration_config = {},
         schemes = [],
         target_name_mode = "auto",
         top_level_targets,
@@ -287,6 +288,10 @@ def xcodeproj(
               custom schemes are provided.
             </li>
             </ul>
+        scheme_autogeneration_config: Optional. A value returned by
+            [`xcschemes.autogeneration_config`](#xcschemes.autogeneration_config).
+
+            Allows further configuration of `scheme_autogeneration_mode`.
         schemes: Optional. A `list` of values returned by
             `xcode_schemes.scheme`.
 
@@ -633,6 +638,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         project_name = project_name,
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
+        scheme_autogeneration_config = scheme_autogeneration_config,
         schemes_json = schemes_json,
         target_name_mode = target_name_mode,
         testonly = testonly,

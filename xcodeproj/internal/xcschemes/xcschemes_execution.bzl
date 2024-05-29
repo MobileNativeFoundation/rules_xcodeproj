@@ -1,6 +1,10 @@
 """Module for defining custom Xcode schemes (`.xcscheme`s)."""
 
-load("//xcodeproj/internal:memory_efficiency.bzl", "FALSE_ARG", "TRUE_ARG")
+load(
+    "//xcodeproj/internal:memory_efficiency.bzl",
+    "FALSE_ARG",
+    "TRUE_ARG",
+)
 
 _EXECUTION_ACTION_NAME = struct(
     build = "build",
@@ -28,6 +32,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
+        autogeneration_config_file,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -46,6 +51,7 @@ def _write_schemes(
         actions: `ctx.actions`.
         autogeneration_mode: Specifies how Xcode schemes are automatically
             generated.
+        autogeneration_config_file: A `File` containing `AutogenerationConfigArguments` inputs.
         colorize: A `bool` indicating whether to colorize the output.
         consolidation_maps: A `list` of `File`s containing target consolidation
             maps.
@@ -94,6 +100,7 @@ def _write_schemes(
     )
 
     inputs = consolidation_maps + [
+        autogeneration_config_file,
         custom_schemes_file,
         execution_actions_file,
         extension_point_identifiers_file,
@@ -121,6 +128,9 @@ def _write_schemes(
 
     # autogenerationMode
     args.add(autogeneration_mode)
+
+    # autogenerationConfigFile
+    args.add(autogeneration_config_file)
 
     # defaultXcodeConfiguration
     args.add(default_xcode_configuration)

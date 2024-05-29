@@ -1,4 +1,5 @@
 import PBXProj
+import ToolCommon
 import XCScheme
 
 /// A type that generates and writes to disk `.xcscheme` files for a project.
@@ -54,7 +55,31 @@ struct Generator {
             targetsByKey: targetsByKey
         )
 
-        let schemeInfos = customSchemeInfos + automaticSchemeInfos
+        let autogenerationConfigArguments = try await AutogenerationConfigArguments.parse(
+            from: arguments.autogenerationConfigFile
+        )
+
+        let filteredAutomaticSchemeInfos = try automaticSchemeInfos.filter { scheme in
+            // Apply scheme auto-generation exclude patterns
+            for pattern in autogenerationConfigArguments.schemeNameExcludePatterns {
+                do {
+                    let regex = try Regex(pattern)
+                    let matches = scheme.name.matches(of: regex)
+
+                    if matches.count > 0 {
+                        return false
+                    }
+                } catch {
+                    throw UsageError(message: """
+Failed to skip scheme auto-generation using pattern \"\(pattern)\" with error: \(error.localizedDescription)
+""")
+                }
+            }
+
+            return true
+        }
+
+        let schemeInfos = customSchemeInfos + filteredAutomaticSchemeInfos
 
         let writeSchemesTask = Task {
             try await environment.writeSchemes(

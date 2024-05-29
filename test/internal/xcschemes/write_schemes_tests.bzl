@@ -79,6 +79,7 @@ def _write_schemes_test_impl(ctx):
         _XCSCHEMEMANAGEMENT_DECLARED_FILE: None,
     }
     expected_inputs = ctx.attr.consolidation_maps + [
+        ctx.attr.autogeneration_config_file,
         _CUSTOM_SCHEMES_DECLARED_FILE,
         _EXECUTION_ACTIONS_DECLARED_FILE,
         ctx.attr.extension_point_identifiers_file,
@@ -97,6 +98,7 @@ def _write_schemes_test_impl(ctx):
     ) = xcschemes_execution.write_schemes(
         actions = actions.mock,
         autogeneration_mode = ctx.attr.autogeneration_mode,
+        autogeneration_config_file = ctx.attr.autogeneration_config_file,
         colorize = ctx.attr.colorize,
         consolidation_maps = ctx.attr.consolidation_maps,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
@@ -201,6 +203,7 @@ write_schemes_test = unittest.make(
     attrs = {
         # Inputs
         "autogeneration_mode": attr.string(mandatory = True),
+        "autogeneration_config_file": attr.string(mandatory = True),
         "colorize": attr.bool(mandatory = True),
         "consolidation_maps": attr.string_list(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
@@ -233,6 +236,7 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode,
+            autogeneration_config_file,
             colorize = False,
             consolidation_maps,
             default_xcode_configuration,
@@ -253,6 +257,7 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode = autogeneration_mode,
+            autogeneration_config_file = autogeneration_config_file,
             colorize = colorize,
             consolidation_maps = consolidation_maps,
             default_xcode_configuration = default_xcode_configuration,
@@ -291,6 +296,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "none",
+        autogeneration_config_file = "some/autogeneration-config-file",
         colorize = True,
         consolidation_maps = [
             "some/consolidation_maps/0",
@@ -309,6 +315,8 @@ def write_schemes_test_suite(name):
             _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
             # autogenerationMode
             "none",
+            # autogenerationConfigFile
+            "some/autogeneration-config-file",
             # defaultXcodeConfiguration
             "Debug",
             # workspace
@@ -344,6 +352,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -658,6 +667,8 @@ def write_schemes_test_suite(name):
             _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
             # autogenerationMode
             "auto",
+            # autogenerationConfigFile
+            "some/autogeneration-config-file",
             # defaultXcodeConfiguration
             "AppStore",
             # workspace
@@ -1324,6 +1335,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1355,6 +1367,8 @@ def write_schemes_test_suite(name):
             _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
             # autogenerationMode
             "auto",
+            # autogenerationConfigFile
+            "some/autogeneration-config-file",
             # defaultXcodeConfiguration
             "AppStore",
             # workspace
@@ -1396,6 +1410,7 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
+        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1429,6 +1444,8 @@ def write_schemes_test_suite(name):
             _XCSCHEMEMANAGEMENT_DECLARED_FILE.path,
             # autogenerationMode
             "auto",
+            # autogenerationConfigFile
+            "some/autogeneration-config-file",
             # defaultXcodeConfiguration
             "AppStore",
             # workspace

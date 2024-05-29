@@ -34,6 +34,12 @@ schemes are provided.
         )
         var autogenerationMode: AutogenerationMode
 
+        @Argument(
+            help: "Path to a file containing `AutogenerationConfigArguments` inputs.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var autogenerationConfigFile: URL
+
         @Argument(help: "Name of the default Xcode configuration.")
         var defaultXcodeConfiguration: String
 
