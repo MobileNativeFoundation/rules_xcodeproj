@@ -66,6 +66,7 @@ the ruleset.
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Snap
 - Spotify
+- Square
 - SwiftLint
 - Ten Ten
 - Tinder
