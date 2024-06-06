@@ -20,7 +20,6 @@ class BazelDependenciesBuildSettingsTests: XCTestCase {
         let expectedBuildSettings = #"""
 {
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
-				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				CC = "";
 				CXX = "";
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";

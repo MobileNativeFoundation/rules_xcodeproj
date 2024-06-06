@@ -35,9 +35,6 @@ extension Generator {
 
         var buildSettings: BuildSettings = [
             "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-            "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
-$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
-""",
             "INDEXING_SUPPORTED_PLATFORMS__": """
 $(INDEXING_SUPPORTED_PLATFORMS__NO)
 """,
