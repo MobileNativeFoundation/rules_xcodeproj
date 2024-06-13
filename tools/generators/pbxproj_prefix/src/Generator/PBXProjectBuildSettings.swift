@@ -87,10 +87,10 @@ extension Generator {
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
             .init(key: "ENABLE_USER_SCRIPT_SANDBOXING", value: "NO"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
-            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#),
+            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
             .init(
                 key: "LDPLUSPLUS",
-                value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#
+                value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
             ),
             .init(
                 key: "LIBTOOL",
