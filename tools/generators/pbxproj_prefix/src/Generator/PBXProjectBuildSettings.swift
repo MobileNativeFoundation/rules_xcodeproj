@@ -95,7 +95,7 @@ extension Generator {
             ),
             .init(
                 key: "LIBTOOL",
-                value: #""$(BAZEL_INTEGRATION_DIR)/libtool.sh""#
+                value: #""$(BAZEL_INTEGRATION_DIR)/libtool""#
             ),
             .init(
                 key: "IMPORT_INDEX_BUILD_INDEXSTORES",
