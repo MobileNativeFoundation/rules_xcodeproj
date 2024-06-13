@@ -90,6 +90,7 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
             "COPY_PHASE_STRIP": false,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
+            "ENABLE_DEBUG_DYLIB": "NO",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
             // Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match
             // its new project default, so we need to set it explicitly
