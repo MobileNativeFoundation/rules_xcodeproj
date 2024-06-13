@@ -222,7 +222,7 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
             "GCC_OPTIMIZATION_LEVEL": "0",
             "LD": "$(BAZEL_INTEGRATION_DIR)/ld",
             "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld",
-            "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
+            "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool",
             "IMPORT_INDEX_BUILD_INDEXSTORES": true,
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,

@@ -61,7 +61,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
+				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
