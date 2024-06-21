@@ -160,7 +160,8 @@ extension Generator.ProcessSwiftArgs {
         else {
             return (false, [], [], [], [])
         }
-
+        _ = try await iterator.next()
+        
         var args: [String] = [
             // Work around stubbed swiftc messing with Indexing setting of
             // `-working-directory` incorrectly
