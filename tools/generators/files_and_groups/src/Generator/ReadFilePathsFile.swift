@@ -32,6 +32,13 @@ extension Generator.ReadFilePathsFile {
         _ url: URL
     ) async throws -> [BazelPath] {
         return try await url.lines.collect()
-            .map { BazelPath($0, isFolder: false) }
+            .map { line in
+                let components = line.split(separator: "--").map(String.init)
+                if components.count == 2 {
+                    return BazelPath(components[0], isFolder: false, owner: components[1])
+                } else {
+                    return BazelPath(components[0], isFolder: false)
+                }
+            }
     }
 }

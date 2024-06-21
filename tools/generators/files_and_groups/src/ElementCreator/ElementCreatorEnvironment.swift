@@ -54,7 +54,7 @@ extension ElementCreator {
         /// `CreateSpecialRootGroup.init()`.
         let createSpecialRootGroupCallable: CreateSpecialRootGroup.Callable
 
-        let createSpecialRootGroupElement: CreateSpecialRootGroupElement
+        let createSpecialRootGroupElementCallable: CreateSpecialRootGroupElement.Callable
 
         /// Passed to the `callable` parameter of `CreateVariantGroup.init()`.
         let createVariantGroupCallable: CreateVariantGroup.Callable
@@ -173,11 +173,13 @@ extension ElementCreator.Environment {
         let createInternalGroup = ElementCreator.CreateInternalGroup(
             callable: createInternalGroupCallable
         )
+        
+        let createSpecialGroupElement = ElementCreator.CreateSpecialRootGroupElement(createIdentifier: createIdentifier)
 
         let createSpecialRootGroup = ElementCreator.CreateSpecialRootGroup(
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
-            createSpecialRootGroupElement: createSpecialRootGroupElement,
+            createSpecialRootGroupElement: createSpecialGroupElement,
             callable: createSpecialRootGroupCallable
         )
 
@@ -189,6 +191,7 @@ extension ElementCreator.Environment {
             createGroupChildElements: createGroupChildElements,
             createInternalGroup: createInternalGroup,
             createSpecialRootGroup: createSpecialRootGroup,
+            createSpecialGroupElement: createSpecialGroupElement,
             callable: createRootElementsCallable
         )
     }
@@ -222,8 +225,8 @@ extension ElementCreator.Environment {
             ElementCreator.CreateRootElements.defaultCallable,
         createSpecialRootGroupCallable:
             ElementCreator.CreateSpecialRootGroup.defaultCallable,
-        createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement(),
+        createSpecialRootGroupElementCallable:
+            ElementCreator.CreateSpecialRootGroupElement.defaultCallable,
         createVariantGroupCallable:
             ElementCreator.CreateVariantGroup.defaultCallable,
         createVariantGroupElementCallable:

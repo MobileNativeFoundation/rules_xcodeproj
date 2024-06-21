@@ -15,6 +15,16 @@ extension Generator {
                     isFolder: path.isFolder,
                     children: []
                 ))
+            if path.path.hasPrefix("bazel-out"), let owner = path.owner {
+                let generatedPath = "\(owner)/\(path.path)"
+                let generatedComponents = generatedPath.split(separator: "/")
+                nodesByComponentCount[generatedComponents.count, default: []]
+                    .append(PathTreeNodeToVisit(
+                        components: generatedComponents,
+                        isFolder: path.isFolder,
+                        children: []
+                    ))
+            }
         }
 
         for componentCount in (1...nodesByComponentCount.keys.max()!)

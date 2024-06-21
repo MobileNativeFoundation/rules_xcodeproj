@@ -4,10 +4,12 @@ import Foundation
 public struct BazelPath: Hashable {
     public var path: String
     public var isFolder: Bool
+    public var owner: String?
 
-    public init(_ path: String, isFolder: Bool = false) {
+    public init(_ path: String, isFolder: Bool = false, owner: String? = nil) {
         self.path = path
         self.isFolder = isFolder
+        self.owner = owner
     }
 }
 

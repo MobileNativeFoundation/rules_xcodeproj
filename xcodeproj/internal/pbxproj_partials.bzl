@@ -67,6 +67,12 @@ def _generated_file_path(file):
 
     return _always_generated_file_path(file)
 
+def _map_file_with_owner(file):
+    if hasattr(file, "owner") and file.owner != None:
+        return "{}--{}".format(file.path, file.owner.package)
+    else:
+        return file.path
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -432,7 +438,7 @@ def _write_files_and_groups(
     file_path_args = actions.args()
     file_path_args.set_param_file_format("multiline")
 
-    file_path_args.add_all(files)
+    file_path_args.add_all(files, map_each = _map_file_with_owner)
 
     # TODO: Consider moving normalization into `args.add_all.map_each`
     file_path_args.add_all(file_paths)
