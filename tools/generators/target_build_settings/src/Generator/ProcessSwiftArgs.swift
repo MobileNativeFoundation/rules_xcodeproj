@@ -104,6 +104,50 @@ extension Generator.ProcessSwiftArgs {
         frameworkIncludes: OrderedSet<String>,
         swiftIncludes: OrderedSet<String>
     ) {
+        var (hasDebugInfo, clangArgs, frameworkIncludes, onceClangArgs, swiftIncludes) = try await _process_swift_args(
+            argsStream: argsStream,
+            buildSettings: &buildSettings,
+            includeSelfSwiftDebugSettings: includeSelfSwiftDebugSettings,
+            previewsFrameworkPaths: previewsFrameworkPaths,
+            previewsIncludePath: previewsIncludePath,
+            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths,
+            parseTransitiveSwiftDebugSettings:
+                parseTransitiveSwiftDebugSettings,
+            processSwiftArg: processSwiftArg,
+            processSwiftClangArg: processSwiftClangArg,
+            processSwiftFrontendArg: processSwiftFrontendArg
+        )
+
+        try await parseTransitiveSwiftDebugSettings(
+            transitiveSwiftDebugSettingPaths,
+            clangArgs: &clangArgs,
+            frameworkIncludes: &frameworkIncludes,
+            onceClangArgs: &onceClangArgs,
+            swiftIncludes: &swiftIncludes
+        )
+
+        return (hasDebugInfo, clangArgs, frameworkIncludes, swiftIncludes)
+    }
+
+    private static func _process_swift_args(
+        argsStream: AsyncThrowingStream<String, Error>,
+        buildSettings: inout [(key: String, value: String)],
+        includeSelfSwiftDebugSettings: Bool,
+        previewsFrameworkPaths: String,
+        previewsIncludePath: String,
+        transitiveSwiftDebugSettingPaths: [URL],
+        parseTransitiveSwiftDebugSettings:
+            Generator.ParseTransitiveSwiftDebugSettings,
+        processSwiftArg: Generator.ProcessSwiftArg,
+        processSwiftClangArg: Generator.ProcessSwiftClangArg,
+        processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg
+    ) async throws -> (
+        hasDebugInfo: Bool,
+        clangArgs: [String],
+        frameworkIncludes: OrderedSet<String>,
+        onceClangArgs: Set<String>,
+        swiftIncludes: OrderedSet<String>
+    ) { 
         var previousArg: String? = nil
         var previousClangArg: String? = nil
         var previousFrontendArg: String? = nil
@@ -114,9 +158,8 @@ extension Generator.ProcessSwiftArgs {
         guard let tool = try await iterator.next(),
               tool != Generator.argsSeparator
         else {
-            return (false, [], [], [])
+            return (false, [], [], [], [])
         }
-        _ = try await iterator.next()
 
         var args: [String] = [
             // Work around stubbed swiftc messing with Indexing setting of
@@ -264,19 +307,11 @@ extension Generator.ProcessSwiftArgs {
             )
         }
 
-        try await parseTransitiveSwiftDebugSettings(
-            transitiveSwiftDebugSettingPaths,
-            clangArgs: &clangArgs,
-            frameworkIncludes: &frameworkIncludes,
-            onceClangArgs: &onceClangArgs,
-            swiftIncludes: &swiftIncludes
-        )
-
         buildSettings.append(
             ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
         )
 
-        return (hasDebugInfo, clangArgs, frameworkIncludes, swiftIncludes)
+        return (hasDebugInfo, clangArgs, frameworkIncludes, onceClangArgs, swiftIncludes)
     }
 }
 
