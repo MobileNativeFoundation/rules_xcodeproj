@@ -31,6 +31,7 @@ def xcodeproj(
         focused_targets = [],
         generation_mode = "incremental",
         import_index_build_indexstores = True,
+        include_package_generated_files_group = False,
         install_directory = None,
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
@@ -214,6 +215,14 @@ def xcodeproj(
             Index Build to speed up Xcode's indexing process. You may not want
             this enabled if the additional work (mainly disk IO) of importing
             the index stores is not worth it for your project.
+
+            This only applies when using `generation_mode = "incremental"`.
+        include_package_generated_files_group: Optional. Whether the project
+            will create a `Bazel Generated Files` child group for packages with generated
+            files.
+
+            This is useful for finding generated files more easily in the project navigator
+            by creating a child group in the path tree for each generated files' package.
 
             This only applies when using `generation_mode = "incremental"`.
         install_directory: Optional. The directory where the generated project
@@ -638,6 +647,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         generation_mode = generation_mode,
         generation_shard_count = generation_shard_count,
         import_index_build_indexstores = import_index_build_indexstores,
+        include_package_generated_files_group = include_package_generated_files_group,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,

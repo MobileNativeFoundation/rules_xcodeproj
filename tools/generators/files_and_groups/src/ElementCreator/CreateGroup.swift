@@ -88,7 +88,7 @@ extension ElementCreator.CreateGroup {
             group = createSpecialGroupElement(
                 specialRootGroupType: .bazelGenerated,
                 childIdentifiers: children.elements.map(\.object.identifier),
-                useRootStableIdentifiers: true,
+                useRootStableIdentifiers: false,
                 bazelPath: bazelPath
             )
         } else {

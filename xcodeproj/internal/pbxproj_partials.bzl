@@ -365,6 +365,7 @@ def _write_files_and_groups(
         file_paths,
         folders,
         generator_name,
+        include_package_generated_files_group,
         install_path,
         project_options,
         selected_model_versions_file,
@@ -387,6 +388,7 @@ def _write_files_and_groups(
             file paths.
         folders: A `depset` of paths to folders to include in the project.
         generator_name: The name of the `xcodeproj` generator target.
+        include_package_generated_files_group: Whether to generate child `Bazel Generated Files` groups.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
         project_options: A `dict` as returned by `project_options`.
@@ -438,7 +440,10 @@ def _write_files_and_groups(
     file_path_args = actions.args()
     file_path_args.set_param_file_format("multiline")
 
-    file_path_args.add_all(files, map_each = _map_file_with_owner)
+    if include_package_generated_files_group:
+        file_path_args.add_all(files, map_each = _map_file_with_owner)
+    else:
+        file_path_args.add_all(files)
 
     # TODO: Consider moving normalization into `args.add_all.map_each`
     file_path_args.add_all(file_paths)
