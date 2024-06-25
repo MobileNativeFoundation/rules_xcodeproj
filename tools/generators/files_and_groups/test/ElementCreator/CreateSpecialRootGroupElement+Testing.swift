@@ -14,11 +14,12 @@ extension ElementCreator.CreateSpecialRootGroupElement {
         fileprivate(set) var called: [Called] = []
     }
 
-    static func mock(element: Element) -> (mock: Self, tracker: MockTracker) {
+    static func mock(element: Element, createIdentifier: ElementCreator.CreateIdentifier) -> (mock: Self, tracker: MockTracker) {
         let mockTracker = MockTracker()
 
         let mocked = Self(
-            callable: { specialRootGroupType, childIdentifiers in
+            createIdentifier: createIdentifier,
+            callable: { specialRootGroupType, childIdentifiers, useRootStableIdentifiers, createIdentifier, bazelPath in
                 mockTracker.called.append(.init(
                     specialRootGroupType: specialRootGroupType,
                     childIdentifiers: childIdentifiers
@@ -35,7 +36,7 @@ extension ElementCreator.CreateSpecialRootGroupElement {
 
 extension ElementCreator.CreateSpecialRootGroupElement {
     static func stub(element: Element) -> Self {
-        let (stub, _) = mock(element: element)
+        let (stub, _) = mock(element: element, createIdentifier: ElementCreator.Stubs.createIdentifier)
         return stub
     }
 }

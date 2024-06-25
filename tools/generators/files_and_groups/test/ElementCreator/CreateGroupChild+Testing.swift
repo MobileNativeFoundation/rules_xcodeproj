@@ -46,7 +46,8 @@ extension ElementCreator.CreateGroupChild {
                 createFile,
                 createGroupElement,
                 createLocalizedFiles,
-                createVersionGroup
+                createVersionGroup,
+                createSpecialGroupElement
             in
                 mockTracker.called.append(.init(
                     node: node,

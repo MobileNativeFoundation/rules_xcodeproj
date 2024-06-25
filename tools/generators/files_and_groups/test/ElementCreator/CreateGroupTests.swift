@@ -179,7 +179,9 @@ final class CreateGroupTests: XCTestCase {
             specialRootGroupType: specialRootGroupType,
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
-            createGroupElement: createGroupElement.mock
+            createGroupElement: createGroupElement.mock,
+            createSpecialGroupElement: ElementCreator.Stubs.createSpecialRootGroupElement
+
         )
 
         // Assert

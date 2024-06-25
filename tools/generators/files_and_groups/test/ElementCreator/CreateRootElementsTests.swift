@@ -304,6 +304,8 @@ final class CreateRootElementsTests: XCTestCase {
         let createGroupChildElements = ElementCreator.CreateGroupChildElements
             .mock(groupChildElements: stubbedRootElements)
 
+        let createSpecialGroupElement = ElementCreator.CreateSpecialRootGroupElement(createIdentifier: ElementCreator.CreateIdentifier())
+
         // Act
 
         let rootElements = ElementCreator.CreateRootElements.defaultCallable(
@@ -314,7 +316,8 @@ final class CreateRootElementsTests: XCTestCase {
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
             createInternalGroup: createInternalGroup.mock,
-            createSpecialRootGroup: createSpecialRootGroup.mock
+            createSpecialRootGroup: createSpecialRootGroup.mock,
+            createSpecialGroupElement: createSpecialGroupElement
         )
 
         // Assert

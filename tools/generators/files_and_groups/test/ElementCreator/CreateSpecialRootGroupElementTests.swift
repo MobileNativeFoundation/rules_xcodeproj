@@ -38,7 +38,10 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 
         let element = ElementCreator.CreateSpecialRootGroupElement.defaultCallable(
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: childIdentifiers
+            childIdentifiers: childIdentifiers,
+            useRootStableIdentifiers: true,
+            createIdentifier: ElementCreator.Stubs.createIdentifier,
+            bazelPath: BazelPath(stringLiteral: "foo/bar")
         )
 
         // Assert
@@ -80,7 +83,10 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 
         let element = ElementCreator.CreateSpecialRootGroupElement.defaultCallable(
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: childIdentifiers
+            childIdentifiers: childIdentifiers,
+            useRootStableIdentifiers: true,
+            createIdentifier: ElementCreator.Stubs.createIdentifier,
+            bazelPath: BazelPath(stringLiteral: "foo/bar")
         )
 
         // Assert
@@ -122,7 +128,10 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 
         let element = ElementCreator.CreateSpecialRootGroupElement.defaultCallable(
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: childIdentifiers
+            childIdentifiers: childIdentifiers,
+            useRootStableIdentifiers: true,
+            createIdentifier: ElementCreator.Stubs.createIdentifier,
+            bazelPath: BazelPath(stringLiteral: "foo/bar")
         )
 
         // Assert

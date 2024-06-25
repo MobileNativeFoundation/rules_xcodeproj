@@ -19,7 +19,6 @@ extension ElementCreator.CreateGroup {
         groupChildElement: GroupChild.ElementAndChildren
     ) -> (mock: Self, tracker: MockTracker) {
         let mockTracker = MockTracker()
-
         let mocked = Self(
             createGroupChildElements:
                 ElementCreator.Stubs.createGroupChildElements,
@@ -30,7 +29,8 @@ extension ElementCreator.CreateGroup {
                 specialRootGroupType,
                 createGroupChild,
                 createGroupChildElements,
-                createGroupElement
+                createGroupElement,
+                createSpecialGroupElement
             in
                 mockTracker.called.append(.init(
                     node: node,
