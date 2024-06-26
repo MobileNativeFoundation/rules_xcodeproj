@@ -85,7 +85,6 @@ extension ElementCreator.CreateGroupElement {
         } else {
             nameAttribute = ""
         }
-
         // The tabs for indenting are intentional
         let content = #"""
 {

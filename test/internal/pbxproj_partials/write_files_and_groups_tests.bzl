@@ -50,6 +50,8 @@ def _write_files_and_groups_test_impl(ctx):
 
     # Act
 
+    mock_files = [mock_actions.mock_file(f) for f in ctx.attr.files]
+
     (
         pbxproject_known_regions,
         files_and_groups,
@@ -63,9 +65,10 @@ def _write_files_and_groups_test_impl(ctx):
         compile_stub_needed = ctx.attr.compile_stub_needed,
         execution_root_file = ctx.attr.execution_root_file,
         generator_name = "a_generator_name",
-        files = depset(ctx.attr.files),
+        files = depset(mock_files),
         file_paths = depset(ctx.attr.file_paths),
         folders = depset(ctx.attr.folders),
+        include_package_generated_files_group = False,
         install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
