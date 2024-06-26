@@ -65,7 +65,13 @@ extension ElementCreator.CreateGroup {
         createGroupElement: ElementCreator.CreateGroupElement,
         createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = parentBazelPath + node
+        let isBazelGenerated = node.name.hasPrefix("bazel-out")
+        let bazelPath: BazelPath
+        if isBazelGenerated {
+            bazelPath = BazelPath(node.name)
+        } else {
+            bazelPath = parentBazelPath + node
+        }
         let name = node.name
 
         let groupChildren = node.children.map { node in
@@ -84,7 +90,7 @@ extension ElementCreator.CreateGroup {
         
         let group: Element
         var resolvedRepository: ResolvedRepository? = nil
-        if node.name.hasPrefix("bazel-out") {
+        if isBazelGenerated {
             group = createSpecialGroupElement(
                 specialRootGroupType: .bazelGenerated,
                 childIdentifiers: children.elements.map(\.object.identifier),

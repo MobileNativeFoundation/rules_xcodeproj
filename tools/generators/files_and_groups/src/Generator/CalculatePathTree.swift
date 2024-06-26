@@ -8,19 +8,20 @@ extension Generator {
 
         var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
         for path in paths {
-            let components = path.path.split(separator: "/")
-            nodesByComponentCount[components.count, default: []]
-                .append(PathTreeNodeToVisit(
-                    components: components,
-                    isFolder: path.isFolder,
-                    children: []
-                ))
             if path.path.hasPrefix("bazel-out"), let owner = path.owner {
                 let generatedPath = "\(owner)/\(path.path)"
                 let generatedComponents = generatedPath.split(separator: "/")
                 nodesByComponentCount[generatedComponents.count, default: []]
                     .append(PathTreeNodeToVisit(
                         components: generatedComponents,
+                        isFolder: path.isFolder,
+                        children: []
+                    ))
+            } else {
+                let components = path.path.split(separator: "/")
+                nodesByComponentCount[components.count, default: []]
+                    .append(PathTreeNodeToVisit(
+                        components: components,
                         isFolder: path.isFolder,
                         children: []
                     ))

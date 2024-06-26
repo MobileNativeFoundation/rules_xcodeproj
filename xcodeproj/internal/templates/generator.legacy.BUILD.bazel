@@ -19,6 +19,7 @@ xcodeproj(
     config = "%config%",
     default_xcode_configuration = %default_xcode_configuration%,
     fail_for_invalid_extra_files_targets = %fail_for_invalid_extra_files_targets%,
+    include_package_generated_files_group = %include_package_generated_files_group%,
     install_path = "%install_path%",
     ios_device_cpus = "%ios_device_cpus%",
     ios_simulator_cpus = "%ios_simulator_cpus%",
