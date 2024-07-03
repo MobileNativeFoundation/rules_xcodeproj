@@ -22,16 +22,16 @@ extension ElementCreator {
             name: String,
             isFolder: Bool,
             bazelPath: BazelPath,
+            bazelPathType: BazelPathType,
             transitiveBazelPaths: [BazelPath],
-            specialRootGroupType: SpecialRootGroupType?,
             identifierForBazelPaths: String? = nil
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*name:*/ name,
                 /*isFolder:*/ isFolder,
                 /*bazelPath:*/ bazelPath,
+                /*bazelPathType:*/ bazelPathType,
                 /*transitiveBazelPaths:*/ transitiveBazelPaths,
-                /*specialRootGroupType:*/ specialRootGroupType,
                 /*identifierForBazelPaths:*/ identifierForBazelPaths,
                 /*createFileElement:*/ createFileElement
             )
@@ -46,8 +46,8 @@ extension ElementCreator.CreateFile {
         _ name: String,
         _ isFolder: Bool,
         _ bazelPath: BazelPath,
+        _ bazelPathType: BazelPathType,
         _ transitiveBazelPaths: [BazelPath],
-        _ specialRootGroupType: SpecialRootGroupType?,
         _ identifierForBazelPaths: String?,
         _ createFileElement: ElementCreator.CreateFileElement
     ) -> GroupChild.ElementAndChildren
@@ -56,8 +56,8 @@ extension ElementCreator.CreateFile {
         name: String,
         isFolder: Bool,
         bazelPath: BazelPath,
+        bazelPathType: BazelPathType,
         transitiveBazelPaths: [BazelPath],
-        specialRootGroupType: SpecialRootGroupType?,
         identifierForBazelPaths: String?,
         createFileElement: ElementCreator.CreateFileElement
     ) -> GroupChild.ElementAndChildren {
@@ -68,7 +68,7 @@ extension ElementCreator.CreateFile {
             name: name,
             ext: name.extension(),
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType
+            bazelPathType: bazelPathType
         )
 
         let bazelPaths = transitiveBazelPaths + [bazelPath]

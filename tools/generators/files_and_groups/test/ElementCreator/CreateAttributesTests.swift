@@ -13,8 +13,8 @@ final class CreateAttributesTests: XCTestCase {
 
         let name = "a"
         let bazelPath: BazelPath = "external/a"
+        let bazelPathType: BazelPathType = .legacyBazelExternal
         let isGroup = true
-        let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
         let resolveSymlink = ElementCreator.ResolveSymlink.stub(
             symlinkDest: "/tmp/a"
         )
@@ -29,8 +29,8 @@ final class CreateAttributesTests: XCTestCase {
         let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             isGroup: isGroup,
-            specialRootGroupType: specialRootGroupType,
             executionRoot: "/tmp/execroot",
             externalDir: "/tmp/execroot/external",
             workspace: "/tmp/workspace",
@@ -50,8 +50,8 @@ final class CreateAttributesTests: XCTestCase {
 
         let name = "b"
         let bazelPath: BazelPath = "../b"
+        let bazelPathType: BazelPathType = .siblingBazelExternal
         let isGroup = true
-        let specialRootGroupType: SpecialRootGroupType = .siblingBazelExternal
         let resolveSymlink = ElementCreator.ResolveSymlink.stub(
             symlinkDest: "/tmp/b"
         )
@@ -66,8 +66,8 @@ final class CreateAttributesTests: XCTestCase {
         let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             isGroup: isGroup,
-            specialRootGroupType: specialRootGroupType,
             executionRoot: "/tmp/execroot",
             externalDir: "/tmp/execroot/external",
             workspace: "/tmp/workspace",
@@ -87,8 +87,8 @@ final class CreateAttributesTests: XCTestCase {
 
         let name = "c"
         let bazelPath: BazelPath = "external/c"
+        let bazelPathType: BazelPathType = .legacyBazelExternal
         let isGroup = false
-        let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
         let resolveSymlink = ElementCreator.ResolveSymlink.stub(
             symlinkDest: "/tmp/c"
         )
@@ -98,8 +98,8 @@ final class CreateAttributesTests: XCTestCase {
         let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             isGroup: isGroup,
-            specialRootGroupType: specialRootGroupType,
             executionRoot: "/tmp/execroot",
             externalDir: "/tmp/execroot/external",
             workspace: "/tmp/workspace",
@@ -116,8 +116,8 @@ final class CreateAttributesTests: XCTestCase {
 
         let name = "d"
         let bazelPath: BazelPath = "bazel-out/d"
+        let bazelPathType: BazelPathType = .bazelGenerated
         let isGroup = true
-        let specialRootGroupType: SpecialRootGroupType = .bazelGenerated
         let resolveSymlink = ElementCreator.ResolveSymlink.stub(
             symlinkDest: "/tmp/d"
         )
@@ -127,8 +127,8 @@ final class CreateAttributesTests: XCTestCase {
         let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             isGroup: isGroup,
-            specialRootGroupType: specialRootGroupType,
             executionRoot: "/tmp/execroot",
             externalDir: "/tmp/execroot/external",
             workspace: "/tmp/workspace",
@@ -145,8 +145,8 @@ final class CreateAttributesTests: XCTestCase {
 
         let name = "e"
         let bazelPath: BazelPath = "external/e"
+        let bazelPathType: BazelPathType = .legacyBazelExternal
         let isGroup = true
-        let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
         let resolveSymlink = ElementCreator.ResolveSymlink.stub(
             symlinkDest: nil
         )
@@ -156,8 +156,8 @@ final class CreateAttributesTests: XCTestCase {
         let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             isGroup: isGroup,
-            specialRootGroupType: specialRootGroupType,
             executionRoot: "/tmp/execroot",
             externalDir: "/tmp/execroot/external",
             workspace: "/tmp/workspace",

@@ -1,5 +1,6 @@
 import CustomDump
 import PBXProj
+import ToolCommon
 import XCTest
 
 @testable import files_and_groups
@@ -8,31 +9,49 @@ final class CreateRootElementsTests: XCTestCase {
     func test() throws {
         // Arrange
 
-        let pathTree = PathTreeNode.Group(
-            children: [
-                .group(
-                    name: "bazel-out",
+        let pathTree: [PathTreeNode] = [
+            .generatedFiles(.multipleConfigs([
+                .init(
+                    name: "config2",
+                    path: "config2/bin",
                     children: [
-                        .file(name: "1"),
-                        .file(name: "2"),
+                        .file(name: "gen"),
                     ]
                 ),
-                .file(name: "a"),
-                .group(
-                    name: "..",
+                .init(
+                    name: "config1",
+                    path: "config1/bin",
                     children: [
-                        .file(name: "3"),
+                        .file(name: "gen"),
                     ]
                 ),
-                .file(name: "b"),
-                .group(
-                    name: "external",
-                    children: [
-                        .file(name: "4"),
-                    ]
-                ),
-            ]
-        )
+            ])),
+            .file(name: "a"),
+            .group(
+                name: "..",
+                children: [
+                    .generatedFiles(.singleConfig(
+                        path: "config3/bin/external/something~",
+                        children: [
+                            .group(
+                                name: "gen",
+                                children: [
+                                    .file(name: "a"),
+                                ]
+                            ),
+                        ]
+                    )),
+                    .file(name: "3"),
+                ]
+            ),
+            .file(name: "b"),
+            .group(
+                name: "external",
+                children: [
+                    .file(name: "4"),
+                ]
+            ),
+        ]
         let installPath = "a/visonary.xcodeproj"
         let workspace = "/Users/TimApple/Star Board"
         let includeCompileStub = true
@@ -41,52 +60,21 @@ final class CreateRootElementsTests: XCTestCase {
             .init(sourcePath: ".", mappedPath: workspace)
         ]
 
-        let expectedCreateSpecialRootGroupCalled: [
-            ElementCreator.CreateSpecialRootGroup.MockTracker.Called
+        let expectedCreateExternalRepositoriesGroupCalled: [
+            ElementCreator.CreateExternalRepositoriesGroup.MockTracker.Called
         ] = [
             .init(
-                groupNode: try pathTree.children[0].asGroup,
-                name: pathTree.children[0].name,
-                specialRootGroupType: .bazelGenerated
+                name: try pathTree[2].groupName,
+                nodeChildren: try pathTree[2].groupChildren,
+                bazelPathType: .siblingBazelExternal
             ),
             .init(
-                groupNode: try pathTree.children[2].asGroup,
-                name: pathTree.children[2].name,
-                specialRootGroupType: .siblingBazelExternal
-            ),
-            .init(
-                groupNode: try pathTree.children[4].asGroup,
-                name: pathTree.children[4].name,
-                specialRootGroupType: .legacyBazelExternal
+                name: try pathTree[4].groupName,
+                nodeChildren: try pathTree[4].groupChildren,
+                bazelPathType: .legacyBazelExternal
             ),
         ]
-        let stubbedSpecialRootGroupChildElementAndChildren = [
-            GroupChild.ElementAndChildren(
-                element: .init(
-                    name: "bazel-out",
-                    object: .init(
-                        identifier: "bazel-out id",
-                        content: "bazel-out content"
-                    ),
-                    sortOrder: .groupLike
-                ),
-                transitiveObjects: [
-                    .init(
-                        identifier: "1 id",
-                        content: "1 content"
-                    ),
-                    .init(
-                        identifier: "2 id",
-                        content: "2 content"
-                    ),
-                ],
-                bazelPathAndIdentifiers: [
-                    ("bazel-out/1", "1 id"),
-                    ("bazel-out/2", "2 id"),
-                ],
-                knownRegions: ["bazel-out region"],
-                resolvedRepositories: [.init(sourcePath: "z", mappedPath: "z")]
-            ),
+        let stubbedExternalRepositoriesGroupChildElementAndChildren = [
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "sibling",
@@ -94,7 +82,7 @@ final class CreateRootElementsTests: XCTestCase {
                         identifier: "sibling id",
                         content: "sibling content"
                     ),
-                    sortOrder: .groupLike
+                    sortOrder: .bazelExternalRepositories
                 ),
                 transitiveObjects: [
                     .init(
@@ -130,25 +118,58 @@ final class CreateRootElementsTests: XCTestCase {
                 resolvedRepositories: [.init(sourcePath: "x", mappedPath: "x")]
             ),
         ]
-        let createSpecialRootGroup = ElementCreator.CreateSpecialRootGroup.mock(
-            groupChildElements: stubbedSpecialRootGroupChildElementAndChildren
-        )
+        let createExternalRepositoriesGroup =
+            ElementCreator.CreateExternalRepositoriesGroup.mock(
+                groupChildElements:
+                    stubbedExternalRepositoriesGroupChildElementAndChildren
+            )
 
         let expectedCreateGroupChildCalled: [
             ElementCreator.CreateGroupChild.MockTracker.Called
         ] = [
             .init(
-                node: pathTree.children[1],
+                node: pathTree[0],
                 parentBazelPath: "",
-                specialRootGroupType: nil
+                parentBazelPathType: .workspace
             ),
             .init(
-                node: pathTree.children[3],
+                node: pathTree[1],
                 parentBazelPath: "",
-                specialRootGroupType: nil
+                parentBazelPathType: .workspace
+            ),
+            .init(
+                node: pathTree[3],
+                parentBazelPath: "",
+                parentBazelPathType: .workspace
             ),
         ]
         let stubbedGroupChildElementAndChildren = [
+            GroupChild.ElementAndChildren(
+                element: .init(
+                    name: "Bazel Generated",
+                    object: .init(
+                        identifier: "Bazel Generated identifier",
+                        content: "Bazel Generated content"
+                    ),
+                    sortOrder: .inlineBazelGenerated
+                ),
+                transitiveObjects: [
+                    .init(
+                        identifier: "bazel-out/c2 identifier",
+                        content: "bazel-out/c2 content"
+                    ),
+                    .init(
+                        identifier: "bazel-out/c1 identifier",
+                        content: "bazel-out/c1 content"
+                    ),
+                ],
+                bazelPathAndIdentifiers: [
+                    ("bazel-out/config2/bin/gen", "bazel-out/c2 identifier"),
+                    ("bazel-out/config1/bin/gen", "bazel-out/c1 identifier"),
+                ],
+                knownRegions: ["a region"],
+                resolvedRepositories: [.init(sourcePath: "b", mappedPath: "b")]
+            ),
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "a",
@@ -200,6 +221,7 @@ final class CreateRootElementsTests: XCTestCase {
         let stubbedCreateGroupChildResults: [GroupChild] = [
             .elementAndChildren(stubbedGroupChildElementAndChildren[0]),
             .elementAndChildren(stubbedGroupChildElementAndChildren[1]),
+            .elementAndChildren(stubbedGroupChildElementAndChildren[2]),
         ]
         let createGroupChild = ElementCreator.CreateGroupChild.mock(
             children: stubbedCreateGroupChildResults
@@ -233,16 +255,14 @@ final class CreateRootElementsTests: XCTestCase {
             .init(
                 parentBazelPath: "",
                 groupChildren: [
-                    .elementAndChildren(
-                        stubbedSpecialRootGroupChildElementAndChildren[0]
-                    ),
                     stubbedCreateGroupChildResults[0],
-                    .elementAndChildren(
-                        stubbedSpecialRootGroupChildElementAndChildren[1]
-                    ),
                     stubbedCreateGroupChildResults[1],
                     .elementAndChildren(
-                        stubbedSpecialRootGroupChildElementAndChildren[2]
+                        stubbedExternalRepositoriesGroupChildElementAndChildren[0]
+                    ),
+                    stubbedCreateGroupChildResults[2],
+                    .elementAndChildren(
+                        stubbedExternalRepositoriesGroupChildElementAndChildren[1]
                     ),
                     stubbedInternalGroup,
                 ],
@@ -251,54 +271,43 @@ final class CreateRootElementsTests: XCTestCase {
         ]
         let stubbedRootElements = GroupChildElements(
             elements: [
-                stubbedSpecialRootGroupChildElementAndChildren[0].element,
                 stubbedGroupChildElementAndChildren[0].element,
-                stubbedSpecialRootGroupChildElementAndChildren[1].element,
                 stubbedGroupChildElementAndChildren[1].element,
-                stubbedSpecialRootGroupChildElementAndChildren[2].element,
+                stubbedExternalRepositoriesGroupChildElementAndChildren[0].element,
+                stubbedGroupChildElementAndChildren[2].element,
+                stubbedExternalRepositoriesGroupChildElementAndChildren[1].element,
             ],
             transitiveObjects: [
-                stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .transitiveObjects[0],
-                stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .transitiveObjects[1],
                 stubbedGroupChildElementAndChildren[0].transitiveObjects[0],
-                stubbedSpecialRootGroupChildElementAndChildren[1]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[0]
                     .transitiveObjects[0],
                 stubbedGroupChildElementAndChildren[0].transitiveObjects[1],
-                stubbedSpecialRootGroupChildElementAndChildren[2]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[1]
                     .transitiveObjects[0],
                 stubbedGroupChildElementAndChildren[1].transitiveObjects[0],
             ],
             bazelPathAndIdentifiers: [
-                stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .bazelPathAndIdentifiers[0],
-                stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .bazelPathAndIdentifiers[1],
                 stubbedGroupChildElementAndChildren[0]
                     .bazelPathAndIdentifiers[0],
                 stubbedGroupChildElementAndChildren[0]
                     .bazelPathAndIdentifiers[1],
-                stubbedSpecialRootGroupChildElementAndChildren[1]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[0]
                     .bazelPathAndIdentifiers[0],
                 stubbedGroupChildElementAndChildren[1]
                     .bazelPathAndIdentifiers[0],
-                stubbedSpecialRootGroupChildElementAndChildren[2]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[1]
                     .bazelPathAndIdentifiers[0],
             ],
             knownRegions: stubbedGroupChildElementAndChildren[0].knownRegions
                 .union(stubbedGroupChildElementAndChildren[1].knownRegions)
-                .union(stubbedSpecialRootGroupChildElementAndChildren[0].knownRegions)
-                .union(stubbedSpecialRootGroupChildElementAndChildren[1].knownRegions)
-                .union(stubbedSpecialRootGroupChildElementAndChildren[2].knownRegions),
+                .union(stubbedExternalRepositoriesGroupChildElementAndChildren[0].knownRegions)
+                .union(stubbedExternalRepositoriesGroupChildElementAndChildren[1].knownRegions),
             resolvedRepositories: [
-                stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .resolvedRepositories[0],
                 stubbedGroupChildElementAndChildren[0].resolvedRepositories[0],
-                stubbedSpecialRootGroupChildElementAndChildren[1]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[0]
                     .resolvedRepositories[0],
                 stubbedGroupChildElementAndChildren[1].resolvedRepositories[0],
-                stubbedSpecialRootGroupChildElementAndChildren[2]
+                stubbedExternalRepositoriesGroupChildElementAndChildren[1]
                     .resolvedRepositories[0],
                 ResolvedRepository(sourcePath: ".", mappedPath: "SRCROOT"),
             ]
@@ -313,10 +322,11 @@ final class CreateRootElementsTests: XCTestCase {
             includeCompileStub: includeCompileStub,
             installPath: installPath,
             workspace: workspace,
+            createExternalRepositoriesGroup:
+                createExternalRepositoriesGroup.mock,
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
-            createInternalGroup: createInternalGroup.mock,
-            createSpecialRootGroup: createSpecialRootGroup.mock
+            createInternalGroup: createInternalGroup.mock
         )
 
         // Assert
@@ -334,23 +344,32 @@ final class CreateRootElementsTests: XCTestCase {
             expectedCreateInternalGroupCalled
         )
         XCTAssertNoDifference(
-            createSpecialRootGroup.tracker.called,
-            expectedCreateSpecialRootGroupCalled
+            createExternalRepositoriesGroup.tracker.called,
+            expectedCreateExternalRepositoriesGroupCalled
         )
         XCTAssertNoDifference(rootElements, stubbedRootElements)
     }
 }
 
-struct EnumCaseError: Error {}
-
 private extension PathTreeNode {
-    var asGroup: PathTreeNode.Group {
+    var groupChildren: [PathTreeNode] {
         get throws {
-            switch kind {
-            case .group(let group):
-                return group
+            switch self {
+            case .group(_, let children):
+                return children
             default:
-                throw EnumCaseError()
+                throw PreconditionError(message: "Invalid node type")
+            }
+        }
+    }
+
+    var groupName: String {
+        get throws {
+            switch self {
+            case .group(let name, _):
+                return name
+            default:
+                throw PreconditionError(message: "Invalid node type")
             }
         }
     }

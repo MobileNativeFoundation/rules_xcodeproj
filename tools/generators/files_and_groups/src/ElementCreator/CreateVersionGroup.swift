@@ -34,16 +34,16 @@ extension ElementCreator {
         }
 
         func callAsFunction(
-            for groupNode: PathTreeNode.Group,
             name: String,
+            nodeChildren: [PathTreeNode],
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            bazelPathType: BazelPathType
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*groupNode:*/ groupNode,
                 /*name:*/ name,
+                /*nodeChildren:*/ nodeChildren,
                 /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*bazelPathType:*/ bazelPathType,
                 /*createFile:*/ createFile,
                 /*createIdentifier:*/ createIdentifier,
                 /*createVersionGroupElement:*/ createVersionGroupElement,
@@ -58,10 +58,10 @@ extension ElementCreator {
 
 extension ElementCreator.CreateVersionGroup {
     typealias Callable = (
-        _ groupNode: PathTreeNode.Group,
         _ name: String,
+        _ nodeChildren: [PathTreeNode],
         _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ bazelPathType: BazelPathType,
         _ createFile: ElementCreator.CreateFile,
         _ createIdentifier: ElementCreator.CreateIdentifier,
         _ createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
@@ -70,10 +70,10 @@ extension ElementCreator.CreateVersionGroup {
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        for groupNode: PathTreeNode.Group,
         name: String,
+        nodeChildren: [PathTreeNode],
         parentBazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        bazelPathType: BazelPathType,
         createFile: ElementCreator.CreateFile,
         createIdentifier: ElementCreator.CreateIdentifier,
         createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
@@ -91,8 +91,8 @@ extension ElementCreator.CreateVersionGroup {
 
         var children: [GroupChild.ElementAndChildren] = []
         var selectedChildIdentifier: String? = nil
-        for node in groupNode.children {
-            let childName = node.name
+        for node in nodeChildren {
+            let childName = node.nameForSpecialGroupChild
             let childBazelPath = BazelPath(parent: bazelPath, path: childName)
             
             let transitiveBazelPaths = collectBazelPaths(
@@ -107,13 +107,13 @@ extension ElementCreator.CreateVersionGroup {
                 name: childName,
                 isFolder: false,
                 bazelPath: childBazelPath,
+                bazelPathType: bazelPathType,
                 transitiveBazelPaths: transitiveBazelPaths,
-                specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: identifier
             )
             children.append(result)
 
-            if node.name == selectedModelVersion {
+            if childName == selectedModelVersion {
                 selectedChildIdentifier = result.element.object.identifier
             }
         }
@@ -124,7 +124,7 @@ extension ElementCreator.CreateVersionGroup {
         ) = createVersionGroupElement(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             identifier: identifier,
             childIdentifiers: children.map(\.element.object.identifier),
             selectedChildIdentifier: selectedChildIdentifier

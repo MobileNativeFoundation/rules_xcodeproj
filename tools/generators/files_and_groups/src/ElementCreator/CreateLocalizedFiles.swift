@@ -22,17 +22,15 @@ extension ElementCreator {
         }
 
         func callAsFunction(
-            for groupNode: PathTreeNode.Group,
             name: String,
+            nodeChildren: [PathTreeNode],
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?,
             region: String
         ) -> [GroupChild.LocalizedFile] {
             return callable(
-                /*groupNode:*/ groupNode,
                 /*name:*/ name,
+                /*nodeChildren:*/ nodeChildren,
                 /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
                 /*region:*/ region,
                 /*collectBazelPaths:*/ collectBazelPaths,
                 /*createLocalizedFileElement:*/ createLocalizedFileElement
@@ -45,20 +43,18 @@ extension ElementCreator {
 
 extension ElementCreator.CreateLocalizedFiles {
     typealias Callable = (
-        _ groupNode: PathTreeNode.Group,
         _ name: String,
+        _ nodeChildren: [PathTreeNode],
         _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
         _ region: String,
         _ collectBazelPaths: ElementCreator.CollectBazelPaths,
         _ createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
     ) -> [GroupChild.LocalizedFile]
 
     static func defaultCallable(
-        for groupNode: PathTreeNode.Group,
         name: String,
+        nodeChildren: [PathTreeNode],
         parentBazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
         region: String,
         collectBazelPaths: ElementCreator.CollectBazelPaths,
         createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
@@ -66,8 +62,8 @@ extension ElementCreator.CreateLocalizedFiles {
         let bazelPath = BazelPath(parent: parentBazelPath, path: name)
         let lprojPrefix = name
 
-        let files =  groupNode.children.map { node in
-            let childName = node.name
+        let files =  nodeChildren.map { node in
+            let childName = node.nameForSpecialGroupChild
             let childBazelPath = BazelPath(parent: bazelPath, path: childName)
 
             let bazelPaths = collectBazelPaths(
@@ -76,7 +72,7 @@ extension ElementCreator.CreateLocalizedFiles {
                 includeSelf: true
             )
 
-            let (basenameWithoutExt, ext) = node.splitExtension()
+            let (basenameWithoutExt, ext) = childName.splitExtension()
 
             let element = createLocalizedFileElement(
                 name: region,

@@ -1,29 +1,28 @@
 import CustomDump
 import PBXProj
+import ToolCommon
 import XCTest
 
 @testable import files_and_groups
 
 final class CreateVersionGroupTests: XCTestCase {
-    func test() {
+    func test() throws {
         // Arrange
 
         let name = "node.xcdatamodeld"
-        let groupNode = PathTreeNode.Group(
-            children: [
-                .file(name: "weird"),
-                .file(name: "a.xcdatamodel"),
-                .group(
-                    name: "b.xcdatamodel",
-                    children: [
-                        .file(name: "odd"),
-                    ]
-                ),
-                .file(name: "c.xcdatamodel"),
-            ]
-        )
+        let nodeChildren: [PathTreeNode] = [
+            .file(name: "weird"),
+            .file(name: "a.xcdatamodel"),
+            .group(
+                name: "b.xcdatamodel",
+                children: [
+                    .file(name: "odd"),
+                ]
+            ),
+            .file(name: "c.xcdatamodel"),
+        ]
         let parentBazelPath: BazelPath = "bazel/path"
-        let specialRootGroupType = SpecialRootGroupType.legacyBazelExternal
+        let bazelPathType = BazelPathType.legacyBazelExternal
 
         let expectedBazelPath: BazelPath = "bazel/path/node.xcdatamodeld"
 
@@ -49,34 +48,34 @@ final class CreateVersionGroupTests: XCTestCase {
             ElementCreator.CollectBazelPaths.MockTracker.Called
         ] = [
             .init(
-                node: groupNode.children[0],
+                node: nodeChildren[0],
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[0].name
+                    path: try nodeChildren[0].fileName
                 ),
                 includeSelf: false
             ),
             .init(
-                node: groupNode.children[1],
+                node: nodeChildren[1],
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[1].name
+                    path: try nodeChildren[1].fileName
                 ),
                 includeSelf: false
             ),
             .init(
-                node: groupNode.children[2],
+                node: nodeChildren[2],
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[2].name
+                    path: try nodeChildren[2].groupName
                 ),
                 includeSelf: false
             ),
             .init(
-                node: groupNode.children[3],
+                node: nodeChildren[3],
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[3].name
+                    path: try nodeChildren[3].fileName
                 ),
                 includeSelf: false
             ),
@@ -94,48 +93,48 @@ final class CreateVersionGroupTests: XCTestCase {
             ElementCreator.CreateFile.MockTracker.Called
         ] = [
             .init(
-                name: groupNode.children[0].name,
+                name: try nodeChildren[0].fileName,
                 isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[0].name
+                    path: try nodeChildren[0].fileName
                 ),
+                bazelPathType: bazelPathType,
                 transitiveBazelPaths: [],
-                specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                name: groupNode.children[1].name,
+                name: try nodeChildren[1].fileName,
                 isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[1].name
+                    path: try nodeChildren[1].fileName
                 ),
+                bazelPathType: bazelPathType,
                 transitiveBazelPaths: [],
-                specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                name: groupNode.children[2].name,
+                name: try nodeChildren[2].groupName,
                 isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[2].name
+                    path: try nodeChildren[2].groupName
                 ),
+                bazelPathType: bazelPathType,
                 transitiveBazelPaths:
                     ["bazel/path/node.xcdatamodeld/b.xcdatamodel/odd"],
-                specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                name: groupNode.children[3].name,
+                name: try nodeChildren[3].fileName,
                 isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
-                    path: groupNode.children[3].name
+                    path: try nodeChildren[3].fileName
                 ),
+                bazelPathType: bazelPathType,
                 transitiveBazelPaths: [],
-                specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: stubbedIdentifier
             ),
         ]
@@ -255,7 +254,7 @@ final class CreateVersionGroupTests: XCTestCase {
             .init(
                 name: name,
                 bazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType,
+                bazelPathType: bazelPathType,
                 identifier: stubbedIdentifier,
                 childIdentifiers: [
                     stubbedChildResults[0].element.object.identifier,
@@ -317,10 +316,10 @@ final class CreateVersionGroupTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateVersionGroup.defaultCallable(
-            for: groupNode,
             name: name,
+            nodeChildren: nodeChildren,
             parentBazelPath: parentBazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             createFile: createFile.mock,
             createIdentifier: createIdentifier.mock,
             createVersionGroupElement: createVersionGroupElement.mock,
@@ -347,5 +346,29 @@ final class CreateVersionGroupTests: XCTestCase {
             expectedCreateVersionGroupElementCalled
         )
         XCTAssertNoDifference(result, expectedResult)
+    }
+}
+
+private extension PathTreeNode {
+    var fileName: String {
+        get throws {
+            switch self {
+            case .file(let name, _):
+                return name
+            default:
+                throw PreconditionError(message: "Invalid node type")
+            }
+        }
+    }
+
+    var groupName: String {
+        get throws {
+            switch self {
+            case .group(let name, _):
+                return name
+            default:
+                throw PreconditionError(message: "Invalid node type")
+            }
+        }
     }
 }

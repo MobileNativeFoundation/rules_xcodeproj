@@ -10,7 +10,10 @@ extension Generator {
     struct Environment {
         let calculateTargetFilesPartial: CalculateTargetFilesPartial
 
-        let calculatePathTree: (_ paths: Set<BazelPath>) -> PathTreeNode.Group
+        let calculatePathTree: (
+            _ paths: [BazelPath],
+            _ generatedPaths: [GeneratedPath]
+        ) -> [PathTreeNode]
 
         let createTargetFileObjects: CreateTargetFileObjects
 
@@ -30,6 +33,10 @@ extension Generator {
         let readFilePathsFile: ReadFilePathsFile
 
         let readFolderPathsFile: ReadFolderPathsFile
+
+        let readGeneratedFilePathsFile: ReadGeneratedFilePathsFile
+
+        let readGeneratedFolderPathsFile: ReadGeneratedFolderPathsFile
 
         let resolvedRepositoriesBuildSetting: (
             _ resolvedRepositories: [ResolvedRepository]
@@ -56,6 +63,8 @@ extension Generator.Environment {
         knownRegionsPartial: Generator.knownRegionsPartial,
         readFilePathsFile: Generator.ReadFilePathsFile(),
         readFolderPathsFile: Generator.ReadFolderPathsFile(),
+        readGeneratedFilePathsFile: Generator.ReadGeneratedFilePathsFile(),
+        readGeneratedFolderPathsFile: Generator.ReadGeneratedFolderPathsFile(),
         resolvedRepositoriesBuildSetting:
             Generator.resolvedRepositoriesBuildSetting,
         write: Write()

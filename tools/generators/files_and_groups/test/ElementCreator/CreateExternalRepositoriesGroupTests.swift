@@ -4,27 +4,25 @@ import XCTest
 
 @testable import files_and_groups
 
-final class CreateSpecialRootGroupTests: XCTestCase {
+final class CreateExternalRepositoriesGroupTests: XCTestCase {
     func test() {
         // Arrange
 
         let name = "bazel-out"
-        let groupNode = PathTreeNode.Group(
-            children: [
-                .file(name: "a"),
-                .group(
-                    name: "b.lproj",
-                    children: [
-                        .file(name: "y"),
-                        .group(
-                            name: "z.ext",
-                            children: [.file(name: "other")]
-                        ),
-                    ]
-                ),
-            ]
-        )
-        let specialRootGroupType = SpecialRootGroupType.legacyBazelExternal
+        let nodeChildren: [PathTreeNode] = [
+            .file(name: "a"),
+            .group(
+                name: "b.lproj",
+                children: [
+                    .file(name: "y"),
+                    .group(
+                        name: "z.ext",
+                        children: [.file(name: "other")]
+                    ),
+                ]
+            ),
+        ]
+        let bazelPathType = BazelPathType.legacyBazelExternal
 
         let expectedBazelPath: BazelPath = "bazel-out"
 
@@ -32,14 +30,14 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             ElementCreator.CreateGroupChild.MockTracker.Called
         ] = [
             .init(
-                node: groupNode.children[0],
+                node: nodeChildren[0],
                 parentBazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType
+                parentBazelPathType: bazelPathType
             ),
             .init(
-                node: groupNode.children[1],
+                node: nodeChildren[1],
                 parentBazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType
+                parentBazelPathType: bazelPathType
             ),
         ]
         let stubbedGroupChildren: [GroupChild] = [
@@ -177,17 +175,16 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             ),
             sortOrder: .groupLike
         )
-        let expectedCreateSpecialRootGroupElementCalled: [
-            ElementCreator.CreateSpecialRootGroupElement.MockTracker.Called
+        let expectedCreateExternalRepositoriesGroupElementCalled: [
+            ElementCreator.CreateExternalRepositoriesGroupElement.MockTracker.Called
         ] = [
             .init(
-                specialRootGroupType: specialRootGroupType,
                 childIdentifiers:
                     stubbedGroupChildElements.elements.map(\.object.identifier)
             )
         ]
-        let createSpecialRootGroupElement =
-            ElementCreator.CreateSpecialRootGroupElement
+        let createExternalRepositoriesGroupElement =
+            ElementCreator.CreateExternalRepositoriesGroupElement
                 .mock(element: stubbedElement)
 
         let expectedResult = GroupChild.ElementAndChildren(
@@ -200,14 +197,16 @@ final class CreateSpecialRootGroupTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.CreateSpecialRootGroup.defaultCallable(
-            for: groupNode,
-            name: name,
-            specialRootGroupType: specialRootGroupType,
-            createGroupChild: createGroupChild.mock,
-            createGroupChildElements: createGroupChildElements.mock,
-            createSpecialRootGroupElement: createSpecialRootGroupElement.mock
-        )
+        let result = ElementCreator.CreateExternalRepositoriesGroup
+            .defaultCallable(
+                name: name,
+                nodeChildren: nodeChildren,
+                bazelPathType: bazelPathType,
+                createExternalRepositoriesGroupElement:
+                    createExternalRepositoriesGroupElement.mock,
+                createGroupChild: createGroupChild.mock,
+                createGroupChildElements: createGroupChildElements.mock
+            )
 
         // Assert
 
@@ -220,8 +219,8 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             expectedCreateGroupChildElementsCalled
         )
         XCTAssertNoDifference(
-            createSpecialRootGroupElement.tracker.called,
-            expectedCreateSpecialRootGroupElementCalled
+            createExternalRepositoriesGroupElement.tracker.called,
+            expectedCreateExternalRepositoriesGroupElementCalled
         )
         XCTAssertNoDifference(result, expectedResult)
     }

@@ -135,11 +135,15 @@ def _collect_files(
     transitive_file_paths = []
     transitive_files = [unsupported_extra_files]
     transitive_folders = []
+    transitive_generated_folders = []
     transitive_srcs = []
     for xcode_target in all_targets:
         transitive_file_paths.append(xcode_target.inputs.extra_file_paths)
         transitive_files.append(xcode_target.inputs.extra_files)
         transitive_folders.append(xcode_target.inputs.extra_folders)
+        transitive_generated_folders.append(
+            xcode_target.inputs.extra_generated_folders,
+        )
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)
 
@@ -165,12 +169,14 @@ def _collect_files(
         transitive = transitive_files,
     )
     folders = depset(transitive = transitive_folders)
+    generated_folders = depset(transitive = transitive_generated_folders)
 
     return (
         compile_stub_needed,
         file_paths,
         files,
         folders,
+        generated_folders,
         infoplists,
         srcs,
     )
@@ -370,6 +376,7 @@ def _write_project_contents(
         file_paths,
         files,
         folders,
+        generated_folders,
         infoplists,
         srcs,
     ) = _collect_files(
@@ -429,6 +436,7 @@ def _write_project_contents(
         files = files,
         file_paths = file_paths,
         folders = folders,
+        generated_folders = generated_folders,
         generator_name = name,
         install_path = install_path,
         project_options = project_options,

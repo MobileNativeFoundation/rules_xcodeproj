@@ -21,7 +21,7 @@ extension ElementCreator {
         func callAsFunction(
             name: String,
             bazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?,
+            bazelPathType: BazelPathType,
             identifier: String,
             childIdentifiers: [String],
             selectedChildIdentifier: String?
@@ -32,7 +32,7 @@ extension ElementCreator {
             return callable(
                 /*name:*/ name,
                 /*bazelPath:*/ bazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*bazelPathType:*/ bazelPathType,
                 /*identifier:*/ identifier,
                 /*childIdentifiers:*/ childIdentifiers,
                 /*selectedChildIdentifier:*/ selectedChildIdentifier,
@@ -48,7 +48,7 @@ extension ElementCreator.CreateVersionGroupElement {
     typealias Callable = (
         _ name: String,
         _ bazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ bazelPathType: BazelPathType,
         _ identifier: String,
         _ childIdentifiers: [String],
         _ selectedChildIdentifier: String?,
@@ -61,7 +61,7 @@ extension ElementCreator.CreateVersionGroupElement {
     static func defaultCallable(
         name: String,
         bazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        bazelPathType: BazelPathType,
         identifier: String,
         childIdentifiers: [String],
         selectedChildIdentifier: String?,
@@ -73,8 +73,8 @@ extension ElementCreator.CreateVersionGroupElement {
         let attributes = createAttributes(
             name: name,
             bazelPath: bazelPath,
-            isGroup: true,
-            specialRootGroupType: specialRootGroupType
+            bazelPathType: bazelPathType,
+            isGroup: true
         )
 
         let nameAttribute: String

@@ -10,8 +10,8 @@ extension ElementCreator.CreateFile {
             let name: String
             let isFolder: Bool
             let bazelPath: BazelPath
+            let bazelPathType: BazelPathType
             let transitiveBazelPaths: [BazelPath]
-            let specialRootGroupType: SpecialRootGroupType?
             let identifierForBazelPaths: String?
         }
 
@@ -42,8 +42,8 @@ extension ElementCreator.CreateFile {
                 name,
                 isFolder,
                 bazelPath,
+                bazelPathType,
                 transitiveBazelPaths,
-                specialRootGroupType,
                 identifierForBazelPaths,
                 createFileElement
             in
@@ -51,8 +51,8 @@ extension ElementCreator.CreateFile {
                     name: name,
                     isFolder: isFolder,
                     bazelPath: bazelPath,
+                    bazelPathType: bazelPathType,
                     transitiveBazelPaths: transitiveBazelPaths,
-                    specialRootGroupType: specialRootGroupType,
                     identifierForBazelPaths: identifierForBazelPaths
                 ))
                 return mockTracker.nextResult()

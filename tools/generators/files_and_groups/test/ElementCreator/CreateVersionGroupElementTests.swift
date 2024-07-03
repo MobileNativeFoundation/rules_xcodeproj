@@ -22,7 +22,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: identifier,
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: nil,
@@ -47,7 +47,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: "i",
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
@@ -97,7 +97,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: "i",
             childIdentifiers: childIdentifiers,
             selectedChildIdentifier: nil,
@@ -142,7 +142,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: "i",
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: selectedChildIdentifier,
@@ -185,7 +185,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: "i",
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: nil,
@@ -229,7 +229,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             identifier: "i",
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: nil,
@@ -248,7 +248,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         let name = "node_name"
         let bazelPath = BazelPath("a/bazel/path/node_name")
-        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
+        let bazelPathType = BazelPathType.bazelGenerated
 
         let expectedCreateAttributesCalled: [
             ElementCreator.CreateAttributes.MockTracker.Called
@@ -256,8 +256,8 @@ final class CreateVersionGroupElementTests: XCTestCase {
             .init(
                 name: name,
                 bazelPath: BazelPath("a/bazel/path/node_name", isFolder: false),
-                isGroup: true,
-                specialRootGroupType: specialRootGroupType
+                bazelPathType: bazelPathType,
+                isGroup: true
             )
         ]
         let stubbedResolvedRepository = ResolvedRepository(
@@ -275,7 +275,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateVersionGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             identifier: "i",
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: nil,

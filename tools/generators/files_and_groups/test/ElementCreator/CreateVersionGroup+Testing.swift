@@ -7,10 +7,10 @@ import PBXProj
 extension ElementCreator.CreateVersionGroup {
     final class MockTracker {
         struct Called: Equatable {
-            let groupNode: PathTreeNode.Group
             let name: String
+            let nodeChildren: [PathTreeNode]
             let parentBazelPath: BazelPath
-            let specialRootGroupType: SpecialRootGroupType?
+            let bazelPathType: BazelPathType
         }
 
         fileprivate(set) var called: [Called] = []
@@ -29,10 +29,10 @@ extension ElementCreator.CreateVersionGroup {
             collectBazelPaths: ElementCreator.Stubs.collectBazelPaths,
             selectedModelVersions: [:],
             callable: {
-                groupNode,
                 name,
+                nodeChildren,
                 parentBazelPath,
-                specialRootGroupType,
+                bazelPathType,
                 createFile,
                 createIdentifier,
                 createVersionGroupElement,
@@ -40,10 +40,10 @@ extension ElementCreator.CreateVersionGroup {
                 selectedModelVersions
             in
                 mockTracker.called.append(.init(
-                    groupNode: groupNode,
                     name: name,
+                    nodeChildren: nodeChildren,
                     parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType
+                    bazelPathType: bazelPathType
                 ))
                 return groupChildElement
             }

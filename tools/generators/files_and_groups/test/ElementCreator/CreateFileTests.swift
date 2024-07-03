@@ -11,11 +11,11 @@ final class CreateFileTests: XCTestCase {
         let name = "node_name.some_ext"
         let isFolder = false
         let bazelPath: BazelPath = "bazel/path/node_name.some_ext"
+        let bazelPathType = BazelPathType.bazelGenerated
         let transitiveBazelPaths: [BazelPath] = [
             "bazel/path/node_name.some_ext/a",
             "bazel/path/node_name.some_ext/b",
         ]
-        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
 
         let expectedCreateFileElementCalled: [
             ElementCreator.CreateFileElement.MockTracker.Called
@@ -24,7 +24,7 @@ final class CreateFileTests: XCTestCase {
                 name: "node_name.some_ext",
                 ext: "some_ext",
                 bazelPath: "bazel/path/node_name.some_ext",
-                specialRootGroupType: specialRootGroupType
+                bazelPathType: bazelPathType
             )
         ]
         let stubbedElement = Element(
@@ -75,8 +75,8 @@ final class CreateFileTests: XCTestCase {
             name: name,
             isFolder: isFolder,
             bazelPath: bazelPath,
+            bazelPathType: bazelPathType,
             transitiveBazelPaths: transitiveBazelPaths,
-            specialRootGroupType: specialRootGroupType,
             identifierForBazelPaths: nil,
             createFileElement: createFileElement.mock
         )

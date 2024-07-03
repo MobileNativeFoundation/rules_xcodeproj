@@ -21,6 +21,12 @@ _FILE_PATHS_FILE = mock_actions.mock_file(
 _FOLDER_PATHS_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/folder_paths_file",
 )
+_GENERATED_FILE_PATHS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/generated_file_paths_file",
+)
+_GENERATED_FOLDER_PATHS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/generated_folder_paths_file",
+)
 
 def _write_files_and_groups_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -48,6 +54,20 @@ def _write_files_and_groups_test_impl(ctx):
         _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
     ]
 
+    files = [
+        struct(
+            path = path,
+            is_source = True,
+        )
+        for path in ctx.attr.files
+    ] + [
+        struct(
+            path = path,
+            is_source = False,
+        )
+        for path in ctx.attr.generated_files
+    ]
+
     # Act
 
     (
@@ -62,10 +82,11 @@ def _write_files_and_groups_test_impl(ctx):
         colorize = ctx.attr.colorize,
         compile_stub_needed = ctx.attr.compile_stub_needed,
         execution_root_file = ctx.attr.execution_root_file,
-        generator_name = "a_generator_name",
-        files = depset(ctx.attr.files),
+        files = depset(files),
         file_paths = depset(ctx.attr.file_paths),
         folders = depset(ctx.attr.folders),
+        generated_folders = depset(ctx.attr.genreated_folders),
+        generator_name = "a_generator_name",
         install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
@@ -164,6 +185,8 @@ write_files_and_groups_test = unittest.make(
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
+        "generated_files": attr.string_list(mandatory = True),
+        "generated_folders": attr.string_list(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
@@ -196,6 +219,8 @@ def write_files_and_groups_test_suite(name):
             files = [],
             file_paths = [],
             folders = [],
+            generated_files = [],
+            generated_folders = [],
             install_path,
             project_options,
             selected_model_versions_file,
@@ -216,6 +241,8 @@ def write_files_and_groups_test_suite(name):
             files = files,
             file_paths = file_paths,
             folders = folders,
+            generated_files = generated_files,
+            generated_folders = generated_folders,
             install_path = install_path,
             project_options = project_options,
             selected_model_versions_file = selected_model_versions_file,
@@ -273,6 +300,10 @@ def write_files_and_groups_test_suite(name):
             _FILE_PATHS_FILE.path,
             # folderPathsFile
             _FOLDER_PATHS_FILE.path,
+            # generatedFilePathsFile
+            _GENERATED_FILE_PATHS_FILE.path,
+            # generatedFolderPathsFile
+            _GENERATED_FOLDER_PATHS_FILE.path,
             # developmentRegion
             "en",
             # useBaseInternationalization
@@ -313,6 +344,14 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/folder",
             "another/path/to/another/folder",
         ],
+        generated_files = [
+            "a/path/to/a/genreated/file",
+            "another/path/to/another/generated/file",
+        ],
+        generated_folders = [
+            "a/path/to/a/generated/folder",
+            "another/path/to/another/generated/folder",
+        ],
         install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
@@ -349,6 +388,10 @@ def write_files_and_groups_test_suite(name):
             _FILE_PATHS_FILE.path,
             # folderPathsFile
             _FOLDER_PATHS_FILE.path,
+            # generatedFilePathsFile
+            _GENERATED_FILE_PATHS_FILE.path,
+            # generatedFolderPathsFile
+            _GENERATED_FOLDER_PATHS_FILE.path,
             # developmentRegion
             "enGB",
             # useBaseInternationalization
@@ -372,6 +415,10 @@ another/path/to/another/file_path.framework
             _FOLDER_PATHS_FILE: """\
 a/path/to/a/folder
 another/path/to/another/folder
+""",
+            _GENERATED_FOLDER_PATHS_FILE: """\
+a/path/to/a/generated/folder
+another/path/to/another/generated/folder
 """,
         },
     )

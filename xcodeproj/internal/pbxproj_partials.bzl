@@ -1,5 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
+load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")
 load(":collections.bzl", "uniq")
 load(
     ":memory_efficiency.bzl",
@@ -66,6 +67,51 @@ def _generated_file_path(file):
         return None
 
     return _always_generated_file_path(file)
+
+def _source_file(file):
+    if not file.is_source:
+        return None
+
+    return file.path
+
+def _generated_file_or_folder(path, owner):
+    components = path.split("/", 3)
+
+    # bazel-out/CONFIG/bin/a/generated/file -> CONFIG
+    config = components[1]
+
+    repo_name = owner.repo_name
+
+    if repo_name:
+        package = join_paths_ignoring_empty(
+            "external",
+            repo_name,
+            owner.package,
+        )
+        offset = len(package) + 1
+    else:
+        package = owner.package
+        if package:
+            offset = len(package) + 1
+        else:
+            offset = 0
+
+    # bazel-out/CONFIG/bin/some/package/a/generated/file -> a/generated/file
+    path = components[3][offset:]
+
+    return [path, package, config]
+
+def _generated_file(file):
+    if file.is_source:
+        return None
+
+    return _generated_file_or_folder(file.path, file.owner)
+
+def _generated_folder(generated_folder):
+    return _generated_file_or_folder(
+        generated_folder.path,
+        generated_folder.owner,
+    )
 
 # Partials
 
@@ -358,6 +404,7 @@ def _write_files_and_groups(
         files,
         file_paths,
         folders,
+        generated_folders,
         generator_name,
         install_path,
         project_options,
@@ -379,7 +426,10 @@ def _write_files_and_groups(
         file_paths: A `depset` of file paths to files to include in the project.
             These are different from `files`, in order to handle normalized
             file paths.
-        folders: A `depset` of paths to folders to include in the project.
+        folders: A `depset` of paths to non-generated folders to include in the
+            project.
+        generated_folders:  A `depset` of paths to generated folders to include
+            in the project.
         generator_name: The name of the `xcodeproj` generator target.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
@@ -429,15 +479,15 @@ def _write_files_and_groups(
         ),
     )
 
-    file_path_args = actions.args()
-    file_path_args.set_param_file_format("multiline")
+    file_paths_args = actions.args()
+    file_paths_args.set_param_file_format("multiline")
 
-    file_path_args.add_all(files)
+    file_paths_args.add_all(files, map_each = _source_file)
 
     # TODO: Consider moving normalization into `args.add_all.map_each`
-    file_path_args.add_all(file_paths)
+    file_paths_args.add_all(file_paths)
 
-    actions.write(file_paths_file, file_path_args)
+    actions.write(file_paths_file, file_paths_args)
 
     # folderPaths
 
@@ -447,12 +497,45 @@ def _write_files_and_groups(
         ),
     )
 
-    folder_path_args = actions.args()
-    folder_path_args.set_param_file_format("multiline")
+    folder_paths_args = actions.args()
+    folder_paths_args.set_param_file_format("multiline")
 
-    folder_path_args.add_all(folders)
+    folder_paths_args.add_all(folders)
 
-    actions.write(folder_paths_file, folder_path_args)
+    actions.write(folder_paths_file, folder_paths_args)
+
+    # generatedFilePaths
+
+    generated_file_paths_file = actions.declare_file(
+        "{}_pbxproj_partials/generated_file_paths_file".format(
+            generator_name,
+        ),
+    )
+
+    generated_file_paths_args = actions.args()
+    generated_file_paths_args.set_param_file_format("multiline")
+
+    generated_file_paths_args.add_all(files, map_each = _generated_file)
+
+    actions.write(generated_file_paths_file, generated_file_paths_args)
+
+    # generatedFolderPaths
+
+    generated_folder_paths_file = actions.declare_file(
+        "{}_pbxproj_partials/generated_folder_paths_file".format(
+            generator_name,
+        ),
+    )
+
+    generated_folder_paths_args = actions.args()
+    generated_folder_paths_args.set_param_file_format("multiline")
+
+    generated_folder_paths_args.add_all(
+        generated_folders,
+        map_each = _generated_folder,
+    )
+
+    actions.write(generated_folder_paths_file, generated_folder_paths_args)
 
     # ... the rest
 
@@ -492,6 +575,12 @@ def _write_files_and_groups(
     # folderPathsFile
     args.add(folder_paths_file)
 
+    # generatedFilePathsFile
+    args.add(generated_file_paths_file)
+
+    # generatedFolderPathsFile
+    args.add(generated_folder_paths_file)
+
     # developmentRegion
     args.add(project_options["development_region"])
 
@@ -520,6 +609,8 @@ def _write_files_and_groups(
         inputs = [
             file_paths_file,
             folder_paths_file,
+            generated_file_paths_file,
+            generated_folder_paths_file,
             execution_root_file,
             selected_model_versions_file,
         ] + buildfile_subidentifiers_files,

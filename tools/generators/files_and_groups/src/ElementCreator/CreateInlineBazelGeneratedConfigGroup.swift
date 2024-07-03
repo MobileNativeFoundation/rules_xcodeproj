@@ -1,10 +1,11 @@
 import PBXProj
 
 extension ElementCreator {
-    struct CreateGroup {
-        private let createGroupElement: CreateGroupElement
+    struct CreateInlineBazelGeneratedConfigGroup {
         private let createGroupChildElements:
             CreateGroupChildElements
+        private let createInlineBazelGeneratedConfigGroupElement:
+        CreateInlineBazelGeneratedConfigGroupElement
 
         private let callable: Callable
 
@@ -14,66 +15,63 @@ extension ElementCreator {
         init(
             createGroupChildElements:
                 CreateGroupChildElements,
-            createGroupElement: CreateGroupElement,
+            createInlineBazelGeneratedConfigGroupElement:
+                CreateInlineBazelGeneratedConfigGroupElement,
             callable: @escaping Callable
         ) {
             self.createGroupChildElements = createGroupChildElements
-            self.createGroupElement = createGroupElement
+            self.createInlineBazelGeneratedConfigGroupElement =
+                createInlineBazelGeneratedConfigGroupElement
 
             self.callable = callable
         }
 
         func callAsFunction(
-            name: String,
-            nodeChildren: [PathTreeNode],
+            for config: PathTreeNode.GeneratedFiles.Config,
             parentBazelPath: BazelPath,
-            bazelPathType: BazelPathType,
             // Passed in to prevent infinite size
             // (i.e. CreateGroup -> CreateGroupChild -> CreateGroup)
             createGroupChild: CreateGroupChild
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*name:*/ name,
-                /*nodeChildren:*/ nodeChildren,
+                /*config:*/ config,
                 /*parentBazelPath:*/ parentBazelPath,
-                /*bazelPathType:*/ bazelPathType,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
-                /*createGroupElement:*/ createGroupElement
+                /*createInlineBazelGeneratedConfigGroupElement:*/
+                    createInlineBazelGeneratedConfigGroupElement
             )
         }
     }
 }
 
-// MARK: - CreateGroup.Callable
+// MARK: - CreateInlineBazelGeneratedConfigGroup.Callable
 
-extension ElementCreator.CreateGroup {
+extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
     typealias Callable = (
-        _ name: String,
-        _ nodeChildren: [PathTreeNode],
+        _ config: PathTreeNode.GeneratedFiles.Config,
         _ parentBazelPath: BazelPath,
-        _ bazelPathType: BazelPathType,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        _ createGroupElement: ElementCreator.CreateGroupElement
+        _ createInlineBazelGeneratedConfigGroupElement:
+            ElementCreator.CreateInlineBazelGeneratedConfigGroupElement
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        name: String,
-        nodeChildren: [PathTreeNode],
+        for config: PathTreeNode.GeneratedFiles.Config,
         parentBazelPath: BazelPath,
-        bazelPathType: BazelPathType,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        createGroupElement: ElementCreator.CreateGroupElement
+        createInlineBazelGeneratedConfigGroupElement:
+            ElementCreator.CreateInlineBazelGeneratedConfigGroupElement
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = BazelPath(parent: parentBazelPath, path: name)
+        let bazelPath = BazelPath(parent: parentBazelPath, path: config.path)
 
-        let groupChildren = nodeChildren.map { node in
+        let groupChildren = config.children.map { node in
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,
-                parentBazelPathType: bazelPathType
+                parentBazelPathType: .bazelGenerated
             )
         }
 
@@ -82,13 +80,10 @@ extension ElementCreator.CreateGroup {
             groupChildren: groupChildren
         )
 
-        let (
-            group,
-            resolvedRepository
-        ) = createGroupElement(
-            name: name,
+        let group = createInlineBazelGeneratedConfigGroupElement(
+            name: config.name,
+            path: config.path,
             bazelPath: bazelPath,
-            bazelPathType: bazelPathType,
             childIdentifiers: children.elements.map(\.object.identifier)
         )
 
@@ -96,7 +91,7 @@ extension ElementCreator.CreateGroup {
             bazelPath: bazelPath,
             element: group,
             includeParentInBazelPathAndIdentifiers: false,
-            resolvedRepository: resolvedRepository,
+            resolvedRepository: nil,
             children: children
         )
     }

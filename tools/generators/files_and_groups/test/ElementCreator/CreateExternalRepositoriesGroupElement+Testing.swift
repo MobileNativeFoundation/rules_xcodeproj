@@ -2,12 +2,11 @@ import PBXProj
 
 @testable import files_and_groups
 
-// MARK: - ElementCreator.CreateSpecialRootGroupElement.mock
+// MARK: - ElementCreator.CreateExternalRepositoriesGroupElement.mock
 
-extension ElementCreator.CreateSpecialRootGroupElement {
+extension ElementCreator.CreateExternalRepositoriesGroupElement {
     final class MockTracker {
         struct Called: Equatable {
-            let specialRootGroupType: SpecialRootGroupType
             let childIdentifiers: [String]
         }
 
@@ -18,9 +17,8 @@ extension ElementCreator.CreateSpecialRootGroupElement {
         let mockTracker = MockTracker()
 
         let mocked = Self(
-            callable: { specialRootGroupType, childIdentifiers in
+            callable: { childIdentifiers in
                 mockTracker.called.append(.init(
-                    specialRootGroupType: specialRootGroupType,
                     childIdentifiers: childIdentifiers
                 ))
                 return element
@@ -31,9 +29,9 @@ extension ElementCreator.CreateSpecialRootGroupElement {
     }
 }
 
-// MARK: - ElementCreator.CreateSpecialRootGroupElement.stub
+// MARK: - ElementCreator.CreateExternalRepositoriesGroupElement.stub
 
-extension ElementCreator.CreateSpecialRootGroupElement {
+extension ElementCreator.CreateExternalRepositoriesGroupElement {
     static func stub(element: Element) -> Self {
         let (stub, _) = mock(element: element)
         return stub

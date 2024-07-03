@@ -2,14 +2,14 @@ import PBXProj
 
 @testable import files_and_groups
 
-// MARK: - ElementCreator.CreateSpecialRootGroup.mock
+// MARK: - ElementCreator.CreateExternalRepositoriesGroup.mock
 
-extension ElementCreator.CreateSpecialRootGroup {
+extension ElementCreator.CreateExternalRepositoriesGroup {
     final class MockTracker {
         struct Called: Equatable {
-            let groupNode: PathTreeNode.Group
             let name: String
-            let specialRootGroupType: SpecialRootGroupType
+            let nodeChildren: [PathTreeNode]
+            let bazelPathType: BazelPathType
         }
 
         fileprivate(set) var called: [Called] = []
@@ -34,22 +34,23 @@ extension ElementCreator.CreateSpecialRootGroup {
         let mockTracker = MockTracker(results: groupChildElements)
 
         let mocked = Self(
+            createExternalRepositoriesGroupElement:
+                ElementCreator.Stubs.createExternalRepositoriesGroupElement,
             createGroupChild: ElementCreator.Stubs.createGroupChild,
             createGroupChildElements:
                 ElementCreator.Stubs.createGroupChildElements,
-            createSpecialRootGroupElement: ElementCreator.Stubs.createSpecialRootGroupElement,
             callable: {
-                groupNode,
                 name,
-                specialRootGroupType,
+                nodeChildren,
+                bazelPathType,
+                createExternalRepositoriesGroupElement,
                 createGroupChild,
-                createGroupChildElements,
-                createSpecialRootGroupElement
+                createGroupChildElements
             in
                 mockTracker.called.append(.init(
-                    groupNode: groupNode,
                     name: name,
-                    specialRootGroupType: specialRootGroupType
+                    nodeChildren: nodeChildren,
+                    bazelPathType: bazelPathType
                 ))
                 return mockTracker.nextResult()
             }
@@ -59,9 +60,9 @@ extension ElementCreator.CreateSpecialRootGroup {
     }
 }
 
-// MARK: - ElementCreator.CreateSpecialRootGroup.stub
+// MARK: - ElementCreator.CreateExternalRepositoriesGroup.stub
 
-extension ElementCreator.CreateSpecialRootGroup {
+extension ElementCreator.CreateExternalRepositoriesGroup {
     static func stub(
         groupChildElements: [GroupChild.ElementAndChildren]
     ) -> Self {

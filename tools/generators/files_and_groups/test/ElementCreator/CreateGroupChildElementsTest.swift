@@ -134,25 +134,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
                 knownRegions: ["a"],
                 resolvedRepositories: [.init(sourcePath: "a", mappedPath: "1")]
             )),
-            .elementAndChildren(.init(
-                element: .init(
-                    name: "bazel-out",
-                    object: .init(
-                        identifier: "bazel-out id",
-                        content: "bazel-out content"
-                    ),
-                    sortOrder: .bazelGenerated
-                ),
-                transitiveObjects: [
-                    .init(
-                        identifier: "bazel-out id",
-                        content: "bazel-out content"
-                    ),
-                ],
-                bazelPathAndIdentifiers: [("parent/bazel-out", "bazel-out id")],
-                knownRegions: ["b"],
-                resolvedRepositories: [.init(sourcePath: "b", mappedPath: "3")]
-            )),
 
             .localizedRegion([
                 base_Main_xib,
@@ -340,14 +321,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .bazelExternalRepositories
                 ),
-                .init(
-                    name: "bazel-out",
-                    object: .init(
-                        identifier: "bazel-out id",
-                        content: "bazel-out content"
-                    ),
-                    sortOrder: .bazelGenerated
-                ),
             ],
             transitiveObjects: [
                 .init(
@@ -361,10 +334,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
                 .init(
                     identifier: "localized.strings folder id",
                     content: "localized.strings folder content"
-                ),
-                .init(
-                    identifier: "bazel-out id",
-                    content: "bazel-out content"
                 ),
                 .init(
                     identifier: "external id",
@@ -388,7 +357,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
                 ("parent/a", "a id"),
                 ("parent/localized.strings/inner", "inner id"),
                 ("parent/localized.strings", "localized.strings id"),
-                ("parent/bazel-out", "bazel-out id"),
                 ("parent/external", "external id"),
                 ("parent/Base.lproj/Main.storyboard", "Main.storyboard id"),
                 ("parent/frCA.lproj/Main.strings", "Main.storyboard id"),
@@ -398,7 +366,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
             ],
             knownRegions: [
                 "a",
-                "b",
                 "e",
                 "z",
                 "Base",
@@ -408,7 +375,6 @@ final class CreateGroupChildElementsTest: XCTestCase {
             resolvedRepositories: resolvedRepositories + [
                 .init(sourcePath: "z", mappedPath: "9"),
                 .init(sourcePath: "a", mappedPath: "1"),
-                .init(sourcePath: "b", mappedPath: "3"),
                 .init(sourcePath: "e", mappedPath: "2"),
             ]
         )

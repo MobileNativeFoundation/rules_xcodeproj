@@ -43,7 +43,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             childIdentifiers: [],
             createAttributes: createAttributes.mock,
             createIdentifier: createIdentifier.mock
@@ -71,7 +71,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             childIdentifiers: [],
             createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
@@ -119,7 +119,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             childIdentifiers: childIdentifiers,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
@@ -159,7 +159,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             childIdentifiers: [],
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
@@ -200,7 +200,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             childIdentifiers: [],
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
@@ -218,7 +218,7 @@ final class CreateGroupElementTests: XCTestCase {
 
         let name = "node_name"
         let bazelPath = BazelPath("a/bazel/path/node_name")
-        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
+        let bazelPathType = BazelPathType.bazelGenerated
 
         let expectedCreateAttributesCalled: [
             ElementCreator.CreateAttributes.MockTracker.Called
@@ -226,8 +226,8 @@ final class CreateGroupElementTests: XCTestCase {
             .init(
                 name: name,
                 bazelPath: bazelPath,
-                isGroup: true,
-                specialRootGroupType: specialRootGroupType
+                bazelPathType: bazelPathType,
+                isGroup: true
             )
         ]
         let stubbedResolvedRepository = ResolvedRepository(
@@ -245,7 +245,7 @@ final class CreateGroupElementTests: XCTestCase {
         let result = ElementCreator.CreateGroupElement.defaultCallable(
             name: name,
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             childIdentifiers: [],
             createAttributes: createAttributes.mock,
             createIdentifier: ElementCreator.Stubs.createIdentifier

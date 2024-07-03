@@ -9,8 +9,8 @@ extension ElementCreator.CreateAttributes {
         struct Called: Equatable {
             let name: String
             let bazelPath: BazelPath
+            let bazelPathType: BazelPathType
             let isGroup: Bool
-            let specialRootGroupType: SpecialRootGroupType?
         }
 
         fileprivate(set) var called: [Called] = []
@@ -31,8 +31,8 @@ extension ElementCreator.CreateAttributes {
             callable: {
                 name,
                 bazelPath,
+                bazelPathType,
                 isGroup,
-                specialRootGroupType,
                 executionRoot,
                 externalDir,
                 workspace,
@@ -41,8 +41,8 @@ extension ElementCreator.CreateAttributes {
                 mockTracker.called.append(.init(
                     name: name,
                     bazelPath: bazelPath,
-                    isGroup: isGroup,
-                    specialRootGroupType: specialRootGroupType
+                    bazelPathType: bazelPathType,
+                    isGroup: isGroup
                 ))
                 return (elementAttributes, resolvedRepository)
             }

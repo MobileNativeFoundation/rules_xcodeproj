@@ -9,7 +9,7 @@ extension ElementCreator.CreateGroupChild {
         struct Called: Equatable {
             let node: PathTreeNode
             let parentBazelPath: BazelPath
-            let specialRootGroupType: SpecialRootGroupType?
+            let parentBazelPathType: BazelPathType
         }
 
         fileprivate(set) var called: [Called] = []
@@ -36,22 +36,25 @@ extension ElementCreator.CreateGroupChild {
         let mocked = Self(
             createFile: ElementCreator.Stubs.createFile,
             createGroup: ElementCreator.Stubs.createGroup,
+            createInlineBazelGeneratedFiles:
+                ElementCreator.Stubs.createInlineBazelGeneratedFiles,
             createLocalizedFiles: ElementCreator.Stubs.createLocalizedFiles,
             createVersionGroup: ElementCreator.Stubs.createVersionGroup,
             callable: {
                 node,
                 parentBazelPath,
-                specialRootGroupType,
+                parentBazelPathType,
                 createFile,
                 createGroup,
                 createGroupChild,
+                createInlineBazelGeneratedFiles,
                 createLocalizedFiles,
                 createVersionGroup
             in
                 mockTracker.called.append(.init(
                     node: node,
                     parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType
+                    parentBazelPathType: parentBazelPathType
                 ))
                 return mockTracker.nextResult()
             }

@@ -7,10 +7,9 @@ import PBXProj
 extension ElementCreator.CreateLocalizedFiles {
     final class MockTracker {
         struct Called: Equatable {
-            let groupNode: PathTreeNode.Group
             let name: String
+            let nodeChildren: [PathTreeNode]
             let parentBazelPath: BazelPath
-            let specialRootGroupType: SpecialRootGroupType?
             let region: String
         }
 
@@ -27,19 +26,17 @@ extension ElementCreator.CreateLocalizedFiles {
             createLocalizedFileElement:
                 ElementCreator.Stubs.createLocalizedFileElement,
             callable: {
-                groupNode,
                 name,
+                nodeChildren,
                 parentBazelPath,
-                specialRootGroupType,
                 region,
                 collectBazelPaths,
                 createFileElement
             in
                 mockTracker.called.append(.init(
-                    groupNode: groupNode,
                     name: name,
+                    nodeChildren: nodeChildren,
                     parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType,
                     region: region
                 ))
                 return localizedFiles

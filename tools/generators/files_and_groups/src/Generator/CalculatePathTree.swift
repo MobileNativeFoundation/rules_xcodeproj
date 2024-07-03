@@ -1,9 +1,84 @@
 import PBXProj
 
 extension Generator {
-    static func calculatePathTree(paths: Set<BazelPath>) -> PathTreeNode.Group {
+    static func calculatePathTree(
+        paths: [BazelPath],
+        generatedPaths: [GeneratedPath]
+    ) -> [PathTreeNode] {
+        /// `[package: [config: [path]]`
+        var generatedPathsByPackageAndConfig:
+            [BazelPath: [String: [BazelPath]]] = [:]
+        for generatedPath in generatedPaths {
+            generatedPathsByPackageAndConfig[
+                generatedPath.package,
+                default: [:]
+            ][generatedPath.config, default: []].append(generatedPath.path)
+        }
+
+        // FIXME: Do this in parallel
+        var generatedFiles:
+            [(package: BazelPath, generatedFiles: PathTreeNode.GeneratedFiles)]
+                = []
+        for (package, pathsByConfig) in generatedPathsByPackageAndConfig {
+            if pathsByConfig.count == 1 {
+                let (config, paths) = pathsByConfig.first!
+
+                let path: String
+                if package.path.isEmpty {
+                    path = "\(config)/bin"
+                } else {
+                    path = "\(config)/bin/\(package.path)"
+                }
+
+                generatedFiles.append(
+                    (
+                        package,
+                        .singleConfig(
+                            path: path,
+                            children: calculateRootedPathTree(paths: paths)
+                        )
+                    )
+                )
+            } else {
+                let packageBin: String
+                if package.path.isEmpty {
+                    packageBin = "bin"
+                } else {
+                    packageBin = "bin/\(package.path)"
+                }
+
+                generatedFiles.append(
+                    (
+                        package,
+                        .multipleConfigs(
+                            pathsByConfig.map({ config, paths in
+                                return .init(
+                                    name: config,
+                                    path: "\(config)/\(packageBin)",
+                                    children:
+                                        calculateRootedPathTree(paths: paths)
+                                )
+                            })
+                        )
+                    )
+                )
+            }
+        }
+
+        return calculateRootedPathTree(
+            paths: paths,
+            generatedFiles: generatedFiles
+        )
+    }
+
+    private static func calculateRootedPathTree(
+        paths: [BazelPath],
+        generatedFiles: [
+            (package: BazelPath, generatedFiles: PathTreeNode.GeneratedFiles)
+        ] = []
+    ) -> [PathTreeNode] {
         guard !paths.isEmpty else {
-            return PathTreeNode.Group(children: [])
+            return []
         }
 
         var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
@@ -13,9 +88,20 @@ extension Generator {
                 .append(
                     PathTreeNodeToVisit(
                       components: components,
-                      isFolder: path.isFolder,
-                      children: []
+                      kind: .file(isFolder: path.isFolder)
                   )
+                )
+        }
+
+        for (`package`, generatedFiles) in generatedFiles {
+            var components = `package`.path.split(separator: "/")
+            components.append("")
+            nodesByComponentCount[components.count, default: []]
+                .append(
+                    PathTreeNodeToVisit(
+                        components: components,
+                        kind: .generatedFiles(generatedFiles)
+                    )
                 )
         }
 
@@ -39,8 +125,16 @@ extension Generator {
                    }
                 }
 
-                guard lhs.isFolder == rhs.isFolder else {
-                    return lhs.isFolder
+                guard lhs.kind == rhs.kind else {
+                    if case let .file(isFolder) = lhs.kind {
+                        // Folders should appear before non-folders, because
+                        // when we sort in `CreateGroupChildElements` it will
+                        // see folders and groups with the same name as the
+                        // same, but will leave in-place any sorting we do here
+                        return isFolder
+                    }
+
+                    return false
                 }
 
                 return false
@@ -60,7 +154,7 @@ extension Generator {
                     additionalNodesToVisitForNextComponentCount.append(
                         PathTreeNodeToVisit(
                             components: Array(collectedParentComponents),
-                            children: collectedChildren
+                            kind: .group(children: collectedChildren)
                         )
                     )
 
@@ -68,30 +162,34 @@ extension Generator {
                     collectedChildren = []
                 }
 
-                let nodeKind = if nodeToVisit.children.isEmpty {
-                    PathTreeNode.Kind.file(isFolder: nodeToVisit.isFolder)
-                } else {
-                    PathTreeNode.Kind.group(children: nodeToVisit.children)
-                }
-
-                collectedChildren.append(
-                    PathTreeNode(
+                let node: PathTreeNode
+                switch nodeToVisit.kind {
+                case .file(let isFolder):
+                    node = .file(
                         name: String(nodeToVisit.components.last!),
-                        kind: nodeKind
+                        isFolder: isFolder
                     )
-                )
+                case .group(let children):
+                    node = .group(
+                        name: String(nodeToVisit.components.last!),
+                        children: children
+                    )
+                case .generatedFiles(let generatedFiles):
+                    node = .generatedFiles(generatedFiles)
+                }
+                collectedChildren.append(node)
             }
 
             guard componentCount != 1 else {
-                // Root node
-                return PathTreeNode.Group(children: collectedChildren)
+                // Root
+                return collectedChildren
             }
 
             // Last node
             additionalNodesToVisitForNextComponentCount.append(
                 PathTreeNodeToVisit(
                     components: Array(collectedParentComponents),
-                    children: collectedChildren
+                    kind: .group(children: collectedChildren)
                 )
             )
 
@@ -105,63 +203,53 @@ extension Generator {
     }
 }
 
-// A class for performance reasons.
-class PathTreeNode {
-    struct Group: Equatable {
-        let children: [PathTreeNode]
+enum PathTreeNode: Equatable {
+    enum GeneratedFiles: Equatable {
+        struct Config: Equatable {
+            let name: String
+            let path: String
+            let children: [PathTreeNode]
+        }
+
+        case singleConfig(path: String, children: [PathTreeNode])
+        case multipleConfigs(_ configs: [Config])
     }
 
-    enum Kind: Equatable {
-        case file(isFolder: Bool)
-        case group(Group)
-    }
-
-    let name: String
-    let kind: Kind
-
-    init(
-        name: String,
-        kind: Kind
-    ) {
-        self.name = name
-        self.kind = kind
-    }
-}
-
-extension PathTreeNode: Equatable {
-    public static func == (lhs: PathTreeNode, rhs: PathTreeNode) -> Bool {
-        return (lhs.name, lhs.kind) == (rhs.name, rhs.kind)
-    }
+    case file(name: String, isFolder: Bool)
+    case group(name: String, children: [PathTreeNode])
+    case generatedFiles(GeneratedFiles)
 }
 
 extension PathTreeNode {
-    static func file(name: String, isFolder: Bool = false) -> PathTreeNode {
-        return PathTreeNode(name: name, kind: .file(isFolder: isFolder))
-    }
-
-    static func group(name: String, children: [PathTreeNode]) -> PathTreeNode {
-        return PathTreeNode(name: name, kind: .group(children: children))
-    }
-}
-
-extension PathTreeNode.Kind {
-    static func group(children: [PathTreeNode]) -> PathTreeNode.Kind {
-        return .group(.init(children: children))
+    var nameForSpecialGroupChild: String {
+        switch self {
+        case .file(let name, _):
+            return name
+        case .group(let name, _):
+            return name
+        case .generatedFiles(_):
+            // This is only called from `CreateVerisonGroup` and
+            // `CreateLocalizedFiles` where this case can't be hit
+            fatalError()
+        }
     }
 }
 
 private class PathTreeNodeToVisit {
+    enum Kind: Equatable {
+        case file(isFolder: Bool)
+        case group(children: [PathTreeNode])
+        case generatedFiles(PathTreeNode.GeneratedFiles)
+    }
+
     let components: [String.SubSequence]
-    let isFolder: Bool
-    let children: [PathTreeNode]
+    let kind: Kind
 
     init(
         components: [String.SubSequence],
-        isFolder: Bool = false,
-        children: [PathTreeNode]
+        kind: Kind
     ) {
         self.components = components
-        self.isFolder = isFolder
-        self.children = children
+        self.kind = kind
     }
 }

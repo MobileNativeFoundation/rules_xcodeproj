@@ -25,7 +25,7 @@ extension ElementCreator {
         func callAsFunction(
             name: String,
             bazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?,
+            bazelPathType: BazelPathType,
             childIdentifiers: [String]
         ) -> (
             element: Element,
@@ -34,7 +34,7 @@ extension ElementCreator {
             return callable(
                 /*name:*/ name,
                 /*bazelPath:*/ bazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*bazelPathType:*/ bazelPathType,
                 /*childIdentifiers:*/ childIdentifiers,
                 /*createAttributes:*/ createAttributes,
                 /*createIdentifier:*/ createIdentifier
@@ -43,13 +43,13 @@ extension ElementCreator {
     }
 }
 
-// MARK: - CreateGroup.Callable
+// MARK: - CreateGroupElement.Callable
 
 extension ElementCreator.CreateGroupElement {
     typealias Callable = (
         _ name: String,
         _ bazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ bazelPathType: BazelPathType,
         _ childIdentifiers: [String],
         _ createAttributes: ElementCreator.CreateAttributes,
         _ createIdentifier: ElementCreator.CreateIdentifier
@@ -61,7 +61,7 @@ extension ElementCreator.CreateGroupElement {
     static func defaultCallable(
         name: String,
         bazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        bazelPathType: BazelPathType,
         childIdentifiers: [String],
         createAttributes: ElementCreator.CreateAttributes,
         createIdentifier: ElementCreator.CreateIdentifier
@@ -72,8 +72,8 @@ extension ElementCreator.CreateGroupElement {
         let attributes = createAttributes(
             name: name,
             bazelPath: bazelPath,
-            isGroup: true,
-            specialRootGroupType: specialRootGroupType
+            bazelPathType: bazelPathType,
+            isGroup: true
         )
 
         let nameAttribute: String
