@@ -53,7 +53,7 @@ the ruleset.
 
 ## Projects using rules_xcodeproj
 
-- [amo](https://amo.co/tech-stack-at-amo/)
+- amo
 - BazelPods
 - Cash App
 - Envoy Mobile
