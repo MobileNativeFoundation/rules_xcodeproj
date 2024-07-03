@@ -8,11 +8,11 @@ final class CreateGroupTests: XCTestCase {
     func test() {
         // Arrange
 
-        let node = PathTreeNode(
-            name: "node_name.some_ext",
+        let name = "node_name.some_ext"
+        let groupNode = PathTreeNode.Group(
             children: [
-                PathTreeNode(name: "a"),
-                PathTreeNode(name: "b"),
+                .file(name: "a"),
+                .file(name: "b"),
             ]
         )
         let parentBazelPath: BazelPath = "bazel/path"
@@ -24,12 +24,12 @@ final class CreateGroupTests: XCTestCase {
             ElementCreator.CreateGroupChild.MockTracker.Called
         ] = [
             .init(
-                node: node.children[0],
+                node: groupNode.children[0],
                 parentBazelPath: expectedBazelPath,
                 specialRootGroupType: specialRootGroupType
             ),
             .init(
-                node: node.children[1],
+                node: groupNode.children[1],
                 parentBazelPath: expectedBazelPath,
                 specialRootGroupType: specialRootGroupType
             ),
@@ -131,7 +131,7 @@ final class CreateGroupTests: XCTestCase {
             ElementCreator.CreateGroupElement.MockTracker.Called
         ] = [
             .init(
-                name: node.name,
+                name: name,
                 bazelPath: expectedBazelPath,
                 specialRootGroupType: specialRootGroupType,
                 childIdentifiers: [
@@ -174,7 +174,8 @@ final class CreateGroupTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateGroup.defaultCallable(
-            for: node,
+            for: groupNode,
+            name: name,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: specialRootGroupType,
             createGroupChild: createGroupChild.mock,

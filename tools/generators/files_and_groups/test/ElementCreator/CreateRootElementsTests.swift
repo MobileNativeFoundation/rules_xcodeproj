@@ -5,31 +5,30 @@ import XCTest
 @testable import files_and_groups
 
 final class CreateRootElementsTests: XCTestCase {
-    func test() {
+    func test() throws {
         // Arrange
 
-        let pathTree = PathTreeNode(
-            name: "",
+        let pathTree = PathTreeNode.Group(
             children: [
-                PathTreeNode(
+                .group(
                     name: "bazel-out",
                     children: [
-                        PathTreeNode(name: "1"),
-                        PathTreeNode(name: "2"),
+                        .file(name: "1"),
+                        .file(name: "2"),
                     ]
                 ),
-                PathTreeNode(name: "a"),
-                PathTreeNode(
+                .file(name: "a"),
+                .group(
                     name: "..",
                     children: [
-                        PathTreeNode(name: "3"),
+                        .file(name: "3"),
                     ]
                 ),
-                PathTreeNode(name: "b"),
-                PathTreeNode(
+                .file(name: "b"),
+                .group(
                     name: "external",
                     children: [
-                        PathTreeNode(name: "4"),
+                        .file(name: "4"),
                     ]
                 ),
             ]
@@ -46,15 +45,18 @@ final class CreateRootElementsTests: XCTestCase {
             ElementCreator.CreateSpecialRootGroup.MockTracker.Called
         ] = [
             .init(
-                node: pathTree.children[0],
+                groupNode: try pathTree.children[0].asGroup,
+                name: pathTree.children[0].name,
                 specialRootGroupType: .bazelGenerated
             ),
             .init(
-                node: pathTree.children[2],
+                groupNode: try pathTree.children[2].asGroup,
+                name: pathTree.children[2].name,
                 specialRootGroupType: .siblingBazelExternal
             ),
             .init(
-                node: pathTree.children[4],
+                groupNode: try pathTree.children[4].asGroup,
+                name: pathTree.children[4].name,
                 specialRootGroupType: .legacyBazelExternal
             ),
         ]
@@ -336,5 +338,20 @@ final class CreateRootElementsTests: XCTestCase {
             expectedCreateSpecialRootGroupCalled
         )
         XCTAssertNoDifference(rootElements, stubbedRootElements)
+    }
+}
+
+struct EnumCaseError: Error {}
+
+private extension PathTreeNode {
+    var asGroup: PathTreeNode.Group {
+        get throws {
+            switch kind {
+            case .group(let group):
+                return group
+            default:
+                throw EnumCaseError()
+            }
+        }
     }
 }

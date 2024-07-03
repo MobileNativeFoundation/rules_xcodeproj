@@ -7,7 +7,8 @@ import PBXProj
 extension ElementCreator.CreateGroup {
     final class MockTracker {
         struct Called: Equatable {
-            let node: PathTreeNode
+            let groupNode: PathTreeNode.Group
+            let name: String
             let parentBazelPath: BazelPath
             let specialRootGroupType: SpecialRootGroupType?
         }
@@ -25,7 +26,8 @@ extension ElementCreator.CreateGroup {
                 ElementCreator.Stubs.createGroupChildElements,
             createGroupElement: ElementCreator.Stubs.createGroupElement,
             callable: {
-                node,
+                groupNode,
+                name,
                 parentBazelPath,
                 specialRootGroupType,
                 createGroupChild,
@@ -33,7 +35,8 @@ extension ElementCreator.CreateGroup {
                 createGroupElement
             in
                 mockTracker.called.append(.init(
-                    node: node,
+                    groupNode: groupNode,
+                    name: name,
                     parentBazelPath: parentBazelPath,
                     specialRootGroupType: specialRootGroupType
                 ))

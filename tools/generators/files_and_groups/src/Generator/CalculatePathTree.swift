@@ -1,29 +1,31 @@
 import PBXProj
 
 extension Generator {
-    static func calculatePathTree(paths: Set<BazelPath>) -> PathTreeNode {
+    static func calculatePathTree(paths: Set<BazelPath>) -> PathTreeNode.Group {
         guard !paths.isEmpty else {
-            return PathTreeNode(name: "")
+            return PathTreeNode.Group(children: [])
         }
 
         var nodesByComponentCount: [Int: [PathTreeNodeToVisit]] = [:]
         for path in paths {
             let components = path.path.split(separator: "/")
             nodesByComponentCount[components.count, default: []]
-                .append(PathTreeNodeToVisit(
-                    components: components,
-                    isFolder: path.isFolder,
-                    children: []
-                ))
+                .append(
+                    PathTreeNodeToVisit(
+                      components: components,
+                      isFolder: path.isFolder,
+                      children: []
+                  )
+                )
         }
 
         for componentCount in (1...nodesByComponentCount.keys.max()!)
             .reversed()
         {
-            let nodes = nodesByComponentCount
+            let nodesToVisit = nodesByComponentCount
                 .removeValue(forKey: componentCount)!
 
-            let sortedNodes = nodes.sorted { lhs, rhs in
+            let sortedNodesToVisit = nodesToVisit.sorted { lhs, rhs in
                 // Already bucketed to have the same component count, so we
                 // don't sort on count first
 
@@ -31,7 +33,7 @@ extension Generator {
                    let lhsComponent = lhs.components[i]
                    let rhsComponent = rhs.components[i]
                    guard lhsComponent == rhsComponent else {
-                       // We properly sort in `CreateGroupChildElements`, so w
+                       // We properly sort in `CreateGroupChildElements`, so we
                        // do a simple version here
                        return lhsComponent < rhsComponent
                    }
@@ -46,52 +48,55 @@ extension Generator {
 
             // Create parent nodes
 
-            let firstNode = sortedNodes[0]
-            var collectingParentComponents = firstNode.components.dropLast(1)
-            var collectingParentChildren: [PathTreeNode] = []
-            var nodesForNextComponentCount: [PathTreeNodeToVisit] = []
+            let firstNode = sortedNodesToVisit[0]
+            var collectedParentComponents = firstNode.components.dropLast(1)
+            var collectedChildren: [PathTreeNode] = []
+            var additionalNodesToVisitForNextComponentCount:
+                [PathTreeNodeToVisit] = []
 
-            for node in sortedNodes {
-                let parentComponents = node.components.dropLast(1)
-                if parentComponents != collectingParentComponents {
-                    nodesForNextComponentCount.append(
+            for nodeToVisit in sortedNodesToVisit {
+                let parentComponents = nodeToVisit.components.dropLast(1)
+                if parentComponents != collectedParentComponents {
+                    additionalNodesToVisitForNextComponentCount.append(
                         PathTreeNodeToVisit(
-                            components: Array(collectingParentComponents),
-                            children: collectingParentChildren
+                            components: Array(collectedParentComponents),
+                            children: collectedChildren
                         )
                     )
 
-                    collectingParentComponents = parentComponents
-                    collectingParentChildren = []
+                    collectedParentComponents = parentComponents
+                    collectedChildren = []
                 }
 
-                collectingParentChildren.append(
+                let nodeKind = if nodeToVisit.children.isEmpty {
+                    PathTreeNode.Kind.file(isFolder: nodeToVisit.isFolder)
+                } else {
+                    PathTreeNode.Kind.group(children: nodeToVisit.children)
+                }
+
+                collectedChildren.append(
                     PathTreeNode(
-                        name: String(node.components.last!),
-                        isFolder: node.isFolder,
-                        children: node.children
+                        name: String(nodeToVisit.components.last!),
+                        kind: nodeKind
                     )
                 )
             }
 
             guard componentCount != 1 else {
                 // Root node
-                return PathTreeNode(
-                    name: "",
-                    children: collectingParentChildren
-                )
+                return PathTreeNode.Group(children: collectedChildren)
             }
 
             // Last node
-            nodesForNextComponentCount.append(
+            additionalNodesToVisitForNextComponentCount.append(
                 PathTreeNodeToVisit(
-                    components: Array(collectingParentComponents),
-                    children: collectingParentChildren
+                    components: Array(collectedParentComponents),
+                    children: collectedChildren
                 )
             )
 
             nodesByComponentCount[componentCount - 1, default: []]
-                .append(contentsOf: nodesForNextComponentCount)
+                .append(contentsOf: additionalNodesToVisitForNextComponentCount)
         }
 
         // This is unreachable because of the guard in the the `for` loop above.
@@ -100,19 +105,48 @@ extension Generator {
     }
 }
 
+// A class for performance reasons.
 class PathTreeNode {
+    struct Group: Equatable {
+        let children: [PathTreeNode]
+    }
+
+    enum Kind: Equatable {
+        case file(isFolder: Bool)
+        case group(Group)
+    }
+
     let name: String
-    let isFolder: Bool
-    let children: [PathTreeNode]
+    let kind: Kind
 
     init(
         name: String,
-        isFolder: Bool = false,
-        children: [PathTreeNode] = []
+        kind: Kind
     ) {
         self.name = name
-        self.isFolder = isFolder
-        self.children = children
+        self.kind = kind
+    }
+}
+
+extension PathTreeNode: Equatable {
+    public static func == (lhs: PathTreeNode, rhs: PathTreeNode) -> Bool {
+        return (lhs.name, lhs.kind) == (rhs.name, rhs.kind)
+    }
+}
+
+extension PathTreeNode {
+    static func file(name: String, isFolder: Bool = false) -> PathTreeNode {
+        return PathTreeNode(name: name, kind: .file(isFolder: isFolder))
+    }
+
+    static func group(name: String, children: [PathTreeNode]) -> PathTreeNode {
+        return PathTreeNode(name: name, kind: .group(children: children))
+    }
+}
+
+extension PathTreeNode.Kind {
+    static func group(children: [PathTreeNode]) -> PathTreeNode.Kind {
+        return .group(.init(children: children))
     }
 }
 

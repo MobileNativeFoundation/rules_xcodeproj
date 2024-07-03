@@ -7,8 +7,10 @@ import PBXProj
 extension ElementCreator.CreateFile {
     final class MockTracker {
         struct Called: Equatable {
-            let node: PathTreeNode
+            let name: String
+            let isFolder: Bool
             let bazelPath: BazelPath
+            let transitiveBazelPaths: [BazelPath]
             let specialRootGroupType: SpecialRootGroupType?
             let identifierForBazelPaths: String?
         }
@@ -35,19 +37,21 @@ extension ElementCreator.CreateFile {
         let mockTracker = MockTracker(results: groupChildElement)
 
         let mocked = Self(
-            collectBazelPaths: ElementCreator.Stubs.collectBazelPaths,
             createFileElement: ElementCreator.Stubs.createFileElement,
             callable: {
-                node,
+                name,
+                isFolder,
                 bazelPath,
+                transitiveBazelPaths,
                 specialRootGroupType,
                 identifierForBazelPaths,
-                collectBazelPaths,
                 createFileElement
             in
                 mockTracker.called.append(.init(
-                    node: node,
+                    name: name,
+                    isFolder: isFolder,
                     bazelPath: bazelPath,
+                    transitiveBazelPaths: transitiveBazelPaths,
                     specialRootGroupType: specialRootGroupType,
                     identifierForBazelPaths: identifierForBazelPaths
                 ))

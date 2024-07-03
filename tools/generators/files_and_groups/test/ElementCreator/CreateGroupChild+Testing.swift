@@ -42,9 +42,9 @@ extension ElementCreator.CreateGroupChild {
                 node,
                 parentBazelPath,
                 specialRootGroupType,
-                createGroupChild,
                 createFile,
-                createGroupElement,
+                createGroup,
+                createGroupChild,
                 createLocalizedFiles,
                 createVersionGroup
             in

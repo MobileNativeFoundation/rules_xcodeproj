@@ -10,7 +10,7 @@ extension Generator {
     struct Environment {
         let calculateTargetFilesPartial: CalculateTargetFilesPartial
 
-        let calculatePathTree: (_ paths: Set<BazelPath>) -> PathTreeNode
+        let calculatePathTree: (_ paths: Set<BazelPath>) -> PathTreeNode.Group
 
         let createTargetFileObjects: CreateTargetFileObjects
 

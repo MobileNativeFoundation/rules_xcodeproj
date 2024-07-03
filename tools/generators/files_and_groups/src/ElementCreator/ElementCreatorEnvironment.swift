@@ -105,7 +105,6 @@ extension ElementCreator.Environment {
             callable: createFileElementCallable
         )
         let createFile = ElementCreator.CreateFile(
-            collectBazelPaths: collectBazelPaths,
             createFileElement: createFileElement,
             callable: createFileCallable
         )
@@ -158,6 +157,7 @@ extension ElementCreator.Environment {
             createFile: createFile,
             createIdentifier: createIdentifier,
             createVersionGroupElement: createVersionGroupElement,
+            collectBazelPaths: collectBazelPaths,
             selectedModelVersions: selectedModelVersions,
             callable: createVersionGroupCallable
         )

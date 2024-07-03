@@ -69,46 +69,56 @@ extension ElementCreator.CreateGroupChild {
         createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
         createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild {
-        guard !node.children.isEmpty else {
-            // File
+        switch node.kind {
+        case .group(let groupNode):
+            let (basenameWithoutExt, ext) = node.splitExtension()
+            switch ext {
+            case "lproj":
+                return .localizedRegion(
+                    createLocalizedFiles(
+                        for: groupNode,
+                        name: node.name,
+                        parentBazelPath: parentBazelPath,
+                        specialRootGroupType: specialRootGroupType,
+                        region: basenameWithoutExt
+                    )
+                )
+
+            case "xcdatamodeld":
+                return .elementAndChildren(
+                    createVersionGroup(
+                        for: groupNode,
+                        name: node.name,
+                        parentBazelPath: parentBazelPath,
+                        specialRootGroupType: specialRootGroupType
+                    )
+                )
+
+            default:
+                return .elementAndChildren(
+                    createGroup(
+                        for: groupNode,
+                        name: node.name,
+                        parentBazelPath: parentBazelPath,
+                        specialRootGroupType: specialRootGroupType,
+                        createGroupChild: createGroupChild
+                    )
+                )
+            }
+
+        case .file(let isFolder):
+            let name = node.name
             return .elementAndChildren(
                 createFile(
-                    for: node,
-                    bazelPath: parentBazelPath + node,
+                    name: name,
+                    isFolder: isFolder,
+                    bazelPath: BazelPath(
+                        parent: parentBazelPath,
+                        path: name,
+                        isFolder: isFolder
+                    ),
+                    transitiveBazelPaths: [],
                     specialRootGroupType: specialRootGroupType
-                )
-            )
-        }
-
-        // Group
-        let (basenameWithoutExt, ext) = node.splitExtension()
-        switch ext {
-        case "lproj":
-            return .localizedRegion(
-                createLocalizedFiles(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType,
-                    region: basenameWithoutExt
-                )
-            )
-
-        case "xcdatamodeld":
-            return .elementAndChildren(
-                createVersionGroup(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType
-                )
-            )
-
-        default:
-            return .elementAndChildren(
-                createGroup(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType,
-                    createGroupChild: createGroupChild
                 )
             )
         }

@@ -25,11 +25,13 @@ extension ElementCreator {
         }
 
         func callAsFunction(
-            for node: PathTreeNode,
+            for groupNode: PathTreeNode.Group,
+            name: String,
             specialRootGroupType: SpecialRootGroupType
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*node:*/ node,
+                /*groupNode:*/ groupNode,
+                /*name:*/ name,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
@@ -43,7 +45,8 @@ extension ElementCreator {
 
 extension ElementCreator.CreateSpecialRootGroup {
     typealias Callable = (
-        _ node: PathTreeNode,
+        _ groupNode: PathTreeNode.Group,
+        _ name: String,
         _ specialRootGroupType: SpecialRootGroupType,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
@@ -52,16 +55,17 @@ extension ElementCreator.CreateSpecialRootGroup {
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        for node: PathTreeNode,
+        for groupNode: PathTreeNode.Group,
+        name: String,
         specialRootGroupType: SpecialRootGroupType,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
         createSpecialRootGroupElement:
             ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = BazelPath(node.name)
+        let bazelPath = BazelPath(name)
 
-        let groupChildren = node.children.map { node in
+        let groupChildren = groupNode.children.map { node in
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,

@@ -9,6 +9,7 @@ extension ElementCreator.CollectBazelPaths {
         struct Called: Equatable {
             let node: PathTreeNode
             let bazelPath: BazelPath
+            let includeSelf: Bool
         }
 
         fileprivate(set) var called: [Called] = []
@@ -33,10 +34,11 @@ extension ElementCreator.CollectBazelPaths {
         let mockTracker = MockTracker(results: bazelPaths)
 
         let mocked = Self(
-            callable: { node, bazelPath in
+            callable: { node, bazelPath, includeSelf in
                 mockTracker.called.append(.init(
                     node: node,
-                    bazelPath: bazelPath
+                    bazelPath: bazelPath,
+                    includeSelf: includeSelf
                 ))
                 return mockTracker.nextResult()
             }

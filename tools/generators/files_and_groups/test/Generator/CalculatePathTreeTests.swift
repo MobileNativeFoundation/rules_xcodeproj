@@ -13,7 +13,7 @@ final class CalculatePathTreeTests: XCTestCase {
 
         let paths: Set<BazelPath> = []
 
-        let expectedPathTree = PathTreeNode(name: "")
+        let expectedPathTree = PathTreeNode.Group(children: [])
 
         // Act
 
@@ -41,43 +41,42 @@ final class CalculatePathTreeTests: XCTestCase {
             "c/d/2",
         ]
 
-        let expectedPathTree = PathTreeNode(
-            name: "",
+        let expectedPathTree = PathTreeNode.Group(
             children: [
-                .init(name: "0"),
-                .init(
+                .file(name: "0"),
+                .group(
                     name: "a",
                     children: [
-                        .init(name: "1"),
-                        .init(name: "2"),
+                        .file(name: "1"),
+                        .file(name: "2"),
                     ]
                 ),
-                .init(
+                .group(
                     name: "b",
                     children: [
-                        .init(name: "0"),
-                        .init(name: "3"),
+                        .file(name: "0"),
+                        .file(name: "3"),
                     ]
                 ),
-                .init(
+                .group(
                     name: "c",
                     children: [
-                        .init(
+                        .group(
                             name: "d",
                             children: [
-                                .init(name: "2"),
-                                .init(name: "6"),
+                                .file(name: "2"),
+                                .file(name: "6"),
                             ]
                         ),
-                        .init(
+                        .group(
                             name: "z",
                             children: [
-                                .init(name: "1"),
+                                .file(name: "1"),
                             ]
                         ),
                     ]
                 ),
-                .init(name: "d"),
+                .file(name: "d"),
             ]
         )
 
@@ -98,14 +97,13 @@ final class CalculatePathTreeTests: XCTestCase {
             .init("file_or_folder", isFolder: true),
         ]
         
-        let expectedPathTree = PathTreeNode(
-            name: "",
+        let expectedPathTree = PathTreeNode.Group(
             children: [
-                .init(
+                .file(
                     name: "file_or_folder",
                     isFolder: true
                 ),
-                .init(
+                .file(
                     name: "file_or_folder",
                     isFolder: false
                 ),
@@ -119,12 +117,5 @@ final class CalculatePathTreeTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(pathTree, expectedPathTree)
-    }
-}
-
-extension PathTreeNode: Equatable {
-    public static func == (lhs: PathTreeNode, rhs: PathTreeNode) -> Bool {
-        return (lhs.name, lhs.isFolder, lhs.children) ==
-            (rhs.name, rhs.isFolder, rhs.children)
     }
 }

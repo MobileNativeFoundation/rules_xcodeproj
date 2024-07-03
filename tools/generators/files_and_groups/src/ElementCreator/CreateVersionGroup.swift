@@ -5,6 +5,7 @@ extension ElementCreator {
         private let createFile: CreateFile
         private let createIdentifier: CreateIdentifier
         private let createVersionGroupElement: CreateVersionGroupElement
+        private let collectBazelPaths: CollectBazelPaths
         private let selectedModelVersions: [BazelPath: String]
 
         private let callable: Callable
@@ -19,29 +20,34 @@ extension ElementCreator {
             createFile: CreateFile,
             createIdentifier: CreateIdentifier,
             createVersionGroupElement: CreateVersionGroupElement,
+            collectBazelPaths: CollectBazelPaths,
             selectedModelVersions: [BazelPath: String],
             callable: @escaping Callable
         ) {
             self.createFile = createFile
             self.createIdentifier = createIdentifier
             self.createVersionGroupElement = createVersionGroupElement
+            self.collectBazelPaths = collectBazelPaths
             self.selectedModelVersions = selectedModelVersions
 
             self.callable = callable
         }
 
         func callAsFunction(
-            for node: PathTreeNode,
+            for groupNode: PathTreeNode.Group,
+            name: String,
             parentBazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*node:*/ node,
+                /*groupNode:*/ groupNode,
+                /*name:*/ name,
                 /*parentBazelPath:*/ parentBazelPath,
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*createFile:*/ createFile,
                 /*createIdentifier:*/ createIdentifier,
                 /*createVersionGroupElement:*/ createVersionGroupElement,
+                /*collectBazelPaths:*/ collectBazelPaths,
                 /*selectedModelVersions:*/ selectedModelVersions
             )
         }
@@ -52,26 +58,29 @@ extension ElementCreator {
 
 extension ElementCreator.CreateVersionGroup {
     typealias Callable = (
-        _ node: PathTreeNode,
+        _ groupNode: PathTreeNode.Group,
+        _ name: String,
         _ parentBazelPath: BazelPath,
         _ specialRootGroupType: SpecialRootGroupType?,
         _ createFile: ElementCreator.CreateFile,
         _ createIdentifier: ElementCreator.CreateIdentifier,
         _ createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
+        _ collectBazelPaths: ElementCreator.CollectBazelPaths,
         _ selectedModelVersions: [BazelPath: String]
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        for node: PathTreeNode,
+        for groupNode: PathTreeNode.Group,
+        name: String,
         parentBazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
         createFile: ElementCreator.CreateFile,
         createIdentifier: ElementCreator.CreateIdentifier,
         createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
+        collectBazelPaths: ElementCreator.CollectBazelPaths,
         selectedModelVersions: [BazelPath: String]
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = parentBazelPath + node
-        let name = node.name
+        let bazelPath = BazelPath(parent: parentBazelPath, path: name)
 
         let identifier = createIdentifier(
             path: bazelPath.path,
@@ -82,10 +91,23 @@ extension ElementCreator.CreateVersionGroup {
 
         var children: [GroupChild.ElementAndChildren] = []
         var selectedChildIdentifier: String? = nil
-        for node in node.children {
+        for node in groupNode.children {
+            let childName = node.name
+            let childBazelPath = BazelPath(parent: bazelPath, path: childName)
+            
+            let transitiveBazelPaths = collectBazelPaths(
+                node: node,
+                bazelPath: childBazelPath,
+                // `createFile` appends to this, so we want this to only be
+                // transitive paths
+                includeSelf: false
+            )
+
             let result = createFile(
-                for: node,
-                bazelPath: bazelPath + node,
+                name: childName,
+                isFolder: false,
+                bazelPath: childBazelPath,
+                transitiveBazelPaths: transitiveBazelPaths,
                 specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: identifier
             )

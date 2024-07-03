@@ -37,7 +37,7 @@ extension ElementCreator {
         }
 
         func callAsFunction(
-            for pathTree: PathTreeNode
+            for pathTree: PathTreeNode.Group
         ) -> GroupChildElements {
             return callable(
                 /*pathTree:*/ pathTree,
@@ -57,7 +57,7 @@ extension ElementCreator {
 
 extension ElementCreator.CreateRootElements {
     typealias Callable = (
-        _ pathTree: PathTreeNode,
+        _ pathTree: PathTreeNode.Group,
         _ includeCompileStub: Bool,
         _ installPath: String,
         _ workspace: String,
@@ -68,7 +68,7 @@ extension ElementCreator.CreateRootElements {
     ) -> GroupChildElements
 
     static func defaultCallable(
-        for pathTree: PathTreeNode,
+        for pathTree: PathTreeNode.Group,
         includeCompileStub: Bool,
         installPath: String,
         workspace: String,
@@ -81,38 +81,53 @@ extension ElementCreator.CreateRootElements {
 
         var groupChildren: [GroupChild] = []
         for node in pathTree.children {
-            switch node.name {
-            case "external":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .legacyBazelExternal
+            switch node.kind {
+            case .group(let groupNode):
+                switch node.name {
+                case "external":
+                    groupChildren.append(
+                        .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: groupNode,
+                                name: node.name,
+                                specialRootGroupType: .legacyBazelExternal
+                            )
                         )
                     )
-                )
 
-            case "..":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .siblingBazelExternal
+                case "..":
+                    groupChildren.append(
+                        .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: groupNode,
+                                name: node.name,
+                                specialRootGroupType: .siblingBazelExternal
+                            )
                         )
                     )
-                )
 
-            case "bazel-out":
-                groupChildren.append(
-                    .elementAndChildren(
-                        createSpecialRootGroup(
-                            for: node,
-                            specialRootGroupType: .bazelGenerated
+                case "bazel-out":
+                    groupChildren.append(
+                        .elementAndChildren(
+                            createSpecialRootGroup(
+                                for: groupNode,
+                                name: node.name,
+                                specialRootGroupType: .bazelGenerated
+                            )
                         )
                     )
-                )
 
-            default:
+                default:
+                    groupChildren.append(
+                        createGroupChild(
+                            for: node,
+                            parentBazelPath: bazelPath,
+                            specialRootGroupType: nil
+                        )
+                    )
+                }
+
+            case .file:
                 groupChildren.append(
                     createGroupChild(
                         for: node,

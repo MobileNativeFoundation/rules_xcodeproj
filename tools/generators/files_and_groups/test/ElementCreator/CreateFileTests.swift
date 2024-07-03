@@ -8,25 +8,14 @@ final class CreateFileTests: XCTestCase {
     func test() {
         // Arrange
 
-        let node = PathTreeNode(
-            name: "node_name.some_ext"
-        )
+        let name = "node_name.some_ext"
+        let isFolder = false
         let bazelPath: BazelPath = "bazel/path/node_name.some_ext"
-        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
-
-        let expectedCollectBazelPathsCalled: [
-            ElementCreator.CollectBazelPaths.MockTracker.Called
-        ] = [
-            .init(node: node, bazelPath: "bazel/path/node_name.some_ext"),
-        ]
-        let stubbedBazelPaths: [BazelPath] = [
+        let transitiveBazelPaths: [BazelPath] = [
             "bazel/path/node_name.some_ext/a",
             "bazel/path/node_name.some_ext/b",
-            "bazel/path/node_name.some_ext",
         ]
-        let collectBazelPaths = ElementCreator.CollectBazelPaths.mock(
-            bazelPaths: [stubbedBazelPaths]
-        )
+        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
 
         let expectedCreateFileElementCalled: [
             ElementCreator.CreateFileElement.MockTracker.Called
@@ -83,20 +72,17 @@ final class CreateFileTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateFile.defaultCallable(
-            for: node,
+            name: name,
+            isFolder: isFolder,
             bazelPath: bazelPath,
+            transitiveBazelPaths: transitiveBazelPaths,
             specialRootGroupType: specialRootGroupType,
             identifierForBazelPaths: nil,
-            collectBazelPaths: collectBazelPaths.mock,
             createFileElement: createFileElement.mock
         )
 
         // Assert
 
-        XCTAssertNoDifference(
-            collectBazelPaths.tracker.called,
-            expectedCollectBazelPathsCalled
-        )
         XCTAssertNoDifference(
             createFileElement.tracker.called,
             expectedCreateFileElementCalled
