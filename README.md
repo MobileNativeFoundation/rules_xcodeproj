@@ -53,6 +53,7 @@ the ruleset.
 
 ## Projects using rules_xcodeproj
 
+- amo
 - BazelPods
 - Cash App
 - Envoy Mobile
