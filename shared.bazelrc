@@ -1,6 +1,9 @@
 # Opt into future migrations
 build --incompatible_disallow_empty_glob
 
+# Support rules_swift 2.0 on Bazel 6
+common --experimental_enable_aspect_hints
+
 # Don't create convenience symlinks
 build --experimental_convenience_symlinks=ignore
 

@@ -27,13 +27,13 @@ cc_library(
     name = "private_lib",
     srcs = ["private_lib.c"],
     hdrs = ["private_lib.h"],
+    aspect_hints = ["@build_bazel_rules_swift//swift:auto_module"],
     copts = [
         # This isn't needed bty anything, it's to exercise an edge case in
         # `FilePath` detection.
         "-Ibazel-out",
         "-Iexternal",
     ],
-    tags = ["swift_module=_Lib"],
 )
 
 swift_library(
@@ -55,7 +55,7 @@ swift_library(
     visibility = ["//CommandLine/Tests:__subpackages__"],
     deps = [
         ":lib_impl",
-        "//CommandLine/swift_c_module",
+        "//CommandLine/swift_interop_hint:c_lib",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
     ],
