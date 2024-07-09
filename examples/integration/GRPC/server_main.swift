@@ -16,7 +16,6 @@ import Dispatch
 import GRPC
 import NIOCore
 import NIOPosix
-import GRPC_echo_proto
 import GRPC_echo_server_services_swift
 
 /// Concrete implementation of the `EchoService` service definition.

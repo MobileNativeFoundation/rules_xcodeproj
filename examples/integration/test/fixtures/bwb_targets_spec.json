@@ -2558,6 +2558,39 @@
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
+    "@@//Proto:person_proto_swift CONFIGURATION-STABLE-25",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-25/bin/Proto/person_proto_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-25/bin/Proto",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "Proto_person_proto"
+        },
+        "c": "CONFIGURATION-STABLE-25",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-25/bin/Proto/person_proto_swift/gen/Proto/Person.pb.swift"
+            ]
+        },
+        "l": "@@//Proto:person_proto_swift",
+        "n": "person_proto_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-25/bin/Proto/Proto_person_proto.swiftmodule"
+            }
+        },
+        "p": {
+            "m": "Proto_person_proto",
+            "n": "person_proto_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-25/bin/Proto/libperson_proto_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//Proto:proto CONFIGURATION-STABLE-25",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-25/bin/Proto/tool.library.rules_xcodeproj.swift.compile.params",
@@ -2573,7 +2606,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.49.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.50.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/Proto/proto.dSYM\""
@@ -2607,6 +2640,39 @@
             "t": "com.apple.product-type.tool"
         }
     },
+    "@@//GRPC:echo_client_services_swift CONFIGURATION-STABLE-25",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all"
+        },
+        "c": "CONFIGURATION-STABLE-25",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client_services_swift/gen/GRPC/echo.grpc.swift",
+                "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client_services_swift/gen/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_client_services_swift",
+        "m": true,
+        "n": "echo_client_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/GRPC_echo_client_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_client_services_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/libecho_client_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//GRPC:echo_client CONFIGURATION-STABLE-25",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client.library.rules_xcodeproj.swift.compile.params",
@@ -2622,7 +2688,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.50.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.52.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client.dSYM\""
@@ -2630,7 +2696,7 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_client_codesigned",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC/rules_xcodeproj/echo_client/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "GRPC_echo_client_library"
         },
         "c": "CONFIGURATION-STABLE-25",
@@ -2657,6 +2723,39 @@
             "t": "com.apple.product-type.tool"
         }
     },
+    "@@//GRPC:echo_server_services_swift CONFIGURATION-STABLE-25",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all"
+        },
+        "c": "CONFIGURATION-STABLE-25",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server_services_swift/gen/GRPC/echo.pb.swift",
+                "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server_services_swift/gen/GRPC/echo.grpc.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_server_services_swift",
+        "m": true,
+        "n": "echo_server_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/GRPC_echo_server_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_server_services_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/libecho_server_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//GRPC:echo_server CONFIGURATION-STABLE-25",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server.library.rules_xcodeproj.swift.compile.params",
@@ -2672,7 +2771,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.51.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.54.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server.dSYM\""
@@ -2680,7 +2779,7 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_server_codesigned",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC/rules_xcodeproj/echo_server/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -I$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/GRPC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-25/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "GRPC_echo_server_library"
         },
         "c": "CONFIGURATION-STABLE-25",
@@ -2865,7 +2964,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.57.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.60.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -3055,7 +3154,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.63.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.66.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3239,7 +3338,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.69.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.72.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3274,7 +3373,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.70.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.73.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-33/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -3311,7 +3410,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.71.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.74.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -3408,7 +3507,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.73.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.76.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -3602,7 +3701,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.78.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.81.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3665,7 +3764,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.79.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.82.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -3728,7 +3827,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.80.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.83.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3828,7 +3927,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.82.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.85.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3884,7 +3983,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.83.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.86.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-9"
         ],
@@ -3958,7 +4057,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.84.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.87.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4074,7 +4173,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.86.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.89.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -4210,7 +4309,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.88.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.91.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/Lib.framework",
@@ -4290,7 +4389,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.90.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.93.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/Lib.framework",
@@ -4335,7 +4434,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.91.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.94.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/Lib.framework",
@@ -4380,7 +4479,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.92.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.95.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4436,7 +4535,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.93.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.96.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11"
         ],
@@ -4510,7 +4609,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.94.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.97.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-11"
@@ -4676,7 +4775,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.98.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.101.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -4748,7 +4847,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.99.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.102.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -4823,7 +4922,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.100.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.103.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
@@ -5009,7 +5108,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.105.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.108.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool_codesigned",
@@ -5093,7 +5192,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.107.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.110.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -5304,7 +5403,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.112.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.115.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5370,7 +5469,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.113.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.116.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -5436,7 +5535,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.114.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.117.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5544,7 +5643,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.116.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.119.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5603,7 +5702,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.117.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.120.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13"
         ],
@@ -5681,7 +5780,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.118.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.121.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5802,7 +5901,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.120.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.123.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -5940,7 +6039,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.122.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.125.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/Lib.framework",
@@ -6027,7 +6126,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.124.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.127.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic/Lib.framework",
@@ -6075,7 +6174,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.125.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.128.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/Lib.framework",
@@ -6123,7 +6222,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.126.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.129.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -6182,7 +6281,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.127.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.130.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15"
         ],
@@ -6260,7 +6359,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.128.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.131.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15"
@@ -6329,7 +6428,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.129.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.132.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-16/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -6487,7 +6586,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.133.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.136.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -6562,7 +6661,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.134.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.137.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -6677,7 +6776,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.136.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.139.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -6791,7 +6890,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.138.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.141.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -6915,7 +7014,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.140.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.143.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/Lib.framework",
@@ -6971,7 +7070,7 @@
                 "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/frameworks/Lib.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.141.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.144.link.params",
         "7": [
             "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-16"
         ],
@@ -7040,7 +7139,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.142.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.145.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
@@ -7103,7 +7202,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.143.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.146.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -7175,7 +7274,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.144.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.147.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15",
@@ -7248,7 +7347,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.145.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.148.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7320,7 +7419,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.146.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.149.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13",
             "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-13"
@@ -7385,7 +7484,7 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.147.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.150.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -7463,7 +7562,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.148.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.151.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -7546,7 +7645,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.149.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.152.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
@@ -7618,6 +7717,43 @@
             "AppStore"
         ]
     },
+    "@@//Proto:person_proto_swift CONFIGURATION-STABLE-26",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-26/bin/Proto/person_proto_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-26/bin/Proto",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "Proto_person_proto",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-26",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-26/bin/Proto/person_proto_swift/gen/Proto/Person.pb.swift"
+            ]
+        },
+        "l": "@@//Proto:person_proto_swift",
+        "n": "person_proto_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-26/bin/Proto/Proto_person_proto.swiftmodule"
+            }
+        },
+        "p": {
+            "m": "Proto_person_proto",
+            "n": "person_proto_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-26/bin/Proto/libperson_proto_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//Proto:proto CONFIGURATION-STABLE-26",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-26/bin/Proto/tool.library.rules_xcodeproj.swift.compile.params",
@@ -7633,7 +7769,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.150.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.154.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/Proto/proto.dSYM\""
@@ -7671,6 +7807,43 @@
             "AppStore"
         ]
     },
+    "@@//GRPC:echo_client_services_swift CONFIGURATION-STABLE-26",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-26",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client_services_swift/gen/GRPC/echo.grpc.swift",
+                "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client_services_swift/gen/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_client_services_swift",
+        "m": true,
+        "n": "echo_client_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/GRPC_echo_client_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_client_services_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/libecho_client_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//GRPC:echo_client CONFIGURATION-STABLE-26",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client.library.rules_xcodeproj.swift.compile.params",
@@ -7686,7 +7859,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.151.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.156.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client.dSYM\""
@@ -7694,7 +7867,7 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_client_codesigned",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC/rules_xcodeproj/echo_client/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "GRPC_echo_client_library",
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
@@ -7725,6 +7898,43 @@
             "AppStore"
         ]
     },
+    "@@//GRPC:echo_server_services_swift CONFIGURATION-STABLE-26",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "CONFIGURATION-STABLE-26",
+        "i": {
+            "s": [
+                "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server_services_swift/gen/GRPC/echo.pb.swift",
+                "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server_services_swift/gen/GRPC/echo.grpc.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_server_services_swift",
+        "m": true,
+        "n": "echo_server_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/GRPC_echo_server_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_server_services_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/libecho_server_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//GRPC:echo_server CONFIGURATION-STABLE-26",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server.library.rules_xcodeproj.swift.compile.params",
@@ -7740,7 +7950,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.152.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.158.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server.dSYM\""
@@ -7748,7 +7958,7 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "echo_server_codesigned",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC/rules_xcodeproj/echo_server/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -I$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/GRPC -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-26/bin/external/rules_swift~~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PRODUCT_MODULE_NAME": "GRPC_echo_server_library",
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
@@ -7954,7 +8164,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.158.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.164.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -8164,7 +8374,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.164.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.170.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8368,7 +8578,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.170.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.176.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8406,7 +8616,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.171.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.177.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-34/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -8447,7 +8657,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.172.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.178.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -8552,7 +8762,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.174.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.180.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -8764,7 +8974,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.179.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.185.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8831,7 +9041,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.180.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.186.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -8897,7 +9107,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.181.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.187.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9005,7 +9215,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.183.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.189.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9064,7 +9274,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.184.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.190.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-18"
         ],
@@ -9142,7 +9352,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.185.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.191.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9265,7 +9475,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.187.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.193.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
@@ -9404,7 +9614,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.189.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.195.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/dist/dynamic/Lib.framework",
@@ -9491,7 +9701,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.191.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.197.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/dist/dynamic/Lib.framework",
@@ -9539,7 +9749,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.192.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.198.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/dist/dynamic/Lib.framework",
@@ -9587,7 +9797,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.193.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.199.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9646,7 +9856,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.194.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.200.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20"
         ],
@@ -9724,7 +9934,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.195.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.201.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-20"
@@ -9903,7 +10113,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.199.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.205.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
@@ -9978,7 +10188,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.200.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.206.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
@@ -10057,7 +10267,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.201.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.207.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",

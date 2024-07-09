@@ -1,9 +1,6 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
-load(
-    "@build_bazel_rules_swift//swift:swift.bzl",
-    "swift_library",
-    "swift_proto_library",
-)
+load("@build_bazel_rules_swift//proto:proto.bzl", "swift_proto_library")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 proto_library(
     name = "person_proto",
@@ -12,15 +9,14 @@ proto_library(
 
 swift_proto_library(
     name = "person_proto_swift",
-    deps = [":person_proto"],
+    module_name = "Proto_person_proto",
+    protos = [":person_proto"],
 )
 
 swift_library(
     name = "tool.library",
     srcs = ["main.swift"],
-    deps = [
-        ":person_proto_swift",
-    ],
+    deps = [":person_proto_swift"],
 )
 
 macos_command_line_application(

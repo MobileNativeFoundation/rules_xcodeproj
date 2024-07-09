@@ -1,10 +1,6 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
-load(
-    "@build_bazel_rules_swift//swift:swift.bzl",
-    "swift_grpc_library",
-    "swift_library",
-    "swift_proto_library",
-)
+load("@build_bazel_rules_swift//proto:proto.bzl", "swift_proto_library")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 proto_library(
     name = "echo_proto",
@@ -12,31 +8,27 @@ proto_library(
 )
 
 swift_proto_library(
-    name = "echo_proto_swift",
-    deps = [":echo_proto"],
-)
-
-swift_grpc_library(
     name = "echo_client_services_swift",
-    srcs = [":echo_proto"],
-    flavor = "client",
-    deps = [":echo_proto_swift"],
+    compilers = [
+        "@build_bazel_rules_swift//proto/compilers:swift_client_proto",
+        "@build_bazel_rules_swift//proto/compilers:swift_proto",
+    ],
+    protos = [":echo_proto"],
 )
 
-swift_grpc_library(
+swift_proto_library(
     name = "echo_server_services_swift",
-    srcs = [":echo_proto"],
-    flavor = "server",
-    deps = [":echo_proto_swift"],
+    compilers = [
+        "@build_bazel_rules_swift//proto/compilers:swift_proto",
+        "@build_bazel_rules_swift//proto/compilers:swift_server_proto",
+    ],
+    protos = [":echo_proto"],
 )
 
 swift_library(
     name = "echo_server.library",
     srcs = ["server_main.swift"],
-    deps = [
-        ":echo_proto_swift",
-        ":echo_server_services_swift",
-    ],
+    deps = [":echo_server_services_swift"],
 )
 
 macos_command_line_application(
