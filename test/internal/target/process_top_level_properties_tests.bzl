@@ -150,9 +150,21 @@ def process_top_level_properties_test_suite(name):
     )
 
     _add_test(
-        name = "{}_xctest".format(name),
+        name = "{}_old_swift_test".format(name),
         target_name = "test",
         target_files = ["bazel-out/some/test.xctest/test"],
+        bundle_info = None,
+        expected_bundle_path = "bazel-out/some/test.xctest",
+        expected_executable_name = "test",
+        expected_product_name = "test",
+        expected_product_type = "com.apple.product-type.bundle.unit-test",
+        expected_build_settings = {},
+    )
+
+    _add_test(
+        name = "{}_new_swift_test".format(name),
+        target_name = "test",
+        target_files = ["bazel-out/some/test.xctest"],
         bundle_info = None,
         expected_bundle_path = "bazel-out/some/test.xctest",
         expected_executable_name = "test",
