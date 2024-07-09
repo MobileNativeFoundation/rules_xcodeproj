@@ -17,7 +17,6 @@ import SwiftProtobuf
 import GRPC
 import NIOCore
 import NIOPosix
-import GRPC_echo_proto
 import GRPC_echo_client_services_swift
 
 @main
