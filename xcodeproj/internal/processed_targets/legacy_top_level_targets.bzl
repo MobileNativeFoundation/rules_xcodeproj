@@ -117,21 +117,30 @@ def process_top_level_properties(
         executable_name = target_name
         product_name = target_name
 
+        product_type = "com.apple.product-type.tool"
         bundle_file = None
+        bundle_path = None
         for file in target_files:
-            if ".xctest/" in file.path:
+            if file.path.endswith(".xctest"):
+                # This is something like rules_swift 2.0 `swift_test`: it
+                # creates an xctest bundle
+                product_type = "com.apple.product-type.bundle.unit-test"
                 bundle_file = file
+                bundle_path = file.path
                 break
-        if bundle_file:
-            # This is something like `swift_test`: it creates an xctest bundle
-            product_type = "com.apple.product-type.bundle.unit-test"
 
-            # "some/test.xctest/binary" -> "some/test.xctest"
-            xctest_path = bundle_file.path
-            bundle_path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
-        else:
-            product_type = "com.apple.product-type.tool"
-            bundle_path = None
+            if ".xctest/" in file.path:
+                # This is something like rules_Swift pre-2.0 `swift_test`: it
+                # creates an xctest bundle
+                product_type = "com.apple.product-type.bundle.unit-test"
+
+                # "some/test.xctest/binary" -> "some/test.xctest"
+                xctest_path = file.path
+                bundle_file = file
+                bundle_path = (
+                    xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
+                )
+                break
 
     return struct(
         bundle_extension = bundle_extension,
