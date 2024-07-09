@@ -1,5 +1,5 @@
-@_implementationOnly import _Lib
 @_implementationOnly import _SwiftLib
+@_implementationOnly import CommandLine_CommandLineToolLib_private_lib
 import ExternalFramework
 import Foundation
 import ImportableLibrary

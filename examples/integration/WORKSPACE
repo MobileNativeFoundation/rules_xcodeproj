@@ -1,6 +1,14 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 local_repository(
     name = "rules_xcodeproj",
     path = "../..",
+)
+
+http_archive(
+    name = "build_bazel_rules_swift",
+    sha256 = "32eeb4ef33c708d9c9a4ee0fa8475322ef149dabc81884ddc3b50eb2efff7843",
+    url = "https://github.com/bazelbuild/rules_swift/releases/download/2.0.0/rules_swift.2.0.0.tar.gz",
 )
 
 load(
