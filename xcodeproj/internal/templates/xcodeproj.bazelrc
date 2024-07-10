@@ -67,6 +67,10 @@ build:rules_xcodeproj --show_result=0
 build:rules_xcodeproj --noworker_sandboxing
 build:rules_xcodeproj --spawn_strategy=remote,worker,local
 
+# Use param files.
+# This prevents "Argument list too long" errors for targets with large list of files.
+build:rules_xcodeproj --features=archive_param_file
+
 ### `--config=rules_xcodeproj_generator`
 #
 # Used when generating a project.
