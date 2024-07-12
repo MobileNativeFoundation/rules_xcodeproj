@@ -56,6 +56,11 @@ build:rules_xcodeproj --features=swift.use_global_index_store
 # `swift.use_global_module_cache` drastically speeds up swift builds
 build:rules_xcodeproj --features=swift.use_global_module_cache
 
+# TODO: Remove once 1.16.0+ is our minimum supported apple_support
+# Use param files.
+# This prevents "Argument list too long" errors for targets with large list of files.
+build:rules_xcodeproj --features=archive_param_file
+
 # Removes potentially large unneeded event from the BEP
 build:rules_xcodeproj --nolegacy_important_outputs
 
