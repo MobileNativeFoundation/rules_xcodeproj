@@ -176,7 +176,8 @@ error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
 // MARK: - Main
 
 let args = CommandLine.arguments
-if args.count == 2, args.last == "-v" {
+// Xcode 16.0 Beta 3 began using "--version" over "-v". Support both.
+if args.count == 2, args.last == "--version" || args.last == "-v" {
     guard let path = ProcessInfo.processInfo.environment["PATH"] else {
         fputs("error: PATH not set", stderr)
         exit(1)
@@ -198,7 +199,8 @@ if args.count == 2, args.last == "-v" {
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 """
 
-    try exit(runSubProcess(executable: swiftcPath, args: ["-v"]))
+    // args.last allows passing in -v (Xcode < 16b3) and --version (>= 16b3)
+    try exit(runSubProcess(executable: swiftcPath, args: [args.last!]))
 }
 
 let (
