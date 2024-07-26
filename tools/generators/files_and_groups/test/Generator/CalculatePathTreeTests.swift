@@ -96,8 +96,8 @@ final class CalculatePathTreeTests: XCTestCase {
                         children: [
                             .generatedFiles(.multipleConfigs([
                                 .init(
-                                    name: "config2",
-                                    path: "config2/bin/c/d",
+                                    name: "config1",
+                                    path: "config1/bin/c/d",
                                     children: [
                                         .group(
                                             name: "a",
@@ -113,8 +113,8 @@ final class CalculatePathTreeTests: XCTestCase {
                                     ]
                                 ),
                                 .init(
-                                    name: "config1",
-                                    path: "config1/bin/c/d",
+                                    name: "config2",
+                                    path: "config2/bin/c/d",
                                     children: [
                                         .group(
                                             name: "a",

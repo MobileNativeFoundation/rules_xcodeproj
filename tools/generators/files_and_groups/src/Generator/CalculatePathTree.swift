@@ -175,7 +175,13 @@ extension Generator {
                         children: children
                     )
                 case .generatedFiles(let generatedFiles):
-                    node = .generatedFiles(generatedFiles)
+                    switch generatedFiles {
+                    case .multipleConfigs(let configs):
+                        // Sort configs under same package
+                        node = .generatedFiles(.multipleConfigs(configs.sorted { $0.name < $1.name } ))
+                    default:
+                        node = .generatedFiles(generatedFiles)
+                    }
                 }
                 collectedChildren.append(node)
             }
