@@ -188,7 +188,7 @@ extension ElementCreator {
 
         static let createInlineBazelGeneratedConfigGroup =
             CreateInlineBazelGeneratedConfigGroup.stub(
-                groupChildElement: GroupChild.ElementAndChildren(
+                groupChildElements: [GroupChild.ElementAndChildren(
                     element: Element(
                         name: "Name",
                         object: .init(
@@ -201,7 +201,7 @@ extension ElementCreator {
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
-                )
+                )]
             )
 
         static let createInlineBazelGeneratedConfigGroupElement =

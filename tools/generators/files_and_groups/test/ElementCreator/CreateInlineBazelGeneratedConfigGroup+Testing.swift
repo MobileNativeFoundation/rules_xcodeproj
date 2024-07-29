@@ -12,12 +12,25 @@ extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
         }
 
         fileprivate(set) var called: [Called] = []
+
+        fileprivate var results: [GroupChild.ElementAndChildren]
+
+        init(results: [GroupChild.ElementAndChildren]) {
+            self.results = results.reversed()
+        }
+
+        func nextResult() -> GroupChild.ElementAndChildren {
+            guard let result = results.popLast() else {
+                preconditionFailure("Called too many times")
+            }
+            return result
+        }
     }
 
     static func mock(
-        groupChildElement: GroupChild.ElementAndChildren
+        groupChildElements: [GroupChild.ElementAndChildren]
     ) -> (mock: Self, tracker: MockTracker) {
-        let mockTracker = MockTracker()
+        let mockTracker = MockTracker(results: groupChildElements)
 
         let mocked = Self(
             createGroupChildElements:
@@ -36,7 +49,7 @@ extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
                     config: config,
                     parentBazelPath: parentBazelPath
                 ))
-                return groupChildElement
+                return mockTracker.nextResult()
             }
         )
 
@@ -47,8 +60,8 @@ extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
 // MARK: - ElementCreator.CreateInlineBazelGeneratedConfigGroup.stub
 
 extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
-    static func stub(groupChildElement: GroupChild.ElementAndChildren) -> Self {
-        let (stub, _) = mock(groupChildElement: groupChildElement)
+    static func stub(groupChildElements: [GroupChild.ElementAndChildren]) -> Self {
+        let (stub, _) = mock(groupChildElements: groupChildElements)
         return stub
     }
 }
