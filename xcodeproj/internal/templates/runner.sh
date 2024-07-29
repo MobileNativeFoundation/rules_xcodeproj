@@ -226,7 +226,7 @@ else
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     if [[ $download_intermediates -eq 1 ]]; then
       pre_config_flags=(
-        "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(a|c|C|cc|cl|cpp|cu|cxx|c++|m|mm|swift|swiftdoc|swiftmodule|swiftsourceinfo)$"
+        "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(a|c|C|cc|cl|cpp|cu|cxx|c++|h|H|hh|hpp|hxx|h++|inc|inl|ipp|m|mm|swift|swiftdoc|swiftmodule|swiftsourceinfo|tcc|tlh|tli)$"
       )
     else
       pre_config_flags=()
