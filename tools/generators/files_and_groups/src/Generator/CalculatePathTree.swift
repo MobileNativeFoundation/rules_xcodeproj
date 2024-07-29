@@ -51,7 +51,7 @@ extension Generator {
                     (
                         package,
                         .multipleConfigs(
-                            pathsByConfig.map({ config, paths in
+                            pathsByConfig.sorted { $0.key < $1.key }.map({ config, paths in
                                 return .init(
                                     name: config,
                                     path: "\(config)/\(packageBin)",
@@ -175,13 +175,7 @@ extension Generator {
                         children: children
                     )
                 case .generatedFiles(let generatedFiles):
-                    switch generatedFiles {
-                    case .multipleConfigs(let configs):
-                        // Sort configs under same package
-                        node = .generatedFiles(.multipleConfigs(configs.sorted { $0.name < $1.name } ))
-                    default:
-                        node = .generatedFiles(generatedFiles)
-                    }
+                    node = .generatedFiles(generatedFiles)
                 }
                 collectedChildren.append(node)
             }
