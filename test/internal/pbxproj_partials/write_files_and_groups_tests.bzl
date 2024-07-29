@@ -68,14 +68,14 @@ def _write_files_and_groups_test_impl(ctx):
         struct(
             path = path,
             is_source = False,
-            owner = Label(values[0]),
+            owner = mock_actions.mock_label(values[0]),
         )
         for (path, values) in ctx.attr.generated_files.items()
     ]
     generated_folders = [
         struct(
             path = path,
-            owner = Label(values[0]),
+            owner = mock_actions.mock_label(values[0]),
         )
         for (path, values) in ctx.attr.generated_folders.items()
     ]
