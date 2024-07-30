@@ -32,11 +32,23 @@ final class CreateInlineBazelGeneratedConfigGroupElementTests: XCTestCase {
             createIdentifier: createIdentifier.mock
         )
 
+        let expectedContent = #"""
+{
+			isa = PBXGroup;
+			children = (
+			);
+			name = "ios-sim-config123";
+			path = "bazel-out/ios-sim-config123/bin";
+			sourceTree = "<group>";
+		}
+"""#
+
         XCTAssertNoDifference(
             createIdentifier.tracker.called,
             expectedCreateIdentifierCalled
         )
         XCTAssertEqual(result.object.identifier, stubbedIdentifier)
+        XCTAssertNoDifference(result.object.content, expectedContent)
     }
 
 
