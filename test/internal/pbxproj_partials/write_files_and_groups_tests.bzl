@@ -68,16 +68,16 @@ def _write_files_and_groups_test_impl(ctx):
         struct(
             path = path,
             is_source = False,
-            owner = mock_actions.mock_label(values[0]),
+            owner = mock_actions.mock_label(owner),
         )
-        for (path, values) in ctx.attr.generated_files.items()
+        for (path, owner) in ctx.attr.generated_files.items()
     ]
     generated_folders = [
         struct(
             path = path,
-            owner = mock_actions.mock_label(values[0]),
+            owner = mock_actions.mock_label(owner),
         )
-        for (path, values) in ctx.attr.generated_folders.items()
+        for (path, owner) in ctx.attr.generated_folders.items()
     ]
 
     # Act
@@ -197,8 +197,8 @@ write_files_and_groups_test = unittest.make(
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
-        "generated_files": attr.string_list_dict(mandatory = True),
-        "generated_folders": attr.string_list_dict(mandatory = True),
+        "generated_files": attr.string_dict(mandatory = True),
+        "generated_folders": attr.string_dict(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
@@ -359,20 +359,12 @@ def write_files_and_groups_test_suite(name):
             "another/path/to/another/folder",
         ],
         generated_files = {
-            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file": [
-                "//a/path/to/a/generated",  # owner
-            ],
-            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file": [
-                "//another/path/to/another/generated",  # owner
-            ],
+            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file": "//a/path/to/a/generated",
+            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file": "//another/path/to/another/generated",
         },
         generated_folders = {
-            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/folder": [
-                "//a/path/to/a/generated",  # owner
-            ],
-            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/folder": [
-                "//another/path/to/another/generated",  # owner
-            ],
+            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/folder": "//a/path/to/a/generated",
+            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/folder": "//another/path/to/another/generated",
         },
         install_path = "best/vision.xcodeproj",
         project_options = {
