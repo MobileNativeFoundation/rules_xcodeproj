@@ -65,6 +65,7 @@ string_flag(
         extra_files = EXTRA_FILES,
         fail_for_invalid_extra_files_targets = FAIL_FOR_INVALID_EXTRA_FILES_TARGETS,
         generation_mode = generation_mode,
+        include_package_generated_files_group = True,
         ios_simulator_cpus = simulator_cpu,
         pre_build = PRE_BUILD,
         project_name = "Integration",

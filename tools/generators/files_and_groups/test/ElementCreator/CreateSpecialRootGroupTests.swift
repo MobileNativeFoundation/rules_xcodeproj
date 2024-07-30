@@ -188,7 +188,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
         ]
         let createSpecialRootGroupElement =
             ElementCreator.CreateSpecialRootGroupElement
-                .mock(element: stubbedElement)
+                .mock(element: stubbedElement, createIdentifier: ElementCreator.Stubs.createIdentifier)
 
         let expectedResult = GroupChild.ElementAndChildren(
             bazelPath: expectedBazelPath,

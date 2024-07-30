@@ -29,7 +29,8 @@ extension ElementCreator {
         func callAsFunction(
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            specialRootGroupType: SpecialRootGroupType?,
+            createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
         ) -> GroupChild {
             return callable(
                 /*node:*/ node,
@@ -39,7 +40,8 @@ extension ElementCreator {
                 /*createGroup:*/ createGroup,
                 /*createGroupChild:*/ self,
                 /*createLocalizedFiles:*/ createLocalizedFiles,
-                /*createVersionGroup:*/ createVersionGroup
+                /*createVersionGroup:*/ createVersionGroup,
+                /*createSpecialGroupElement:*/ createSpecialGroupElement
             )
         }
     }
@@ -56,7 +58,8 @@ extension ElementCreator.CreateGroupChild {
         _ createGroup: ElementCreator.CreateGroup,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
-        _ createVersionGroup: ElementCreator.CreateVersionGroup
+        _ createVersionGroup: ElementCreator.CreateVersionGroup,
+        _ createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild
 
     static func defaultCallable(
@@ -67,7 +70,8 @@ extension ElementCreator.CreateGroupChild {
         createGroup: ElementCreator.CreateGroup,
         createGroupChild: ElementCreator.CreateGroupChild,
         createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
-        createVersionGroup: ElementCreator.CreateVersionGroup
+        createVersionGroup: ElementCreator.CreateVersionGroup,
+        createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild {
         guard !node.children.isEmpty else {
             // File
@@ -108,7 +112,8 @@ extension ElementCreator.CreateGroupChild {
                     for: node,
                     parentBazelPath: parentBazelPath,
                     specialRootGroupType: specialRootGroupType,
-                    createGroupChild: createGroupChild
+                    createGroupChild: createGroupChild,
+                    createSpecialGroupElement: createSpecialGroupElement
                 )
             )
         }

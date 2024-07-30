@@ -9,6 +9,7 @@ extension ElementCreator {
         private let createGroupChildElements: CreateGroupChildElements
         private let createInternalGroup: CreateInternalGroup
         private let createSpecialRootGroup: CreateSpecialRootGroup
+        private let createSpecialGroupElement: CreateSpecialRootGroupElement
 
         private let callable: Callable
 
@@ -23,6 +24,7 @@ extension ElementCreator {
             createGroupChildElements: CreateGroupChildElements,
             createInternalGroup: CreateInternalGroup,
             createSpecialRootGroup: CreateSpecialRootGroup,
+            createSpecialGroupElement: CreateSpecialRootGroupElement,
             callable: @escaping Callable
         ) {
             self.includeCompileStub = includeCompileStub
@@ -32,6 +34,7 @@ extension ElementCreator {
             self.createGroupChildElements = createGroupChildElements
             self.createInternalGroup = createInternalGroup
             self.createSpecialRootGroup = createSpecialRootGroup
+            self.createSpecialGroupElement = createSpecialGroupElement
 
             self.callable = callable
         }
@@ -47,7 +50,8 @@ extension ElementCreator {
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
                 /*createInternalGroup:*/ createInternalGroup,
-                /*createSpecialRootGroup:*/ createSpecialRootGroup
+                /*createSpecialRootGroup:*/ createSpecialRootGroup,
+                /*createSpecialGroupElement:*/ createSpecialGroupElement
             )
         }
     }
@@ -64,7 +68,8 @@ extension ElementCreator.CreateRootElements {
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
         _ createInternalGroup: ElementCreator.CreateInternalGroup,
-        _ createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
+        _ createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup,
+        _ createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChildElements
 
     static func defaultCallable(
@@ -75,7 +80,8 @@ extension ElementCreator.CreateRootElements {
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
         createInternalGroup: ElementCreator.CreateInternalGroup,
-        createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
+        createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup,
+        createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChildElements {
         let bazelPath = BazelPath("")
 
@@ -117,7 +123,8 @@ extension ElementCreator.CreateRootElements {
                     createGroupChild(
                         for: node,
                         parentBazelPath: bazelPath,
-                        specialRootGroupType: nil
+                        specialRootGroupType: nil,
+                        createSpecialGroupElement: createSpecialGroupElement
                     )
                 )
             }

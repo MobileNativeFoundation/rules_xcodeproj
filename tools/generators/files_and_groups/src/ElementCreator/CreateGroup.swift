@@ -27,7 +27,8 @@ extension ElementCreator {
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
             specialRootGroupType: SpecialRootGroupType?,
-            createGroupChild: CreateGroupChild
+            createGroupChild: CreateGroupChild,
+            createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*node:*/ node,
@@ -35,7 +36,8 @@ extension ElementCreator {
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
-                /*createGroupElement:*/ createGroupElement
+                /*createGroupElement:*/ createGroupElement,
+                /*createSpecialGroupElement:*/ createSpecialGroupElement
             )
         }
     }
@@ -50,7 +52,8 @@ extension ElementCreator.CreateGroup {
         _ specialRootGroupType: SpecialRootGroupType?,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        _ createGroupElement: ElementCreator.CreateGroupElement
+        _ createGroupElement: ElementCreator.CreateGroupElement,
+        _ createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
@@ -59,16 +62,24 @@ extension ElementCreator.CreateGroup {
         specialRootGroupType: SpecialRootGroupType?,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        createGroupElement: ElementCreator.CreateGroupElement
+        createGroupElement: ElementCreator.CreateGroupElement,
+        createSpecialGroupElement: ElementCreator.CreateSpecialRootGroupElement
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = parentBazelPath + node
+        let isBazelGenerated = node.name.hasPrefix("bazel-out")
+        let bazelPath: BazelPath
+        if isBazelGenerated {
+            bazelPath = BazelPath(node.name)
+        } else {
+            bazelPath = parentBazelPath + node
+        }
         let name = node.name
 
         let groupChildren = node.children.map { node in
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,
-                specialRootGroupType: specialRootGroupType
+                specialRootGroupType: specialRootGroupType,
+                createSpecialGroupElement: createSpecialGroupElement
             )
         }
 
@@ -76,16 +87,29 @@ extension ElementCreator.CreateGroup {
             parentBazelPath: bazelPath,
             groupChildren: groupChildren
         )
-
-        let (
-            group,
-            resolvedRepository
-        ) = createGroupElement(
-            name: name,
-            bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType,
-            childIdentifiers: children.elements.map(\.object.identifier)
-        )
+        
+        let group: Element
+        var resolvedRepository: ResolvedRepository? = nil
+        if isBazelGenerated {
+            group = createSpecialGroupElement(
+                specialRootGroupType: .bazelGenerated,
+                childIdentifiers: children.elements.map(\.object.identifier),
+                useRootStableIdentifiers: false,
+                bazelPath: bazelPath
+            )
+        } else {
+            (
+                group,
+                resolvedRepository
+            ) = createGroupElement(
+                name: name,
+                bazelPath: bazelPath,
+                specialRootGroupType: specialRootGroupType,
+                childIdentifiers: children.elements.map(\.object.identifier)
+            )
+        }
+        
+        
 
         return GroupChild.ElementAndChildren(
             bazelPath: bazelPath,

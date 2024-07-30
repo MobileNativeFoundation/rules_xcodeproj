@@ -65,7 +65,8 @@ extension ElementCreator.CreateSpecialRootGroup {
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,
-                specialRootGroupType: specialRootGroupType
+                specialRootGroupType: specialRootGroupType,
+                createSpecialGroupElement: createSpecialRootGroupElement
             )
         }
 
@@ -76,7 +77,9 @@ extension ElementCreator.CreateSpecialRootGroup {
 
         let group = createSpecialRootGroupElement(
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: children.elements.map(\.object.identifier)
+            childIdentifiers: children.elements.map(\.object.identifier),
+            useRootStableIdentifiers: true,
+            bazelPath: bazelPath
         )
 
         return GroupChild.ElementAndChildren(
