@@ -313,6 +313,10 @@ _BUNDLE_XCODE_TARGETS = {
     "private_deps": _XCODE_TARGET_TYPES_COMPILE,
     "transitive_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
+_MIXED_LANGUAGE_XCODE_TARGETS = {
+    "clang_target": _XCODE_TARGET_TYPES_COMPILE,
+    "swift_target": _XCODE_TARGET_TYPES_COMPILE,
+}
 _OBJC_LIBRARY_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     # Issues like https://github.com/bazelbuild/bazel/issues/17646 made some Bazel users
@@ -436,6 +440,9 @@ def calculate_automatic_target_info(
         xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_proto_library":
         xcode_targets = _DEPS_XCODE_TARGETS
+    elif rule_kind == "mixed_language_library":
+        is_supported = False
+        xcode_targets = _MIXED_LANGUAGE_XCODE_TARGETS
     elif (AppleResourceBundleInfo in target and
           rule_kind != "apple_bundle_import"):
         is_supported = False
