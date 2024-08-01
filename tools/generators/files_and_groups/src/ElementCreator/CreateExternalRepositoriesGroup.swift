@@ -1,10 +1,11 @@
 import PBXProj
 
 extension ElementCreator {
-    struct CreateSpecialRootGroup {
+    struct CreateExternalRepositoriesGroup {
+        private let createExternalRepositoriesGroupElement:
+            CreateExternalRepositoriesGroupElement
         private let createGroupChild: CreateGroupChild
         private let createGroupChildElements: CreateGroupChildElements
-        private let createSpecialRootGroupElement: CreateSpecialRootGroupElement
 
         private let callable: Callable
 
@@ -12,60 +13,67 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
+            createExternalRepositoriesGroupElement:
+                CreateExternalRepositoriesGroupElement,
             createGroupChild: CreateGroupChild,
             createGroupChildElements: CreateGroupChildElements,
-            createSpecialRootGroupElement: CreateSpecialRootGroupElement,
             callable: @escaping Callable
         ) {
+            self.createExternalRepositoriesGroupElement =
+                createExternalRepositoriesGroupElement
             self.createGroupChild = createGroupChild
             self.createGroupChildElements = createGroupChildElements
-            self.createSpecialRootGroupElement = createSpecialRootGroupElement
 
             self.callable = callable
         }
 
         func callAsFunction(
-            for node: PathTreeNode,
-            specialRootGroupType: SpecialRootGroupType
+            name: String,
+            nodeChildren: [PathTreeNode],
+            bazelPathType: BazelPathType
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*node:*/ node,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*name:*/ name,
+                /*nodeChildren:*/ nodeChildren,
+                /*bazelPathType:*/ bazelPathType,
+                /*createExternalRepositoriesGroupElement:*/
+                    createExternalRepositoriesGroupElement,
                 /*createGroupChild:*/ createGroupChild,
-                /*createGroupChildElements:*/ createGroupChildElements,
-                /*createSpecialRootGroupElement:*/ createSpecialRootGroupElement
+                /*createGroupChildElements:*/ createGroupChildElements
             )
         }
     }
 }
 
-// MARK: - CreateSpecialRootGroup.Callable
+// MARK: - CreateExternalRepositoriesGroup.Callable
 
-extension ElementCreator.CreateSpecialRootGroup {
+extension ElementCreator.CreateExternalRepositoriesGroup {
     typealias Callable = (
-        _ node: PathTreeNode,
-        _ specialRootGroupType: SpecialRootGroupType,
+        _ name: String,
+        _ nodeChildren: [PathTreeNode],
+        _ bazelPathType: BazelPathType,
+        _ createExternalRepositoriesGroupElement:
+            ElementCreator.CreateExternalRepositoriesGroupElement,
         _ createGroupChild: ElementCreator.CreateGroupChild,
-        _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        _ createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement
+        _ createGroupChildElements: ElementCreator.CreateGroupChildElements
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        for node: PathTreeNode,
-        specialRootGroupType: SpecialRootGroupType,
+        name: String,
+        nodeChildren: [PathTreeNode],
+        bazelPathType: BazelPathType,
+        createExternalRepositoriesGroupElement:
+            ElementCreator.CreateExternalRepositoriesGroupElement,
         createGroupChild: ElementCreator.CreateGroupChild,
-        createGroupChildElements: ElementCreator.CreateGroupChildElements,
-        createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement
+        createGroupChildElements: ElementCreator.CreateGroupChildElements
     ) -> GroupChild.ElementAndChildren {
-        let bazelPath = BazelPath(node.name)
+        let bazelPath = BazelPath(name)
 
-        let groupChildren = node.children.map { node in
+        let groupChildren = nodeChildren.map { node in
             return createGroupChild(
                 for: node,
                 parentBazelPath: bazelPath,
-                specialRootGroupType: specialRootGroupType
+                parentBazelPathType: bazelPathType
             )
         }
 
@@ -74,8 +82,7 @@ extension ElementCreator.CreateSpecialRootGroup {
             groupChildren: groupChildren
         )
 
-        let group = createSpecialRootGroupElement(
-            specialRootGroupType: specialRootGroupType,
+        let group = createExternalRepositoriesGroupElement(
             childIdentifiers: children.elements.map(\.object.identifier)
         )
 

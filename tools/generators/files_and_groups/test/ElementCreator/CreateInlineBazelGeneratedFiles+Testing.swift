@@ -2,15 +2,12 @@ import PBXProj
 
 @testable import files_and_groups
 
-// MARK: - ElementCreator.CreateGroup.mock
+// MARK: - ElementCreator.CreateInlineBazelGeneratedFiles.mock
 
-extension ElementCreator.CreateGroup {
+extension ElementCreator.CreateInlineBazelGeneratedFiles {
     final class MockTracker {
         struct Called: Equatable {
-            let name: String
-            let nodeChildren: [PathTreeNode]
-            let parentBazelPath: BazelPath
-            let parentBazelPathType: BazelPathType
+            let generatedFiles: PathTreeNode.GeneratedFiles
         }
 
         fileprivate(set) var called: [Called] = []
@@ -24,21 +21,19 @@ extension ElementCreator.CreateGroup {
         let mocked = Self(
             createGroupChildElements:
                 ElementCreator.Stubs.createGroupChildElements,
-            createGroupElement: ElementCreator.Stubs.createGroupElement,
+            createInlineBazelGeneratedConfigGroup:
+                ElementCreator.Stubs.createInlineBazelGeneratedConfigGroup,
+            createInlineBazelGeneratedFilesElement:
+                ElementCreator.Stubs.createInlineBazelGeneratedFilesElement,
             callable: {
-                name,
-                nodeChildren,
-                parentBazelPath,
-                parentBazelPathType,
+                generatedFiles,
                 createGroupChild,
                 createGroupChildElements,
-                createGroupElement
+                createInlineBazelGeneratedConfigGroup,
+                createInlineBazelGeneratedFilesElement
             in
                 mockTracker.called.append(.init(
-                    name: name,
-                    nodeChildren: nodeChildren,
-                    parentBazelPath: parentBazelPath,
-                    parentBazelPathType: parentBazelPathType
+                    generatedFiles: generatedFiles
                 ))
                 return groupChildElement
             }
@@ -48,9 +43,9 @@ extension ElementCreator.CreateGroup {
     }
 }
 
-// MARK: - ElementCreator.CreateGroup.stub
+// MARK: - ElementCreator.CreateInlineBazelGeneratedFiles.stub
 
-extension ElementCreator.CreateGroup {
+extension ElementCreator.CreateInlineBazelGeneratedFiles {
     static func stub(groupChildElement: GroupChild.ElementAndChildren) -> Self {
         let (stub, _) = mock(groupChildElement: groupChildElement)
         return stub

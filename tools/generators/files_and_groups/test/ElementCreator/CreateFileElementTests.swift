@@ -45,7 +45,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes.mock,
             createIdentifier: createIdentifier.mock
         )
@@ -74,7 +74,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -100,7 +100,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -126,7 +126,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -163,7 +163,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -198,7 +198,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -231,7 +231,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -264,7 +264,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -297,7 +297,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -332,7 +332,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -365,7 +365,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -398,7 +398,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -431,7 +431,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -464,7 +464,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -499,7 +499,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: nil,
+            bazelPathType: .workspace,
             createAttributes: createAttributes,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )
@@ -518,7 +518,7 @@ final class CreateFileElementTests: XCTestCase {
         let name = "node_name"
         let ext: String? = nil
         let bazelPath = BazelPath("a/bazel/path/node_name")
-        let specialRootGroupType = SpecialRootGroupType.bazelGenerated
+        let bazelPathType = BazelPathType.bazelGenerated
 
         let expectedCreateAttributesCalled: [
             ElementCreator.CreateAttributes.MockTracker.Called
@@ -526,8 +526,8 @@ final class CreateFileElementTests: XCTestCase {
             .init(
                 name: name,
                 bazelPath: bazelPath,
-                isGroup: false,
-                specialRootGroupType: specialRootGroupType
+                bazelPathType: bazelPathType,
+                isGroup: false
             )
         ]
         let stubbedResolvedRepository = ResolvedRepository(
@@ -546,7 +546,7 @@ final class CreateFileElementTests: XCTestCase {
             name: name,
             ext: ext,
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             createAttributes: createAttributes.mock,
             createIdentifier: ElementCreator.Stubs.createIdentifier
         )

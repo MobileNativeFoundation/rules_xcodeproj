@@ -11,13 +11,15 @@ final class CalculatePathTreeTests: XCTestCase {
     func test_empty() {
         // Arrange
 
-        let paths: Set<BazelPath> = []
+        let paths: [BazelPath] = []
+        let generatedPaths: [GeneratedPath] = []
 
-        let expectedPathTree = PathTreeNode(name: "")
+        let expectedPathTree: [PathTreeNode] = []
 
         // Act
 
-        let pathTree = Generator.calculatePathTree(paths: paths)
+        let pathTree = Generator
+            .calculatePathTree(paths: paths, generatedPaths: generatedPaths)
 
         // Assert
 
@@ -29,92 +31,126 @@ final class CalculatePathTreeTests: XCTestCase {
     func test_sort_children() {
         // Arrange
 
-        let paths: Set<BazelPath> = [
+        let paths: [BazelPath] = [
             "c/z/1",
             "c/d/6",
             "b/3",
             "a/2",
             "0",
-            "a/1",
+            .init("a/1", isFolder: false),
+            .init("a/1", isFolder: true),
             "b/0",
             "d",
             "c/d/2",
         ]
-
-        let expectedPathTree = PathTreeNode(
-            name: "",
-            children: [
-                .init(name: "0"),
-                .init(
-                    name: "a",
-                    children: [
-                        .init(name: "1"),
-                        .init(name: "2"),
-                    ]
-                ),
-                .init(
-                    name: "b",
-                    children: [
-                        .init(name: "0"),
-                        .init(name: "3"),
-                    ]
-                ),
-                .init(
-                    name: "c",
-                    children: [
-                        .init(
-                            name: "d",
-                            children: [
-                                .init(name: "2"),
-                                .init(name: "6"),
-                            ]
-                        ),
-                        .init(
-                            name: "z",
-                            children: [
-                                .init(name: "1"),
-                            ]
-                        ),
-                    ]
-                ),
-                .init(name: "d"),
-            ]
-        )
-
-        // Act
-
-        let pathTree = Generator.calculatePathTree(paths: paths)
-
-        // Assert
-
-        XCTAssertNoDifference(pathTree, expectedPathTree)
-    }
-
-    func test_sort_folderBeforeFile() {
-        // Arrange
-
-        let paths: Set<BazelPath> = [
-            .init("file_or_folder", isFolder: false),
-            .init("file_or_folder", isFolder: true),
+        let generatedPaths: [GeneratedPath] = [
+            .init(config: "config2", package: "c/d", path: "a/gen/path"),
+            .init(config: "config1", package: "c/d", path: "a/gen/path"),
+            .init(
+                config: "config3",
+                package: "",
+                path: .init("gen/folder", isFolder: true)
+            ),
+            .init(config: "config4", package: "c", path: "gen"),
         ]
-        
-        let expectedPathTree = PathTreeNode(
-            name: "",
-            children: [
-                .init(
-                    name: "file_or_folder",
-                    isFolder: true
-                ),
-                .init(
-                    name: "file_or_folder",
-                    isFolder: false
-                ),
-            ]
-        )
+
+        let expectedPathTree: [PathTreeNode] = [
+            .generatedFiles(.singleConfig(
+                path: "config3/bin",
+                children: [
+                    .group(
+                        name: "gen",
+                        children: [
+                            .file(name: "folder", isFolder: true)
+                        ]
+                    ),
+                ]
+            )),
+            .file(name: "0"),
+            .group(
+                name: "a",
+                children: [
+                    .file(name: "1", isFolder: true),
+                    .file(name: "1", isFolder: false),
+                    .file(name: "2"),
+                ]
+            ),
+            .group(
+                name: "b",
+                children: [
+                    .file(name: "0"),
+                    .file(name: "3"),
+                ]
+            ),
+            .group(
+                name: "c",
+                children: [
+                    .generatedFiles(.singleConfig(
+                        path: "config4/bin/c",
+                        children: [
+                            .file(name: "gen"),
+                        ]
+                    )),
+                    .group(
+                        name: "d",
+                        children: [
+                            .generatedFiles(.multipleConfigs([
+                                .init(
+                                    name: "config1",
+                                    path: "config1/bin/c/d",
+                                    children: [
+                                        .group(
+                                            name: "a",
+                                            children: [
+                                                .group(
+                                                    name: "gen",
+                                                    children: [
+                                                        .file(name: "path"),
+                                                    ]
+                                                ),
+                                            ]
+                                        ),
+                                    ]
+                                ),
+                                .init(
+                                    name: "config2",
+                                    path: "config2/bin/c/d",
+                                    children: [
+                                        .group(
+                                            name: "a",
+                                            children: [
+                                                .group(
+                                                    name: "gen",
+                                                    children: [
+                                                        .file(name: "path"),
+                                                    ]
+                                                ),
+                                            ]
+                                        ),
+                                    ]
+                                ),
+                            ])),
+                            .file(name: "2"),
+                            .file(name: "6"),
+                        ]
+                    ),
+                    .group(
+                        name: "z",
+                        children: [
+                            .file(name: "1"),
+                        ]
+                    ),
+                ]
+            ),
+            .file(name: "d"),
+        ]
 
         // Act
 
-        let pathTree = Generator.calculatePathTree(paths: paths)
+        let pathTree = Generator.calculatePathTree(
+            paths: paths,
+            generatedPaths: generatedPaths
+        )
 
         // Assert
 
@@ -122,9 +158,8 @@ final class CalculatePathTreeTests: XCTestCase {
     }
 }
 
-extension PathTreeNode: Equatable {
-    public static func == (lhs: PathTreeNode, rhs: PathTreeNode) -> Bool {
-        return (lhs.name, lhs.isFolder, lhs.children) ==
-            (rhs.name, rhs.isFolder, rhs.children)
+extension PathTreeNode {
+    static func file(name: String) -> PathTreeNode {
+        return .file(name: name, isFolder: false)
     }
 }

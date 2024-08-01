@@ -2,17 +2,14 @@ import PBXProj
 
 @testable import files_and_groups
 
-// MARK: - ElementCreator.CreateFile.mock
+// MARK: - ElementCreator.CreateExternalRepositoriesGroup.mock
 
-extension ElementCreator.CreateFile {
+extension ElementCreator.CreateExternalRepositoriesGroup {
     final class MockTracker {
         struct Called: Equatable {
             let name: String
-            let isFolder: Bool
-            let bazelPath: BazelPath
+            let nodeChildren: [PathTreeNode]
             let bazelPathType: BazelPathType
-            let transitiveBazelPaths: [BazelPath]
-            let identifierForBazelPaths: String?
         }
 
         fileprivate(set) var called: [Called] = []
@@ -32,28 +29,28 @@ extension ElementCreator.CreateFile {
     }
 
     static func mock(
-        groupChildElement: [GroupChild.ElementAndChildren]
+        groupChildElements: [GroupChild.ElementAndChildren]
     ) -> (mock: Self, tracker: MockTracker) {
-        let mockTracker = MockTracker(results: groupChildElement)
+        let mockTracker = MockTracker(results: groupChildElements)
 
         let mocked = Self(
-            createFileElement: ElementCreator.Stubs.createFileElement,
+            createExternalRepositoriesGroupElement:
+                ElementCreator.Stubs.createExternalRepositoriesGroupElement,
+            createGroupChild: ElementCreator.Stubs.createGroupChild,
+            createGroupChildElements:
+                ElementCreator.Stubs.createGroupChildElements,
             callable: {
                 name,
-                isFolder,
-                bazelPath,
+                nodeChildren,
                 bazelPathType,
-                transitiveBazelPaths,
-                identifierForBazelPaths,
-                createFileElement
+                createExternalRepositoriesGroupElement,
+                createGroupChild,
+                createGroupChildElements
             in
                 mockTracker.called.append(.init(
                     name: name,
-                    isFolder: isFolder,
-                    bazelPath: bazelPath,
-                    bazelPathType: bazelPathType,
-                    transitiveBazelPaths: transitiveBazelPaths,
-                    identifierForBazelPaths: identifierForBazelPaths
+                    nodeChildren: nodeChildren,
+                    bazelPathType: bazelPathType
                 ))
                 return mockTracker.nextResult()
             }
@@ -63,13 +60,13 @@ extension ElementCreator.CreateFile {
     }
 }
 
-// MARK: - ElementCreator.CreateElement.stub
+// MARK: - ElementCreator.CreateExternalRepositoriesGroup.stub
 
-extension ElementCreator.CreateFile {
+extension ElementCreator.CreateExternalRepositoriesGroup {
     static func stub(
-        groupChildElement: [GroupChild.ElementAndChildren]
+        groupChildElements: [GroupChild.ElementAndChildren]
     ) -> Self {
-        let (stub, _) = mock(groupChildElement: groupChildElement)
+        let (stub, _) = mock(groupChildElements: groupChildElements)
         return stub
     }
 }

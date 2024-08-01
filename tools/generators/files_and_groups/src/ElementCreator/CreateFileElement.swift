@@ -26,7 +26,7 @@ extension ElementCreator {
             name: String,
             ext: String?,
             bazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            bazelPathType: BazelPathType
         ) -> (
             element: Element,
             resolvedRepository: ResolvedRepository?
@@ -35,7 +35,7 @@ extension ElementCreator {
                 /*name:*/ name,
                 /*ext:*/ ext,
                 /*bazelPath:*/ bazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*bazelPathType:*/ bazelPathType,
                 /*createAttributes:*/ createAttributes,
                 /*createIdentifier:*/ createIdentifier
             )
@@ -64,7 +64,7 @@ extension ElementCreator.CreateFileElement {
         _ name: String,
         _ ext: String?,
         _ bazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ bazelPathType: BazelPathType,
         _ createAttributes: ElementCreator.CreateAttributes,
         _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> (
@@ -76,7 +76,7 @@ extension ElementCreator.CreateFileElement {
         name: String,
         ext: String?,
         bazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        bazelPathType: BazelPathType,
         createAttributes: ElementCreator.CreateAttributes,
         createIdentifier: ElementCreator.CreateIdentifier
     ) -> (
@@ -98,8 +98,8 @@ extension ElementCreator.CreateFileElement {
         let attributes = createAttributes(
             name: name,
             bazelPath: bazelPath,
-            isGroup: false,
-            specialRootGroupType: specialRootGroupType
+            bazelPathType: bazelPathType,
+            isGroup: false
         )
 
         let nameAttribute: String

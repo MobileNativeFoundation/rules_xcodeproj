@@ -55,16 +55,15 @@ extension ElementCreator {
         ///   - bazelPath: The `BazelPath` for the node.
         ///   - isGroup: `true` if this a group element (e.g. `PBXGroup`,
         ///     `XCVersionGroup`, etc.).
-        ///   - specialRootGroupType: The `SpecialRootGroupType` this element is
-        ///     under. For example, if this element is for a Bazel generated
-        ///     file, `specialRootGroupType` will be `.bazelGenerated`. If this
-        ///     element is for a file in the workspace, `specialRootGroupType`
-        ///     will be `nil`.
+        ///   - bazelPathType: The type of path that `BazelPath` represents.
+        ///     For example, if this element is for a Bazel generated file,
+        ///    `bazelPathType` will be `.bazelGenerated`. If this element is for
+        ///     a file in the workspace, `bazelPathType` will be `.workspace`.
         func callAsFunction(
             name: String,
             bazelPath: BazelPath,
-            isGroup: Bool,
-            specialRootGroupType: SpecialRootGroupType?
+            bazelPathType: BazelPathType,
+            isGroup: Bool
         ) -> (
             elementAttributes: ElementAttributes,
             resolvedRepository: ResolvedRepository?
@@ -72,8 +71,8 @@ extension ElementCreator {
             return callable(
                 /*name:*/ name,
                 /*bazelPath:*/ bazelPath,
+                /*bazelPathType:*/ bazelPathType,
                 /*isGroup:*/ isGroup,
-                /*specialRootGroupType:*/ specialRootGroupType,
                 /*executionRoot:*/ executionRoot,
                 /*externalDir:*/ externalDir,
                 /*workspace:*/ workspace,
@@ -89,8 +88,8 @@ extension ElementCreator.CreateAttributes {
     typealias Callable = (
         _ name: String,
         _ bazelPath: BazelPath,
+        _ bazelPathType: BazelPathType,
         _ isGroup: Bool,
-        _ specialRootGroupType: SpecialRootGroupType?,
         _ executionRoot: String,
         _ externalDir: String,
         _ workspace: String,
@@ -103,8 +102,8 @@ extension ElementCreator.CreateAttributes {
     static func defaultCallable(
         name: String,
         bazelPath: BazelPath,
+        bazelPathType: BazelPathType,
         isGroup: Bool,
-        specialRootGroupType: SpecialRootGroupType?,
         executionRoot: String,
         externalDir: String,
         workspace: String,
@@ -116,27 +115,27 @@ extension ElementCreator.CreateAttributes {
         let relativePath: String.SubSequence
         var absolutePath: String
         let resolvedRepositoryPrefix: String?
-        switch specialRootGroupType {
-        case .legacyBazelExternal?:
+        switch bazelPathType {
+        case .workspace:
+            relativePath = String.SubSequence(bazelPath.path)
+            absolutePath = "\(workspace)/\(relativePath)"
+            resolvedRepositoryPrefix = nil
+
+        case .legacyBazelExternal:
             // Drop "external/"
             relativePath = bazelPath.path.dropFirst(9)
             absolutePath = "\(externalDir)/\(relativePath)"
             resolvedRepositoryPrefix = isGroup ? "./external/" : nil
 
-        case .siblingBazelExternal?:
+        case .siblingBazelExternal:
             // Drop "../"
             relativePath = bazelPath.path.dropFirst(3)
             absolutePath = "\(externalDir)/\(relativePath)"
             resolvedRepositoryPrefix = isGroup ? "../" : nil
 
-        case .bazelGenerated?:
+        case .bazelGenerated:
             relativePath = String.SubSequence(bazelPath.path)
             absolutePath = "\(executionRoot)/\(relativePath)"
-            resolvedRepositoryPrefix = nil
-
-        case nil:
-            relativePath = String.SubSequence(bazelPath.path)
-            absolutePath = "\(workspace)/\(relativePath)"
             resolvedRepositoryPrefix = nil
         }
 
@@ -170,4 +169,11 @@ extension ElementCreator.CreateAttributes {
             resolvedRepository: resolvedRepository
         )
     }
+}
+
+enum BazelPathType {
+    case bazelGenerated
+    case legacyBazelExternal
+    case siblingBazelExternal
+    case workspace
 }

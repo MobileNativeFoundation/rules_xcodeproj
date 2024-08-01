@@ -2,7 +2,6 @@ import PBXProj
 
 extension ElementCreator {
     struct CreateFile {
-        private let collectBazelPaths: CollectBazelPaths
         private let createFileElement: CreateFileElement
 
         private let callable: Callable
@@ -11,28 +10,29 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            collectBazelPaths: CollectBazelPaths,
             createFileElement: CreateFileElement,
             callable: @escaping Callable
         ) {
-            self.collectBazelPaths = collectBazelPaths
             self.createFileElement = createFileElement
 
             self.callable = callable
         }
 
         func callAsFunction(
-            for node: PathTreeNode,
+            name: String,
+            isFolder: Bool,
             bazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?,
+            bazelPathType: BazelPathType,
+            transitiveBazelPaths: [BazelPath],
             identifierForBazelPaths: String? = nil
         ) -> GroupChild.ElementAndChildren {
             return callable(
-                /*node:*/ node,
+                /*name:*/ name,
+                /*isFolder:*/ isFolder,
                 /*bazelPath:*/ bazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*bazelPathType:*/ bazelPathType,
+                /*transitiveBazelPaths:*/ transitiveBazelPaths,
                 /*identifierForBazelPaths:*/ identifierForBazelPaths,
-                /*collectBazelPaths:*/ collectBazelPaths,
                 /*createFileElement:*/ createFileElement
             )
         }
@@ -43,56 +43,54 @@ extension ElementCreator {
 
 extension ElementCreator.CreateFile {
     typealias Callable = (
-        _ node: PathTreeNode,
-        _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ name: String,
+        _ isFolder: Bool,
+        _ bazelPath: BazelPath,
+        _ bazelPathType: BazelPathType,
+        _ transitiveBazelPaths: [BazelPath],
         _ identifierForBazelPaths: String?,
-        _ collectBazelPaths: ElementCreator.CollectBazelPaths,
         _ createFileElement: ElementCreator.CreateFileElement
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
-        for node: PathTreeNode,
+        name: String,
+        isFolder: Bool,
         bazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        bazelPathType: BazelPathType,
+        transitiveBazelPaths: [BazelPath],
         identifierForBazelPaths: String?,
-        collectBazelPaths: ElementCreator.CollectBazelPaths,
         createFileElement: ElementCreator.CreateFileElement
     ) -> GroupChild.ElementAndChildren {
         let (
             element,
             resolvedRepository
         ) = createFileElement(
-            name: node.name,
-            ext: node.extension(),
+            name: name,
+            ext: name.extension(),
             bazelPath: bazelPath,
-            specialRootGroupType: specialRootGroupType
+            bazelPathType: bazelPathType
         )
 
-        let bazelPaths = collectBazelPaths(
-            node: node,
-            bazelPath: bazelPath
-        )
-
+        let bazelPaths = transitiveBazelPaths + [bazelPath]
         let identifierForBazelPaths =
             identifierForBazelPaths ?? element.object.identifier
 
         return GroupChild.ElementAndChildren(
             element: element,
             transitiveObjects: [element.object],
-            bazelPathAndIdentifiers:
-                bazelPaths.map { ($0, identifierForBazelPaths) },
+            bazelPathAndIdentifiers: bazelPaths
+                .map { ($0, identifierForBazelPaths) },
             knownRegions: [],
             resolvedRepositories: resolvedRepository.map { [$0] } ?? []
         )
     }
 }
 
-private extension PathTreeNode {
+private extension String {
     func `extension`() -> String? {
-        guard let extIndex = name.lastIndex(of: ".") else {
+        guard let extIndex = lastIndex(of: ".") else {
             return nil
         }
-        return String(name[name.index(after: extIndex)..<name.endIndex])
+        return String(self[index(after: extIndex)..<endIndex])
     }
 }

@@ -49,6 +49,24 @@ execution root.
         )
         var folderPathsFile: URL
 
+        @Argument(
+            help: """
+Path to a file that contains generated file paths, split into three components
+(path, package, and config).
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var generatedFilePathsFile: URL
+
+        @Argument(
+            help: """
+Path to a file that contains generated folder paths, split into three components
+(path, package, and config).
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var generatedFolderPathsFile: URL
+
         @Argument(help: "Development region for the project.")
         var developmentRegion: String
 

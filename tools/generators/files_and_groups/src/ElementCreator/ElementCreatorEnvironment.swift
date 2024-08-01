@@ -14,8 +14,13 @@ extension ElementCreator {
         /// Passed to the `callable` parameter of `CreateAttributes.init()`.
         let createAttributesCallable: CreateAttributes.Callable
 
-        /// Passed to the `callable` parameter of `CreateGroupChild.init()`.
-        let createGroupChildCallable: CreateGroupChild.Callable
+        /// Passed to the `callable` parameter of
+        /// `CreateExternalRepositoriesGroup.init()`.
+        let createExternalRepositoriesGroupCallable:
+            CreateExternalRepositoriesGroup.Callable
+
+        let createExternalRepositoriesGroupElement:
+            CreateExternalRepositoriesGroupElement
 
         /// Passed to the `callable` parameter of `CreateFile.init()`.
         let createFileCallable: CreateFile.Callable
@@ -26,6 +31,9 @@ extension ElementCreator {
         /// Passed to the `callable` parameter of `CreateGroup.init()`.
         let createGroupCallable: CreateGroup.Callable
 
+        /// Passed to the `callable` parameter of `CreateGroupChild.init()`.
+        let createGroupChildCallable: CreateGroupChild.Callable
+
         /// Passed to the `callable` parameter of `CreateGroup.init()`.
         let createGroupElementCallable: CreateGroupElement.Callable
 
@@ -34,6 +42,15 @@ extension ElementCreator {
         let createGroupChildElementsCallable: CreateGroupChildElements.Callable
 
         let createIdentifier: CreateIdentifier
+
+        let createInlineBazelGeneratedConfigGroupCallable:
+            CreateInlineBazelGeneratedConfigGroup.Callable
+
+        let createInlineBazelGeneratedConfigGroupElementCallable:
+            CreateInlineBazelGeneratedConfigGroupElement.Callable
+
+        let createInlineBazelGeneratedFilesCallable:
+            CreateInlineBazelGeneratedFiles.Callable
 
         let createInternalGroupCallable: CreateInternalGroup.Callable
 
@@ -49,12 +66,6 @@ extension ElementCreator {
 
         /// Passed to the `callable` parameter of `CreateRootElements.init()`.
         let createRootElementsCallable: CreateRootElements.Callable
-
-        /// Passed to the `callable` parameter of
-        /// `CreateSpecialRootGroup.init()`.
-        let createSpecialRootGroupCallable: CreateSpecialRootGroup.Callable
-
-        let createSpecialRootGroupElement: CreateSpecialRootGroupElement
 
         /// Passed to the `callable` parameter of `CreateVariantGroup.init()`.
         let createVariantGroupCallable: CreateVariantGroup.Callable
@@ -105,7 +116,6 @@ extension ElementCreator.Environment {
             callable: createFileElementCallable
         )
         let createFile = ElementCreator.CreateFile(
-            collectBazelPaths: collectBazelPaths,
             createFileElement: createFileElement,
             callable: createFileCallable
         )
@@ -158,13 +168,41 @@ extension ElementCreator.Environment {
             createFile: createFile,
             createIdentifier: createIdentifier,
             createVersionGroupElement: createVersionGroupElement,
+            collectBazelPaths: collectBazelPaths,
             selectedModelVersions: selectedModelVersions,
             callable: createVersionGroupCallable
+        )
+
+        let createInlineBazelGeneratedConfigGroupElement =
+        ElementCreator.CreateInlineBazelGeneratedConfigGroupElement(
+            createIdentifier: createIdentifier,
+            callable: createInlineBazelGeneratedConfigGroupElementCallable
+        )
+        let createInlineBazelGeneratedConfigGroup =
+        ElementCreator.CreateInlineBazelGeneratedConfigGroup(
+            createGroupChildElements: createGroupChildElements,
+            createInlineBazelGeneratedConfigGroupElement:
+                createInlineBazelGeneratedConfigGroupElement,
+            callable: createInlineBazelGeneratedConfigGroupCallable
+        )
+        let createInlineBazelGeneratedFilesElement =
+        ElementCreator.CreateInlineBazelGeneratedFilesElement(
+            createIdentifier: createIdentifier
+        )
+        let createInlineBazelGeneratedFiles =
+        ElementCreator.CreateInlineBazelGeneratedFiles(
+            createGroupChildElements: createGroupChildElements,
+            createInlineBazelGeneratedConfigGroup:
+                createInlineBazelGeneratedConfigGroup,
+            createInlineBazelGeneratedFilesElement:
+                createInlineBazelGeneratedFilesElement,
+            callable: createInlineBazelGeneratedFilesCallable
         )
 
         let createGroupChild = ElementCreator.CreateGroupChild(
             createFile: createFile,
             createGroup: createGroup,
+            createInlineBazelGeneratedFiles: createInlineBazelGeneratedFiles,
             createLocalizedFiles: createLocalizedFiles,
             createVersionGroup: createVersionGroup,
             callable: createGroupChildCallable
@@ -174,21 +212,23 @@ extension ElementCreator.Environment {
             callable: createInternalGroupCallable
         )
 
-        let createSpecialRootGroup = ElementCreator.CreateSpecialRootGroup(
-            createGroupChild: createGroupChild,
-            createGroupChildElements: createGroupChildElements,
-            createSpecialRootGroupElement: createSpecialRootGroupElement,
-            callable: createSpecialRootGroupCallable
-        )
+        let createExternalRepositoriesGroup =
+            ElementCreator.CreateExternalRepositoriesGroup(
+                createExternalRepositoriesGroupElement:
+                    createExternalRepositoriesGroupElement,
+                createGroupChild: createGroupChild,
+                createGroupChildElements: createGroupChildElements,
+                callable: createExternalRepositoriesGroupCallable
+            )
 
         return ElementCreator.CreateRootElements(
             includeCompileStub: includeCompileStub,
             installPath: installPath,
             workspace: workspace,
+            createExternalRepositoriesGroup: createExternalRepositoriesGroup,
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
             createInternalGroup: createInternalGroup,
-            createSpecialRootGroup: createSpecialRootGroup,
             callable: createRootElementsCallable
         )
     }
@@ -200,17 +240,29 @@ extension ElementCreator.Environment {
         collectBazelPaths: ElementCreator.CollectBazelPaths(),
         createAttributesCallable:
             ElementCreator.CreateAttributes.defaultCallable,
-        createGroupChildCallable:
-            ElementCreator.CreateGroupChild.defaultCallable,
+        createExternalRepositoriesGroupCallable:
+            ElementCreator.CreateExternalRepositoriesGroup.defaultCallable,
+        createExternalRepositoriesGroupElement:
+            ElementCreator.CreateExternalRepositoriesGroupElement(),
         createFileCallable: ElementCreator.CreateFile.defaultCallable,
         createFileElementCallable:
             ElementCreator.CreateFileElement.defaultCallable,
         createGroupCallable: ElementCreator.CreateGroup.defaultCallable,
+        createGroupChildCallable:
+            ElementCreator.CreateGroupChild.defaultCallable,
         createGroupElementCallable:
             ElementCreator.CreateGroupElement.defaultCallable,
         createGroupChildElementsCallable:
             ElementCreator.CreateGroupChildElements.defaultCallable,
         createIdentifier: ElementCreator.CreateIdentifier(),
+        createInlineBazelGeneratedConfigGroupCallable:
+            ElementCreator.CreateInlineBazelGeneratedConfigGroup
+                .defaultCallable,
+        createInlineBazelGeneratedConfigGroupElementCallable:
+            ElementCreator.CreateInlineBazelGeneratedConfigGroupElement
+                .defaultCallable,
+        createInlineBazelGeneratedFilesCallable:
+            ElementCreator.CreateInlineBazelGeneratedFiles.defaultCallable,
         createInternalGroupCallable:
             ElementCreator.CreateInternalGroup.defaultCallable,
         createLocalizedFileElementCallable:
@@ -220,10 +272,6 @@ extension ElementCreator.Environment {
         createMainGroupContent: ElementCreator.CreateMainGroupContent(),
         createRootElementsCallable:
             ElementCreator.CreateRootElements.defaultCallable,
-        createSpecialRootGroupCallable:
-            ElementCreator.CreateSpecialRootGroup.defaultCallable,
-        createSpecialRootGroupElement:
-            ElementCreator.CreateSpecialRootGroupElement(),
         createVariantGroupCallable:
             ElementCreator.CreateVariantGroup.defaultCallable,
         createVariantGroupElementCallable:

@@ -116,7 +116,7 @@ extension ElementCreator {
             ),
             resolvedRepository: nil
         )
-        
+
         static let createIdentifier = CreateIdentifier.stub(
             identifier: "Identifier"
         )
@@ -154,9 +154,41 @@ extension ElementCreator {
             ]
         )
 
-        static let createSpecialRootGroup = CreateSpecialRootGroup.stub(
-            groupChildElements: [
-                GroupChild.ElementAndChildren(
+        static let createExternalRepositoriesGroup =
+            CreateExternalRepositoriesGroup.stub(
+                groupChildElements: [
+                    GroupChild.ElementAndChildren(
+                        element: Element(
+                            name: "Name",
+                            object: .init(
+                                identifier: "Identifier",
+                                content: "Content"
+                            ),
+                            sortOrder: .groupLike
+                        ),
+                        transitiveObjects: [],
+                        bazelPathAndIdentifiers: [],
+                        knownRegions: [],
+                        resolvedRepositories: []
+                    ),
+                ]
+            )
+
+        static let createExternalRepositoriesGroupElement =
+            CreateExternalRepositoriesGroupElement.stub(
+                element: Element(
+                    name: "Name",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
+                    sortOrder: .fileLike
+                )
+            )
+
+        static let createInlineBazelGeneratedConfigGroup =
+            CreateInlineBazelGeneratedConfigGroup.stub(
+                groupChildElements: [GroupChild.ElementAndChildren(
                     element: Element(
                         name: "Name",
                         object: .init(
@@ -169,19 +201,48 @@ extension ElementCreator {
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
-                ),
-            ]
-        )
+                )]
+            )
 
-        static let createSpecialRootGroupElement = CreateSpecialRootGroupElement
-            .stub(
+        static let createInlineBazelGeneratedConfigGroupElement =
+            CreateInlineBazelGeneratedConfigGroupElement.stub(
                 element: Element(
                     name: "Name",
                     object: .init(
                         identifier: "Identifier",
                         content: "Content"
                     ),
-                    sortOrder: .fileLike
+                    sortOrder: .groupLike
+                )
+            )
+
+        static let createInlineBazelGeneratedFiles =
+            CreateInlineBazelGeneratedFiles.stub(
+                groupChildElement: GroupChild.ElementAndChildren(
+                    element: Element(
+                        name: "Name",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
+                        sortOrder: .inlineBazelGenerated
+                    ),
+                    transitiveObjects: [],
+                    bazelPathAndIdentifiers: [],
+                    knownRegions: [],
+                    resolvedRepositories: []
+                )
+            )
+
+        static let createInlineBazelGeneratedFilesElement =
+            CreateInlineBazelGeneratedFilesElement.stub(
+                element: Element(
+                    name: "Name",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
+                    sortOrder: .inlineBazelGenerated
                 )
             )
 

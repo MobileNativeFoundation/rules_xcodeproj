@@ -8,25 +8,30 @@ final class CreateLocalizedFilesTests: XCTestCase {
     func test() {
         // Arrange
 
-        let node = PathTreeNode(
-            name: "en.lproj",
-            children: [
-                PathTreeNode(name: "z"),
-                PathTreeNode(
-                    name: "q.ext",
-                    children: [PathTreeNode(name: "other")]
-                ),
-            ]
-        )
+        let name = "en.lproj"
+        let nodeChildren: [PathTreeNode] = [
+            .file(name: "z"),
+            .group(
+                name: "q.ext",
+                children: [.file(name: "other")]
+            ),
+        ]
         let parentBazelPath: BazelPath = "p"
-        let specialRootGroupType = SpecialRootGroupType.siblingBazelExternal
         let region = "enGB"
 
         let expectedCollectBazelPathsCalled: [
             ElementCreator.CollectBazelPaths.MockTracker.Called
         ] = [
-            .init(node: node.children[0], bazelPath: "p/en.lproj/z"),
-            .init(node: node.children[1], bazelPath: "p/en.lproj/q.ext"),
+            .init(
+                node: nodeChildren[0],
+                bazelPath: "p/en.lproj/z",
+                includeSelf: true
+            ),
+            .init(
+                node: nodeChildren[1],
+                bazelPath: "p/en.lproj/q.ext",
+                includeSelf: true
+            ),
         ]
         let stubbedBazelPaths: [[BazelPath]] = [
             ["p/en.lproj/z"],
@@ -101,9 +106,9 @@ final class CreateLocalizedFilesTests: XCTestCase {
 
         let localizedFiles =
             ElementCreator.CreateLocalizedFiles.defaultCallable(
-                for: node,
+                name: name,
+                nodeChildren: nodeChildren,
                 parentBazelPath: parentBazelPath,
-                specialRootGroupType: specialRootGroupType,
                 region: region,
                 collectBazelPaths: collectBazelPaths.mock,
                 createLocalizedFileElement: createLocalizedFileElement.mock

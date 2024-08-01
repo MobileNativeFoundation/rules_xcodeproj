@@ -1,29 +1,28 @@
 import CustomDump
 import PBXProj
+import ToolCommon
 import XCTest
 
 @testable import files_and_groups
 
 final class CreateVersionGroupTests: XCTestCase {
-    func test() {
+    func test() throws {
         // Arrange
 
-        let node = PathTreeNode(
-            name: "node.xcdatamodeld",
-            children: [
-                PathTreeNode(name: "weird"),
-                PathTreeNode(name: "a.xcdatamodel"),
-                PathTreeNode(
-                    name: "b.xcdatamodel",
-                    children: [
-                        PathTreeNode(name: "odd"),
-                    ]
-                ),
-                PathTreeNode(name: "c.xcdatamodel"),
-            ]
-        )
+        let name = "node.xcdatamodeld"
+        let nodeChildren: [PathTreeNode] = [
+            .file(name: "weird"),
+            .file(name: "a.xcdatamodel"),
+            .group(
+                name: "b.xcdatamodel",
+                children: [
+                    .file(name: "odd"),
+                ]
+            ),
+            .file(name: "c.xcdatamodel"),
+        ]
         let parentBazelPath: BazelPath = "bazel/path"
-        let specialRootGroupType = SpecialRootGroupType.legacyBazelExternal
+        let bazelPathType = BazelPathType.legacyBazelExternal
 
         let expectedBazelPath: BazelPath = "bazel/path/node.xcdatamodeld"
 
@@ -45,31 +44,97 @@ final class CreateVersionGroupTests: XCTestCase {
         let createIdentifier = ElementCreator.CreateIdentifier
             .mock(identifier: stubbedIdentifier)
 
+        let expectedCollectBazelPathsCalled: [
+            ElementCreator.CollectBazelPaths.MockTracker.Called
+        ] = [
+            .init(
+                node: nodeChildren[0],
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[0].fileName
+                ),
+                includeSelf: false
+            ),
+            .init(
+                node: nodeChildren[1],
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[1].fileName
+                ),
+                includeSelf: false
+            ),
+            .init(
+                node: nodeChildren[2],
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[2].groupName
+                ),
+                includeSelf: false
+            ),
+            .init(
+                node: nodeChildren[3],
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[3].fileName
+                ),
+                includeSelf: false
+            ),
+        ]
+        let collectBazelPaths = ElementCreator.CollectBazelPaths.mock(
+            bazelPaths: [
+                [],
+                [],
+                ["bazel/path/node.xcdatamodeld/b.xcdatamodel/odd"],
+                [],
+            ]
+        )
+
         let expectedCreateFileCalled: [
             ElementCreator.CreateFile.MockTracker.Called
         ] = [
             .init(
-                node: node.children[0],
-                bazelPath: expectedBazelPath + node.children[0],
-                specialRootGroupType: specialRootGroupType,
+                name: try nodeChildren[0].fileName,
+                isFolder: false,
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[0].fileName
+                ),
+                bazelPathType: bazelPathType,
+                transitiveBazelPaths: [],
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                node: node.children[1],
-                bazelPath: expectedBazelPath + node.children[1],
-                specialRootGroupType: specialRootGroupType,
+                name: try nodeChildren[1].fileName,
+                isFolder: false,
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[1].fileName
+                ),
+                bazelPathType: bazelPathType,
+                transitiveBazelPaths: [],
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                node: node.children[2],
-                bazelPath: expectedBazelPath + node.children[2],
-                specialRootGroupType: specialRootGroupType,
+                name: try nodeChildren[2].groupName,
+                isFolder: false,
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[2].groupName
+                ),
+                bazelPathType: bazelPathType,
+                transitiveBazelPaths:
+                    ["bazel/path/node.xcdatamodeld/b.xcdatamodel/odd"],
                 identifierForBazelPaths: stubbedIdentifier
             ),
             .init(
-                node: node.children[3],
-                bazelPath: expectedBazelPath + node.children[3],
-                specialRootGroupType: specialRootGroupType,
+                name: try nodeChildren[3].fileName,
+                isFolder: false,
+                bazelPath: BazelPath(
+                    parent: expectedBazelPath,
+                    path: try nodeChildren[3].fileName
+                ),
+                bazelPathType: bazelPathType,
+                transitiveBazelPaths: [],
                 identifierForBazelPaths: stubbedIdentifier
             ),
         ]
@@ -187,9 +252,9 @@ final class CreateVersionGroupTests: XCTestCase {
             ElementCreator.CreateVersionGroupElement.MockTracker.Called
         ] = [
             .init(
-                name: node.name,
+                name: name,
                 bazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType,
+                bazelPathType: bazelPathType,
                 identifier: stubbedIdentifier,
                 childIdentifiers: [
                     stubbedChildResults[0].element.object.identifier,
@@ -251,12 +316,14 @@ final class CreateVersionGroupTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateVersionGroup.defaultCallable(
-            for: node,
+            name: name,
+            nodeChildren: nodeChildren,
             parentBazelPath: parentBazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             createFile: createFile.mock,
             createIdentifier: createIdentifier.mock,
             createVersionGroupElement: createVersionGroupElement.mock,
+            collectBazelPaths: collectBazelPaths.mock,
             selectedModelVersions: selectedModelVersions
         )
 
@@ -271,9 +338,37 @@ final class CreateVersionGroupTests: XCTestCase {
             expectedCreateIdentifierCalled
         )
         XCTAssertNoDifference(
+            collectBazelPaths.tracker.called,
+            expectedCollectBazelPathsCalled
+        )
+        XCTAssertNoDifference(
             createVersionGroupElement.tracker.called,
             expectedCreateVersionGroupElementCalled
         )
         XCTAssertNoDifference(result, expectedResult)
+    }
+}
+
+private extension PathTreeNode {
+    var fileName: String {
+        get throws {
+            switch self {
+            case .file(let name, _):
+                return name
+            default:
+                throw PreconditionError(message: "Invalid node type")
+            }
+        }
+    }
+
+    var groupName: String {
+        get throws {
+            switch self {
+            case .group(let name, _):
+                return name
+            default:
+                throw PreconditionError(message: "Invalid node type")
+            }
+        }
     }
 }

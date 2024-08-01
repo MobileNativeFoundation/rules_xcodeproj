@@ -10,7 +10,7 @@ extension ElementCreator.CreateFileElement {
             let name: String
             let ext: String?
             let bazelPath: BazelPath
-            let specialRootGroupType: SpecialRootGroupType?
+            let bazelPathType: BazelPathType
         }
 
         fileprivate(set) var called: [Called] = []
@@ -46,7 +46,7 @@ extension ElementCreator.CreateFileElement {
                 name,
                 ext,
                 bazelPath,
-                specialRootGroupType,
+                bazelPathType,
                 createAttributes,
                 createIdentifier
             in
@@ -54,7 +54,7 @@ extension ElementCreator.CreateFileElement {
                     name: name,
                     ext: ext,
                     bazelPath: bazelPath,
-                    specialRootGroupType: specialRootGroupType
+                    bazelPathType: bazelPathType
                 ))
                 return mockTracker.nextResult()
             }

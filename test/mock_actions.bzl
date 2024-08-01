@@ -200,7 +200,21 @@ def _mock_file(path):
         path = path,
     )
 
+def _mock_label(label):
+    package_components = label.split(":")[0].split("//")
+    repo_name = ""
+    if len(package_components) > 1:
+        repo_name = package_components.pop(0).removeprefix("@")
+
+    package = package_components.pop(0)
+
+    return struct(
+        package = package,
+        repo_name = repo_name,
+    )
+
 mock_actions = struct(
     create = _create,
     mock_file = _mock_file,
+    mock_label = _mock_label,
 )

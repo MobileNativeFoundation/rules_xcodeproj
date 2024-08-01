@@ -8,15 +8,13 @@ final class CreateGroupTests: XCTestCase {
     func test() {
         // Arrange
 
-        let node = PathTreeNode(
-            name: "node_name.some_ext",
-            children: [
-                PathTreeNode(name: "a"),
-                PathTreeNode(name: "b"),
-            ]
-        )
+        let name = "node_name.some_ext"
+        let nodeChildren: [PathTreeNode] = [
+            .file(name: "a"),
+            .file(name: "b"),
+        ]
         let parentBazelPath: BazelPath = "bazel/path"
-        let specialRootGroupType = SpecialRootGroupType.siblingBazelExternal
+        let bazelPathType = BazelPathType.siblingBazelExternal
 
         let expectedBazelPath: BazelPath = "bazel/path/node_name.some_ext"
 
@@ -24,14 +22,14 @@ final class CreateGroupTests: XCTestCase {
             ElementCreator.CreateGroupChild.MockTracker.Called
         ] = [
             .init(
-                node: node.children[0],
+                node: nodeChildren[0],
                 parentBazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType
+                parentBazelPathType: bazelPathType
             ),
             .init(
-                node: node.children[1],
+                node: nodeChildren[1],
                 parentBazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType
+                parentBazelPathType: bazelPathType
             ),
         ]
         let stubbedGroupChildElementAndChildren = [
@@ -131,9 +129,9 @@ final class CreateGroupTests: XCTestCase {
             ElementCreator.CreateGroupElement.MockTracker.Called
         ] = [
             .init(
-                name: node.name,
+                name: name,
                 bazelPath: expectedBazelPath,
-                specialRootGroupType: specialRootGroupType,
+                bazelPathType: bazelPathType,
                 childIdentifiers: [
                     stubbedGroupChildElementAndChildren[0]
                         .element.object.identifier,
@@ -174,9 +172,10 @@ final class CreateGroupTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateGroup.defaultCallable(
-            for: node,
+            name: name,
+            nodeChildren: nodeChildren,
             parentBazelPath: parentBazelPath,
-            specialRootGroupType: specialRootGroupType,
+            bazelPathType: bazelPathType,
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
             createGroupElement: createGroupElement.mock

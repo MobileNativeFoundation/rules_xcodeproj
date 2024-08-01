@@ -9,7 +9,7 @@ extension ElementCreator.CreateVersionGroupElement {
         struct Called: Equatable {
             let name: String
             let bazelPath: BazelPath
-            let specialRootGroupType: SpecialRootGroupType?
+            let bazelPathType: BazelPathType
             let identifier: String
             let childIdentifiers: [String]
             let selectedChildIdentifier: String?
@@ -29,7 +29,7 @@ extension ElementCreator.CreateVersionGroupElement {
             callable: {
                 name,
                 bazelPath,
-                specialRootGroupType,
+                bazelPathType,
                 identifier,
                 childIdentifiers,
                 selectedChildIdentifier,
@@ -38,7 +38,7 @@ extension ElementCreator.CreateVersionGroupElement {
                 mockTracker.called.append(.init(
                     name: name,
                     bazelPath: bazelPath,
-                    specialRootGroupType: specialRootGroupType,
+                    bazelPathType: bazelPathType,
                     identifier: identifier,
                     childIdentifiers: childIdentifiers,
                     selectedChildIdentifier: selectedChildIdentifier

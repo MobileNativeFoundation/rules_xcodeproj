@@ -8,7 +8,7 @@ struct ElementCreator {
     }
 
     func create(
-        pathTree: PathTreeNode,
+        pathTree: [PathTreeNode],
         arguments: Arguments,
         compileStubNeeded: Bool
     ) throws -> CreatedElements {

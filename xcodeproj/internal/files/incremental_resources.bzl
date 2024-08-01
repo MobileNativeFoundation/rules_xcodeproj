@@ -68,7 +68,15 @@ def _process_resource(
     # should be added to the bundle instead of the child file
     folder_type_prefix = _folder_type_prefix(file)
     if folder_type_prefix:
-        bundle.folder_resources.append(folder_type_prefix)
+        if file.is_source:
+            bundle.folder_resources.append(folder_type_prefix)
+        else:
+            bundle.generated_folder_resources.append(
+                struct(
+                    owner = file.owner,
+                    path = folder_type_prefix,
+                ),
+            )
         return None
 
     return file
@@ -98,6 +106,7 @@ def _create_bundle(name = None):
         name = name,
         resources = [],
         folder_resources = [],
+        generated_folder_resources = [],
         dependency_paths = [],
     )
 
@@ -133,9 +142,16 @@ def _add_structured_resources_to_bundle(
         if not dir.endswith(nested_path):
             continue
 
-        bundle.folder_resources.append(
-            paths.join(dir[:-(1 + len(nested_path))], inner_dir),
-        )
+        folder_path = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
+        if file.is_source:
+            bundle.folder_resources.append(folder_path)
+        else:
+            bundle.generated_folder_resources.append(
+                struct(
+                    owner = file.owner,
+                    path = folder_path,
+                ),
+            )
 
 def _add_structured_resources(
         *,
@@ -150,6 +166,7 @@ def _add_structured_resources(
     if bundle:
         if (not bundle.resources and
             not bundle.folder_resources and
+            not bundle.generated_folder_resources and
             len(bundle_path.split(".bundle")) > 2):
             # This covers a deficiency in rules_apple's `_deduplicate` for
             # nested bundles that should be excluded
@@ -277,7 +294,12 @@ def _collect_incremental_resources(
             `process_resource_bundles`.
         *   `folder_resources`: A `list` of two element `tuple`s. The first
             element is the label of the target that owns the resource. The
-            second element is a file path string of a folder resource.
+            second element is a file path string of a non-generated folder
+            resource.
+        *   `generated_folder_resources`: A `list` of two element `tuple`s.
+            The first element is the label of the target that owns the resource.
+            The second element is a file path string of a generated folder
+            resource.
         *   `resources`:  A `list` of two element `tuple`s. The first
             element is the label of the target that owns the resource. The
             second element is a `File` for a resource.
@@ -350,6 +372,7 @@ def _collect_incremental_resources(
         bundle = resource_bundle_targets[child_bundle_path]
         if (not bundle.resources and
             not bundle.folder_resources and
+            not bundle.generated_folder_resources and
             not bundle.dependency_paths):
             resource_bundle_targets.pop(child_bundle_path, None)
             continue
@@ -380,6 +403,9 @@ def _collect_incremental_resources(
                     folder_resources = memory_efficient_depset(
                         bundle.folder_resources,
                     ),
+                    generated_folder_resources = memory_efficient_depset(
+                        bundle.generated_folder_resources,
+                    ),
                 ),
             )
 
@@ -387,6 +413,7 @@ def _collect_incremental_resources(
         bundles = frozen_bundles,
         resources = root_bundle.resources,
         folder_resources = root_bundle.folder_resources,
+        generated_folder_resources = root_bundle.generated_folder_resources,
         xccurrentversions = xccurrentversions,
     )
 

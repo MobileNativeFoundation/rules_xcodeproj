@@ -1,16 +1,14 @@
 import PBXProj
 
-/// Appends a path fragment to a `BazelPath` to produce a new `BazelPath`.
-func +(lhs: BazelPath, rhs: PathTreeNode) -> BazelPath {
-    let path: String
-    if lhs.path.isEmpty {
-        path = rhs.name
-    } else {
-        path = "\(lhs.path)/\(rhs.name)"
-    }
+extension BazelPath {
+    init(parent: BazelPath, path: String, isFolder: Bool = false) {
+        let newPath: String
+        if parent.path.isEmpty {
+            newPath = path
+        } else {
+            newPath = "\(parent.path)/\(path)"
+        }
 
-    return BazelPath(
-        path,
-        isFolder: rhs.isFolder
-    )
+        self.init(newPath, isFolder: isFolder)
+    }
 }

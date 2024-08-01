@@ -4,6 +4,8 @@ extension ElementCreator {
     struct CreateGroupChild {
         private let createFile: CreateFile
         private let createGroup: CreateGroup
+        private let createInlineBazelGeneratedFiles:
+            ElementCreator.CreateInlineBazelGeneratedFiles
         private let createLocalizedFiles: CreateLocalizedFiles
         private let createVersionGroup: CreateVersionGroup
 
@@ -15,12 +17,16 @@ extension ElementCreator {
         init(
             createFile: CreateFile,
             createGroup: CreateGroup,
+            createInlineBazelGeneratedFiles:
+                ElementCreator.CreateInlineBazelGeneratedFiles,
             createLocalizedFiles: CreateLocalizedFiles,
             createVersionGroup: CreateVersionGroup,
             callable: @escaping Callable
         ) {
             self.createFile = createFile
             self.createGroup = createGroup
+            self.createInlineBazelGeneratedFiles =
+                createInlineBazelGeneratedFiles
             self.createLocalizedFiles = createLocalizedFiles
             self.createVersionGroup = createVersionGroup
             self.callable = callable
@@ -29,15 +35,17 @@ extension ElementCreator {
         func callAsFunction(
             for node: PathTreeNode,
             parentBazelPath: BazelPath,
-            specialRootGroupType: SpecialRootGroupType?
+            parentBazelPathType: BazelPathType
         ) -> GroupChild {
             return callable(
                 /*node:*/ node,
                 /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
+                /*parentBazelPathType:*/ parentBazelPathType,
                 /*createFile:*/ createFile,
                 /*createGroup:*/ createGroup,
                 /*createGroupChild:*/ self,
+                /*createInlineBazelGeneratedFiles:*/
+                    createInlineBazelGeneratedFiles,
                 /*createLocalizedFiles:*/ createLocalizedFiles,
                 /*createVersionGroup:*/ createVersionGroup
             )
@@ -51,10 +59,12 @@ extension ElementCreator.CreateGroupChild {
     typealias Callable = (
         _ node: PathTreeNode,
         _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
+        _ parentBazelPathType: BazelPathType,
         _ createFile: ElementCreator.CreateFile,
         _ createGroup: ElementCreator.CreateGroup,
         _ createGroupChild: ElementCreator.CreateGroupChild,
+        _ createInlineBazelGeneratedFiles:
+            ElementCreator.CreateInlineBazelGeneratedFiles,
         _ createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
         _ createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild
@@ -62,52 +72,70 @@ extension ElementCreator.CreateGroupChild {
     static func defaultCallable(
         for node: PathTreeNode,
         parentBazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
+        parentBazelPathType: BazelPathType,
         createFile: ElementCreator.CreateFile,
         createGroup: ElementCreator.CreateGroup,
         createGroupChild: ElementCreator.CreateGroupChild,
+        createInlineBazelGeneratedFiles:
+            ElementCreator.CreateInlineBazelGeneratedFiles,
         createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
         createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild {
-        guard !node.children.isEmpty else {
-            // File
+        switch node {
+        case .group(let name, let children):
+            let (basenameWithoutExt, ext) = name.splitExtension()
+            switch ext {
+            case "lproj":
+                return .localizedRegion(
+                    createLocalizedFiles(
+                        name: name,
+                        nodeChildren: children,
+                        parentBazelPath: parentBazelPath,
+                        region: basenameWithoutExt
+                    )
+                )
+
+            case "xcdatamodeld":
+                return .elementAndChildren(
+                    createVersionGroup(
+                        name: name,
+                        nodeChildren: children,
+                        parentBazelPath: parentBazelPath,
+                        bazelPathType: parentBazelPathType
+                    )
+                )
+
+            default:
+                return .elementAndChildren(
+                    createGroup(
+                        name: name,
+                        nodeChildren: children,
+                        parentBazelPath: parentBazelPath,
+                        bazelPathType: parentBazelPathType,
+                        createGroupChild: createGroupChild
+                    )
+                )
+            }
+
+        case .file(let name, let isFolder):
             return .elementAndChildren(
                 createFile(
-                    for: node,
-                    bazelPath: parentBazelPath + node,
-                    specialRootGroupType: specialRootGroupType
-                )
-            )
-        }
-
-        // Group
-        let (basenameWithoutExt, ext) = node.splitExtension()
-        switch ext {
-        case "lproj":
-            return .localizedRegion(
-                createLocalizedFiles(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType,
-                    region: basenameWithoutExt
+                    name: name,
+                    isFolder: isFolder,
+                    bazelPath: BazelPath(
+                        parent: parentBazelPath,
+                        path: name,
+                        isFolder: isFolder
+                    ),
+                    bazelPathType: parentBazelPathType,
+                    transitiveBazelPaths: []
                 )
             )
 
-        case "xcdatamodeld":
+        case .generatedFiles(let generatedFiles):
             return .elementAndChildren(
-                createVersionGroup(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType
-                )
-            )
-
-        default:
-            return .elementAndChildren(
-                createGroup(
-                    for: node,
-                    parentBazelPath: parentBazelPath,
-                    specialRootGroupType: specialRootGroupType,
+                createInlineBazelGeneratedFiles(
+                    for: generatedFiles,
                     createGroupChild: createGroupChild
                 )
             )
@@ -118,9 +146,9 @@ extension ElementCreator.CreateGroupChild {
 struct Element: Equatable {
     enum SortOrder: Comparable {
         case groupLike
+        case inlineBazelGenerated
         case fileLike
         case bazelExternalRepositories
-        case bazelGenerated
         case rulesXcodeprojInternal
     }
 

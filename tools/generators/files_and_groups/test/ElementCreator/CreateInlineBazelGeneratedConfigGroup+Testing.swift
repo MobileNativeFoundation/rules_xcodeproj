@@ -2,13 +2,13 @@ import PBXProj
 
 @testable import files_and_groups
 
-// MARK: - ElementCreator.CreateSpecialRootGroup.mock
+// MARK: - ElementCreator.CreateInlineBazelGeneratedConfigGroup.mock
 
-extension ElementCreator.CreateSpecialRootGroup {
+extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
     final class MockTracker {
         struct Called: Equatable {
-            let node: PathTreeNode
-            let specialRootGroupType: SpecialRootGroupType
+            let config: PathTreeNode.GeneratedFiles.Config
+            let parentBazelPath: BazelPath
         }
 
         fileprivate(set) var called: [Called] = []
@@ -33,20 +33,21 @@ extension ElementCreator.CreateSpecialRootGroup {
         let mockTracker = MockTracker(results: groupChildElements)
 
         let mocked = Self(
-            createGroupChild: ElementCreator.Stubs.createGroupChild,
             createGroupChildElements:
                 ElementCreator.Stubs.createGroupChildElements,
-            createSpecialRootGroupElement: ElementCreator.Stubs.createSpecialRootGroupElement,
+            createInlineBazelGeneratedConfigGroupElement:
+                ElementCreator.Stubs
+                    .createInlineBazelGeneratedConfigGroupElement,
             callable: {
-                node,
-                specialRootGroupType,
+                config,
+                parentBazelPath,
                 createGroupChild,
                 createGroupChildElements,
-                createSpecialRootGroupElement
+                createInlineBazelGeneratedConfigGroupElement
             in
                 mockTracker.called.append(.init(
-                    node: node,
-                    specialRootGroupType: specialRootGroupType
+                    config: config,
+                    parentBazelPath: parentBazelPath
                 ))
                 return mockTracker.nextResult()
             }
@@ -56,12 +57,10 @@ extension ElementCreator.CreateSpecialRootGroup {
     }
 }
 
-// MARK: - ElementCreator.CreateSpecialRootGroup.stub
+// MARK: - ElementCreator.CreateInlineBazelGeneratedConfigGroup.stub
 
-extension ElementCreator.CreateSpecialRootGroup {
-    static func stub(
-        groupChildElements: [GroupChild.ElementAndChildren]
-    ) -> Self {
+extension ElementCreator.CreateInlineBazelGeneratedConfigGroup {
+    static func stub(groupChildElements: [GroupChild.ElementAndChildren]) -> Self {
         let (stub, _) = mock(groupChildElements: groupChildElements)
         return stub
     }
