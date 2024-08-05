@@ -65,7 +65,7 @@ _XCSCHEMES = [
                 # colorDiagnostics
                 "NO",
                 # xcodeVersionActual
-                "1520",
+                "1540",
                 # nonPreviewObjRoot
                 "/Users/brentley/Library/Developer/Xcode/DerivedData/tools-exxvdkcaoxdlhndlfnwxqvucohsr/Build/Intermediates.noindex",
                 # baseObjRoot

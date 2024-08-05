@@ -144,12 +144,16 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                 throw PreconditionError(message: "Settings not found for target/command combination: \(guid) / \(buildRequest.command)")
             }
 
+            var ids = settings.base
             for platform in allPlatformsToSearch(buildRequest.platform) {
                 guard let platform = settings.platforms[platform] else { continue }
-                for prefix in prefixes {
-                    for id in platform ?? settings.base {
-                        lines.append("\(target.label)\n\(prefix) \(id)")
-                    }
+                // An explicit nil value in platforms indicates inheritence from base
+                ids = platform ?? settings.base
+                break
+            }
+            for prefix in prefixes {
+                for id in ids {
+                    lines.append("\(target.label)\n\(prefix) \(id)")
                 }
             }
         }
@@ -228,18 +232,18 @@ extension PIF.Target.BuildConfiguration {
                     let platform = String(key.dropFirst(20).dropLast(2))
                     if value == "$(BAZEL_TARGET_ID)" {
                         // This value indicates that the provided platform inherits from the base build setting. Store nil for later processing.
-                        build?.platforms[platform] = nil
+                        build?.platforms[platform] = Optional<[String]>.none
                     } else {
-                        build?.platforms[platform] = [value]
+                        build?.platforms[platform] = .some([value])
                     }
                 }
                 if buildFiles != nil, key.starts(with: "BAZEL_COMPILE_TARGET_IDS[sdk=") {
                     let platform = String(key.dropFirst(29).dropLast(2))
                     if value == "$(BAZEL_COMPILE_TARGET_IDS)" {
                         // This value indicates that the provided platform inherits from the base build setting. Store nil for later processing.
-                        buildFiles?.platforms[platform] = nil
+                        buildFiles?.platforms[platform] = Optional<[String]>.none
                     } else {
-                        buildFiles?.platforms[platform] = compileTargetIds(value)
+                        buildFiles?.platforms[platform] = .some(compileTargetIds(value))
                     }
                 }
             }

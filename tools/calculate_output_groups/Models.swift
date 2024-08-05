@@ -66,7 +66,7 @@ enum Output {
         struct Config: Codable {
             struct Settings: Codable {
                 let base: [String]
-                var platforms: [String: Optional<[String]>]
+                var platforms: [String: [String]?]
             }
 
             let build: Settings?
