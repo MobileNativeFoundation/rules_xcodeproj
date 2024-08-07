@@ -658,6 +658,7 @@ def _collect_mixed_language_input_files(
             *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s
                 that are in `resources`.
     """
+
     # Include BUILD files for the project but not for external repos
     extra_file_paths = []
     if not label.workspace_root:

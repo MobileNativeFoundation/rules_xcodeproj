@@ -13,7 +13,6 @@ load(
 )
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
-    "EMPTY_DEPSET",
     "EMPTY_TUPLE",
 )
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")

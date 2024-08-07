@@ -339,6 +339,7 @@ def _collect_mixed_language_output_files(
 
     # Only top-level targets will have `Info.plist` files
     transitive_infoplists = EMPTY_DEPSET
+
     # Only top-level targets will have link params
     transitive_link_params = EMPTY_DEPSET
 
@@ -382,7 +383,7 @@ def _collect_mixed_language_output_files(
             _transitive_infoplists = transitive_infoplists,
             _transitive_link_params = transitive_link_params,
             # Only top-level targets will have products or dSYM files
-            _transitive_products = EMPTY_DEPSET
+            _transitive_products = EMPTY_DEPSET,
         ),
         struct(
             _direct_group_list = direct_group_list,
