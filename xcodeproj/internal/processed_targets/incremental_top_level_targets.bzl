@@ -452,9 +452,9 @@ def _process_focused_top_level_target(
         entitlements = target_inputs.entitlements,
         extension_safe = props.extension_safe,
         generate_build_settings = True,
+        generate_swift_debug_settings = True,
         include_self_swift_debug_settings = not mergeable_info,
         infoplist = infoplist,
-        is_top_level_target = True,
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
         previews_include_path = (
@@ -855,8 +855,8 @@ def _process_incremental_top_level_target(
         generate_target: Whether an Xcode target should be generated for this
             target.
         rule_attr: `ctx.rule.attr`.
-        transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
-            transitive dependencies of `target`.
+        transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
+            dependencies of `target`.
 
     Returns:
         A value from `processed_target`.

@@ -27,6 +27,10 @@ load(
     "//xcodeproj/internal/processed_targets:incremental_unsupported_targets.bzl",
     unsupported_targets = "incremental_unsupported_targets",
 )
+load(
+    "//xcodeproj/internal/processed_targets:mixed_language_library_targets.bzl",
+    "mixed_language_library_targets",
+)
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":dependencies.bzl", "dependencies")
@@ -565,6 +569,43 @@ def _make_non_skipped_target_xcodeprojinfo(
             transitive_infos = valid_transitive_infos,
         )
         focused_library_deps = EMPTY_DEPSET
+    elif automatic_target_info.is_mixed_language:
+        (
+            processed_target,
+            swift_label,
+            clang_label,
+        ) = mixed_language_library_targets.process(
+            ctx = ctx,
+            automatic_target_info = automatic_target_info,
+            generate_target = (
+                automatic_target_info.should_generate and is_focused
+            ),
+            target = target,
+            transitive_infos = valid_transitive_infos,
+            rule_attr = rule_attr,
+        )
+        focused_library_deps = memory_efficient_depset(
+            [
+                struct(
+                    id = processed_target.xcode_target.id,
+                    label = str(swift_label),
+                ),
+                struct(
+                    id = processed_target.xcode_target.id,
+                    label = str(clang_label),
+                ),
+                struct(
+                    id = processed_target.xcode_target.id,
+                    label = label_str,
+                ),
+            ] if processed_target.xcode_target else None,
+            # We want the last one specified to be the one used
+            order = "postorder",
+            transitive = [
+                info.focused_library_deps
+                for info in valid_transitive_infos
+            ],
+        )
     else:
         processed_target = library_targets.process(
             ctx = ctx,
@@ -775,6 +816,7 @@ def _make_xcodeprojinfo(
         )
 
     return XcodeProjInfo(
+        label = target.label,
         **info_fields
     )
 
