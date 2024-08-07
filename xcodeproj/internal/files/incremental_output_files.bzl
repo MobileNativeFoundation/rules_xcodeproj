@@ -42,7 +42,7 @@ _COPYABLE_PRODUCT_TYPES = {
 
 # Utility
 
-def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
+def _get_outputs(*, debug_outputs, product, swift_info, output_group_info):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -53,7 +53,6 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     Args:
         debug_outputs: The `AppleDebugOutputs` provider for the target, or
             `None`.
-        id: The unique identifier of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
         product: A value from `process_product`, or `None` if the
@@ -101,7 +100,6 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product_path = None
 
     return struct(
-        id = id,
         is_framework = is_framework,
         product = product_file,
         product_path = product_path,
@@ -171,7 +169,6 @@ def _collect_incremental_output_files(
     """
     direct_outputs = _get_outputs(
         debug_outputs = debug_outputs,
-        id = id,
         output_group_info = output_group_info,
         product = product,
         swift_info = swift_info,
@@ -244,7 +241,7 @@ def _collect_incremental_output_files(
         ],
     )
 
-    products_output_group_name = "bp {}".format(direct_outputs.id)
+    products_output_group_name = "bp {}".format(id)
 
     indexstores_filelist = indexstore_filelists.write(
         actions = actions,
@@ -267,8 +264,8 @@ def _collect_incremental_output_files(
     )
 
     direct_group_list = [
-        ("bc {}".format(direct_outputs.id), transitive_compile_params),
-        ("bl {}".format(direct_outputs.id), transitive_link_params),
+        ("bc {}".format(id), transitive_compile_params),
+        ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]
 
