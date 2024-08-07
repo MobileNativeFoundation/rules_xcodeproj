@@ -4,6 +4,7 @@ load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")
 load(":collections.bzl", "uniq")
 load(
     ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
     "EMPTY_LIST",
     "EMPTY_STRING",
     "FALSE_ARG",
@@ -1120,16 +1121,16 @@ def _write_target_build_settings(
         entitlements = None,
         extension_safe = False,
         generate_build_settings,
+        generate_swift_debug_settings,
         include_self_swift_debug_settings = True,
         infoplist = None,
-        is_top_level_target = False,
         name,
         previews_dynamic_frameworks = EMPTY_LIST,
         previews_include_path = EMPTY_STRING,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         swift_args,
-        swift_debug_settings_to_merge,
+        swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
         tool):
     """Creates the `OTHER_SWIFT_FLAGS` build setting string file for a target.
@@ -1146,12 +1147,12 @@ def _write_target_build_settings(
         extension_safe: If `True`, `APPLICATION_EXTENSION_API_ONLY` will be set.
         generate_build_settings: A `bool` indicating whether to generate build
             settings. This is mostly tied to if the target is focused or not.
+        generate_swift_debug_settings: A `bool` indicating whether to generate
+            Swift debug settings.
         include_self_swift_debug_settings: A `bool` indicating whether to
             include the target's own Swift debug settings. Should be false for
             merged top-level targets.
         infoplist: An optional `File` containing the `Info.plist` for the
-            target.
-        is_top_level_target: A `bool` indicating whether this is a top level
             target.
         name: The name of the target.
         previews_dynamic_frameworks: A `list` of `(File, bool)` `tuple`s. If
@@ -1180,8 +1181,6 @@ def _write_target_build_settings(
             has them available for the `Create Compile Dependencies` build
             phase.
     """
-    generate_swift_debug_settings = swift_args or is_top_level_target
-
     if not (generate_build_settings or generate_swift_debug_settings):
         return None, None, EMPTY_LIST
 

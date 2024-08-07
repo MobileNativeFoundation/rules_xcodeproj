@@ -79,8 +79,6 @@ to the Xcode project, but are not associated with any targets.
 """,
         "label": """\
 The `Label` of the target.
-
-This is only set and used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "labels": """\
 A `depset` of `Labels` for the target and its transitive dependencies.
