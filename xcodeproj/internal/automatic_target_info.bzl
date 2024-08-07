@@ -145,6 +145,16 @@ attributes.
 
 This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
+        "is_header_only_library": """\
+Whether this target doesn't contain src files.
+
+This is only used when `xcodeproj.generation_mode = "incremental"` is set.
+""",
+        "is_mixed_language": """\
+Whether this target is a mixed-language target.
+
+This is only used when `xcodeproj.generation_mode = "incremental"` is set.
+""",
         "is_supported": """\
 Whether an Xcode target can be generated for this target. Even if this value is
 `False`, setting values for the other attributes can cause inputs to be
@@ -313,10 +323,6 @@ _BUNDLE_XCODE_TARGETS = {
     "private_deps": _XCODE_TARGET_TYPES_COMPILE,
     "transitive_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
-_MIXED_LANGUAGE_XCODE_TARGETS = {
-    "clang_target": _XCODE_TARGET_TYPES_COMPILE,
-    "swift_target": _XCODE_TARGET_TYPES_COMPILE,
-}
 _OBJC_LIBRARY_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     # Issues like https://github.com/bazelbuild/bazel/issues/17646 made some Bazel users
@@ -393,6 +399,8 @@ def calculate_automatic_target_info(
     hdrs = EMPTY_LIST
     implementation_deps = EMPTY_LIST
     infoplists = EMPTY_LIST
+    is_header_only_library = False
+    is_mixed_language = False
     is_supported = True
     is_top_level = False
     label = target.label
@@ -411,6 +419,7 @@ def calculate_automatic_target_info(
             bool(target.files) and
             _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
+        is_header_only_library = not is_supported
     elif rule_kind == "cc_import":
         extra_files = _CC_IMPORT_EXTRA_FILES_ATTRS
         is_supported = False
@@ -428,6 +437,7 @@ def calculate_automatic_target_info(
                 _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
             )
         )
+        is_header_only_library = not is_supported
     elif rule_kind == "objc_import":
         extra_files = _OBJC_IMPORT_EXTRA_FILES_ATTRS
         is_supported = False
@@ -441,8 +451,8 @@ def calculate_automatic_target_info(
     elif rule_kind == "swift_proto_library":
         xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind == "mixed_language_library":
-        is_supported = False
-        xcode_targets = _MIXED_LANGUAGE_XCODE_TARGETS
+        is_mixed_language = True
+        xcode_targets = _DEPS_XCODE_TARGETS
     elif (AppleResourceBundleInfo in target and
           rule_kind != "apple_bundle_import"):
         is_supported = False
@@ -564,6 +574,8 @@ def calculate_automatic_target_info(
         exported_symbols_lists = exported_symbols_lists,
         hdrs = hdrs,
         infoplists = infoplists,
+        is_header_only_library = is_header_only_library,
+        is_mixed_language = is_mixed_language,
         is_supported = is_supported,
         is_top_level = is_top_level,
         implementation_deps = implementation_deps,
