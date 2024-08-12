@@ -80,7 +80,7 @@ def _generated_file_or_folder(path, owner):
     # bazel-out/CONFIG/bin/a/generated/file -> CONFIG
     config = components[1]
 
-    repo_name = owner.repo_name
+    repo_name = owner.workspace_name
 
     if repo_name:
         package = join_paths_ignoring_empty(

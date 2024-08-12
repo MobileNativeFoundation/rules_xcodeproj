@@ -202,15 +202,15 @@ def _mock_file(path):
 
 def _mock_label(label):
     package_components = label.split(":")[0].split("//")
-    repo_name = ""
+    workspace_name = ""
     if len(package_components) > 1:
-        repo_name = package_components.pop(0).removeprefix("@")
+        workspace_name = package_components.pop(0).removeprefix("@")
 
     package = package_components.pop(0)
 
     return struct(
         package = package,
-        repo_name = repo_name,
+        workspace_name = workspace_name,
     )
 
 mock_actions = struct(
