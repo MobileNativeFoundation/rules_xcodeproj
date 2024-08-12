@@ -11,7 +11,7 @@ def _make_incremental_processed_target(
         hosted_targets = None,
         inputs,
         is_top_level = False,
-        mergeable_infos = None,
+        mergeable_infos,
         merged_target_ids = None,
         outputs,
         platform = None,

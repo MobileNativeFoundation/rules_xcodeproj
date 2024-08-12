@@ -289,6 +289,107 @@ def _collect_incremental_output_files(
         ),
     )
 
+def _collect_mixed_language_output_files(
+        *,
+        actions,
+        compile_params_files,
+        id,
+        indexstore_overrides,
+        mixed_target_infos,
+        name):
+    """Collects the outputs of a target.
+
+    Args:
+        actions: `ctx.actions`.
+        compile_params_files: A `list` of compiler params `File`s that should be
+            generated for Index Build and Xcode Previews.
+        id: A unique identifier for the target.
+        indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s
+            that override the indexstore for the target. This is used for merged
+            targets.
+        mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
+            Clang and Swift targets.
+        name: Name (potentially replaced) of the target.
+
+    Returns:
+        An opaque `struct` that should be used with `output_files.to_dto` or
+        `output_files.to_output_groups_fields`.
+    """
+    transitive_indexstore_overrides = memory_efficient_depset(
+        indexstore_overrides,
+        transitive = [
+            info.outputs._transitive_indexstore_overrides
+            for info in mixed_target_infos
+        ],
+    )
+    transitive_indexstores = memory_efficient_depset(
+        transitive = [
+            info.outputs._transitive_indexstores
+            for info in mixed_target_infos
+        ],
+    )
+
+    transitive_compile_params = memory_efficient_depset(
+        compile_params_files,
+        transitive = [
+            info.outputs._transitive_compile_params
+            for info in mixed_target_infos
+        ],
+    )
+
+    # Only top-level targets will have `Info.plist` files
+    transitive_infoplists = EMPTY_DEPSET
+
+    # Only top-level targets will have link params
+    transitive_link_params = EMPTY_DEPSET
+
+    products_output_group_name = "bp {}".format(id)
+
+    indexstores_filelist = indexstore_filelists.write(
+        actions = actions,
+        indexstore_and_target_overrides = transitive_indexstore_overrides,
+        indexstores = transitive_indexstores,
+        name = "bi",
+        rule_name = name,
+    )
+
+    products_depset = memory_efficient_depset(
+        (
+            # We don't want to declare indexstore files as outputs, because they
+            # expand to individual files and blow up the BEP. Instead they are
+            # declared as inputs to `indexstores_filelist`, ensuring they are
+            # downloaded as needed.
+            [indexstores_filelist]
+        ),
+    )
+
+    direct_group_list = [
+        ("bc {}".format(id), transitive_compile_params),
+        ("bl {}".format(id), transitive_link_params),
+        (products_output_group_name, products_depset),
+    ]
+
+    return (
+        struct(
+            direct_outputs = None,
+            products_output_group_name = products_output_group_name,
+            transitive_infoplists = transitive_infoplists,
+        ),
+        struct(
+            _is_framework = False,
+            _transitive_compile_params = transitive_compile_params,
+            _transitive_indexstore_overrides = transitive_indexstore_overrides,
+            _transitive_indexstores = transitive_indexstores,
+            _transitive_infoplists = transitive_infoplists,
+            _transitive_link_params = transitive_link_params,
+            # Only top-level targets will have products or dSYM files
+            _transitive_products = EMPTY_DEPSET,
+        ),
+        struct(
+            _direct_group_list = direct_group_list,
+        ),
+    )
+
 def _merge_output_files(*, transitive_infos):
     """Creates merged outputs.
 
@@ -422,6 +523,7 @@ def parse_swift_info_module(module):
 
 incremental_output_files = struct(
     collect = _collect_incremental_output_files,
+    collect_mixed_language = _collect_mixed_language_output_files,
     merge = _merge_output_files,
 )
 

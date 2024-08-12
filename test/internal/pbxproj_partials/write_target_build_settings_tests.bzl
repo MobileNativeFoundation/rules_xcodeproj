@@ -82,11 +82,11 @@ def _write_target_build_settings_test_impl(ctx):
         entitlements = ctx.attr.entitlements,
         extension_safe = ctx.attr.extension_safe,
         generate_build_settings = ctx.attr.generate_build_settings,
+        generate_swift_debug_settings = ctx.attr.generate_swift_debug_settings,
         include_self_swift_debug_settings = (
             ctx.attr.include_self_swift_debug_settings
         ),
         infoplist = ctx.attr.infoplist,
-        is_top_level_target = ctx.attr.is_top_level_target,
         name = "a_target_name",
         previews_dynamic_frameworks = [
             (mock_actions.mock_file(f), True)
@@ -176,9 +176,9 @@ write_target_build_settings_test = unittest.make(
         "entitlements": attr.string(),
         "extension_safe": attr.bool(mandatory = True),
         "generate_build_settings": attr.bool(mandatory = True),
+        "generate_swift_debug_settings": attr.bool(mandatory = True),
         "include_self_swift_debug_settings": attr.bool(mandatory = True),
         "infoplist": attr.string(),
-        "is_top_level_target": attr.bool(mandatory = True),
         "previews_dynamic_frameworks": attr.string_list(mandatory = True),
         "previews_include_path": attr.string(mandatory = True),
         "provisioning_profile_is_xcode_managed": attr.bool(mandatory = True),
@@ -219,9 +219,9 @@ def write_target_build_settings_test_suite(name):
             entitlements = None,
             extension_safe = False,
             generate_build_settings,
+            generate_swift_debug_settings,
             include_self_swift_debug_settings = True,
             infoplist = None,
-            is_top_level_target = False,
             previews_dynamic_frameworks = [],
             previews_include_path = "",
             provisioning_profile_is_xcode_managed = False,
@@ -250,9 +250,9 @@ def write_target_build_settings_test_suite(name):
             entitlements = entitlements,
             extension_safe = extension_safe,
             generate_build_settings = generate_build_settings,
+            generate_swift_debug_settings = generate_swift_debug_settings,
             include_self_swift_debug_settings = include_self_swift_debug_settings,
             infoplist = infoplist,
-            is_top_level_target = is_top_level_target,
             previews_dynamic_frameworks = previews_dynamic_frameworks,
             previews_include_path = previews_include_path,
             provisioning_profile_is_xcode_managed = provisioning_profile_is_xcode_managed,
@@ -278,6 +278,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = [],
         cxx_args = [],
         generate_build_settings = False,
+        generate_swift_debug_settings = False,
         swift_args = [],
 
         # Expected
@@ -297,6 +298,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = [],
         cxx_args = [],
         generate_build_settings = True,
+        generate_swift_debug_settings = False,
         swift_args = [],
 
         # Expected
@@ -344,6 +346,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = ["a", "c", "b"],
         cxx_args = [],
         generate_build_settings = True,
+        generate_swift_debug_settings = False,
         swift_args = [],
 
         # Expected
@@ -389,6 +392,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = [],
         cxx_args = ["a", "c", "b"],
         generate_build_settings = True,
+        generate_swift_debug_settings = False,
         swift_args = [],
 
         # Expected
@@ -434,6 +438,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = ["a1", "c2", "b1"],
         cxx_args = ["a2", "c1", "b2"],
         generate_build_settings = True,
+        generate_swift_debug_settings = False,
         swift_args = [],
 
         # Expected
@@ -481,6 +486,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = ["a1", "c2", "b1"],
         cxx_args = ["a2", "c1", "b2"],
         generate_build_settings = True,
+        generate_swift_debug_settings = True,
         include_self_swift_debug_settings = False,
         swift_args = ["a", "c", "b"],
 
@@ -535,6 +541,7 @@ def write_target_build_settings_test_suite(name):
         certificate_name = "best certificate",
         entitlements = "some/app.entitlements",
         generate_build_settings = True,
+        generate_swift_debug_settings = False,
         provisioning_profile_is_xcode_managed = True,
         provisioning_profile_name = "a profile",
         swift_args = [],
@@ -585,6 +592,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = [],
         cxx_args = [],
         generate_build_settings = True,
+        generate_swift_debug_settings = True,
         swift_args = ["-v", "a"],
 
         # Expected
@@ -634,6 +642,7 @@ def write_target_build_settings_test_suite(name):
         conly_args = [],
         cxx_args = [],
         generate_build_settings = True,
+        generate_swift_debug_settings = True,
         swift_args = ["-v", "a"],
         swift_debug_settings_to_merge = [
             "transitive_debug_settings/2",
@@ -693,9 +702,9 @@ def write_target_build_settings_test_suite(name):
         device_family = "1,2",
         extension_safe = True,
         generate_build_settings = False,
+        generate_swift_debug_settings = True,
         include_self_swift_debug_settings = False,
         infoplist = "some/Info.plist",
-        is_top_level_target = True,
         previews_dynamic_frameworks = [
             "bazel-out/generated.framework",
             "/absolute/f.framework",

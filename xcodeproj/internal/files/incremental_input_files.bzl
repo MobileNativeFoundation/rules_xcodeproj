@@ -606,6 +606,101 @@ def _collect_incremental_input_files(
         ),
     )
 
+def _collect_mixed_language_input_files(
+        *,
+        mergeable_info,
+        mixed_target_infos):
+    """Collects all of the inputs of a target.
+
+    Args:
+        mergeable_info: A value from `mergeable_infos.calculate_mixed_language`.
+        mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
+            Clang and Swift targets.
+
+    Returns:
+        A `tuple` with two elements:
+
+        *   A `struct`, which will be passed to `xcode_targets.make`, with the
+            following fields:
+
+            *   `extra_file_paths`: A `depset` of file path strings that aren't
+                covered under the other attributes, but should be included in
+                the project navigator.
+            *   `extra_files`: A `depset` of `File` that aren't covered under
+                the other attributes, but should be included in the project
+                navigator.
+            *   `extra_folders`: A `depset` of folder path strings that aren't
+                covered under the other attributes, but should be included in
+                the project navigator.
+            *   `non_arc_srcs`: A `list` of `File`s that are inputs to
+                `target`'s `non_arc_srcs`-like attributes.
+            *   `srcs`: A `list` of `File`s that are inputs to `target`'s
+                `srcs`-like attributes.
+
+        *   A `struct`, which will end up in `XcodeProjInfo.inputs`, with the
+            following fields:
+
+            *   `important_generated`: A `depset` of important generated `File`s
+                that are inputs to `target` or its transitive dependencies.
+                These differ from `generated` in that they will be generated as
+                part of project generation, to ensure they are created before
+                Xcode is opened. Entitlements are an example of this, as Xcode
+                won't even start a build if they are missing.
+            *   `resource_bundles`: A `depset` of values from
+                `resources.collect().bundles`.
+            *   `unsupported_extra_files`: A `depset` of `File`s that are inputs
+                of unsupported targets. These should be included in the project
+                navigator.
+            *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s
+                that are in `resources`.
+    """
+    return (
+        struct(
+            extra_file_paths = mergeable_info.extra_file_paths,
+            extra_files = mergeable_info.extra_files,
+            extra_folders = EMPTY_DEPSET,
+            extra_generated_folders = EMPTY_DEPSET,
+            infoplist = None,
+            non_arc_srcs = mergeable_info.non_arc_srcs,
+            srcs = mergeable_info.srcs,
+        ),
+        struct(
+            # Framework files only come from top-level targets, so no need to
+            # collect them from `mixed_target_infos`
+            _product_framework_files = EMPTY_DEPSET,
+            # Resources only come from top-level targets, so no need to collect
+            # them from `mixed_target_infos`
+            _resource_bundle_labels = EMPTY_DEPSET,
+            _resource_bundle_uncategorized_files = EMPTY_DEPSET,
+            _resource_bundle_uncategorized_folders = EMPTY_DEPSET,
+            _resource_bundle_uncategorized_generated_folders = EMPTY_DEPSET,
+            _uncategorized = memory_efficient_depset(
+                transitive = [
+                    _collect_transitive_uncategorized(info)
+                    for info in mixed_target_infos
+                ],
+            ),
+            resource_bundles = EMPTY_DEPSET,
+            # Only entitlements are currently considered important, but to
+            # prevent bugs if we add more files in the future, we will still
+            # merge here
+            important_generated = memory_efficient_depset(
+                transitive = [
+                    info.inputs.important_generated
+                    for info in mixed_target_infos
+                ],
+            ),
+            unsupported_extra_files = memory_efficient_depset(
+                transitive = [
+                    info.inputs.unsupported_extra_files
+                    for info in mixed_target_infos
+                ],
+            ),
+            # Same as resource collection, so no need to merge
+            xccurrentversions = EMPTY_DEPSET,
+        ),
+    )
+
 def _collect_unsupported_input_files(
         *,
         ctx,
@@ -879,6 +974,7 @@ def _merge_top_level_input_files(
 
 incremental_input_files = struct(
     collect = _collect_incremental_input_files,
+    collect_mixed_language = _collect_mixed_language_input_files,
     collect_unsupported = _collect_unsupported_input_files,
     merge = _merge_input_files,
     merge_top_level = _merge_top_level_input_files,

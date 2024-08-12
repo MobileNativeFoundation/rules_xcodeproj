@@ -86,6 +86,27 @@ def _process_incremental_unsupported_target(
         objc = target[apple_common.Objc] if apple_common.Objc in target else None,
     )
 
+    if automatic_target_info.is_header_only_library:
+        mergeable_infos = depset(
+            [
+                # We still set a value to prevent unfocused targets from
+                # changing which targets _could_ merge. This is filtered out
+                # in `top_level_targets.bzl`.
+                struct(
+                    id = None,
+                    premerged_info = None,
+                    swiftmodule = False,
+                ),
+            ],
+        )
+    else:
+        mergeable_infos = memory_efficient_depset(
+            transitive = [
+                info.mergeable_infos
+                for info in transitive_infos
+            ],
+        )
+
     return processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
@@ -99,12 +120,7 @@ def _process_incremental_unsupported_target(
             rule_attr = rule_attr,
             transitive_infos = transitive_infos,
         ),
-        mergeable_infos = memory_efficient_depset(
-            transitive = [
-                info.mergeable_infos
-                for info in transitive_infos
-            ],
-        ),
+        mergeable_infos = mergeable_infos,
         outputs = output_files.merge(transitive_infos = transitive_infos),
         resource_bundle_ids = resource_bundle_ids,
         swift_debug_settings = memory_efficient_depset(
