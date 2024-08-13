@@ -765,7 +765,7 @@ def _process_unfocused_top_level_target(
         # FIXME: Should this be args.cxx?
         cxx_args = [],
         generate_build_settings = False,
-        is_top_level_target = True,
+        generate_swift_debug_settings = True,
         name = label.name,
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
