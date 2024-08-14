@@ -151,7 +151,7 @@ def _process_incremental_library_target(
         transitive = [
             info.swift_debug_settings
             for info in transitive_infos
-        ],
+        ] if not swift_debug_settings_file else None,
         order = "topological",
     )
 
