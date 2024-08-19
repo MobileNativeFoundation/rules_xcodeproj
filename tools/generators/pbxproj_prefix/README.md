@@ -217,9 +217,6 @@ Here is an example output:
 				IMPORT_INDEX_BUILD_INDEXSTORES = YES;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
-				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
-				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
@@ -230,7 +227,7 @@ Here is an example output:
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
-				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
+				PROJECT_DIR = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SRCROOT = /tmp/workspace;
@@ -280,9 +277,6 @@ Here is an example output:
 				IMPORT_INDEX_BUILD_INDEXSTORES = YES;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
-				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
-				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
@@ -293,7 +287,7 @@ Here is an example output:
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
-				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
+				PROJECT_DIR = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SRCROOT = /tmp/workspace;

@@ -63,12 +63,6 @@ extension Generator {
         let projectDirComponents = absoluteProjectDirPath
             .split(separator: "/", omittingEmptySubsequences: false)
 
-        // build_output_base/execroot/_main -> indexbuild_output_base/execroot/_main
-        let indexingProjectDirPath =
-            (projectDirComponents.prefix(upTo: projectDirComponents.count - 3) +
-             ["indexbuild_output_base"] +
-             projectDirComponents.suffix(2)).joined(separator: "/")
-
         var buildSettings: [String: Any] = [
             "ALWAYS_SEARCH_USER_PATHS": false,
             "BAZEL_CONFIG": project.bazelConfig,
@@ -101,9 +95,6 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEX_IMPORT": indexImport,
-            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": absoluteProjectDirPath,
-            "INDEXING_PROJECT_DIR__YES": indexingProjectDirPath,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
@@ -114,9 +105,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
-            "PROJECT_DIR": """
-$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
-""",
+            "PROJECT_DIR": absoluteProjectDirPath,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SRCROOT": srcRoot,
             // Bazel currently doesn't support Catalyst

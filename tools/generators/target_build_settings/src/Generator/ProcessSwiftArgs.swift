@@ -171,11 +171,6 @@ extension Generator.ProcessSwiftArgs {
             "$(PROJECT_DIR)",
             "-working-directory",
             "$(PROJECT_DIR)",
-
-            "-Xcc",
-            "-ivfsoverlay$(OBJROOT)/bazel-out-overlay.yaml",
-            "-vfsoverlay",
-            "$(OBJROOT)/bazel-out-overlay.yaml",
         ]
         var clangArgs: [String] = []
         var frameworkIncludes: OrderedSet<String> = []
