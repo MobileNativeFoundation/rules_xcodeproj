@@ -64,7 +64,7 @@ readonly build_pre_config_flags=(
   # This is brittle. If different file extensions are used for compilation
   # inputs, they will need to be added to this list. Ideally we can stop doing
   # this once Bazel adds support for a Remote Output Service.
-  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(cfg|c|C|cc|cl|cpp|cu|cxx|c++|def|h|H|hh|hpp|hxx|h++|hmap|ilc|inc|ipp|tcc|tlh|tpp|m|modulemap|mm|pch|swift|swiftdoc|swiftmodule|swiftsourceinfo|yaml)$"
+  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.(cfg|c|C|cc|cl|cpp|cu|cxx|c++|def|h|H|hh|hpp|hxx|h++|hmap|ilc|inc|inl|ipp|tcc|tlh|tli|tpp|m|modulemap|mm|pch|swift|swiftdoc|swiftmodule|swiftsourceinfo|yaml)$"
 )
 
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
