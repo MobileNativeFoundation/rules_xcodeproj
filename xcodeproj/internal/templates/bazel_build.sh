@@ -68,8 +68,23 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
+readonly allowed_vars=(
+  "BUILD_WORKSPACE_DIRECTORY"
+  "DEVELOPER_DIR"
+  "HOME"
+  "TERM"
+  "USER"
+)
+passthrough_env=()
+for var in "${allowed_vars[@]}"; do
+  if [[ -n "${!var:-}" ]]; then
+    passthrough_env+=("$var=${!var}")
+  fi
+done
+
 readonly bazel_cmd=(
-  env
+  env -i
+  "${passthrough_env[@]}"
 %bazel_env%
   "%bazel_path%"
 
