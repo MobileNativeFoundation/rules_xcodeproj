@@ -419,7 +419,10 @@ def calculate_automatic_target_info(
             bool(target.files) and
             _has_values_in(_SRCS_ATTRS, attr = rule_attr)
         )
-        is_header_only_library = not is_supported
+        is_header_only_library = (
+            not is_supported and
+            _has_values_in(_HDRS_DEPS_ATTRS, attr = rule_attr)
+        )
     elif rule_kind == "cc_import":
         extra_files = _CC_IMPORT_EXTRA_FILES_ATTRS
         is_supported = False
@@ -437,7 +440,10 @@ def calculate_automatic_target_info(
                 _has_values_in(_NON_ARC_SRCS_ATTRS, attr = rule_attr)
             )
         )
-        is_header_only_library = not is_supported
+        is_header_only_library = (
+            not is_supported and
+            _has_values_in(_HDRS_DEPS_ATTRS, attr = rule_attr)
+        )
     elif rule_kind == "objc_import":
         extra_files = _OBJC_IMPORT_EXTRA_FILES_ATTRS
         is_supported = False
