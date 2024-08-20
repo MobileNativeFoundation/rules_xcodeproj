@@ -66,6 +66,6 @@ source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores" \
-    "$INDEXING_PROJECT_DIR__NO" \
+    "$PROJECT_DIR" \
     "${indexstores_filelists[@]/#/$BAZEL_OUT/}"
 fi
