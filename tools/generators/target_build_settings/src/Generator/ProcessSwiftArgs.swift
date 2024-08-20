@@ -382,4 +382,7 @@ private let skipFrontendArgs: [Substring: Int] = [
 
     // We don't want to translate this for BwX
     "-emit-symbol-graph": 1,
+
+    // Breaks compilation when indexing
+    "-const-gather-protocols-file": 3,
 ]
