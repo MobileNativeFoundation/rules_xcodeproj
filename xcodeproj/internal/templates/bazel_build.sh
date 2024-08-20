@@ -42,10 +42,13 @@ if [ "$ACTION" == "indexbuild" ]; then
   # Use current path for "bazel-out/" and "external/"
   # This fixes Index Build to use its version of generated and external files
   readonly vfs_overlay_roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"},{\"external-contents\": \"$output_base/external\",\"name\": \"$BAZEL_EXTERNAL\",\"type\": \"directory-remap\"}"
+
+  readonly indexbuild_startup_flag="--macos_qos_class=utility"
 else
   readonly output_base="$build_output_base"
   readonly output_path="$BAZEL_OUT"
   readonly vfs_overlay_roots=""
+  readonly indexbuild_startup_flag=""
 fi
 
 # Set `bazel_cmd` for calling `bazel`
@@ -88,6 +91,8 @@ readonly bazel_cmd=(
   "${bazelrcs[@]}"
 
   --output_base "$output_base"
+
+  "$indexbuild_startup_flag"
 )
 
 readonly base_pre_config_flags=(
