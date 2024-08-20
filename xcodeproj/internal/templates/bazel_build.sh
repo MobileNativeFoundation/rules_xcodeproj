@@ -47,6 +47,7 @@ readonly allowed_vars=(
   "BUILD_WORKSPACE_DIRECTORY"
   "DEVELOPER_DIR"
   "HOME"
+  "SSH_AUTH_SOCK"
   "TERM"
   "USER"
 )

@@ -181,6 +181,7 @@ EOF
 readonly allowed_vars=(
   "BUILD_WORKSPACE_DIRECTORY"
   "HOME"
+  "SSH_AUTH_SOCK"
   "TERM"
   "USER"
 )
