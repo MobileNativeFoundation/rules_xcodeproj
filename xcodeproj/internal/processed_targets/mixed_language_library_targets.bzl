@@ -103,12 +103,13 @@ def _process_mixed_language_library_target(
         target = target,
     )
 
-    mergeable_info = mergeable_infos_module.calculate_mixed_language(
+    mergeable_info_and_ids = mergeable_infos_module.calculate_mixed_language(
         clang_target_info = clang_target_info,
-        id = id,
         product_type = product_type,
         swift_target_info = swift_target_info,
     )
+    merged_target_ids = [(id, mergeable_info_and_ids.ids)]
+    mergeable_info = mergeable_info_and_ids.merged
 
     (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
         mergeable_info = mergeable_info,
@@ -221,7 +222,7 @@ def _process_mixed_language_library_target(
         direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
         mergeable_infos = mergeable_infos,
-        merged_target_ids = mergeable_info.ids,
+        merged_target_ids = merged_target_ids,
         outputs = provider_outputs,
         platform = platform.apple_platform,
         swift_debug_settings = swift_target_info.swift_debug_settings,
