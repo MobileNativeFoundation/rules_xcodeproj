@@ -205,7 +205,7 @@ done
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores" \
-    "$INDEXING_PROJECT_DIR__NO" \
+    "$PROJECT_DIR" \
     "${indexstores_filelists[@]/#/$BAZEL_OUT/}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
 fi
