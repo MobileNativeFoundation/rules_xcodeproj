@@ -178,8 +178,23 @@ common:rules_xcodeproj --repo_env=USE_CLANG_CL=%xcode_version%
 common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
 EOF
 
+readonly allowed_vars=(
+  "BUILD_WORKSPACE_DIRECTORY"
+  "HOME"
+  "TERM"
+  "USER"
+)
+passthrough_env=()
+for var in "${allowed_vars[@]}"; do
+  if [[ -n "${!var:-}" ]]; then
+    passthrough_env+=("$var=${!var}")
+  fi
+done
+
 bazel_cmd=(
-  env
+  env -i
+  "DEVELOPER_DIR=$developer_dir"
+  "${passthrough_env[@]}"
   "${envs[@]}"
   "$bazel_path"
 
