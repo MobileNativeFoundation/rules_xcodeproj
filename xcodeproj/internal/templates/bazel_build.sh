@@ -22,12 +22,6 @@
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 readonly output_groups_flag
 
-# Un-export Xcode set environment variables that mess up Bazel rules. If a user
-# wants these values to be set for their build, they need to use
-# `xcodeproj.bazel_env`.
-export -n LD_LIBRARY_PATH
-export -n SDKROOT
-
 # Set `output_base`
 
 # In `runner.sh` the generator has the build output base set inside of the outer
