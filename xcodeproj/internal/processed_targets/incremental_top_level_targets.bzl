@@ -421,7 +421,6 @@ def _process_focused_top_level_target(
                 info.swift_debug_settings
                 for info in deps_infos
             ],
-            order = "topological",
         )
 
         top_level_focused_deps = [
@@ -749,7 +748,6 @@ def _process_unfocused_top_level_target(
             # FIXME: Exclude `avoid_deps`
             for info in deps_infos
         ],
-        order = "topological",
     )
 
     (

@@ -257,13 +257,7 @@ def _mixed_language_mergeable_info(
             ],
         ),
         swift_args = swift.args.swift,
-        swift_debug_settings_to_merge = memory_efficient_depset(
-            transitive = [
-                swift.swift_debug_settings,
-                cc.swift_debug_settings,
-            ],
-            order = "topological",
-        ),
+        swift_debug_settings_to_merge = swift.swift_debug_settings,
     )
 
 def _swift_mergeable_info(

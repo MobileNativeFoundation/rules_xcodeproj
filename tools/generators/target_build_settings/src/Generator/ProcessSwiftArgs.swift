@@ -104,7 +104,14 @@ extension Generator.ProcessSwiftArgs {
         frameworkIncludes: OrderedSet<String>,
         swiftIncludes: OrderedSet<String>
     ) {
-        var (hasDebugInfo, clangArgs, frameworkIncludes, onceClangArgs, swiftIncludes) = try await _process_swift_args(
+        var (
+            hasDebugInfo,
+            clangArgs,
+            frameworkIncludes,
+            onceClangArgs,
+            swiftIncludes,
+            includeTransitiveSwiftDebugSettings
+        ) = try await _process_swift_args(
             argsStream: argsStream,
             buildSettings: &buildSettings,
             includeSelfSwiftDebugSettings: includeSelfSwiftDebugSettings,
@@ -118,13 +125,15 @@ extension Generator.ProcessSwiftArgs {
             processSwiftFrontendArg: processSwiftFrontendArg
         )
 
-        try await parseTransitiveSwiftDebugSettings(
-            transitiveSwiftDebugSettingPaths,
-            clangArgs: &clangArgs,
-            frameworkIncludes: &frameworkIncludes,
-            onceClangArgs: &onceClangArgs,
-            swiftIncludes: &swiftIncludes
-        )
+        if includeTransitiveSwiftDebugSettings {
+            try await parseTransitiveSwiftDebugSettings(
+                transitiveSwiftDebugSettingPaths,
+                clangArgs: &clangArgs,
+                frameworkIncludes: &frameworkIncludes,
+                onceClangArgs: &onceClangArgs,
+                swiftIncludes: &swiftIncludes
+            )
+        }
 
         return (hasDebugInfo, clangArgs, frameworkIncludes, swiftIncludes)
     }
@@ -146,8 +155,9 @@ extension Generator.ProcessSwiftArgs {
         clangArgs: [String],
         frameworkIncludes: OrderedSet<String>,
         onceClangArgs: Set<String>,
-        swiftIncludes: OrderedSet<String>
-    ) { 
+        swiftIncludes: OrderedSet<String>,
+        includeTransitiveSwiftDebugSettings: Bool
+    ) {
         var previousArg: String? = nil
         var previousClangArg: String? = nil
         var previousFrontendArg: String? = nil
@@ -158,7 +168,7 @@ extension Generator.ProcessSwiftArgs {
         guard let tool = try await iterator.next(),
               tool != Generator.argsSeparator
         else {
-            return (false, [], [], [], [])
+            return (false, [], [], [], [], true)
         }
         _ = try await iterator.next()
 
@@ -312,7 +322,14 @@ extension Generator.ProcessSwiftArgs {
             ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
         )
 
-        return (hasDebugInfo, clangArgs, frameworkIncludes, onceClangArgs, swiftIncludes)
+        return (
+            hasDebugInfo,
+            clangArgs,
+            frameworkIncludes,
+            onceClangArgs,
+            swiftIncludes,
+            !includeSelfSwiftDebugSettings
+        )
     }
 }
 
