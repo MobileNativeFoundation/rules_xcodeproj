@@ -439,8 +439,6 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
                         "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
                         "-Xcc",
                         "-ivfsoverlay",
-                        "-Xcc",
-                        "$(OBJROOT)/bazel-out-overlay.yaml",
                     ])
                 }
 
@@ -463,29 +461,8 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
                     swiftFlagsPrefix.append(contentsOf: [
                         "-Xcc",
                         "-ivfsoverlay",
-                        "-Xcc",
-                        "$(OBJROOT)/bazel-out-overlay.yaml",
                     ])
                 }
-            }
-
-            if !swiftFlags.isEmpty {
-                swiftFlagsPrefix.append(contentsOf: [
-                    "-vfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ])
-            }
-            if !cFlags.isEmpty {
-                cFlagsPrefix.append(contentsOf: [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ])
-            }
-            if !cxxFlags.isEmpty {
-                cxxFlagsPrefix.append(contentsOf: [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ])
             }
         }
 

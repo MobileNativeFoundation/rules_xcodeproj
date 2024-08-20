@@ -81,13 +81,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
-            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": """
-/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
-""",
-            "INDEXING_PROJECT_DIR__YES": """
-/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
-""",
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
             "LD_OBJC_ABI_VERSION": "",
@@ -95,7 +88,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
-$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
 """,
             "RULES_XCODEPROJ_BUILD_MODE": "xcode",
             "SRCROOT": directories.workspace.string,
@@ -227,13 +220,6 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEX_IMPORT": "/tmp/index-import",
-            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": """
-/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
-""",
-            "INDEXING_PROJECT_DIR__YES": """
-/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
-""",
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
             "LD_OBJC_ABI_VERSION": "",
@@ -241,7 +227,7 @@ $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
             "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
-$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
 """,
             "RULES_XCODEPROJ_BUILD_MODE": "bazel",
             "SRCROOT": directories.workspace.string,

@@ -2067,7 +2067,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "COMPILE_TARGET_NAME": targets["A 1"]!.name,
                 "MACOSX_DEPLOYMENT_TARGET": "10.0",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
 @$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "a",
@@ -2210,8 +2209,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["E1"]!.name,
                 "OTHER_SWIFT_FLAGS": #"""
 -Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml \#
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
 @$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "E1",
@@ -2231,7 +2228,6 @@ $(BAZEL_OUT)/E1.swift.compile.params
                 "BAZEL_TARGET_ID[sdk=appletvos*]": "$(BAZEL_TARGET_ID)",
                 "COMPILE_TARGET_NAME": targets["E2"]!.name,
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
 @$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "E2",
@@ -2314,7 +2310,6 @@ $(MACOSX_FILES)
 "T/T 3/Ta.c" "T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
 @$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "t",
