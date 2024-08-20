@@ -128,7 +128,6 @@ def _process_incremental_unsupported_target(
                 info.swift_debug_settings
                 for info in transitive_infos
             ],
-            order = "topological",
         ),
         target_output_groups = output_groups.merge(
             transitive_infos = transitive_infos,
