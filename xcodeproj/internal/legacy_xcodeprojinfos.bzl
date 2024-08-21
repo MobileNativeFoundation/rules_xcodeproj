@@ -352,6 +352,19 @@ def _make_skipped_target_xcodeprojinfo(
             "{}:{}".format(package_label_str, label_name),
         )
 
+    if automatic_target_info.env:
+        direct_envs = []
+        for info in deps_transitive_infos:
+            info_env = getattr(rule_attr, automatic_target_info.env, {})
+            info_env = {
+                k: ctx.expand_make_variables("env", v, {})
+                for k, v in info_env.items()
+            }
+            env = dicts.add(info_env, ctx.configuration.test_env)
+            direct_envs.append(struct(id = info.xcode_target.id, env = struct(**env)))
+    else:
+        direct_envs = None
+
     return _target_info_fields(
         args = memory_efficient_depset(
             [
@@ -371,22 +384,7 @@ def _make_skipped_target_xcodeprojinfo(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         envs = memory_efficient_depset(
-            [
-                struct(
-                    id = info.xcode_target.id,
-                    env = struct(
-                        **dicts.add(
-                            getattr(
-                                rule_attr,
-                                automatic_target_info.env,
-                                {},
-                            ),
-                            ctx.configuration.test_env,
-                        )
-                    ),
-                )
-                for info in deps_transitive_infos
-            ] if automatic_target_info.env else None,
+            direct_envs,
             transitive = [
                 info.envs
                 for info in valid_transitive_infos
