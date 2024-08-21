@@ -258,6 +258,7 @@ def _target_info_fields(
 
 def _make_skipped_target_xcodeprojinfo(
         *,
+        ctx,
         automatic_target_info,
         rule_attr,
         skip_type,
@@ -269,6 +270,7 @@ def _make_skipped_target_xcodeprojinfo(
     forwards them on, not collecting any information for the current target.
 
     Args:
+        ctx: The aspect context.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `the target.
         rule_attr: `ctx.rule.attr`.
@@ -360,6 +362,22 @@ def _make_skipped_target_xcodeprojinfo(
         ],
     )
 
+    if automatic_target_info.env:
+        direct_envs = []
+        for info in deps_transitive_infos:
+            if not info.xcode_target:
+                continue
+
+            info_env = getattr(rule_attr, automatic_target_info.env, {})
+            info_env = {
+                k: ctx.expand_make_variables("env", v, {})
+                for k, v in info_env.items()
+            }
+            env = dicts.add(info_env, test_env)
+            direct_envs.append(struct(id = info.xcode_target.id, env = tuple([(k, v) for k, v in env.items()])))
+    else:
+        direct_envs = None
+
     return _target_info_fields(
         args = memory_efficient_depset(
             [
@@ -380,24 +398,7 @@ def _make_skipped_target_xcodeprojinfo(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         envs = memory_efficient_depset(
-            [
-                struct(
-                    id = info.xcode_target.id,
-                    env = tuple([
-                        (k, v)
-                        for k, v in dicts.add(
-                            getattr(
-                                rule_attr,
-                                automatic_target_info.env,
-                                {},
-                            ),
-                            test_env,
-                        ).items()
-                    ]),
-                )
-                for info in deps_transitive_infos
-                if info.xcode_target
-            ] if automatic_target_info.env else None,
+            direct_envs,
             transitive = [
                 info.envs
                 for info in valid_transitive_infos
@@ -797,6 +798,7 @@ def _make_xcodeprojinfo(
     )
     if target_skip_type:
         info_fields = _make_skipped_target_xcodeprojinfo(
+            ctx = ctx,
             automatic_target_info = automatic_target_info,
             rule_attr = rule_attr,
             skip_type = target_skip_type,
