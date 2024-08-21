@@ -29,7 +29,6 @@ def _calculate_mergeable_info(
         avoid_deps,
         deps_infos,
         dynamic_frameworks,
-        id,
         product_type,
         xcode_inputs):
     # We can only merge if this target doesn't have its own sources
@@ -70,20 +69,16 @@ def _calculate_mergeable_info(
         if premerged_info:
             # Mixed-language targets already ran through this process, so
             # return that value
-            return premerged_info
+            return struct(ids = (mergeable_info.id,), merged = premerged_info)
 
         if mergeable_info.swiftmodule:
             return _swift_mergeable_info(
                 dynamic_frameworks = dynamic_frameworks,
-                id = id,
                 mergeable_info = mergeable_info,
                 product_type = product_type,
             )
         else:
-            return _cc_mergeable_info(
-                id = id,
-                mergeable_info = mergeable_info,
-            )
+            return _cc_mergeable_info(mergeable_info = mergeable_info)
 
     if len(mergeable_infos) == 2:
         # Only merge if one src is Swift and the other isn't
@@ -113,7 +108,6 @@ def _calculate_mergeable_info(
         return _handle_mixed_language_mergeable_infos(
             cc = cc,
             dynamic_frameworks = dynamic_frameworks,
-            id = id,
             product_type = product_type,
             swift = swift,
         )
@@ -124,63 +118,57 @@ def _calculate_mergeable_info(
 def _calculate_mixed_language_mergeable_info(
         *,
         clang_target_info,
-        id,
         product_type,
         swift_target_info):
     return _handle_mixed_language_mergeable_infos(
         cc = clang_target_info.mergeable_infos.to_list()[0],
         dynamic_frameworks = EMPTY_LIST,
-        id = id,
         product_type = product_type,
         swift = swift_target_info.mergeable_infos.to_list()[0],
     )
 
-def _cc_mergeable_info(*, id, mergeable_info):
+def _cc_mergeable_info(*, mergeable_info):
     return struct(
-        compile_target_ids = mergeable_info.id,
-        compile_target_ids_list = (mergeable_info.id,),
-        conly_args = mergeable_info.args.conly,
-        cxx_args = mergeable_info.args.cxx,
-        extra_file_paths = mergeable_info.inputs.extra_file_paths,
-        extra_files = mergeable_info.inputs.extra_files,
-        indexstores = mergeable_info.indexstores,
-        ids = ((id, (mergeable_info.id,)),),
-        is_mixed_langauge = False,
-        module_name = mergeable_info.module_name,
-        non_arc_srcs = mergeable_info.inputs.non_arc_srcs,
-        package_bin_dir = mergeable_info.package_bin_dir,
-        previews_dynamic_frameworks = EMPTY_LIST,
-        previews_include_path = EMPTY_STRING,
-        product_files = (mergeable_info.product_file,),
-        srcs = mergeable_info.inputs.srcs,
-        swift_args = EMPTY_LIST,
-        swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
+        ids = (mergeable_info.id,),
+        merged = struct(
+            compile_target_ids = mergeable_info.id,
+            compile_target_ids_list = (mergeable_info.id,),
+            conly_args = mergeable_info.args.conly,
+            cxx_args = mergeable_info.args.cxx,
+            extra_file_paths = mergeable_info.inputs.extra_file_paths,
+            extra_files = mergeable_info.inputs.extra_files,
+            indexstores = mergeable_info.indexstores,
+            is_mixed_langauge = False,
+            module_name = mergeable_info.module_name,
+            non_arc_srcs = mergeable_info.inputs.non_arc_srcs,
+            package_bin_dir = mergeable_info.package_bin_dir,
+            previews_dynamic_frameworks = EMPTY_LIST,
+            previews_include_path = EMPTY_STRING,
+            product_files = (mergeable_info.product_file,),
+            srcs = mergeable_info.inputs.srcs,
+            swift_args = EMPTY_LIST,
+            swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
+        ),
     )
 
 def _handle_mixed_language_mergeable_infos(
         *,
         cc,
         dynamic_frameworks,
-        id,
         product_type,
         swift):
     if not cc.id:
         return _swift_mergeable_info(
             dynamic_frameworks = dynamic_frameworks,
-            id = id,
             mergeable_info = swift,
             product_type = product_type,
         )
     if not swift.id:
-        return _cc_mergeable_info(
-            id = id,
-            mergeable_info = cc,
-        )
+        return _cc_mergeable_info(mergeable_info = cc)
 
     return _mixed_language_mergeable_info(
         cc = cc,
         dynamic_frameworks = dynamic_frameworks,
-        id = id,
         product_type = product_type,
         swift = swift,
     )
@@ -213,7 +201,6 @@ def _mixed_language_mergeable_info(
         *,
         cc,
         dynamic_frameworks,
-        id,
         product_type,
         swift):
     previews_info = _previews_info(
@@ -223,49 +210,46 @@ def _mixed_language_mergeable_info(
     )
 
     return struct(
-        compile_target_ids = swift.id + " " + cc.id,
-        compile_target_ids_list = (swift.id, cc.id),
-        conly_args = cc.args.conly,
-        cxx_args = cc.args.cxx,
-        extra_file_paths = memory_efficient_depset(
-            transitive = [
-                swift.inputs.extra_file_paths,
-                cc.inputs.extra_file_paths,
-            ],
+        ids = (swift.id, cc.id),
+        merged = struct(
+            compile_target_ids = swift.id + " " + cc.id,
+            compile_target_ids_list = (swift.id, cc.id),
+            conly_args = cc.args.conly,
+            cxx_args = cc.args.cxx,
+            extra_file_paths = memory_efficient_depset(
+                transitive = [
+                    swift.inputs.extra_file_paths,
+                    cc.inputs.extra_file_paths,
+                ],
+            ),
+            extra_files = memory_efficient_depset(
+                transitive = [
+                    swift.inputs.extra_files,
+                    cc.inputs.extra_files,
+                ],
+            ),
+            indexstores = tuple(list(swift.indexstores) + list(cc.indexstores)),
+            module_name = swift.module_name,
+            non_arc_srcs = cc.inputs.non_arc_srcs,
+            package_bin_dir = swift.package_bin_dir,
+            previews_dynamic_frameworks = previews_info.frameworks,
+            previews_include_path = previews_info.include_path,
+            product_files = (
+                swift.product_file,
+                cc.product_file,
+            ),
+            srcs = memory_efficient_depset(
+                transitive = [
+                    swift.inputs.srcs,
+                    cc.inputs.srcs,
+                ],
+            ),
+            swift_args = swift.args.swift,
+            swift_debug_settings_to_merge = swift.swift_debug_settings,
         ),
-        extra_files = memory_efficient_depset(
-            transitive = [
-                swift.inputs.extra_files,
-                cc.inputs.extra_files,
-            ],
-        ),
-        indexstores = tuple(list(swift.indexstores) + list(cc.indexstores)),
-        ids = ((id, (swift.id, cc.id)),),
-        module_name = swift.module_name,
-        non_arc_srcs = cc.inputs.non_arc_srcs,
-        package_bin_dir = swift.package_bin_dir,
-        previews_dynamic_frameworks = previews_info.frameworks,
-        previews_include_path = previews_info.include_path,
-        product_files = (
-            swift.product_file,
-            cc.product_file,
-        ),
-        srcs = memory_efficient_depset(
-            transitive = [
-                swift.inputs.srcs,
-                cc.inputs.srcs,
-            ],
-        ),
-        swift_args = swift.args.swift,
-        swift_debug_settings_to_merge = swift.swift_debug_settings,
     )
 
-def _swift_mergeable_info(
-        *,
-        dynamic_frameworks,
-        id,
-        mergeable_info,
-        product_type):
+def _swift_mergeable_info(*, dynamic_frameworks, mergeable_info, product_type):
     previews_info = _previews_info(
         mergeable_info,
         dynamic_frameworks = dynamic_frameworks,
@@ -273,24 +257,26 @@ def _swift_mergeable_info(
     )
 
     return struct(
-        compile_target_ids = mergeable_info.id,
-        compile_target_ids_list = (mergeable_info.id,),
-        conly_args = EMPTY_LIST,
-        cxx_args = EMPTY_LIST,
-        extra_file_paths = mergeable_info.inputs.extra_file_paths,
-        extra_files = mergeable_info.inputs.extra_files,
-        indexstores = mergeable_info.indexstores,
-        ids = ((id, (mergeable_info.id,)),),
-        is_mixed_langauge = False,
-        module_name = mergeable_info.module_name,
-        non_arc_srcs = EMPTY_DEPSET,
-        package_bin_dir = mergeable_info.package_bin_dir,
-        previews_dynamic_frameworks = previews_info.frameworks,
-        previews_include_path = previews_info.include_path,
-        product_files = (mergeable_info.product_file,),
-        srcs = mergeable_info.inputs.srcs,
-        swift_args = mergeable_info.args.swift,
-        swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
+        ids = (mergeable_info.id,),
+        merged = struct(
+            compile_target_ids = mergeable_info.id,
+            compile_target_ids_list = (mergeable_info.id,),
+            conly_args = EMPTY_LIST,
+            cxx_args = EMPTY_LIST,
+            extra_file_paths = mergeable_info.inputs.extra_file_paths,
+            extra_files = mergeable_info.inputs.extra_files,
+            indexstores = mergeable_info.indexstores,
+            is_mixed_langauge = False,
+            module_name = mergeable_info.module_name,
+            non_arc_srcs = EMPTY_DEPSET,
+            package_bin_dir = mergeable_info.package_bin_dir,
+            previews_dynamic_frameworks = previews_info.frameworks,
+            previews_include_path = previews_info.include_path,
+            product_files = (mergeable_info.product_file,),
+            srcs = mergeable_info.inputs.srcs,
+            swift_args = mergeable_info.args.swift,
+            swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
+        ),
     )
 
 mergeable_infos = struct(

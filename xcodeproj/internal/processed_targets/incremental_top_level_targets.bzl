@@ -335,14 +335,19 @@ def _process_focused_top_level_target(
         transitive_infos = transitive_infos,
     )
 
-    mergeable_info = mergeable_infos.calculate(
+    mergeable_info_and_ids = mergeable_infos.calculate(
         avoid_deps = avoid_deps,
         deps_infos = deps_infos,
         dynamic_frameworks = linker_inputs._top_level_values.dynamic_frameworks,
-        id = id,
         product_type = product_type,
         xcode_inputs = target_inputs.xcode_inputs,
     )
+    if mergeable_info_and_ids:
+        merged_target_ids = [(id, mergeable_info_and_ids.ids)]
+        mergeable_info = mergeable_info_and_ids.merged
+    else:
+        merged_target_ids = None
+        mergeable_info = None
 
     actual_package_bin_dir = products.calculate_packge_bin_dir(
         bin_dir_path = bin_dir_path,
@@ -574,7 +579,7 @@ def _process_focused_top_level_target(
         inputs = provider_inputs,
         is_top_level = True,
         mergeable_infos = EMPTY_DEPSET,
-        merged_target_ids = mergeable_info.ids if mergeable_info else None,
+        merged_target_ids = merged_target_ids,
         outputs = provider_outputs,
         platform = platform.apple_platform,
         swift_debug_settings = EMPTY_DEPSET,
