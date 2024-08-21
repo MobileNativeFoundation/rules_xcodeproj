@@ -40,6 +40,7 @@ def _collect_transitive_uncategorized(info):
 
 def _inner_merge_input_files(
         *,
+        framework_files,
         resource_bundles,
         transitive_infos,
         xccurrentversions):
@@ -48,7 +49,7 @@ def _inner_merge_input_files(
             transitive = [
                 info.inputs._product_framework_files
                 for info in transitive_infos
-            ],
+            ] + [framework_files],
         ),
         _resource_bundle_labels = memory_efficient_depset(
             transitive = [
@@ -414,7 +415,7 @@ def _collect_incremental_input_files(
         transitive = [
             info.inputs._product_framework_files
             for info in transitive_infos
-        ] + ([framework_files] if framework_files else []),
+        ] + [framework_files],
     )
 
     linker_input_additional_files = linker_input_files.to_input_files(
@@ -915,6 +916,7 @@ def _merge_input_files(*, transitive_infos):
         via `transitive_infos` (e.g. `extra_files`).
     """
     return _inner_merge_input_files(
+        framework_files = EMPTY_DEPSET,
         resource_bundles = None,
         transitive_infos = transitive_infos,
         xccurrentversions = None,
@@ -924,6 +926,7 @@ def _merge_top_level_input_files(
         *,
         avoid_deps,
         focused_labels,
+        framework_files,
         platform,
         resource_info,
         transitive_infos):
@@ -935,6 +938,9 @@ def _merge_top_level_input_files(
         focused_labels: A `depset` of label strings of focused targets. This
             will include the current target (if focused) and any focused
             dependencies of the current target.
+        framework_files: A `depset` of framework files from
+            `AppleDynamicFramework.framework_files`, if the target has the
+            `AppleDynamicFramework` provider.
         platform: A value from `platforms.collect`.
         resource_info: The `AppleResourceInfo` provider for the target if it is
             resource bundle consuming.
@@ -967,6 +973,7 @@ def _merge_top_level_input_files(
         xccurrentversions = None
 
     return _inner_merge_input_files(
+        framework_files = framework_files,
         resource_bundles = resource_bundles,
         transitive_infos = transitive_infos,
         xccurrentversions = xccurrentversions,

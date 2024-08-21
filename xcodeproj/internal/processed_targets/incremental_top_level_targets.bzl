@@ -735,6 +735,7 @@ def _process_unfocused_top_level_target(
             for file in framework_files.to_list()
         ]
     else:
+        framework_files = EMPTY_DEPSET
         framework_product_mappings = EMPTY_LIST
 
     args = compiler_args.collect(
@@ -790,6 +791,7 @@ def _process_unfocused_top_level_target(
     provider_inputs = input_files.merge_top_level(
         avoid_deps = avoid_deps,
         focused_labels = focused_labels,
+        framework_files = framework_files,
         platform = platform,
         resource_info = resource_info,
         transitive_infos = transitive_infos,
