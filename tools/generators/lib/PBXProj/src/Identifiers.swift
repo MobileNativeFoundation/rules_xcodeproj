@@ -58,7 +58,7 @@ FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "Baz
 FF0100000000000000000003 /* Pre-build Run Script */
 """#
         public static let generateBazelDependencies = #"""
-FF0100000000000000000004 /* Generate Bazel Dependendencies */
+FF0100000000000000000004 /* Generate Bazel Dependencies */
 """#
         public static let createSwiftDebugSettings = #"""
 FF0100000000000000000005 /* Create swift_debug_settings.py */

@@ -23,7 +23,7 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Order of configurations is wrong, but shows that it doesn't do
         // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
-		FF0100000000000000000004 /* Generate Bazel Dependendencies */ = {
+		FF0100000000000000000004 /* Generate Bazel Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -31,7 +31,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			);
 			inputPaths = (
 			);
-			name = "Generate Bazel Dependendencies";
+			name = "Generate Bazel Dependencies";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
@@ -88,7 +88,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				FF0100000000000000000004 /* Generate Bazel Dependendencies */,
+				FF0100000000000000000004 /* Generate Bazel Dependencies */,
 				FF0100000000000000000005 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
@@ -131,7 +131,7 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Order of configurations is wrong, but shows that it doesn't do
         // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
-		FF0100000000000000000004 /* Generate Bazel Dependendencies */ = {
+		FF0100000000000000000004 /* Generate Bazel Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -139,7 +139,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			);
 			inputPaths = (
 			);
-			name = "Generate Bazel Dependendencies";
+			name = "Generate Bazel Dependencies";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
@@ -196,7 +196,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				FF0100000000000000000004 /* Generate Bazel Dependendencies */,
+				FF0100000000000000000004 /* Generate Bazel Dependencies */,
 				FF0100000000000000000005 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
@@ -239,7 +239,7 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Order of configurations is wrong, but shows that it doesn't do
         // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
-		FF0100000000000000000004 /* Generate Bazel Dependendencies */ = {
+		FF0100000000000000000004 /* Generate Bazel Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -247,7 +247,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			);
 			inputPaths = (
 			);
-			name = "Generate Bazel Dependendencies";
+			name = "Generate Bazel Dependencies";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
@@ -305,7 +305,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				FF0100000000000000000004 /* Generate Bazel Dependendencies */,
+				FF0100000000000000000004 /* Generate Bazel Dependencies */,
 				FF0100000000000000000005 /* Create swift_debug_settings.py */,
 				FF0100000000000000000006 /* Post-build Run Script */,
 			);
@@ -350,7 +350,7 @@ class BazelDependenciesPartialTests: XCTestCase {
         // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
 		FF0100000000000000000003 /* Pre-build Run Script */ = {PRE_BUILD_HERE};
-		FF0100000000000000000004 /* Generate Bazel Dependendencies */ = {
+		FF0100000000000000000004 /* Generate Bazel Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -358,7 +358,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			);
 			inputPaths = (
 			);
-			name = "Generate Bazel Dependendencies";
+			name = "Generate Bazel Dependencies";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
@@ -416,7 +416,7 @@ class BazelDependenciesPartialTests: XCTestCase {
 			buildConfigurationList = FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
 				FF0100000000000000000003 /* Pre-build Run Script */,
-				FF0100000000000000000004 /* Generate Bazel Dependendencies */,
+				FF0100000000000000000004 /* Generate Bazel Dependencies */,
 				FF0100000000000000000005 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
