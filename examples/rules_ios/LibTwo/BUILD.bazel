@@ -1,0 +1,39 @@
+load(
+    "@build_bazel_rules_ios//rules:framework.bzl",
+    rules_ios_apple_framework = "apple_framework",
+)
+load(
+    "@build_bazel_rules_ios//rules:test.bzl",
+    rules_ios_unit_test = "ios_unit_test",
+)
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library",
+    "swift_library_group",
+)
+
+rules_ios_apple_framework(
+    name = "LibTwo",
+    srcs = ["Sources/LibTwo.swift"],
+    platforms = {"ios": "15.0"},
+    deps = [
+        ":External",
+    ],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+)
+
+rules_ios_unit_test(
+    name = "LibTwoTests",
+    srcs = ["Tests/LibTwoTests.swift"],
+    minimum_os_version = "15.0",
+    deps = [
+        ":LibTwo",
+    ],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+)
+
+swift_library(
+    name = "External",
+    srcs = ["External/External.swift"],
+    module_name = "External",
+)
