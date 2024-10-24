@@ -391,7 +391,7 @@ swift_library(
 )
 """,
         sha256 = "1ebde9c9403d5befb6956556e26f9308000722f7da9e87fed2e770d3918d647c",
-        strip_prefix = "xctest-dynamic-overlay-0.2.1",
+        strip_prefix = "swift-issue-reporting-0.2.1",
         url = "https://github.com/pointfreeco/xctest-dynamic-overlay/archive/refs/tags/0.2.1.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
