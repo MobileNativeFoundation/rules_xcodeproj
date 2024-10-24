@@ -37,10 +37,14 @@ def _make_build_target(
 def _make_diagnostics(
         *,
         address_sanitizer = FALSE_ARG,
+        main_thread_checker = TRUE_ARG,
+        performance_anti_pattern_checker = TRUE_ARG,
         thread_sanitizer = FALSE_ARG,
         undefined_behavior_sanitizer = FALSE_ARG):
     return struct(
         address_sanitizer = address_sanitizer,
+        main_thread_checker = main_thread_checker,
+        performance_anti_pattern_checker = performance_anti_pattern_checker,
         thread_sanitizer = thread_sanitizer,
         undefined_behavior_sanitizer = undefined_behavior_sanitizer,
     )
@@ -277,6 +281,10 @@ def _diagnostics_info_from_dict(diagnostics):
 
     return _make_diagnostics(
         address_sanitizer = diagnostics["address_sanitizer"],
+        main_thread_checker = diagnostics["main_thread_checker"],
+        performance_anti_pattern_checker = (
+            diagnostics["performance_anti_pattern_checker"]
+        ),
         thread_sanitizer = diagnostics["thread_sanitizer"],
         undefined_behavior_sanitizer = (
             diagnostics["undefined_behavior_sanitizer"]
