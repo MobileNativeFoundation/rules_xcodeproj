@@ -13,6 +13,8 @@ public struct CreateLaunchAction {
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
+        disableMainThreadChecker: Bool,
+        disablePerformanceAntipatternChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -25,6 +27,8 @@ public struct CreateLaunchAction {
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
             /*customWorkingDirectory:*/ customWorkingDirectory,
+            /*disableMainThreadChecker:*/ disableMainThreadChecker,
+            /*disablePerformanceAntipatternChecker:*/ disablePerformanceAntipatternChecker,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
@@ -43,6 +47,8 @@ extension CreateLaunchAction {
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
         _ customWorkingDirectory: String?,
+        _ disableMainThreadChecker: Bool,
+        _ disablePerformanceAntipatternChecker: Bool,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
@@ -56,6 +62,8 @@ extension CreateLaunchAction {
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
+        disableMainThreadChecker: Bool,
+        disablePerformanceAntipatternChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -88,6 +96,12 @@ selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
             )
         }
 
+        if disableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
+        }
+        if disablePerformanceAntipatternChecker {
+            components.append(#"disablePerformanceAntipatternChecker = "YES""#)
+        }
         if enableAddressSanitizer {
             components.append(#"enableAddressSanitizer = "YES""#)
         }

@@ -474,6 +474,16 @@ set
         let environmentVariablesIncludeDefaults =
             try consumeArg("run-include-default-env", as: Bool.self, in: url)
 
+        let disableMainThreadChecker = try consumeArg(
+            "run-disable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        let disablePerformanceAntipatternChecker = try consumeArg(
+            "run-disable-performance-anti-pattern-checker",
+            as: Bool.self,
+            in: url
+        )
         let enableAddressSanitizer = try consumeArg(
             "run-enable-address-sanitizer",
             as: Bool.self,
@@ -528,6 +538,8 @@ set
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
             customWorkingDirectory: customWorkingDirectory,
+            disableMainThreadChecker: disableMainThreadChecker,
+            disablePerformanceAntipatternChecker: disablePerformanceAntipatternChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
@@ -591,6 +603,11 @@ set
 
         let useRunArgsAndEnv =
             try consumeArg("test-use-run-args-and-env", as: Bool.self, in: url)
+        let disableMainThreadChecker = try consumeArg(
+            "test-disable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
         let enableAddressSanitizer = try consumeArg(
             "test-enable-address-sanitizer",
             as: Bool.self,
@@ -679,6 +696,7 @@ set
         return SchemeInfo.Test(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
+            disableMainThreadChecker: disableMainThreadChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,

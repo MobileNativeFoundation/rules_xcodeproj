@@ -112,6 +112,7 @@ extension Generator.CreateAutomaticSchemeInfo {
             test: .init(
                 buildTargets: [],
                 commandLineArguments: testCommandLineArguments,
+                disableMainThreadChecker: false,
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
@@ -125,6 +126,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                 buildTargets: buildTargets,
                 commandLineArguments: runCommandLineArguments,
                 customWorkingDirectory: nil,
+                disableMainThreadChecker: false,
+                disablePerformanceAntipatternChecker: false,
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,

@@ -12,6 +12,7 @@ public struct CreateTestAction {
     public func callAsFunction(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        disableMainThreadChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -25,6 +26,7 @@ public struct CreateTestAction {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
+            /*disableMainThreadChecker:*/ disableMainThreadChecker,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
@@ -44,6 +46,7 @@ extension CreateTestAction {
     public typealias Callable = (
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
+        _ disableMainThreadChecker: Bool,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
@@ -58,6 +61,7 @@ extension CreateTestAction {
     public static func defaultCallable(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        disableMainThreadChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -79,6 +83,9 @@ buildConfiguration = "\#(buildConfiguration)"
 """#,
         ]
 
+        if disableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
+        }
         if enableAddressSanitizer {
             components.append(#"enableAddressSanitizer = "YES""#)
         }

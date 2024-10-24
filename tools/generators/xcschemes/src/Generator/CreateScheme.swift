@@ -363,6 +363,7 @@ extension Generator.CreateScheme {
                 buildConfiguration: schemeInfo.test.xcodeConfiguration ??
                     defaultXcodeConfiguration,
                 commandLineArguments: schemeInfo.test.commandLineArguments,
+                disableMainThreadChecker: schemeInfo.test.disableMainThreadChecker,
                 enableAddressSanitizer: schemeInfo.test.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.test.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.test.enableUBSanitizer,
@@ -383,6 +384,8 @@ extension Generator.CreateScheme {
                 commandLineArguments: launchRunnable == nil ?
                     [] : schemeInfo.run.commandLineArguments,
                 customWorkingDirectory: schemeInfo.run.customWorkingDirectory,
+                disableMainThreadChecker: schemeInfo.run.disableMainThreadChecker,
+                disablePerformanceAntipatternChecker: schemeInfo.run.disablePerformanceAntipatternChecker,
                 enableAddressSanitizer: schemeInfo.run.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.run.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.run.enableUBSanitizer,

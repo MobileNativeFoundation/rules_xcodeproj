@@ -77,6 +77,36 @@ final class CreateTestActionTests: XCTestCase {
         XCTAssertNoDifference(action, expectedAction)
     }
 
+    func test_disableMainThreadChecker() {
+        // Arrange
+
+        let buildConfiguration = "Profile"
+        let disableMaintest_disableMainThreadChecker = true
+
+        let expectedAction = #"""
+   <TestAction
+      buildConfiguration = "Profile"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      disableMaintest_disableMainThreadChecker = "YES">
+      <Testables>
+      </Testables>
+   </TestAction>
+"""#
+
+        // Act
+
+        let action = createTestActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            disableMaintest_disableMainThreadChecker: disableMaintest_disableMainThreadChecker
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
+
     func test_enableAddressSanitizer() {
         // Arrange
 
@@ -359,6 +389,7 @@ final class CreateTestActionTests: XCTestCase {
 private func createTestActionWithDefaults(
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
+    disableMainThreadChecker: Bool = false,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,
@@ -372,6 +403,7 @@ private func createTestActionWithDefaults(
     return CreateTestAction.defaultCallable(
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
+        disableMainThreadChecker: disableMainThreadChecker,
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,
         enableUBSanitizer: enableUBSanitizer,
