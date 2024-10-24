@@ -112,10 +112,11 @@ extension Generator.CreateAutomaticSchemeInfo {
             test: .init(
                 buildTargets: [],
                 commandLineArguments: testCommandLineArguments,
-                enableMainThreadChecker: false,
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
                 environmentVariables: testEnvironmentVariables,
                 testTargets: isTest ?
                     [.init(target: target, isEnabled: true)] : [],
@@ -126,11 +127,11 @@ extension Generator.CreateAutomaticSchemeInfo {
                 buildTargets: buildTargets,
                 commandLineArguments: runCommandLineArguments,
                 customWorkingDirectory: nil,
-                enableMainThreadChecker: false,
-                enableThreadPerformanceChecker: false,
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
                 environmentVariables: runEnvironmentVariables,
                 launchTarget: launchTarget,
                 xcodeConfiguration: nil

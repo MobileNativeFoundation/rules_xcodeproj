@@ -367,6 +367,7 @@ extension Generator.CreateScheme {
                 enableThreadSanitizer: schemeInfo.test.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.test.enableUBSanitizer,
                 enableMainThreadChecker: schemeInfo.test.enableMainThreadChecker,
+                enableThreadPerformanceChecker: schemeInfo.test.enableThreadPerformanceChecker,
                 environmentVariables: schemeInfo.test.environmentVariables,
                 expandVariablesBasedOn: testUseLaunchSchemeArgsEnv ?
                     nil : testables.first?.buildableReference,

@@ -37,10 +37,11 @@ struct SchemeInfo: Equatable {
     struct Test: Equatable {
         let buildTargets: [Target]
         let commandLineArguments: [CommandLineArgument]
-        let enableMainThreadChecker: Bool
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool
+        let enableMainThreadChecker: Bool
+        let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
         let testTargets: [TestTarget]
         let useRunArgsAndEnv: Bool
@@ -56,11 +57,11 @@ struct SchemeInfo: Equatable {
         let buildTargets: [Target]
         let commandLineArguments: [CommandLineArgument]
         let customWorkingDirectory: String?
-        let enableMainThreadChecker: Bool
-        let enableThreadPerformanceChecker: Bool
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool
+        let enableMainThreadChecker: Bool
+        let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
         let xcodeConfiguration: String?

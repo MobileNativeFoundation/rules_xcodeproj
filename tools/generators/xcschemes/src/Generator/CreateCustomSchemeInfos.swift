@@ -538,11 +538,11 @@ set
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
             customWorkingDirectory: customWorkingDirectory,
-            enableMainThreadChecker: enableMainThreadChecker,
-            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
+            enableMainThreadChecker: enableMainThreadChecker,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
             xcodeConfiguration: xcodeConfiguration
@@ -609,9 +609,7 @@ set
             as: Bool.self,
             in: url
         )
-        // Ignoring this param as for now, the logic for writing diagnostics params
-        // are shared between test and run.
-        let _ = try consumeArg(
+        let enableThreadPerformanceChecker = try consumeArg(
             "test-enable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
@@ -704,10 +702,11 @@ set
         return SchemeInfo.Test(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
-            enableMainThreadChecker: enableMainThreadChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
+            enableMainThreadChecker: enableMainThreadChecker,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
