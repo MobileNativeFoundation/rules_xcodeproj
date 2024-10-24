@@ -12,10 +12,10 @@ public struct CreateTestAction {
     public func callAsFunction(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
-        disableMainThreadChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         expandVariablesBasedOn: BuildableReference?,
         postActions: [ExecutionAction],
@@ -26,10 +26,10 @@ public struct CreateTestAction {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
-            /*disableMainThreadChecker:*/ disableMainThreadChecker,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
+            /*enableMainThreadChecker:*/ enableMainThreadChecker,
             /*environmentVariables:*/ environmentVariables,
             /*expandVariablesBasedOn:*/ expandVariablesBasedOn,
             /*postActions:*/ postActions,
@@ -46,10 +46,10 @@ extension CreateTestAction {
     public typealias Callable = (
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
-        _ disableMainThreadChecker: Bool,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
+        _ enableMainThreadChecker: Bool,
         _ environmentVariables: [EnvironmentVariable],
         _ expandVariablesBasedOn: BuildableReference?,
         _ postActions: [ExecutionAction],
@@ -61,10 +61,10 @@ extension CreateTestAction {
     public static func defaultCallable(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
-        disableMainThreadChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         expandVariablesBasedOn macroReference: BuildableReference?,
         postActions: [ExecutionAction],
@@ -83,9 +83,6 @@ buildConfiguration = "\#(buildConfiguration)"
 """#,
         ]
 
-        if disableMainThreadChecker {
-            components.append(#"disableMainThreadChecker = "YES""#)
-        }
         if enableAddressSanitizer {
             components.append(#"enableAddressSanitizer = "YES""#)
         }
@@ -94,6 +91,10 @@ buildConfiguration = "\#(buildConfiguration)"
         }
         if enableUBSanitizer {
             components.append(#"enableUBSanitizer = "YES""#)
+        }
+
+        if !enableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
         }
 
         let macroExpansion: String

@@ -37,7 +37,7 @@ struct SchemeInfo: Equatable {
     struct Test: Equatable {
         let buildTargets: [Target]
         let commandLineArguments: [CommandLineArgument]
-        let disableMainThreadChecker: Bool
+        let enableMainThreadChecker: Bool
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool
@@ -56,8 +56,8 @@ struct SchemeInfo: Equatable {
         let buildTargets: [Target]
         let commandLineArguments: [CommandLineArgument]
         let customWorkingDirectory: String?
-        let disableMainThreadChecker: Bool
-        let disablePerformanceAntipatternChecker: Bool
+        let enableMainThreadChecker: Bool
+        let enableThreadPerformanceChecker: Bool
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool

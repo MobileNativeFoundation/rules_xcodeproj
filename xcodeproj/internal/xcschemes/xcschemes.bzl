@@ -1148,10 +1148,10 @@ def _env_value(value, *, enabled = True):
 def _diagnostics(
         *,
         address_sanitizer = False,
-        main_thread_checker = True,
-        performance_anti_pattern_checker = True,
         thread_sanitizer = False,
-        undefined_behavior_sanitizer = False):
+        undefined_behavior_sanitizer = False,
+        main_thread_checker = True,
+        thread_performance_checker = True):
     """Defines the diagnostics to enable.
 
     Args:
@@ -1166,7 +1166,7 @@ def _diagnostics(
             [`address_sanitizer`](#xcschemes.diagnostics-address_sanitizer) must
             be `False`.
         main_thread_checker: Whether to enable Main Thread Checker
-        performance_anti_pattern_checker: Whether to enable Thread Performance Checker
+        thread_performance_checker: Whether to enable Thread Performance Checker
         undefined_behavior_sanitizer: Whether to enable Undefined Behavior
             Sanitizer.
     """
@@ -1176,14 +1176,16 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
 """)
 
     return struct(
+        # Sanitizers
         address_sanitizer = TRUE_ARG if address_sanitizer else FALSE_ARG,
-        main_thread_checker = TRUE_ARG if main_thread_checker else FALSE_ARG,
-        performance_anti_pattern_checker = (
-            TRUE_ARG if performance_anti_pattern_checker else FALSE_ARG
-        ),
         thread_sanitizer = TRUE_ARG if thread_sanitizer else FALSE_ARG,
         undefined_behavior_sanitizer = (
             TRUE_ARG if undefined_behavior_sanitizer else FALSE_ARG
+        ),
+        # Checks
+        main_thread_checker = TRUE_ARG if main_thread_checker else FALSE_ARG,
+        thread_performance_checker = (
+            TRUE_ARG if thread_performance_checker else FALSE_ARG
         ),
     )
 

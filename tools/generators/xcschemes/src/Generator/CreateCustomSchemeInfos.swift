@@ -474,12 +474,12 @@ set
         let environmentVariablesIncludeDefaults =
             try consumeArg("run-include-default-env", as: Bool.self, in: url)
 
-        let disableMainThreadChecker = try consumeArg(
+        let enableMainThreadChecker = try consumeArg(
             "run-disable-main-thread-checker",
             as: Bool.self,
             in: url
         )
-        let disablePerformanceAntipatternChecker = try consumeArg(
+        let enableThreadPerformanceChecker = try consumeArg(
             "run-disable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
@@ -538,8 +538,8 @@ set
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
             customWorkingDirectory: customWorkingDirectory,
-            disableMainThreadChecker: disableMainThreadChecker,
-            disablePerformanceAntipatternChecker: disablePerformanceAntipatternChecker,
+            enableMainThreadChecker: enableMainThreadChecker,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
@@ -603,8 +603,16 @@ set
 
         let useRunArgsAndEnv =
             try consumeArg("test-use-run-args-and-env", as: Bool.self, in: url)
-        let disableMainThreadChecker = try consumeArg(
-            "test-disable-main-thread-checker",
+
+        let enableMainThreadChecker = try consumeArg(
+            "test-enable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        // Ignoring this param as for now, the logic for writing diagnostics params
+        // are shared between test and run.
+        let _ = try consumeArg(
+            "test-enable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
         )
@@ -696,7 +704,7 @@ set
         return SchemeInfo.Test(
             buildTargets: buildTargets,
             commandLineArguments: commandLineArguments,
-            disableMainThreadChecker: disableMainThreadChecker,
+            enableMainThreadChecker: enableMainThreadChecker,
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,

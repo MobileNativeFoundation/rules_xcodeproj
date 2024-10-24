@@ -16,6 +16,8 @@ def _dict_to_diagnostics_info(d):
         address_sanitizer = d["address_sanitizer"],
         thread_sanitizer = d["thread_sanitizer"],
         undefined_behavior_sanitizer = d["undefined_behavior_sanitizer"],
+        main_thread_checker = d["main_thread_checker"],
+        thread_performance_checker = d["thread_performance_checker"],
     )
 
 def _dict_to_launch_target_info(d):

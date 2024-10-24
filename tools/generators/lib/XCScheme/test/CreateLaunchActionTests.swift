@@ -135,7 +135,7 @@ final class CreateLaunchActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Profile"
-        let disableMainThreadChecker = true
+        let enableMainThreadChecker = false
 
         let expectedAction = #"""
    <LaunchAction
@@ -156,7 +156,7 @@ final class CreateLaunchActionTests: XCTestCase {
 
         let action = createLaunchActionWithDefaults(
             buildConfiguration: buildConfiguration,
-            disableMainThreadChecker: disableMainThreadChecker
+            enableMainThreadChecker: enableMainThreadChecker
         )
 
         // Assert
@@ -164,11 +164,11 @@ final class CreateLaunchActionTests: XCTestCase {
         XCTAssertNoDifference(action, expectedAction)
     }
 
-    func test_disablePerformanceAntipatternChecker() {
+    func test_disableThreadPerformanceChecker() {
         // Arrange
 
         let buildConfiguration = "Profile"
-        let disablePerformanceAntipatternChecker = true
+        let enableThreadPerformanceChecker = false
 
         let expectedAction = #"""
    <LaunchAction
@@ -189,7 +189,7 @@ final class CreateLaunchActionTests: XCTestCase {
 
         let action = createLaunchActionWithDefaults(
             buildConfiguration: buildConfiguration,
-            disablePerformanceAntipatternChecker: disablePerformanceAntipatternChecker
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker
         )
 
         // Assert
@@ -586,11 +586,11 @@ private func createLaunchActionWithDefaults(
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
     customWorkingDirectory: String? = nil,
-    disableMainThreadChecker: Bool = false,
-    disablePerformanceAntipatternChecker: Bool = false,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,
+    enableMainThreadChecker: Bool = true,
+    enableThreadPerformanceChecker: Bool = true,
     environmentVariables: [EnvironmentVariable] = [],
     postActions: [ExecutionAction] = [],
     preActions: [ExecutionAction] = [],
@@ -600,11 +600,11 @@ private func createLaunchActionWithDefaults(
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
         customWorkingDirectory: customWorkingDirectory,
-        disableMainThreadChecker: enableAddressSanitizer,
-        disableMainThreadChecker: disableMainThreadChecker,
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,
         enableUBSanitizer: enableUBSanitizer,
+        enableMainThreadChecker: enableMainThreadChecker,
+        enableThreadPerformanceChecker: enableThreadPerformanceChecker,
         environmentVariables: environmentVariables,
         postActions: postActions,
         preActions: preActions,

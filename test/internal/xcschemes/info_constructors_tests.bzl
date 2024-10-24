@@ -232,6 +232,8 @@ def info_constructors_test_suite(name):
             address_sanitizer = "0",
             thread_sanitizer = "0",
             undefined_behavior_sanitizer = "0",
+            main_thread_checker = "1",
+            thread_performance_checker = "1",
         ),
     )
 
@@ -243,6 +245,8 @@ def info_constructors_test_suite(name):
             address_sanitizer = "1",
             thread_sanitizer = "1",
             undefined_behavior_sanitizer = "1",
+            main_thread_checker = "1",
+            thread_performance_checker = "1",
         ),
 
         # Expected
@@ -250,6 +254,8 @@ def info_constructors_test_suite(name):
             address_sanitizer = "1",
             thread_sanitizer = "1",
             undefined_behavior_sanitizer = "1",
+            main_thread_checker = "1",
+            thread_performance_checker = "1",
         ),
     )
 

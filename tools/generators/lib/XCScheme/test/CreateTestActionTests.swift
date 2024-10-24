@@ -81,7 +81,7 @@ final class CreateTestActionTests: XCTestCase {
         // Arrange
 
         let buildConfiguration = "Profile"
-        let disableMaintest_disableMainThreadChecker = true
+        let enableMainThreadChecker = false
 
         let expectedAction = #"""
    <TestAction
@@ -89,7 +89,7 @@ final class CreateTestActionTests: XCTestCase {
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      disableMaintest_disableMainThreadChecker = "YES">
+      disableMainThreadChecker = "YES">
       <Testables>
       </Testables>
    </TestAction>
@@ -99,7 +99,7 @@ final class CreateTestActionTests: XCTestCase {
 
         let action = createTestActionWithDefaults(
             buildConfiguration: buildConfiguration,
-            disableMaintest_disableMainThreadChecker: disableMaintest_disableMainThreadChecker
+            enableMainThreadChecker: enableMainThreadChecker
         )
 
         // Assert
@@ -389,10 +389,10 @@ final class CreateTestActionTests: XCTestCase {
 private func createTestActionWithDefaults(
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
-    disableMainThreadChecker: Bool = false,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,
+    enableMainThreadChecker: Bool = true,
     environmentVariables: [EnvironmentVariable] = [],
     expandVariablesBasedOn macroReference: BuildableReference? = nil,
     postActions: [ExecutionAction] = [],
@@ -403,10 +403,10 @@ private func createTestActionWithDefaults(
     return CreateTestAction.defaultCallable(
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
-        disableMainThreadChecker: disableMainThreadChecker,
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,
         enableUBSanitizer: enableUBSanitizer,
+        enableMainThreadChecker: enableMainThreadChecker,
         environmentVariables: environmentVariables,
         expandVariablesBasedOn: macroReference,
         postActions: postActions,

@@ -736,7 +736,6 @@ extension XCSchemeExtensionsTests {
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
-            disableMainThreadChecker: false,
             enableAddressSanitizer: true,
             enableThreadSanitizer: false,
             enableUBSanitizer: true,
@@ -788,7 +787,6 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
-            disableMainThreadChecker: false,
             enableAddressSanitizer: true,
             enableThreadSanitizer: false,
             enableUBSanitizer: true

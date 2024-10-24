@@ -13,11 +13,11 @@ public struct CreateLaunchAction {
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
-        disableMainThreadChecker: Bool,
-        disablePerformanceAntipatternChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -27,11 +27,11 @@ public struct CreateLaunchAction {
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
             /*customWorkingDirectory:*/ customWorkingDirectory,
-            /*disableMainThreadChecker:*/ disableMainThreadChecker,
-            /*disablePerformanceAntipatternChecker:*/ disablePerformanceAntipatternChecker,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
+            /*enableMainThreadChecker:*/ enableMainThreadChecker,
+            /*enableThreadPerformanceChecker:*/ enableThreadPerformanceChecker,
             /*environmentVariables:*/ environmentVariables,
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
@@ -47,11 +47,11 @@ extension CreateLaunchAction {
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
         _ customWorkingDirectory: String?,
-        _ disableMainThreadChecker: Bool,
-        _ disablePerformanceAntipatternChecker: Bool,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
+        _ enableMainThreadChecker: Bool,
+        _ enableThreadPerformanceChecker: Bool,
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
@@ -62,11 +62,11 @@ extension CreateLaunchAction {
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         customWorkingDirectory: String?,
-        disableMainThreadChecker: Bool,
-        disablePerformanceAntipatternChecker: Bool,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -96,12 +96,6 @@ selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
             )
         }
 
-        if disableMainThreadChecker {
-            components.append(#"disableMainThreadChecker = "YES""#)
-        }
-        if disablePerformanceAntipatternChecker {
-            components.append(#"disablePerformanceAntipatternChecker = "YES""#)
-        }
         if enableAddressSanitizer {
             components.append(#"enableAddressSanitizer = "YES""#)
         }
@@ -110,6 +104,13 @@ selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
         }
         if enableUBSanitizer {
             components.append(#"enableUBSanitizer = "YES""#)
+        }
+
+        if !enableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
+        }
+        if !enableThreadPerformanceChecker {
+            components.append(#"disablePerformanceAntipatternChecker = "YES""#)
         }
 
         components.append(#"launchStyle = "0""#)
