@@ -65,11 +65,10 @@ extension ElementCreator.CollectBazelPaths {
         parentBazelPath: BazelPath
     ) -> [BazelPath] {
         switch node {
-        case .file(let name, let isFolder):
+        case .file(let name):
             let bazelPath = BazelPath(
                 parent: parentBazelPath,
-                path: name,
-                isFolder: isFolder
+                path: name
             )
             return [bazelPath]
         case .group(let name, let children):

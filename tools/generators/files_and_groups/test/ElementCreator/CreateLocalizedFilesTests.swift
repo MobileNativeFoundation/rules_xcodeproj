@@ -10,10 +10,10 @@ final class CreateLocalizedFilesTests: XCTestCase {
 
         let name = "en.lproj"
         let nodeChildren: [PathTreeNode] = [
-            .file(name: "z"),
+            .file("z"),
             .group(
                 name: "q.ext",
-                children: [.file(name: "other")]
+                children: [.file("other")]
             ),
         ]
         let parentBazelPath: BazelPath = "p"

@@ -32,11 +32,7 @@ extension Generator {
 
         let readFilePathsFile: ReadFilePathsFile
 
-        let readFolderPathsFile: ReadFolderPathsFile
-
         let readGeneratedFilePathsFile: ReadGeneratedFilePathsFile
-
-        let readGeneratedFolderPathsFile: ReadGeneratedFolderPathsFile
 
         let resolvedRepositoriesBuildSetting: (
             _ resolvedRepositories: [ResolvedRepository]
@@ -62,9 +58,7 @@ extension Generator.Environment {
         filesAndGroupsPartial: Generator.filesAndGroupsPartial,
         knownRegionsPartial: Generator.knownRegionsPartial,
         readFilePathsFile: Generator.ReadFilePathsFile(),
-        readFolderPathsFile: Generator.ReadFolderPathsFile(),
         readGeneratedFilePathsFile: Generator.ReadGeneratedFilePathsFile(),
-        readGeneratedFolderPathsFile: Generator.ReadGeneratedFolderPathsFile(),
         resolvedRepositoriesBuildSetting:
             Generator.resolvedRepositoriesBuildSetting,
         write: Write()

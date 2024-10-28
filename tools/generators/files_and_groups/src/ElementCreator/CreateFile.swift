@@ -20,7 +20,6 @@ extension ElementCreator {
 
         func callAsFunction(
             name: String,
-            isFolder: Bool,
             bazelPath: BazelPath,
             bazelPathType: BazelPathType,
             transitiveBazelPaths: [BazelPath],
@@ -28,7 +27,6 @@ extension ElementCreator {
         ) -> GroupChild.ElementAndChildren {
             return callable(
                 /*name:*/ name,
-                /*isFolder:*/ isFolder,
                 /*bazelPath:*/ bazelPath,
                 /*bazelPathType:*/ bazelPathType,
                 /*transitiveBazelPaths:*/ transitiveBazelPaths,
@@ -44,7 +42,6 @@ extension ElementCreator {
 extension ElementCreator.CreateFile {
     typealias Callable = (
         _ name: String,
-        _ isFolder: Bool,
         _ bazelPath: BazelPath,
         _ bazelPathType: BazelPathType,
         _ transitiveBazelPaths: [BazelPath],
@@ -54,7 +51,6 @@ extension ElementCreator.CreateFile {
 
     static func defaultCallable(
         name: String,
-        isFolder: Bool,
         bazelPath: BazelPath,
         bazelPathType: BazelPathType,
         transitiveBazelPaths: [BazelPath],

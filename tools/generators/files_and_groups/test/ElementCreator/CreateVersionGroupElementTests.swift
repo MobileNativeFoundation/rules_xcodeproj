@@ -255,7 +255,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
         ] = [
             .init(
                 name: name,
-                bazelPath: BazelPath("a/bazel/path/node_name", isFolder: false),
+                bazelPath: BazelPath("a/bazel/path/node_name"),
                 bazelPathType: bazelPathType,
                 isGroup: true
             )

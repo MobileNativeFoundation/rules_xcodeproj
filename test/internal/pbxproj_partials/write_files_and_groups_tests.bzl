@@ -18,14 +18,8 @@ _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE = mock_actions.mock_file(
 _FILE_PATHS_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/file_paths_file",
 )
-_FOLDER_PATHS_FILE = mock_actions.mock_file(
-    "a_generator_name_pbxproj_partials/folder_paths_file",
-)
 _GENERATED_FILE_PATHS_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/generated_file_paths_file",
-)
-_GENERATED_FOLDER_PATHS_FILE = mock_actions.mock_file(
-    "a_generator_name_pbxproj_partials/generated_folder_paths_file",
 )
 
 def _write_files_and_groups_test_impl(ctx):
@@ -40,15 +34,11 @@ def _write_files_and_groups_test_impl(ctx):
         _KNOWN_REGIONS_DECLARED_FILE: None,
         _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE: None,
         _FILE_PATHS_FILE: None,
-        _FOLDER_PATHS_FILE: None,
         _GENERATED_FILE_PATHS_FILE: None,
-        _GENERATED_FOLDER_PATHS_FILE: None,
     }
     expected_inputs = [
         _FILE_PATHS_FILE,
-        _FOLDER_PATHS_FILE,
         _GENERATED_FILE_PATHS_FILE,
-        _GENERATED_FOLDER_PATHS_FILE,
         ctx.attr.execution_root_file,
         ctx.attr.selected_model_versions_file,
     ] + ctx.attr.buildfile_subidentifiers_files
@@ -79,13 +69,6 @@ def _write_files_and_groups_test_impl(ctx):
         )
         for (path, owner) in ctx.attr.generated_file_paths.items()
     ]
-    generated_folders = [
-        struct(
-            path = path,
-            owner = mock_actions.mock_label(owner),
-        )
-        for (path, owner) in ctx.attr.generated_folders.items()
-    ]
 
     # Act
 
@@ -103,9 +86,7 @@ def _write_files_and_groups_test_impl(ctx):
         execution_root_file = ctx.attr.execution_root_file,
         files = depset(files),
         file_paths = depset(ctx.attr.file_paths),
-        folders = depset(ctx.attr.folders),
         generated_file_paths = depset(generated_file_paths),
-        generated_folders = depset(generated_folders),
         generator_name = "a_generator_name",
         install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
@@ -204,10 +185,8 @@ write_files_and_groups_test = unittest.make(
         "execution_root_file": attr.string(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
-        "folders": attr.string_list(mandatory = True),
         "generated_file_paths": attr.string_dict(mandatory = True),
         "generated_files": attr.string_dict(mandatory = True),
-        "generated_folders": attr.string_dict(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
@@ -239,10 +218,8 @@ def write_files_and_groups_test_suite(name):
             execution_root_file,
             files = [],
             file_paths = [],
-            folders = [],
             generated_file_paths = {},
             generated_files = {},
-            generated_folders = {},
             install_path,
             project_options,
             selected_model_versions_file,
@@ -262,10 +239,8 @@ def write_files_and_groups_test_suite(name):
             execution_root_file = execution_root_file,
             files = files,
             file_paths = file_paths,
-            folders = folders,
             generated_file_paths = generated_file_paths,
             generated_files = generated_files,
-            generated_folders = generated_folders,
             install_path = install_path,
             project_options = project_options,
             selected_model_versions_file = selected_model_versions_file,
@@ -321,12 +296,8 @@ def write_files_and_groups_test_suite(name):
             "",
             # filePathsFile
             _FILE_PATHS_FILE.path,
-            # folderPathsFile
-            _FOLDER_PATHS_FILE.path,
             # generatedFilePathsFile
             _GENERATED_FILE_PATHS_FILE.path,
-            # generatedFolderPathsFile
-            _GENERATED_FOLDER_PATHS_FILE.path,
             # developmentRegion
             "en",
             # useBaseInternationalization
@@ -338,9 +309,7 @@ def write_files_and_groups_test_suite(name):
         ],
         expected_writes = {
             _FILE_PATHS_FILE: "\n",
-            _FOLDER_PATHS_FILE: "\n",
             _GENERATED_FILE_PATHS_FILE: "\n",
-            _GENERATED_FOLDER_PATHS_FILE: "\n",
         },
     )
 
@@ -365,21 +334,17 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/file_path.bundle",
             "another/path/to/another/file_path.framework",
         ],
-        folders = [
-            "a/path/to/a/folder",
-            "another/path/to/another/folder",
-        ],
+        # @unsorted-dict-items
         generated_file_paths = {
             "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file_as_file_path": "//a/path/to/a/generated",
             "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file_as_file_path": "//another/path/to/another/generated",
+            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/some.framework": "//a/path/to/a/generated",
+            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/another.bundle": "//another/path/to/another/generated",
         },
+        # @unsorted-dict-items
         generated_files = {
             "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file": "//a/path/to/a/generated",
             "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file": "//another/path/to/another/generated",
-        },
-        generated_folders = {
-            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/folder": "//a/path/to/a/generated",
-            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/folder": "//another/path/to/another/generated",
         },
         install_path = "best/vision.xcodeproj",
         project_options = {
@@ -415,12 +380,8 @@ def write_files_and_groups_test_suite(name):
             "0",
             # filePathsFile
             _FILE_PATHS_FILE.path,
-            # folderPathsFile
-            _FOLDER_PATHS_FILE.path,
             # generatedFilePathsFile
             _GENERATED_FILE_PATHS_FILE.path,
-            # generatedFolderPathsFile
-            _GENERATED_FOLDER_PATHS_FILE.path,
             # developmentRegion
             "enGB",
             # useBaseInternationalization
@@ -441,10 +402,6 @@ another/path/to/another/file
 a/path/to/a/file_path.bundle
 another/path/to/another/file_path.framework
 """,
-            _FOLDER_PATHS_FILE: """\
-a/path/to/a/folder
-another/path/to/another/folder
-""",
             _GENERATED_FILE_PATHS_FILE: """\
 file
 a/path/to/a/generated
@@ -458,12 +415,10 @@ ios-sim-config
 file_as_file_path
 another/path/to/another/generated
 ios-sim-config
-""",
-            _GENERATED_FOLDER_PATHS_FILE: """\
-folder
+some.framework
 a/path/to/a/generated
 ios-sim-config
-folder
+another.bundle
 another/path/to/another/generated
 ios-sim-config
 """,

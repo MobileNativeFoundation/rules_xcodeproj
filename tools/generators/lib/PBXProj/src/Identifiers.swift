@@ -140,7 +140,7 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
                 type: type,
                 path: path,
                 hash: shardSubIdentifier(
-                    path.path + (path.isFolder ? "0" : "1"),
+                    path.path,
                     hashCache: &hashCache[shard, default: []]
                 )
             )
@@ -573,8 +573,6 @@ extension BuildPhase {
 // MARK: - Encode
 
 extension Identifiers.BuildFiles.SubIdentifier {
-    private static let isFolder = Data([0x31]) // "1"
-    private static let notIsFolder = Data([0x30]) // "0"
     private static let separator = Data([0x0a]) // Newline
 
     public static func encode(
@@ -600,7 +598,6 @@ Failed to write build file subidentifiers: \(error.localizedDescription)
         data.append(Data(type.rawValue.utf8))
         data.append(Data(shard.utf8))
         data.append(Data(hash.utf8))
-        data.append(path.isFolder ? Self.isFolder : Self.notIsFolder)
         data.append(Data(path.path.utf8))
         data.append(Self.separator)
     }
@@ -631,24 +628,21 @@ extension Identifiers.BuildFiles.SubIdentifier {
 """))
         }
 
-        let pathIsFolderStartIndex: String.Index
+        let pathStartIndex: String.Index
         switch type {
         case .compileStub, .product:
-            pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 8)
+            pathStartIndex = line.index(hashStartIndex, offsetBy: 8)
         default:
-            pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 20)
+            pathStartIndex = line.index(hashStartIndex, offsetBy: 20)
         }
-
-        let pathStartIndex = line.index(pathIsFolderStartIndex, offsetBy: 1)
 
         self.init(
             shard: String(line[shardStartIndex ..< hashStartIndex]),
             type: type,
             path: BazelPath(
-                String(line[pathStartIndex ..< line.endIndex]),
-                isFolder: line[pathIsFolderStartIndex] == "1"
+                String(line[pathStartIndex ..< line.endIndex])
             ),
-            hash: String(line[hashStartIndex ..< pathIsFolderStartIndex])
+            hash: String(line[hashStartIndex ..< pathStartIndex])
         )
     }
 }

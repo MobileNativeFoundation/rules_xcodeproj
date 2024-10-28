@@ -66,7 +66,7 @@ final class CreateFileElementTests: XCTestCase {
 
         let name = "node_name"
         let ext: String? = nil
-        let bazelPath = BazelPath("a/bazel/path/node_name", isFolder: false)
+        let bazelPath = BazelPath("a/bazel/path/node_name")
 
         // Act
 
@@ -89,10 +89,7 @@ final class CreateFileElementTests: XCTestCase {
 
         let name = "node_name"
         let ext = "xcassets"
-        let bazelPath = BazelPath(
-            "a/bazel/path/node_name.xcassets",
-            isFolder: true
-        )
+        let bazelPath = BazelPath("a/bazel/path/node_name.xcassets")
 
         // Act
 
@@ -108,32 +105,6 @@ final class CreateFileElementTests: XCTestCase {
         // Assert
 
         XCTAssertEqual(result.element.sortOrder, .fileLike)
-    }
-
-    func test_element_sortOrder_folder() {
-        // Arrange
-
-        let name = "node_name"
-        let ext: String? = nil
-        let bazelPath = BazelPath(
-            "a/bazel/path/node_name",
-            isFolder: true
-        )
-
-        // Act
-
-        let result = ElementCreator.CreateFileElement.defaultCallable(
-            name: name,
-            ext: ext,
-            bazelPath: bazelPath,
-            bazelPathType: .workspace,
-            createAttributes: ElementCreator.Stubs.createAttributes,
-            createIdentifier: ElementCreator.Stubs.createIdentifier
-        )
-
-        // Assert
-
-        XCTAssertEqual(result.element.sortOrder, .groupLike)
     }
 
     // MARK: element.content
@@ -223,39 +194,6 @@ final class CreateFileElementTests: XCTestCase {
 
         let expectedContent = #"""
 {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = a_path; sourceTree = "<group>"; }
-"""#
-
-        // Act
-
-        let result = ElementCreator.CreateFileElement.defaultCallable(
-            name: name,
-            ext: ext,
-            bazelPath: bazelPath,
-            bazelPathType: .workspace,
-            createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.createIdentifier
-        )
-
-        // Assert
-
-        XCTAssertEqual(result.element.object.content, expectedContent)
-    }
-
-    func test_element_content_lastKnownFileType_folder() {
-        // Arrange
-
-        let name = "node_name"
-        let ext: String? = nil
-        let bazelPath = BazelPath("a/bazel/path/node_name", isFolder: true)
-        let createAttributes = ElementCreator.CreateAttributes.stub(
-            elementAttributes: ElementAttributes(
-                sourceTree: .absolute, name: nil, path: "a_path"
-            ),
-            resolvedRepository: nil
-        )
-
-        let expectedContent = #"""
-{isa = PBXFileReference; lastKnownFileType = folder; path = a_path; sourceTree = "<absolute>"; }
 """#
 
         // Act

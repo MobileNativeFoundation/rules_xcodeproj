@@ -15,18 +15,18 @@ final class CreateRootElementsTests: XCTestCase {
                     name: "config2",
                     path: "config2/bin",
                     children: [
-                        .file(name: "gen"),
+                        .file("gen"),
                     ]
                 ),
                 .init(
                     name: "config1",
                     path: "config1/bin",
                     children: [
-                        .file(name: "gen"),
+                        .file("gen"),
                     ]
                 ),
             ])),
-            .file(name: "a"),
+            .file("a"),
             .group(
                 name: "..",
                 children: [
@@ -36,19 +36,19 @@ final class CreateRootElementsTests: XCTestCase {
                             .group(
                                 name: "gen",
                                 children: [
-                                    .file(name: "a"),
+                                    .file("a"),
                                 ]
                             ),
                         ]
                     )),
-                    .file(name: "3"),
+                    .file("3"),
                 ]
             ),
-            .file(name: "b"),
+            .file("b"),
             .group(
                 name: "external",
                 children: [
-                    .file(name: "4"),
+                    .file("4"),
                 ]
             ),
         ]

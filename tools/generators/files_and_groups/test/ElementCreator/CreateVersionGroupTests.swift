@@ -11,15 +11,15 @@ final class CreateVersionGroupTests: XCTestCase {
 
         let name = "node.xcdatamodeld"
         let nodeChildren: [PathTreeNode] = [
-            .file(name: "weird"),
-            .file(name: "a.xcdatamodel"),
+            .file("weird"),
+            .file("a.xcdatamodel"),
             .group(
                 name: "b.xcdatamodel",
                 children: [
-                    .file(name: "odd"),
+                    .file("odd"),
                 ]
             ),
-            .file(name: "c.xcdatamodel"),
+            .file("c.xcdatamodel"),
         ]
         let parentBazelPath: BazelPath = "bazel/path"
         let bazelPathType = BazelPathType.legacyBazelExternal
@@ -94,7 +94,6 @@ final class CreateVersionGroupTests: XCTestCase {
         ] = [
             .init(
                 name: try nodeChildren[0].fileName,
-                isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
                     path: try nodeChildren[0].fileName
@@ -105,7 +104,6 @@ final class CreateVersionGroupTests: XCTestCase {
             ),
             .init(
                 name: try nodeChildren[1].fileName,
-                isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
                     path: try nodeChildren[1].fileName
@@ -116,7 +114,6 @@ final class CreateVersionGroupTests: XCTestCase {
             ),
             .init(
                 name: try nodeChildren[2].groupName,
-                isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
                     path: try nodeChildren[2].groupName
@@ -128,7 +125,6 @@ final class CreateVersionGroupTests: XCTestCase {
             ),
             .init(
                 name: try nodeChildren[3].fileName,
-                isFolder: false,
                 bazelPath: BazelPath(
                     parent: expectedBazelPath,
                     path: try nodeChildren[3].fileName
@@ -353,7 +349,7 @@ private extension PathTreeNode {
     var fileName: String {
         get throws {
             switch self {
-            case .file(let name, _):
+            case .file(let name):
                 return name
             default:
                 throw PreconditionError(message: "Invalid node type")

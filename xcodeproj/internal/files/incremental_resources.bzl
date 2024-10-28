@@ -39,8 +39,6 @@ def _create_bundle(name = None):
         resources = [],
         resource_file_paths = [],
         generated_resource_file_paths = [],
-        folder_resources = [],
-        generated_folder_resources = [],
         dependency_paths = [],
     )
 
@@ -101,25 +99,15 @@ def _handle_processed_resource_origin(
     # If a file is a child of a folder-type file, the parent folder-type file
     # should be added to the bundle instead of the child file
     folder_type_prefix = _path_folder_type_prefix(file_path)
-    if folder_type_prefix:
-        if is_generated:
-            bundle.generated_folder_resources.append(
-                struct(
-                    owner = owner,
-                    path = folder_type_prefix,
-                ),
-            )
-        else:
-            bundle.folder_resources.append(folder_type_prefix)
-    elif is_generated:
+    if is_generated:
         bundle.generated_resource_file_paths.append(
             struct(
                 owner = owner,
-                path = file_path,
+                path = folder_type_prefix or file_path,
             ),
         )
     else:
-        bundle.resource_file_paths.append(file_path)
+        bundle.resource_file_paths.append(folder_type_prefix or file_path)
 
 def _handle_unprocessed_resource(
         *,
@@ -155,9 +143,9 @@ def _handle_unprocessed_resource(
     folder_type_prefix = _folder_type_prefix(file)
     if folder_type_prefix:
         if file.is_source:
-            bundle.folder_resources.append(folder_type_prefix)
+            bundle.resource_file_paths.append(folder_type_prefix)
         else:
-            bundle.generated_folder_resources.append(
+            bundle.generated_resource_file_paths.append(
                 struct(
                     owner = file.owner,
                     path = folder_type_prefix,
@@ -227,8 +215,8 @@ def _add_structured_resources(
 
     if bundle:
         if (not bundle.resources and
-            not bundle.folder_resources and
-            not bundle.generated_folder_resources and
+            not bundle.resource_file_paths and
+            not bundle.generated_resource_file_paths and
             len(bundle_path.split(".bundle")) > 2):
             # This covers a deficiency in rules_apple's `_deduplicate` for
             # nested bundles that should be excluded
@@ -392,14 +380,6 @@ def _collect_incremental_resources(
 
         *   `bundles`: A `list` of `struct`s that are to be passed to
             `process_resource_bundles`.
-        *   `folder_resources`: A `list` of two element `tuple`s. The first
-            element is the label of the target that owns the resource. The
-            second element is a file path string of a non-generated folder
-            resource.
-        *   `generated_folder_resources`: A `list` of two element `tuple`s.
-            The first element is the label of the target that owns the resource.
-            The second element is a file path string of a generated folder
-            resource.
         *   `resources`:  A `list` of two element `tuple`s. The first
             element is the label of the target that owns the resource. The
             second element is a `File` for a resource.
@@ -494,8 +474,6 @@ def _collect_incremental_resources(
         if (not bundle.resources and
             not bundle.resource_file_paths and
             not bundle.generated_resource_file_paths and
-            not bundle.folder_resources and
-            not bundle.generated_folder_resources and
             not bundle.dependency_paths):
             resource_bundle_targets.pop(child_bundle_path, None)
             continue
@@ -529,12 +507,6 @@ def _collect_incremental_resources(
                     generated_resource_file_paths = memory_efficient_depset(
                         bundle.generated_resource_file_paths,
                     ),
-                    folder_resources = memory_efficient_depset(
-                        bundle.folder_resources,
-                    ),
-                    generated_folder_resources = memory_efficient_depset(
-                        bundle.generated_folder_resources,
-                    ),
                 ),
             )
 
@@ -543,8 +515,6 @@ def _collect_incremental_resources(
         resources = root_bundle.resources,
         resource_file_paths = root_bundle.resource_file_paths,
         generated_resource_file_paths = root_bundle.generated_resource_file_paths,
-        folder_resources = root_bundle.folder_resources,
-        generated_folder_resources = root_bundle.generated_folder_resources,
         xccurrentversions = xccurrentversions,
     )
 

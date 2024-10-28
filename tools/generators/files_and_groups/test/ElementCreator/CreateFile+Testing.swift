@@ -8,7 +8,6 @@ extension ElementCreator.CreateFile {
     final class MockTracker {
         struct Called: Equatable {
             let name: String
-            let isFolder: Bool
             let bazelPath: BazelPath
             let bazelPathType: BazelPathType
             let transitiveBazelPaths: [BazelPath]
@@ -40,7 +39,6 @@ extension ElementCreator.CreateFile {
             createFileElement: ElementCreator.Stubs.createFileElement,
             callable: {
                 name,
-                isFolder,
                 bazelPath,
                 bazelPathType,
                 transitiveBazelPaths,
@@ -49,7 +47,6 @@ extension ElementCreator.CreateFile {
             in
                 mockTracker.called.append(.init(
                     name: name,
-                    isFolder: isFolder,
                     bazelPath: bazelPath,
                     bazelPathType: bazelPathType,
                     transitiveBazelPaths: transitiveBazelPaths,

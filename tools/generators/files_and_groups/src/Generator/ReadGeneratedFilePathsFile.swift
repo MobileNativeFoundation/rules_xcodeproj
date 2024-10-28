@@ -61,7 +61,7 @@ extension Generator.ReadGeneratedFilePathsFile {
             generatedPaths.append(GeneratedPath(
                 config: config,
                 package: BazelPath(package),
-                path: BazelPath(path, isFolder: false)
+                path: BazelPath(path)
             ))
         }
 

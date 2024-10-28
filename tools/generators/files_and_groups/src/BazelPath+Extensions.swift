@@ -1,7 +1,7 @@
 import PBXProj
 
 extension BazelPath {
-    init(parent: BazelPath, path: String, isFolder: Bool = false) {
+    init(parent: BazelPath, path: String) {
         let newPath: String
         if parent.path.isEmpty {
             newPath = path
@@ -9,6 +9,6 @@ extension BazelPath {
             newPath = "\(parent.path)/\(path)"
         }
 
-        self.init(newPath, isFolder: isFolder)
+        self.init(newPath)
     }
 }
