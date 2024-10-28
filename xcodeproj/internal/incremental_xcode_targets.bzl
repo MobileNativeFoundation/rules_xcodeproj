@@ -24,9 +24,10 @@ def _from_resource_bundle(bundle):
         compile_stub_needed = False,
         inputs = struct(
             entitlements = EMPTY_DEPSET,
-            extra_files = bundle.resources,
             extra_file_paths = bundle.resource_file_paths,
+            extra_files = bundle.resources,
             extra_folders = bundle.folder_resources,
+            extra_generated_file_paths = bundle.generated_resource_file_paths,
             extra_generated_folders = bundle.generated_folder_resources,
             infoplist = None,
             non_arc_srcs = EMPTY_DEPSET,
@@ -172,16 +173,17 @@ def _make_incremental_xcode_target(
 
 def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
     return struct(
-        extra_files = memory_efficient_depset(
-            transitive = [dest_inputs.extra_files, mergeable_info.extra_files],
-        ),
         extra_file_paths = memory_efficient_depset(
             transitive = [
                 dest_inputs.extra_file_paths,
                 mergeable_info.extra_file_paths,
             ],
         ),
+        extra_files = memory_efficient_depset(
+            transitive = [dest_inputs.extra_files, mergeable_info.extra_files],
+        ),
         extra_folders = dest_inputs.extra_folders,
+        extra_generated_file_paths = dest_inputs.extra_generated_file_paths,
         extra_generated_folders = dest_inputs.extra_generated_folders,
         infoplist = dest_inputs.infoplist,
         non_arc_srcs = mergeable_info.non_arc_srcs,

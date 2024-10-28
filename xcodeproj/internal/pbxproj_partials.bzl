@@ -60,14 +60,14 @@ def _generated_dirname(file):
 
     return file.dirname
 
-def _always_generated_file_path(file):
+def _xcfilelist_always_generated_file_path(file):
     return "$(BAZEL_OUT){}".format(file.path[9:])
 
-def _generated_file_path(file):
+def _xcfilelist_generated_file_path(file):
     if file.is_source:
         return None
 
-    return _always_generated_file_path(file)
+    return _xcfilelist_always_generated_file_path(file)
 
 def _source_file(file):
     if not file.is_source:
@@ -108,10 +108,10 @@ def _generated_file(file):
 
     return _generated_file_or_folder(file.path, file.owner)
 
-def _generated_folder(generated_folder):
+def _generated_file_path(generated_file_path):
     return _generated_file_or_folder(
-        generated_folder.path,
-        generated_folder.owner,
+        generated_file_path.path,
+        generated_file_path.owner,
     )
 
 # Partials
@@ -405,6 +405,7 @@ def _write_files_and_groups(
         files,
         file_paths,
         folders,
+        generated_file_paths,
         generated_folders,
         generator_name,
         install_path,
@@ -429,6 +430,8 @@ def _write_files_and_groups(
             file paths.
         folders: A `depset` of paths to non-generated folders to include in the
             project.
+        generated_file_paths:  A `depset` of file paths to generated files to
+            include in the project.
         generated_folders:  A `depset` of paths to generated folders to include
             in the project.
         generator_name: The name of the `xcodeproj` generator target.
@@ -517,6 +520,10 @@ def _write_files_and_groups(
     generated_file_paths_args.set_param_file_format("multiline")
 
     generated_file_paths_args.add_all(files, map_each = _generated_file)
+    generated_file_paths_args.add_all(
+        generated_file_paths,
+        map_each = _generated_file_path,
+    )
 
     actions.write(generated_file_paths_file, generated_file_paths_args)
 
@@ -533,7 +540,7 @@ def _write_files_and_groups(
 
     generated_folder_paths_args.add_all(
         generated_folders,
-        map_each = _generated_folder,
+        map_each = _generated_file_path,
     )
 
     actions.write(generated_folder_paths_file, generated_folder_paths_args)
@@ -677,12 +684,12 @@ def _write_generated_xcfilelist(
 
     # Info.plists are tracked as build files by Xcode, so top-level targets
     # will fail the first time they are built if we don't track them
-    args.add_all(infoplists, map_each = _always_generated_file_path)
+    args.add_all(infoplists, map_each = _xcfilelist_always_generated_file_path)
 
     # Source files are tracked as build files by Xcode, so building targets that
     # directly use generated source files will fail the first time they are
     # built if we don't track them
-    args.add_all(srcs, map_each = _generated_file_path)
+    args.add_all(srcs, map_each = _xcfilelist_generated_file_path)
 
     xcfilelist = actions.declare_file(
         "{}-generated.xcfilelist".format(generator_name),

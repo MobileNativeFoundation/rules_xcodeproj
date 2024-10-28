@@ -72,6 +72,13 @@ def _write_files_and_groups_test_impl(ctx):
         )
         for (path, owner) in ctx.attr.generated_files.items()
     ]
+    generated_file_paths = [
+        struct(
+            path = path,
+            owner = mock_actions.mock_label(owner),
+        )
+        for (path, owner) in ctx.attr.generated_file_paths.items()
+    ]
     generated_folders = [
         struct(
             path = path,
@@ -97,6 +104,7 @@ def _write_files_and_groups_test_impl(ctx):
         files = depset(files),
         file_paths = depset(ctx.attr.file_paths),
         folders = depset(ctx.attr.folders),
+        generated_file_paths = depset(generated_file_paths),
         generated_folders = depset(generated_folders),
         generator_name = "a_generator_name",
         install_path = ctx.attr.install_path,
@@ -197,6 +205,7 @@ write_files_and_groups_test = unittest.make(
         "file_paths": attr.string_list(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
+        "generated_file_paths": attr.string_dict(mandatory = True),
         "generated_files": attr.string_dict(mandatory = True),
         "generated_folders": attr.string_dict(mandatory = True),
         "install_path": attr.string(mandatory = True),
@@ -231,6 +240,7 @@ def write_files_and_groups_test_suite(name):
             files = [],
             file_paths = [],
             folders = [],
+            generated_file_paths = {},
             generated_files = {},
             generated_folders = {},
             install_path,
@@ -253,6 +263,7 @@ def write_files_and_groups_test_suite(name):
             files = files,
             file_paths = file_paths,
             folders = folders,
+            generated_file_paths = generated_file_paths,
             generated_files = generated_files,
             generated_folders = generated_folders,
             install_path = install_path,
@@ -358,6 +369,10 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/folder",
             "another/path/to/another/folder",
         ],
+        generated_file_paths = {
+            "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file_as_file_path": "//a/path/to/a/generated",
+            "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file_as_file_path": "//another/path/to/another/generated",
+        },
         generated_files = {
             "bazel-out/ios-sim-config/bin/a/path/to/a/generated/file": "//a/path/to/a/generated",
             "bazel-out/ios-sim-config/bin/another/path/to/another/generated/file": "//another/path/to/another/generated",
@@ -435,6 +450,12 @@ file
 a/path/to/a/generated
 ios-sim-config
 file
+another/path/to/another/generated
+ios-sim-config
+file_as_file_path
+a/path/to/a/generated
+ios-sim-config
+file_as_file_path
 another/path/to/another/generated
 ios-sim-config
 """,
