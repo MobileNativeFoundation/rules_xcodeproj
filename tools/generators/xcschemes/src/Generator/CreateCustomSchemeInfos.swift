@@ -474,16 +474,6 @@ set
         let environmentVariablesIncludeDefaults =
             try consumeArg("run-include-default-env", as: Bool.self, in: url)
 
-        let enableMainThreadChecker = try consumeArg(
-            "run-disable-main-thread-checker",
-            as: Bool.self,
-            in: url
-        )
-        let enableThreadPerformanceChecker = try consumeArg(
-            "run-disable-performance-anti-pattern-checker",
-            as: Bool.self,
-            in: url
-        )
         let enableAddressSanitizer = try consumeArg(
             "run-enable-address-sanitizer",
             as: Bool.self,
@@ -496,6 +486,16 @@ set
         )
         let enableUBSanitizer = try consumeArg(
             "run-enable-undefined-behavior-sanitizer",
+            as: Bool.self,
+            in: url
+        )
+        let enableMainThreadChecker = try consumeArg(
+            "run-disable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        let enableThreadPerformanceChecker = try consumeArg(
+            "run-disable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
         )
@@ -604,16 +604,6 @@ set
         let useRunArgsAndEnv =
             try consumeArg("test-use-run-args-and-env", as: Bool.self, in: url)
 
-        let enableMainThreadChecker = try consumeArg(
-            "test-enable-main-thread-checker",
-            as: Bool.self,
-            in: url
-        )
-        let enableThreadPerformanceChecker = try consumeArg(
-            "test-enable-performance-anti-pattern-checker",
-            as: Bool.self,
-            in: url
-        )
         let enableAddressSanitizer = try consumeArg(
             "test-enable-address-sanitizer",
             as: Bool.self,
@@ -626,6 +616,16 @@ set
         )
         let enableUBSanitizer = try consumeArg(
             "test-enable-undefined-behavior-sanitizer",
+            as: Bool.self,
+            in: url
+        )
+        let enableMainThreadChecker = try consumeArg(
+            "test-enable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        let enableThreadPerformanceChecker = try consumeArg(
+            "test-enable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
         )
