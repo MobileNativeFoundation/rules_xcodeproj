@@ -131,6 +131,72 @@ final class CreateLaunchActionTests: XCTestCase {
         XCTAssertNoDifference(action, expectedAction)
     }
 
+    func test_disableMainThreadChecker() {
+        // Arrange
+
+        let buildConfiguration = "Profile"
+        let enableMainThreadChecker = false
+
+        let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Profile"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      disableMainThreadChecker = "YES"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+   </LaunchAction>
+"""#
+
+        // Act
+
+        let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            enableMainThreadChecker: enableMainThreadChecker
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
+
+    func test_disableThreadPerformanceChecker() {
+        // Arrange
+
+        let buildConfiguration = "Profile"
+        let enableThreadPerformanceChecker = false
+
+        let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Profile"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      disablePerformanceAntipatternChecker = "YES"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+   </LaunchAction>
+"""#
+
+        // Act
+
+        let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
+
     func test_enableAddressSanitizer() {
         // Arrange
 
@@ -523,6 +589,8 @@ private func createLaunchActionWithDefaults(
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,
+    enableMainThreadChecker: Bool = true,
+    enableThreadPerformanceChecker: Bool = true,
     environmentVariables: [EnvironmentVariable] = [],
     postActions: [ExecutionAction] = [],
     preActions: [ExecutionAction] = [],
@@ -535,6 +603,8 @@ private func createLaunchActionWithDefaults(
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,
         enableUBSanitizer: enableUBSanitizer,
+        enableMainThreadChecker: enableMainThreadChecker,
+        enableThreadPerformanceChecker: enableThreadPerformanceChecker,
         environmentVariables: environmentVariables,
         postActions: postActions,
         preActions: preActions,

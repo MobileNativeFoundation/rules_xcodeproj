@@ -15,6 +15,8 @@ public struct CreateTestAction {
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         expandVariablesBasedOn: BuildableReference?,
         postActions: [ExecutionAction],
@@ -28,6 +30,8 @@ public struct CreateTestAction {
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
+            /*enableMainThreadChecker:*/ enableMainThreadChecker,
+            /*enableThreadPerformanceChecker:*/ enableThreadPerformanceChecker,
             /*environmentVariables:*/ environmentVariables,
             /*expandVariablesBasedOn:*/ expandVariablesBasedOn,
             /*postActions:*/ postActions,
@@ -47,6 +51,8 @@ extension CreateTestAction {
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
+        _ enableMainThreadChecker: Bool,
+        _ enableThreadPerformanceChecker: Bool,
         _ environmentVariables: [EnvironmentVariable],
         _ expandVariablesBasedOn: BuildableReference?,
         _ postActions: [ExecutionAction],
@@ -61,6 +67,8 @@ extension CreateTestAction {
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         expandVariablesBasedOn macroReference: BuildableReference?,
         postActions: [ExecutionAction],
@@ -87,6 +95,13 @@ buildConfiguration = "\#(buildConfiguration)"
         }
         if enableUBSanitizer {
             components.append(#"enableUBSanitizer = "YES""#)
+        }
+
+        if !enableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
+        }
+        if !enableThreadPerformanceChecker {
+            components.append(#"disablePerformanceAntipatternChecker = "YES""#)
         }
 
         let macroExpansion: String

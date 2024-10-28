@@ -16,6 +16,8 @@ public struct CreateLaunchAction {
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -28,6 +30,8 @@ public struct CreateLaunchAction {
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
+            /*enableMainThreadChecker:*/ enableMainThreadChecker,
+            /*enableThreadPerformanceChecker:*/ enableThreadPerformanceChecker,
             /*environmentVariables:*/ environmentVariables,
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
@@ -46,6 +50,8 @@ extension CreateLaunchAction {
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
+        _ enableMainThreadChecker: Bool,
+        _ enableThreadPerformanceChecker: Bool,
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
@@ -59,6 +65,8 @@ extension CreateLaunchAction {
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
+        enableMainThreadChecker: Bool,
+        enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -96,6 +104,13 @@ selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
         }
         if enableUBSanitizer {
             components.append(#"enableUBSanitizer = "YES""#)
+        }
+
+        if !enableMainThreadChecker {
+            components.append(#"disableMainThreadChecker = "YES""#)
+        }
+        if !enableThreadPerformanceChecker {
+            components.append(#"disablePerformanceAntipatternChecker = "YES""#)
         }
 
         components.append(#"launchStyle = "0""#)

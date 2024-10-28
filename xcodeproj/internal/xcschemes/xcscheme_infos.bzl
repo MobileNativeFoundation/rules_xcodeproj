@@ -38,11 +38,15 @@ def _make_diagnostics(
         *,
         address_sanitizer = FALSE_ARG,
         thread_sanitizer = FALSE_ARG,
-        undefined_behavior_sanitizer = FALSE_ARG):
+        undefined_behavior_sanitizer = FALSE_ARG,
+        main_thread_checker = TRUE_ARG,
+        thread_performance_checker = TRUE_ARG):
     return struct(
         address_sanitizer = address_sanitizer,
         thread_sanitizer = thread_sanitizer,
         undefined_behavior_sanitizer = undefined_behavior_sanitizer,
+        main_thread_checker = main_thread_checker,
+        thread_performance_checker = thread_performance_checker,
     )
 
 def _make_launch_target(
@@ -276,10 +280,17 @@ def _diagnostics_info_from_dict(diagnostics):
         return _make_diagnostics()
 
     return _make_diagnostics(
+        # Sanitizers
         address_sanitizer = diagnostics["address_sanitizer"],
         thread_sanitizer = diagnostics["thread_sanitizer"],
         undefined_behavior_sanitizer = (
             diagnostics["undefined_behavior_sanitizer"]
+        ),
+
+        # Checks
+        main_thread_checker = diagnostics["main_thread_checker"],
+        thread_performance_checker = (
+            diagnostics["thread_performance_checker"]
         ),
     )
 

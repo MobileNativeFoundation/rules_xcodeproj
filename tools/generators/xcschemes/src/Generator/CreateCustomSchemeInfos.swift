@@ -489,6 +489,16 @@ set
             as: Bool.self,
             in: url
         )
+        let enableMainThreadChecker = try consumeArg(
+            "run-disable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        let enableThreadPerformanceChecker = try consumeArg(
+            "run-disable-performance-anti-pattern-checker",
+            as: Bool.self,
+            in: url
+        )
         let xcodeConfiguration =
             try consumeArg("run-xcode-configuration", as: String?.self, in: url)
 
@@ -531,6 +541,8 @@ set
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
+            enableMainThreadChecker: enableMainThreadChecker,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
             xcodeConfiguration: xcodeConfiguration
@@ -591,6 +603,7 @@ set
 
         let useRunArgsAndEnv =
             try consumeArg("test-use-run-args-and-env", as: Bool.self, in: url)
+
         let enableAddressSanitizer = try consumeArg(
             "test-enable-address-sanitizer",
             as: Bool.self,
@@ -603,6 +616,16 @@ set
         )
         let enableUBSanitizer = try consumeArg(
             "test-enable-undefined-behavior-sanitizer",
+            as: Bool.self,
+            in: url
+        )
+        let enableMainThreadChecker = try consumeArg(
+            "test-enable-main-thread-checker",
+            as: Bool.self,
+            in: url
+        )
+        let enableThreadPerformanceChecker = try consumeArg(
+            "test-enable-performance-anti-pattern-checker",
             as: Bool.self,
             in: url
         )
@@ -682,6 +705,8 @@ set
             enableAddressSanitizer: enableAddressSanitizer,
             enableThreadSanitizer: enableThreadSanitizer,
             enableUBSanitizer: enableUBSanitizer,
+            enableMainThreadChecker: enableMainThreadChecker,
+            enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,

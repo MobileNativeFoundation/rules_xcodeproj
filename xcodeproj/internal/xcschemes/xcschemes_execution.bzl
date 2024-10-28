@@ -206,9 +206,14 @@ def _write_schemes(
         custom_scheme_args.add("")
 
     def _add_diagnostics(diagnostics):
+        # Sanitizers
         custom_scheme_args.add(diagnostics.address_sanitizer)
         custom_scheme_args.add(diagnostics.thread_sanitizer)
         custom_scheme_args.add(diagnostics.undefined_behavior_sanitizer)
+
+        # Checks
+        custom_scheme_args.add(diagnostics.main_thread_checker)
+        custom_scheme_args.add(diagnostics.thread_performance_checker)
 
     def _add_env(env):
         if env == None:

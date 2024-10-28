@@ -505,6 +505,8 @@ def write_schemes_test_suite(name):
                         address_sanitizer = "1",
                         thread_sanitizer = "1",
                         undefined_behavior_sanitizer = "1",
+                        main_thread_checker = "1",
+                        thread_performance_checker = "1",
                     ),
                     env = {
                         "A": xcscheme_infos_testable.make_env(
@@ -599,6 +601,8 @@ def write_schemes_test_suite(name):
                         address_sanitizer = "1",
                         thread_sanitizer = "1",
                         undefined_behavior_sanitizer = "1",
+                        main_thread_checker = "1",
+                        thread_performance_checker = "1",
                     ),
                     env = {
                         "VAR\nWITH\nNEWLINES": xcscheme_infos_testable.make_env(
@@ -712,6 +716,10 @@ def write_schemes_test_suite(name):
                 "0",
                 # - test - enableUBSanitizer
                 "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
                 # - test - xcodeConfiguration
                 "",
                 # - run - buildTargets
@@ -728,6 +736,10 @@ def write_schemes_test_suite(name):
                 "0",
                 # - run - enableUBSanitizer
                 "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
                 # - run - xcodeConfiguration
                 "",
                 # - run - launchTarget - isPath
@@ -801,6 +813,10 @@ def write_schemes_test_suite(name):
                 "1",
                 # - test - enableUBSanitizer
                 "1",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
                 # - test - xcodeConfiguration
                 "Test",
                 # - run - buildTargets
@@ -841,6 +857,10 @@ def write_schemes_test_suite(name):
                 # - run - enableThreadSanitizer
                 "1",
                 # - run - enableUBSanitizer
+                "1",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
                 "1",
                 # - run - xcodeConfiguration
                 "Run",
@@ -918,6 +938,10 @@ def write_schemes_test_suite(name):
                 "0",
                 # - test - enableUBSanitizer
                 "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
                 # - test - xcodeConfiguration
                 "",
                 # - run - buildTargets
@@ -934,6 +958,10 @@ def write_schemes_test_suite(name):
                 "0",
                 # - run - enableUBSanitizer
                 "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
                 # - run - xcodeConfiguration
                 "",
                 # - run - launchTarget - isPath

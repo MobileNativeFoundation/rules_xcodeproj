@@ -40,6 +40,8 @@ struct SchemeInfo: Equatable {
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool
+        let enableMainThreadChecker: Bool
+        let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
         let testTargets: [TestTarget]
         let useRunArgsAndEnv: Bool
@@ -58,6 +60,8 @@ struct SchemeInfo: Equatable {
         let enableAddressSanitizer: Bool
         let enableThreadSanitizer: Bool
         let enableUBSanitizer: Bool
+        let enableMainThreadChecker: Bool
+        let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
         let xcodeConfiguration: String?

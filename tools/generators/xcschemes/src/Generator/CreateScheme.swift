@@ -366,6 +366,8 @@ extension Generator.CreateScheme {
                 enableAddressSanitizer: schemeInfo.test.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.test.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.test.enableUBSanitizer,
+                enableMainThreadChecker: schemeInfo.test.enableMainThreadChecker,
+                enableThreadPerformanceChecker: schemeInfo.test.enableThreadPerformanceChecker,
                 environmentVariables: schemeInfo.test.environmentVariables,
                 expandVariablesBasedOn: testUseLaunchSchemeArgsEnv ?
                     nil : testables.first?.buildableReference,
@@ -386,6 +388,8 @@ extension Generator.CreateScheme {
                 enableAddressSanitizer: schemeInfo.run.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.run.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.run.enableUBSanitizer,
+                enableMainThreadChecker: schemeInfo.run.enableMainThreadChecker,
+                enableThreadPerformanceChecker: schemeInfo.run.enableThreadPerformanceChecker,
                 environmentVariables: launchRunnable == nil ?
                     [] : schemeInfo.run.environmentVariables,
                 postActions: launchPostActions

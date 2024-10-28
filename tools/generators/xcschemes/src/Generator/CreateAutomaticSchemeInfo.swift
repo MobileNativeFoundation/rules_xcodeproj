@@ -115,6 +115,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
                 environmentVariables: testEnvironmentVariables,
                 testTargets: isTest ?
                     [.init(target: target, isEnabled: true)] : [],
@@ -128,6 +130,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableAddressSanitizer: false,
                 enableThreadSanitizer: false,
                 enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
                 environmentVariables: runEnvironmentVariables,
                 launchTarget: launchTarget,
                 xcodeConfiguration: nil
