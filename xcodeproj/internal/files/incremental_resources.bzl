@@ -5,7 +5,6 @@ load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 load("//xcodeproj/internal:memory_efficiency.bzl", "memory_efficient_depset")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
-load(":files.bzl", "join_paths_ignoring_empty")
 
 # Utility
 
@@ -39,6 +38,7 @@ def _create_bundle(name = None):
         name = name,
         resources = [],
         resource_file_paths = [],
+        generated_resource_file_paths = [],
         folder_resources = [],
         generated_folder_resources = [],
         dependency_paths = [],
@@ -73,19 +73,14 @@ def _handle_processed_resource(
             processed_origins,
         )
 
-    file_paths = []
     owner = file.owner
     for short_path in origin_short_paths:
-        file_path = _handle_processed_resource_origin(
+        _handle_processed_resource_origin(
             bundle = bundle,
             short_path = short_path,
             focused_resource_short_paths = focused_resource_short_paths,
             owner = owner,
         )
-        if file_path:
-            file_paths.append(file_path)
-
-    return file_paths
 
 def _handle_processed_resource_origin(
         *,
@@ -94,18 +89,20 @@ def _handle_processed_resource_origin(
         focused_resource_short_paths,
         owner):
     if short_path not in focused_resource_short_paths:
-        return None
+        return
 
     if short_path.startswith("../"):
         file_path = "external" + short_path[2:]
     else:
         file_path = short_path
 
+    is_generated = file_path.startswith("bazel-out/")
+
     # If a file is a child of a folder-type file, the parent folder-type file
     # should be added to the bundle instead of the child file
     folder_type_prefix = _path_folder_type_prefix(file_path)
     if folder_type_prefix:
-        if file_path.startswith("bazel-out/"):
+        if is_generated:
             bundle.generated_folder_resources.append(
                 struct(
                     owner = owner,
@@ -114,9 +111,15 @@ def _handle_processed_resource_origin(
             )
         else:
             bundle.folder_resources.append(folder_type_prefix)
-        return None
-
-    return file_path
+    elif is_generated:
+        bundle.generated_resource_file_paths.append(
+            struct(
+                owner = owner,
+                path = file_path,
+            ),
+        )
+    else:
+        bundle.resource_file_paths.append(file_path)
 
 def _handle_unprocessed_resource(
         *,
@@ -173,7 +176,7 @@ def _add_processed_resources_to_bundle(
         focused_resource_short_paths,
         processed_origins):
     for file in files.to_list():
-        file_paths = _handle_processed_resource(
+        _handle_processed_resource(
             bundle = bundle,
             bundle_metadata = bundle_metadata,
             bundle_path = bundle_path,
@@ -181,7 +184,6 @@ def _add_processed_resources_to_bundle(
             focused_resource_short_paths = focused_resource_short_paths,
             processed_origins = processed_origins,
         )
-        bundle.resource_file_paths.extend(file_paths)
 
 def _add_unprocessed_resources_to_bundle(
         *,
@@ -207,51 +209,18 @@ def _add_structured_resources_to_bundle(
         bundle,
         *,
         files,
-        focused_resource_short_paths,
-        nested_path):
-    if nested_path:
-        inner_dir = nested_path.split("/")[0]
-    else:
-        inner_dir = None
-
+        focused_resource_short_paths):
     for file in files.to_list():
         if file.short_path not in focused_resource_short_paths:
             continue
 
-        if not inner_dir:
-            bundle.resources.append(file)
-            continue
-
-        # Special case for localized
-        if inner_dir.endswith(".lproj"):
-            bundle.resources.append(file)
-            continue
-
-        if file.is_directory:
-            dir = file.path
-        else:
-            dir = file.dirname
-
-        if not dir.endswith(nested_path):
-            continue
-
-        folder_path = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
-        if file.is_source:
-            bundle.folder_resources.append(folder_path)
-        else:
-            bundle.generated_folder_resources.append(
-                struct(
-                    owner = file.owner,
-                    path = folder_path,
-                ),
-            )
+        bundle.resources.append(file)
 
 def _add_structured_resources(
         *,
         bundle_path,
         files,
         focused_resource_short_paths,
-        nested_path,
         resource_bundle_targets,
         root_bundle):
     bundle = resource_bundle_targets.get(bundle_path)
@@ -268,14 +237,12 @@ def _add_structured_resources(
             bundle,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = nested_path,
         )
     else:
         _add_structured_resources_to_bundle(
             root_bundle,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
         )
 
 def _handle_processable_resources(
@@ -386,18 +353,15 @@ def _handle_unprocessed_resources(
             continue
 
         bundle_path = None
-        nested_path = parent_dir
         for parent_bundle_path in parent_bundle_paths:
             if parent_dir.startswith(parent_bundle_path):
                 bundle_path = parent_bundle_path
-                nested_path = parent_dir[len(bundle_path) + 1:]
                 break
 
         _add_structured_resources(
             bundle_path = bundle_path,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = nested_path,
             resource_bundle_targets = resource_bundle_targets,
             root_bundle = root_bundle,
         )
@@ -439,6 +403,12 @@ def _collect_incremental_resources(
         *   `resources`:  A `list` of two element `tuple`s. The first
             element is the label of the target that owns the resource. The
             second element is a `File` for a resource.
+        *   `resource_file_paths`:  A `list` of two element `tuple`s. The first
+            element is the label of the target that owns the resource. The
+            second element is a file path string of a non-generated resource.
+        *   `generated_resource_file_paths`:   A `list` of two element `tuple`s.
+            The first element is the label of the target that owns the resource.
+            The second element is a file path string of a generated resource.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
     """
     root_bundle = _create_bundle()
@@ -522,6 +492,8 @@ def _collect_incremental_resources(
     for child_bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets[child_bundle_path]
         if (not bundle.resources and
+            not bundle.resource_file_paths and
+            not bundle.generated_resource_file_paths and
             not bundle.folder_resources and
             not bundle.generated_folder_resources and
             not bundle.dependency_paths):
@@ -554,6 +526,9 @@ def _collect_incremental_resources(
                     resource_file_paths = memory_efficient_depset(
                         bundle.resource_file_paths,
                     ),
+                    generated_resource_file_paths = memory_efficient_depset(
+                        bundle.generated_resource_file_paths,
+                    ),
                     folder_resources = memory_efficient_depset(
                         bundle.folder_resources,
                     ),
@@ -567,6 +542,7 @@ def _collect_incremental_resources(
         bundles = frozen_bundles,
         resources = root_bundle.resources,
         resource_file_paths = root_bundle.resource_file_paths,
+        generated_resource_file_paths = root_bundle.generated_resource_file_paths,
         folder_resources = root_bundle.folder_resources,
         generated_folder_resources = root_bundle.generated_folder_resources,
         xccurrentversions = xccurrentversions,

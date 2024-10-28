@@ -2,7 +2,7 @@ import Foundation
 import PBXProj
 import ToolCommon
 
-struct GeneratedPath {
+struct GeneratedPath: Hashable {
     let config: String
     let package: BazelPath
     let path: BazelPath
@@ -65,6 +65,11 @@ extension Generator.ReadGeneratedFilePathsFile {
             ))
         }
 
-        return generatedPaths
+
+        // The file can have at most 1 duplicate for each entry because of
+        // preprocessed resource files being represented as file paths, while
+        // they can also be an input to another action (e.g. codegen). Because
+        // of this we use a `Set` to deduplicate the paths.
+        return Array(Set(generatedPaths))
     }
 }

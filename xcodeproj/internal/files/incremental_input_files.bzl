@@ -490,6 +490,9 @@ def _collect_incremental_input_files(
                 if label not in bundle_labels
             ],
         )
+        extra_generated_file_paths = memory_efficient_depset(
+            resources_result.generated_folder_resources,
+        )
         extra_generated_folders = memory_efficient_depset(
             resources_result.generated_folder_resources,
             transitive = [
@@ -505,6 +508,7 @@ def _collect_incremental_input_files(
         )
     else:
         extra_folders = EMPTY_DEPSET
+        extra_generated_file_paths = EMPTY_DEPSET
         extra_generated_folders = EMPTY_DEPSET
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
@@ -552,6 +556,7 @@ def _collect_incremental_input_files(
                     transitive = transitive_extra_files,
                 ),
                 extra_folders = extra_folders,
+                extra_generated_file_paths = extra_generated_file_paths,
                 extra_generated_folders = extra_generated_folders,
                 infoplist = infoplist,
                 non_arc_srcs = memory_efficient_depset(non_arc_srcs),
@@ -660,6 +665,7 @@ def _collect_mixed_language_input_files(
             extra_file_paths = mergeable_info.extra_file_paths,
             extra_files = mergeable_info.extra_files,
             extra_folders = EMPTY_DEPSET,
+            extra_generated_file_paths = EMPTY_DEPSET,
             extra_generated_folders = EMPTY_DEPSET,
             infoplist = None,
             non_arc_srcs = mergeable_info.non_arc_srcs,
