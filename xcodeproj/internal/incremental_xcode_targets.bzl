@@ -25,7 +25,7 @@ def _from_resource_bundle(bundle):
         inputs = struct(
             entitlements = EMPTY_DEPSET,
             extra_files = bundle.resources,
-            extra_file_paths = EMPTY_DEPSET,
+            extra_file_paths = bundle.resource_file_paths,
             extra_folders = bundle.folder_resources,
             extra_generated_folders = bundle.generated_folder_resources,
             infoplist = None,

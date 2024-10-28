@@ -34,7 +34,91 @@ def _processed_resource_fields(resources_info):
         if f not in _IGNORED_RESOURCE_FIELDS
     ]
 
-def _process_resource(
+def _create_bundle(name = None):
+    return struct(
+        name = name,
+        resources = [],
+        resource_file_paths = [],
+        folder_resources = [],
+        generated_folder_resources = [],
+        dependency_paths = [],
+    )
+
+def _handle_processed_resource(
+        *,
+        bundle,
+        bundle_metadata,
+        bundle_path,
+        file,
+        focused_resource_short_paths,
+        processed_origins):
+    if not file.is_source:
+        if bundle_path and file.basename == "Info.plist":
+            path_components = file.path.split("/")
+            label = file.owner
+            configuration = calculate_configuration(bin_dir_path = file.path)
+            bundle_metadata[bundle_path] = struct(
+                label = label,
+                configuration = configuration,
+                id = get_id(label = label, configuration = configuration),
+                package_bin_dir = "/".join(path_components[:-3]),
+            )
+
+    short_path = file.short_path
+    origin_short_paths = processed_origins.get(short_path)
+    if not origin_short_paths:
+        fail(
+            "Processed resource {} not found in processed_origins: {}",
+            short_path,
+            processed_origins,
+        )
+
+    file_paths = []
+    owner = file.owner
+    for short_path in origin_short_paths:
+        file_path = _handle_processed_resource_origin(
+            bundle = bundle,
+            short_path = short_path,
+            focused_resource_short_paths = focused_resource_short_paths,
+            owner = owner,
+        )
+        if file_path:
+            file_paths.append(file_path)
+
+    return file_paths
+
+def _handle_processed_resource_origin(
+        *,
+        bundle,
+        short_path,
+        focused_resource_short_paths,
+        owner):
+    if short_path not in focused_resource_short_paths:
+        return None
+
+    if short_path.startswith("../"):
+        file_path = "external" + short_path[2:]
+    else:
+        file_path = short_path
+
+    # If a file is a child of a folder-type file, the parent folder-type file
+    # should be added to the bundle instead of the child file
+    folder_type_prefix = _path_folder_type_prefix(file_path)
+    if folder_type_prefix:
+        if file_path.startswith("bazel-out/"):
+            bundle.generated_folder_resources.append(
+                struct(
+                    owner = owner,
+                    path = folder_type_prefix,
+                ),
+            )
+        else:
+            bundle.folder_resources.append(folder_type_prefix)
+        return None
+
+    return file_path
+
+def _handle_unprocessed_resource(
         *,
         bundle,
         bundle_metadata,
@@ -58,7 +142,6 @@ def _process_resource(
                 id = get_id(label = label, configuration = configuration),
                 package_bin_dir = "/".join(path_components[:-3]),
             )
-
             return None
 
     if file.short_path not in focused_resource_short_paths:
@@ -81,7 +164,26 @@ def _process_resource(
 
     return file
 
-def _add_resources_to_bundle(
+def _add_processed_resources_to_bundle(
+        *,
+        bundle,
+        bundle_metadata,
+        bundle_path,
+        files,
+        focused_resource_short_paths,
+        processed_origins):
+    for file in files.to_list():
+        file_paths = _handle_processed_resource(
+            bundle = bundle,
+            bundle_metadata = bundle_metadata,
+            bundle_path = bundle_path,
+            file = file,
+            focused_resource_short_paths = focused_resource_short_paths,
+            processed_origins = processed_origins,
+        )
+        bundle.resource_file_paths.extend(file_paths)
+
+def _add_unprocessed_resources_to_bundle(
         *,
         bundle,
         bundle_metadata,
@@ -90,7 +192,7 @@ def _add_resources_to_bundle(
         focused_resource_short_paths,
         xccurrentversions):
     for file in files.to_list():
-        file = _process_resource(
+        file = _handle_unprocessed_resource(
             bundle = bundle,
             bundle_metadata = bundle_metadata,
             bundle_path = bundle_path,
@@ -100,15 +202,6 @@ def _add_resources_to_bundle(
         )
         if file:
             bundle.resources.append(file)
-
-def _create_bundle(name = None):
-    return struct(
-        name = name,
-        resources = [],
-        folder_resources = [],
-        generated_folder_resources = [],
-        dependency_paths = [],
-    )
 
 def _add_structured_resources_to_bundle(
         bundle,
@@ -185,7 +278,7 @@ def _add_structured_resources(
             nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
         )
 
-def _add_processed_resources(
+def _handle_processable_resources(
         *,
         bundle_metadata,
         focused_resource_short_paths,
@@ -195,7 +288,7 @@ def _add_processed_resources(
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
-            _add_resources_to_bundle(
+            _add_unprocessed_resources_to_bundle(
                 bundle = root_bundle,
                 bundle_metadata = bundle_metadata,
                 bundle_path = None,
@@ -207,7 +300,7 @@ def _add_processed_resources(
 
         prefix, ext, _ = parent_dir.rpartition(".bundle")
         if not ext:
-            _add_resources_to_bundle(
+            _add_unprocessed_resources_to_bundle(
                 bundle = root_bundle,
                 bundle_metadata = bundle_metadata,
                 bundle_path = None,
@@ -219,7 +312,7 @@ def _add_processed_resources(
 
         bundle_path = prefix + ext
         bundle = resource_bundle_targets[bundle_path]
-        _add_resources_to_bundle(
+        _add_unprocessed_resources_to_bundle(
             bundle = bundle,
             bundle_metadata = bundle_metadata,
             bundle_path = bundle_path,
@@ -228,7 +321,50 @@ def _add_processed_resources(
             xccurrentversions = xccurrentversions,
         )
 
-def _add_unprocessed_resources(
+def _handle_processed_resources(
+        *,
+        bundle_metadata,
+        focused_resource_short_paths,
+        resources,
+        resource_bundle_targets,
+        root_bundle,
+        processed_origins):
+    for parent_dir, _, files in resources:
+        if not parent_dir:
+            _add_processed_resources_to_bundle(
+                bundle = root_bundle,
+                bundle_metadata = bundle_metadata,
+                bundle_path = None,
+                files = files,
+                focused_resource_short_paths = focused_resource_short_paths,
+                processed_origins = processed_origins,
+            )
+            continue
+
+        prefix, ext, _ = parent_dir.rpartition(".bundle")
+        if not ext:
+            _add_processed_resources_to_bundle(
+                bundle = root_bundle,
+                bundle_metadata = bundle_metadata,
+                bundle_path = None,
+                files = files,
+                focused_resource_short_paths = focused_resource_short_paths,
+                processed_origins = processed_origins,
+            )
+            continue
+
+        bundle_path = prefix + ext
+        bundle = resource_bundle_targets[bundle_path]
+        _add_processed_resources_to_bundle(
+            bundle = bundle,
+            bundle_metadata = bundle_metadata,
+            bundle_path = bundle_path,
+            files = files,
+            focused_resource_short_paths = focused_resource_short_paths,
+            processed_origins = processed_origins,
+        )
+
+def _handle_unprocessed_resources(
         *,
         bundle_metadata,
         focused_resource_short_paths,
@@ -239,7 +375,7 @@ def _add_unprocessed_resources(
         xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
-            _add_resources_to_bundle(
+            _add_unprocessed_resources_to_bundle(
                 bundle = root_bundle,
                 bundle_metadata = bundle_metadata,
                 bundle_path = None,
@@ -318,6 +454,12 @@ def _collect_incremental_resources(
     }
 
     processed_fields = _processed_resource_fields(resource_info)
+    if resource_info.processed_origins:
+        processed_origins = _expand_processed_origins(
+            processed_origins = resource_info.processed_origins,
+        )
+    else:
+        processed_origins = {}
 
     # Create the bundles, regardless of avoiding duplicates, to work around
     # a rules_apple bug
@@ -342,8 +484,17 @@ def _collect_incremental_resources(
     def _deduplicated_field_handler(field, deduplicated):
         if field == "infoplists":
             return
-        if field == "unprocessed":
-            _add_unprocessed_resources(
+        if field == "processed":
+            _handle_processed_resources(
+                bundle_metadata = bundle_metadata,
+                focused_resource_short_paths = focused_resource_short_paths,
+                processed_origins = processed_origins,
+                resource_bundle_targets = resource_bundle_targets,
+                resources = deduplicated,
+                root_bundle = root_bundle,
+            )
+        elif field == "unprocessed":
+            _handle_unprocessed_resources(
                 bundle_metadata = bundle_metadata,
                 focused_resource_short_paths = focused_resource_short_paths,
                 parent_bundle_paths = parent_bundle_paths,
@@ -353,7 +504,7 @@ def _collect_incremental_resources(
                 xccurrentversions = xccurrentversions,
             )
         else:
-            _add_processed_resources(
+            _handle_processable_resources(
                 bundle_metadata = bundle_metadata,
                 focused_resource_short_paths = focused_resource_short_paths,
                 resources = deduplicated,
@@ -400,6 +551,9 @@ def _collect_incremental_resources(
                     package_bin_dir = metadata.package_bin_dir,
                     platform = platform,
                     resources = memory_efficient_depset(bundle.resources),
+                    resource_file_paths = memory_efficient_depset(
+                        bundle.resource_file_paths,
+                    ),
                     folder_resources = memory_efficient_depset(
                         bundle.folder_resources,
                     ),
@@ -412,13 +566,27 @@ def _collect_incremental_resources(
     return struct(
         bundles = frozen_bundles,
         resources = root_bundle.resources,
+        resource_file_paths = root_bundle.resource_file_paths,
         folder_resources = root_bundle.folder_resources,
         generated_folder_resources = root_bundle.generated_folder_resources,
         xccurrentversions = xccurrentversions,
     )
 
+def _expand_processed_origins(*, processed_origins):
+    """Converts a depset of (processed_resource, resource) to a dict.
+
+    Args:
+      processed_origins: A depset of (processed_resource, resource) pairs.
+    """
+    processed_origins_dict = {}
+    for processed_resource, resource in processed_origins.to_list():
+        processed_origins_dict[processed_resource] = resource
+    return processed_origins_dict
+
 def _folder_type_prefix(file):
-    path = file.path
+    return _path_folder_type_prefix(file.path)
+
+def _path_folder_type_prefix(path):
     for suffix in _FOLDER_TYPE_FILE_SUFFIXES:
         idx = path.find(suffix)
         if idx != -1:

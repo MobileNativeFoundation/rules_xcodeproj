@@ -31,7 +31,11 @@ extension Generator.ReadFilePathsFile {
     static func defaultCallable(
         _ url: URL
     ) async throws -> [BazelPath] {
-        return try await url.lines.collect()
+        // The file can have at most 1 duplicate for each entry because of
+        // preprocessed resource files being represented as file paths, while
+        // they can also be an input to another action (e.g. codegen). Because
+        // of this we use a `Set` to deduplicate the paths.
+        return Set(try await url.lines.collect())
             .map { BazelPath($0, isFolder: false) }
     }
 }
