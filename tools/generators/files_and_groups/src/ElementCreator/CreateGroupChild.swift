@@ -117,15 +117,13 @@ extension ElementCreator.CreateGroupChild {
                 )
             }
 
-        case .file(let name, let isFolder):
+        case .file(let name):
             return .elementAndChildren(
                 createFile(
                     name: name,
-                    isFolder: isFolder,
                     bazelPath: BazelPath(
                         parent: parentBazelPath,
-                        path: name,
-                        isFolder: isFolder
+                        path: name
                     ),
                     bazelPathType: parentBazelPathType,
                     transitiveBazelPaths: []

@@ -5,19 +5,19 @@ import XCTest
 @testable import files_and_groups
 
 final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
-    
+
     func testMultipleConfigs() throws {
         let simConfig = PathTreeNode.GeneratedFiles.Config(name: "ios-sim", path: "ios-sim/bin", children: [
-            .file(name: "fileA")
+            .file("fileA")
         ])
         let deviceConfig = PathTreeNode.GeneratedFiles.Config(name: "ios-device", path: "ios-device/bin", children: [
-            .file(name: "fileA")
+            .file("fileA")
         ])
         let generatedFiles = PathTreeNode.GeneratedFiles.multipleConfigs([
             simConfig,
             deviceConfig
         ])
-        
+
         let iosSimGroupChildElementAndChildren = GroupChild.ElementAndChildren(
             bazelPath: BazelPath("ios-sim/bin"),
             element: .init(
@@ -55,19 +55,19 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             )
         )
         let expectedParentBazelPath = BazelPath("bazel-out")
-        
+
         let stubbedGroupChildElements: [GroupChild.ElementAndChildren] = [
             iosSimGroupChildElementAndChildren,
             iosDeviceGroupChildElementAndChildren
         ]
-        
+
         let createInlineBazelGeneratedConfigGroup = ElementCreator.CreateInlineBazelGeneratedConfigGroup.mock(groupChildElements: stubbedGroupChildElements)
-        
+
         let expectedCreateInlineBazelGeneratedConfigGroup: [ElementCreator.CreateInlineBazelGeneratedConfigGroup.MockTracker.Called] = [
             .init(config: simConfig, parentBazelPath: expectedParentBazelPath),
             .init(config: deviceConfig, parentBazelPath: expectedParentBazelPath)
         ]
-        
+
         let stubbedCreateGroupChildElement = GroupChildElements(
             elements: [
                 .init(
@@ -93,7 +93,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
         let createGroupChildElements = ElementCreator.CreateGroupChildElements.mock(
             groupChildElements: stubbedCreateGroupChildElement
         )
-        
+
         let expectedCreateGroupChildElements: [ElementCreator.CreateGroupChildElements.MockTracker.Called] = [
             .init(
                 parentBazelPath: expectedParentBazelPath,
@@ -104,7 +104,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
                 resolvedRepositories: []
             )
         ]
-        
+
         let stubbedCreateInlineBazelGeneratedFilesElement = Element(
             name: "bazel-out",
             object: .init(
@@ -122,7 +122,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
                 childIdentifiers: ["ios-sim-identifier", "ios-device-identifier"]
             )
         ]
-        
+
         let result = ElementCreator.CreateInlineBazelGeneratedFiles.defaultCallable(
             for: generatedFiles,
             createGroupChild: ElementCreator.Stubs.createGroupChild,
@@ -130,7 +130,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             createInlineBazelGeneratedConfigGroup: createInlineBazelGeneratedConfigGroup.mock,
             createInlineBazelGeneratedFilesElement: createInlineBazelGeneratedFilesElement.mock
         )
-        
+
         let expectedResult = GroupChild.ElementAndChildren(
             bazelPath: expectedParentBazelPath,
             element: stubbedCreateInlineBazelGeneratedFilesElement,
@@ -142,30 +142,30 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             createInlineBazelGeneratedConfigGroup.tracker.called,
             expectedCreateInlineBazelGeneratedConfigGroup
         )
-        
+
         XCTAssertNoDifference(
             createGroupChildElements.tracker.called,
             expectedCreateGroupChildElements
         )
-        
+
         XCTAssertNoDifference(
             expectedCreateInlineBazelGeneratedFilesElement,
             createInlineBazelGeneratedFilesElement.tracker.called
         )
-        
+
         XCTAssertNoDifference(
             result,
             expectedResult
         )
     }
-    
+
     func testSingleConfig() throws {
-        let configChild = PathTreeNode.file(name: "fileA")
+        let configChild = PathTreeNode.file("fileA")
         let generatedFiles = PathTreeNode.GeneratedFiles.singleConfig(
             path: "ios-sim",
             children: [configChild]
         )
-        
+
         let iosSimGroupChildElementAndChildren = GroupChild.ElementAndChildren(
             bazelPath: BazelPath("ios-sim/bin/fileA"),
             element: .init(
@@ -186,11 +186,11 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             )
         )
         let expectedParentBazelPath = BazelPath("bazel-out/ios-sim")
-        
+
         let createGroupChild = ElementCreator.CreateGroupChild.mock(children: [
             .elementAndChildren(iosSimGroupChildElementAndChildren)
         ])
-        
+
         let expectedCreateGroupChild: [ElementCreator.CreateGroupChild.MockTracker.Called] =
         [
             .init(
@@ -199,7 +199,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
                 parentBazelPathType: .bazelGenerated
             )
         ]
-        
+
 
         let stubbedCreateGroupChildElement = GroupChildElements(
             elements: [
@@ -220,7 +220,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
         let createGroupChildElements = ElementCreator.CreateGroupChildElements.mock(
             groupChildElements: stubbedCreateGroupChildElement
         )
-        
+
         let expectedCreateGroupChildElements: [ElementCreator.CreateGroupChildElements.MockTracker.Called] = [
             .init(
                 parentBazelPath: expectedParentBazelPath,
@@ -230,7 +230,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
                 resolvedRepositories: []
             )
         ]
-        
+
         let stubbedCreateInlineBazelGeneratedFilesElement = Element(
             name: "bazel-out/ios-sim",
             object: .init(
@@ -248,7 +248,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
                 childIdentifiers: ["ios-sim-identifier"]
             )
         ]
-        
+
         let result = ElementCreator.CreateInlineBazelGeneratedFiles.defaultCallable(
             for: generatedFiles,
             createGroupChild: createGroupChild.mock,
@@ -256,7 +256,7 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             createInlineBazelGeneratedConfigGroup: ElementCreator.Stubs.createInlineBazelGeneratedConfigGroup,
             createInlineBazelGeneratedFilesElement: createInlineBazelGeneratedFilesElement.mock
         )
-        
+
         let expectedResult = GroupChild.ElementAndChildren(
             bazelPath: expectedParentBazelPath,
             element: stubbedCreateInlineBazelGeneratedFilesElement,
@@ -264,22 +264,22 @@ final class CreateInlineBazelGeneratedFilesTests: XCTestCase {
             resolvedRepository: nil,
             children: stubbedCreateGroupChildElement
         )
-        
+
         XCTAssertNoDifference(
             createGroupChild.tracker.called,
             expectedCreateGroupChild
         )
-        
+
         XCTAssertNoDifference(
             createGroupChildElements.tracker.called,
             expectedCreateGroupChildElements
         )
-        
+
         XCTAssertNoDifference(
             expectedCreateInlineBazelGeneratedFilesElement,
             createInlineBazelGeneratedFilesElement.tracker.called
         )
-        
+
         XCTAssertNoDifference(
             result,
             expectedResult

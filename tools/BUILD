@@ -83,12 +83,8 @@ _XCSCHEMES = [
                 "1",
                 # filePathsFile
                 "/tmp/pbxproj_partials/file_paths_file",
-                # folderPathsFile
-                "/tmp/pbxproj_partials/folder_paths_file",
                 # generatedFilePathsFile
                 "/tmp/pbxproj_partials/generated_file_paths_file",
-                # generatedFolderPathsFile
-                "/tmp/pbxproj_partials/generated_folder_paths_file",
                 # developmentRegion
                 "en",
                 # useBaseInternationalization

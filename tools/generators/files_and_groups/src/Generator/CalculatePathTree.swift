@@ -88,7 +88,7 @@ extension Generator {
                 .append(
                     PathTreeNodeToVisit(
                       components: components,
-                      kind: .file(isFolder: path.isFolder)
+                      kind: .file
                   )
                 )
         }
@@ -125,18 +125,6 @@ extension Generator {
                    }
                 }
 
-                guard lhs.kind == rhs.kind else {
-                    if case let .file(isFolder) = lhs.kind {
-                        // Folders should appear before non-folders, because
-                        // when we sort in `CreateGroupChildElements` it will
-                        // see folders and groups with the same name as the
-                        // same, but will leave in-place any sorting we do here
-                        return isFolder
-                    }
-
-                    return false
-                }
-
                 return false
             }
 
@@ -164,11 +152,8 @@ extension Generator {
 
                 let node: PathTreeNode
                 switch nodeToVisit.kind {
-                case .file(let isFolder):
-                    node = .file(
-                        name: String(nodeToVisit.components.last!),
-                        isFolder: isFolder
-                    )
+                case .file:
+                    node = .file(String(nodeToVisit.components.last!))
                 case .group(let children):
                     node = .group(
                         name: String(nodeToVisit.components.last!),
@@ -215,7 +200,7 @@ enum PathTreeNode: Equatable {
         case multipleConfigs(_ configs: [Config])
     }
 
-    case file(name: String, isFolder: Bool)
+    case file(String)
     case group(name: String, children: [PathTreeNode])
     case generatedFiles(GeneratedFiles)
 }
@@ -223,7 +208,7 @@ enum PathTreeNode: Equatable {
 extension PathTreeNode {
     var nameForSpecialGroupChild: String {
         switch self {
-        case .file(let name, _):
+        case .file(let name):
             return name
         case .group(let name, _):
             return name
@@ -237,7 +222,7 @@ extension PathTreeNode {
 
 private class PathTreeNodeToVisit {
     enum Kind: Equatable {
-        case file(isFolder: Bool)
+        case file
         case group(children: [PathTreeNode])
         case generatedFiles(PathTreeNode.GeneratedFiles)
     }

@@ -8,18 +8,12 @@ final class CollectBazelPathsTests: XCTestCase {
     func test_file_includeSelf() {
         // Arrange
 
-        let node = PathTreeNode.file(
-            name: "path",
-            isFolder: false
-        )
-        let bazelPath = BazelPath(
-            "a/bazel/path",
-            isFolder: false
-        )
+        let node = PathTreeNode.file("path")
+        let bazelPath = BazelPath("a/bazel/path")
         let includeSelf = true
 
         let expectedBazelPaths: [BazelPath] = [
-            BazelPath("a/bazel/path", isFolder: false),
+            BazelPath("a/bazel/path"),
         ]
 
         // Act
@@ -38,14 +32,8 @@ final class CollectBazelPathsTests: XCTestCase {
     func test_file_notIncludeSelf() {
         // Arrange
 
-        let node = PathTreeNode.file(
-            name: "path",
-            isFolder: true
-        )
-        let bazelPath = BazelPath(
-            "a/bazel/path",
-            isFolder: true
-        )
+        let node = PathTreeNode.file("path")
+        let bazelPath = BazelPath("a/bazel/path")
         let includeSelf = false
 
         let expectedBazelPaths: [BazelPath] = []
@@ -69,27 +57,22 @@ final class CollectBazelPathsTests: XCTestCase {
         let node = PathTreeNode.group(
             name: "path",
             children: [
-                .file(name: "file", isFolder: false),
+                .file("file"),
                 .group(name: "directory", children: [
-                    .file(name: "file_or_folder", isFolder: true),
-                    .file(name: "file_or_folder", isFolder: false),
+                    .file("file_or_folder"),
                 ]),
-                .file(name: "folder", isFolder: true),
+                .file("folder"),
             ]
         )
-        let bazelPath = BazelPath(
-            "a/bazel/path",
-            isFolder: false
-        )
+        let bazelPath = BazelPath("a/bazel/path")
         let includeSelf = true
 
         let expectedBazelPaths = [
-            BazelPath("a/bazel/path/file", isFolder: false),
-            BazelPath("a/bazel/path/directory/file_or_folder", isFolder: true),
-            BazelPath("a/bazel/path/directory/file_or_folder", isFolder: false),
-            BazelPath("a/bazel/path/directory", isFolder: false),
-            BazelPath("a/bazel/path/folder", isFolder: true),
-            BazelPath("a/bazel/path", isFolder: false),
+            BazelPath("a/bazel/path/file"),
+            BazelPath("a/bazel/path/directory/file_or_folder"),
+            BazelPath("a/bazel/path/directory"),
+            BazelPath("a/bazel/path/folder"),
+            BazelPath("a/bazel/path"),
         ]
 
         // Act
@@ -111,26 +94,21 @@ final class CollectBazelPathsTests: XCTestCase {
         let node = PathTreeNode.group(
             name: "path",
             children: [
-                .file(name: "file", isFolder: false),
+                .file("file"),
                 .group(name: "directory", children: [
-                    .file(name: "file_or_folder", isFolder: true),
-                    .file(name: "file_or_folder", isFolder: false),
+                    .file("file_or_folder"),
                 ]),
-                .file(name: "folder", isFolder: true),
+                .file("folder"),
             ]
         )
-        let bazelPath = BazelPath(
-            "a/bazel/path",
-            isFolder: false
-        )
+        let bazelPath = BazelPath("a/bazel/path")
         let includeSelf = false
 
         let expectedBazelPaths = [
-            BazelPath("a/bazel/path/file", isFolder: false),
-            BazelPath("a/bazel/path/directory/file_or_folder", isFolder: true),
-            BazelPath("a/bazel/path/directory/file_or_folder", isFolder: false),
-            BazelPath("a/bazel/path/directory", isFolder: false),
-            BazelPath("a/bazel/path/folder", isFolder: true),
+            BazelPath("a/bazel/path/file"),
+            BazelPath("a/bazel/path/directory/file_or_folder"),
+            BazelPath("a/bazel/path/directory"),
+            BazelPath("a/bazel/path/folder"),
         ]
 
         // Act

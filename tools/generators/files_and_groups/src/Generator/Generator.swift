@@ -22,12 +22,9 @@ struct Generator {
         // FIXME: Do these in parallel as tasks
         let pathTree = try await environment.calculatePathTree(
             /*paths:*/
-                environment.readFilePathsFile(arguments.filePathsFile) +
-                environment.readFolderPathsFile(arguments.folderPathsFile),
+                environment.readFilePathsFile(arguments.filePathsFile),
             /*generatedPaths:*/ environment.readGeneratedFilePathsFile(
                 arguments.generatedFilePathsFile
-            ) + environment.readGeneratedFolderPathsFile(
-                arguments.generatedFolderPathsFile
             )
         )
 

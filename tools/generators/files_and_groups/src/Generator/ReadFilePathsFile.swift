@@ -35,7 +35,6 @@ extension Generator.ReadFilePathsFile {
         // preprocessed resource files being represented as file paths, while
         // they can also be an input to another action (e.g. codegen). Because
         // of this we use a `Set` to deduplicate the paths.
-        return Set(try await url.lines.collect())
-            .map { BazelPath($0, isFolder: false) }
+        return Set(try await url.lines.collect()).map { BazelPath($0) }
     }
 }

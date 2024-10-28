@@ -143,10 +143,10 @@ final class IdentifiersTests: XCTestCase {
             shard: "2A",
             type: .source,
             path: "a/path/to/a/file",
-            hash: "3317E1EDE29939A5A774"
+            hash: "5D281FBE82FC44DCE0D9"
         )
         let expectedModifiedHashCache: [UInt8: Set<String>] = [
-            42: ["3317E1EDE29939A5A774"],
+            42: ["5D281FBE82FC44DCE0D9"],
         ]
 
         // Act
@@ -168,8 +168,8 @@ final class IdentifiersTests: XCTestCase {
         // Arrange
 
         var hashCache: [UInt8: Set<String>] = [
-            1: ["3317E1EDE29939A5A774"],
-            42: ["4F9F0C3EB506DF851647"],
+            1: ["5D281FBE82FC44DCE0D9"],
+            42: ["903EB581A360F793A884"],
         ]
         let path: BazelPath = "a/path/to/a/file"
         let type: Identifiers.BuildFiles.FileType = .source
@@ -179,19 +179,19 @@ final class IdentifiersTests: XCTestCase {
             shard: "01",
             type: .source,
             path: "a/path/to/a/file",
-            hash: "4F9F0C3EB506DF851647"
+            hash: "903EB581A360F793A884"
         )
         let expectedModifiedHashCache: [UInt8: Set<String>] = [
             1: [
                 // Original
-                "3317E1EDE29939A5A774",
+                "5D281FBE82FC44DCE0D9",
 
                 // Added
-                "4F9F0C3EB506DF851647",
+                "903EB581A360F793A884",
             ],
             42: [
                 // Original
-                "4F9F0C3EB506DF851647",
+                "903EB581A360F793A884",
             ],
         ]
 
@@ -215,9 +215,9 @@ final class IdentifiersTests: XCTestCase {
 
         var hashCache: [UInt8: Set<String>] = [
             3: [
-                "3317E1EDE29939A5A774",
-                "4F9F0C3EB506DF851647",
-                "6029C6BA6D7ABE2C865D",
+                "5D281FBE82FC44DCE0D9",
+                "903EB581A360F793A884",
+                "AA5BF8CD7DB86CB15572",
             ],
         ]
         let path: BazelPath = "a/path/to/a/file"
@@ -228,17 +228,17 @@ final class IdentifiersTests: XCTestCase {
             shard: "03",
             type: .source,
             path: "a/path/to/a/file",
-            hash: "F83F35272EB195CBDEEA"
+            hash: "E680A7C4B9ADF2BD96EB"
         )
         let expectedModifiedHashCache: [UInt8: Set<String>] = [
             3: [
                 // Original
-                "3317E1EDE29939A5A774", // collision 1
-                "4F9F0C3EB506DF851647", // collision 2
-                "6029C6BA6D7ABE2C865D", // collision 3
+                "5D281FBE82FC44DCE0D9", // collision 1
+                "903EB581A360F793A884", // collision 2
+                "AA5BF8CD7DB86CB15572", // collision 3
 
                 // Added
-                "F83F35272EB195CBDEEA",
+                "E680A7C4B9ADF2BD96EB",
             ],
         ]
 
@@ -271,7 +271,7 @@ final class IdentifiersTests: XCTestCase {
             shard: "2A",
             type: .source,
             path: "a/path/to/a/file",
-            hash: "3317E1EDE29939A5A774"
+            hash: "5D281FBE82FC44DCE0D9"
         )
 
         // Act
@@ -300,7 +300,7 @@ final class IdentifiersTests: XCTestCase {
             shard: "2A",
             type: .nonArcSource,
             path: "a/path/to/a/file",
-            hash: "3317E1EDE29939A5A774"
+            hash: "5D281FBE82FC44DCE0D9"
         )
 
         // Act

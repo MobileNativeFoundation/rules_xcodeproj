@@ -10,14 +10,14 @@ final class CreateExternalRepositoriesGroupTests: XCTestCase {
 
         let name = "bazel-out"
         let nodeChildren: [PathTreeNode] = [
-            .file(name: "a"),
+            .file("a"),
             .group(
                 name: "b.lproj",
                 children: [
-                    .file(name: "y"),
+                    .file("y"),
                     .group(
                         name: "z.ext",
-                        children: [.file(name: "other")]
+                        children: [.file("other")]
                     ),
                 ]
             ),

@@ -9,7 +9,6 @@ final class CreateFileTests: XCTestCase {
         // Arrange
 
         let name = "node_name.some_ext"
-        let isFolder = false
         let bazelPath: BazelPath = "bazel/path/node_name.some_ext"
         let bazelPathType = BazelPathType.bazelGenerated
         let transitiveBazelPaths: [BazelPath] = [
@@ -73,7 +72,6 @@ final class CreateFileTests: XCTestCase {
 
         let result = ElementCreator.CreateFile.defaultCallable(
             name: name,
-            isFolder: isFolder,
             bazelPath: bazelPath,
             bazelPathType: bazelPathType,
             transitiveBazelPaths: transitiveBazelPaths,

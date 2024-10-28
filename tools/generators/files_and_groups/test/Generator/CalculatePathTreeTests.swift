@@ -5,7 +5,7 @@ import XCTest
 @testable import files_and_groups
 
 final class CalculatePathTreeTests: XCTestCase {
-    
+
     // MARK: - empty
 
     func test_empty() {
@@ -37,8 +37,7 @@ final class CalculatePathTreeTests: XCTestCase {
             "b/3",
             "a/2",
             "0",
-            .init("a/1", isFolder: false),
-            .init("a/1", isFolder: true),
+            "a/1",
             "b/0",
             "d",
             "c/d/2",
@@ -49,7 +48,7 @@ final class CalculatePathTreeTests: XCTestCase {
             .init(
                 config: "config3",
                 package: "",
-                path: .init("gen/folder", isFolder: true)
+                path: "gen/folder"
             ),
             .init(config: "config4", package: "c", path: "gen"),
         ]
@@ -61,25 +60,24 @@ final class CalculatePathTreeTests: XCTestCase {
                     .group(
                         name: "gen",
                         children: [
-                            .file(name: "folder", isFolder: true)
+                            .file("folder")
                         ]
                     ),
                 ]
             )),
-            .file(name: "0"),
+            .file("0"),
             .group(
                 name: "a",
                 children: [
-                    .file(name: "1", isFolder: true),
-                    .file(name: "1", isFolder: false),
-                    .file(name: "2"),
+                    .file("1"),
+                    .file("2"),
                 ]
             ),
             .group(
                 name: "b",
                 children: [
-                    .file(name: "0"),
-                    .file(name: "3"),
+                    .file("0"),
+                    .file("3"),
                 ]
             ),
             .group(
@@ -88,7 +86,7 @@ final class CalculatePathTreeTests: XCTestCase {
                     .generatedFiles(.singleConfig(
                         path: "config4/bin/c",
                         children: [
-                            .file(name: "gen"),
+                            .file("gen"),
                         ]
                     )),
                     .group(
@@ -105,7 +103,7 @@ final class CalculatePathTreeTests: XCTestCase {
                                                 .group(
                                                     name: "gen",
                                                     children: [
-                                                        .file(name: "path"),
+                                                        .file("path"),
                                                     ]
                                                 ),
                                             ]
@@ -122,7 +120,7 @@ final class CalculatePathTreeTests: XCTestCase {
                                                 .group(
                                                     name: "gen",
                                                     children: [
-                                                        .file(name: "path"),
+                                                        .file("path"),
                                                     ]
                                                 ),
                                             ]
@@ -130,19 +128,19 @@ final class CalculatePathTreeTests: XCTestCase {
                                     ]
                                 ),
                             ])),
-                            .file(name: "2"),
-                            .file(name: "6"),
+                            .file("2"),
+                            .file("6"),
                         ]
                     ),
                     .group(
                         name: "z",
                         children: [
-                            .file(name: "1"),
+                            .file("1"),
                         ]
                     ),
                 ]
             ),
-            .file(name: "d"),
+            .file("d"),
         ]
 
         // Act
@@ -155,11 +153,5 @@ final class CalculatePathTreeTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(pathTree, expectedPathTree)
-    }
-}
-
-extension PathTreeNode {
-    static func file(name: String) -> PathTreeNode {
-        return .file(name: name, isFolder: false)
     }
 }

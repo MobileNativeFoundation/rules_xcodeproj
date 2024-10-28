@@ -10,8 +10,8 @@ final class CreateGroupTests: XCTestCase {
 
         let name = "node_name.some_ext"
         let nodeChildren: [PathTreeNode] = [
-            .file(name: "a"),
-            .file(name: "b"),
+            .file("a"),
+            .file("b"),
         ]
         let parentBazelPath: BazelPath = "bazel/path"
         let bazelPathType = BazelPathType.siblingBazelExternal

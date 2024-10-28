@@ -46,14 +46,6 @@ extension ElementCreator {
 // MARK: - CreateFileElement.Callable
 
 extension ElementCreator.CreateFileElement {
-    private static let folderTypeFileExtensions: Set<String?> = [
-       "bundle",
-       "docc",
-       "framework",
-       "scnassets",
-       "xcassets",
-    ]
-
     private static let explicitFileTypeExtensions: Set<String?> = [
         "bazel",
         "bzl",
@@ -84,16 +76,6 @@ extension ElementCreator.CreateFileElement {
         resolvedRepository: ResolvedRepository?
     ) {
         let impliedExt = ext ?? Xcode.impliedExtension(basename: name)
-        let fileTypeType = calculateFileTypeType(basename: name, extension: impliedExt)
-        let fileType: String
-        let sortOrder: Element.SortOrder
-        if bazelPath.isFolder && !folderTypeFileExtensions.contains(ext) {
-            fileType = "folder"
-            sortOrder = .groupLike
-        } else {
-            fileType = impliedExt.flatMap(Xcode.pbxProjEscapedFileType) ?? "file"
-            sortOrder = .fileLike
-        }
 
         let attributes = createAttributes(
             name: name,
@@ -110,7 +92,9 @@ extension ElementCreator.CreateFileElement {
         }
         let content = """
 {isa = PBXFileReference; \
-\(fileTypeType) = \(fileType); \
+\(calculateFileTypeType(basename: name, extension: impliedExt)) = \(
+    impliedExt.flatMap(Xcode.pbxProjEscapedFileType) ?? "file"
+); \
 \(nameAttribute)\
 path = \(attributes.elementAttributes.path.pbxProjEscaped); \
 sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
@@ -128,7 +112,7 @@ sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
                     ),
                     content: content
                 ),
-                sortOrder: sortOrder
+                sortOrder: .fileLike
             ),
             resolvedRepository: attributes.resolvedRepository
         )

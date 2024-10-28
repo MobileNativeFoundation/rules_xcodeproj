@@ -94,7 +94,7 @@ extension ElementCreator.CreateVersionGroup {
         for node in nodeChildren {
             let childName = node.nameForSpecialGroupChild
             let childBazelPath = BazelPath(parent: bazelPath, path: childName)
-            
+
             let transitiveBazelPaths = collectBazelPaths(
                 node: node,
                 bazelPath: childBazelPath,
@@ -105,7 +105,6 @@ extension ElementCreator.CreateVersionGroup {
 
             let result = createFile(
                 name: childName,
-                isFolder: false,
                 bazelPath: childBazelPath,
                 bazelPathType: bazelPathType,
                 transitiveBazelPaths: transitiveBazelPaths,
