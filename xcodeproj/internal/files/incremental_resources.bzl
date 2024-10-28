@@ -5,7 +5,6 @@ load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 load("//xcodeproj/internal:memory_efficiency.bzl", "memory_efficient_depset")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
-load(":files.bzl", "join_paths_ignoring_empty")
 
 # Utility
 
@@ -207,51 +206,18 @@ def _add_structured_resources_to_bundle(
         bundle,
         *,
         files,
-        focused_resource_short_paths,
-        nested_path):
-    if nested_path:
-        inner_dir = nested_path.split("/")[0]
-    else:
-        inner_dir = None
-
+        focused_resource_short_paths):
     for file in files.to_list():
         if file.short_path not in focused_resource_short_paths:
             continue
 
-        if not inner_dir:
-            bundle.resources.append(file)
-            continue
-
-        # Special case for localized
-        if inner_dir.endswith(".lproj"):
-            bundle.resources.append(file)
-            continue
-
-        if file.is_directory:
-            dir = file.path
-        else:
-            dir = file.dirname
-
-        if not dir.endswith(nested_path):
-            continue
-
-        folder_path = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
-        if file.is_source:
-            bundle.folder_resources.append(folder_path)
-        else:
-            bundle.generated_folder_resources.append(
-                struct(
-                    owner = file.owner,
-                    path = folder_path,
-                ),
-            )
+        bundle.resources.append(file)
 
 def _add_structured_resources(
         *,
         bundle_path,
         files,
         focused_resource_short_paths,
-        nested_path,
         resource_bundle_targets,
         root_bundle):
     bundle = resource_bundle_targets.get(bundle_path)
@@ -268,14 +234,12 @@ def _add_structured_resources(
             bundle,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = nested_path,
         )
     else:
         _add_structured_resources_to_bundle(
             root_bundle,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
         )
 
 def _handle_processable_resources(
@@ -386,18 +350,15 @@ def _handle_unprocessed_resources(
             continue
 
         bundle_path = None
-        nested_path = parent_dir
         for parent_bundle_path in parent_bundle_paths:
             if parent_dir.startswith(parent_bundle_path):
                 bundle_path = parent_bundle_path
-                nested_path = parent_dir[len(bundle_path) + 1:]
                 break
 
         _add_structured_resources(
             bundle_path = bundle_path,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
-            nested_path = nested_path,
             resource_bundle_targets = resource_bundle_targets,
             root_bundle = root_bundle,
         )
