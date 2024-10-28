@@ -1165,9 +1165,9 @@ def _diagnostics(
             If `True`,
             [`address_sanitizer`](#xcschemes.diagnostics-address_sanitizer) must
             be `False`.
-        main_thread_checker: Whether to enable Main Thread Checker
-        thread_performance_checker: Whether to enable Thread Performance Checker
-        undefined_behavior_sanitizer: Whether to enable Undefined Behavior
+        undefined_behavior_sanitizer: Whether to enable Undefined Behavior.
+        main_thread_checker: Whether to enable Main Thread Checker.
+        thread_performance_checker: Whether to enable Thread Performance Checker.
             Sanitizer.
     """
     if address_sanitizer and thread_sanitizer:
