@@ -280,9 +280,9 @@ Defines the diagnostics to enable.
 | :------------- | :------------- | :------------- |
 | <a id="xcschemes.diagnostics-address_sanitizer"></a>address_sanitizer |  Whether to enable Address Sanitizer.<br><br>If `True`, [`thread_sanitizer`](#xcschemes.diagnostics-thread_sanitizer) must be `False`.   |  `False` |
 | <a id="xcschemes.diagnostics-thread_sanitizer"></a>thread_sanitizer |  Whether to enable Thread Sanitizer.<br><br>If `True`, [`address_sanitizer`](#xcschemes.diagnostics-address_sanitizer) must be `False`.   |  `False` |
-| <a id="xcschemes.diagnostics-undefined_behavior_sanitizer"></a>undefined_behavior_sanitizer |  Whether to enable Undefined Behavior.   |  `False` |
+| <a id="xcschemes.diagnostics-undefined_behavior_sanitizer"></a>undefined_behavior_sanitizer |  Whether to enable Undefined Behavior Sanitizer.   |  `False` |
 | <a id="xcschemes.diagnostics-main_thread_checker"></a>main_thread_checker |  Whether to enable Main Thread Checker.   |  `True` |
-| <a id="xcschemes.diagnostics-thread_performance_checker"></a>thread_performance_checker |  Whether to enable Thread Performance Checker. Sanitizer.   |  `True` |
+| <a id="xcschemes.diagnostics-thread_performance_checker"></a>thread_performance_checker |  Whether to enable Thread Performance Checker.   |  `True` |
 
 
 <a id="xcschemes.env_value"></a>
