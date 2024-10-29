@@ -333,9 +333,9 @@ def _collect_incremental_input_files(
     extra_files = [infoplist] if infoplist else []
 
     # Include BUILD files for the project but not for external repos
-    extra_file_paths = []
+    build_file_paths = []
     if not label.workspace_root:
-        extra_file_paths.append(ctx.build_file_path)
+        build_file_paths.append(ctx.build_file_path)
 
     # buildifier: disable=uninitialized
     def _handle_srcs_file(file):
@@ -475,7 +475,7 @@ def _collect_incremental_input_files(
         resource_bundle_uncategorized_file_paths = EMPTY_DEPSET
         resource_bundle_uncategorized_generated_file_paths = EMPTY_DEPSET
         extra_file_paths = memory_efficient_depset(
-            resources_result.resource_file_paths,
+            build_file_paths + resources_result.resource_file_paths,
             transitive = [
                 d
                 for label, d in depset(
@@ -501,7 +501,7 @@ def _collect_incremental_input_files(
             ],
         )
     else:
-        extra_file_paths = EMPTY_DEPSET
+        extra_file_paths = memory_efficient_depset(build_file_paths)
         extra_generated_file_paths = EMPTY_DEPSET
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
