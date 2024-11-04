@@ -158,6 +158,8 @@ def _handle_mixed_language_mergeable_infos(
         product_type,
         swift):
     if not cc.id:
+        if not swift.id:
+            return None
         return _swift_mergeable_info(
             dynamic_frameworks = dynamic_frameworks,
             mergeable_info = swift,

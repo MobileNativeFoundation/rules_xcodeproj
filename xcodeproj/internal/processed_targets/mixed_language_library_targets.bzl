@@ -108,8 +108,12 @@ def _process_mixed_language_library_target(
         product_type = product_type,
         swift_target_info = swift_target_info,
     )
-    merged_target_ids = [(id, mergeable_info_and_ids.ids)]
-    mergeable_info = mergeable_info_and_ids.merged
+    if mergeable_info_and_ids:
+        merged_target_ids = [(id, mergeable_info_and_ids.ids)]
+        mergeable_info = mergeable_info_and_ids.merged
+    else:
+        merged_target_ids = None
+        mergeable_info = None
 
     (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
         mergeable_info = mergeable_info,
@@ -121,11 +125,27 @@ def _process_mixed_language_library_target(
         label = label,
     )
 
-    package_bin_dir = mergeable_info.package_bin_dir
-    args = struct(
-        cxx = mergeable_info.cxx_args,
-        swift = mergeable_info.swift_args,
-    )
+    if mergeable_info:
+        package_bin_dir = mergeable_info.package_bin_dir
+        args = struct(
+            conly = mergeable_info.conly_args,
+            cxx = mergeable_info.cxx_args,
+            swift = mergeable_info.swift_args,
+        )
+
+        indexstore_override_path = actual_package_bin_dir + "/" + label.name
+        indexstore_overrides = [
+            (indexstore, indexstore_override_path)
+            for indexstore in mergeable_info.indexstores
+        ]
+    else:
+        package_bin_dir = actual_package_bin_dir
+        args = struct(
+            conly = [],
+            cxx = [],
+            swift = [],
+        )
+        indexstore_overrides = []
 
     (
         target_build_settings,
@@ -135,8 +155,8 @@ def _process_mixed_language_library_target(
         actions = actions,
         apple_generate_dsym = ctx.fragments.cpp.apple_generate_dsym,
         colorize = ctx.attr._colorize[BuildSettingInfo].value,
-        conly_args = mergeable_info.conly_args,
-        cxx_args = mergeable_info.cxx_args,
+        conly_args = args.conly,
+        cxx_args = args.cxx,
         generate_build_settings = generate_target,
         generate_swift_debug_settings = False,
         include_self_swift_debug_settings = False,
@@ -144,12 +164,6 @@ def _process_mixed_language_library_target(
         swift_args = args.swift,
         tool = ctx.executable._target_build_settings_generator,
     )
-
-    indexstore_override_path = actual_package_bin_dir + "/" + label.name
-    indexstore_overrides = [
-        (indexstore, indexstore_override_path)
-        for indexstore in mergeable_info.indexstores
-    ]
 
     (
         target_outputs,
@@ -168,7 +182,7 @@ def _process_mixed_language_library_target(
         transitive_infos = mixed_target_infos,
     )
 
-    if generate_target:
+    if generate_target and mergeable_info_and_ids:
         module_name_attribute, module_name = get_product_module_name(
             rule_attr = rule_attr,
             target = target,
@@ -187,8 +201,8 @@ def _process_mixed_language_library_target(
             build_settings_file = target_build_settings,
             configuration = configuration,
             direct_dependencies = direct_dependencies,
-            has_c_params = bool(mergeable_info.conly_args),
-            has_cxx_params = bool(mergeable_info.cxx_args),
+            has_c_params = bool(args.conly),
+            has_cxx_params = bool(args.cxx),
             id = id,
             inputs = xcode_inputs,
             is_top_level = False,
