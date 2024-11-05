@@ -98,11 +98,23 @@ Path to a file that contains arguments for custom schemes.
         )
         private var targetAndExtensionHosts: [TargetID] = []
 
+        @Option(
+            parsing: .upToNextOption,
+            help: "Pairs of <key> <value> attributes to be added to the TestAction tag"
+        )
+        private var testActionAttributes: [String] = []
+
         mutating func validate() throws {
             guard targetAndExtensionHosts.count.isMultiple(of: 2) else {
                 throw ValidationError("""
 <target-and-extension-hosts> (\(targetAndExtensionHosts.count) elements) must \
 be <target> and <extension-hosts> pairs.
+""")
+            }
+            guard testActionAttributes.count.isMultiple(of: 2) else {
+                throw ValidationError("""
+<test-action-attributes> (\(targetAndExtensionHosts.count) elements) must \
+be <key> and <value> pairs.
 """)
             }
         }
@@ -119,6 +131,18 @@ extension Generator.Arguments {
         ) {
             ret[targetAndExtensionHosts[index], default: []]
                 .append(targetAndExtensionHosts[index+1])
+        }
+        return ret
+    }
+
+    func calculateTestActionAttributes() -> [String: String] {
+        var ret: [String: String] = [:]
+        for index in stride(
+            from: 0,
+            to: testActionAttributes.count - 1,
+            by: 2
+        ) {
+            ret[testActionAttributes[index]] = testActionAttributes[index+1]
         }
         return ret
     }

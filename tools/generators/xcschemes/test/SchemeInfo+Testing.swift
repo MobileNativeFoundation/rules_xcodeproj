@@ -85,7 +85,8 @@ extension SchemeInfo.Test {
         environmentVariables: [EnvironmentVariable] = [],
         testTargets: [SchemeInfo.TestTarget] = [],
         useRunArgsAndEnv: Bool = true,
-        xcodeConfiguration: String? = nil
+        xcodeConfiguration: String? = nil,
+        testActionAttributes: [String: String] = [:]
     ) -> Self {
         return Self(
             buildTargets: buildTargets,
@@ -98,7 +99,8 @@ extension SchemeInfo.Test {
             environmentVariables: environmentVariables,
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
-            xcodeConfiguration: xcodeConfiguration
+            xcodeConfiguration: xcodeConfiguration,
+            testActionAttributes: testActionAttributes
         )
     }
 }

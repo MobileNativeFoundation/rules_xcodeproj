@@ -20,14 +20,16 @@ extension Generator {
             customSchemeNames: Set<String>,
             environmentVariables: [EnvironmentVariable],
             extensionHost: Target?,
-            target: Target
+            target: Target,
+            testActionAttributes: [String: String]
         ) throws -> SchemeInfo? {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
                 /*customSchemeNames:*/ customSchemeNames,
                 /*environmentVariables:*/ environmentVariables,
                 /*extensionHost:*/ extensionHost,
-                /*target:*/ target
+                /*target:*/ target,
+                /*testActionAttributes:*/ testActionAttributes
             )
         }
     }
@@ -41,7 +43,8 @@ extension Generator.CreateAutomaticSchemeInfo {
         _ customSchemeNames: Set<String>,
         _ environmentVariables: [EnvironmentVariable],
         _ extensionHost: Target?,
-        _ target: Target
+        _ target: Target,
+        _ testActionAttributes: [String: String]
     ) throws -> SchemeInfo?
 
     static func defaultCallable(
@@ -49,7 +52,8 @@ extension Generator.CreateAutomaticSchemeInfo {
         customSchemeNames: Set<String>,
         environmentVariables: [EnvironmentVariable],
         extensionHost: Target?,
-        target: Target
+        target: Target,
+        testActionAttributes: [String: String]
     ) throws -> SchemeInfo? {
         let baseSchemeName = target.buildableReference.blueprintName.schemeName
 
@@ -121,7 +125,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                 testTargets: isTest ?
                     [.init(target: target, isEnabled: true)] : [],
                 useRunArgsAndEnv: testUseRunArgsAndEnv,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: testActionAttributes
             ),
             run: .init(
                 buildTargets: buildTargets,

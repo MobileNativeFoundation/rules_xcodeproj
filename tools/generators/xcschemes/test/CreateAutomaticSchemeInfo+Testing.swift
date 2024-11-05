@@ -42,7 +42,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                     customSchemeNames,
                     environmentVariables,
                     extensionHost,
-                    target in
+                    target,
+                    testActionAttributes in
                 mockTracker.called.append(.init(
                     commandLineArguments: commandLineArguments,
                     customSchemeNames: customSchemeNames,

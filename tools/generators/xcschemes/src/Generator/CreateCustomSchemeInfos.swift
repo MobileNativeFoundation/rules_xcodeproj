@@ -23,7 +23,8 @@ extension Generator {
             environmentVariables: [TargetID: [EnvironmentVariable]],
             executionActionsFile: URL,
             extensionHostIDs: [TargetID: [TargetID]],
-            targetsByID: [TargetID: Target]
+            targetsByID: [TargetID: Target],
+            testActionAttributes: [String: String]
         ) async throws -> [SchemeInfo] {
             try await callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -31,7 +32,8 @@ extension Generator {
                 /*environmentVariables:*/ environmentVariables,
                 /*executionActionsFile:*/ executionActionsFile,
                 /*extensionHostIDs:*/ extensionHostIDs,
-                /*targetsByID:*/ targetsByID
+                /*targetsByID:*/ targetsByID,
+                /*testActionAttributes:*/ testActionAttributes
             )
         }
     }
@@ -46,7 +48,8 @@ extension Generator.CreateCustomSchemeInfos {
         _ environmentVariables: [TargetID: [EnvironmentVariable]],
         _ executionActionsFile: URL,
         _ extensionHostIDs: [TargetID: [TargetID]],
-        _ targetsByID: [TargetID: Target]
+        _ targetsByID: [TargetID: Target],
+        _ testActionAttributes: [String: String]
     ) async throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -55,7 +58,8 @@ extension Generator.CreateCustomSchemeInfos {
         environmentVariables: [TargetID: [EnvironmentVariable]],
         executionActionsFile: URL,
         extensionHostIDs: [TargetID: [TargetID]],
-        targetsByID: [TargetID: Target]
+        targetsByID: [TargetID: Target],
+        testActionAttributes: [String: String]
     ) async throws -> [SchemeInfo] {
         let executionActions: [String: [SchemeInfo.ExecutionAction]] =
             try await .parse(
@@ -84,7 +88,8 @@ extension Generator.CreateCustomSchemeInfos {
                 allTargetIDs: &allTargetIDs,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID
+                targetsByID: targetsByID,
+                testActionAttributes: testActionAttributes
             )
 
             let run = try rawArgs.consumeArg(
@@ -558,6 +563,7 @@ set
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
+        testActionAttributes: [String: String],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Test {
@@ -710,7 +716,8 @@ set
             environmentVariables: environmentVariables,
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
-            xcodeConfiguration: xcodeConfiguration
+            xcodeConfiguration: xcodeConfiguration,
+            testActionAttributes: testActionAttributes
         )
     }
 }

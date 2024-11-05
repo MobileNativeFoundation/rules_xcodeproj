@@ -46,6 +46,7 @@ struct SchemeInfo: Equatable {
         let testTargets: [TestTarget]
         let useRunArgsAndEnv: Bool
         let xcodeConfiguration: String?
+        let testActionAttributes: [String: String]
     }
 
     struct TestTarget: Equatable {

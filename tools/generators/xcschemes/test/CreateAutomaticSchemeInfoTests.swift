@@ -138,7 +138,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: [],
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [],
@@ -219,7 +220,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: [],
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [],
@@ -296,7 +298,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: [],
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [],
@@ -372,7 +375,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: [],
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [],
@@ -447,7 +451,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: [],
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [library],
@@ -514,7 +519,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: baseEnvironmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [test],
@@ -584,7 +590,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 environmentVariables: baseEnvironmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [test],
@@ -655,7 +662,8 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     baseEnvironmentVariables + environmentVariables,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil
+                xcodeConfiguration: nil,
+                testActionAttributes: [:]
             ),
             run: .init(
                 buildTargets: [test],
@@ -693,6 +701,73 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
     }
+
+    func test_test_testActionAttributes() throws {
+        // Arrange
+
+        let test = Target(
+            key: "Test",
+            productType: .unitTestBundle,
+            buildableReference: .init(
+                blueprintIdentifier: "BLUEPRINT_IDENTIFIER_Test",
+                buildableName: "BUILDABLE_NAME_Test",
+                blueprintName: "BLUEPRINT_NAME_Test",
+                referencedContainer: "REFERENCED_CONTAINER_Test"
+            )
+        )
+
+        let expectedSchemeInfo = SchemeInfo(
+            name: "BLUEPRINT_NAME_Test",
+            test: .init(
+                buildTargets: [],
+                commandLineArguments: [],
+                enableAddressSanitizer: false,
+                enableThreadSanitizer: false,
+                enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
+                environmentVariables: baseEnvironmentVariables,
+                testTargets: [.init(target: test, isEnabled: true)],
+                useRunArgsAndEnv: false,
+                xcodeConfiguration: nil,
+                testActionAttributes: ["region": "US"]
+            ),
+            run: .init(
+                buildTargets: [test],
+                commandLineArguments: [],
+                customWorkingDirectory: nil,
+                enableAddressSanitizer: false,
+                enableThreadSanitizer: false,
+                enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
+                environmentVariables: [],
+                launchTarget: nil,
+                xcodeConfiguration: nil
+            ),
+            profile: .init(
+                buildTargets: [],
+                commandLineArguments: [],
+                customWorkingDirectory: nil,
+                environmentVariables: [],
+                launchTarget: nil,
+                useRunArgsAndEnv: true,
+                xcodeConfiguration: nil
+            ),
+            executionActions: []
+        )
+
+        // Act
+
+        let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
+            target: test,
+            testActionAttributes: ["region": "US"]
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
+    }
 }
 
 private let baseEnvironmentVariables: [EnvironmentVariable] = [
@@ -708,14 +783,16 @@ private func createAutomaticSchemeInfoWithDefaults(
     customSchemeNames: Set<String> = [],
     environmentVariables: [EnvironmentVariable] = [],
     extensionHost: Target? = nil,
-    target: Target
+    target: Target,
+    testActionAttributes: [String: String] = [:]
 ) throws -> SchemeInfo? {
     return try Generator.CreateAutomaticSchemeInfo.defaultCallable(
         commandLineArguments: commandLineArguments,
         customSchemeNames: customSchemeNames,
         environmentVariables: environmentVariables,
         extensionHost: extensionHost,
-        target: target
+        target: target,
+        testActionAttributes: testActionAttributes
     )
 }
 

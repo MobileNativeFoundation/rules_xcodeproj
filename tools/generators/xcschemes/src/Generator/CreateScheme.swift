@@ -378,7 +378,8 @@ extension Generator.CreateScheme {
                     .sorted(by: compareExecutionActions)
                     .map(\.action),
                 testables: testables,
-                useLaunchSchemeArgsEnv: testUseLaunchSchemeArgsEnv
+                useLaunchSchemeArgsEnv: testUseLaunchSchemeArgsEnv,
+                testActionAttributes: schemeInfo.test.testActionAttributes
             ),
             launchAction: createLaunchAction(
                 buildConfiguration: launchBuildConfiguration,

@@ -34,6 +34,7 @@ struct Generator {
         ) = try await environment
             .readTargetArgsAndEnvFile(arguments.targetsArgsEnvFile)
         let extensionHostIDs = arguments.calculateExtensionHostIDs()
+        let testActionAttributes = arguments.calculateTestActionAttributes()
 
         let customSchemeInfos = try await environment.createCustomSchemeInfos(
             commandLineArguments: commandLineArguments,
@@ -41,7 +42,8 @@ struct Generator {
             environmentVariables: environmentVariables,
             executionActionsFile: arguments.executionActionsFile,
             extensionHostIDs: extensionHostIDs,
-            targetsByID: targetsByID
+            targetsByID: targetsByID,
+            testActionAttributes: testActionAttributes
         )
 
         let automaticSchemeInfos = try environment.createAutomaticSchemeInfos(
@@ -52,7 +54,8 @@ struct Generator {
             extensionHostIDs: extensionHostIDs,
             targets: targets,
             targetsByID: targetsByID,
-            targetsByKey: targetsByKey
+            targetsByKey: targetsByKey,
+            testActionAttributes: testActionAttributes
         )
 
         let autogenerationConfigArguments = try await AutogenerationConfigArguments.parse(

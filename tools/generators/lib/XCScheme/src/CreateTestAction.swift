@@ -22,7 +22,8 @@ public struct CreateTestAction {
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         testables: [Testable],
-        useLaunchSchemeArgsEnv: Bool
+        useLaunchSchemeArgsEnv: Bool,
+        testActionAttributes: [String: String]
     ) -> String {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
@@ -37,7 +38,8 @@ public struct CreateTestAction {
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
             /*testables:*/ testables,
-            /*useLaunchSchemeArgsEnv:*/ useLaunchSchemeArgsEnv
+            /*useLaunchSchemeArgsEnv:*/ useLaunchSchemeArgsEnv,
+            /*testActionAttributes:*/ testActionAttributes
         )
     }
 }
@@ -58,7 +60,8 @@ extension CreateTestAction {
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
         _ testables: [Testable],
-        _ useLaunchSchemeArgsEnv: Bool
+        _ useLaunchSchemeArgsEnv: Bool,
+        _ testActionAttributes: [String: String]
     ) -> String
 
     public static func defaultCallable(
@@ -74,7 +77,8 @@ extension CreateTestAction {
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         testables: [Testable],
-        useLaunchSchemeArgsEnv: Bool
+        useLaunchSchemeArgsEnv: Bool,
+        testActionAttributes: [String: String]
     ) -> String {
         // 3 spaces for indentation is intentional
 
@@ -102,6 +106,10 @@ buildConfiguration = "\#(buildConfiguration)"
         }
         if !enableThreadPerformanceChecker {
             components.append(#"disablePerformanceAntipatternChecker = "YES""#)
+        }
+
+        if !testActionAttributes.isEmpty {
+            components.append(contentsOf: testActionAttributes.map { "\($0.key) = \"\($0.value)\"" })
         }
 
         let macroExpansion: String

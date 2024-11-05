@@ -29,7 +29,8 @@ extension Generator {
             extensionHostIDs: [TargetID: [TargetID]],
             target: Target,
             targetsByID: [TargetID: Target],
-            targetsByKey: [Target.Key: Target]
+            targetsByKey: [Target.Key: Target],
+            testActionAttributes: [String: String]
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -39,6 +40,7 @@ extension Generator {
                 /*target:*/ target,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
+                /*testActionAttributes:*/ testActionAttributes,
                 /*createAutomaticSchemeInfo:*/ createAutomaticSchemeInfo
             )
         }
@@ -56,6 +58,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         _ target: Target,
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
+        _ testActionAttributes: [String: String],
         _ createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo]
 
@@ -67,6 +70,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         target: Target,
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
+        testActionAttributes: [String: String],
         createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo] {
         let extensionHostKeys: Set<Target.Key>
@@ -93,7 +97,8 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                 customSchemeNames: customSchemeNames,
                 environmentVariables: environmentVariables,
                 extensionHost: nil,
-                target: target
+                target: target,
+                testActionAttributes: testActionAttributes
             ) else {
                 return []
             }
@@ -105,7 +110,8 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables,
                     extensionHost: targetsByKey[key]!,
-                    target: target
+                    target: target,
+                    testActionAttributes: testActionAttributes
                 )
             }
         }
