@@ -648,6 +648,30 @@ def _collect_mixed_language_input_files(
             *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s
                 that are in `resources`.
     """
+    if not mergeable_info:
+        return (
+            struct(
+                extra_file_paths = EMPTY_DEPSET,
+                extra_files = EMPTY_DEPSET,
+                extra_generated_file_paths = EMPTY_DEPSET,
+                infoplist = None,
+                non_arc_srcs = EMPTY_LIST,
+                srcs = EMPTY_LIST,
+            ),
+            struct(
+                _product_framework_files = EMPTY_DEPSET,
+                _resource_bundle_labels = EMPTY_DEPSET,
+                _resource_bundle_uncategorized_files = EMPTY_DEPSET,
+                _resource_bundle_uncategorized_file_paths = EMPTY_DEPSET,
+                _resource_bundle_uncategorized_generated_file_paths = EMPTY_DEPSET,
+                _uncategorized = EMPTY_DEPSET,
+                resource_bundles = EMPTY_DEPSET,
+                important_generated = EMPTY_DEPSET,
+                unsupported_extra_files = EMPTY_DEPSET,
+                xccurrentversions = EMPTY_DEPSET,
+            ),
+        )
+
     return (
         struct(
             extra_file_paths = mergeable_info.extra_file_paths,
