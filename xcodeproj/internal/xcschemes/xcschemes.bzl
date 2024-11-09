@@ -361,6 +361,7 @@ def _test(
         diagnostics = None,
         env = "inherit",
         env_include_defaults = True,
+        options = None,
         test_targets = [],
         use_run_args_and_env = None,
         xcode_configuration = None):
@@ -539,6 +540,7 @@ def _test(
         diagnostics = diagnostics,
         env = env or {},
         env_include_defaults = TRUE_ARG if env_include_defaults else FALSE_ARG,
+        options = options,
         test_targets = test_targets or [],
         use_run_args_and_env = TRUE_ARG if use_run_args_and_env else FALSE_ARG,
         xcode_configuration = xcode_configuration or "",
@@ -1189,7 +1191,27 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
         ),
     )
 
-def _autogeneration_config(scheme_name_exclude_patterns = None):
+def _options(
+        *,
+        app_language = None,
+        app_region = None):
+    """Defines the options for the scheme.
+
+    Args:
+        app_region: Region to set in scheme.
+
+            Defaults to system settings if not set.
+        app_language: Language to set in scheme.
+
+            Defaults to system settings if not set.
+    """
+
+    return struct(
+        app_region = app_region,
+        app_language = app_language,
+    )
+
+def _autogeneration_config(scheme_name_exclude_patterns = None, test = None):
     """Creates a value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
 
     Args:
@@ -1206,9 +1228,26 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
                         ".*somePattern.*",
                         "^AnotherPattern.*",
                     ],
-                )
+                ),
             )
             ```
+
+        test: Options to use for the test target.
+
+            Example:
+
+            ```starlark
+            xcodeproj(
+                ...
+                scheme_autogeneration_config = xcschemes.autogeneration_config(
+                    test = xcschemes.test(
+                        options = xcschemes.options(
+                            app_language = "en",
+                            app_region = "US",
+                        )
+                    )
+                )
+            )
 
     Returns:
         An opaque value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
@@ -1216,6 +1255,12 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
     d = {}
     if scheme_name_exclude_patterns:
         d["scheme_name_exclude_patterns"] = scheme_name_exclude_patterns
+
+    if test:
+        d["test_options"] = [
+            test.options.app_language if test.options.app_language != None else "", 
+            test.options.app_region if test.options.app_region != None else "",
+        ]
 
     return d
 
@@ -1229,6 +1274,7 @@ xcschemes = struct(
     launch_path = _launch_path,
     launch_target = _launch_target,
     library_target = _library_target,
+    options = _options,
     pre_post_actions = _pre_post_actions,
     profile = _profile,
     run = _run,

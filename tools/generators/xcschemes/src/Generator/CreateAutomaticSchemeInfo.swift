@@ -21,7 +21,7 @@ extension Generator {
             environmentVariables: [EnvironmentVariable],
             extensionHost: Target?,
             target: Target,
-            testActionAttributes: [String: String]
+            testOptions: SchemeInfo.Test.Options
         ) throws -> SchemeInfo? {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -29,7 +29,7 @@ extension Generator {
                 /*environmentVariables:*/ environmentVariables,
                 /*extensionHost:*/ extensionHost,
                 /*target:*/ target,
-                /*testActionAttributes:*/ testActionAttributes
+                /*testOptions:*/ testOptions
             )
         }
     }
@@ -44,7 +44,7 @@ extension Generator.CreateAutomaticSchemeInfo {
         _ environmentVariables: [EnvironmentVariable],
         _ extensionHost: Target?,
         _ target: Target,
-        _ testActionAttributes: [String: String]
+        _ testOptions: SchemeInfo.Test.Options
     ) throws -> SchemeInfo?
 
     static func defaultCallable(
@@ -53,7 +53,7 @@ extension Generator.CreateAutomaticSchemeInfo {
         environmentVariables: [EnvironmentVariable],
         extensionHost: Target?,
         target: Target,
-        testActionAttributes: [String: String]
+        testOptions: SchemeInfo.Test.Options
     ) throws -> SchemeInfo? {
         let baseSchemeName = target.buildableReference.blueprintName.schemeName
 
@@ -122,11 +122,11 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: testEnvironmentVariables,
+                options: testOptions,
                 testTargets: isTest ?
                     [.init(target: target, isEnabled: true)] : [],
                 useRunArgsAndEnv: testUseRunArgsAndEnv,
-                xcodeConfiguration: nil,
-                testActionAttributes: testActionAttributes
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: buildTargets,

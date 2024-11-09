@@ -136,10 +136,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [],
@@ -218,10 +218,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [],
@@ -296,10 +296,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [],
@@ -373,10 +373,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [],
@@ -449,10 +449,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [],
                 useRunArgsAndEnv: true,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [library],
@@ -517,10 +517,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [test],
@@ -588,10 +588,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [test],
@@ -660,10 +660,10 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
+                options: .init(appLanguage: nil, appRegion: nil),
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
-                xcodeConfiguration: nil,
-                testActionAttributes: [:]
+                xcodeConfiguration: nil
             ),
             run: .init(
                 buildTargets: [test],
@@ -701,73 +701,6 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
     }
-
-    func test_test_testActionAttributes() throws {
-        // Arrange
-
-        let test = Target(
-            key: "Test",
-            productType: .unitTestBundle,
-            buildableReference: .init(
-                blueprintIdentifier: "BLUEPRINT_IDENTIFIER_Test",
-                buildableName: "BUILDABLE_NAME_Test",
-                blueprintName: "BLUEPRINT_NAME_Test",
-                referencedContainer: "REFERENCED_CONTAINER_Test"
-            )
-        )
-
-        let expectedSchemeInfo = SchemeInfo(
-            name: "BLUEPRINT_NAME_Test",
-            test: .init(
-                buildTargets: [],
-                commandLineArguments: [],
-                enableAddressSanitizer: false,
-                enableThreadSanitizer: false,
-                enableUBSanitizer: false,
-                enableMainThreadChecker: false,
-                enableThreadPerformanceChecker: false,
-                environmentVariables: baseEnvironmentVariables,
-                testTargets: [.init(target: test, isEnabled: true)],
-                useRunArgsAndEnv: false,
-                xcodeConfiguration: nil,
-                testActionAttributes: ["region": "US"]
-            ),
-            run: .init(
-                buildTargets: [test],
-                commandLineArguments: [],
-                customWorkingDirectory: nil,
-                enableAddressSanitizer: false,
-                enableThreadSanitizer: false,
-                enableUBSanitizer: false,
-                enableMainThreadChecker: false,
-                enableThreadPerformanceChecker: false,
-                environmentVariables: [],
-                launchTarget: nil,
-                xcodeConfiguration: nil
-            ),
-            profile: .init(
-                buildTargets: [],
-                commandLineArguments: [],
-                customWorkingDirectory: nil,
-                environmentVariables: [],
-                launchTarget: nil,
-                useRunArgsAndEnv: true,
-                xcodeConfiguration: nil
-            ),
-            executionActions: []
-        )
-
-        // Act
-
-        let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
-            target: test,
-            testActionAttributes: ["region": "US"]
-        )
-
-        // Assert
-
-        XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
-    }
 }
 
 private let baseEnvironmentVariables: [EnvironmentVariable] = [
@@ -784,7 +717,7 @@ private func createAutomaticSchemeInfoWithDefaults(
     environmentVariables: [EnvironmentVariable] = [],
     extensionHost: Target? = nil,
     target: Target,
-    testActionAttributes: [String: String] = [:]
+    testOptions: SchemeInfo.Test.Options = .init(appLanguage: nil, appRegion: nil)
 ) throws -> SchemeInfo? {
     return try Generator.CreateAutomaticSchemeInfo.defaultCallable(
         commandLineArguments: commandLineArguments,
@@ -792,7 +725,7 @@ private func createAutomaticSchemeInfoWithDefaults(
         environmentVariables: environmentVariables,
         extensionHost: extensionHost,
         target: target,
-        testActionAttributes: testActionAttributes
+        testOptions: testOptions
     )
 }
 

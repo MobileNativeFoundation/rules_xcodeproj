@@ -201,6 +201,10 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
         let targetsByKey: [Target.Key: Target] = [
             ["1", "D"]: .mock(key: ["1", "D"]),
         ]
+        let testOptions: SchemeInfo.Test.Options = .init(
+            appLanguage: nil,
+            appRegion: nil
+        )
 
         // The order these are called is based on the sorting of `targets`,
         // first on the product type, then on
@@ -217,7 +221,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 target: .mock(key: "C", productType: .application),
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
-                testActionAttributes: [:]
+                testOptions: testOptions
             ),
             .init(
                 commandLineArguments: [
@@ -231,7 +235,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 target: .mock(key: "A", productType: .messagesExtension),
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
-                testActionAttributes: [:]
+                testOptions: testOptions
             ),
             .init(
                 commandLineArguments: [],
@@ -244,7 +248,7 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 target: .mock(key: "B", productType: .appExtension),
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
-                testActionAttributes: [:]
+                testOptions: testOptions
             ),
         ]
         let createTargetAutomaticSchemeInfos =
@@ -297,7 +301,7 @@ private func createAutomaticSchemeInfosWithDefaults(
     targetsByID: [TargetID : Target] = [:],
     targetsByKey: [Target.Key : Target] = [:],
     createTargetAutomaticSchemeInfos: Generator.CreateTargetAutomaticSchemeInfos,
-    testActionAttributes: [String: String] = [:]
+    testOptions: SchemeInfo.Test.Options = .init(appLanguage: nil, appRegion: nil)
 ) throws -> [SchemeInfo] {
     return try Generator.CreateAutomaticSchemeInfos.defaultCallable(
         autogenerationMode: autogenerationMode,
@@ -309,6 +313,6 @@ private func createAutomaticSchemeInfosWithDefaults(
         targetsByID: targetsByID,
         targetsByKey: targetsByKey,
         createTargetAutomaticSchemeInfos: createTargetAutomaticSchemeInfos,
-        testActionAttributes: testActionAttributes
+        testOptions: testOptions
     )
 }

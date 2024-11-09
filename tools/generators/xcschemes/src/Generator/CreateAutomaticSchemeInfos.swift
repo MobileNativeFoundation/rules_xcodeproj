@@ -33,7 +33,7 @@ extension Generator {
             targets: [Target],
             targetsByID: [TargetID: Target],
             targetsByKey: [Target.Key: Target],
-            testActionAttributes: [String: String]
+            testOptions: SchemeInfo.Test.Options
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*autogenerationMode:*/ autogenerationMode,
@@ -46,7 +46,7 @@ extension Generator {
                 /*targetsByKey:*/ targetsByKey,
                 /*createTargetAutomaticSchemeInfos:*/
                     createTargetAutomaticSchemeInfos,
-                /*testActionAttributes:*/ testActionAttributes
+                /*testOptions:*/ testOptions
             )
         }
     }
@@ -66,7 +66,7 @@ extension Generator.CreateAutomaticSchemeInfos {
         _ targetsByKey: [Target.Key: Target],
         _ createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos,
-        _ testActionAttributes: [String: String]
+        _ testOptions: SchemeInfo.Test.Options
     ) throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -80,7 +80,7 @@ extension Generator.CreateAutomaticSchemeInfos {
         targetsByKey: [Target.Key: Target],
         createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos,
-        testActionAttributes: [String: String]
+        testOptions: SchemeInfo.Test.Options
     ) throws -> [SchemeInfo] {
         let autogenerateSchemes: Bool
         switch autogenerationMode {
@@ -123,7 +123,7 @@ extension Generator.CreateAutomaticSchemeInfos {
                     target: target,
                     targetsByID: targetsByID,
                     targetsByKey: targetsByKey,
-                    testActionAttributes: testActionAttributes
+                    testOptions: testOptions
                 )
             }
     }

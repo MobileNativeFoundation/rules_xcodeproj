@@ -15,7 +15,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
             let target: Target
             let targetsByID: [TargetID: Target]
             let targetsByKey: [Target.Key: Target]
-            let testActionAttributes: [String: String]
+            let testOptions: SchemeInfo.Test.Options
         }
 
         fileprivate(set) var called: [Called] = []
@@ -50,7 +50,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                     target,
                     targetsByID,
                     targetsByKey,
-                    testActionAttributes,
+                    testOptions,
                     _ in
                 mockTracker.called.append(.init(
                     commandLineArguments: commandLineArguments,
@@ -60,7 +60,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                     target: target,
                     targetsByID: targetsByID,
                     targetsByKey: targetsByKey,
-                    testActionAttributes: testActionAttributes
+                    testOptions: testOptions
                 ))
                 return mockTracker.nextResult()
             }

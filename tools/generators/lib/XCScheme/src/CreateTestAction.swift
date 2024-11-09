@@ -10,6 +10,8 @@ public struct CreateTestAction {
 
     /// Creates the `TestAction` element of an Xcode scheme.
     public func callAsFunction(
+        appLanguage: String?,
+        appRegion: String?,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -22,10 +24,11 @@ public struct CreateTestAction {
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         testables: [Testable],
-        useLaunchSchemeArgsEnv: Bool,
-        testActionAttributes: [String: String]
+        useLaunchSchemeArgsEnv: Bool
     ) -> String {
         return callable(
+            /*appLanguage:*/ appLanguage,
+            /*appRegion:*/ appRegion,
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
@@ -38,8 +41,7 @@ public struct CreateTestAction {
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
             /*testables:*/ testables,
-            /*useLaunchSchemeArgsEnv:*/ useLaunchSchemeArgsEnv,
-            /*testActionAttributes:*/ testActionAttributes
+            /*useLaunchSchemeArgsEnv:*/ useLaunchSchemeArgsEnv
         )
     }
 }
@@ -48,6 +50,8 @@ public struct CreateTestAction {
 
 extension CreateTestAction {
     public typealias Callable = (
+        _ appLanguage: String?,
+        _ appRegion: String?,
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
         _ enableAddressSanitizer: Bool,
@@ -60,11 +64,12 @@ extension CreateTestAction {
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
         _ testables: [Testable],
-        _ useLaunchSchemeArgsEnv: Bool,
-        _ testActionAttributes: [String: String]
+        _ useLaunchSchemeArgsEnv: Bool
     ) -> String
 
     public static func defaultCallable(
+        appLanguage: String?,
+        appRegion: String?,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -77,8 +82,7 @@ extension CreateTestAction {
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         testables: [Testable],
-        useLaunchSchemeArgsEnv: Bool,
-        testActionAttributes: [String: String]
+        useLaunchSchemeArgsEnv: Bool
     ) -> String {
         // 3 spaces for indentation is intentional
 
@@ -108,8 +112,11 @@ buildConfiguration = "\#(buildConfiguration)"
             components.append(#"disablePerformanceAntipatternChecker = "YES""#)
         }
 
-        if !testActionAttributes.isEmpty {
-            components.append(contentsOf: testActionAttributes.map { "\($0.key) = \"\($0.value)\"" })
+        if let appLanguage {
+            components.append("language = \"\(appLanguage)\"")
+        }
+        if let appRegion {
+            components.append("region = \"\(appRegion)\"")
         }
 
         let macroExpansion: String

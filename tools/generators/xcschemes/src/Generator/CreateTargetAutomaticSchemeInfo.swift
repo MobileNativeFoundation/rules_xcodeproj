@@ -30,7 +30,7 @@ extension Generator {
             target: Target,
             targetsByID: [TargetID: Target],
             targetsByKey: [Target.Key: Target],
-            testActionAttributes: [String: String]
+            testOptions: SchemeInfo.Test.Options
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -40,7 +40,7 @@ extension Generator {
                 /*target:*/ target,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
-                /*testActionAttributes:*/ testActionAttributes,
+                /*testOptions:*/ testOptions,
                 /*createAutomaticSchemeInfo:*/ createAutomaticSchemeInfo
             )
         }
@@ -58,7 +58,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         _ target: Target,
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
-        _ testActionAttributes: [String: String],
+        _ testOptions: SchemeInfo.Test.Options,
         _ createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo]
 
@@ -70,7 +70,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         target: Target,
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
-        testActionAttributes: [String: String],
+        testOptions: SchemeInfo.Test.Options,
         createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo] {
         let extensionHostKeys: Set<Target.Key>
@@ -98,7 +98,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                 environmentVariables: environmentVariables,
                 extensionHost: nil,
                 target: target,
-                testActionAttributes: testActionAttributes
+                testOptions: testOptions
             ) else {
                 return []
             }
@@ -111,7 +111,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
                     environmentVariables: environmentVariables,
                     extensionHost: targetsByKey[key]!,
                     target: target,
-                    testActionAttributes: testActionAttributes
+                    testOptions: testOptions
                 )
             }
         }

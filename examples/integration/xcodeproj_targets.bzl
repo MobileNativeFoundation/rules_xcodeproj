@@ -151,6 +151,12 @@ SCHEME_AUTOGENERATION_CONFIG = xcschemes.autogeneration_config(
         ".*UndesiredScheme.*",
         ".*UnwantedScheme.*",
     ],
+    test = xcschemes.test(
+        options = xcschemes.options(
+            app_language = "en",
+            app_region = "US",
+        )
+    )
 )
 
 def get_xcode_schemes():
@@ -241,6 +247,10 @@ XCSCHEMES = [
             test_targets = [
                 "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
             ],
+            options = xcschemes.options(
+                app_region = "US",
+                app_language = "en",
+            ),
         ),
     ),
     xcschemes.scheme(

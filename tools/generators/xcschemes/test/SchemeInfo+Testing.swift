@@ -83,10 +83,10 @@ extension SchemeInfo.Test {
         enableMainThreadChecker: Bool = false,
         enableThreadPerformanceChecker: Bool = false,
         environmentVariables: [EnvironmentVariable] = [],
+        options: SchemeInfo.Test.Options = .init(appLanguage: nil, appRegion: nil),
         testTargets: [SchemeInfo.TestTarget] = [],
         useRunArgsAndEnv: Bool = true,
-        xcodeConfiguration: String? = nil,
-        testActionAttributes: [String: String] = [:]
+        xcodeConfiguration: String? = nil
     ) -> Self {
         return Self(
             buildTargets: buildTargets,
@@ -97,10 +97,10 @@ extension SchemeInfo.Test {
             enableMainThreadChecker: enableMainThreadChecker,
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
+            options: options,
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
-            xcodeConfiguration: xcodeConfiguration,
-            testActionAttributes: testActionAttributes
+            xcodeConfiguration: xcodeConfiguration
         )
     }
 }
