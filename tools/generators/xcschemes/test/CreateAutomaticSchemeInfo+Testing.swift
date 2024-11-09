@@ -13,7 +13,7 @@ extension Generator.CreateAutomaticSchemeInfo {
             let environmentVariables: [EnvironmentVariable]
             let extensionHost: Target?
             let target: Target
-            let testOptions: SchemeInfo.Test.Options
+            let testOptions: SchemeInfo.Test.Options?
         }
 
         fileprivate(set) var called: [Called] = []

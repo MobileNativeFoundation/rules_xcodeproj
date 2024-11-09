@@ -15,7 +15,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
             let target: Target
             let targetsByID: [TargetID: Target]
             let targetsByKey: [Target.Key: Target]
-            let testOptions: SchemeInfo.Test.Options
+            let testOptions: SchemeInfo.Test.Options?
         }
 
         fileprivate(set) var called: [Called] = []

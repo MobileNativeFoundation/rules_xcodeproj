@@ -30,7 +30,7 @@ extension Generator {
             target: Target,
             targetsByID: [TargetID: Target],
             targetsByKey: [Target.Key: Target],
-            testOptions: SchemeInfo.Test.Options
+            testOptions: SchemeInfo.Test.Options?
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -58,7 +58,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         _ target: Target,
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
-        _ testOptions: SchemeInfo.Test.Options,
+        _ testOptions: SchemeInfo.Test.Options?,
         _ createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo]
 
@@ -70,7 +70,7 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         target: Target,
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
-        testOptions: SchemeInfo.Test.Options,
+        testOptions: SchemeInfo.Test.Options?,
         createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo] {
         let extensionHostKeys: Set<Target.Key>

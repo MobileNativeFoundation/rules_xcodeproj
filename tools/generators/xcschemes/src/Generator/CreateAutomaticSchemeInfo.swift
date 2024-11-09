@@ -21,7 +21,7 @@ extension Generator {
             environmentVariables: [EnvironmentVariable],
             extensionHost: Target?,
             target: Target,
-            testOptions: SchemeInfo.Test.Options
+            testOptions: SchemeInfo.Test.Options?
         ) throws -> SchemeInfo? {
             return try callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -44,7 +44,7 @@ extension Generator.CreateAutomaticSchemeInfo {
         _ environmentVariables: [EnvironmentVariable],
         _ extensionHost: Target?,
         _ target: Target,
-        _ testOptions: SchemeInfo.Test.Options
+        _ testOptions: SchemeInfo.Test.Options?
     ) throws -> SchemeInfo?
 
     static func defaultCallable(
@@ -53,7 +53,7 @@ extension Generator.CreateAutomaticSchemeInfo {
         environmentVariables: [EnvironmentVariable],
         extensionHost: Target?,
         target: Target,
-        testOptions: SchemeInfo.Test.Options
+        testOptions: SchemeInfo.Test.Options?
     ) throws -> SchemeInfo? {
         let baseSchemeName = target.buildableReference.blueprintName.schemeName
 
