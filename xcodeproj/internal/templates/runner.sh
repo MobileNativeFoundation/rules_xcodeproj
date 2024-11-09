@@ -84,7 +84,7 @@ if [[ -z "$bazel_path" ]]; then
   echo "Failed to find \"%bazel_path%\" in \$PATH (\"$PATH\")." \
     "Please make sure the 'bazel' attribute on %runner_label% is correct, or" \
     "if you are filtering \$PATH in a bazel wrapper, that \$PATH includes" \
-    "where \"%bazel_path%\" (maybe as bazlisk) is installed." >&2
+    "where \"%bazel_path%\" (maybe as bazelisk) is installed." >&2
   exit 1
 fi
 
