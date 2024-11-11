@@ -215,9 +215,9 @@ def _write_schemes(
         custom_scheme_args.add(diagnostics.main_thread_checker)
         custom_scheme_args.add(diagnostics.thread_performance_checker)
 
-    def _add_options(options):
-        custom_scheme_args.add(options.app_language)
-        custom_scheme_args.add(options.app_region)
+    def _add_test_options(test_options):
+        custom_scheme_args.add(test_options.app_language)
+        custom_scheme_args.add(test_options.app_region)
 
     def _add_env(env):
         if env == None:
@@ -326,7 +326,7 @@ def _write_schemes(
         custom_scheme_args.add(info.test.env_include_defaults)
         custom_scheme_args.add(info.test.use_run_args_and_env)
         _add_diagnostics(info.test.diagnostics)
-        _add_options(info.test.options)
+        _add_test_options(info.test.test_options)
         custom_scheme_args.add(info.test.xcode_configuration)
 
         # Run

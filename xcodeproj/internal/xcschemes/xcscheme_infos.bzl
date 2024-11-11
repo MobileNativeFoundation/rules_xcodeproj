@@ -49,7 +49,7 @@ def _make_diagnostics(
         thread_performance_checker = thread_performance_checker,
     )
 
-def _make_options(
+def _make_test_options(
         *,
         app_region = EMPTY_STRING,
         app_language = EMPTY_STRING):
@@ -161,7 +161,7 @@ def _make_test(
         diagnostics = _make_diagnostics(),
         env = None,
         env_include_defaults = FALSE_ARG,
-        options = _make_options(),
+        options = _make_test_options(),
         test_targets = EMPTY_LIST,
         use_run_args_and_env = TRUE_ARG,
         xcode_configuration = EMPTY_STRING):
@@ -307,9 +307,9 @@ def _diagnostics_info_from_dict(diagnostics):
 
 def _options_info_from_dict(options):
     if not options:
-        return _make_options()
+        return _make_test_options()
 
-    return _make_options(
+    return _make_test_options(
         app_region = options["app_region"],
         app_language = options["app_language"],
     )
@@ -780,7 +780,7 @@ xcscheme_infos_testable = struct(
     make_env = _make_env,
     make_diagnostics = _make_diagnostics,
     make_launch_target = _make_launch_target,
-    make_options = _make_options,
+    make_test_options = _make_test_options,
     make_pre_post_action = _make_pre_post_action,
     make_profile = _make_profile,
     make_run = _make_run,

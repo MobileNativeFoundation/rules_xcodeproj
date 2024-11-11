@@ -127,7 +127,7 @@ def _resolve_test_labels(test):
         diagnostics = test.diagnostics,
         env = test.env,
         env_include_defaults = test.env_include_defaults,
-        options = test.options,
+        test_options = test.test_options,
         test_targets = [
             _resolve_test_target_labels(test_target)
             for test_target in test.test_targets
