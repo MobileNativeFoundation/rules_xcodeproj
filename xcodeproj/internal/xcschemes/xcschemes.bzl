@@ -1247,7 +1247,7 @@ def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
             )
             ```
 
-        test: Options to use for the test target.
+        test: Options to use for the test action.
 
             Example:
 
