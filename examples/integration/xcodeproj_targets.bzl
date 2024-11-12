@@ -155,8 +155,8 @@ SCHEME_AUTOGENERATION_CONFIG = xcschemes.autogeneration_config(
         options = xcschemes.test_options(
             app_language = "en",
             app_region = "US",
-        )
-    )
+        ),
+    ),
 )
 
 def get_xcode_schemes():
