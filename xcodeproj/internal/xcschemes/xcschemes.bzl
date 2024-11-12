@@ -1218,6 +1218,11 @@ def _autogeneration_test(*, options = None):
         options: Test options for autogeneration.
 
             Defaults to `None`.
+
+    Returns:
+        An opaque value for the
+        [`test`](user-content-xcschemes.autogeneration_config-test)
+        argument of `xcschemes.autogeneration_config`.
     """
 
     return struct(
