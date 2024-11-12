@@ -1211,9 +1211,7 @@ def _test_options(
         app_language = app_language,
     )
 
-def _autogeneration_test(
-        *,
-        test_options = None):
+def _autogeneration_test(*, options = None):
     """Defines the autogeneration test options for the scheme.
 
     Args:
