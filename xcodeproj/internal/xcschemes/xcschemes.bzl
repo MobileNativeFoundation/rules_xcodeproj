@@ -1273,8 +1273,8 @@ def _autogeneration_config(scheme_name_exclude_patterns = None, test = None):
 
     if test:
         d["test_options"] = [
-            test.test_options.app_language if test.test_options.app_language != None else "", 
-            test.test_options.app_region if test.test_options.app_region != None else "",
+            test.test_options.app_language or "", 
+            test.test_options.app_region or "",
         ]
 
     return d
