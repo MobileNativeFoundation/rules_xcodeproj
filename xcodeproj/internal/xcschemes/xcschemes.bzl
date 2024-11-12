@@ -1215,7 +1215,7 @@ def _autogeneration_test(*, options = None):
     """Defines the autogeneration test options for the scheme.
 
     Args:
-        test: test options for autogeneration.
+        options: Test options for autogeneration.
 
             Defaults to None if not set.
     """
