@@ -219,9 +219,7 @@ def _write_autogeneration_config_file(
     args = actions.args()
     args.set_param_file_format("multiline")
 
-    testOptions = config.get("test_options")
-    args.add(testOptions[0] if testOptions[0] != None else "")
-    args.add(testOptions[1] if testOptions[1] != None else "")
+    args.add_all(config.get("test_options"))
     args.add_all(
         config.get("scheme_name_exclude_patterns", []),
         omit_if_empty = False,
