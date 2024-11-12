@@ -1191,10 +1191,7 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
         ),
     )
 
-def _test_options(
-        *,
-        app_language = None,
-        app_region = None):
+def _test_options(*, app_language = None, app_region = None):
     """Defines the test options for a custom scheme.
 
     Args:
