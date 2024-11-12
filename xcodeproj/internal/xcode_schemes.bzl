@@ -465,7 +465,7 @@ also be modified in Xcode.
                 selected. If no expansion context is desired, use the `string`
                 value `none`.
             options: Optional. A value returned by
-                `xcode_schemes.options`.
+                `xcode_schemes.test_options`.
             pre_actions: Optional. A `sequence` of `struct` values as created by
                 `xcode_schemes.pre_post_action`.
             post_actions: Optional. A `sequence` of `struct` values as created
