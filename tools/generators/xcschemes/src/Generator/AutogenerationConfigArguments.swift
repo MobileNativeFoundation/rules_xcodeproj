@@ -12,11 +12,13 @@ struct AutogenerationConfigArguments {
       var rawArgs = ArraySlice(try await url.allLines.collect())
 
       let appLanguage = try rawArgs.consumeArg(
-          "app_language",
+          "app-language",
+           as: String?.self,
           in: url
       )
       let appRegion = try rawArgs.consumeArg(
-          "app_region",
+          "app-region",
+           as: String?.self,
           in: url
       )
       let schemeNameExcludePatterns = try rawArgs.consumeArgs(
@@ -25,8 +27,8 @@ struct AutogenerationConfigArguments {
       )
 
       return AutogenerationConfigArguments(
-        appLanguage: !appLanguage.isEmpty ? appLanguage : nil,
-        appRegion: !appRegion.isEmpty ? appRegion : nil,
+        appLanguage: appLanguage,
+        appRegion: appRegion,
         schemeNameExcludePatterns: schemeNameExcludePatterns
       )
     }
