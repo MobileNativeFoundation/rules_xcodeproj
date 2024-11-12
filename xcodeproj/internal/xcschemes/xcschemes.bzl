@@ -1195,7 +1195,7 @@ def _test_options(
         *,
         app_language = None,
         app_region = None):
-    """Defines the options for the scheme.
+    """Defines the test options for a custom scheme.
 
     Args:
         app_region: Region to set in scheme.
