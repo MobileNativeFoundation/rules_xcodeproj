@@ -1226,7 +1226,7 @@ def _autogeneration_test(*, options = None):
         test_options = test_options,
     )
 
-def _autogeneration_config(scheme_name_exclude_patterns = None, test = None):
+def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
     """Creates a value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
 
     Args:
