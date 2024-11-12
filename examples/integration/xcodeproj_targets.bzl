@@ -152,7 +152,7 @@ SCHEME_AUTOGENERATION_CONFIG = xcschemes.autogeneration_config(
         ".*UnwantedScheme.*",
     ],
     test = xcschemes.autogeneration.test(
-        test_options = xcschemes.test_options(
+        options = xcschemes.test_options(
             app_language = "en",
             app_region = "US",
         )
