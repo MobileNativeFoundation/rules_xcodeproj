@@ -1217,7 +1217,7 @@ def _autogeneration_test(*, options = None):
     Args:
         options: Test options for autogeneration.
 
-            Defaults to None if not set.
+            Defaults to `None`.
     """
 
     return struct(
