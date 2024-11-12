@@ -245,8 +245,8 @@ XCSCHEMES = [
                 "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
             },
             test_options = xcschemes.test_options(
-                app_region = "US",
                 app_language = "en",
+                app_region = "US",
             ),
             test_targets = [
                 "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
