@@ -1223,7 +1223,7 @@ def _autogeneration_test(*, options = None):
     """
 
     return struct(
-        test_options = test_options,
+        test_options = options,
     )
 
 def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
