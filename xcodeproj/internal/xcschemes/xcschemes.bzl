@@ -1212,7 +1212,7 @@ def _test_options(
     )
 
 def _autogeneration_test(*, options = None):
-    """Defines the autogeneration test options for the scheme.
+    """Creates a value for the `test` argument of `xcschemes.autogeneration_config`.
 
     Args:
         options: Test options for autogeneration.
