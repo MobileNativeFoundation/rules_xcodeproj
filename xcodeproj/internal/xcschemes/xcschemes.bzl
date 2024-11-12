@@ -1256,7 +1256,7 @@ def _autogeneration_config(scheme_name_exclude_patterns = None, test = None):
                 ...
                 scheme_autogeneration_config = xcschemes.autogeneration_config(
                     test = xcschemes.autogeneration.test(
-                        test_options = xcschemes.test_options(
+                        options = xcschemes.test_options(
                             app_language = "en",
                             app_region = "US",
                         )
