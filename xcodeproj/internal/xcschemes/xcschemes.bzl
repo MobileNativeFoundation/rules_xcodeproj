@@ -479,6 +479,11 @@ def _test(
             default Bazel environment variables (e.g.
             `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in
             addition to any set by [`env`](#xcschemes.test-env).
+        test_options: The test options to set for testing.
+            Can be `None` or a value returned by
+            [`xcschemes.test_options`](#xcschemes.test_options). If `None`,
+            `xcschemes.test_options()` will be used, which means no additional
+            test options be set.
         test_targets: The test targets to build, and possibly run, when testing.
 
             Each element of the `list` can be a label string or a value returned
