@@ -666,7 +666,7 @@ def _test_info_from_dict(
         diagnostics = _diagnostics_info_from_dict(test["diagnostics"]),
         env = _env_infos_from_dict(test["env"]),
         env_include_defaults = test["env_include_defaults"],
-        options = _options_info_from_dict(test["test_options"]),
+        options = _options_info_from_dict(test["options"]),
         test_targets = test_targets,
         use_run_args_and_env = test["use_run_args_and_env"],
         xcode_configuration = xcode_configuration,

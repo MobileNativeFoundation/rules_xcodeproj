@@ -20,6 +20,12 @@ def _dict_to_diagnostics_info(d):
         thread_performance_checker = d["thread_performance_checker"],
     )
 
+def _dict_to_test_options_info(d):
+    return struct(
+        app_language = d["app_language"],
+        app_region = d["app_region"],
+    )
+
 def _dict_to_launch_target_info(d):
     if d["is_path"] == "1":
         return struct(
@@ -68,6 +74,7 @@ def _dict_to_test_info(d):
         diagnostics = _dict_to_diagnostics_info(d["diagnostics"]),
         env = _dict_of_dicts_to_env_infos(d["env"]),
         env_include_defaults = d["env_include_defaults"],
+        options = _dict_to_test_options_info(d["options"]),
         test_targets = _dicts_to_test_target_infos(d["test_targets"]),
         use_run_args_and_env = d["use_run_args_and_env"],
         xcode_configuration = d["xcode_configuration"],

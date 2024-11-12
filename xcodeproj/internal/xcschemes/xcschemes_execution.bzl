@@ -326,7 +326,7 @@ def _write_schemes(
         custom_scheme_args.add(info.test.env_include_defaults)
         custom_scheme_args.add(info.test.use_run_args_and_env)
         _add_diagnostics(info.test.diagnostics)
-        _add_test_options(info.test.test_options)
+        _add_test_options(info.test.options)
         custom_scheme_args.add(info.test.xcode_configuration)
 
         # Run
