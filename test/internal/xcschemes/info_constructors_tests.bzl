@@ -259,6 +259,37 @@ def info_constructors_test_suite(name):
         ),
     )
 
+    # make_test_options
+
+    _add_test(
+        name = "{}_make_test_options_minimal".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_test_options(),
+
+        # Expected
+        expected_info = struct(
+            app_language = "",
+            app_region = "",
+        ),
+    )
+
+    _add_test(
+        name = "{}_make_test_options_full".format(name),
+
+        # Inputs
+        info = xcscheme_infos_testable.make_test_options(
+            app_language = "en",
+            app_region = "US",
+        ),
+
+        # Expected
+        expected_info = struct(
+            app_language = "en",
+            app_region = "US",
+        ),
+    )
+
     # make_launch_target
 
     _add_test(
@@ -688,6 +719,7 @@ def info_constructors_test_suite(name):
             diagnostics = xcscheme_infos_testable.make_diagnostics(),
             env = None,
             env_include_defaults = "0",
+            options = xcscheme_infos_testable.make_test_options(),
             test_targets = [],
             use_run_args_and_env = "1",
             xcode_configuration = "",
@@ -721,6 +753,10 @@ def info_constructors_test_suite(name):
                 "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
+            options = xcscheme_infos_testable.make_test_options(
+                app_language = "en",
+                app_region = "US",
+            ),
             test_targets = [
                 xcscheme_infos_testable.make_test_target("tt 9"),
                 xcscheme_infos_testable.make_test_target("tt 0"),
@@ -754,6 +790,10 @@ def info_constructors_test_suite(name):
                 "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "1",
+            options = xcscheme_infos_testable.make_test_options(
+                app_language = "en",
+                app_region = "US",
+            ),
             test_targets = [
                 xcscheme_infos_testable.make_test_target("tt 9"),
                 xcscheme_infos_testable.make_test_target("tt 0"),

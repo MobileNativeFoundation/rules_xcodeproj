@@ -904,6 +904,7 @@ def infos_from_json_test_suite(name):
                     diagnostics = None,
                     env = "inherit",
                     env_include_defaults = "0",
+                    options = None,
                     test_targets = [],
                     use_run_args_and_env = "1",
                     xcode_configuration = "",
@@ -952,6 +953,10 @@ def infos_from_json_test_suite(name):
                     ),
                     env = full_env,
                     env_include_defaults = "1",
+                    options = struct(
+                        app_language = "en",
+                        app_region = "US",
+                    ),
                     test_targets = [
                         "tt 1 label",
                         struct(
@@ -1040,6 +1045,10 @@ def infos_from_json_test_suite(name):
                     ),
                     env = expected_full_env,
                     env_include_defaults = "1",
+                    options = xcscheme_infos_testable.make_test_options(
+                        app_language = "en",
+                        app_region = "US",
+                    ),
                     test_targets = [
                         xcscheme_infos_testable.make_test_target("sim tt 1"),
                         xcscheme_infos_testable.make_test_target(

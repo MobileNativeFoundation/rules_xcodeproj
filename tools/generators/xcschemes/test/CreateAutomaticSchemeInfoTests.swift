@@ -136,6 +136,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: nil,
                 testTargets: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
@@ -217,6 +218,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: nil,
                 testTargets: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
@@ -294,6 +296,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: nil,
                 testTargets: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
@@ -370,6 +373,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: nil,
                 testTargets: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
@@ -445,6 +449,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                options: nil,
                 testTargets: [],
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
@@ -512,6 +517,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                options: nil,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
@@ -582,6 +588,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                options: nil,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
@@ -653,6 +660,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
+                options: nil,
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
@@ -693,6 +701,73 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
     }
+
+    func test_test_options() throws {
+        // Arrange
+
+        let test = Target(
+            key: "Test",
+            productType: .unitTestBundle,
+            buildableReference: .init(
+                blueprintIdentifier: "BLUEPRINT_IDENTIFIER_Test",
+                buildableName: "BUILDABLE_NAME_Test",
+                blueprintName: "BLUEPRINT_NAME_Test",
+                referencedContainer: "REFERENCED_CONTAINER_Test"
+            )
+        )
+
+        let expectedSchemeInfo = SchemeInfo(
+            name: "BLUEPRINT_NAME_Test",
+            test: .init(
+                buildTargets: [],
+                commandLineArguments: [],
+                enableAddressSanitizer: false,
+                enableThreadSanitizer: false,
+                enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
+                environmentVariables: baseEnvironmentVariables,
+                options: .init(appLanguage: "en", appRegion: "US"),
+                testTargets: [.init(target: test, isEnabled: true)],
+                useRunArgsAndEnv: false,
+                xcodeConfiguration: nil
+            ),
+            run: .init(
+                buildTargets: [test],
+                commandLineArguments: [],
+                customWorkingDirectory: nil,
+                enableAddressSanitizer: false,
+                enableThreadSanitizer: false,
+                enableUBSanitizer: false,
+                enableMainThreadChecker: false,
+                enableThreadPerformanceChecker: false,
+                environmentVariables: [],
+                launchTarget: nil,
+                xcodeConfiguration: nil
+            ),
+            profile: .init(
+                buildTargets: [],
+                commandLineArguments: [],
+                customWorkingDirectory: nil,
+                environmentVariables: [],
+                launchTarget: nil,
+                useRunArgsAndEnv: true,
+                xcodeConfiguration: nil
+            ),
+            executionActions: []
+        )
+
+        // Act
+
+        let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
+            target: test,
+            testOptions: .init(appLanguage: "en", appRegion: "US")
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(schemeInfo, expectedSchemeInfo)
+    }
 }
 
 private let baseEnvironmentVariables: [EnvironmentVariable] = [
@@ -708,14 +783,16 @@ private func createAutomaticSchemeInfoWithDefaults(
     customSchemeNames: Set<String> = [],
     environmentVariables: [EnvironmentVariable] = [],
     extensionHost: Target? = nil,
-    target: Target
+    target: Target,
+    testOptions: SchemeInfo.Test.Options? = nil
 ) throws -> SchemeInfo? {
     return try Generator.CreateAutomaticSchemeInfo.defaultCallable(
         commandLineArguments: commandLineArguments,
         customSchemeNames: customSchemeNames,
         environmentVariables: environmentVariables,
         extensionHost: extensionHost,
-        target: target
+        target: target,
+        testOptions: testOptions
     )
 }
 

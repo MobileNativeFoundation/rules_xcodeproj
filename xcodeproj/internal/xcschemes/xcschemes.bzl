@@ -361,6 +361,7 @@ def _test(
         diagnostics = None,
         env = "inherit",
         env_include_defaults = True,
+        test_options = None,
         test_targets = [],
         use_run_args_and_env = None,
         xcode_configuration = None):
@@ -478,6 +479,11 @@ def _test(
             default Bazel environment variables (e.g.
             `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in
             addition to any set by [`env`](#xcschemes.test-env).
+        test_options: The test options to set for testing.
+            Can be `None` or a value returned by
+            [`xcschemes.test_options`](#xcschemes.test_options). If `None`,
+            `xcschemes.test_options()` will be used, which means no additional
+            test options be set.
         test_targets: The test targets to build, and possibly run, when testing.
 
             Each element of the `list` can be a label string or a value returned
@@ -539,6 +545,7 @@ def _test(
         diagnostics = diagnostics,
         env = env or {},
         env_include_defaults = TRUE_ARG if env_include_defaults else FALSE_ARG,
+        test_options = test_options,
         test_targets = test_targets or [],
         use_run_args_and_env = TRUE_ARG if use_run_args_and_env else FALSE_ARG,
         xcode_configuration = xcode_configuration or "",
@@ -1189,7 +1196,42 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
         ),
     )
 
-def _autogeneration_config(scheme_name_exclude_patterns = None):
+def _test_options(*, app_language = None, app_region = None):
+    """Defines the test options for a custom scheme.
+
+    Args:
+        app_region: Region to set in scheme.
+
+            Defaults to system settings if not set.
+        app_language: Language to set in scheme.
+
+            Defaults to system settings if not set.
+    """
+
+    return struct(
+        app_region = app_region,
+        app_language = app_language,
+    )
+
+def _autogeneration_test(*, options = None):
+    """Creates a value for the `test` argument of `xcschemes.autogeneration_config`.
+
+    Args:
+        options: Test options for autogeneration.
+
+            Defaults to `None`.
+
+    Returns:
+        An opaque value for the
+        [`test`](user-content-xcschemes.autogeneration_config-test)
+        argument of `xcschemes.autogeneration_config`.
+    """
+
+    return struct(
+        test_options = options,
+    )
+
+def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
     """Creates a value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
 
     Args:
@@ -1206,9 +1248,26 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
                         ".*somePattern.*",
                         "^AnotherPattern.*",
                     ],
-                )
+                ),
             )
             ```
+
+        test: Options to use for the test action.
+
+            Example:
+
+            ```starlark
+            xcodeproj(
+                ...
+                scheme_autogeneration_config = xcschemes.autogeneration_config(
+                    test = xcschemes.autogeneration.test(
+                        options = xcschemes.test_options(
+                            app_language = "en",
+                            app_region = "US",
+                        )
+                    )
+                )
+            )
 
     Returns:
         An opaque value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
@@ -1217,12 +1276,21 @@ def _autogeneration_config(scheme_name_exclude_patterns = None):
     if scheme_name_exclude_patterns:
         d["scheme_name_exclude_patterns"] = scheme_name_exclude_patterns
 
+    if test:
+        d["test_options"] = [
+            test.test_options.app_language or "",
+            test.test_options.app_region or "",
+        ]
+
     return d
 
 # API
 
 xcschemes = struct(
     arg = _arg,
+    autogeneration = struct(
+        test = _autogeneration_test,
+    ),
     autogeneration_config = _autogeneration_config,
     diagnostics = _diagnostics,
     env_value = _env_value,
@@ -1234,6 +1302,7 @@ xcschemes = struct(
     run = _run,
     scheme = _scheme,
     test = _test,
+    test_options = _test_options,
     test_target = _test_target,
     top_level_anchor_target = _top_level_anchor_target,
     top_level_build_target = _top_level_build_target,

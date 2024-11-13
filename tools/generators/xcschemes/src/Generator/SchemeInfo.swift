@@ -35,6 +35,11 @@ struct SchemeInfo: Equatable {
     }
 
     struct Test: Equatable {
+        struct Options: Equatable {
+            let appLanguage: String?
+            let appRegion: String?
+        }
+
         let buildTargets: [Target]
         let commandLineArguments: [CommandLineArgument]
         let enableAddressSanitizer: Bool
@@ -43,6 +48,7 @@ struct SchemeInfo: Equatable {
         let enableMainThreadChecker: Bool
         let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
+        let options: Options?
         let testTargets: [TestTarget]
         let useRunArgsAndEnv: Bool
         let xcodeConfiguration: String?

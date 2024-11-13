@@ -165,6 +165,7 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = None,
         expand_variables_based_on = None,
+        options = None,
         pre_actions = [],
         post_actions = [],
     )
@@ -180,6 +181,7 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = custom_env,
         expand_variables_based_on = None,
+        options = None,
         pre_actions = [],
         post_actions = [],
     )
@@ -198,6 +200,7 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = {},
         expand_variables_based_on = "none",
+        options = None,
         pre_actions = [],
         post_actions = [],
     )
@@ -219,6 +222,7 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = None,
         expand_variables_based_on = bazel_labels.normalize_string(targets[0]),
+        options = None,
         pre_actions = [],
         post_actions = [],
     )

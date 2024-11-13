@@ -31,6 +31,9 @@ projects with `bazel run //examples/cc:xcodeproj`. You might need to `cd`
 into the directory if the example app is in a separate `WORKSPACE` with
 `cd examples/integration; bazel run //:xcodeproj`.
 
+You can run the internal tests as well:
+`bazel test //test/internal/xcschemes:all`
+
 You can even test your changes in a separate project living outside this
 repo by overriding the module or repository in your `.bazelrc`.
 ```
@@ -50,3 +53,17 @@ You can do so with `./test/update_all_fixtures.sh`.
 All of the test fixture projects aren't buildable, because we use empty files in
 place of things that are the same in every project. If you need to verify
 anything in those projects, regenerate them locally.
+
+## Updating docs
+
+Run `./docs/update_docs.sh` to generate to documentation based on the comments.
+
+## Linting and formatting
+
+Before submitting your PR you should run the linter and formatter to
+make sure everything if formatted properly in your bazel files
+
+`bazel run //:buildifier.fix`
+
+you can run `bazel run //:buildifier.check` to make sure your formatting
+is correct.

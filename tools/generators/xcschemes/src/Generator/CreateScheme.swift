@@ -360,6 +360,8 @@ extension Generator.CreateScheme {
                     .map(\.action)
             ),
             testAction: createTestAction(
+                appLanguage: schemeInfo.test.options?.appLanguage,
+                appRegion: schemeInfo.test.options?.appRegion,
                 buildConfiguration: schemeInfo.test.xcodeConfiguration ??
                     defaultXcodeConfiguration,
                 commandLineArguments: schemeInfo.test.commandLineArguments,

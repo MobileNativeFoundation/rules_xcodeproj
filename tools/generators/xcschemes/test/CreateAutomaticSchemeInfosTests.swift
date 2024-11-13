@@ -216,7 +216,8 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "C", productType: .application),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey
+                targetsByKey: targetsByKey,
+                testOptions: nil
             ),
             .init(
                 commandLineArguments: [
@@ -229,7 +230,8 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "A", productType: .messagesExtension),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey
+                targetsByKey: targetsByKey,
+                testOptions: nil
             ),
             .init(
                 commandLineArguments: [],
@@ -241,7 +243,8 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 extensionHostIDs: extensionHostIDs,
                 target: .mock(key: "B", productType: .appExtension),
                 targetsByID: targetsByID,
-                targetsByKey: targetsByKey
+                targetsByKey: targetsByKey,
+                testOptions: nil
             ),
         ]
         let createTargetAutomaticSchemeInfos =
@@ -293,7 +296,8 @@ private func createAutomaticSchemeInfosWithDefaults(
     targets: [Target],
     targetsByID: [TargetID : Target] = [:],
     targetsByKey: [Target.Key : Target] = [:],
-    createTargetAutomaticSchemeInfos: Generator.CreateTargetAutomaticSchemeInfos
+    createTargetAutomaticSchemeInfos: Generator.CreateTargetAutomaticSchemeInfos,
+    testOptions: SchemeInfo.Test.Options? = nil
 ) throws -> [SchemeInfo] {
     return try Generator.CreateAutomaticSchemeInfos.defaultCallable(
         autogenerationMode: autogenerationMode,
@@ -304,6 +308,7 @@ private func createAutomaticSchemeInfosWithDefaults(
         targets: targets,
         targetsByID: targetsByID,
         targetsByKey: targetsByKey,
-        createTargetAutomaticSchemeInfos: createTargetAutomaticSchemeInfos
+        createTargetAutomaticSchemeInfos: createTargetAutomaticSchemeInfos,
+        testOptions: testOptions
     )
 }

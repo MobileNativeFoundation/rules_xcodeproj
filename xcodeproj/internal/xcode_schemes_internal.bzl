@@ -124,6 +124,7 @@ def _test_action(
         diagnostics = None,
         env = None,
         expand_variables_based_on = None,
+        options = None,
         pre_actions = [],
         post_actions = []):
     """Constructs a test action for an Xcode scheme.
@@ -144,6 +145,7 @@ def _test_action(
         expand_variables_based_on: Optional. One of the specified test target labels.
             If no value is provided, one of the test targets will be selected.
             If no expansion context is desired, use the `string` value `none`.
+        options: Optional. A value returned by `xcode_schemes.test_options`.
         pre_actions: Optional. A `sequence` of `struct` values as created by
             `xcode_schemes.pre_post_action`.
         post_actions: Optional. A `sequence` of `struct` values as created by
@@ -171,6 +173,7 @@ or one of the test targets.
         diagnostics = diagnostics,
         env = env,
         expand_variables_based_on = expand_variables_based_on,
+        options = options,
         pre_actions = pre_actions,
         post_actions = post_actions,
     )

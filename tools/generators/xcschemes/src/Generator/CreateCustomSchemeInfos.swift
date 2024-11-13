@@ -634,6 +634,16 @@ set
             as: String?.self,
             in: url
         )
+        let appLanguage = try consumeArg(
+            "test-app-language",
+            as: String?.self,
+            in: url
+        )
+        let appRegion = try consumeArg(
+            "test-app-region",
+            as: String?.self,
+            in: url
+        )
 
         let firstTestTargetID = testTargets.first?.target.key.sortedIds.first!
 
@@ -708,6 +718,8 @@ set
             enableMainThreadChecker: enableMainThreadChecker,
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
+            options: .init(appLanguage: appLanguage,
+                           appRegion: appRegion),
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration

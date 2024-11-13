@@ -10,6 +10,8 @@ public struct CreateTestAction {
 
     /// Creates the `TestAction` element of an Xcode scheme.
     public func callAsFunction(
+        appLanguage: String?,
+        appRegion: String?,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -25,6 +27,8 @@ public struct CreateTestAction {
         useLaunchSchemeArgsEnv: Bool
     ) -> String {
         return callable(
+            /*appLanguage:*/ appLanguage,
+            /*appRegion:*/ appRegion,
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
@@ -46,6 +50,8 @@ public struct CreateTestAction {
 
 extension CreateTestAction {
     public typealias Callable = (
+        _ appLanguage: String?,
+        _ appRegion: String?,
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
         _ enableAddressSanitizer: Bool,
@@ -62,6 +68,8 @@ extension CreateTestAction {
     ) -> String
 
     public static func defaultCallable(
+        appLanguage: String?,
+        appRegion: String?,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -102,6 +110,13 @@ buildConfiguration = "\#(buildConfiguration)"
         }
         if !enableThreadPerformanceChecker {
             components.append(#"disablePerformanceAntipatternChecker = "YES""#)
+        }
+
+        if let appLanguage {
+            components.append("language = \"\(appLanguage)\"")
+        }
+        if let appRegion {
+            components.append("region = \"\(appRegion)\"")
         }
 
         let macroExpansion: String

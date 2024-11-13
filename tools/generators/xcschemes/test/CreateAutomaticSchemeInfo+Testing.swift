@@ -13,6 +13,7 @@ extension Generator.CreateAutomaticSchemeInfo {
             let environmentVariables: [EnvironmentVariable]
             let extensionHost: Target?
             let target: Target
+            let testOptions: SchemeInfo.Test.Options?
         }
 
         fileprivate(set) var called: [Called] = []
@@ -42,13 +43,15 @@ extension Generator.CreateAutomaticSchemeInfo {
                     customSchemeNames,
                     environmentVariables,
                     extensionHost,
-                    target in
+                    target,
+                    testOptions in
                 mockTracker.called.append(.init(
                     commandLineArguments: commandLineArguments,
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables,
                     extensionHost: extensionHost,
-                    target: target
+                    target: target,
+                    testOptions: testOptions
                 ))
                 return mockTracker.nextResult()
             }

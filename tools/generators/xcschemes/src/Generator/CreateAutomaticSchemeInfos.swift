@@ -32,7 +32,8 @@ extension Generator {
             extensionHostIDs: [TargetID: [TargetID]],
             targets: [Target],
             targetsByID: [TargetID: Target],
-            targetsByKey: [Target.Key: Target]
+            targetsByKey: [Target.Key: Target],
+            testOptions: SchemeInfo.Test.Options?
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*autogenerationMode:*/ autogenerationMode,
@@ -44,7 +45,8 @@ extension Generator {
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
                 /*createTargetAutomaticSchemeInfos:*/
-                    createTargetAutomaticSchemeInfos
+                    createTargetAutomaticSchemeInfos,
+                /*testOptions:*/ testOptions
             )
         }
     }
@@ -63,7 +65,8 @@ extension Generator.CreateAutomaticSchemeInfos {
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
         _ createTargetAutomaticSchemeInfos:
-            Generator.CreateTargetAutomaticSchemeInfos
+            Generator.CreateTargetAutomaticSchemeInfos,
+        _ testOptions: SchemeInfo.Test.Options?
     ) throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -76,7 +79,8 @@ extension Generator.CreateAutomaticSchemeInfos {
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
         createTargetAutomaticSchemeInfos:
-            Generator.CreateTargetAutomaticSchemeInfos
+            Generator.CreateTargetAutomaticSchemeInfos,
+        testOptions: SchemeInfo.Test.Options?
     ) throws -> [SchemeInfo] {
         let autogenerateSchemes: Bool
         switch autogenerationMode {
@@ -118,7 +122,8 @@ extension Generator.CreateAutomaticSchemeInfos {
                     extensionHostIDs: extensionHostIDs,
                     target: target,
                     targetsByID: targetsByID,
-                    targetsByKey: targetsByKey
+                    targetsByKey: targetsByKey,
+                    testOptions: testOptions
                 )
             }
     }

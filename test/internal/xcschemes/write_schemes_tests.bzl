@@ -611,6 +611,10 @@ def write_schemes_test_suite(name):
                         ),
                     },
                     env_include_defaults = "1",
+                    options = xcscheme_infos_testable.make_test_options(
+                        app_language = "en",
+                        app_region = "US",
+                    ),
                     test_targets = [
                         xcscheme_infos_testable.make_test_target(
                             enabled = "0",
@@ -693,304 +697,6 @@ def write_schemes_test_suite(name):
             "some/consolidation_maps/1",
         ],
         expected_writes = {
-            _CUSTOM_SCHEMES_DECLARED_FILE: "\n".join([
-                # schemeCount
-                "3",
-                # - name
-                "Scheme 2",
-                # - test - testTargetCount
-                "0",
-                # - test - buildTargets
-                "",
-                # - test - commandLineArguments count
-                "-1",
-                # - test - environmentVariables count
-                "-1",
-                # - test - environmentVariablesIncludeDefaults
-                "0",
-                # - test - useRunArgsAndEnv
-                "1",
-                # - test - enableAddressSanitizer
-                "0",
-                # - test - enableThreadSanitizer
-                "0",
-                # - test - enableUBSanitizer
-                "0",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - test - xcodeConfiguration
-                "",
-                # - run - buildTargets
-                "",
-                # - run - commandLineArguments count
-                "-1",
-                # - run - environmentVariables count
-                "-1",
-                # - run - environmentVariablesIncludeDefaults
-                "1",
-                # - run - enableAddressSanitizer
-                "0",
-                # - run - enableThreadSanitizer
-                "0",
-                # - run - enableUBSanitizer
-                "0",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - run - xcodeConfiguration
-                "",
-                # - run - launchTarget - isPath
-                "0",
-                # - run - launchTarget - id
-                "",
-                # - run - launchTarget - extensionHostID
-                "",
-                # - run - customWorkingDirectory
-                "",
-                # - profile - buildTargets
-                "",
-                # - profile - commandLineArguments count
-                "-1",
-                # - profile - environmentVariables count
-                "-1",
-                # - profile - environmentVariablesIncludeDefaults
-                "0",
-                # - profile - useRunArgsAndEnv
-                "1",
-                # - profile - xcodeConfiguration
-                "",
-                # - profile - launchTarget - isPath
-                "0",
-                # - profile - launchTarget - id
-                "",
-                # - profile - launchTarget - extensionHostID
-                "",
-                # - profile - customWorkingDirectory
-                "",
-
-                # - name
-                "Scheme 1",
-                # - test - testTargetCount
-                "2",
-                # - test - testTargets - id
-                "test tt 1",
-                # - test - testTargets - enabled
-                "0",
-                # - test - testTargets - id
-                "test tt 2",
-                # - test - testTargets - enabled
-                "1",
-                # - test - buildTargets
-                "test bt 2",
-                "test bt 1",
-                "",
-                # - test - commandLineArguments count
-                "1",
-                # - test - commandLineArguments - value
-                "-v",
-                # - test - commandLineArguments - enabled
-                "0",
-                # - test - commandLineArguments - literalString
-                "1",
-                # - test - environmentVariables count
-                "1",
-                # - test - environmentVariables - key
-                "VAR\0WITH\0NEWLINES",
-                # - test - environmentVariables - value
-                "simple",
-                # - test - environmentVariables - enabled
-                "0",
-                # - test - environmentVariablesIncludeDefaults
-                "1",
-                # - test - useRunArgsAndEnv
-                "0",
-                # - test - enableAddressSanitizer
-                "1",
-                # - test - enableThreadSanitizer
-                "1",
-                # - test - enableUBSanitizer
-                "1",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - test - xcodeConfiguration
-                "Test",
-                # - run - buildTargets
-                "run bt",
-                "",
-                # - run - commandLineArguments count
-                "2",
-                # - run - commandLineArguments - value
-                "a",
-                # - run - commandLineArguments - enabled
-                "0",
-                # - run - commandLineArguments - literalString
-                "1",
-                # - run - commandLineArguments - value
-                "bb",
-                # - run - commandLineArguments - enabled
-                "1",
-                # - run - commandLineArguments - literalString
-                "1",
-                # - run - environmentVariables count
-                "2",
-                # - run - environmentVariables - key
-                "A",
-                # - run - environmentVariables - value
-                "value with spaces",
-                # - run - environmentVariables - enabled
-                "0",
-                # - run - environmentVariables - key
-                "VAR WITH SPACES",
-                # - run - environmentVariables - value
-                "value\0with\0newlines",
-                # - run - environmentVariables - enabled
-                "1",
-                # - run - environmentVariablesIncludeDefaults
-                "0",
-                # - run - enableAddressSanitizer
-                "1",
-                # - run - enableThreadSanitizer
-                "1",
-                # - run - enableUBSanitizer
-                "1",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - run - xcodeConfiguration
-                "Run",
-                # - run - launchTarget - isPath
-                "0",
-                # - run - launchTarget - id
-                "run launch id",
-                # - run - launchTarget - extensionHostID
-                "run extension host id",
-                # - run - customWorkingDirectory
-                "run working dir",
-                # - profile - buildTargets
-                "profile bt",
-                "",
-                # - profile - commandLineArguments count
-                "3",
-                # - profile - commandLineArguments - value
-                "simple value",
-                # - profile - commandLineArguments - enabled
-                "1",
-                # - profile - commandLineArguments - literalString
-                "1",
-                # - profile - commandLineArguments - value
-                "simple value",
-                # - profile - commandLineArguments - enabled
-                "1",
-                # - profile - commandLineArguments - literalString
-                "0",
-                # - profile - commandLineArguments - value
-                "value\0with\0newlines",
-                # - profile - commandLineArguments - enabled
-                "0",
-                # - profile - commandLineArguments - literalString
-                "1",
-                # - profile - environmentVariables count
-                "1",
-                # - profile - environmentVariables - key
-                "B",
-                # - profile - environmentVariables - value
-                "a",
-                # - profile - environmentVariables - enabled
-                "1",
-                # - profile - environmentVariablesIncludeDefaults
-                "1",
-                # - profile - useRunArgsAndEnv
-                "0",
-                # - profile - xcodeConfiguration
-                "Profile",
-                # - profile - launchTarget - isPath
-                "0",
-                # - profile - launchTarget - id
-                "profile launch id",
-                # - profile - launchTarget - extensionHostID
-                "profile extension host id",
-                # - profile - customWorkingDirectory
-                "profile working dir",
-
-                # - name
-                "Scheme 3",
-                # - test - testTargetCount
-                "0",
-                # - test - buildTargets
-                "",
-                # - test - commandLineArguments count
-                "-1",
-                # - test - environmentVariables count
-                "-1",
-                # - test - environmentVariablesIncludeDefaults
-                "0",
-                # - test - useRunArgsAndEnv
-                "1",
-                # - test - enableAddressSanitizer
-                "0",
-                # - test - enableThreadSanitizer
-                "0",
-                # - test - enableUBSanitizer
-                "0",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - test - xcodeConfiguration
-                "",
-                # - run - buildTargets
-                "",
-                # - run - commandLineArguments count
-                "-1",
-                # - run - environmentVariables count
-                "-1",
-                # - run - environmentVariablesIncludeDefaults
-                "1",
-                # - run - enableAddressSanitizer
-                "0",
-                # - run - enableThreadSanitizer
-                "0",
-                # - run - enableUBSanitizer
-                "0",
-                # - test - enableMainThreadChecker
-                "1",
-                # - test - enableThreadPerformanceChecker
-                "1",
-                # - run - xcodeConfiguration
-                "",
-                # - run - launchTarget - isPath
-                "1",
-                # - run - launchTarget - path
-                "/Foo/Bar.app",
-                # - run - customWorkingDirectory
-                "",
-                # - profile - buildTargets
-                "",
-                # - profile - commandLineArguments count
-                "-1",
-                # - profile - environmentVariables count
-                "-1",
-                # - profile - environmentVariablesIncludeDefaults
-                "0",
-                # - profile - useRunArgsAndEnv
-                "1",
-                # - profile - xcodeConfiguration
-                "",
-                # - profile - launchTarget - isPath
-                "0",
-                # - profile - launchTarget - id
-                "",
-                # - profile - launchTarget - extensionHostID
-                "",
-                # - profile - customWorkingDirectory
-                "",
-            ]) + "\n",
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n".join([
                 # schemeName
                 "Scheme 1",
@@ -1353,6 +1059,316 @@ def write_schemes_test_suite(name):
                 "2",
             ]) + "\n",
             _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
+            _CUSTOM_SCHEMES_DECLARED_FILE: "\n".join([
+                # schemeCount
+                "3",
+                # - name
+                "Scheme 2",
+                # - test - testTargetCount
+                "0",
+                # - test - buildTargets
+                "",
+                # - test - commandLineArguments count
+                "-1",
+                # - test - environmentVariables count
+                "-1",
+                # - test - environmentVariablesIncludeDefaults
+                "0",
+                # - test - useRunArgsAndEnv
+                "1",
+                # - test - enableAddressSanitizer
+                "0",
+                # - test - enableThreadSanitizer
+                "0",
+                # - test - enableUBSanitizer
+                "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - test - app_language
+                "",
+                # - test - app_region
+                "",
+                # - test - xcodeConfiguration
+                "",
+                # - run - buildTargets
+                "",
+                # - run - commandLineArguments count
+                "-1",
+                # - run - environmentVariables count
+                "-1",
+                # - run - environmentVariablesIncludeDefaults
+                "1",
+                # - run - enableAddressSanitizer
+                "0",
+                # - run - enableThreadSanitizer
+                "0",
+                # - run - enableUBSanitizer
+                "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - run - xcodeConfiguration
+                "",
+                # - run - launchTarget - isPath
+                "0",
+                # - run - launchTarget - id
+                "",
+                # - run - launchTarget - extensionHostID
+                "",
+                # - run - customWorkingDirectory
+                "",
+                # - profile - buildTargets
+                "",
+                # - profile - commandLineArguments count
+                "-1",
+                # - profile - environmentVariables count
+                "-1",
+                # - profile - environmentVariablesIncludeDefaults
+                "0",
+                # - profile - useRunArgsAndEnv
+                "1",
+                # - profile - xcodeConfiguration
+                "",
+                # - profile - launchTarget - isPath
+                "0",
+                # - profile - launchTarget - id
+                "",
+                # - profile - launchTarget - extensionHostID
+                "",
+                # - profile - customWorkingDirectory
+                "",
+
+                # - name
+                "Scheme 1",
+                # - test - testTargetCount
+                "2",
+                # - test - testTargets - id
+                "test tt 1",
+                # - test - testTargets - enabled
+                "0",
+                # - test - testTargets - id
+                "test tt 2",
+                # - test - testTargets - enabled
+                "1",
+                # - test - buildTargets
+                "test bt 2",
+                "test bt 1",
+                "",
+                # - test - commandLineArguments count
+                "1",
+                # - test - commandLineArguments - value
+                "-v",
+                # - test - commandLineArguments - enabled
+                "0",
+                # - test - commandLineArguments - literalString
+                "1",
+                # - test - environmentVariables count
+                "1",
+                # - test - environmentVariables - key
+                "VAR\0WITH\0NEWLINES",
+                # - test - environmentVariables - value
+                "simple",
+                # - test - environmentVariables - enabled
+                "0",
+                # - test - environmentVariablesIncludeDefaults
+                "1",
+                # - test - useRunArgsAndEnv
+                "0",
+                # - test - enableAddressSanitizer
+                "1",
+                # - test - enableThreadSanitizer
+                "1",
+                # - test - enableUBSanitizer
+                "1",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - test - app_language
+                "en",
+                # - test - app_region
+                "US",
+                # - test - xcodeConfiguration
+                "Test",
+                # - run - buildTargets
+                "run bt",
+                "",
+                # - run - commandLineArguments count
+                "2",
+                # - run - commandLineArguments - value
+                "a",
+                # - run - commandLineArguments - enabled
+                "0",
+                # - run - commandLineArguments - literalString
+                "1",
+                # - run - commandLineArguments - value
+                "bb",
+                # - run - commandLineArguments - enabled
+                "1",
+                # - run - commandLineArguments - literalString
+                "1",
+                # - run - environmentVariables count
+                "2",
+                # - run - environmentVariables - key
+                "A",
+                # - run - environmentVariables - value
+                "value with spaces",
+                # - run - environmentVariables - enabled
+                "0",
+                # - run - environmentVariables - key
+                "VAR WITH SPACES",
+                # - run - environmentVariables - value
+                "value\0with\0newlines",
+                # - run - environmentVariables - enabled
+                "1",
+                # - run - environmentVariablesIncludeDefaults
+                "0",
+                # - run - enableAddressSanitizer
+                "1",
+                # - run - enableThreadSanitizer
+                "1",
+                # - run - enableUBSanitizer
+                "1",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - run - xcodeConfiguration
+                "Run",
+                # - run - launchTarget - isPath
+                "0",
+                # - run - launchTarget - id
+                "run launch id",
+                # - run - launchTarget - extensionHostID
+                "run extension host id",
+                # - run - customWorkingDirectory
+                "run working dir",
+                # - profile - buildTargets
+                "profile bt",
+                "",
+                # - profile - commandLineArguments count
+                "3",
+                # - profile - commandLineArguments - value
+                "simple value",
+                # - profile - commandLineArguments - enabled
+                "1",
+                # - profile - commandLineArguments - literalString
+                "1",
+                # - profile - commandLineArguments - value
+                "simple value",
+                # - profile - commandLineArguments - enabled
+                "1",
+                # - profile - commandLineArguments - literalString
+                "0",
+                # - profile - commandLineArguments - value
+                "value\0with\0newlines",
+                # - profile - commandLineArguments - enabled
+                "0",
+                # - profile - commandLineArguments - literalString
+                "1",
+                # - profile - environmentVariables count
+                "1",
+                # - profile - environmentVariables - key
+                "B",
+                # - profile - environmentVariables - value
+                "a",
+                # - profile - environmentVariables - enabled
+                "1",
+                # - profile - environmentVariablesIncludeDefaults
+                "1",
+                # - profile - useRunArgsAndEnv
+                "0",
+                # - profile - xcodeConfiguration
+                "Profile",
+                # - profile - launchTarget - isPath
+                "0",
+                # - profile - launchTarget - id
+                "profile launch id",
+                # - profile - launchTarget - extensionHostID
+                "profile extension host id",
+                # - profile - customWorkingDirectory
+                "profile working dir",
+
+                # - name
+                "Scheme 3",
+                # - test - testTargetCount
+                "0",
+                # - test - buildTargets
+                "",
+                # - test - commandLineArguments count
+                "-1",
+                # - test - environmentVariables count
+                "-1",
+                # - test - environmentVariablesIncludeDefaults
+                "0",
+                # - test - useRunArgsAndEnv
+                "1",
+                # - test - enableAddressSanitizer
+                "0",
+                # - test - enableThreadSanitizer
+                "0",
+                # - test - enableUBSanitizer
+                "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - test - app_language
+                "",
+                # - test - app_region
+                "",
+                # - test - xcodeConfiguration
+                "",
+                # - run - buildTargets
+                "",
+                # - run - commandLineArguments count
+                "-1",
+                # - run - environmentVariables count
+                "-1",
+                # - run - environmentVariablesIncludeDefaults
+                "1",
+                # - run - enableAddressSanitizer
+                "0",
+                # - run - enableThreadSanitizer
+                "0",
+                # - run - enableUBSanitizer
+                "0",
+                # - test - enableMainThreadChecker
+                "1",
+                # - test - enableThreadPerformanceChecker
+                "1",
+                # - run - xcodeConfiguration
+                "",
+                # - run - launchTarget - isPath
+                "1",
+                # - run - launchTarget - path
+                "/Foo/Bar.app",
+                # - run - customWorkingDirectory
+                "",
+                # - profile - buildTargets
+                "",
+                # - profile - commandLineArguments count
+                "-1",
+                # - profile - environmentVariables count
+                "-1",
+                # - profile - environmentVariablesIncludeDefaults
+                "0",
+                # - profile - useRunArgsAndEnv
+                "1",
+                # - profile - xcodeConfiguration
+                "",
+                # - profile - launchTarget - isPath
+                "0",
+                # - profile - launchTarget - id
+                "",
+                # - profile - launchTarget - extensionHostID
+                "",
+                # - profile - customWorkingDirectory
+                "",
+            ]) + "\n",
         },
     )
 
