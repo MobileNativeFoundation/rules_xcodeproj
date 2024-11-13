@@ -31,6 +31,9 @@ projects with `bazel run //examples/cc:xcodeproj`. You might need to `cd`
 into the directory if the example app is in a separate `WORKSPACE` with
 `cd examples/integration; bazel run //:xcodeproj`.
 
+You can run the internal tests as well:
+`bazel test //test/internal/xcschemes:all`
+
 You can even test your changes in a separate project living outside this
 repo by overriding the module or repository in your `.bazelrc`.
 ```
