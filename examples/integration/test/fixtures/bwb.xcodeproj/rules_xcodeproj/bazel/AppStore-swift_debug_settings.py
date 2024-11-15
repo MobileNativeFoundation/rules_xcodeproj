@@ -26,6 +26,9 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-17/bin/Lib"
 		]
 	},
+	"arm64-apple-ios ExtensionKitExtension.appex/ExtensionKitExtension": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-17/bin -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra"
+	},
 	"arm64-apple-ios Lib.framework/Lib": {
 		"c": "-F$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -iquote$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-17/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-17/bin -fmodule-map-file=$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra",
 		"f": [
@@ -192,6 +195,9 @@ _SETTINGS = {
 		"s": [
 			"$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-12/bin/Lib"
 		]
+	},
+	"x86_64-apple-ios-simulator ExtensionKitExtension.appex/ExtensionKitExtension": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-12/bin -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra"
 	},
 	"x86_64-apple-ios-simulator Lib.framework/Lib": {
 		"c": "-F$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -iquote$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-12/bin -fmodule-map-file=$(PROJECT_DIR)/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra",

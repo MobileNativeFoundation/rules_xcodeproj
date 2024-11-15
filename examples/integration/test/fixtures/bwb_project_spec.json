@@ -190,6 +190,8 @@
         "CommandLine/Tests/BUILD",
         "CommandLine/swift_interop_hint/BUILD",
         "CommandLine/swift_interop_hint/c_lib.h",
+        "ExtensionKitExtension/BUILD",
+        "ExtensionKitExtension/Info.plist",
         "GRPC/BUILD",
         "GRPC/Info.plist",
         "Lib/BUILD",
@@ -215,6 +217,7 @@
         "bazel-out/CONFIGURATION-STABLE-11/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/Entitlements.withbundleid.plist",
         "bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-12/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
@@ -259,6 +262,7 @@
         "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/Entitlements.withbundleid.plist",
         "bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-17/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
@@ -319,6 +323,7 @@
         "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineToolLib/private/LibSwift-Swift.h",
         "bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/Entitlements.withbundleid.plist",
         "bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-3/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
@@ -369,6 +374,7 @@
         "bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/Entitlements.withbundleid.plist",
         "bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-8/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
         "bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
@@ -488,6 +494,22 @@
     },
     "p": "set -euo pipefail\n\nif [[ \"$ACTION\" == \"build\" ]]; then\n  cd \"$SRCROOT\"\n  echo \"Hello from pre-build!\"\nfi",
     "t": [
+        "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
+        [
+            "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-8"
+        ],
+        "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
+        [
+            "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-17"
+        ],
+        "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
+        [
+            "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-3"
+        ],
+        "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
+        [
+            "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-12"
+        ],
         "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
         [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-8"

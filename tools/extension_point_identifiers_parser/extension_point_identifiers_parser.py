@@ -3,6 +3,11 @@
 import plistlib
 import sys
 
+_EXTENSION_POINT_IDENTIFIER_KEYS = [
+    ("NSExtension", "NSExtensionPointIdentifier"),
+    ("EXAppExtensionAttributes", "EXExtensionPointIdentifier")
+]
+
 def _main(
         output_path: str,
         targetids_path: str,
@@ -25,9 +30,14 @@ ERROR: number of target IDs doesn't match the number of Info.plist files""",
         with open(path, 'rb') as fp:
             plist = plistlib.load(fp)
 
-        extension_point_identifier = (
-            plist.get("NSExtension", {}).get("NSExtensionPointIdentifier")
-        )
+        extension_point_identifier = None
+        for extensionTypeKey, extensionPointIdentiferKey in _EXTENSION_POINT_IDENTIFIER_KEYS:
+            extension_point_identifier = (
+                plist.get(extensionTypeKey, {}).get(extensionPointIdentiferKey)
+            )
+            if extension_point_identifier:
+                break
+
         if not extension_point_identifier:
             continue
 
