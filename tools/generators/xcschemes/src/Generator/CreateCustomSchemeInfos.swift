@@ -629,11 +629,6 @@ set
             as: Bool.self,
             in: url
         )
-        let xcodeConfiguration = try consumeArg(
-            "test-xcode-configuration",
-            as: String?.self,
-            in: url
-        )
         let appLanguage = try consumeArg(
             "test-app-language",
             as: String?.self,
@@ -641,6 +636,11 @@ set
         )
         let appRegion = try consumeArg(
             "test-app-region",
+            as: String?.self,
+            in: url
+        )
+        let xcodeConfiguration = try consumeArg(
+            "test-xcode-configuration",
             as: String?.self,
             in: url
         )
