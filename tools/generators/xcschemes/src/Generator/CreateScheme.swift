@@ -362,6 +362,7 @@ extension Generator.CreateScheme {
             testAction: createTestAction(
                 appLanguage: schemeInfo.test.options?.appLanguage,
                 appRegion: schemeInfo.test.options?.appRegion,
+                codeCoverage: schemeInfo.test.options?.codeCoverage ?? false,
                 buildConfiguration: schemeInfo.test.xcodeConfiguration ??
                     defaultXcodeConfiguration,
                 commandLineArguments: schemeInfo.test.commandLineArguments,
