@@ -24,6 +24,7 @@ def _dict_to_test_options_info(d):
     return struct(
         app_language = d["app_language"],
         app_region = d["app_region"],
+        code_coverage = d["code_coverage"],
     )
 
 def _dict_to_launch_target_info(d):

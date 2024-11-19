@@ -38,6 +38,7 @@ struct SchemeInfo: Equatable {
         struct Options: Equatable {
             let appLanguage: String?
             let appRegion: String?
+            let codeCoverage: Bool
         }
 
         let buildTargets: [Target]
