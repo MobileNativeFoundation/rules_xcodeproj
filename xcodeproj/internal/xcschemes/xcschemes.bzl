@@ -1279,6 +1279,7 @@ def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
                     )
                 )
             )
+            ```
 
     Returns:
         An opaque value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
