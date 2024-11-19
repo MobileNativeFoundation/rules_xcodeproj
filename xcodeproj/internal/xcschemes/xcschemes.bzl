@@ -1196,7 +1196,11 @@ Address Sanitizer cannot be used together with Thread Sanitizer.
         ),
     )
 
-def _test_options(*, app_language = None, app_region = None):
+def _test_options(
+        *,
+        app_language = None,
+        app_region = None,
+        code_coverage = False):
     """Defines the test options for a custom scheme.
 
     Args:
@@ -1206,11 +1210,17 @@ def _test_options(*, app_language = None, app_region = None):
         app_language: Language to set in scheme.
 
             Defaults to system settings if not set.
+        code_coverage: Whether to enable code coverage.
+
+            If `True`, code coverage will be enabled.
     """
 
     return struct(
         app_region = app_region,
         app_language = app_language,
+        code_coverage = (
+            TRUE_ARG if code_coverage else FALSE_ARG
+        ),
     )
 
 def _autogeneration_test(*, options = None):
@@ -1264,6 +1274,7 @@ def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
                         options = xcschemes.test_options(
                             app_language = "en",
                             app_region = "US",
+                            code_coverage = False,
                         )
                     )
                 )
@@ -1280,6 +1291,7 @@ def _autogeneration_config(*, scheme_name_exclude_patterns = None, test = None):
         d["test_options"] = [
             test.test_options.app_language or "",
             test.test_options.app_region or "",
+            test.test_options.code_coverage or "",
         ]
 
     return d
