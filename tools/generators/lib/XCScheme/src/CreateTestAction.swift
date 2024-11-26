@@ -12,6 +12,7 @@ public struct CreateTestAction {
     public func callAsFunction(
         appLanguage: String?,
         appRegion: String?,
+        codeCoverage: Bool,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -29,6 +30,7 @@ public struct CreateTestAction {
         return callable(
             /*appLanguage:*/ appLanguage,
             /*appRegion:*/ appRegion,
+            /*codeCoverage:*/ codeCoverage,
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
@@ -52,6 +54,7 @@ extension CreateTestAction {
     public typealias Callable = (
         _ appLanguage: String?,
         _ appRegion: String?,
+        _ codeCoverage: Bool,
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
         _ enableAddressSanitizer: Bool,
@@ -70,6 +73,7 @@ extension CreateTestAction {
     public static func defaultCallable(
         appLanguage: String?,
         appRegion: String?,
+        codeCoverage: Bool,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
         enableAddressSanitizer: Bool,
@@ -117,6 +121,9 @@ buildConfiguration = "\#(buildConfiguration)"
         }
         if let appRegion {
             components.append("region = \"\(appRegion)\"")
+        }
+        if codeCoverage {
+            components.append("codeCoverageEnabled = \"YES\"")
         }
 
         let macroExpansion: String

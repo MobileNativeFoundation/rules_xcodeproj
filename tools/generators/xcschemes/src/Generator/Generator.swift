@@ -58,7 +58,8 @@ struct Generator {
             targetsByID: targetsByID,
             targetsByKey: targetsByKey,
             testOptions: .init(appLanguage: autogenerationConfigArguments.appLanguage, 
-                               appRegion: autogenerationConfigArguments.appRegion)
+                               appRegion: autogenerationConfigArguments.appRegion,
+                               codeCoverage: autogenerationConfigArguments.codeCoverage)
         )
 
         let filteredAutomaticSchemeInfos = try automaticSchemeInfos.filter { scheme in
