@@ -355,6 +355,63 @@
             "t": "com.apple.product-type.library.static"
         }
     },
+    "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.library.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "3": [
+            {
+                "i": "@@//ExtensionKitExtension:ExtensionKitExtension.library CONFIGURATION-STABLE-3",
+                "n": "ExtensionKitExtension.library"
+            }
+        ],
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ExtensionKitExtension.11.link.params",
+        "b": {
+            "APPLICATION_EXTENSION_API_ONLY": true,
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\""
+            ],
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ExtensionKitExtension.appex",
+            "CODE_SIGN_STYLE": "Manual",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension",
+            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.extensionkit-extension",
+            "PRODUCT_MODULE_NAME": "ExtensionKitExtension",
+            "TARGETED_DEVICE_FAMILY": "1"
+        },
+        "c": "CONFIGURATION-STABLE-3",
+        "i": {
+            "s": [
+                "ExtensionKitExtension/main.swift"
+            ]
+        },
+        "l": "@@//ExtensionKitExtension:ExtensionKitExtension",
+        "n": "ExtensionKitExtension",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/libExtensionKitExtension.library.a"
+            ],
+            "e": "ExtensionKitExtension",
+            "m": "ExtensionKitExtension",
+            "n": "ExtensionKitExtension",
+            "p": "bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "t": "com.apple.product-type.extensionkit-extension"
+        }
+    },
     "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params",
@@ -375,7 +432,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.11.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.12.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -437,7 +494,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.12.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.13.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -500,7 +557,7 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.13.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.14.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -600,7 +657,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.15.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.16.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -656,7 +713,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.16.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.17.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-4"
         ],
@@ -730,7 +787,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.17.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.18.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -844,9 +901,10 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.19.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.20.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3"
@@ -860,6 +918,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -886,6 +945,7 @@
         },
         "c": "CONFIGURATION-STABLE-3",
         "e": [
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3"
         ],
         "i": {
@@ -979,7 +1039,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.21.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.22.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/dist/dynamic/Lib.framework",
@@ -1059,7 +1119,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.23.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.24.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/dist/dynamic/Lib.framework",
@@ -1104,7 +1164,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.24.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.25.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/dist/dynamic/Lib.framework",
@@ -1149,7 +1209,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.25.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.26.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -1205,7 +1265,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.26.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.27.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6"
         ],
@@ -1279,7 +1339,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.27.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.28.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-6"
@@ -1345,7 +1405,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.28.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.29.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-7/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -1490,9 +1550,10 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.32.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.33.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3",
@@ -1504,6 +1565,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -1562,12 +1624,13 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.33.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.34.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -1669,7 +1732,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.35.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.36.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -1776,9 +1839,10 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.37.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.38.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3",
@@ -1789,6 +1853,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -1892,7 +1957,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.39.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.40.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/Lib.framework",
@@ -1945,7 +2010,7 @@
                 "bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/frameworks/Lib.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.40.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.41.link.params",
         "7": [
             "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-7"
         ],
@@ -2011,7 +2076,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.41.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.42.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-7/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
@@ -2070,7 +2135,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.42.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.43.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-6/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -2138,7 +2203,7 @@
                 "bazel-out/CONFIGURATION-STABLE-6/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.43.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.44.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-6",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-6",
@@ -2207,7 +2272,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.44.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.45.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -2275,7 +2340,7 @@
                 "bazel-out/CONFIGURATION-STABLE-4/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.45.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.46.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-4",
             "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-4"
@@ -2336,12 +2401,13 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.46.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.47.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -2410,9 +2476,10 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.47.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.48.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3",
@@ -2424,6 +2491,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -2490,9 +2558,10 @@
                 "bazel-out/CONFIGURATION-STABLE-3/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.48.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.49.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-3",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-3",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-3",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-3",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-3",
@@ -2503,6 +2572,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-3/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-3/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-4/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -2606,7 +2676,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.50.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.51.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/Proto/proto.dSYM\""
@@ -2688,7 +2758,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.52.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.53.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_client.dSYM\""
@@ -2771,7 +2841,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.54.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.55.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-25/bin/GRPC/echo_server.dSYM\""
@@ -2964,7 +3034,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.60.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.61.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -3154,7 +3224,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.66.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.67.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-28/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3338,7 +3408,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.72.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.73.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-29/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3373,7 +3443,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.73.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.74.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-33/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -3410,7 +3480,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.74.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.75.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-27/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -3507,7 +3577,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.76.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.77.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -3681,6 +3751,64 @@
             "t": "com.apple.product-type.library.static"
         }
     },
+    "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.library.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "3": [
+            {
+                "i": "@@//ExtensionKitExtension:ExtensionKitExtension.library CONFIGURATION-STABLE-8",
+                "n": "ExtensionKitExtension.library"
+            }
+        ],
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ExtensionKitExtension.82.link.params",
+        "b": {
+            "APPLICATION_EXTENSION_API_ONLY": true,
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\""
+            ],
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ExtensionKitExtension.appex",
+            "CODE_SIGN_STYLE": "Automatic",
+            "DEVELOPMENT_TEAM": "V82V4GQZXM",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-8/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension",
+            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.extensionkit-extension",
+            "PRODUCT_MODULE_NAME": "ExtensionKitExtension",
+            "TARGETED_DEVICE_FAMILY": "1"
+        },
+        "c": "CONFIGURATION-STABLE-8",
+        "i": {
+            "s": [
+                "ExtensionKitExtension/main.swift"
+            ]
+        },
+        "l": "@@//ExtensionKitExtension:ExtensionKitExtension",
+        "n": "ExtensionKitExtension",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/libExtensionKitExtension.library.a"
+            ],
+            "e": "ExtensionKitExtension",
+            "m": "ExtensionKitExtension",
+            "n": "ExtensionKitExtension",
+            "p": "bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "t": "com.apple.product-type.extensionkit-extension"
+        }
+    },
     "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params",
@@ -3701,7 +3829,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.81.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.83.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3764,7 +3892,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.82.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.84.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -3827,7 +3955,7 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.83.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.85.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3927,7 +4055,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.85.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.87.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3983,7 +4111,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.86.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.88.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-9"
         ],
@@ -4057,7 +4185,7 @@
                 "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.87.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.89.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4173,9 +4301,10 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.89.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.91.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-8",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-8"
@@ -4189,6 +4318,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -4216,6 +4346,7 @@
         },
         "c": "CONFIGURATION-STABLE-8",
         "e": [
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8"
         ],
         "i": {
@@ -4309,7 +4440,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.91.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.93.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/dist/dynamic/Lib.framework",
@@ -4389,7 +4520,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.93.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.95.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/dist/dynamic/Lib.framework",
@@ -4434,7 +4565,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.94.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.96.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-9/bin/Lib/dist/dynamic/Lib.framework",
@@ -4479,7 +4610,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.95.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.97.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4535,7 +4666,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.96.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.98.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11"
         ],
@@ -4609,7 +4740,7 @@
                 "bazel-out/CONFIGURATION-STABLE-11/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.97.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.99.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-11",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-11"
@@ -4775,9 +4906,10 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.101.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.103.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-8",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-8",
@@ -4789,6 +4921,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -4847,12 +4980,13 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.102.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.104.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -4922,9 +5056,10 @@
                 "bazel-out/CONFIGURATION-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.103.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.105.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-8",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-8",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-8",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-8",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-8",
@@ -4935,6 +5070,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-8/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-8/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -5108,7 +5244,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.108.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.110.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/cc/tool/tool_codesigned",
@@ -5192,7 +5328,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.110.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.112.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -5383,6 +5519,67 @@
             "AppStore"
         ]
     },
+    "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.library.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "3": [
+            {
+                "i": "@@//ExtensionKitExtension:ExtensionKitExtension.library CONFIGURATION-STABLE-12",
+                "n": "ExtensionKitExtension.library"
+            }
+        ],
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ExtensionKitExtension.117.link.params",
+        "b": {
+            "APPLICATION_EXTENSION_API_ONLY": true,
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\""
+            ],
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ExtensionKitExtension.appex",
+            "CODE_SIGN_STYLE": "Manual",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-12/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension",
+            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.extensionkit-extension",
+            "PRODUCT_MODULE_NAME": "ExtensionKitExtension",
+            "SWIFT_COMPILATION_MODE": "wholemodule",
+            "TARGETED_DEVICE_FAMILY": "1"
+        },
+        "c": "CONFIGURATION-STABLE-12",
+        "i": {
+            "s": [
+                "ExtensionKitExtension/main.swift"
+            ]
+        },
+        "l": "@@//ExtensionKitExtension:ExtensionKitExtension",
+        "n": "ExtensionKitExtension",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/libExtensionKitExtension.library.a"
+            ],
+            "e": "ExtensionKitExtension",
+            "m": "ExtensionKitExtension",
+            "n": "ExtensionKitExtension",
+            "p": "bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "t": "com.apple.product-type.extensionkit-extension"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params",
@@ -5403,7 +5600,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.115.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.118.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5469,7 +5666,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.116.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.119.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -5535,7 +5732,7 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.117.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.120.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5643,7 +5840,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.119.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.122.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5702,7 +5899,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.120.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.123.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13"
         ],
@@ -5780,7 +5977,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.121.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.124.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5901,9 +6098,10 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.123.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.126.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-12",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-12"
@@ -5917,6 +6115,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -5940,6 +6139,7 @@
         },
         "c": "CONFIGURATION-STABLE-12",
         "e": [
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12"
         ],
         "i": {
@@ -6039,7 +6239,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.125.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.128.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/dist/dynamic/Lib.framework",
@@ -6126,7 +6326,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.127.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.130.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/dist/dynamic/Lib.framework",
@@ -6174,7 +6374,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.128.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.131.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/dist/dynamic/Lib.framework",
@@ -6222,7 +6422,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.129.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.132.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -6281,7 +6481,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.130.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.133.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15"
         ],
@@ -6359,7 +6559,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.131.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.134.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15"
@@ -6428,7 +6628,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.132.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.135.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-16/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -6586,9 +6786,10 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.136.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.139.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-12",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-12",
@@ -6600,6 +6801,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -6661,12 +6863,13 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.137.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.140.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -6776,7 +6979,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.139.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.142.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -6890,9 +7093,10 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.141.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.144.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-12",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-12",
@@ -6903,6 +7107,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7014,7 +7219,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/macos-arm64_x86_64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.143.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSLib.framework.146.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/Lib.framework",
@@ -7070,7 +7275,7 @@
                 "bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/frameworks/Lib.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.144.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.147.link.params",
         "7": [
             "@@//macOSApp/Source:macOSLib.framework CONFIGURATION-STABLE-16"
         ],
@@ -7139,7 +7344,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.145.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.148.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-16/bin/macOSApp/Source/macOSLib.framework_dsyms/Lib.framework.dSYM\"",
@@ -7202,7 +7407,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.146.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.149.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-15/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -7274,7 +7479,7 @@
                 "bazel-out/CONFIGURATION-STABLE-15/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.147.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.150.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-15",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-15",
@@ -7347,7 +7552,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.148.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.151.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7419,7 +7624,7 @@
                 "bazel-out/CONFIGURATION-STABLE-13/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.149.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.152.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-13",
             "@@//UI:UIFramework.watchOS CONFIGURATION-STABLE-13"
@@ -7484,12 +7689,13 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.150.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.153.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7562,9 +7768,10 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.151.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.154.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-12",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-12",
@@ -7576,6 +7783,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7645,9 +7853,10 @@
                 "bazel-out/CONFIGURATION-STABLE-12/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.152.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.155.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-12",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-12",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-12",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-12",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-12",
@@ -7658,6 +7867,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-12/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-12/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-13/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -7769,7 +7979,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.154.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.157.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/Proto/proto.dSYM\""
@@ -7859,7 +8069,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.156.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.159.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_client.dSYM\""
@@ -7950,7 +8160,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.158.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.161.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-26/bin/GRPC/echo_server.dSYM\""
@@ -8164,7 +8374,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.164.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.167.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -8374,7 +8584,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.170.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.173.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-31/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8578,7 +8788,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.176.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.179.link.params",
         "8": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-32/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -8616,7 +8826,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.177.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.180.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-34/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -8657,7 +8867,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.178.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.181.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-30/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -8762,7 +8972,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.180.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.183.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -8954,6 +9164,68 @@
             "AppStore"
         ]
     },
+    "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
+    {
+        "0": "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.library.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "3": [
+            {
+                "i": "@@//ExtensionKitExtension:ExtensionKitExtension.library CONFIGURATION-STABLE-17",
+                "n": "ExtensionKitExtension.library"
+            }
+        ],
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ExtensionKitExtension.188.link.params",
+        "b": {
+            "APPLICATION_EXTENSION_API_ONLY": true,
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\""
+            ],
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "BAZEL_OUTPUTS_PRODUCT_BASENAME": "ExtensionKitExtension.appex",
+            "CODE_SIGN_STYLE": "Automatic",
+            "DEVELOPMENT_TEAM": "V82V4GQZXM",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/rules_xcodeproj/ExtensionKitExtension/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-17/bin -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension",
+            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.extensionkit-extension",
+            "PRODUCT_MODULE_NAME": "ExtensionKitExtension",
+            "SWIFT_COMPILATION_MODE": "wholemodule",
+            "TARGETED_DEVICE_FAMILY": "1"
+        },
+        "c": "CONFIGURATION-STABLE-17",
+        "i": {
+            "s": [
+                "ExtensionKitExtension/main.swift"
+            ]
+        },
+        "l": "@@//ExtensionKitExtension:ExtensionKitExtension",
+        "n": "ExtensionKitExtension",
+        "o": {
+            "s": {
+                "m": "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.swiftmodule"
+            }
+        },
+        "p": {
+            "a": [
+                "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/libExtensionKitExtension.library.a"
+            ],
+            "e": "ExtensionKitExtension",
+            "m": "ExtensionKitExtension",
+            "n": "ExtensionKitExtension",
+            "p": "bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex",
+            "t": "com.apple.product-type.extensionkit-extension"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params",
@@ -8974,7 +9246,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.185.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.189.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9041,7 +9313,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.186.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.190.link.params",
         "9": "bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -9107,7 +9379,7 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.187.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.191.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9215,7 +9487,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.189.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.193.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9274,7 +9546,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.190.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.194.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS CONFIGURATION-STABLE-18"
         ],
@@ -9352,7 +9624,7 @@
                 "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.191.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.195.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9475,9 +9747,10 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.193.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.197.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-17",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-17"
@@ -9491,6 +9764,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-18/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -9515,6 +9789,7 @@
         },
         "c": "CONFIGURATION-STABLE-17",
         "e": [
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17"
         ],
         "i": {
@@ -9614,7 +9889,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.195.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.199.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/dist/dynamic/Lib.framework",
@@ -9701,7 +9976,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.197.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.201.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/dist/dynamic/Lib.framework",
@@ -9749,7 +10024,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.198.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.202.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-18/bin/Lib/dist/dynamic/Lib.framework",
@@ -9797,7 +10072,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.199.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.203.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -9856,7 +10131,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.200.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.204.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20"
         ],
@@ -9934,7 +10209,7 @@
                 "bazel-out/CONFIGURATION-STABLE-20/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.201.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.205.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS CONFIGURATION-STABLE-20",
             "@@//UI:UIFramework.tvOS CONFIGURATION-STABLE-20"
@@ -10113,9 +10388,10 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.205.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.209.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-17",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-17",
@@ -10127,6 +10403,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-18/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -10188,12 +10465,13 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.206.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.210.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-18/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -10267,9 +10545,10 @@
                 "bazel-out/CONFIGURATION-STABLE-17/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.207.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.211.link.params",
         "7": [
             "@@//AppClip:AppClip CONFIGURATION-STABLE-17",
+            "@@//ExtensionKitExtension:ExtensionKitExtension CONFIGURATION-STABLE-17",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-17",
             "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC CONFIGURATION-STABLE-17",
             "@@//UI:UIFramework.iOS CONFIGURATION-STABLE-17",
@@ -10280,6 +10559,7 @@
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_dsyms/CoreUtilsObjC.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/Lib/LibFramework.iOS.framework.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/UI/UIFramework.iOS.framework.dSYM\"",
+                "\"bazel-out/CONFIGURATION-STABLE-17/bin/ExtensionKitExtension/ExtensionKitExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-17/bin/AppClip/AppClip.app.dSYM\"",
                 "\"bazel-out/CONFIGURATION-STABLE-18/bin/Lib/LibFramework.watchOS.framework.dSYM\"",

@@ -52,7 +52,10 @@ ios_application(
         ":device_build": None,
         "//conditions:default": "iOSApp_ExecutableName",
     }),
-    extensions = ["//WidgetExtension"],
+    extensions = [
+        "//ExtensionKitExtension",
+        "//WidgetExtension",
+    ],
     families = ["iphone"],
     frameworks = [
         "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
