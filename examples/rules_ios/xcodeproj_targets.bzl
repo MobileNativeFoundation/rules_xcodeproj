@@ -26,6 +26,7 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro",
     "//iOSApp/Test/UITests:iOSAppUITests_macro",
     "//iOSApp/Test/UITests:iOSAppUITestSuite_macro",
+    "//LibTwo:LibTwoTests",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"
@@ -50,6 +51,22 @@ XCSCHEMES = [
                         ),
                     ],
                 ),
+            ],
+        ),
+    ),
+    xcschemes.scheme(
+        name = "LibTwo_Scheme",
+        run = xcschemes.run(
+            build_targets = [
+                "//LibTwo",
+            ],
+        ),
+        test = xcschemes.test(
+            build_targets = [
+                "//LibTwo",
+            ],
+            test_targets = [
+                "//LibTwo:LibTwoTests",
             ],
         ),
     ),
