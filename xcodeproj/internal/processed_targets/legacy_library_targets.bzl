@@ -1,5 +1,6 @@
 """Functions for processing library targets."""
 
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:collections.bzl", "set_if_true")
@@ -133,7 +134,7 @@ def _process_legacy_library_target(
         modulemaps = modulemaps,
         transitive_infos = transitive_infos,
     )
-    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
+    debug_outputs = target[AppleDebugOutputsInfo] if AppleDebugOutputsInfo in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,

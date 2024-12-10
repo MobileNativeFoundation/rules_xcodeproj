@@ -51,7 +51,7 @@ def _get_outputs(*, debug_outputs, product, swift_info, output_group_info):
     indexing process.
 
     Args:
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+        debug_outputs: The `AppleDebugOutputsInfo` provider for the target, or
             `None`.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
@@ -143,7 +143,7 @@ def _collect_incremental_output_files(
         copy_product_transitively: Whether or not to copy the product
             transitively. Currently this should only be true for top-level
             targets.
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+        debug_outputs: The `AppleDebugOutputsInfo` provider for the target, or
             `None`.
         id: A unique identifier for the target.
         indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s

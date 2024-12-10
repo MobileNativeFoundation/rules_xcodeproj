@@ -187,7 +187,7 @@ def _merge_compilation_providers(
 
     Args:
         apple_dynamic_framework_info: The
-            `apple_common.AppleDynamicFrameworkInfo` of the target, or `None`.
+            `AppleDynamicFrameworkInfo` of the target, or `None`.
         cc_info: The `CcInfo` of the target, or `None`.
         propagate_providers: A `bool` indicating whether providers should be
             propagated to downstream targets.

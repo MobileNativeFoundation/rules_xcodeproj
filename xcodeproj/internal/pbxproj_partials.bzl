@@ -17,7 +17,8 @@ _UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
 # Utility
 
 def _apple_platform_to_platform_name(platform):
-    return PLATFORM_NAME[platform]
+    apple_platform = "{}".format(platform)
+    return PLATFORM_NAME[apple_platform]
 
 def _dsym_files_to_string(dsym_files):
     dsym_paths = []
