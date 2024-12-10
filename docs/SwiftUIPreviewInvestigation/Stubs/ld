@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-echo "$@" > /tmp/clang_shim_args.txt
+echo "$@" > $(pwd)/Output/clang_shim_args.txt
 
 passthrough_args=("${@:1}")
 
