@@ -1,63 +1,63 @@
 """Module for dealing with Apple platform information."""
 
 PLATFORM_NAME = {
-    apple_common.platform.ios_device: "iphoneos",
-    apple_common.platform.ios_simulator: "iphonesimulator",
-    apple_common.platform.macos: "macosx",
-    apple_common.platform.tvos_device: "appletvos",
-    apple_common.platform.tvos_simulator: "appletvsimulator",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xrsimulator",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchsimulator",
+    apple_common.platform.ios_device.name: "iphoneos",
+    apple_common.platform.ios_simulator.name: "iphonesimulator",
+    apple_common.platform.macos.name: "macosx",
+    apple_common.platform.tvos_device.name: "appletvos",
+    apple_common.platform.tvos_simulator.name: "appletvsimulator",
+    apple_common.platform.visionos_device.name: "xros",
+    apple_common.platform.visionos_simulator.name: "xrsimulator",
+    apple_common.platform.watchos_device.name: "watchos",
+    apple_common.platform.watchos_simulator.name: "watchsimulator",
 }
 
 _IS_SIMULATOR = {
-    apple_common.platform.ios_device: False,
-    apple_common.platform.ios_simulator: True,
-    apple_common.platform.macos: False,
-    apple_common.platform.tvos_device: False,
-    apple_common.platform.tvos_simulator: True,
-    apple_common.platform.visionos_device: False,
-    apple_common.platform.visionos_simulator: True,
-    apple_common.platform.watchos_device: False,
-    apple_common.platform.watchos_simulator: True,
+    apple_common.platform.ios_device.name: False,
+    apple_common.platform.ios_simulator.name: True,
+    apple_common.platform.macos.name: False,
+    apple_common.platform.tvos_device.name: False,
+    apple_common.platform.tvos_simulator.name: True,
+    apple_common.platform.visionos_device.name: False,
+    apple_common.platform.visionos_simulator.name: True,
+    apple_common.platform.watchos_device.name: False,
+    apple_common.platform.watchos_simulator.name: True,
 }
 
 _LLDB_TRIPLE_PREFIX = {
-    apple_common.platform.ios_device: "ios",
-    apple_common.platform.ios_simulator: "ios",
-    apple_common.platform.macos: "macosx",
-    apple_common.platform.tvos_device: "tvos",
-    apple_common.platform.tvos_simulator: "tvos",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xros",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchos",
+    apple_common.platform.ios_device.name: "ios",
+    apple_common.platform.ios_simulator.name: "ios",
+    apple_common.platform.macos.name: "macosx",
+    apple_common.platform.tvos_device.name: "tvos",
+    apple_common.platform.tvos_simulator.name: "tvos",
+    apple_common.platform.visionos_device.name: "xros",
+    apple_common.platform.visionos_simulator.name: "xros",
+    apple_common.platform.watchos_device.name: "watchos",
+    apple_common.platform.watchos_simulator.name: "watchos",
 }
 
 _SWIFT_TRIPLE_PREFIX = {
-    apple_common.platform.ios_device: "ios",
-    apple_common.platform.ios_simulator: "ios",
-    apple_common.platform.macos: "macos",
-    apple_common.platform.tvos_device: "tvos",
-    apple_common.platform.tvos_simulator: "tvos",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xros",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchos",
+    apple_common.platform.ios_device.name: "ios",
+    apple_common.platform.ios_simulator.name: "ios",
+    apple_common.platform.macos.name: "macos",
+    apple_common.platform.tvos_device.name: "tvos",
+    apple_common.platform.tvos_simulator.name: "tvos",
+    apple_common.platform.visionos_device.name: "xros",
+    apple_common.platform.visionos_simulator.name: "xros",
+    apple_common.platform.watchos_device.name: "watchos",
+    apple_common.platform.watchos_simulator.name: "watchos",
 }
 
 _TRIPLE_SUFFIX = {
-    apple_common.platform.ios_device: "",
-    apple_common.platform.ios_simulator: "-simulator",
-    apple_common.platform.macos: "",
-    apple_common.platform.tvos_device: "",
-    apple_common.platform.tvos_simulator: "-simulator",
-    apple_common.platform.visionos_device: "",
-    apple_common.platform.visionos_simulator: "-simulator",
-    apple_common.platform.watchos_device: "",
-    apple_common.platform.watchos_simulator: "-simulator",
+    apple_common.platform.ios_device.name: "",
+    apple_common.platform.ios_simulator.name: "-simulator",
+    apple_common.platform.macos.name: "",
+    apple_common.platform.tvos_device.name: "",
+    apple_common.platform.tvos_simulator.name: "-simulator",
+    apple_common.platform.visionos_device.name: "",
+    apple_common.platform.visionos_simulator.name: "-simulator",
+    apple_common.platform.watchos_device.name: "",
+    apple_common.platform.watchos_simulator.name: "-simulator",
 }
 
 def _collect_platform(*, ctx):
@@ -109,10 +109,11 @@ def _platform_to_dto(platform):
     Args:
         platform: A value from `platforms.collect`.
     """
+    apple_platform = "{}".format(platform.apple_platform)
     dto = {
         "a": platform.arch,
         "m": platform.os_version,
-        "v": PLATFORM_NAME[platform.apple_platform],
+        "v": PLATFORM_NAME[apple_platform],
     }
 
     return dto
@@ -123,7 +124,7 @@ def _platform_to_swift_triple(platform):
     Args:
         platform: A value from `platforms.collect`.
     """
-    apple_platform = platform.apple_platform
+    apple_platform = "{}".format(platform.apple_platform)
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform.arch,
         triple_prefix = _SWIFT_TRIPLE_PREFIX[apple_platform],
@@ -136,7 +137,9 @@ def _platform_to_lldb_context_triple(platform):
     Args:
         platform: A value from `platforms.collect`.
     """
-    apple_platform = platform.apple_platform
+    apple_platform = "{}".format(platform.apple_platform)
+
+    # struct(apple_platform = ios_simulator, arch = "arm64", os_version = "13.0")
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform.arch,
         triple_prefix = _LLDB_TRIPLE_PREFIX[apple_platform],

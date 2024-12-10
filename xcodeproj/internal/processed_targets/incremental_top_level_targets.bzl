@@ -5,8 +5,12 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
+    "AppleDebugOutputsInfo",
     "AppleResourceInfo",
 )
+
+# buildifier: disable=bzl-visibility
+load("@build_bazel_rules_apple//apple/internal/providers:apple_dynamic_framework_info.bzl", "AppleDynamicFrameworkInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load(
     "//xcodeproj/internal:build_settings.bzl",
@@ -272,9 +276,9 @@ def _process_focused_top_level_target(
         target = target,
     )
 
-    if target and apple_common.AppleDynamicFramework in target:
+    if target and AppleDynamicFrameworkInfo in target:
         framework_files = (
-            target[apple_common.AppleDynamicFramework].framework_files
+            target[AppleDynamicFrameworkInfo].framework_files
         )
         product_file = product.file
         framework_product_mappings = [
@@ -491,8 +495,8 @@ def _process_focused_top_level_target(
         ],
     )
 
-    if apple_common.AppleDebugOutputs in target:
-        debug_outputs = target[apple_common.AppleDebugOutputs]
+    if AppleDebugOutputsInfo in target:
+        debug_outputs = target[AppleDebugOutputsInfo]
     else:
         debug_outputs = None
 
@@ -927,9 +931,9 @@ def _process_incremental_top_level_target(
             ),
         )
 
-    if apple_common.AppleDynamicFramework in target:
+    if AppleDynamicFrameworkInfo in target:
         apple_dynamic_framework_info = (
-            target[apple_common.AppleDynamicFramework]
+            target[AppleDynamicFrameworkInfo]
         )
     else:
         apple_dynamic_framework_info = None

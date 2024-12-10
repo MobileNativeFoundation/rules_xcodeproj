@@ -2,6 +2,12 @@
 `generation_mode = "legacy"`."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+
+# buildifier: disable=bzl-visibility
+load("@build_bazel_rules_apple//apple/internal:providers.bzl", "AppleExecutableBinaryInfo")
+
+# buildifier: disable=bzl-visibility
+load("@build_bazel_rules_apple//apple/internal/providers:apple_dynamic_framework_info.bzl", "AppleDynamicFrameworkInfo")
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(":memory_efficiency.bzl", "EMPTY_DEPSET")
 
@@ -235,15 +241,15 @@ def process_product(
         original_path = None
         path = None
 
-    if target and apple_common.AppleDynamicFramework in target:
+    if target and AppleDynamicFrameworkInfo in target:
         framework_files = (
-            target[apple_common.AppleDynamicFramework].framework_files
+            target[AppleDynamicFrameworkInfo].framework_files
         )
     else:
         framework_files = EMPTY_DEPSET
 
-    if target and apple_common.AppleExecutableBinary in target:
-        executable = target[apple_common.AppleExecutableBinary].binary
+    if target and AppleExecutableBinaryInfo in target:
+        executable = target[AppleExecutableBinaryInfo].binary
     else:
         executable = None
 
