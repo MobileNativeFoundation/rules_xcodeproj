@@ -16,7 +16,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_apple",
-    version = "3.6.0",
+    version = "3.16.1",
     repo_name = "build_bazel_rules_apple",
 )
 bazel_dep(name = "rules_python", version = "0.27.1")
@@ -57,11 +57,6 @@ bazel_dep(
 
 # To support Bazel 8 tests
 single_version_override(
-    module_name = "rules_apple",
-    version = "3.5.1",
-)
-
-single_version_override(
     module_name = "rules_swift",
     version = "1.18.0",
 )
@@ -69,6 +64,12 @@ single_version_override(
 single_version_override(
     module_name = "apple_support",
     version = "1.15.1",
+)
+
+# Some of our deps are forcing a new stardoc on us, so pinning for now
+single_version_override(
+    module_name = "stardoc",
+    version = "0.6.1",
 )
 
 # For Stardoc
