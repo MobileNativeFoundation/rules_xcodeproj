@@ -72,6 +72,10 @@ targets:
       # Select where Info.plist will be found
       INFOPLIST_FILE: app/Info.plist
       MARKETING_VERSION: 1.0.0
+    postCompileScripts:
+      - script: |
+          echo $CFLAGS
+        name: CFlags
     entitlements:
       path: app/Debug.entitlements
       properties:
