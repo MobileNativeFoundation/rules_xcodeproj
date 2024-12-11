@@ -30,7 +30,8 @@ extension Generator {
             rawArguments: Array<String>.SubSequence,
             generateBuildSettings: Bool,
             includeSelfSwiftDebugSettings: Bool,
-            transitiveSwiftDebugSettingPaths: [URL]
+            transitiveSwiftDebugSettingPaths: [URL],
+            executionRootFilePath: URL?
         ) async throws -> (
             buildSettings: [(key: String, value: String)],
             clangArgs: [String],
@@ -44,6 +45,7 @@ extension Generator {
                     includeSelfSwiftDebugSettings,
                 /*transitiveSwiftDebugSettingPaths:*/
                     transitiveSwiftDebugSettingPaths,
+                /*executionRootFilePath:*/ executionRootFilePath,
                 /*processCArgs:*/ processCArgs,
                 /*processCxxArgs:*/ processCxxArgs,
                 /*processSwiftArgs:*/ processSwiftArgs
@@ -60,6 +62,7 @@ extension Generator.ProcessArgs {
         _ generateBuildSettings: Bool,
         _ includeSelfSwiftDebugSettings: Bool,
         _ transitiveSwiftDebugSettingPaths: [URL],
+        _ executionRootFilePath: URL?,
         _ processCArgs: Generator.ProcessCArgs,
         _ processCxxArgs: Generator.ProcessCxxArgs,
         _ processSwiftArgs: Generator.ProcessSwiftArgs
@@ -75,6 +78,7 @@ extension Generator.ProcessArgs {
         generateBuildSettings: Bool,
         includeSelfSwiftDebugSettings: Bool,
         transitiveSwiftDebugSettingPaths: [URL],
+        executionRootFilePath: URL?,
         processCArgs: Generator.ProcessCArgs,
         processCxxArgs: Generator.ProcessCxxArgs,
         processSwiftArgs: Generator.ProcessSwiftArgs
@@ -130,12 +134,14 @@ extension Generator.ProcessArgs {
 
         let cHasDebugInfo = try await processCArgs(
             argsStream: argsStream,
-            buildSettings: &buildSettings
+            buildSettings: &buildSettings,
+            executionRootFilePath: executionRootFilePath
         )
 
         let cxxHasDebugInfo = try await processCxxArgs(
             argsStream: argsStream,
-            buildSettings: &buildSettings
+            buildSettings: &buildSettings,
+            executionRootFilePath: executionRootFilePath
         )
 
         if generatesDsyms || swiftHasDebugInfo || cHasDebugInfo ||

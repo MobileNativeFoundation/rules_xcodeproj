@@ -147,6 +147,9 @@ def _process_mixed_language_library_target(
         )
         indexstore_overrides = []
 
+    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+    apple_fragment = ctx.fragments.apple
+
     (
         target_build_settings,
         _,
@@ -163,6 +166,9 @@ def _process_mixed_language_library_target(
         name = label.name,
         swift_args = args.swift,
         tool = ctx.executable._target_build_settings_generator,
+        xcode_config = xcode_config,
+        apple_fragment = apple_fragment,
+        bin_dir_path = bin_dir_path,
     )
 
     (

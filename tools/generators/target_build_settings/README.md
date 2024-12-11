@@ -15,6 +15,7 @@ The generator accepts the following command-line arguments:
 - If `swift-debug-settings-output-path` is set: positional `include-self-swift-debug-settings`
 - If `swift-debug-settings-output-path` is set: positional `transitive-swift-debug-setting-paths-count`
 - If `swift-debug-settings-output-path` is set: positional list `<transitive-swift-debug-setting-paths> ...`
+- Positional `execution-root-file-path`
 - Positional `device-family`
 - Positional `extension-safe`
 - Positional `generates-dsyms`
