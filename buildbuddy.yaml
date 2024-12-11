@@ -20,12 +20,10 @@ x_templates:
         USE_BAZEL_VERSION: 7.x
     - &bazel_lts
       env:
-        # FIXME: Adjust to 8.x
-        USE_BAZEL_VERSION: 7.x
+        USE_BAZEL_VERSION: 8.x
     - &bazel_head
       env:
-        # FIXME: Adjust to `last_green`
-        USE_BAZEL_VERSION: 7.x
+        USE_BAZEL_VERSION: last_green
 
     - &normal_resources
       resource_requests: { memory: 6GB }
@@ -129,14 +127,6 @@ actions:
       # Not validate since Bazel 8 Bzlmod paths are different
       - *generate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - Bazel LTS using WORKSPACE
-    <<: *bazel_lts
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *nobzlmod_generate_integration
-      - *nobzlmod_build_all
   - name: Integration Test - "examples/integration" - Bazel HEAD
     <<: *bazel_head
     <<: *arm64
@@ -146,14 +136,6 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - Bazel HEAD using WORKSPACE
-    <<: *bazel_head
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *nobzlmod_generate_integration
-      - *nobzlmod_build_all
 
   - name: Integration Test - "examples/rules_ios" - Bazel Previous LTS
     <<: *bazel_previous_lts
@@ -174,15 +156,6 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/rules_ios" - Bazel LTS using WORKSPACE
-    <<: *bazel_lts
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_rules_ios_workspace
-    bazel_commands:
-      - *validate_integration
-      - *nobzlmod_build_all
   ## Uncomment once rules_ios supports Bazel 8
   # - name: Integration Test - "examples/rules_ios" - Bazel HEAD
   #   <<: *bazel_head

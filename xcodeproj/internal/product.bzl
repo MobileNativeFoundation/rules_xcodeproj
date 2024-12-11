@@ -5,6 +5,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleDynamicFrameworkInfo",
+    "AppleExecutableBinaryInfo",
 )
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(":memory_efficiency.bzl", "EMPTY_DEPSET")
@@ -46,6 +47,13 @@ _ARCHIVE_EXTENSIONS = {
     "ipa": None,
     "zip": None,
 }
+
+# TODO: Remove when we drop 7.x
+_AppleExecutableBinaryInfo = getattr(
+    apple_common,
+    "AppleExecutableBinary",
+    AppleExecutableBinaryInfo,
+)
 
 # TODO: Remove when we drop 7.x
 _AppleDynamicFrameworkInfo = getattr(
@@ -253,8 +261,8 @@ def process_product(
     else:
         framework_files = EMPTY_DEPSET
 
-    if target and apple_common.AppleExecutableBinary in target:
-        executable = target[apple_common.AppleExecutableBinary].binary
+    if target and _AppleExecutableBinaryInfo in target:
+        executable = target[_AppleExecutableBinaryInfo].binary
     else:
         executable = None
 

@@ -45,7 +45,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_pkg",
-    version = "0.9.1",
+    version = "1.0.1",
     dev_dependency = True,
 )
 bazel_dep(
@@ -55,27 +55,21 @@ bazel_dep(
     repo_name = "io_bazel_stardoc",
 )
 
-# To support Bazel 8 tests
+# Use newer versions of deps in development
 single_version_override(
-    module_name = "rules_swift",
-    version = "1.18.0",
+    module_name = "apple_support",
+    version = "1.17.1",
 )
 
 single_version_override(
-    module_name = "apple_support",
-    version = "1.15.1",
+    module_name = "rules_swift",
+    version = "2.3.0",
 )
 
 # Some of our deps are forcing a new stardoc on us, so pinning for now
 single_version_override(
     module_name = "stardoc",
     version = "0.6.1",
-)
-
-# For Stardoc
-single_version_override(
-    module_name = "bazel_skylib",
-    version = "1.6.0",
 )
 
 apple_cc_configure = use_extension(
