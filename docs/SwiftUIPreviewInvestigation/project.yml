@@ -31,7 +31,7 @@ settings:
   # Following properties will be override properties that you could find
   # into Build settings directory. We will rewrite some for all default variants
   # created by default for xcodegen, Debug and Release.
-  IPHONEOS_DEPLOYMENT_TARGET: "15.0"
+  IPHONEOS_DEPLOYMENT_TARGET: "17.4"
   MARKETING_VERSION: "1.0.0"
   CURRENT_PROJECT_VERSION: "1"
 
@@ -52,7 +52,7 @@ targets:
     type: application
     # choose destination platform
     platform: iOS
-    deploymentTarget: 15.0
+    deploymentTarget: 17.4
     sources:
       # Where app files will be found. Remember you could use patterns and exclusions too!
       - path: app/sources
@@ -61,7 +61,7 @@ targets:
       # Select the bundle identifier
       PRODUCT_BUNDLE_IDENTIFIER: "com.example.core"
       CC:
-          - "$(PROJECT_DIR)/Stubs/clang_shim.sh"
+         - "$(PROJECT_DIR)/Stubs/clang_shim.sh"
       CXX:
           - "$(PROJECT_DIR)/Stubs/clang_shim.sh"
       LD:
