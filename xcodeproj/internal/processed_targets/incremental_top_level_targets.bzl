@@ -439,6 +439,9 @@ def _process_focused_top_level_target(
             ),
         ]
 
+    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+    apple_fragment = ctx.fragments.apple
+
     (
         target_build_settings,
         swift_debug_settings_file,
@@ -472,6 +475,9 @@ def _process_focused_top_level_target(
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = provisioning_profile_props.team_id,
         tool = ctx.executable._target_build_settings_generator,
+        xcode_config = xcode_config,
+        apple_fragment = apple_fragment,
+        bin_dir_path = bin_dir_path,
     )
 
     xcode_product = product.xcode_product
@@ -756,6 +762,9 @@ def _process_unfocused_top_level_target(
         ],
     )
 
+    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+    apple_fragment = ctx.fragments.apple
+
     (
         _,
         swift_debug_settings_file,
@@ -774,6 +783,9 @@ def _process_unfocused_top_level_target(
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         tool = ctx.executable._target_build_settings_generator,
+        xcode_config = xcode_config,
+        apple_fragment = apple_fragment,
+        bin_dir_path = ctx.bin_dir.path,
     )
 
     xcode_product = slim_product.xcode_product

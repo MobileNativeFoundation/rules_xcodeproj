@@ -1,6 +1,7 @@
 """Actions for creating `PBXProj` partials."""
 
 load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")
+load("//xcodeproj/internal:execution_root.bzl", "write_execution_root_file")
 load(":collections.bzl", "uniq")
 load(
     ":memory_efficiency.bzl",
@@ -11,6 +12,7 @@ load(
     "TRUE_ARG",
 )
 load(":platforms.bzl", "PLATFORM_NAME")
+load("@build_bazel_apple_support//lib:apple_support.bzl", "apple_support")
 
 _UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
 
@@ -1092,6 +1094,9 @@ def _write_target_build_settings(
         swift_args,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
+        xcode_config,
+        apple_fragment,
+        bin_dir_path,
         tool):
     """Creates the `OTHER_SWIFT_FLAGS` build setting string file for a target.
 
@@ -1129,6 +1134,9 @@ def _write_target_build_settings(
         swift_debug_settings_to_merge: A `depset` of `Files` containing
             Swift debug settings from dependencies.
         team_id: The team ID to use for code signing.
+        xcode_config: `apple_common.XcodeVersionConfig` providerfound in ccontext
+        apple_fragment: A reference to the apple fragment `ctx.fragments.apple`.
+        bin_dir_path: `ctx.bin_dir.path`
         tool: The executable that will generate the output files.
 
     Returns:
@@ -1146,6 +1154,12 @@ def _write_target_build_settings(
 
     outputs = []
     params = []
+
+    execution_root_file = write_execution_root_file(
+        actions = actions,
+        bin_dir_path = bin_dir_path,
+        name = name,
+    )
 
     args = actions.args()
 
@@ -1185,15 +1199,17 @@ def _write_target_build_settings(
             terminate_with = "",
         )
 
-        inputs = swift_debug_settings_to_merge
+        inputs = depset(transitive = [swift_debug_settings_to_merge, depset([execution_root_file])])
     else:
         debug_settings_output = None
 
         # swiftDebugSettingsOutputPath
         args.add("")
+        inputs = [execution_root_file]
 
-        inputs = []
-
+    # executionRootFilePath
+    args.add(execution_root_file)
+        
     # deviceFamily
     args.add(device_family)
 
@@ -1263,7 +1279,10 @@ def _write_target_build_settings(
         # cxxParams
         cxx_output_args.add(cxx_params)
 
-    actions.run(
+    apple_support.run(
+        actions = actions,
+        xcode_config = xcode_config,
+        apple_fragment = apple_fragment,
         arguments = (
             [args] + swift_args + [c_output_args] + conly_args +
             [cxx_output_args] + cxx_args

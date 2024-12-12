@@ -48,13 +48,16 @@ struct Generator {
             transitiveSwiftDebugSettingPaths = []
         }
 
+        let executionRootFilePath = try rawArguments.consumeArg("execution-root-file-path", as: URL?.self)
+
         let (buildSettings, clangArgs, frameworkIncludes, swiftIncludes) =
             try await environment.processArgs(
                 rawArguments: rawArguments,
                 generateBuildSettings: buildSettingsOutputPath != nil,
                 includeSelfSwiftDebugSettings: includeSelfSwiftDebugSettings,
                 transitiveSwiftDebugSettingPaths:
-                    transitiveSwiftDebugSettingPaths
+                    transitiveSwiftDebugSettingPaths,
+                executionRootFilePath: executionRootFilePath
             )
 
         let writeBuildSettingsTask = Task {
