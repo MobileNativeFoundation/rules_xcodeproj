@@ -9,7 +9,7 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/Lib/Lib_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h"
         },
@@ -20,6 +20,7 @@
             ]
         },
         "l": "@@//Lib:Lib_swift",
+        "m": true,
         "n": "Lib_swift",
         "o": {
             "s": {
@@ -51,6 +52,7 @@
         "n": "Lib",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib-modulemap/Lib-umbrella.h",
                 "m": "bazel-out/CONFIGURATION-STABLE-1/bin/Lib/Lib.swiftmodule"
             }
         },
@@ -72,7 +74,7 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/UI/UI_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
         },
@@ -83,6 +85,7 @@
             ]
         },
         "l": "@@//UI:UI_swift",
+        "m": true,
         "n": "UI_swift",
         "o": {
             "s": {
@@ -119,6 +122,7 @@
         "n": "UI",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.extended.modulemap",
                 "m": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.swiftmodule"
             }
         },
@@ -143,7 +147,7 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -154,6 +158,7 @@
             ]
         },
         "l": "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift",
+        "m": true,
         "n": "MixedAnswer_swift",
         "o": {
             "s": {
@@ -191,7 +196,7 @@
         "n": "MixedAnswer_objc",
         "p": {
             "n": "MixedAnswer_objc",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_objc.a",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_objc.lo",
             "t": "com.apple.product-type.library.static"
         }
     },
@@ -212,6 +217,7 @@
         "n": "MixedAnswer",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_angle_bracket_hmap.hmap",
                 "m": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule"
             }
         },
@@ -247,34 +253,11 @@
         "n": "CoreUtilsObjC_objc",
         "p": {
             "n": "CoreUtilsObjC_objc",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.a",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.lo",
             "t": "com.apple.product-type.library.static"
         }
     },
-    "@@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC CONFIGURATION-STABLE-1",
-    {
-        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-        "2": {
-            "a": "x86_64",
-            "m": "15.0",
-            "v": "iphonesimulator"
-        },
-        "b": {
-            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
-            "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
-        },
-        "c": "CONFIGURATION-STABLE-1",
-        "l": "@@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
-        "n": "CoreUtilsObjC",
-        "p": {
-            "e": "CoreUtils",
-            "m": "CoreUtils",
-            "n": "CoreUtils",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework",
-            "t": "com.apple.product-type.framework.static"
-        }
-    },
-    "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
+    "@@//iOSApp/Source:iOSApp.library_swift CONFIGURATION-STABLE-1",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params",
         "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source",
@@ -283,19 +266,8 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Source:iOSApp.library_swift CONFIGURATION-STABLE-1",
-                "n": "iOSApp.library_swift"
-            }
-        ],
-        "5": {
-            "d": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
-            ]
-        },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
@@ -305,8 +277,9 @@
                 "iOSApp/Source/iOSApp.swift"
             ]
         },
-        "l": "@@//iOSApp/Source:iOSApp.library",
-        "n": "iOSApp.library",
+        "l": "@@//iOSApp/Source:iOSApp.library_swift",
+        "m": true,
+        "n": "iOSApp.library_swift",
         "o": {
             "s": {
                 "h": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp-Swift.h",
@@ -314,9 +287,38 @@
             }
         },
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/libiOSApp.library_swift.a"
-            ],
+            "m": "iOSApp",
+            "n": "iOSApp.library_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/libiOSApp.library_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
+            ]
+        },
+        "b": {
+            "PRODUCT_MODULE_NAME": "iOSApp_Source_iOSApp_library"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "l": "@@//iOSApp/Source:iOSApp.library",
+        "n": "iOSApp.library",
+        "o": {
+            "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/UI/UI.extended.modulemap",
+                "m": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/iOSApp.swiftmodule"
+            }
+        },
+        "p": {
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
@@ -340,7 +342,7 @@
             }
         ],
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
@@ -352,6 +354,7 @@
             ]
         },
         "l": "@@//WidgetExtension:WidgetExtension.library",
+        "m": true,
         "n": "WidgetExtension.library",
         "o": {
             "s": {
@@ -490,56 +493,7 @@
             "t": "com.apple.product-type.framework"
         }
     },
-    "@@//iOSApp/Source/Utils:Utils_objc CONFIGURATION-STABLE-1",
-    {
-        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils",
-        "2": {
-            "a": "x86_64",
-            "m": "15.0",
-            "v": "iphonesimulator"
-        },
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils_objc.rules_xcodeproj.c.compile.params",
-        "b": {
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
-        },
-        "c": "CONFIGURATION-STABLE-1",
-        "f": true,
-        "i": {
-            "s": [
-                "iOSApp/Source/Utils/Foo.m"
-            ]
-        },
-        "l": "@@//iOSApp/Source/Utils:Utils_objc",
-        "n": "Utils_objc",
-        "p": {
-            "n": "Utils_objc",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/libUtils_objc.a",
-            "t": "com.apple.product-type.library.static"
-        }
-    },
-    "@@//iOSApp/Source/Utils:Utils CONFIGURATION-STABLE-1",
-    {
-        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils",
-        "2": {
-            "a": "x86_64",
-            "m": "15.0",
-            "v": "iphonesimulator"
-        },
-        "b": {
-            "PRODUCT_MODULE_NAME": "iOSApp_Source_Utils_Utils"
-        },
-        "c": "CONFIGURATION-STABLE-1",
-        "l": "@@//iOSApp/Source/Utils:Utils",
-        "n": "Utils",
-        "p": {
-            "e": "Utils",
-            "m": "Utils",
-            "n": "Utils",
-            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils.framework",
-            "t": "com.apple.product-type.framework.static"
-        }
-    },
-    "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1",
+    "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_swift CONFIGURATION-STABLE-1",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params",
         "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests",
@@ -548,16 +502,67 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_swift CONFIGURATION-STABLE-1",
-                "n": "iOSAppMixedUnitTests_swift"
-            },
-            {
-                "i": "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppMixedUnitTests_objc"
+        "b": {
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -F$(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "iOSAppMixedUnitTests",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSAppMixedUnitTests-Swift.h"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "i": {
+            "s": [
+                "iOSApp/Test/MixedUnitTests/SwiftUnitTests.swift"
+            ]
+        },
+        "l": "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_swift",
+        "n": "iOSAppMixedUnitTests_swift",
+        "o": {
+            "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests-Swift.h",
+                "m": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.swiftmodule"
             }
-        ],
+        },
+        "p": {
+            "m": "iOSAppMixedUnitTests",
+            "n": "iOSAppMixedUnitTests_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/MixedUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests_objc",
+        "n": "iOSAppMixedUnitTests_objc",
+        "p": {
+            "n": "iOSAppMixedUnitTests_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_objc.lo",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
@@ -570,53 +575,54 @@
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle_archive-root/iOSAppMixedUnitTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppMixedUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/rules_xcodeproj/iOSAppMixedUnitTests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -F$(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -F -Xcc $(SRCROOT)/iOSApp/Source/Vendored/VendoredFramework.xcframework/ios-arm64_x86_64-simulator -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-3/bin/iOSApp/Source/VendoredFramework-import-VendoredFramework.xcframework-ios-arm64_x86_64-simulator.swift.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
-            "PREVIEWS_SWIFT_INCLUDE__": "",
-            "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.mixedtests",
-            "PRODUCT_MODULE_NAME": "iOSAppMixedUnitTests",
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSAppMixedUnitTests-Swift.h",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "CONFIGURATION-STABLE-1",
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/MixedUnitTests/SwiftUnitTests.swift",
-                "iOSApp/Test/MixedUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests",
-        "m": true,
         "n": "iOSAppMixedUnitTests",
-        "o": {
-            "s": {
-                "h": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests-Swift.h",
-                "m": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.swiftmodule"
-            }
-        },
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_swift.a",
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_objc.a"
-            ],
             "e": "iOSAppMixedUnitTests",
             "m": "iOSAppMixedUnitTests",
             "n": "iOSAppMixedUnitTests",
             "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle_archive-root/iOSAppMixedUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
+        }
+    },
+    "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc",
+        "n": "iOSAppObjCUnitTests_objc",
+        "p": {
+            "n": "iOSAppObjCUnitTests_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_objc.lo",
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle CONFIGURATION-STABLE-1",
@@ -627,30 +633,22 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppObjCUnitTests_objc"
-            }
-        ],
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.17.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.18.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOS_App_ObjC_UnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
@@ -659,19 +657,10 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
         "n": "iOSAppObjCUnitTests",
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_objc.a"
-            ],
             "e": "iOS_App_ObjC_UnitTests",
             "m": "iOS_App_ObjC_UnitTests",
             "n": "iOS_App_ObjC_UnitTests",
@@ -692,6 +681,10 @@
             {
                 "i": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests_swift CONFIGURATION-STABLE-1",
                 "n": "iOSAppSwiftUnitTests_swift"
+            },
+            {
+                "i": "@@//iOSApp/Source/Utils:Utils_objc CONFIGURATION-STABLE-1",
+                "n": "Utils_objc"
             }
         ],
         "5": {
@@ -700,16 +693,18 @@
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.18.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.19.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -724,10 +719,12 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
+        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
         "i": {
             "s": [
-                "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift"
+                "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift",
+                "iOSApp/Source/Utils/Foo.m"
             ]
         },
         "l": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
@@ -740,13 +737,41 @@
         },
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTests_swift.a"
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTests_swift.a",
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/libUtils_objc.lo"
             ],
             "e": "iOSAppSwiftUnitTests",
             "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
             "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
+        }
+    },
+    "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_objc",
+        "n": "iOSAppObjCUnitTestSuite_objc",
+        "p": {
+            "n": "iOSAppObjCUnitTestSuite_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite_objc.lo",
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle CONFIGURATION-STABLE-1",
@@ -757,30 +782,22 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppObjCUnitTestSuite_objc"
-            }
-        ],
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.19.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.21.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
@@ -789,19 +806,10 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
         "n": "iOSAppObjCUnitTestSuite",
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite_objc.a"
-            ],
             "e": "iOSAppObjCUnitTestSuite",
             "m": "iOSAppObjCUnitTestSuite",
             "n": "iOSAppObjCUnitTestSuite",
@@ -822,6 +830,10 @@
             {
                 "i": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite_swift CONFIGURATION-STABLE-1",
                 "n": "iOSAppSwiftUnitTestSuite_swift"
+            },
+            {
+                "i": "@@//iOSApp/Source/Utils:Utils_objc CONFIGURATION-STABLE-1",
+                "n": "Utils_objc"
             }
         ],
         "5": {
@@ -830,16 +842,18 @@
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.20.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.22.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/Utils_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
@@ -854,10 +868,12 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
+        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
         "i": {
             "s": [
-                "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift"
+                "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift",
+                "iOSApp/Source/Utils/Foo.m"
             ]
         },
         "l": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
@@ -870,7 +886,8 @@
         },
         "p": {
             "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTestSuite_swift.a"
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTestSuite_swift.a",
+                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Source/Utils/libUtils_objc.lo"
             ],
             "e": "iOSAppSwiftUnitTestSuite",
             "m": "iOSAppSwiftUnitTestSuite",
@@ -894,7 +911,7 @@
                 "n": "iOSAppUITestSuite_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.21.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.23.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite.xctest",
@@ -936,6 +953,33 @@
             "t": "com.apple.product-type.bundle.ui-testing"
         }
     },
+    "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_objc",
+        "n": "iOSAppObjCUnitTests_macro_objc",
+        "p": {
+            "n": "iOSAppObjCUnitTests_macro_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_macro_objc.lo",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1",
     {
         "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
@@ -944,30 +988,22 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppObjCUnitTests_macro_objc"
-            }
-        ],
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.22.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.25.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests_macro.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests_macro.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
@@ -976,24 +1012,42 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro",
         "n": "iOSAppObjCUnitTests_macro",
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_macro_objc.a"
-            ],
             "e": "iOSAppObjCUnitTests_macro",
             "m": "iOSAppObjCUnitTests_macro",
             "n": "iOSAppObjCUnitTests_macro",
             "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests_macro.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
+        }
+    },
+    "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name_objc",
+        "n": "iOSAppObjCUnitTests_macro_with_bundle_name_objc",
+        "p": {
+            "n": "iOSAppObjCUnitTests_macro_with_bundle_name_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_macro_with_bundle_name_objc.lo",
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle CONFIGURATION-STABLE-1",
@@ -1004,30 +1058,22 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppObjCUnitTests_macro_with_bundle_name_objc"
-            }
-        ],
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.27.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
@@ -1036,24 +1082,42 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name",
         "n": "iOSAppObjCUnitTests_macro_with_bundle_name",
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_macro_with_bundle_name_objc.a"
-            ],
             "e": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
             "m": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
             "n": "iOS_App_ObjC_UnitTests_macro_with_bundle_name",
             "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
+        }
+    },
+    "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro_objc CONFIGURATION-STABLE-1",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "v": "iphonesimulator"
+        },
+        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params",
+        "b": {
+            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch"
+        },
+        "c": "CONFIGURATION-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
+            ]
+        },
+        "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro_objc",
+        "n": "iOSAppObjCUnitTestSuite_macro_objc",
+        "p": {
+            "n": "iOSAppObjCUnitTestSuite_macro_objc",
+            "p": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite_macro_objc.lo",
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle CONFIGURATION-STABLE-1",
@@ -1064,30 +1128,22 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro_objc CONFIGURATION-STABLE-1",
-                "n": "iOSAppObjCUnitTestSuite_macro_objc"
-            }
-        ],
         "5": {
             "d": [
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework",
                 "bazel-out/CONFIGURATION-STABLE-1/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.24.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.29.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-1",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-1",
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "8": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite_macro.xctest",
             "CODE_SIGN_STYLE": "Manual",
-            "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/rules_ios~/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
@@ -1096,19 +1152,10 @@
         "d": [
             "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1"
         ],
-        "f": true,
         "h": "@@//iOSApp/Source:iOSApp CONFIGURATION-STABLE-1",
-        "i": {
-            "s": [
-                "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
-            ]
-        },
         "l": "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro",
         "n": "iOSAppObjCUnitTestSuite_macro",
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite_macro_objc.a"
-            ],
             "e": "iOSAppObjCUnitTestSuite_macro",
             "m": "iOSAppObjCUnitTestSuite_macro",
             "n": "iOSAppObjCUnitTestSuite_macro",
@@ -1131,7 +1178,7 @@
                 "n": "iOSAppUITests_macro_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests_macro.25.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests_macro.30.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle_archive-root/iOSAppUITests_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITests_macro.xctest",
@@ -1188,7 +1235,7 @@
                 "n": "iOSAppUITestSuite_macro_swift"
             }
         ],
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite_macro.26.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite_macro.31.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppUITestSuite_macro.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppUITestSuite_macro.xctest",
@@ -1240,7 +1287,7 @@
             "v": "iphoneos"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h"
         },
@@ -1251,6 +1298,7 @@
             ]
         },
         "l": "@@//Lib:Lib_swift",
+        "m": true,
         "n": "Lib_swift",
         "o": {
             "s": {
@@ -1282,6 +1330,7 @@
         "n": "Lib",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap",
                 "m": "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib.swiftmodule"
             }
         },
@@ -1303,7 +1352,7 @@
             "v": "iphoneos"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/UI/UI_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
         },
@@ -1314,6 +1363,7 @@
             ]
         },
         "l": "@@//UI:UI_swift",
+        "m": true,
         "n": "UI_swift",
         "o": {
             "s": {
@@ -1336,7 +1386,7 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.30.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UI.35.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.framework",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "UI.framework",
@@ -1350,6 +1400,7 @@
         "n": "UI",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/Lib_public_hmap.hmap",
                 "m": "bazel-out/CONFIGURATION-STABLE-2/bin/UI/UI.swiftmodule"
             }
         },
@@ -1374,7 +1425,7 @@
             "v": "iphoneos"
         },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -1385,6 +1436,7 @@
             ]
         },
         "l": "@@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift",
+        "m": true,
         "n": "MixedAnswer_swift",
         "o": {
             "s": {
@@ -1422,7 +1474,7 @@
         "n": "MixedAnswer_objc",
         "p": {
             "n": "MixedAnswer_objc",
-            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_objc.a",
+            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_objc.lo",
             "t": "com.apple.product-type.library.static"
         }
     },
@@ -1443,6 +1495,7 @@
         "n": "MixedAnswer",
         "o": {
             "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-modulemap/MixedAnswer-umbrella.h",
                 "m": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule"
             }
         },
@@ -1478,34 +1531,11 @@
         "n": "CoreUtilsObjC_objc",
         "p": {
             "n": "CoreUtilsObjC_objc",
-            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.a",
+            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.lo",
             "t": "com.apple.product-type.library.static"
         }
     },
-    "@@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC CONFIGURATION-STABLE-2",
-    {
-        "1": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC",
-        "2": {
-            "a": "arm64",
-            "m": "15.0",
-            "v": "iphoneos"
-        },
-        "b": {
-            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
-            "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
-        },
-        "c": "CONFIGURATION-STABLE-2",
-        "l": "@@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
-        "n": "CoreUtilsObjC",
-        "p": {
-            "e": "CoreUtils",
-            "m": "CoreUtils",
-            "n": "CoreUtils",
-            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtils.framework",
-            "t": "com.apple.product-type.framework.static"
-        }
-    },
-    "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-2",
+    "@@//iOSApp/Source:iOSApp.library_swift CONFIGURATION-STABLE-2",
     {
         "0": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params",
         "1": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source",
@@ -1514,19 +1544,8 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": [
-            {
-                "i": "@@//iOSApp/Source:iOSApp.library_swift CONFIGURATION-STABLE-2",
-                "n": "iOSApp.library_swift"
-            }
-        ],
-        "5": {
-            "d": [
-                "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
-            ]
-        },
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
@@ -1536,8 +1555,9 @@
                 "iOSApp/Source/iOSApp.swift"
             ]
         },
-        "l": "@@//iOSApp/Source:iOSApp.library",
-        "n": "iOSApp.library",
+        "l": "@@//iOSApp/Source:iOSApp.library_swift",
+        "m": true,
+        "n": "iOSApp.library_swift",
         "o": {
             "s": {
                 "h": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp-Swift.h",
@@ -1545,9 +1565,38 @@
             }
         },
         "p": {
-            "a": [
-                "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/libiOSApp.library_swift.a"
-            ],
+            "m": "iOSApp",
+            "n": "iOSApp.library_swift",
+            "p": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/libiOSApp.library_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//iOSApp/Source:iOSApp.library CONFIGURATION-STABLE-2",
+    {
+        "1": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "v": "iphoneos"
+        },
+        "5": {
+            "d": [
+                "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
+            ]
+        },
+        "b": {
+            "PRODUCT_MODULE_NAME": "iOSApp_Source_iOSApp_library"
+        },
+        "c": "CONFIGURATION-STABLE-2",
+        "l": "@@//iOSApp/Source:iOSApp.library",
+        "n": "iOSApp.library",
+        "o": {
+            "s": {
+                "h": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift_vfs.yaml",
+                "m": "bazel-out/CONFIGURATION-STABLE-2/bin/iOSApp/Source/iOSApp.swiftmodule"
+            }
+        },
+        "p": {
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
@@ -1571,7 +1620,7 @@
             }
         ],
         "b": {
-            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap_modulemap/_/module.modulemap -Xfrontend -vfsoverlay$(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift_vfs.yaml -Xcc -F -Xcc /build_bazel_rules_ios/frameworks -Xcc -I -Xcc $(BAZEL_OUT)/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.library_public_hmap.hmap -Xcc -D__SWIFTC__ -Xcc -I -Xcc $(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
@@ -1583,6 +1632,7 @@
             ]
         },
         "l": "@@//WidgetExtension:WidgetExtension.library",
+        "m": true,
         "n": "WidgetExtension.library",
         "o": {
             "s": {
@@ -1609,7 +1659,7 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.38.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.43.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/WidgetExtension/WidgetExtension.appex",
@@ -1650,7 +1700,7 @@
                 "bazel-out/CONFIGURATION-STABLE-2/bin/UI/frameworks/UI.framework"
             ]
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.39.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.44.link.params",
         "7": [
             "@@//UI:UI CONFIGURATION-STABLE-2",
             "@@//WidgetExtension:WidgetExtension CONFIGURATION-STABLE-2"
@@ -1700,7 +1750,7 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.40.link.params",
+        "6": "bazel-out/CONFIGURATION-STABLE-0/bin/external/rules_xcodeproj~~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.45.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/CONFIGURATION-STABLE-2/bin/Lib/LibDynamic_archive-root/Lib.framework",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "Lib.framework",
