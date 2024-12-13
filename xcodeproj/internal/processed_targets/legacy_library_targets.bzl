@@ -1,5 +1,6 @@
 """Functions for processing library targets."""
 
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:collections.bzl", "set_if_true")
@@ -34,6 +35,13 @@ load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
     ":legacy_processed_targets.bzl",
     processed_targets = "legacy_processed_targets",
+)
+
+# TODO: Remove when we drop 7.x
+_AppleDebugOutputsInfo = getattr(
+    apple_common,
+    "AppleDebugOutputs",
+    AppleDebugOutputsInfo,
 )
 
 def _process_legacy_library_target(
@@ -133,8 +141,17 @@ def _process_legacy_library_target(
         modulemaps = modulemaps,
         transitive_infos = transitive_infos,
     )
-    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
-    output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
+
+    if _AppleDebugOutputsInfo in target:
+        debug_outputs = target[_AppleDebugOutputsInfo]
+    else:
+        debug_outputs = None
+
+    if OutputGroupInfo in target:
+        output_group_info = target[OutputGroupInfo]
+    else:
+        output_group_info = None
+
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
         debug_outputs = debug_outputs,
