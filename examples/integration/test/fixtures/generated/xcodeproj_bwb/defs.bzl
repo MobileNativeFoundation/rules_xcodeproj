@@ -2,19 +2,19 @@
 
 # buildifier: disable=bzl-visibility
 load(
-    "@@rules_xcodeproj~//xcodeproj/internal:xcodeproj_factory.bzl",
+    "@@rules_xcodeproj+//xcodeproj/internal:xcodeproj_factory.bzl",
     "xcodeproj_factory",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@@rules_xcodeproj~//xcodeproj/internal:xcodeproj_transitions.bzl",
+    "@@rules_xcodeproj+//xcodeproj/internal:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@@rules_xcodeproj~//xcodeproj/internal:fixtures.bzl",
+    "@@rules_xcodeproj+//xcodeproj/internal:fixtures.bzl",
     "fixtures_transition",
 )
 

@@ -3,6 +3,9 @@ import %workspace%/../../shared.bazelrc
 
 build --experimental_cc_implementation_deps
 
+# Until we fix our examples for Bazel 8
+common --enable_workspace
+
 # Exercise the extra flags feature
 
 build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
