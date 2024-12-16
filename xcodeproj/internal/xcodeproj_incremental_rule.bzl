@@ -219,7 +219,7 @@ def _write_autogeneration_config_file(
     args = actions.args()
     args.set_param_file_format("multiline")
 
-    args.add_all(config.get("test_options", ["", ""]))
+    args.add_all(config.get("test_options", ["", "", False]))
     args.add_all(
         config.get("scheme_name_exclude_patterns", []),
         omit_if_empty = False,
