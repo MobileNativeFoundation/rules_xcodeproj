@@ -531,7 +531,7 @@ def _profile_info_from_dict(
         top_level_deps):
     if profile == "same_as_run":
         return _make_profile(
-            build_targets = run.build_targets,
+            build_targets = [_make_build_target(t.id) for t in run.build_targets],
             launch_target = _make_same_as_run_launch_target(
                 run.launch_target,
             ),
