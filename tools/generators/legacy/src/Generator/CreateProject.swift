@@ -137,8 +137,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool",
-                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
-                "SWIFT_USE_INTEGRATED_DRIVER": false,
                 "TAPI_EXEC": "/usr/bin/true",
             ], uniquingKeysWith: { _, r in r })
         } else {
