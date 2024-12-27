@@ -33,7 +33,7 @@ func processArgs(
 
         if arg == "-wmo" || arg == "-whole-module-optimization" {
             isWMO = true
-        } else if arg.hasSuffix(".preview-thunk.swift") {
+        } else if arg.hasSuffix("usr/lib/swift/host/plugins") || arg.hasSuffix(".preview-thunk.swift") {
             isPreviewThunk = true
         } else {
             previousArg = arg
@@ -57,7 +57,7 @@ func processArgs(
     }
 
     return (
-        !paths.keys.contains(.outputFileMap) && isPreviewThunk,
+        isPreviewThunk,
         isWMO,
         paths
     )
