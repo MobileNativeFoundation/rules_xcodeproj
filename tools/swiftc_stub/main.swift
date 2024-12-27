@@ -117,11 +117,14 @@ func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
             .appendingPathExtension("swiftsourceinfo")
         var swiftinterfacePath = swiftmodulePath.deletingPathExtension()
             .appendingPathExtension("swiftinterface")
+        var swiftconstvaluesPath = swiftmodulePath.deletingPathExtension()
+            .appendingPathExtension("swiftconstvalues")
 
         try swiftmodulePath.touch()
         try swiftdocPath.touch()
         try swiftsourceinfoPath.touch()
         try swiftinterfacePath.touch()
+        try swiftconstvaluesPath.touch()
     }
 
     if var generatedHeaderPath = paths[PathKey.emitObjCHeaderPath] {
