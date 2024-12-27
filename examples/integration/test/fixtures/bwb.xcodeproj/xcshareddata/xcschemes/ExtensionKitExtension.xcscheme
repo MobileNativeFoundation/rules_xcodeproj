@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
+   wasCreatedForAppExtension = "YES"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +15,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-                     BuildableName = "iOSApp.app"
-                     BlueprintName = "iOSApp"
+                     BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+                     BuildableName = "ExtensionKitExtension.appex"
+                     BlueprintName = "ExtensionKitExtension"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -30,9 +31,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-                     BuildableName = "iOSApp.app"
-                     BlueprintName = "iOSApp"
+                     BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+                     BuildableName = "ExtensionKitExtension.appex"
+                     BlueprintName = "ExtensionKitExtension"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -40,48 +41,6 @@
          </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-               BuildableName = "iOSApp.app"
-               BlueprintName = "iOSApp"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13A68B4984727F4B3DAE6AFB"
-               BuildableName = "AppClip.app"
-               BlueprintName = "AppClip"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
-               BuildableName = "CoreUtilsObjC.framework"
-               BlueprintName = "CoreUtilsObjC"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -104,23 +63,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4CFF47C3FBF2E6C24127D667"
-               BuildableName = "UIFramework.iOS.framework"
-               BlueprintName = "UIFramework.iOS"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06E3C912B8DE52D274641347"
-               BuildableName = "WidgetExtension.appex"
-               BlueprintName = "WidgetExtension"
+               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
+               BuildableName = "iOSApp.app"
+               BlueprintName = "iOSApp"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -136,14 +81,15 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
@@ -153,9 +99,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-                     BuildableName = "iOSApp.app"
-                     BlueprintName = "iOSApp"
+                     BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+                     BuildableName = "ExtensionKitExtension.appex"
+                     BlueprintName = "ExtensionKitExtension"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -166,12 +112,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+            BuildableName = "ExtensionKitExtension.appex"
+            BlueprintName = "ExtensionKitExtension"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "1765D91CC168F25A5BC51603"
             BuildableName = "iOSApp.app"
             BlueprintName = "iOSApp"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
@@ -200,9 +155,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-                     BuildableName = "iOSApp.app"
-                     BlueprintName = "iOSApp"
+                     BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+                     BuildableName = "ExtensionKitExtension.appex"
+                     BlueprintName = "ExtensionKitExtension"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -213,12 +168,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CA9E047F313BBFD3127309AC"
+            BuildableName = "ExtensionKitExtension.appex"
+            BlueprintName = "ExtensionKitExtension"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "1765D91CC168F25A5BC51603"
             BuildableName = "iOSApp.app"
             BlueprintName = "iOSApp"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -64,7 +64,8 @@ def _legacy_get_unprocessed_cc_compiler_opts(
     if is_objc:
         objc = ctx.fragments.objc
         user_copts = (
-            objc.copts +
+            # TODO: Remove when we drop 7.x
+            getattr(objc, "copts", []) +
             user_copts +
             objc.copts_for_current_compilation_mode
         )
