@@ -6,6 +6,7 @@ enum PathKey: String {
     case emitModulePath = "-emit-module-path"
     case emitObjCHeaderPath = "-emit-objc-header-path"
     case outputFileMap = "-output-file-map"
+    case supplementaryOutputFileMap = "-supplementary-output-file-map"
     case sdk = "-sdk"
 }
 
@@ -144,6 +145,20 @@ func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Ne
             stderr
         )
         exit(1)
+    }
+
+    if let outputFileMapURL = paths[.supplementaryOutputFileMap] {
+        let data = try! Data(contentsOf: outputFileMapURL)
+        let constValuesURL = String(data: data, encoding: .utf8)!
+            .components(separatedBy: .newlines)
+            .dropFirst()
+            .first { $0.contains("const-values") }!
+            .components(separatedBy: "\"")[1]
+
+        var attributes = try FileManager.default.attributesOfItem(atPath: constValuesURL)
+        let permissions: Int = 0o755 // rwxr-xr-x
+        attributes[.posixPermissions] = permissions
+        try FileManager.default.setAttributes(attributes, ofItemAtPath: constValuesURL)
     }
 
     // TODO: Make this work with custom toolchains
