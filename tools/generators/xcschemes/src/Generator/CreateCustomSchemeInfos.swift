@@ -639,6 +639,11 @@ set
             as: String?.self,
             in: url
         )
+        let codeCoverage = try consumeArg(
+            "test-code-coverage",
+            as: Bool.self,
+            in: url
+        )
         let xcodeConfiguration = try consumeArg(
             "test-xcode-configuration",
             as: String?.self,
@@ -719,7 +724,8 @@ set
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             options: .init(appLanguage: appLanguage,
-                           appRegion: appRegion),
+                           appRegion: appRegion,
+                           codeCoverage: codeCoverage),
             testTargets: testTargets,
             useRunArgsAndEnv: useRunArgsAndEnv,
             xcodeConfiguration: xcodeConfiguration
