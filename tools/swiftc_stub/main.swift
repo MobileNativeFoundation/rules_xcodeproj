@@ -6,6 +6,7 @@ enum PathKey: String {
     case emitModulePath = "-emit-module-path"
     case emitObjCHeaderPath = "-emit-objc-header-path"
     case outputFileMap = "-output-file-map"
+    case supplementaryOutputFileMap = "-supplementary-output-file-map"
     case sdk = "-sdk"
 }
 
@@ -32,7 +33,7 @@ func processArgs(
 
         if arg == "-wmo" || arg == "-whole-module-optimization" {
             isWMO = true
-        } else if arg.hasSuffix(".preview-thunk.swift") {
+        } else if arg.hasSuffix("usr/lib/swift/host/plugins") || arg.hasSuffix(".preview-thunk.swift") {
             isPreviewThunk = true
         } else {
             previousArg = arg
@@ -56,7 +57,7 @@ func processArgs(
     }
 
     return (
-        !paths.keys.contains(.outputFileMap) && isPreviewThunk,
+        isPreviewThunk,
         isWMO,
         paths
     )
@@ -116,11 +117,14 @@ func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
             .appendingPathExtension("swiftsourceinfo")
         var swiftinterfacePath = swiftmodulePath.deletingPathExtension()
             .appendingPathExtension("swiftinterface")
+        var swiftconstvaluesPath = swiftmodulePath.deletingPathExtension()
+            .appendingPathExtension("swiftconstvalues")
 
         try swiftmodulePath.touch()
         try swiftdocPath.touch()
         try swiftsourceinfoPath.touch()
         try swiftinterfacePath.touch()
+        try swiftconstvaluesPath.touch()
     }
 
     if var generatedHeaderPath = paths[PathKey.emitObjCHeaderPath] {
@@ -144,6 +148,20 @@ func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Ne
             stderr
         )
         exit(1)
+    }
+
+    if let outputFileMapURL = paths[.supplementaryOutputFileMap] {
+        let data = try! Data(contentsOf: outputFileMapURL)
+        let constValuesURL = String(data: data, encoding: .utf8)!
+            .components(separatedBy: .newlines)
+            .dropFirst()
+            .first { $0.contains("const-values") }!
+            .components(separatedBy: "\"")[1]
+
+        var attributes = try FileManager.default.attributesOfItem(atPath: constValuesURL)
+        let permissions: Int = 0o755 // rwxr-xr-x
+        attributes[.posixPermissions] = permissions
+        try FileManager.default.setAttributes(attributes, ofItemAtPath: constValuesURL)
     }
 
     // TODO: Make this work with custom toolchains
