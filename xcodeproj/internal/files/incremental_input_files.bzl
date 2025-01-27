@@ -262,8 +262,8 @@ def _collect_incremental_input_files(
         avoid_deps: A `list` of the targets that already consumed resources, and
             their resources shouldn't be bundled with the target.
         framework_files: A `depset` of framework files from
-            `AppleDynamicFramework.framework_files`, if the target has the
-            `AppleDynamicFramework` provider.
+            `AppleDynamicFrameworkInfo.framework_files`, if the target has the
+            `AppleDynamicFrameworkInfo` provider.
         focused_labels: A `depset` of label strings of focused targets. This
             will include the current target (if focused) and any focused
             dependencies of the current target. This is only set for top-level
@@ -955,8 +955,8 @@ def _merge_top_level_input_files(
             will include the current target (if focused) and any focused
             dependencies of the current target.
         framework_files: A `depset` of framework files from
-            `AppleDynamicFramework.framework_files`, if the target has the
-            `AppleDynamicFramework` provider.
+            `AppleDynamicFrameworkInfo.framework_files`, if the target has the
+            `AppleDynamicFrameworkInfo` provider.
         platform: A value from `platforms.collect`.
         resource_info: The `AppleResourceInfo` provider for the target if it is
             resource bundle consuming.

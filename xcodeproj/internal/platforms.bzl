@@ -1,64 +1,81 @@
 """Module for dealing with Apple platform information."""
 
-PLATFORM_NAME = {
-    apple_common.platform.ios_device: "iphoneos",
-    apple_common.platform.ios_simulator: "iphonesimulator",
-    apple_common.platform.macos: "macosx",
-    apple_common.platform.tvos_device: "appletvos",
-    apple_common.platform.tvos_simulator: "appletvsimulator",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xrsimulator",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchsimulator",
-}
+# TODO: Remove this once we drop 7.x
+def _legacy_apple_platform_starlark_name(platform):
+    return platform
+
+def _modern_apple_platform_starlark_name(platform):
+    return platform.name
+
+_apple_platform_starlark_name = _modern_apple_platform_starlark_name if hasattr(apple_common.platform.ios_device, "name") else _legacy_apple_platform_starlark_name
 
 _IS_SIMULATOR = {
-    apple_common.platform.ios_device: False,
-    apple_common.platform.ios_simulator: True,
-    apple_common.platform.macos: False,
-    apple_common.platform.tvos_device: False,
-    apple_common.platform.tvos_simulator: True,
-    apple_common.platform.visionos_device: False,
-    apple_common.platform.visionos_simulator: True,
-    apple_common.platform.watchos_device: False,
-    apple_common.platform.watchos_simulator: True,
+    _apple_platform_starlark_name(apple_common.platform.ios_device): False,
+    _apple_platform_starlark_name(apple_common.platform.ios_simulator): True,
+    _apple_platform_starlark_name(apple_common.platform.macos): False,
+    _apple_platform_starlark_name(apple_common.platform.tvos_device): False,
+    _apple_platform_starlark_name(apple_common.platform.tvos_simulator): True,
+    _apple_platform_starlark_name(apple_common.platform.visionos_device): False,
+    _apple_platform_starlark_name(apple_common.platform.visionos_simulator): True,
+    _apple_platform_starlark_name(apple_common.platform.watchos_device): False,
+    _apple_platform_starlark_name(apple_common.platform.watchos_simulator): True,
 }
 
 _LLDB_TRIPLE_PREFIX = {
-    apple_common.platform.ios_device: "ios",
-    apple_common.platform.ios_simulator: "ios",
-    apple_common.platform.macos: "macosx",
-    apple_common.platform.tvos_device: "tvos",
-    apple_common.platform.tvos_simulator: "tvos",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xros",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchos",
+    _apple_platform_starlark_name(apple_common.platform.ios_device): "ios",
+    _apple_platform_starlark_name(apple_common.platform.ios_simulator): "ios",
+    _apple_platform_starlark_name(apple_common.platform.macos): "macosx",
+    _apple_platform_starlark_name(apple_common.platform.tvos_device): "tvos",
+    _apple_platform_starlark_name(apple_common.platform.tvos_simulator): "tvos",
+    _apple_platform_starlark_name(apple_common.platform.visionos_device): "xros",
+    _apple_platform_starlark_name(apple_common.platform.visionos_simulator): "xros",
+    _apple_platform_starlark_name(apple_common.platform.watchos_device): "watchos",
+    _apple_platform_starlark_name(apple_common.platform.watchos_simulator): "watchos",
+}
+
+_PLATFORM_NAME = {
+    _apple_platform_starlark_name(apple_common.platform.ios_device): "iphoneos",
+    _apple_platform_starlark_name(apple_common.platform.ios_simulator): "iphonesimulator",
+    _apple_platform_starlark_name(apple_common.platform.macos): "macosx",
+    _apple_platform_starlark_name(apple_common.platform.tvos_device): "appletvos",
+    _apple_platform_starlark_name(apple_common.platform.tvos_simulator): "appletvsimulator",
+    _apple_platform_starlark_name(apple_common.platform.visionos_device): "xros",
+    _apple_platform_starlark_name(apple_common.platform.visionos_simulator): "xrsimulator",
+    _apple_platform_starlark_name(apple_common.platform.watchos_device): "watchos",
+    _apple_platform_starlark_name(apple_common.platform.watchos_simulator): "watchsimulator",
 }
 
 _SWIFT_TRIPLE_PREFIX = {
-    apple_common.platform.ios_device: "ios",
-    apple_common.platform.ios_simulator: "ios",
-    apple_common.platform.macos: "macos",
-    apple_common.platform.tvos_device: "tvos",
-    apple_common.platform.tvos_simulator: "tvos",
-    apple_common.platform.visionos_device: "xros",
-    apple_common.platform.visionos_simulator: "xros",
-    apple_common.platform.watchos_device: "watchos",
-    apple_common.platform.watchos_simulator: "watchos",
+    _apple_platform_starlark_name(apple_common.platform.ios_device): "ios",
+    _apple_platform_starlark_name(apple_common.platform.ios_simulator): "ios",
+    _apple_platform_starlark_name(apple_common.platform.macos): "macos",
+    _apple_platform_starlark_name(apple_common.platform.tvos_device): "tvos",
+    _apple_platform_starlark_name(apple_common.platform.tvos_simulator): "tvos",
+    _apple_platform_starlark_name(apple_common.platform.visionos_device): "xros",
+    _apple_platform_starlark_name(apple_common.platform.visionos_simulator): "xros",
+    _apple_platform_starlark_name(apple_common.platform.watchos_device): "watchos",
+    _apple_platform_starlark_name(apple_common.platform.watchos_simulator): "watchos",
 }
 
 _TRIPLE_SUFFIX = {
-    apple_common.platform.ios_device: "",
-    apple_common.platform.ios_simulator: "-simulator",
-    apple_common.platform.macos: "",
-    apple_common.platform.tvos_device: "",
-    apple_common.platform.tvos_simulator: "-simulator",
-    apple_common.platform.visionos_device: "",
-    apple_common.platform.visionos_simulator: "-simulator",
-    apple_common.platform.watchos_device: "",
-    apple_common.platform.watchos_simulator: "-simulator",
+    _apple_platform_starlark_name(apple_common.platform.ios_device): "",
+    _apple_platform_starlark_name(apple_common.platform.ios_simulator): "-simulator",
+    _apple_platform_starlark_name(apple_common.platform.macos): "",
+    _apple_platform_starlark_name(apple_common.platform.tvos_device): "",
+    _apple_platform_starlark_name(apple_common.platform.tvos_simulator): "-simulator",
+    _apple_platform_starlark_name(apple_common.platform.visionos_device): "",
+    _apple_platform_starlark_name(apple_common.platform.visionos_simulator): "-simulator",
+    _apple_platform_starlark_name(apple_common.platform.watchos_device): "",
+    _apple_platform_starlark_name(apple_common.platform.watchos_simulator): "-simulator",
 }
+
+def _apple_platform_to_platform_name(apple_platform):
+    """Returns the name of a platform.
+
+    Args:
+        apple_platform: A value from `apple_common.platform`.
+    """
+    return _PLATFORM_NAME[_apple_platform_starlark_name(apple_platform)]
 
 def _collect_platform(*, ctx):
     """Collects information about a target's platform.
@@ -112,7 +129,7 @@ def _platform_to_dto(platform):
     dto = {
         "a": platform.arch,
         "m": platform.os_version,
-        "v": PLATFORM_NAME[platform.apple_platform],
+        "v": _apple_platform_to_platform_name(platform.apple_platform),
     }
 
     return dto
@@ -123,7 +140,8 @@ def _platform_to_swift_triple(platform):
     Args:
         platform: A value from `platforms.collect`.
     """
-    apple_platform = platform.apple_platform
+    apple_platform = _apple_platform_starlark_name(platform.apple_platform)
+
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform.arch,
         triple_prefix = _SWIFT_TRIPLE_PREFIX[apple_platform],
@@ -136,7 +154,8 @@ def _platform_to_lldb_context_triple(platform):
     Args:
         platform: A value from `platforms.collect`.
     """
-    apple_platform = platform.apple_platform
+    apple_platform = _apple_platform_starlark_name(platform.apple_platform)
+
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform.arch,
         triple_prefix = _LLDB_TRIPLE_PREFIX[apple_platform],
@@ -144,6 +163,7 @@ def _platform_to_lldb_context_triple(platform):
     )
 
 platforms = struct(
+    apple_platform_to_platform_name = _apple_platform_to_platform_name,
     collect = _collect_platform,
     is_not_macos = _is_not_macos,
     is_platform_type = _is_platform_type,

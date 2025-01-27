@@ -380,6 +380,8 @@ def infos_from_json_test_suite(name):
             ],
         ),
     ]
+    expected_id_full_launch_build_targets = [xcscheme_infos_testable.make_build_target(t.id) for t in expected_full_launch_build_targets]
+    expected_id_full_build_targets = [xcscheme_infos_testable.make_build_target(t.id) for t in expected_full_build_targets]
 
     # Empty
 
@@ -605,8 +607,8 @@ def infos_from_json_test_suite(name):
                 name = "A scheme",
                 profile = xcscheme_infos_testable.make_profile(
                     build_targets = (
-                        expected_full_launch_build_targets +
-                        expected_full_build_targets
+                        expected_id_full_launch_build_targets +
+                        expected_id_full_build_targets
                     ),
                     env_include_defaults = "0",
                     launch_target = expected_profile_same_as_run_launch_target,
@@ -791,7 +793,7 @@ def infos_from_json_test_suite(name):
             xcscheme_infos_testable.make_scheme(
                 name = "A scheme",
                 profile = xcscheme_infos_testable.make_profile(
-                    build_targets = expected_full_build_targets,
+                    build_targets = expected_id_full_build_targets,
                     env_include_defaults = "0",
                     launch_target = expected_profile_same_as_run_launch_path,
                 ),

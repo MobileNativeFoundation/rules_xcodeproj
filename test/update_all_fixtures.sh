@@ -11,7 +11,7 @@ for dir in examples/*/ ; do
     fi
 
     if [[ "$dir" == "examples/rules_ios/" ]]; then
-      bazel_version="7.1.1"
+      bazel_version="7.4.1"
     else
       # See https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3029
       #

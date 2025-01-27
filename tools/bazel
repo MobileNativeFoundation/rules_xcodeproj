@@ -17,7 +17,7 @@ readonly workspace_dir="${tool_location%/*/*}"
 
 bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
 if [[ "$bazel_version" == "version" ]]; then
-  bazel_version=8
+  bazel_version=9
 fi
 
 flags=("--noworkspace_rc")

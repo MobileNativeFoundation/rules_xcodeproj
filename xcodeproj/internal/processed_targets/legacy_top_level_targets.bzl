@@ -1,5 +1,10 @@
 """ Functions for processing top level targets """
 
+load(
+    "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleDebugOutputsInfo",
+    "AppleDynamicFrameworkInfo",
+)
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(
     "//xcodeproj/internal:build_settings.bzl",
@@ -46,6 +51,20 @@ load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
     ":legacy_processed_targets.bzl",
     processed_targets = "legacy_processed_targets",
+)
+
+# TODO: Remove when we drop 7.x
+_AppleDebugOutputsInfo = getattr(
+    apple_common,
+    "AppleDebugOutputs",
+    AppleDebugOutputsInfo,
+)
+
+# TODO: Remove when we drop 7.x
+_AppleDynamicFrameworkInfo = getattr(
+    apple_common,
+    "AppleDynamicFramework",
+    AppleDynamicFrameworkInfo,
 )
 
 def _get_codesign_opts(*, ctx, inputs_attr, opts_attr, rule_attr):
@@ -325,9 +344,9 @@ def _process_legacy_top_level_target(
     else:
         avoid_compilation_providers = None
 
-    if apple_common.AppleDynamicFramework in target:
+    if _AppleDynamicFrameworkInfo in target:
         apple_dynamic_framework_info = (
-            target[apple_common.AppleDynamicFramework]
+            target[_AppleDynamicFrameworkInfo]
         )
     else:
         apple_dynamic_framework_info = None
@@ -412,8 +431,17 @@ def _process_legacy_top_level_target(
         transitive_infos = transitive_infos,
         avoid_deps = avoid_deps,
     )
-    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
-    output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
+
+    if _AppleDebugOutputsInfo in target:
+        debug_outputs = target[_AppleDebugOutputsInfo]
+    else:
+        debug_outputs = None
+
+    if OutputGroupInfo in target:
+        output_group_info = target[OutputGroupInfo]
+    else:
+        output_group_info = None
+
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
         copy_product_transitively = True,

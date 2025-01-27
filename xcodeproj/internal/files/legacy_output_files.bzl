@@ -50,7 +50,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     indexing process.
 
     Args:
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+        debug_outputs: The `AppleDebugOutputsInfo` provider for the target, or
             `None`.
         id: The unique identifier of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
@@ -137,7 +137,7 @@ def _collect_legacy_output_files(
         copy_product_transitively: Whether or not to copy the product
             transitively. Currently this should only be true for top-level
             targets.
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+        debug_outputs: The `AppleDebugOutputsInfo` provider for the target, or
             `None`.
         id: A unique identifier for the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or

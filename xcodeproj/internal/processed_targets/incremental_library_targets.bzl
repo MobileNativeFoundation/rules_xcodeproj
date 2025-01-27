@@ -1,6 +1,7 @@
 """Functions for processing library targets."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
@@ -154,8 +155,8 @@ def _process_incremental_library_target(
         ] if not swift_debug_settings_file else None,
     )
 
-    if apple_common.AppleDebugOutputs in target:
-        debug_outputs = target[apple_common.AppleDebugOutputs]
+    if AppleDebugOutputsInfo in target:
+        debug_outputs = target[AppleDebugOutputsInfo]
     else:
         debug_outputs = None
 

@@ -5,6 +5,8 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBundleInfo",
+    "AppleDebugOutputsInfo",
+    "AppleDynamicFrameworkInfo",
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
@@ -83,6 +85,20 @@ _TEST_HOST_PRODUCT_TYPES = {
     "t": None,  # com.apple.product-type.tv-app-extension
     "w": None,  # com.apple.product-type.application.watchapp2
 }
+
+# TODO: Remove when we drop 7.x
+_AppleDebugOutputsInfo = getattr(
+    apple_common,
+    "AppleDebugOutputs",
+    AppleDebugOutputsInfo,
+)
+
+# TODO: Remove when we drop 7.x
+_AppleDynamicFrameworkInfo = getattr(
+    apple_common,
+    "AppleDynamicFramework",
+    AppleDynamicFrameworkInfo,
+)
 
 def _calculate_product_type(*, target_files, bundle_info):
     """Calculates the product type for a top level target.
@@ -272,9 +288,9 @@ def _process_focused_top_level_target(
         target = target,
     )
 
-    if target and apple_common.AppleDynamicFramework in target:
+    if target and _AppleDynamicFrameworkInfo in target:
         framework_files = (
-            target[apple_common.AppleDynamicFramework].framework_files
+            target[_AppleDynamicFrameworkInfo].framework_files
         )
         product_file = product.file
         framework_product_mappings = [
@@ -491,8 +507,8 @@ def _process_focused_top_level_target(
         ],
     )
 
-    if apple_common.AppleDebugOutputs in target:
-        debug_outputs = target[apple_common.AppleDebugOutputs]
+    if _AppleDebugOutputsInfo in target:
+        debug_outputs = target[_AppleDebugOutputsInfo]
     else:
         debug_outputs = None
 
@@ -730,9 +746,9 @@ def _process_unfocused_top_level_target(
         target = target,
     )
 
-    if target and apple_common.AppleDynamicFramework in target:
+    if target and _AppleDynamicFrameworkInfo in target:
         framework_files = (
-            target[apple_common.AppleDynamicFramework].framework_files
+            target[_AppleDynamicFrameworkInfo].framework_files
         )
         slim_product_file = slim_product.file
         framework_product_mappings = [
@@ -927,9 +943,9 @@ def _process_incremental_top_level_target(
             ),
         )
 
-    if apple_common.AppleDynamicFramework in target:
+    if _AppleDynamicFrameworkInfo in target:
         apple_dynamic_framework_info = (
-            target[apple_common.AppleDynamicFramework]
+            target[_AppleDynamicFrameworkInfo]
         )
     else:
         apple_dynamic_framework_info = None

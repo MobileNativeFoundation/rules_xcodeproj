@@ -10,14 +10,11 @@ load(
     "FALSE_ARG",
     "TRUE_ARG",
 )
-load(":platforms.bzl", "PLATFORM_NAME")
+load(":platforms.bzl", "platforms")
 
 _UNIT_TEST_PRODUCT_TYPE = "u"  # com.apple.product-type.bundle.unit-test
 
 # Utility
-
-def _apple_platform_to_platform_name(platform):
-    return PLATFORM_NAME[platform]
 
 def _dsym_files_to_string(dsym_files):
     dsym_paths = []
@@ -135,7 +132,9 @@ _FLAGS = struct(
 def _write_consolidation_map_targets(
         *,
         actions,
-        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        apple_platform_to_platform_name = (
+            platforms.apple_platform_to_platform_name
+        ),
         colorize,
         consolidation_map,
         default_xcode_configuration,
@@ -654,7 +653,9 @@ def _write_generated_xcfilelist(
 def _write_pbxproj_prefix(
         *,
         actions,
-        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        apple_platform_to_platform_name = (
+            platforms.apple_platform_to_platform_name
+        ),
         colorize,
         config,
         default_xcode_configuration,
@@ -814,7 +815,9 @@ def _write_pbxproj_prefix(
 def _write_pbxtargetdependencies(
         *,
         actions,
-        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        apple_platform_to_platform_name = (
+            platforms.apple_platform_to_platform_name
+        ),
         colorize,
         generator_name,
         install_path,

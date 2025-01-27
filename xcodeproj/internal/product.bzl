@@ -2,6 +2,11 @@
 `generation_mode = "legacy"`."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load(
+    "@build_bazel_rules_apple//apple:providers.bzl",
+    "AppleDynamicFrameworkInfo",
+    "AppleExecutableBinaryInfo",
+)
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(":memory_efficiency.bzl", "EMPTY_DEPSET")
 
@@ -42,6 +47,20 @@ _ARCHIVE_EXTENSIONS = {
     "ipa": None,
     "zip": None,
 }
+
+# TODO: Remove when we drop 7.x
+_AppleExecutableBinaryInfo = getattr(
+    apple_common,
+    "AppleExecutableBinary",
+    AppleExecutableBinaryInfo,
+)
+
+# TODO: Remove when we drop 7.x
+_AppleDynamicFrameworkInfo = getattr(
+    apple_common,
+    "AppleDynamicFramework",
+    AppleDynamicFrameworkInfo,
+)
 
 def _codesign_executable(*, actions, executable):
     executable_path = "{}_codesigned".format(
@@ -235,15 +254,15 @@ def process_product(
         original_path = None
         path = None
 
-    if target and apple_common.AppleDynamicFramework in target:
+    if target and _AppleDynamicFrameworkInfo in target:
         framework_files = (
-            target[apple_common.AppleDynamicFramework].framework_files
+            target[_AppleDynamicFrameworkInfo].framework_files
         )
     else:
         framework_files = EMPTY_DEPSET
 
-    if target and apple_common.AppleExecutableBinary in target:
-        executable = target[apple_common.AppleExecutableBinary].binary
+    if target and _AppleExecutableBinaryInfo in target:
+        executable = target[_AppleExecutableBinaryInfo].binary
     else:
         executable = None
 
