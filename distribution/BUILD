@@ -59,6 +59,9 @@ pkg_tar(
     remap_paths = dicts.add(
         {
             "MODULE.release.bazel": "MODULE.bazel",
+            "tools/calculate_output_groups/BUILD.release.bazel": (
+                "tools/calculate_output_groups/BUILD"
+            ),
             "tools/import_indexstores/BUILD.release.bazel": (
                 "tools/import_indexstores/BUILD"
             ),

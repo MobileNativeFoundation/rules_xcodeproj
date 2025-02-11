@@ -1,10 +1,10 @@
 _BASE_FILES = [
-    "calculate_output_groups.py",
     "copy_dsyms.sh",
     "create_lldbinit.sh",
     "generate_bazel_dependencies.sh",
-    ":renamed_import_indexstores",
     "process_bazel_build_log.py",
+    ":renamed_calculate_output_groups",
+    ":renamed_import_indexstores",
 ]
 
 filegroup(
@@ -92,19 +92,34 @@ echo '/*.framework/SwiftUIPreviewsFrameworks/***' >> "framework.exclude.rsynclis
     tags = ["manual"],
 )
 
-genrule(
-    name = "renamed_import_indexstores",
-    srcs = ["//tools/import_indexstores:universal_import_indexstores"],
-    outs = ["import_indexstores"],
-    # Make `import_indexstores` have the right name
-    cmd = """\
+rename_command = """\
 readonly output="$@"
 if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
   cp -c "$<" "$@"
 else
   cp "$<" "$@"
 fi
-""",
+"""
+
+genrule(
+    name = "renamed_calculate_output_groups",
+    srcs = ["//tools/calculate_output_groups:universal_calculate_output_groups"],
+    outs = ["calculate_output_groups"],
+    # Make `calculate_output_groups` have the right name
+    cmd = rename_command,
+    message = "Renaming calculate_output_groups",
+    tags = [
+        "manual",
+        "no-sandbox",
+    ],
+)
+
+genrule(
+    name = "renamed_import_indexstores",
+    srcs = ["//tools/import_indexstores:universal_import_indexstores"],
+    outs = ["import_indexstores"],
+    # Make `import_indexstores` have the right name
+    cmd = rename_command,
     message = "Renaming import_indexstores",
     tags = [
         "manual",
@@ -117,14 +132,7 @@ genrule(
     srcs = ["//tools/swiftc_stub:universal_swiftc_stub"],
     outs = ["swiftc"],
     # Make `swiftc_stub` have the right name
-    cmd = """\
-readonly output="$@"
-if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
-  cp -c "$<" "$@"
-else
-  cp "$<" "$@"
-fi
-""",
+    cmd = rename_command,
     message = "Renaming swiftc_stub",
     tags = [
         "manual",
