@@ -203,7 +203,7 @@ bazel run //:xcodeproj -- 'build --remote_download_minimal --output_groups=all_t
 This requires knowing the internal name of the generator target
 (`//:xcodeproj.generator` in this example), and it also doesn’t apply some flags
 that Xcode `bazel build` command applies (e.g.
-`--experimental_remote_download_regex`). Instead, it’s recommended that you use
+`--remote_download_regex`). Instead, it’s recommended that you use
 the [`--generator_output_groups` option](#--generator_output_groups):
 
 ```
@@ -302,7 +302,7 @@ bazel run //:xcodeproj -- --config=swiftuipreviews --generator_output_groups=all
 
 If the Bazel command is `build`, then this builds the specified generator
 outputs groups, potentially adding additional flags to match the behavior of
-Xcode’s `bazel build` (e.g. `--experimental_remote_download_regex`).
+Xcode’s `bazel build` (e.g. `--remote_download_regex`).
 
 <a id="output-groups"></a>
 These are the available output groups to use:

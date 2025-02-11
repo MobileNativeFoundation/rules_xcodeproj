@@ -470,7 +470,7 @@ def swift_to_outputs(swift):
     return (
         # We only need the single swiftmodule in order to download everything
         # from the remote cache (because of
-        # `--experimental_remote_download_regex`). Reducing the number of
+        # `--remote_download_regex`). Reducing the number of
         # items in an output group keeps the BEP small.
         [module.swiftmodule],
         getattr(module, "indexstore", None),
