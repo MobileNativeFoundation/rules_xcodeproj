@@ -3,6 +3,7 @@ import ArgumentParser
 public enum BuildMode: String, ExpressibleByArgument {
     case xcode
     case bazel
+    // case proxy
 }
 
 extension BuildMode {
