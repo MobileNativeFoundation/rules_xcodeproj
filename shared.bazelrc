@@ -59,3 +59,6 @@ build:workflows --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=wo
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
+
+# ME: DO NOT MERGE
+common --check_visibility=false
