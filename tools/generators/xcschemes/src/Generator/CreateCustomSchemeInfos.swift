@@ -524,6 +524,11 @@ set
             as: String?.self,
             in: url
         )
+        let storeKitConfigurationPath = try consumeArg(
+            "run-storekit-configuration-path",
+            as: String?.self,
+            in: url
+        )
 
         if let launchTarget,
             launchTarget.canExpandMacros && environmentVariablesIncludeDefaults
@@ -544,6 +549,7 @@ set
             enableMainThreadChecker: enableMainThreadChecker,
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
+            storeKitConfigurationPath: storeKitConfigurationPath,
             launchTarget: launchTarget,
             xcodeConfiguration: xcodeConfiguration
         )

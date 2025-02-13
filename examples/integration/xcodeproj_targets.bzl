@@ -288,6 +288,7 @@ XCSCHEMES = [
                     ],
                 ),
             ],
+            storekit_configuration = "//examples/integration/iOSApp/Resources/ExampleResources:Confiugration.storekit",
         ),
     ),
 ]

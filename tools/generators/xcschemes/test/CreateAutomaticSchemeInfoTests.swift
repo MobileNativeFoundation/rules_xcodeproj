@@ -151,6 +151,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
@@ -233,6 +234,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: .target(
                     primary: launchable,
                     extensionHost: extensionHost
@@ -311,6 +313,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
@@ -389,6 +392,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: .target(
                     primary: launchable,
                     extensionHost: nil
@@ -464,6 +468,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: nil,
                 xcodeConfiguration: nil
             ),
@@ -532,6 +537,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                storeKitConfigurationPath: nil,
                 launchTarget: nil,
                 xcodeConfiguration: nil
             ),
@@ -603,6 +609,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                storeKitConfigurationPath: nil,
                 launchTarget: nil,
                 xcodeConfiguration: nil
             ),
@@ -675,6 +682,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                storeKitConfigurationPath: nil,
                 launchTarget: nil,
                 xcodeConfiguration: nil
             ),
@@ -742,6 +750,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
+                storeKitConfigurationPath: nil,
                 launchTarget: nil,
                 xcodeConfiguration: nil
             ),

@@ -588,6 +588,7 @@ def info_constructors_test_suite(name):
             diagnostics = xcscheme_infos_testable.make_diagnostics(),
             env = None,
             env_include_defaults = "1",
+            storekit_configuration = "",
             launch_target = xcscheme_infos_testable.make_launch_target(),
             xcode_configuration = "",
         ),
@@ -619,6 +620,7 @@ def info_constructors_test_suite(name):
                 "VAR\n0": xcscheme_infos_testable.make_env("value 0"),
                 "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
+            storekit_configuration = "/Configuration.storekit",
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
             xcode_configuration = "Run",
@@ -648,6 +650,7 @@ def info_constructors_test_suite(name):
                 "VAR 1": xcscheme_infos_testable.make_env("value\n1"),
             },
             env_include_defaults = "0",
+            storekit_configuration = "/Configuration.storekit",
             launch_target = xcscheme_infos_testable.make_launch_target(
                 id = "L",
             ),

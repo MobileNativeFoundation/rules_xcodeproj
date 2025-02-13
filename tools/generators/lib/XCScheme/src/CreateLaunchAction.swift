@@ -19,6 +19,7 @@ public struct CreateLaunchAction {
         enableMainThreadChecker: Bool,
         enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
+        storeKitConfigurationPath: String?,
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         runnable: Runnable?
@@ -33,6 +34,7 @@ public struct CreateLaunchAction {
             /*enableMainThreadChecker:*/ enableMainThreadChecker,
             /*enableThreadPerformanceChecker:*/ enableThreadPerformanceChecker,
             /*environmentVariables:*/ environmentVariables,
+            /*storeKitConfigurationPath:*/ storeKitConfigurationPath,
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
             /*runnable:*/ runnable
@@ -53,6 +55,7 @@ extension CreateLaunchAction {
         _ enableMainThreadChecker: Bool,
         _ enableThreadPerformanceChecker: Bool,
         _ environmentVariables: [EnvironmentVariable],
+        _ storeKitConfigurationPath: String?,
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
         _ runnable: Runnable?
@@ -68,6 +71,7 @@ extension CreateLaunchAction {
         enableMainThreadChecker: Bool,
         enableThreadPerformanceChecker: Bool,
         environmentVariables: [EnvironmentVariable],
+        storeKitConfigurationPath: String?,
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
         runnable: Runnable?
@@ -202,6 +206,18 @@ ignoresPersistentStateOnLaunch = "NO"
             runnableString = ""
         }
 
+        let storeKitConfigurationFileReferenceString: String
+        if let storeKitConfigurationPath {
+            storeKitConfigurationFileReferenceString = #"""
+      <StoreKitConfigurationFileReference
+         identifier = "\#(storeKitConfigurationPath)">
+      </StoreKitConfigurationFileReference>
+
+"""#
+        } else {
+            storeKitConfigurationFileReferenceString = ""
+        }
+
         return #"""
    <LaunchAction
       \#(components.joined(separator: "\n      "))>
@@ -210,6 +226,7 @@ ignoresPersistentStateOnLaunch = "NO"
 \#(runnableString)\#
 \#(commandLineArguments.commandLineArgumentsString)\#
 \#(environmentVariables.environmentVariablesString)\#
+\#(storeKitConfigurationFileReferenceString)\#
    </LaunchAction>
 """#
     }

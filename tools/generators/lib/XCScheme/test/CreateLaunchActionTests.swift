@@ -580,6 +580,45 @@ final class CreateLaunchActionTests: XCTestCase {
 
          XCTAssertNoDifference(action, expectedAction)
     }
+
+    func test_storekit_configuration() {
+         // Arrange
+        let buildConfiguration = "Debug"
+        let runnable = Runnable.path(path: "/Foo/Bar.app")
+
+        let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Foo/Bar.app">
+      </PathRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "/Configuration.storekit">
+      </StoreKitConfigurationFileReference>
+   </LaunchAction>
+"""#
+
+         // Act
+
+        let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            storeKitConfigurationPath: "/Configuration.storekit",
+            runnable: runnable
+         )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
 }
 
 private func createLaunchActionWithDefaults(
@@ -592,6 +631,7 @@ private func createLaunchActionWithDefaults(
     enableMainThreadChecker: Bool = true,
     enableThreadPerformanceChecker: Bool = true,
     environmentVariables: [EnvironmentVariable] = [],
+    storeKitConfigurationPath: String? = nil,
     postActions: [ExecutionAction] = [],
     preActions: [ExecutionAction] = [],
     runnable: Runnable? = nil
@@ -606,6 +646,7 @@ private func createLaunchActionWithDefaults(
         enableMainThreadChecker: enableMainThreadChecker,
         enableThreadPerformanceChecker: enableThreadPerformanceChecker,
         environmentVariables: environmentVariables,
+        storeKitConfigurationPath: storeKitConfigurationPath,
         postActions: postActions,
         preActions: preActions,
         runnable: runnable

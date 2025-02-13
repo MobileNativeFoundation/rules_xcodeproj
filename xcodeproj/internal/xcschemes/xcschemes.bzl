@@ -211,6 +211,7 @@ def _run(
         diagnostics = None,
         env = "inherit",
         env_include_defaults = True,
+        storekit_configuration = None,
         launch_target = None,
         xcode_configuration = None):
     """Defines the Run action.
@@ -326,6 +327,10 @@ def _run(
             `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in
             addition to any set by [`env`](#xcschemes.run-env). This does
             not apply to [`xcschemes.launch_path`](#xcschemes.launch_path)s.
+        storekit_configuration: A StoreKit configuration file for use with
+            [StoreKit Testing in Xcode](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode).
+
+            Can be `None`, or a label string.
         launch_target: The target to launch when running.
 
             Can be `None`, a label string, a value returned by
@@ -350,6 +355,7 @@ def _run(
         diagnostics = diagnostics,
         env = env or {},
         env_include_defaults = TRUE_ARG if env_include_defaults else FALSE_ARG,
+        storekit_configuration = storekit_configuration,
         launch_target = launch_target,
         xcode_configuration = xcode_configuration or "",
     )

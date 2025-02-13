@@ -142,6 +142,7 @@ def _make_run(
         diagnostics = _make_diagnostics(),
         env = None,
         env_include_defaults = TRUE_ARG,
+        storekit_configuration = EMPTY_STRING,
         launch_target = _make_launch_target(),
         xcode_configuration = EMPTY_STRING):
     return struct(
@@ -150,6 +151,7 @@ def _make_run(
         diagnostics = diagnostics,
         env = env,
         env_include_defaults = env_include_defaults,
+        storekit_configuration = storekit_configuration,
         launch_target = launch_target,
         xcode_configuration = xcode_configuration,
     )
@@ -618,6 +620,7 @@ def _run_info_from_dict(
         diagnostics = _diagnostics_info_from_dict(run["diagnostics"]),
         env = _env_infos_from_dict(run["env"]),
         env_include_defaults = run["env_include_defaults"],
+        storekit_configuration = run.get("storekit_configuration", ""),
         launch_target = launch_target,
         xcode_configuration = xcode_configuration,
     )
