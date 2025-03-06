@@ -134,7 +134,8 @@ extension Generator.CalculatePlatformVariants {
                         .flatMap { unitTestHosts[$0] },
                     dSYMPathsBuildSetting:
                         targetArguments.dSYMPathsBuildSetting.isEmpty ?
-                    nil : targetArguments.dSYMPathsBuildSetting
+                    nil : targetArguments.dSYMPathsBuildSetting,
+                    librarySearchPaths: Set(targetArguments.librarySearchPaths)
                 )
             )
         }

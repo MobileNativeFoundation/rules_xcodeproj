@@ -231,6 +231,8 @@ def _process_incremental_library_target(
             platform = platform,
             product = product.xcode_product,
             transitive_dependencies = transitive_dependencies,
+            linker_inputs_for_libs_search_paths = linker_input_files
+                .get_linker_inputs_for_libs_search_paths(linker_inputs),
         )
     else:
         mergeable_infos = depset(
