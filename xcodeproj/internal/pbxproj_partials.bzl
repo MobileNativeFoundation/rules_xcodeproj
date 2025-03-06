@@ -322,6 +322,12 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
+            targets_args.add_all(
+                xcode_target.libraries_path_to_link.to_list(),
+                omit_if_empty = False,
+                terminate_with = "",
+            )
+
             # `outputs.product_path` is only set for top-level targets
             if xcode_target.outputs.product_path:
                 top_level_targets_args.add(xcode_target.id)

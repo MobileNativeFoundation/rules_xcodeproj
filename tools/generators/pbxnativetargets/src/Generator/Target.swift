@@ -34,6 +34,7 @@ enum Target {
         let unitTestHost: UnitTestHost?
         let dSYMPathsBuildSetting: String?
         let librarySearchPaths: Set<BazelPath>
+        let librariesToLinkPaths: Set<BazelPath>
     }
 
     struct UnitTestHost: Equatable {

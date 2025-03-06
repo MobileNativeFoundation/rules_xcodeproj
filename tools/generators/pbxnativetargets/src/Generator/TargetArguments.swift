@@ -30,6 +30,7 @@ struct TargetArguments: Equatable {
 
     let dSYMPathsBuildSetting: String
     let librarySearchPaths: [BazelPath]
+    let librariesToLinkPaths: [BazelPath]
 }
 
 extension Dictionary<TargetID, TargetArguments> {
@@ -98,6 +99,11 @@ extension Dictionary<TargetID, TargetArguments> {
                 as: BazelPath.self,
                 in: url
             )
+            let librariesToLinkPaths = try rawArgs.consumeArgs(
+                "libraries_to_link_paths",
+                as: BazelPath.self,
+                in: url
+            )
 
             var buildSettings: [PlatformVariantBuildSetting] = []
             if let buildSettingsFile {
@@ -137,7 +143,8 @@ extension Dictionary<TargetID, TargetArguments> {
                         srcs: srcs,
                         nonArcSrcs: nonArcSrcs,
                         dSYMPathsBuildSetting: dSYMPathsBuildSetting,
-                        librarySearchPaths: librarySearchPaths
+                        librarySearchPaths: librarySearchPaths,
+                        librariesToLinkPaths: librariesToLinkPaths
                     )
                 )
             )

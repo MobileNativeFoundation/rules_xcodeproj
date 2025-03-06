@@ -216,6 +216,8 @@ def _process_mixed_language_library_target(
             transitive_dependencies = transitive_dependencies,
             linker_inputs_for_libs_search_paths = linker_input_files
                 .get_linker_inputs_for_libs_search_paths(linker_inputs),
+            libraries_path_to_link = linker_input_files
+                .get_libraries_path_to_link(linker_inputs),
         )
     else:
         mergeable_infos = depset(
