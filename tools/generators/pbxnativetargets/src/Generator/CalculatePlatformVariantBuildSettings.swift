@@ -188,7 +188,6 @@ extension Generator.CalculatePlatformVariantBuildSettings {
                 key: "LIBRARY_SEARCH_PATHS",
                 value: platformVariant.librarySearchPaths
                     .map { $0.path.quoteIfNeeded }
-                    // TODO: See if we can not sort, or sort earlier
                     .sorted()
                     .joined(separator: " ")
                     .pbxProjEscaped

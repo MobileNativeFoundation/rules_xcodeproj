@@ -72,7 +72,7 @@ def _collect_linker_inputs(
     libraries = [
         lib
         for lib in all_libs
-        if lib.basename.endswith(".a")
+        if lib.basename.endswith(".a") and lib.owner != target.label
     ]
 
     linker_inputs_for_libs_search_paths = depset([
@@ -81,7 +81,7 @@ def _collect_linker_inputs(
     ])
 
     framework_files = depset([
-        lib.basename
+        lib.path
         for lib in libraries
     ])
 

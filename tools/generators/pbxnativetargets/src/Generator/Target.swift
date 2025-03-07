@@ -7,6 +7,7 @@ enum Target {
     struct ConsolidatedInputs: Equatable {
         var srcs: [BazelPath]
         var nonArcSrcs: [BazelPath]
+        var librariesToLinkPaths: [BazelPath]
     }
 
     struct Host: Equatable {
@@ -34,7 +35,6 @@ enum Target {
         let unitTestHost: UnitTestHost?
         let dSYMPathsBuildSetting: String?
         let librarySearchPaths: Set<BazelPath>
-        let librariesToLinkPaths: Set<BazelPath>
     }
 
     struct UnitTestHost: Equatable {
