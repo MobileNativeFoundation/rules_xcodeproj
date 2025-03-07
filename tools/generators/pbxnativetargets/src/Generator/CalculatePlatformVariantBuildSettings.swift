@@ -187,7 +187,10 @@ extension Generator.CalculatePlatformVariantBuildSettings {
             .init(
                 key: "LIBRARY_SEARCH_PATHS",
                 value: platformVariant.librarySearchPaths
-                    .map { $0.path.quoteIfNeeded }
+                    .map {
+                        let path = $0.path.split(separator: "/").dropFirst().joined(separator: "/")
+                        return "\"$(BAZEL_OUT)/\(path)\""
+                    }
                     .sorted()
                     .joined(separator: " ")
                     .pbxProjEscaped
