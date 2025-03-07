@@ -77,6 +77,15 @@ if [[ "$ACTION" != indexbuild ]]; then
         find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
       fi
 
+      if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+        # Symlink .o files from BAZEL_PACKAGE_BIN_DIR to OBJECT_FILE_DIR_normal/arm64
+        find "$BAZEL_PACKAGE_BIN_DIR" -name '*.o' -exec sh -c '
+          TARGET_FILE="$OBJECT_FILE_DIR_normal/arm64/$(basename "$1" | sed "s/\.swift//")"
+          ln -shfF "$PWD/$1" $TARGET_FILE
+          chmod 755 $TARGET_FILE
+        ' _ {} \;
+      fi
+
       # Xcode Previews has a hard time finding frameworks (`@rpath`) when using
       # framework schemes, so let's symlink them into
       # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
