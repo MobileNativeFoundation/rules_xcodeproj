@@ -430,7 +430,7 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
             }
 
             switch buildMode {
-            case .xcode:
+            case .xcode, .proxy:
                 if target.hasModulemaps {
                     swiftFlagsPrefix.append(contentsOf: [
                         "-Xcc",

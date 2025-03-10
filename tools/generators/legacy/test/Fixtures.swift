@@ -1141,7 +1141,7 @@ $(BAZEL_OUT)/z/A.link.params
                 .generated("z/WDK.appex"): .generated("z/WDK.appex"),
                 .generated("z/WK.appex"): .generated("z/WK.appex"),
             ]
-        case .bazel:
+        case .bazel, .proxy:
             return [:]
         }
     }

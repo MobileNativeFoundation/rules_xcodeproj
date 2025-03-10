@@ -6,6 +6,7 @@ extension BuildMode {
         switch self {
         case .xcode: return []
         case .bazel: return .bazelLaunchEnvironmentVariables
+        case .proxy: return []
         }
     }
 }
