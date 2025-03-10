@@ -84,7 +84,6 @@ string_flag(
     for build_mode in [
         "bazel",
         "xcode",
-        "proxy",
     ]
     for simulator_cpu in [
         "sim_arm64",

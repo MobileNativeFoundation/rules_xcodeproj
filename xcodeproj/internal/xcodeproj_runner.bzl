@@ -540,7 +540,7 @@ xcodeproj_runner = rule(
         "bazel_path": attr.string(mandatory = True),
         "build_mode": attr.string(
             mandatory = True,
-            values = ["xcode", "bazel"],
+            values = ["xcode", "bazel", "proxy"],
         ),
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
