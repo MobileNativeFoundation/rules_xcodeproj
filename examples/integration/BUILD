@@ -84,6 +84,7 @@ string_flag(
     for build_mode in [
         "bazel",
         "xcode",
+        "proxy",
     ]
     for simulator_cpu in [
         "sim_arm64",
@@ -93,5 +94,8 @@ string_flag(
         "legacy",
         "incremental",
     ]
-    if build_mode == "bazel" or generation_mode == "legacy"
+    if build_mode in [
+        "bazel",
+        "proxy",
+    ] or generation_mode == "legacy"
 ]
