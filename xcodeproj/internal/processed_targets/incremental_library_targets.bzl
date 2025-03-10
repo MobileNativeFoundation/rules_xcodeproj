@@ -167,6 +167,7 @@ def _process_incremental_library_target(
     ) = output_files.collect(
         actions = actions,
         compile_params_files = params_files,
+        copy_product_transitively = True,
         debug_outputs = debug_outputs,
         id = id,
         name = label.name,
