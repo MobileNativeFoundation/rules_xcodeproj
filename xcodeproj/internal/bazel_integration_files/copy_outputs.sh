@@ -25,6 +25,15 @@ if [[ "$ACTION" != indexbuild ]]; then
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
     cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
+    # Add reading permissions to .h and .swiftconstvalues files until stub toolchain work is done
+    find "$PROJECT_DIR/$BAZEL_PACKAGE_BIN_DIR" -name '*.swiftconstvalues' -exec sh -c '
+      chmod 755 "$1"
+    ' _ {} \;
+
+    find "$PROJECT_DIR/$BAZEL_PACKAGE_BIN_DIR" -name '*.h' -exec sh -c '
+      chmod 755 "$1"
+    ' _ {} \;
+
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
