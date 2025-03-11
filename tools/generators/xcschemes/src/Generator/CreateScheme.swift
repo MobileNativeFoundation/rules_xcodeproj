@@ -488,7 +488,7 @@ fi
 
 """#.schemeXmlEscaped
 
-    /// Symlinks `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib` to
+    /// Symlinks `$TOOLCHAIN_DIR/XcodeDefault.xctoolchain/usr/lib` to
     /// `$(BAZEL_INTEGRATION_DIR)/../lib` so that Xcode can copy sanitizers'
     /// dylibs.
     mutating func appendPrepareBazelDependencies(
