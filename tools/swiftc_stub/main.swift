@@ -62,6 +62,38 @@ func processArgs(
     )
 }
 
+let swiftcPath: String = {
+    guard let path = ProcessInfo.processInfo.environment["PATH"] else {
+        fputs("error: PATH not set", stderr)
+        exit(1)
+    }
+
+    var result: String?
+    
+    if let toolchainDir = ProcessInfo.processInfo.environment["TOOLCHAIN_DIR"] {
+        result = "\(toolchainDir)/usr/bin/swiftc"
+    } else {
+        // /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin -> /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin
+        let pathComponents = path.split(separator: ":", maxSplits: 1)
+        let xcodeBinPath = pathComponents[0]
+        guard xcodeBinPath.hasSuffix("/Contents/Developer/usr/bin") else {
+            fputs("Xcode based bin PATH not set \(path)", stderr)
+            fputs("error: Xcode based bin PATH not set", stderr)
+            exit(1)
+        }
+        // /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin -> /Applications/Xcode-15.0.0-Beta.app/Contents/Developer
+        let developerDir = xcodeBinPath.dropLast(8)
+        result = "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    }
+
+    guard let result else {
+        fputs("error: Failed to determine swiftc path", stderr)
+        exit(1)
+    }
+
+    return result
+}()
+
 extension URL {
     mutating func touch() throws {
         let fileManager = FileManager.default
@@ -138,37 +170,6 @@ func runSubProcess(executable: String, args: [String]) throws -> Int32 {
 }
 
 func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Never {
-    var swiftcPath: String?
-
-    if let toolchainDir = ProcessInfo.processInfo.environment["TOOLCHAIN_DIR"] {
-        swiftcPath = "\(toolchainDir)/usr/bin/swiftc"
-    } else {
-        guard let sdkPath = paths[PathKey.sdk]?.path else {
-            fputs("error: No such argument '-sdk'. Using /usr/bin/swiftc.", stderr)
-            exit(1)
-        }
-
-        // We could produce this file at the start of the build?
-        let fullRange = NSRange(sdkPath.startIndex..., in: sdkPath)
-        let matches = try NSRegularExpression(
-            pattern: #"(.*?/Contents/Developer)/.*"#
-        ).matches(in: sdkPath, range: fullRange)
-        guard let match = matches.first,
-            let range = Range(match.range(at: 1), in: sdkPath)
-        else {
-            fputs("error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.", stderr)
-            exit(1)
-        }
-        let developerDir = sdkPath[range]
-
-        swiftcPath = "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
-    }
-
-    guard let swiftcPath else {
-        fputs("error: Failed to determine swiftc path", stderr)
-        exit(1)
-    }
-
     try exit(runSubProcess(executable: swiftcPath, args: Array(args.dropFirst())))
 }
 
@@ -177,37 +178,6 @@ func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Ne
 let args = CommandLine.arguments
 // Xcode 16.0 Beta 3 began using "--version" over "-v". Support both.
 if args.count == 2, args.last == "--version" || args.last == "-v" {
-    guard let path = ProcessInfo.processInfo.environment["PATH"] else {
-        fputs("error: PATH not set", stderr)
-        exit(1)
-    }
-
-    var swiftcPath: String?
-    
-    if let toolchainDir = ProcessInfo.processInfo.environment["TOOLCHAIN_DIR"] {
-        swiftcPath = """
-        \(toolchainDir)/usr/bin/swiftc
-        """
-    } else {
-        // /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin -> /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin
-        let pathComponents = path.split(separator: ":", maxSplits: 1)
-        let xcodeBinPath = pathComponents[0]
-        guard xcodeBinPath.hasSuffix("/Contents/Developer/usr/bin") else {
-            fputs("error: Xcode based bin PATH not set", stderr)
-            exit(1)
-        }
-        // /Applications/Xcode-15.0.0-Beta.app/Contents/Developer/usr/bin -> /Applications/Xcode-15.0.0-Beta.app/Contents/Developer
-        let developerDir = xcodeBinPath.dropLast(8)
-        swiftcPath = """
-        \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
-        """
-    }
-
-    guard let swiftcPath else {
-        fputs("error: Failed to determine swiftc path", stderr)
-        exit(1)
-    }
-
     // args.last allows passing in -v (Xcode < 16b3) and --version (>= 16b3)
     try exit(runSubProcess(executable: swiftcPath, args: [args.last!]))
 }
