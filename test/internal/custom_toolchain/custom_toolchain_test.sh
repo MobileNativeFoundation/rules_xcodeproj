@@ -20,8 +20,8 @@ if [[ ! -f "$TOOLCHAIN_DIR/ToolchainInfo.plist" ]]; then
 fi
 
 # Check for correct identifiers in the plist
-if ! grep -q "BazelRulesXcodeProj" "$TOOLCHAIN_DIR/ToolchainInfo.plist"; then
-  echo "ERROR: ToolchainInfo.plist doesn't contain BazelRulesXcodeProj"
+if ! grep -q "TestCustomToolchain" "$TOOLCHAIN_DIR/ToolchainInfo.plist"; then
+  echo "ERROR: ToolchainInfo.plist doesn't contain TestCustomToolchain"
   exit 1
 fi
 
