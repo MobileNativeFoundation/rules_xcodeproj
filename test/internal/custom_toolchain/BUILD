@@ -12,7 +12,6 @@ filegroup(
 custom_toolchain(
     name = "test_toolchain",
     overrides = {
-        # Key is a label target, value is the tool name
         ":test_swiftc": "swiftc",
     },
     toolchain_name = "TestCustomToolchain",

@@ -1,5 +1,7 @@
 """Implementation of the `custom_toolchain` rule."""
 
+load("//xcodeproj/internal:providers.bzl", "ToolchainInfo")
+
 def _get_xcode_product_version(*, xcode_config):
     raw_version = str(xcode_config.xcode_version())
     if not raw_version:
@@ -21,31 +23,39 @@ def _custom_toolchain_impl(ctx):
     )
 
     toolchain_name_base = ctx.attr.toolchain_name
-    toolchain_dir = ctx.actions.declare_directory(
-        toolchain_name_base + "{}".format(xcode_version) + ".xctoolchain",
-    )
+    toolchain_id = "com.rules_xcodeproj.{}.{}".format(toolchain_name_base, xcode_version)
+    full_toolchain_name = "{}{}".format(toolchain_name_base, xcode_version)
+    toolchain_dir = ctx.actions.declare_directory(full_toolchain_name + ".xctoolchain")
 
     resolved_overrides = {}
     override_files = []
 
-    for tool_target, tool_name in ctx.attr.overrides.items():
-        files = tool_target.files.to_list()
+    # Process tools from comma-separated list
+    for stub_target, tools_str in ctx.attr.overrides.items():
+        files = stub_target.files.to_list()
         if not files:
-            fail("ERROR: Override for '{}' does not produce any files!".format(tool_name))
+            fail("ERROR: Override stub does not produce any files!")
 
         if len(files) > 1:
-            fail("ERROR: Override for '{}' produces multiple files ({}). Each override must have exactly one file.".format(
-                tool_name,
+            fail("ERROR: Override stub produces multiple files ({}). Each stub must have exactly one file.".format(
                 len(files),
             ))
 
-        override_file = files[0]
-        override_files.append(override_file)
-        resolved_overrides[tool_name] = override_file.path
+        stub_file = files[0]
+        if stub_file not in override_files:
+            override_files.append(stub_file)
+
+        # Split comma-separated list of tool names
+        tool_names = [name.strip() for name in tools_str.split(",")]
+
+        # Add an entry for each tool name
+        for tool_name in tool_names:
+            if tool_name:  # Skip empty names
+                resolved_overrides[tool_name] = stub_file.path
 
     overrides_list = " ".join(["{}={}".format(k, v) for k, v in resolved_overrides.items()])
 
-    script_file = ctx.actions.declare_file(toolchain_name_base + "_setup.sh")
+    script_file = ctx.actions.declare_file(full_toolchain_name + "_setup.sh")
 
     ctx.actions.expand_template(
         template = ctx.file._symlink_template,
@@ -54,7 +64,8 @@ def _custom_toolchain_impl(ctx):
         substitutions = {
             "%overrides_list%": overrides_list,
             "%toolchain_dir%": toolchain_dir.path,
-            "%toolchain_name_base%": toolchain_name_base,
+            "%toolchain_id%": toolchain_id,
+            "%toolchain_name_base%": full_toolchain_name,
             "%xcode_version%": xcode_version,
         },
     )
@@ -74,21 +85,28 @@ def _custom_toolchain_impl(ctx):
         use_default_shell_env = True,
     )
 
-    # Create runfiles with the override files and script file
     runfiles = ctx.runfiles(files = override_files + [script_file])
 
-    return [DefaultInfo(
-        files = depset([toolchain_dir]),
-        runfiles = runfiles,
-    )]
+    toolchain_provider = ToolchainInfo(
+        name = full_toolchain_name,
+        identifier = toolchain_id,
+    )
+
+    return [
+        DefaultInfo(
+            files = depset([toolchain_dir]),
+            runfiles = runfiles,
+        ),
+        toolchain_provider,
+    ]
 
 custom_toolchain = rule(
     implementation = _custom_toolchain_impl,
     attrs = {
         "overrides": attr.label_keyed_string_dict(
             allow_files = True,
-            mandatory = False,
-            default = {},
+            mandatory = True,
+            doc = "Map from stub target to comma-separated list of tool names that should use that stub",
         ),
         "toolchain_name": attr.string(mandatory = True),
         "_symlink_template": attr.label(

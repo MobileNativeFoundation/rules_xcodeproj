@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 # Define constants within the script
 TOOLCHAIN_NAME_BASE="%toolchain_name_base%"
@@ -17,6 +17,10 @@ BUILT_TOOLCHAIN_PATH="$PWD/$TOOLCHAIN_DIR"
 
 mkdir -p "$TOOLCHAIN_DIR"
 
+# Parse overrides into a file for safer processing
+OVERRIDES_FILE=$(mktemp)
+echo "%overrides_list%" > "$OVERRIDES_FILE"
+
 # Process all files from the default toolchain
 find "$DEFAULT_TOOLCHAIN" -type f -o -type l | while read -r file; do
     base_name="$(basename "$file")"
@@ -30,26 +34,39 @@ find "$DEFAULT_TOOLCHAIN" -type f -o -type l | while read -r file; do
     # Ensure parent directory exists
     mkdir -p "$TOOLCHAIN_DIR/$(dirname "$rel_path")"
 
-    # Process overrides
+    # Check if this file has an override
     override_found=false
-    while IFS='=' read -r key value; do
-        if [[ "$key" == "$base_name" ]]; then
-            value="$PWD/$value"
-            cp "$value" "$TOOLCHAIN_DIR/$rel_path"
-            # Make executable if original is executable
-            if [[ -x "$file" ]]; then
-                chmod +x "$TOOLCHAIN_DIR/$rel_path"
-            fi
+    override_value=""
+
+    for override in $(cat "$OVERRIDES_FILE"); do
+        KEY="${override%%=*}"
+        VALUE="${override#*=}"
+
+        if [[ "$KEY" == "$base_name" ]]; then
+            override_value="$VALUE"
             override_found=true
             break
         fi
-    done <<< "%overrides_list%"
+    done
 
-    # If no override found, symlink the original
-    if [[ "$override_found" == "false" ]]; then
+    # Apply the override or create symlink
+    if [[ "$override_found" == "true" ]]; then
+        # Make path absolute
+        override_path="$PWD/$override_value"
+        cp "$override_path" "$TOOLCHAIN_DIR/$rel_path"
+
+        # Make executable if original is executable
+        if [[ -x "$file" ]]; then
+            chmod +x "$TOOLCHAIN_DIR/$rel_path"
+        fi
+    else
+        # If no override found, symlink the original
         ln -sf "$file" "$TOOLCHAIN_DIR/$rel_path"
     fi
 done
+
+# Clean up
+rm -f "$OVERRIDES_FILE"
 
 # Generate the ToolchainInfo.plist directly with Xcode version information
 cat > "$TOOLCHAIN_DIR/ToolchainInfo.plist" << EOF
