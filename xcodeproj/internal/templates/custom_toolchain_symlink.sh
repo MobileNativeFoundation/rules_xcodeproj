@@ -6,67 +6,50 @@ TOOLCHAIN_NAME_BASE="%toolchain_name_base%"
 TOOLCHAIN_DIR="%toolchain_dir%"
 XCODE_VERSION="%xcode_version%"
 
+# Store the list of tools that will be overridden
+TOOL_NAMES_FILE=$(mktemp)
+echo "%tool_names_list%" > "$TOOL_NAMES_FILE"
+
 # Get Xcode version and default toolchain path
 DEFAULT_TOOLCHAIN=$(xcrun --find clang | sed 's|/usr/bin/clang$||')
 XCODE_RAW_VERSION=$(xcodebuild -version | head -n 1)
 
-# Define toolchain names
+# Define toolchain names for reference only
 HOME_TOOLCHAIN_NAME="BazelRulesXcodeProj${XCODE_VERSION}"
-USER_TOOLCHAIN_PATH="/Users/$(id -un)/Library/Developer/Toolchains/${HOME_TOOLCHAIN_NAME}.xctoolchain"
-BUILT_TOOLCHAIN_PATH="$PWD/$TOOLCHAIN_DIR"
 
 mkdir -p "$TOOLCHAIN_DIR"
 
-# Parse overrides into a file for safer processing
-OVERRIDES_FILE=$(mktemp)
-echo "%overrides_list%" > "$OVERRIDES_FILE"
-
 # Process all files from the default toolchain
 find "$DEFAULT_TOOLCHAIN" -type f -o -type l | while read -r file; do
-    base_name="$(basename "$file")"
     rel_path="${file#"$DEFAULT_TOOLCHAIN/"}"
+    base_name=$(basename "$rel_path")
 
     # Skip ToolchainInfo.plist as we'll create our own
     if [[ "$rel_path" == "ToolchainInfo.plist" ]]; then
         continue
     fi
 
-    # Ensure parent directory exists
-    mkdir -p "$TOOLCHAIN_DIR/$(dirname "$rel_path")"
-
-    # Check if this file has an override
-    override_found=false
-    override_value=""
-
-    for override in $(cat "$OVERRIDES_FILE"); do
-        KEY="${override%%=*}"
-        VALUE="${override#*=}"
-
-        if [[ "$KEY" == "$base_name" ]]; then
-            override_value="$VALUE"
-            override_found=true
+    # Check if this file is in the list of tools to be overridden
+    should_skip=0
+    for tool_name in $(cat "$TOOL_NAMES_FILE"); do
+        if [[ "$base_name" == "$tool_name" ]]; then
+            # Skip creating a symlink for overridden tools
+            echo "Skipping symlink for tool to be overridden: $base_name"
+            should_skip=1
             break
         fi
     done
 
-    # Apply the override or create symlink
-    if [[ "$override_found" == "true" ]]; then
-        # Make path absolute
-        override_path="$PWD/$override_value"
-        cp "$override_path" "$TOOLCHAIN_DIR/$rel_path"
-
-        # Make executable if original is executable
-        if [[ -x "$file" ]]; then
-            chmod +x "$TOOLCHAIN_DIR/$rel_path"
-        fi
-    else
-        # If no override found, symlink the original
-        ln -sf "$file" "$TOOLCHAIN_DIR/$rel_path"
+    if [[ $should_skip -eq 1 ]]; then
+        continue
     fi
-done
 
-# Clean up
-rm -f "$OVERRIDES_FILE"
+    # Ensure parent directory exists
+    mkdir -p "$TOOLCHAIN_DIR/$(dirname "$rel_path")"
+
+    # Create symlink to the original file
+    ln -sf "$file" "$TOOLCHAIN_DIR/$rel_path"
+done
 
 # Generate the ToolchainInfo.plist directly with Xcode version information
 cat > "$TOOLCHAIN_DIR/ToolchainInfo.plist" << EOF
@@ -96,8 +79,5 @@ cat > "$TOOLCHAIN_DIR/ToolchainInfo.plist" << EOF
 </plist>
 EOF
 
-mkdir -p "$(dirname "$USER_TOOLCHAIN_PATH")"
-if [[ -e "$USER_TOOLCHAIN_PATH" || -L "$USER_TOOLCHAIN_PATH" ]]; then
-    rm -rf "$USER_TOOLCHAIN_PATH"
-fi
-ln -sf "$BUILT_TOOLCHAIN_PATH" "$USER_TOOLCHAIN_PATH"
+# Clean up
+rm -f "$TOOL_NAMES_FILE"
