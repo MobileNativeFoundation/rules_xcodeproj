@@ -4,9 +4,7 @@ import Foundation
 
 enum PathKey: String {
     case emitModulePath = "-emit-module-path"
-    case emitObjCHeaderPath = "-emit-objc-header-path"
     case emitModuleSourceInfoPath = "-emit-module-source-info-path"
-    case serializeDiagnosticsPath = "-serialize-diagnostics-path"
     case emitDependenciesPath = "-emit-dependencies-path"
     case emitABIDescriptorPath = "-emit-abi-descriptor-path"
     case emitModuleDocPath = "-emit-module-doc-path"
@@ -19,18 +17,23 @@ func processArgs(
 ) async throws -> (
     isPreviewThunk: Bool,
     isWMO: Bool,
-    paths: [PathKey: URL]
+    paths: [PathKey: [URL]]
 ) {
     var isPreviewThunk = false
     var isWMO = false
-    var paths: [PathKey: URL] = [:]
+    var paths: [PathKey: [URL]] = [:]
 
     var previousArg: String?
     func processArg(_ arg: String) {
         if let rawPathKey = previousArg,
             let key = PathKey(rawValue: rawPathKey)
         {
-            paths[key] = URL(fileURLWithPath: arg)
+            let url = URL(fileURLWithPath: arg)
+            if paths[key] != nil {
+                paths[key]?.append(url)
+            } else {
+                paths[key] = [url]
+            }
             previousArg = nil
             return
         }
@@ -80,17 +83,22 @@ extension URL {
     }
 }
 
+extension Array where Element == URL {
+    mutating func touch() throws {
+        for var url in self {
+            try url.touch()
+        }
+    }
+}
+
 /// Touch the Xcode-required `.d` and `-master-emit-module.d` files
-func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
-    guard let outputFileMapPath = paths[PathKey.outputFileMap] else { return }
+func touchDepsFiles(isWMO: Bool, paths: [PathKey: [URL]]) throws {
+    guard let outputFileMapPaths = paths[PathKey.outputFileMap], let outputFileMapPath = outputFileMapPaths.first else { return }
 
     if isWMO {
         let pathNoExtension = String(outputFileMapPath.path.dropLast("-OutputFileMap.json".count))
         var masterDFilePath = URL(fileURLWithPath: pathNoExtension + "-master.d")
         try masterDFilePath.touch()
-
-        var dFilePath = URL(fileURLWithPath: pathNoExtension + ".d")
-        try dFilePath.touch()
     } else {
         let data = try Data(contentsOf: outputFileMapPath)
         let outputFileMapRaw = try JSONSerialization.jsonObject(
@@ -107,57 +115,49 @@ func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
                 var url = URL(fileURLWithPath: dPath)
                 try url.touch()
             }
-            if let dPath = entry["emit-module-dependencies"] as? String {
-                var url = URL(fileURLWithPath: dPath)
-                try url.touch()
-            }
             continue
         }
     }
 }
 
 /// Touch the Xcode-required `-master-emit-module.d`, `.{d,abi.json}` and `.swift{module,doc,sourceinfo}` files
-func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
-    if var swiftmodulePath = paths[PathKey.emitModulePath] {
-        let pathNoExtension = swiftmodulePath.deletingPathExtension()
-        var swiftdocPath = pathNoExtension
-            .appendingPathExtension("swiftdoc")
-        var swiftsourceinfoPath = pathNoExtension
-            .appendingPathExtension("swiftsourceinfo")
-        var swiftinterfacePath = pathNoExtension
-            .appendingPathExtension("swiftinterface")
+func touchSwiftmoduleArtifacts(paths: [PathKey: [URL]]) throws {
+    if let swiftmodulePaths = paths[PathKey.emitModulePath] {
+        for var swiftmodulePath in swiftmodulePaths {
+            let pathNoExtension = swiftmodulePath.deletingPathExtension()
+            var swiftdocPath = pathNoExtension
+                .appendingPathExtension("swiftdoc")
+            var swiftsourceinfoPath = pathNoExtension
+                .appendingPathExtension("swiftsourceinfo")
+            var swiftinterfacePath = pathNoExtension
+                .appendingPathExtension("swiftinterface")
 
-        try swiftmodulePath.touch()
-        try swiftdocPath.touch()
-        try swiftsourceinfoPath.touch()
-        try swiftinterfacePath.touch()
+            try swiftmodulePath.touch()
+            try swiftdocPath.touch()
+            try swiftsourceinfoPath.touch()
+            try swiftinterfacePath.touch()
+        }
     }
 
-    if var generatedHeaderPath = paths[PathKey.emitObjCHeaderPath] {
-        try generatedHeaderPath.touch()
+    if var modulePaths = paths[PathKey.emitModuleSourceInfoPath] {
+        try modulePaths.touch()
     }
 
-    if var path = paths[PathKey.emitModuleSourceInfoPath] {
-        try path.touch()
+    if var dependencyPaths = paths[PathKey.emitDependenciesPath] {
+        try dependencyPaths.touch()
     }
 
-    if var path = paths[PathKey.serializeDiagnosticsPath] {
-        try path.touch()
+    if var abiPaths = paths[PathKey.emitABIDescriptorPath] {
+        try abiPaths.touch()
     }
 
-    if var path = paths[PathKey.emitDependenciesPath] {
-        try path.touch()
-    }
-
-    if var path = paths[PathKey.emitABIDescriptorPath] {
-        try path.touch()
-    }
-
-    if var path = paths[PathKey.emitModuleDocPath] {
-        var swiftModulePath = path.deletingPathExtension()
-            .appendingPathExtension("swiftmodule")
-        try swiftModulePath.touch()
-        try path.touch()
+    if let docPaths = paths[PathKey.emitModuleDocPath] {
+        for var path in docPaths {
+            var swiftModulePath = path.deletingPathExtension()
+                .appendingPathExtension("swiftmodule")
+            try swiftModulePath.touch()
+            try path.touch()
+        }
     }
 }
 
@@ -170,8 +170,8 @@ func runSubProcess(executable: String, args: [String]) throws -> Int32 {
     return task.terminationStatus
 }
 
-func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Never {
-    guard let sdkPath = paths[PathKey.sdk]?.path else {
+func handleXcodePreviewThunk(args: [String], paths: [PathKey: [URL]]) throws -> Never {
+    guard let sdkPath = paths[PathKey.sdk]?.first?.path else {
         fputs(
             "error: No such argument '-sdk'. Using /usr/bin/swiftc.",
             stderr
