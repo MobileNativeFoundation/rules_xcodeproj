@@ -1,4 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("//xcodeproj/internal:custom_toolchain.bzl", "custom_toolchain")
 
 bzl_library(
     name = "bazel_tools",
@@ -45,4 +46,17 @@ filegroup(
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
+)
+
+custom_toolchain(
+    name = "rulesxcodeproj_toolchain",
+    overrides = {
+        # Use universal_swiftc_stub for all tools
+        "//" + package_name() + "/bazel_integration_files:clang_binary": "clang,clang++,cc,c++",
+        "//" + package_name() + "/bazel_integration_files:libtool_binary": "libtool",
+        "//" + package_name() + "/bazel_integration_files:ld_binary": "ld",
+        "//tools/swiftc_stub:universal_swiftc_stub": "swiftc,swift-frontend",
+    },
+    toolchain_name = "BazelRulesXcodeProj",
+    visibility = ["//visibility:public"],
 )
