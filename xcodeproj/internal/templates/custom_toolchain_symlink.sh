@@ -6,16 +6,16 @@ TOOLCHAIN_NAME_BASE="%toolchain_name_base%"
 TOOLCHAIN_DIR="%toolchain_dir%"
 XCODE_VERSION="%xcode_version%"
 
-# Store the list of tools that will be overridden
-TOOL_NAMES_FILE=$(mktemp)
-echo "%tool_names_list%" > "$TOOL_NAMES_FILE"
-
 # Get Xcode version and default toolchain path
 DEFAULT_TOOLCHAIN=$(xcrun --find clang | sed 's|/usr/bin/clang$||')
 XCODE_RAW_VERSION=$(xcodebuild -version | head -n 1)
 
-# Define toolchain names for reference only
+TOOL_NAMES_FILE=$(mktemp)
+echo "%tool_names_list%" > "$TOOL_NAMES_FILE"
+
 HOME_TOOLCHAIN_NAME="BazelRulesXcodeProj${XCODE_VERSION}"
+USER_TOOLCHAIN_PATH="/Users/$(id -un)/Library/Developer/Toolchains/${HOME_TOOLCHAIN_NAME}.xctoolchain"
+BUILT_TOOLCHAIN_PATH="$PWD/$TOOLCHAIN_DIR"
 
 mkdir -p "$TOOLCHAIN_DIR"
 
@@ -34,7 +34,6 @@ find "$DEFAULT_TOOLCHAIN" -type f -o -type l | while read -r file; do
     for tool_name in $(cat "$TOOL_NAMES_FILE"); do
         if [[ "$base_name" == "$tool_name" ]]; then
             # Skip creating a symlink for overridden tools
-            echo "Skipping symlink for tool to be overridden: $base_name"
             should_skip=1
             break
         fi
@@ -79,5 +78,8 @@ cat > "$TOOLCHAIN_DIR/ToolchainInfo.plist" << EOF
 </plist>
 EOF
 
-# Clean up
-rm -f "$TOOL_NAMES_FILE"
+mkdir -p "$(dirname "$USER_TOOLCHAIN_PATH")"
+if [[ -e "$USER_TOOLCHAIN_PATH" || -L "$USER_TOOLCHAIN_PATH" ]]; then
+    rm -rf "$USER_TOOLCHAIN_PATH"
+fi
+ln -sf "$BUILT_TOOLCHAIN_PATH" "$USER_TOOLCHAIN_PATH"

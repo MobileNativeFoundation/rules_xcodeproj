@@ -30,7 +30,7 @@ for tool_name in $(cat "$TOOL_NAMES_FILE"); do
         continue
     fi
 
-    find "$DEFAULT_TOOLCHAIN" -name "$tool_name" | while read -r default_tool_path; do
+    find "$DEFAULT_TOOLCHAIN/usr/bin" -name "$tool_name" | while read -r default_tool_path; do
         rel_path="${default_tool_path#"$DEFAULT_TOOLCHAIN/"}"
         target_file="$FINAL_TOOLCHAIN_DIR/$rel_path"
 
