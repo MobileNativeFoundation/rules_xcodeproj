@@ -181,6 +181,8 @@ _XCSCHEMES = [
                 "bazel-out/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import",
                 # resolvedRepositoriesFile
                 "bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/resolved_repositories",
+                # customToolchainID
+                "com.rules_xcodeproj.BazelRulesXcodeProj.16B40",
                 # minimumXcodeVersion
                 "14.0",
                 # defaultXcodeConfiguration

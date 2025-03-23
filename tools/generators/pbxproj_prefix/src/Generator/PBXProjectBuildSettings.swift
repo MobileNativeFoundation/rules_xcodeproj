@@ -28,7 +28,8 @@ extension Generator {
         projectDir: String,
         resolvedRepositories: String,
         workspace: String,
-        createBuildSettingsAttribute: CreateBuildSettingsAttribute
+        createBuildSettingsAttribute: CreateBuildSettingsAttribute,
+        customToolchainID: String
     ) -> String {
         return createBuildSettingsAttribute(buildSettings: [
             .init(key: "ALWAYS_SEARCH_USER_PATHS", value: "NO"),
@@ -73,7 +74,6 @@ extension Generator {
                 key: "BUILD_WORKSPACE_DIRECTORY",
                 value: #""$(SRCROOT)""#
             ),
-            .init(key: "CC", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
             .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
             .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
@@ -83,7 +83,6 @@ extension Generator {
                 value: #""$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)""#
             ),
             .init(key: "COPY_PHASE_STRIP", value: "NO"),
-            .init(key: "CXX", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "DEBUG_INFORMATION_FORMAT", value: "dwarf"),
             .init(key: "DSTROOT", value: #""$(PROJECT_TEMP_DIR)""#),
             .init(key: "ENABLE_DEBUG_DYLIB", value: "NO"),
@@ -91,15 +90,7 @@ extension Generator {
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
             .init(key: "ENABLE_USER_SCRIPT_SANDBOXING", value: "NO"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
-            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
-            .init(
-                key: "LDPLUSPLUS",
-                value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
-            ),
-            .init(
-                key: "LIBTOOL",
-                value: #""$(BAZEL_INTEGRATION_DIR)/libtool""#
-            ),
+            .init(key: "TOOLCHAINS", value: customToolchainID),
             .init(
                 key: "IMPORT_INDEX_BUILD_INDEXSTORES",
                 value: importIndexBuildIndexstores ? "YES" : "NO"
@@ -144,13 +135,8 @@ extension Generator {
             .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: "bazel"),
             .init(key: "SRCROOT", value: workspace.pbxProjEscaped),
             .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
-            .init(
-                key: "SWIFT_EXEC",
-                value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
-            ),
             .init(key: "SWIFT_OBJC_INTERFACE_HEADER_NAME", value: #""""#),
             .init(key: "SWIFT_OPTIMIZATION_LEVEL", value: #""-Onone""#),
-            .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             .init(key: "SWIFT_VERSION", value: "5.0"),
             .init(key: "TAPI_EXEC", value: "/usr/bin/true"),
             .init(

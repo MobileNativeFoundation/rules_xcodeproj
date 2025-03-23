@@ -658,6 +658,7 @@ def _write_pbxproj_prefix(
         ),
         colorize,
         config,
+        custom_toolchain_id,
         default_xcode_configuration,
         execution_root_file,
         generator_name,
@@ -682,6 +683,7 @@ def _write_pbxproj_prefix(
         apple_platform_to_platform_name: Exposed for testing. Don't set.
         colorize: A `bool` indicating whether to colorize the output.
         config: The name of the `.bazelrc` config.
+        custom_toolchain_id: The custom toolchain ID.
         default_xcode_configuration: The name of the the Xcode configuration to
             use when building, if not overridden by custom schemes.
         execution_root_file: A `File` containing the absolute path to the Bazel
@@ -745,6 +747,9 @@ def _write_pbxproj_prefix(
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
+
+    # customToolchainID
+    args.add(custom_toolchain_id)
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)

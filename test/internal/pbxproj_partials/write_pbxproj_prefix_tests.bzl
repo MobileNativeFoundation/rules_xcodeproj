@@ -273,6 +273,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/index_import",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
+            # customToolchainID
+            "com.rules_xcodeproj.BazelRulesXcodeProj.16B40",
             # minimumXcodeVersion
             "14.2.1",
             # importIndexBuildIndexstores
@@ -342,6 +344,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/index_import",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
+            # customToolchainID
+            "com.rules_xcodeproj.BazelRulesXcodeProj.16B40",
             # minimumXcodeVersion
             "14.2.1",
             # importIndexBuildIndexstores

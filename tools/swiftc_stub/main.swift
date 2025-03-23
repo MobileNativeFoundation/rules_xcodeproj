@@ -5,6 +5,11 @@ import Foundation
 enum PathKey: String {
     case emitModulePath = "-emit-module-path"
     case emitObjCHeaderPath = "-emit-objc-header-path"
+    case emitModuleSourceInfoPath = "-emit-module-source-info-path"
+    case serializeDiagnosticsPath = "-serialize-diagnostics-path"
+    case emitDependenciesPath = "-emit-dependencies-path"
+    case emitABIDescriptorPath = "-emit-abi-descriptor-path"
+    case emitModuleDocPath = "-emit-module-doc-path"
     case outputFileMap = "-output-file-map"
     case sdk = "-sdk"
 }
@@ -75,17 +80,17 @@ extension URL {
     }
 }
 
-/// Touch the Xcode-required `.d` files
+/// Touch the Xcode-required `.d` and `-master-emit-module.d` files
 func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
     guard let outputFileMapPath = paths[PathKey.outputFileMap] else { return }
 
     if isWMO {
-        let dPath = String(
-            outputFileMapPath.path.dropLast("-OutputFileMap.json".count) +
-            "-master.d"
-        )
-        var url = URL(fileURLWithPath: dPath)
-        try url.touch()
+        let pathNoExtension = String(outputFileMapPath.path.dropLast("-OutputFileMap.json".count))
+        var masterDFilePath = URL(fileURLWithPath: pathNoExtension + "-master.d")
+        try masterDFilePath.touch()
+
+        var dFilePath = URL(fileURLWithPath: pathNoExtension + ".d")
+        try dFilePath.touch()
     } else {
         let data = try Data(contentsOf: outputFileMapPath)
         let outputFileMapRaw = try JSONSerialization.jsonObject(
@@ -98,23 +103,28 @@ func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
         }
 
         for entry in outputFileMap.values {
-            guard let dPath = entry["dependencies"] as? String else {
-                continue
+            if let dPath = entry["dependencies"] as? String {
+                var url = URL(fileURLWithPath: dPath)
+                try url.touch()
             }
-            var url = URL(fileURLWithPath: dPath)
-            try url.touch()
+            if let dPath = entry["emit-module-dependencies"] as? String {
+                var url = URL(fileURLWithPath: dPath)
+                try url.touch()
+            }
+            continue
         }
     }
 }
 
-/// Touch the Xcode-required `.swift{module,doc,sourceinfo}` files
+/// Touch the Xcode-required `-master-emit-module.d`, `.{d,abi.json}` and `.swift{module,doc,sourceinfo}` files
 func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
     if var swiftmodulePath = paths[PathKey.emitModulePath] {
-        var swiftdocPath = swiftmodulePath.deletingPathExtension()
+        let pathNoExtension = swiftmodulePath.deletingPathExtension()
+        var swiftdocPath = pathNoExtension
             .appendingPathExtension("swiftdoc")
-        var swiftsourceinfoPath = swiftmodulePath.deletingPathExtension()
+        var swiftsourceinfoPath = pathNoExtension
             .appendingPathExtension("swiftsourceinfo")
-        var swiftinterfacePath = swiftmodulePath.deletingPathExtension()
+        var swiftinterfacePath = pathNoExtension
             .appendingPathExtension("swiftinterface")
 
         try swiftmodulePath.touch()
@@ -125,6 +135,29 @@ func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
 
     if var generatedHeaderPath = paths[PathKey.emitObjCHeaderPath] {
         try generatedHeaderPath.touch()
+    }
+
+    if var path = paths[PathKey.emitModuleSourceInfoPath] {
+        try path.touch()
+    }
+
+    if var path = paths[PathKey.serializeDiagnosticsPath] {
+        try path.touch()
+    }
+
+    if var path = paths[PathKey.emitDependenciesPath] {
+        try path.touch()
+    }
+
+    if var path = paths[PathKey.emitABIDescriptorPath] {
+        try path.touch()
+    }
+
+    if var path = paths[PathKey.emitModuleDocPath] {
+        var swiftModulePath = path.deletingPathExtension()
+            .appendingPathExtension("swiftmodule")
+        try swiftModulePath.touch()
+        try path.touch()
     }
 }
 
