@@ -722,7 +722,10 @@ def _make_non_skipped_target_xcodeprojinfo(
 
 def _should_create_provider(*, bin_dir_path, rule_kind, target):
     if "-exec-" in bin_dir_path:
-        # We don't want to include "tools" (exec configuration) targets
+        # Allow swift_compiler_plugin even in exec configuration
+        if rule_kind == "swift_compiler_plugin":
+            return True
+        # We don't want to include other "tools" (exec configuration) targets
         return False
 
     if rule_kind in _INTERNAL_RULE_KINDS:
