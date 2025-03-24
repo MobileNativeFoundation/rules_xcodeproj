@@ -31,6 +31,7 @@ if [[ "$ACTION" != indexbuild ]]; then
       ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
     else
       # Product is a bundle
+      chmod -R +w "$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR" # Starting on MacOS 15.4, rsync will fail if it does not have write access on the src or dst directory
       rsync \
         --copy-links \
         --recursive \
