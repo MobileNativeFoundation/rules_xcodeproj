@@ -628,6 +628,10 @@ def _process_focused_top_level_target(
             transitive_dependencies = transitive_dependencies,
             unfocus_if_not_test_host = unfocus_if_not_test_host,
             watchkit_extension = watchkit_extension,
+            linker_inputs_for_libs_search_paths = linker_input_files
+                .get_linker_inputs_for_libs_search_paths(linker_inputs),
+            libraries_path_to_link = linker_input_files
+                .get_libraries_path_to_link(linker_inputs),
         ),
     )
 
