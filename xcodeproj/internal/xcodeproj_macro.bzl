@@ -22,7 +22,10 @@ def xcodeproj(
         adjust_schemes_for_swiftui_previews = True,
         associated_extra_files = {},
         bazel_path = "bazel",
-        bazel_env = {"PATH": "/bin:/usr/bin"},
+        bazel_env = {
+            "LANG": "en_US.UTF-8",
+            "PATH": "/bin:/usr/bin",
+        },
         build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
@@ -115,6 +118,10 @@ def xcodeproj(
             them here.
 
             If `PATH` is not specified, it will default to `/bin:/usr/bin`, so
+            you don't have to specify it unless you want to use a different
+            value.
+
+            If `LANG` is not specified, it will default to `en_US.UTF-8`, so
             you don't have to specify it unless you want to use a different
             value.
         bazel_path: Optional. The path the `bazel` binary or wrapper script.
@@ -438,6 +445,8 @@ def xcodeproj(
     bazel_env = dict(bazel_env) if bazel_env else {}
     if "PATH" not in bazel_env:
         bazel_env["PATH"] = "/bin:/usr/bin"
+    if "LANG" not in bazel_env:
+        bazel_env["LANG"] = "en_US.UTF-8"
     if not generation_mode:
         generation_mode = "incremental"
     if not build_mode:
