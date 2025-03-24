@@ -1,4 +1,30 @@
+// #!/usr/bin/env swift
+
 import Foundation
+
+// Log command and arguments
+let logMessage = """
+\(CommandLine.arguments.joined(separator: " "))
+"""
+try logMessage.appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
+
+extension String {
+    func appendLineToURL(fileURL: URL) throws {
+        try (self + "\n").appendToURL(fileURL: fileURL)
+    }
+
+    func appendToURL(fileURL: URL) throws {
+        let data = self.data(using: String.Encoding.utf8)!
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            let fileHandle = try FileHandle(forWritingTo: fileURL)
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(data)
+            fileHandle.closeFile()
+        } else {
+            try self.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        }
+    }
+}
 
 // MARK: - Helpers
 
@@ -24,7 +50,7 @@ func processArgs(
     var paths: [PathKey: [URL]] = [:]
 
     var previousArg: String?
-    func processArg(_ arg: String) {
+    func processArg(_ arg: String) throws{
         if let rawPathKey = previousArg,
             let key = PathKey(rawValue: rawPathKey)
         {
@@ -40,7 +66,8 @@ func processArgs(
 
         if arg == "-wmo" || arg == "-whole-module-optimization" {
             isWMO = true
-        } else if arg.hasSuffix(".preview-thunk.swift") {
+        } else if arg.hasSuffix(".preview-thunk.o") {
+            try "isPreviewThunk".appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
             isPreviewThunk = true
         } else {
             previousArg = arg
@@ -53,13 +80,13 @@ func processArgs(
                 = URL(fileURLWithPath: String(arg.dropFirst()))
             for try await line in argumentFileURL.lines {
                 if line.hasPrefix(#"""#) && line.hasSuffix(#"""#) {
-                    processArg(String(line.dropFirst().dropLast()))
+                    try processArg(String(line.dropFirst().dropLast()))
                 } else {
-                    processArg(String(line))
+                    try processArg(String(line))
                 }
             }
         } else {
-            processArg(arg)
+            try processArg(arg)
         }
     }
 
@@ -198,11 +225,22 @@ error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
     }
     let developerDir = sdkPath[range]
 
+    let processedArgs = args.dropFirst().map { arg in
+        if let range = arg.range(of: "BazelRulesXcodeProj16B40.xctoolchain") {
+            let substring = arg[..<range.lowerBound]
+            return arg.replacingOccurrences(
+                of: String(substring) + "BazelRulesXcodeProj16B40.xctoolchain",
+                with: "\(developerDir)/Toolchains/XcodeDefault.xctoolchain"
+            )
+        }
+        return arg
+    }
+    try "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc \(processedArgs.joined(separator: " "))".appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
     try exit(runSubProcess(
         executable: """
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 """,
-        args: Array(args.dropFirst())
+        args: Array(processedArgs)
     ))
 }
 
