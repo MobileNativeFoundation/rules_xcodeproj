@@ -32,7 +32,12 @@ extension Generator.Environment {
                 createProductBuildFileObject:
                     Generator.CreateProductBuildFileObject(),
                 createSourcesBuildPhaseObject:
-                    Generator.CreateSourcesBuildPhaseObject()
+                    Generator.CreateSourcesBuildPhaseObject(),
+                createLinkBinaryWithLibrariesBuildPhaseObject:
+                    Generator.CreateLinkBinaryWithLibrariesBuildPhaseObject(),
+                createFrameworkObject: Generator.CreateFrameworkObject(),
+                createFrameworkBuildFileObject:
+                    Generator.CreateFrameworkBuildFileObject()
             ),
             createProductObject: Generator.CreateProductObject(),
             createTargetObject: Generator.CreateTargetObject(),
