@@ -257,7 +257,6 @@ def _collect_legacy_output_files(
         indexstores_filelist = indexstore_filelists.write(
             actions = ctx.actions,
             indexstore_and_target_overrides = transitive_indexstore_overrides,
-            indexstores = transitive_indexstores,
             name = "bi",
             rule_name = rule_attr.name,
         )
