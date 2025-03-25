@@ -725,6 +725,7 @@ def _should_create_provider(*, bin_dir_path, rule_kind, target):
         # Allow swift_compiler_plugin even in exec configuration
         if rule_kind == "swift_compiler_plugin":
             return True
+
         # We don't want to include other "tools" (exec configuration) targets
         return False
 
