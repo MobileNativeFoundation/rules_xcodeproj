@@ -136,6 +136,10 @@ def _process_incremental_library_target(
         params_files,
     ) = pbxproj_partials.write_target_build_settings(
         actions = actions,
+        allow_remote = (
+            ctx.attr._allow_remote_write_target_build_settings[BuildSettingInfo]
+                .value
+        ),
         apple_generate_dsym = ctx.fragments.cpp.apple_generate_dsym,
         colorize = ctx.attr._colorize[BuildSettingInfo].value,
         conly_args = args.conly,

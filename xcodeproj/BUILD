@@ -7,6 +7,20 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
+# `WriteTargetBuildSettings` is very fast, and there are potentially thousands
+# of the action for a project, which results in caching overhead slowing down
+# clean builds. So by default we disable remote cache/execution. This also
+# prevents DDoSing the remote cache.
+#
+# Currently on Linux you need to enable this flag and use multi-platform RBE,
+# since `WriteTargetBuildSettings` is precompiled for macOS. It might also be
+# beneficial to enable this on CI to speed up project generation validation.
+bool_flag(
+    name = "allow_remote_write_target_build_settings",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
 string_flag(
     name = "extra_common_flags",
     build_setting_default = "",

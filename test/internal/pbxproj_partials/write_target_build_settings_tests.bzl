@@ -73,6 +73,7 @@ def _write_target_build_settings_test_impl(ctx):
         params,
     ) = pbxproj_partials.write_target_build_settings(
         actions = actions.mock,
+        allow_remote = ctx.attr.allow_remote,
         apple_generate_dsym = ctx.attr.apple_generate_dsym,
         certificate_name = ctx.attr.certificate_name,
         colorize = ctx.attr.colorize,
@@ -167,6 +168,7 @@ write_target_build_settings_test = unittest.make(
     # @unsorted-dict-items
     attrs = {
         # Inputs
+        "allow_remote": attr.bool(mandatory = True),
         "apple_generate_dsym": attr.bool(mandatory = True),
         "certificate_name": attr.string(),
         "colorize": attr.bool(mandatory = True),
@@ -210,6 +212,7 @@ def write_target_build_settings_test_suite(name):
             name,
 
             # Inputs
+            allow_remote = False,
             apple_generate_dsym = False,
             certificate_name = None,
             colorize = False,
@@ -241,6 +244,7 @@ def write_target_build_settings_test_suite(name):
             name = name,
 
             # Inputs
+            allow_remote = allow_remote,
             apple_generate_dsym = apple_generate_dsym,
             certificate_name = certificate_name,
             colorize = colorize,
