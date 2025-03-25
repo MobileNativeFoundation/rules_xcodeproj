@@ -271,6 +271,7 @@ def info_constructors_test_suite(name):
         expected_info = struct(
             app_language = "",
             app_region = "",
+            code_coverage = "0",
         ),
     )
 
@@ -281,12 +282,14 @@ def info_constructors_test_suite(name):
         info = xcscheme_infos_testable.make_test_options(
             app_language = "en",
             app_region = "US",
+            code_coverage = "0",
         ),
 
         # Expected
         expected_info = struct(
             app_language = "en",
             app_region = "US",
+            code_coverage = "0",
         ),
     )
 
@@ -756,6 +759,7 @@ def info_constructors_test_suite(name):
             options = xcscheme_infos_testable.make_test_options(
                 app_language = "en",
                 app_region = "US",
+                code_coverage = "0",
             ),
             test_targets = [
                 xcscheme_infos_testable.make_test_target("tt 9"),
@@ -793,6 +797,7 @@ def info_constructors_test_suite(name):
             options = xcscheme_infos_testable.make_test_options(
                 app_language = "en",
                 app_region = "US",
+                code_coverage = "0",
             ),
             test_targets = [
                 xcscheme_infos_testable.make_test_target("tt 9"),
