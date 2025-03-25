@@ -89,6 +89,9 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
             /// The product reference for a target.
             case product = "P"
 
+            /// The framework reference for a target in libraries to link build phase.
+            case framework = "f"
+
             /// A normal file referenced in a `BuildPhase.sources` build phase.
             case source = "0"
 
@@ -186,6 +189,14 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
                 return #"""
 \#(subIdentifier.shard)00\#(subIdentifier.hash)0000000000FF \#
 /* \#(subIdentifier.path.path) */
+"""#
+
+            case .framework:
+                let basename = subIdentifier.path.path
+                    .split(separator: "/").last!
+                return #"""
+\#(subIdentifier.shard)A8\#(subIdentifier.hash) \#
+/* \#(basename) in Frameworks */
 """#
 
             case .compileStub:
@@ -535,6 +546,7 @@ private extension Identifiers.BuildFiles.FileType {
     var buildPhase: BuildPhase {
         switch self {
         case .product: preconditionFailure() // product reference used as build file
+        case .framework: return .linkBinaryWithLibraries
         case .source: return .sources
         case .nonArcSource: return .sources
         case .compileStub: return .sources
@@ -566,6 +578,7 @@ extension BuildPhase {
         case .sources: return "06"
         case .copySwiftGeneratedHeader: return "07"
         case .embedAppExtensions: return "08"
+        case .linkBinaryWithLibraries: return "09"
         }
     }
 }

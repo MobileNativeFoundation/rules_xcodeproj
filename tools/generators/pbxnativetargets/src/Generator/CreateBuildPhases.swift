@@ -13,6 +13,10 @@ extension Generator {
             CreateEmbedAppExtensionsBuildPhaseObject
         private let createProductBuildFileObject: CreateProductBuildFileObject
         private let createSourcesBuildPhaseObject: CreateSourcesBuildPhaseObject
+        private let createLinkBinaryWithLibrariesBuildPhaseObject:
+            CreateLinkBinaryWithLibrariesBuildPhaseObject
+        private let createFrameworkObject: CreateFrameworkObject
+        private let createFrameworkBuildFileObject: CreateFrameworkBuildFileObject
 
         private let callable: Callable
 
@@ -31,6 +35,10 @@ extension Generator {
                 CreateEmbedAppExtensionsBuildPhaseObject,
             createProductBuildFileObject: CreateProductBuildFileObject,
             createSourcesBuildPhaseObject: CreateSourcesBuildPhaseObject,
+            createLinkBinaryWithLibrariesBuildPhaseObject:
+                CreateLinkBinaryWithLibrariesBuildPhaseObject,
+            createFrameworkObject: CreateFrameworkObject,
+            createFrameworkBuildFileObject: CreateFrameworkBuildFileObject,
             callable: @escaping Callable = Self.defaultCallable
         ) {
             self.createBazelIntegrationBuildPhaseObject =
@@ -44,6 +52,9 @@ extension Generator {
                 createEmbedAppExtensionsBuildPhaseObject
             self.createProductBuildFileObject = createProductBuildFileObject
             self.createSourcesBuildPhaseObject = createSourcesBuildPhaseObject
+            self.createLinkBinaryWithLibrariesBuildPhaseObject = createLinkBinaryWithLibrariesBuildPhaseObject
+            self.createFrameworkObject = createFrameworkObject
+            self.createFrameworkBuildFileObject = createFrameworkBuildFileObject
 
             self.callable = callable
         }
@@ -86,7 +97,10 @@ extension Generator {
                 /*createEmbedAppExtensionsBuildPhaseObject:*/
                     createEmbedAppExtensionsBuildPhaseObject,
                 /*createProductBuildFileObject:*/ createProductBuildFileObject,
-                /*createSourcesBuildPhaseObject:*/ createSourcesBuildPhaseObject
+                /*createSourcesBuildPhaseObject:*/ createSourcesBuildPhaseObject,
+                /*createLinkBinaryWithLibrariesBuildPhaseObject:*/ createLinkBinaryWithLibrariesBuildPhaseObject,
+                /*createFrameworkObject:*/ createFrameworkObject,
+                /*createFrameworkBuildFileObject:*/ createFrameworkBuildFileObject
             )
         }
     }
@@ -116,7 +130,11 @@ extension Generator.CreateBuildPhases {
         _ createEmbedAppExtensionsBuildPhaseObject:
             Generator.CreateEmbedAppExtensionsBuildPhaseObject,
         _ createProductBuildFileObject: Generator.CreateProductBuildFileObject,
-        _ createSourcesBuildPhaseObject: Generator.CreateSourcesBuildPhaseObject
+        _ createSourcesBuildPhaseObject: Generator.CreateSourcesBuildPhaseObject,
+        _ createLinkBinaryWithLibrariesBuildPhaseObject:
+            Generator.CreateLinkBinaryWithLibrariesBuildPhaseObject,
+        _ createFrameworkObject: Generator.CreateFrameworkObject,
+        _ createFrameworkBuildFileObject: Generator.CreateFrameworkBuildFileObject
     ) -> (
         buildPhases: [Object],
         buildFileObjects: [Object],
@@ -144,7 +162,11 @@ extension Generator.CreateBuildPhases {
         createEmbedAppExtensionsBuildPhaseObject:
             Generator.CreateEmbedAppExtensionsBuildPhaseObject,
         createProductBuildFileObject: Generator.CreateProductBuildFileObject,
-        createSourcesBuildPhaseObject: Generator.CreateSourcesBuildPhaseObject
+        createSourcesBuildPhaseObject: Generator.CreateSourcesBuildPhaseObject,
+        createLinkBinaryWithLibrariesBuildPhaseObject:
+            Generator.CreateLinkBinaryWithLibrariesBuildPhaseObject,
+        createFrameworkObject: Generator.CreateFrameworkObject,
+        createFrameworkBuildFileObject: Generator.CreateFrameworkBuildFileObject
     ) -> (
         buildPhases: [Object],
         buildFileObjects: [Object],
@@ -258,6 +280,45 @@ extension Generator.CreateBuildPhases {
                 )
             )
         }
+
+        let librariesToLinkSubIdentifiers = consolidatedInputs.librariesToLinkPaths.map { bazelPath in
+            return (
+                bazelPath,
+                createBuildFileSubIdentifier(
+                    BazelPath(bazelPath.path.split(separator: "/").last.map(String.init)!),
+                    type: .framework,
+                    shard: shard
+                ),
+                createBuildFileSubIdentifier(
+                    bazelPath,
+                    type: .framework,
+                    shard: shard
+                )
+            )
+        }
+        librariesToLinkSubIdentifiers
+            .forEach { bazelPath, buildSubIdentifier, frameworkSubIdentifier  in
+                buildFileObjects.append(
+                    createFrameworkBuildFileObject(
+                        frameworkSubIdentifier: frameworkSubIdentifier,
+                        subIdentifier: buildSubIdentifier
+                    )
+                )
+                buildFileObjects.append(
+                    createFrameworkObject(
+                        frameworkPath: bazelPath,
+                        subIdentifier: frameworkSubIdentifier
+                    )
+                )
+            }
+        buildPhases.append(
+            createLinkBinaryWithLibrariesBuildPhaseObject(
+                subIdentifier: identifier.subIdentifier,
+                librariesToLinkIdentifiers: librariesToLinkSubIdentifiers
+                    .map { $0.1 }
+                    .map { Identifiers.BuildFiles.id(subIdentifier: $0) }
+            )
+        )
 
         return (buildPhases, buildFileObjects, buildFileSubIdentifiers)
     }
