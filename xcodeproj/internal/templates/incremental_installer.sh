@@ -73,8 +73,8 @@ dest_dir="$(dirname "${dest}")"
 
 # Copy over `xcschemes`
 readonly dest_xcschemes="$dest/xcshareddata/xcschemes"
-
 mkdir -p "$dest_xcschemes"
+chmod +w "$src_xcschemes" "$dest_xcschemes" # Starting on MacOS 15.4, rsync will fail if it does not have write access on the src or dst directory
 rsync \
   --archive \
   --chmod=u+w,F-x \

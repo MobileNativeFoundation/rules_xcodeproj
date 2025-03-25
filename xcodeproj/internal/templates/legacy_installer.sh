@@ -128,6 +128,7 @@ fi
 # Sync over the project, changing the permissions to be writable
 
 # Don't touch project.xcworkspace as that will make Xcode prompt
+chmod +w "$src/" "$dest/" # Starting on MacOS 15.4, rsync will fail if it does not have write access on the src or dst directory
 rsync \
   --archive \
   --copy-links \
