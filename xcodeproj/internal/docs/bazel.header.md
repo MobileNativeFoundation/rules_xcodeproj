@@ -50,5 +50,7 @@ load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 - [Providers](#providers)
   - [`XcodeProjAutomaticTargetProcessingInfo`](#XcodeProjAutomaticTargetProcessingInfo)
   - [`XcodeProjInfo`](#XcodeProjInfo)
+- [Aspect Hints](#aspect-hints)
+  - [`xcodeproj_extra_files`](#xcodeproj_extra_files)
 
 # Core

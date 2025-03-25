@@ -11,6 +11,7 @@ load(
     "memory_efficient_depset",
 )
 load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load(":xcodeproj_extra_files.bzl", "XcodeProjExtraFilesHintInfo")
 load(":incremental_resources.bzl", resources_module = "incremental_resources")
 load(":linker_input_files.bzl", "linker_input_files")
 
@@ -407,6 +408,13 @@ def _collect_incremental_input_files(
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
     )
+
+    # Collect any extra fila provided via the `xcodeproj_extra_files` aspect hint
+    for hint in rule_attr.aspect_hints:
+        if XcodeProjExtraFilesHintInfo in hint:
+            hint_extra_files = hint[XcodeProjExtraFilesHintInfo].files
+            if hint_extra_files:
+                extra_files.extend(hint_extra_files.to_list())
 
     product_framework_files = memory_efficient_depset(
         transitive = [
