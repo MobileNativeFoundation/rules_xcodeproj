@@ -112,8 +112,8 @@ readonly output_base="${execution_root%/*/*}"
 # Set bazel env
 %collect_bazel_env%
 
-if command -v md5 >/dev/null 2>&1; then
-  readonly md5_command="md5"
+if command -v /sbin/md5 >/dev/null 2>&1; then
+  readonly md5_command="/sbin/md5"
 elif command -v md5sum >/dev/null 2>&1; then
   readonly md5_command="md5sum"
 else

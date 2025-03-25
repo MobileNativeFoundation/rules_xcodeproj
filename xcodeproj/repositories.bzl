@@ -59,8 +59,8 @@ package_group(
 """,
     )
 
-    if repository_ctx.execute(["uname"]).stdout.strip() == "Darwin":
-        md5_command = "md5"
+    if repository_ctx.execute(["command", "-v", "/sbin/md5"]).return_code == 0:
+        md5_command = "/sbin/md5"
     else:
         md5_command = "md5sum"
 
