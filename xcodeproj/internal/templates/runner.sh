@@ -183,7 +183,7 @@ common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
 EOF
 
 if command -v /usr/bin/xcode-select >/dev/null 2>&1; then
-  developer_dir=$(xcode-select -p)
+  developer_dir=$(/usr/bin/xcode-select -p)
 else
   developer_dir="${DEVELOPER_DIR:-}"
 fi
