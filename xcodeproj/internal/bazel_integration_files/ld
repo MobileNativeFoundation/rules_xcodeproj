@@ -22,8 +22,14 @@ do
 
   *.preview-thunk.dylib)
     # Pass through for SwiftUI Preview thunk compilation
-    # TODO: Make this work with custom toolchains
-    exec "$developer_dir/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" "${passthrough_args[@]}"
+    if [[ -n "${TOOLCHAIN_DIR:-}" ]]; then
+      # Use the toolchain's ld
+      ld="$TOOLCHAIN_DIR/usr/bin/ld"
+    else
+      # Use default Xcode default toolchain if no toolchain is provided
+      ld="$developer_dir/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld"
+    fi
+    exec "$ld" "${passthrough_args[@]}"
     ;;
   esac
   shift
