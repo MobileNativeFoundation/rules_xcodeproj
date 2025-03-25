@@ -169,16 +169,11 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
   bazelrcs+=("--bazelrc=$extra_flags_bazelrc")
 fi
 
-developer_dir=$(xcode-select -p)
-
 # We write to a `.bazelrc` file instead of passing flags directly in order to
 # support all Bazel commands via the `common` pseudo-command
 cat > "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
 # Be explicit about our desired Xcode version
 common:rules_xcodeproj --xcode_version=%xcode_version%
-
-# Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
-common:rules_xcodeproj --repo_env=DEVELOPER_DIR=$developer_dir
 
 # Work around https://github.com/bazelbuild/bazel/issues/8902
 # \`USE_CLANG_CL\` is only used on Windows, we set it here to cause Bazel to
@@ -186,6 +181,20 @@ common:rules_xcodeproj --repo_env=DEVELOPER_DIR=$developer_dir
 common:rules_xcodeproj --repo_env=USE_CLANG_CL=%xcode_version%
 common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
 EOF
+
+if command -v /usr/bin/xcode-select >/dev/null 2>&1; then
+  developer_dir=$(xcode-select -p)
+else
+  developer_dir="${DEVELOPER_DIR:-}"
+fi
+
+if [[ -n "$developer_dir" ]]; then
+  cat >> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
+
+# Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
+common:rules_xcodeproj --repo_env=DEVELOPER_DIR=$developer_dir
+EOF
+fi
 
 readonly allowed_vars=(
   "BUILD_WORKSPACE_DIRECTORY"
@@ -209,7 +218,7 @@ bazel_cmd=(
   "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
-  "--host_jvm_args=-Xdock:name=$developer_dir"
+  ${developer_dir:+"--host_jvm_args=-Xdock:name=$developer_dir"}
 
   "${bazelrcs[@]}"
 )
