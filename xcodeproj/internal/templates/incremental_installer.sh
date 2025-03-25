@@ -81,9 +81,17 @@ rsync \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"
 
+if [[ $(uname) == "Darwin" ]]; then
+  is_macos=1
+else
+  is_macos=0
+fi
+
 # Resolve the copy command (can't use `cp -c` if the files are on different
-# filesystems)
-if [[ $(stat -f '%d' "$src_xcschemes") == $(stat -f '%d' "$dest_xcschemes") ]]; then
+# filesystems, or on Linux)
+if [[ $is_macos -eq 1 &&
+      $(stat -f '%d' "$src_xcschemes") == $(stat -f '%d' "$dest_xcschemes") ]]
+then
   readonly cp_cmd="cp -c"
 else
   readonly cp_cmd="cp"
@@ -146,31 +154,37 @@ mkdir -p "$user_xcschmes"
 $cp_cmd "$src_xcschememanagement" "$dest_xcschememanagement"
 chmod u+w "$dest_xcschememanagement"
 
-# Set desired `project.xcworkspace` data
-readonly workspace_data="$dest/project.xcworkspace/xcshareddata"
-readonly workspace_checks="$workspace_data/IDEWorkspaceChecks.plist"
-readonly workspace_settings="$workspace_data/WorkspaceSettings.xcsettings"
-readonly settings_files=(
-  "$workspace_checks"
-  "$workspace_settings"
-)
+# Even though we can generate a project on Linux, it can never run on Linux.
+# And since it has absolute paths, the generated project can't be copied to a
+# machine and still work. Given that, and since `plutil` doesn't exist on Linux,
+# we only run the following commands on macOS.
+if [[ $is_macos -eq 1 ]]; then
+  # Set desired `project.xcworkspace` data
+  readonly workspace_data="$dest/project.xcworkspace/xcshareddata"
+  readonly workspace_checks="$workspace_data/IDEWorkspaceChecks.plist"
+  readonly workspace_settings="$workspace_data/WorkspaceSettings.xcsettings"
+  readonly settings_files=(
+    "$workspace_checks"
+    "$workspace_settings"
+  )
 
-mkdir -p "$workspace_data"
-for file in "${settings_files[@]}"; do
-  if [[ ! -f $file ]]; then
-    # Create an empty plist
-    echo "{}" | plutil -convert xml1 -o "$file" -
-  fi
-done
+  mkdir -p "$workspace_data"
+  for file in "${settings_files[@]}"; do
+    if [[ ! -f $file ]]; then
+      # Create an empty plist
+      echo "{}" | plutil -convert xml1 -o "$file" -
+    fi
+  done
 
-# - Prevent Xcode from doing work that slows down startup
-plutil -replace IDEDidComputeMac32BitWarning -bool true "$workspace_checks"
+  # - Prevent Xcode from doing work that slows down startup
+  plutil -replace IDEDidComputeMac32BitWarning -bool true "$workspace_checks"
 
-# - Configure the project to use Xcode's new build system.
-plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
+  # - Configure the project to use Xcode's new build system.
+  plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 
-# - Prevent Xcode from prompting the user to autocreate schemes for all targets
-plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
+  # - Prevent Xcode from prompting the user to autocreate schemes for all targets
+  plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
+fi
 
 # Create folder structure in bazel-out to work around Xcode red generated files
 if [[ -s "$src_generated_directories_filelist" ]]; then
