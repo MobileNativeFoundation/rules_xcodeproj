@@ -6,6 +6,7 @@ load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 # Generating
 
 _DOC_COMPONENTS = [
+    "aspect_hints",
     "project_options",
     "providers",
     "top_level_target",
@@ -35,6 +36,7 @@ genrule(
         ":xcschemes",
         ":xcode_build_settings",
         ":providers",
+        ":aspect_hints",
     ],
     outs = ["bazel.generated.md"],
     cmd = """\

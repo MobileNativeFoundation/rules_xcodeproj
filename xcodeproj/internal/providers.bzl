@@ -15,3 +15,10 @@ XcodeProjRunnerOutputInfo = provider(
         "runner": "The xcodeproj runner.",
     },
 )
+
+XcodeProjExtraFilesHintInfo = provider(
+    doc = "Provides a list of extra files to include during project generation",
+    fields = {
+        "files": "List of files to include in the extra files.",
+    },
+)

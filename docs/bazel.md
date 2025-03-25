@@ -50,6 +50,8 @@ load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 - [Providers](#providers)
   - [`XcodeProjAutomaticTargetProcessingInfo`](#XcodeProjAutomaticTargetProcessingInfo)
   - [`XcodeProjInfo`](#XcodeProjInfo)
+- [Aspect Hints](#aspect-hints)
+  - [`xcodeproj_extra_files`](#xcodeproj_extra_files)
 
 # Core
 
@@ -812,5 +814,51 @@ Provides information needed to generate an Xcode project.
 | <a id="XcodeProjInfo-transitive_dependencies"></a>transitive_dependencies |  A `depset` of target IDs (see `xcode_target.id`) that this target transitively depends on.    |
 | <a id="XcodeProjInfo-xcode_target"></a>xcode_target |  A value from `xcode_targets.make` if this target can produce an Xcode target.    |
 | <a id="XcodeProjInfo-xcode_targets"></a>xcode_targets |  A `depset` of values from `xcode_targets.make`, which potentially will become targets in the Xcode project.    |
+
+
+# Aspect Hints
+
+Aspect hints that can be used to provide additional information during project generation.
+
+<a id="xcodeproj_extra_files"></a>
+
+## xcodeproj_extra_files
+
+<pre>
+xcodeproj_extra_files(<a href="#xcodeproj_extra_files-name">name</a>, <a href="#xcodeproj_extra_files-files">files</a>)
+</pre>
+
+This rule is used to surface extra files that should be included in the Xcode
+project navigator, but otherwise aren't inputs to a target. The provider
+created by this rule should be attached to the related target via an aspect
+hint.
+
+This is only used when xcodeproj.generation_mode = "incremental" is set.
+
+**EXAMPLE**
+
+```starlark
+load("@rules_xcodeproj//xcodeproj:xcodeproj_extra_files.bzl", "xcodeproj_extra_files")
+
+swift_library(
+    ...
+    aspect_hints = [":library_extra_files"],
+    ...
+)
+
+# Display the README.md file located alongside the Swift library in Xcode
+xcodeproj_extra_files(
+    name = "library_extra_files",
+    files = ["README.md"],
+)
+```
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="xcodeproj_extra_files-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="xcodeproj_extra_files-files"></a>files |  The list of extra files to surface in the Xcode navigator.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
 
