@@ -246,7 +246,6 @@ def _collect_incremental_output_files(
     indexstores_filelist = indexstore_filelists.write(
         actions = actions,
         indexstore_and_target_overrides = transitive_indexstore_overrides,
-        indexstores = transitive_indexstores,
         name = "bi",
         rule_name = name,
     )
@@ -348,7 +347,6 @@ def _collect_mixed_language_output_files(
     indexstores_filelist = indexstore_filelists.write(
         actions = actions,
         indexstore_and_target_overrides = transitive_indexstore_overrides,
-        indexstores = transitive_indexstores,
         name = "bi",
         rule_name = name,
     )
