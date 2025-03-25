@@ -112,8 +112,17 @@ readonly output_base="${execution_root%/*/*}"
 # Set bazel env
 %collect_bazel_env%
 
+if command -v /sbin/md5 >/dev/null 2>&1; then
+  readonly md5_command="/sbin/md5"
+elif command -v md5sum >/dev/null 2>&1; then
+  readonly md5_command="md5sum"
+else
+  fail "ERROR: Unable to find a command to calculate MD5 hash; please install" \
+    "md5 or md5sum"
+fi
+
 # Create files for the generator target
-output_base_hash=$(/sbin/md5 -q -s "$output_base")
+output_base_hash=$(echo "$output_base" | "$md5_command" | awk '{print $1}')
 readonly generator_package_directory="/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash/%generator_package_name%"
 
 mkdir -p "$generator_package_directory"

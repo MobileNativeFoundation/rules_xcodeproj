@@ -59,12 +59,13 @@ package_group(
 """,
     )
 
-    # Don't do anything on non-macOS platforms
-    if repository_ctx.execute(["uname"]).stdout.strip() != "Darwin":
-        return
+    if repository_ctx.execute(["command", "-v", "/sbin/md5"]).return_code == 0:
+        md5_command = "/sbin/md5"
+    else:
+        md5_command = "md5sum"
 
     output_base_hash_result = repository_ctx.execute(
-        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*/*/*}"'],
+        ["bash", "-c", "set -euo pipefail; echo \"${PWD%/*/*/*/*}\" | " + md5_command + " | awk '{print $1}'"],
     )
     if output_base_hash_result.return_code != 0:
         fail("Failed to calculate output base hash: {}".format(
