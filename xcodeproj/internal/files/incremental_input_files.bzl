@@ -4,6 +4,7 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
 )
+load("//xcodeproj/internal:extra_files_aspect_hint.bzl", "XcodeProjExtraFilesHintInfo")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
@@ -407,6 +408,12 @@ def _collect_incremental_input_files(
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
     )
+
+    for hint in rule_attr.aspect_hints:
+        if XcodeProjExtraFilesHintInfo in hint:
+            hint_extra_files = hint[XcodeProjExtraFilesHintInfo].files
+            if hint_extra_files:
+                extra_files.extend(hint_extra_files.to_list())
 
     product_framework_files = memory_efficient_depset(
         transitive = [
