@@ -1075,6 +1075,7 @@ def _write_swift_debug_settings(
 def _write_target_build_settings(
         *,
         actions,
+        allow_remote,
         apple_generate_dsym,
         certificate_name = None,
         colorize,
@@ -1100,6 +1101,8 @@ def _write_target_build_settings(
 
     Args:
         actions: `ctx.actions`.
+        allow_remote: A `bool` indicating whether to allow remote cache or
+            remote execution of the `WriteTargetBuildSettings` action.
         apple_generate_dsym: `cpp_fragment.apple_generate_dsym`.
         certificate_name: The name of the certificate to use for code signing.
         colorize: A `bool` indicating whether to colorize the output.
@@ -1266,6 +1269,10 @@ def _write_target_build_settings(
         # cxxParams
         cxx_output_args.add(cxx_params)
 
+    execution_requirements = {}
+    if not allow_remote:
+        execution_requirements["no-remote"] = "1"
+
     actions.run(
         arguments = (
             [args] + swift_args + [c_output_args] + conly_args +
@@ -1276,13 +1283,7 @@ def _write_target_build_settings(
         outputs = outputs,
         progress_message = "Generating %{output}",
         mnemonic = "WriteTargetBuildSettings",
-        execution_requirements = {
-            # This action is very fast, and there are potentially thousands of
-            # this action for a project, which results in caching overhead
-            # slowing down clean builds. So, we disable remote cache/execution.
-            # This also prevents DDoSing the remote cache.
-            "no-remote": "1",
-        },
+        execution_requirements = execution_requirements,
     )
 
     return build_settings_output, debug_settings_output, params

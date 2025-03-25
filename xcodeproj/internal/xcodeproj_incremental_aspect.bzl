@@ -59,6 +59,10 @@ def _xcodeproj_incremental_aspect_attrs(
         generator_name,
         unfocused_labels):
     return {
+        "_allow_remote_write_target_build_settings": attr.label(
+            default = Label("//xcodeproj:color"),
+            providers = [BuildSettingInfo],
+        ),
         "_cc_compiler_params_processor": attr.label(
             cfg = "exec",
             default = Label(

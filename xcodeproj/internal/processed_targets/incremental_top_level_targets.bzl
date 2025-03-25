@@ -461,6 +461,10 @@ def _process_focused_top_level_target(
         params_files,
     ) = pbxproj_partials.write_target_build_settings(
         actions = actions,
+        allow_remote = (
+            ctx.attr._allow_remote_write_target_build_settings[BuildSettingInfo]
+                .value
+        ),
         apple_generate_dsym = ctx.fragments.cpp.apple_generate_dsym,
         certificate_name = provisioning_profile_props.certificate_name,
         colorize = ctx.attr._colorize[BuildSettingInfo].value,
@@ -778,6 +782,10 @@ def _process_unfocused_top_level_target(
         _,
     ) = pbxproj_partials.write_target_build_settings(
         actions = actions,
+        allow_remote = (
+            ctx.attr._allow_remote_write_target_build_settings[BuildSettingInfo]
+                .value
+        ),
         apple_generate_dsym = False,
         colorize = ctx.attr._colorize[BuildSettingInfo].value,
         # FIXME: Should this be args.conly?
