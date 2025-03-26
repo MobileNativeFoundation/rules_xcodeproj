@@ -4,7 +4,6 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
 )
-load("//xcodeproj/internal:extra_files_aspect_hint.bzl", "XcodeProjExtraFilesHintInfo")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
@@ -12,6 +11,7 @@ load(
     "memory_efficient_depset",
 )
 load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj:xcodeproj_extra_files.bzl", "XcodeProjExtraFilesHintInfo")
 load(":incremental_resources.bzl", resources_module = "incremental_resources")
 load(":linker_input_files.bzl", "linker_input_files")
 
