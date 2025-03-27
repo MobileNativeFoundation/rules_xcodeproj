@@ -1,7 +1,5 @@
 """Rule for providing extra files from targets to the project generator"""
 
-# FEEDBACK: Should this be moved to `internal/providers.bzl` or kept her since
-# it's specific to this rule?
 XcodeProjExtraFilesHintInfo = provider(
     doc = "Provides a list of extra files to include during project generation",
     fields = {
@@ -44,12 +42,12 @@ xcodeproj_extra_files(
     files = ["README.md"],
 )
 ```
-"""
+""",
     implementation = _xcodeproj_extra_files_impl,
     attrs = {
         "files": attr.label_list(
-            doc = "The list of extra files to surface in the Xcode navigator."
-            allow_files = True
+            doc = "The list of extra files to surface in the Xcode navigator.",
+            allow_files = True,
         ),
     },
 )
