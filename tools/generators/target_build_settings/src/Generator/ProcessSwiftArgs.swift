@@ -158,9 +158,9 @@ extension Generator.ProcessSwiftArgs {
         swiftIncludes: OrderedSet<String>,
         includeTransitiveSwiftDebugSettings: Bool
     ) {
-        var previousArg: String? = nil
-        var previousClangArg: String? = nil
-        var previousFrontendArg: String? = nil
+        var previousArg: String?
+        var previousClangArg: String?
+        var previousFrontendArg: String?
         var skipNext = 0
 
         // First two arguments are `swift_worker` and `clang`

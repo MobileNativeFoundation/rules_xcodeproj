@@ -38,7 +38,7 @@ extension Generator.ProcessCcArgs {
     typealias Callable = (
         _ argsStream: AsyncThrowingStream<String, Error>,
         _ processCcArg: Generator.ProcessCcArg
-    ) async throws  -> (
+    ) async throws -> (
         args: [String],
         hasDebugInfo: Bool,
         fortifySourceLevel: Int
@@ -52,7 +52,7 @@ extension Generator.ProcessCcArgs {
         hasDebugInfo: Bool,
         fortifySourceLevel: Int
     ) {
-        var previousArg: String? = nil
+        var previousArg: String?
         var skipNext = 0
 
         var args: [String] = [

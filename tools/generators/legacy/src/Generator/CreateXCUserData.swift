@@ -16,7 +16,7 @@ extension Generator {
                 else {
                     return lhs.productTypeSortOrder < rhs.productTypeSortOrder
                 }
-                
+
                 return lhs.scheme.name < rhs.scheme.name
             }
             .map(\.scheme)
@@ -31,7 +31,7 @@ extension Generator {
                     isShown: true
                 )
             }
-        
+
         return XCUserData(
             userName: userName,
             schemes: [],
