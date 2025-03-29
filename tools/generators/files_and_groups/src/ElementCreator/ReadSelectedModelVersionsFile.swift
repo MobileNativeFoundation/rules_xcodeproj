@@ -33,7 +33,6 @@ extension ElementCreator.ReadSelectedModelVersionsFile {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-
         do {
             return try decoder
                 .decode([BazelPath: String].self, from: Data(contentsOf: url))

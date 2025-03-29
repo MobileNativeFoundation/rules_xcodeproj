@@ -85,7 +85,7 @@ extension Generator.CreateScheme {
         createBuildAction: CreateBuildAction,
         createLaunchAction: CreateLaunchAction,
         createProfileAction: CreateProfileAction,
-        createSchemeXML:  XCScheme.CreateScheme,
+        createSchemeXML: XCScheme.CreateScheme,
         createTestAction: CreateTestAction
     ) throws -> (name: String, scheme: String) {
         var buildActionEntries:

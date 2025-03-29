@@ -22,7 +22,7 @@ extension Generator {
         /// Identifies a set of disambiguated targets.
         func callAsFunction(
             _ disambiguatedTargets: [DisambiguatedTarget],
-            targetIdToConsolidationMapOutputPath: [TargetID : (UInt8, URL)]
+            targetIdToConsolidationMapOutputPath: [TargetID: (UInt8, URL)]
         ) -> [IdentifiedTarget] {
             return callable(
                 /*disambiguatedTargets:*/ disambiguatedTargets,
@@ -39,13 +39,13 @@ extension Generator {
 extension Generator.InnerIdentifyTargets {
     public typealias Callable = (
         _ disambiguatedTargets: [DisambiguatedTarget],
-        _ targetIdToConsolidationMapOutputPath: [TargetID : (UInt8, URL)],
+        _ targetIdToConsolidationMapOutputPath: [TargetID: (UInt8, URL)],
         _ createTargetSubIdentifier: Generator.CreateTargetSubIdentifier
     ) -> [IdentifiedTarget]
 
     static func defaultCallable(
         _ disambiguatedTargets: [DisambiguatedTarget],
-        targetIdToConsolidationMapOutputPath: [TargetID : (UInt8, URL)],
+        targetIdToConsolidationMapOutputPath: [TargetID: (UInt8, URL)],
         createTargetSubIdentifier: Generator.CreateTargetSubIdentifier
     ) -> [IdentifiedTarget] {
         let idsToNames: [TargetID: String] = Dictionary(

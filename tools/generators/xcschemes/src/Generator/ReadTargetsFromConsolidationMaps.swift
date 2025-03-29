@@ -38,7 +38,7 @@ extension Generator.ReadTargetsFromConsolidationMaps {
     static func defaultCallable(
         _ urls: [URL],
         referencedContainer: String
-    ) async throws  -> [Target] {
+    ) async throws -> [Target] {
         return try await withThrowingTaskGroup(
             of: [Target].self
         ) { group in

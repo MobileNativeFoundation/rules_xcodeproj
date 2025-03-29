@@ -305,4 +305,3 @@ private func consolidatePaths(_ paths: [[BazelPath]]) -> [BazelPath] {
 
     return consolidatedPaths.elements
 }
-

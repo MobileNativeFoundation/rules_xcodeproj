@@ -2,9 +2,6 @@ import Messages
 import UIKit
 
 class MessagesViewController: MSMessagesAppViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
     override func willBecomeActive(with _: MSConversation) {}
 

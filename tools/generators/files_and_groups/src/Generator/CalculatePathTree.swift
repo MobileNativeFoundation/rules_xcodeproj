@@ -212,7 +212,7 @@ extension PathTreeNode {
             return name
         case .group(let name, _):
             return name
-        case .generatedFiles(_):
+        case .generatedFiles:
             // This is only called from `CreateVerisonGroup` and
             // `CreateLocalizedFiles` where this case can't be hit
             fatalError()

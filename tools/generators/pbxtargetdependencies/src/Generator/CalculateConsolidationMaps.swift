@@ -45,7 +45,7 @@ extension Generator.CalculateConsolidationMaps {
             let watchKitExtensionProductIdentifier =
                 try target.watchKitExtension.flatMap { id in
                     let watchKitExtension = try identifiedTargetsMap
-                        .value(for: id ,context: "WatchKit extension")
+                        .value(for: id, context: "WatchKit extension")
 
                     return Identifiers.BuildFiles.productIdentifier(
                         targetSubIdentifier:

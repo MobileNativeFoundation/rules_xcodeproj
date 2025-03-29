@@ -90,7 +90,7 @@ extension ElementCreator.CreateVersionGroup {
         let selectedModelVersion = selectedModelVersions[bazelPath]
 
         var children: [GroupChild.ElementAndChildren] = []
-        var selectedChildIdentifier: String? = nil
+        var selectedChildIdentifier: String?
         for node in nodeChildren {
             let childName = node.nameForSpecialGroupChild
             let childBazelPath = BazelPath(parent: bazelPath, path: childName)
