@@ -65,7 +65,6 @@ extension Generator.ReadGeneratedFilePathsFile {
             ))
         }
 
-
         // The file can have at most 1 duplicate for each entry because of
         // preprocessed resource files being represented as file paths, while
         // they can also be an input to another action (e.g. codegen). Because

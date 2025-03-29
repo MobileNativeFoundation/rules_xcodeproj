@@ -45,7 +45,6 @@ extension String {
     }
 }
 
-
 private let invalidCharacters: CharacterSet = {
     var invalidSet = CharacterSet(charactersIn: "_$")
     invalidSet.insert(UnicodeScalar("/"))

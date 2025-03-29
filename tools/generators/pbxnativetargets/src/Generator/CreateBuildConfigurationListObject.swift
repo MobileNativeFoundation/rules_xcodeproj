@@ -58,7 +58,7 @@ extension Generator.CreateBuildConfigurationListObject {
             );
 		}
 """#
-        
+
         return Object(
             identifier: Identifiers.Targets.buildConfigurationList(
                 subIdentifier: subIdentifier,

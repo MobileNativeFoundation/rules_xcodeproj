@@ -57,7 +57,7 @@ struct Generator {
             targets: targets,
             targetsByID: targetsByID,
             targetsByKey: targetsByKey,
-            testOptions: .init(appLanguage: autogenerationConfigArguments.appLanguage, 
+            testOptions: .init(appLanguage: autogenerationConfigArguments.appLanguage,
                                appRegion: autogenerationConfigArguments.appRegion)
         )
 
