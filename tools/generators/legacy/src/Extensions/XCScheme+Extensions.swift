@@ -288,7 +288,7 @@ extension XCScheme.TestAction {
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
-                .map { .init(skipped: false, parallelization: .none, buildableReference: $0.buildableReference) },
+                .map { .init(skipped: false, buildableReference: $0.buildableReference) },
             preActions: testActionInfo.preActions.map(\.executionAction) +
                 otherPreActions,
             postActions: testActionInfo.postActions.map(\.executionAction),
@@ -302,6 +302,17 @@ extension XCScheme.TestAction {
             commandlineArguments: commandlineArguments,
             environmentVariables: (environmentVariables?.isEmpty ?? true) ?
                 nil : environmentVariables
+        )
+    }
+}
+
+extension XCScheme.TestableReference {
+    convenience init(skipped: Bool, buildableReference: XCScheme.BuildableReference) {
+        self.init(
+            skipped: skipped,
+            // This works around an ambigous `XcodeProj.XCScheme.TestableReference.init` issue.
+            parallelization: .none,
+            buildableReference: buildableReference
         )
     }
 }
