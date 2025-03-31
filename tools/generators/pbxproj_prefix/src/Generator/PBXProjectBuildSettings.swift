@@ -100,6 +100,17 @@ extension Generator {
                 value: #""$(INDEX_DATA_STORE_DIR)""#
             ),
             .init(key: "INDEX_FORCE_SCRIPT_EXECUTION", value: "YES"),
+            // .init(key: "CC", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
+            // .init(key: "CXX", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
+            // .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
+            // .init(
+            //     key: "LDPLUSPLUS",
+            //     value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
+            // ),
+            // .init(
+            //     key: "LIBTOOL",
+            //     value: #""$(BAZEL_INTEGRATION_DIR)/libtool""#
+            // ),
             .init(
                 key: "INDEX_IMPORT",
                 value: indexImport

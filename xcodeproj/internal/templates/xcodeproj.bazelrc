@@ -86,6 +86,10 @@ common:rules_xcodeproj_indexbuild --bes_backend= --bes_results_url=
 
 common:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
 
+# This is required for Previews to dynamically substitute Swift UI view bodies.
+# https://github.com/swiftlang/swift-build/blob/25648e8e5cc5e4f7f91aba666007ff9a00d6bd31/Sources/SwiftBuild/SWBPreviewSupport.swift#L77
+common:rules_xcodeproj --features=swift.experimental.OpaqueTypeErasure
+
 # Allow frameworks to find framework dependencies when running a preview
 # See `$PROJECT_FILE_PATH/rules_xcodeproj/bazel/copy_outputs.sh` for more info
 common:rules_xcodeproj_swiftuipreviews --linkopt="-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks"

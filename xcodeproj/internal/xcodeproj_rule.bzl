@@ -788,7 +788,9 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         DefaultInfo(
             executable = installer,
             files = depset(
-                transitive = [inputs.important_generated],
+                transitive = [inputs.important_generated] + [
+                    ctx.attr._rulesxcodeproj_toolchain.files
+                ],
             ),
             runfiles = ctx.runfiles(files = runfiles),
         ),
