@@ -226,16 +226,17 @@ error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
     let developerDir = sdkPath[range]
 
     let processedArgs = args.dropFirst().map { arg in
-        if let range = arg.range(of: "BazelRulesXcodeProj16B40.xctoolchain") {
+        if let range = arg.range(of: "BazelRulesXcodeProj") {
             let substring = arg[..<range.lowerBound]
+            // Extract the version suffix (e.g. "16B40" from "BazelRulesXcodeProj16B40")
+            let toolchainSuffix = arg[range.upperBound...].prefix(while: { $0 != "." })
             return arg.replacingOccurrences(
-                of: String(substring) + "BazelRulesXcodeProj16B40.xctoolchain",
+                of: String(substring) + "BazelRulesXcodeProj" + toolchainSuffix + ".xctoolchain",
                 with: "\(developerDir)/Toolchains/XcodeDefault.xctoolchain"
             )
         }
         return arg
     }
-    try "\(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc \(processedArgs.joined(separator: " "))".appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
     try exit(runSubProcess(
         executable: """
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
