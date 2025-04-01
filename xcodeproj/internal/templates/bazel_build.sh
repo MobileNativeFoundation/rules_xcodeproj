@@ -137,7 +137,12 @@ if [[ -n "${target_ids:-}" ]]; then
       exit 1
   fi
 
-  diff_output=$(comm -23 <(printf '%s\n' "${target_ids[@]}") "%target_ids_list%")
+  # We need to sort the inputs for `comm` to work on macOS 15.4+
+  diff_output=$(
+    comm -23 \
+      <(printf '%s\n' "${target_ids[@]}" | sort) \
+      <(sort "%target_ids_list%")
+  )
 
   if [ -n "$diff_output" ]; then
       missing_target_ids=("${diff_output[@]}")
