@@ -21,7 +21,7 @@ extension Generator {
 
         /// Writes consolidation maps to disk.
         func callAsFunction(
-            _ consolidationMaps: [URL : [ConsolidationMapEntry]]
+            _ consolidationMaps: [URL: [ConsolidationMapEntry]]
         ) async throws {
             try await callable(
                 /*consolidationMaps:*/ consolidationMaps,
@@ -35,12 +35,12 @@ extension Generator {
 
 extension Generator.WriteConsolidationMaps {
     typealias Callable = (
-        _ consolidationMaps: [URL : [ConsolidationMapEntry]],
+        _ consolidationMaps: [URL: [ConsolidationMapEntry]],
         _ writeConsolidationMap: Generator.WriteConsolidationMap
     ) async throws -> Void
 
     static func defaultCallable(
-        _ consolidationMaps: [URL : [ConsolidationMapEntry]],
+        _ consolidationMaps: [URL: [ConsolidationMapEntry]],
         writeConsolidationMap: Generator.WriteConsolidationMap
     ) async throws {
         try await withThrowingTaskGroup(of: Void.self) { group in

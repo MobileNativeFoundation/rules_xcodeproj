@@ -64,6 +64,6 @@ func remapArgs(
         // `DEVELOPER_DIR` has an optional `./` prefix, because index-import
         // adds `./` to all relative paths.
         "-remap",
-        #"^(?:.*?/[^/]+/Contents/Developer|(?:./)?DEVELOPER_DIR|/PLACEHOLDER_DEVELOPER_DIR|/Library/Developer/CommandLineTools).*?/SDKs/([^\d.]+)=\#(developerDir)/Platforms/$1.platform/Developer/SDKs/$1"#
+        #"^(?:.*?/[^/]+/Contents/Developer|(?:./)?DEVELOPER_DIR|/PLACEHOLDER_DEVELOPER_DIR|/Library/Developer/CommandLineTools).*?/SDKs/([^\d.]+)=\#(developerDir)/Platforms/$1.platform/Developer/SDKs/$1"#,
     ]
 }

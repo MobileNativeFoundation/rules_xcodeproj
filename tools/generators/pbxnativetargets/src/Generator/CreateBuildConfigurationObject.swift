@@ -52,7 +52,7 @@ extension Generator.CreateBuildConfigurationObject {
 			name = \#(name.pbxProjEscaped);
 		}
 """#
-        
+
         return Object(
             identifier: Identifiers.Targets.buildConfiguration(
                 name,

@@ -31,7 +31,7 @@ extension Generator {
         func callAsFunction(
             _ consolidatedTargets: [ConsolidatedTarget],
             targetNameMode: TargetNameMode
-        )-> [DisambiguatedTarget] {
+        ) -> [DisambiguatedTarget] {
             return callable(
                 /*consolidatedTargets:*/ consolidatedTargets,
                 /*targetNameMode:*/ targetNameMode
