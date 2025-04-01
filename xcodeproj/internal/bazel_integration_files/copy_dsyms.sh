@@ -3,9 +3,14 @@
 set -euo pipefail
 
 function patch_dsym() {
-  readonly dsym_name="$1"
-  readonly binary_name="${dsym_name%%.*}"
-  readonly binary_path="${dsym_name}/Contents/Resources/DWARF/${binary_name}"
+  local dsym_name="$1"
+
+  shopt -s extglob
+  local binary_name="${dsym_name%.dSYM}"
+  binary_name="${binary_name%@(.app|.appex|.bundle|.dext|.kext|.framework|.pluginkit|.systemextension|.xctest|.xpc)}"
+  shopt +s extglob
+
+  local binary_path="${dsym_name}/Contents/Resources/DWARF/${binary_name}"
 
   if [[ ! -f "$binary_path" ]]; then
     echo "dSYM DWARF ${binary_path} does not exist." \
@@ -13,8 +18,8 @@ function patch_dsym() {
     return 1
   fi
 
+  local dwarf_uuid
   dwarf_uuid=$(dwarfdump --uuid "${binary_path}" | cut -d ' ' -f 2)
-  readonly dwarf_uuid
   if [[ -z "${dwarf_uuid// /}" ]]; then
     echo "Failed to get dSYM uuid." \
     "Skip dSYM patch."
@@ -43,6 +48,14 @@ EOF
 
 if [[ -n "${BAZEL_OUTPUTS_DSYM:-}" ]]; then
   cd "${BAZEL_OUT%/*}"
+
+  if [[ $(sw_vers -productVersion | cut -d '.' -f 1-2) == "15.4" ]]; then
+    # 15.4's `rsync` has a bug that requires the src to have write permissions.
+    # We normally shouldn't do this as it modifies the bazel output base, so we
+    # limit this to only macOS 15.4.
+    # shellcheck disable=SC2046
+    chmod -R +w $(xargs -n1 <<< "$BAZEL_OUTPUTS_DSYM")
+  fi
 
   # shellcheck disable=SC2046
   rsync \
