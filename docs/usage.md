@@ -1,3 +1,5 @@
+- [Bazel aspects](#bazel-aspects)
+  - [`compile_only_aspect`](#compile_only_aspect)
 - [Bazel configs](#bazel-configs)
   - [`rules_xcodeproj`](#rules_xcodeproj)
   - [`rules_xcodeproj_generator`](#rules_xcodeproj_generator)
@@ -10,6 +12,41 @@
   - [Commands](#commands)
   - [Options](#options)
   - [Substitutions](#substitutions)
+
+# Bazel aspects
+
+## `compile_only_aspect`
+
+The `compile_only_aspect` aspect is useful for skipping non-compilation
+related actions. For example, in CI it can be used to help with disk
+space usage by skipping actions that are typically not cached during
+a cache warming job. It can also be used to validate that the targets
+compile while skipping costly actions like bundling, signing, etc.
+
+To use the aspect, you apply it at the command line:
+
+```
+bazel build //some:target \
+  --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect \
+  --output_groups=compile_only
+```
+
+You can also create a Bazel configuration in a `.bazelrc` file to reuse the
+aspect easily:
+
+```
+common:compile_only --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect
+common:compile_only --output_groups=compile_only
+```
+
+And use it, for example, with the command-line API:
+
+```
+bazel run //label/to:xcodeproj \
+  -- \
+  --generator_output_groups=all_targets \
+  'build --config=compile_only --remote_download_minimal'
+```
 
 # Bazel configs
 
