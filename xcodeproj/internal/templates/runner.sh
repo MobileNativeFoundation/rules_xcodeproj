@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+set -x
+
 # Functions
 
 # Echos the provided message to stderr and exits with an error (1)
@@ -120,6 +122,9 @@ else
   fail "ERROR: Unable to find a command to calculate MD5 hash; please install" \
     "md5 or md5sum"
 fi
+
+ls -la /var/tmp/rules_xcodeproj/generated_v2
+ls -la "/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash"
 
 # Create files for the generator target
 output_base_hash=$(echo "$output_base" | "$md5_command" | awk '{print $1}')
