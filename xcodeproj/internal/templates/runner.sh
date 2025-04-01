@@ -125,11 +125,6 @@ fi
 
 # Create files for the generator target
 output_base_hash=$(echo "$output_base" | "$md5_command" | awk '{print $1}')
-
-
-ls -la /var/tmp/rules_xcodeproj/generated_v2
-ls -la "/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash"
-
 readonly generator_package_directory="/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash/%generator_package_name%"
 
 mkdir -p "$generator_package_directory"
@@ -139,6 +134,10 @@ cp "$generator_defs_bzl" "$generator_package_directory/defs.bzl"
 chmod u+w "$generator_package_directory/defs.bzl"
 cp "$schemes_json" "$generator_package_directory/custom_xcode_schemes.json"
 chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
+
+ls -la /var/tmp/rules_xcodeproj/generated_v2
+ls -la "/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash"
+ls -la "$generator_package_directory"
 
 if [[ %is_fixture% -eq 1 ]]; then
   cat >> "$generator_package_directory/defs.bzl" <<EOF
