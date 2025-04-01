@@ -78,7 +78,7 @@ Here is an example output:
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Prepare BazelDependencies"
-               scriptText = "mkdir -p &quot;$PROJECT_DIR&quot;&#10;&#10;if [[ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}&quot; == &quot;YES&quot; ]]&#10;then&#10;    # TODO: Support custom toolchains once clang.sh supports them&#10;    cd &quot;$INTERNAL_DIR&quot; || exit 1&#10;    ln -shfF &quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot; lib&#10;fi&#10;">
+               scriptText = "mkdir -p &quot;$PROJECT_DIR&quot;&#10;&#10;if [[ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}&quot; == &quot;YES&quot; ]]&#10;then&#10;    $INTERNAL_DIR&quot; || exit 1&#10;    ln -shfF &quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot; lib&#10;fi&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
