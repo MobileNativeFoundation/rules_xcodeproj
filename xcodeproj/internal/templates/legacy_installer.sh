@@ -85,8 +85,17 @@ if [[ $for_fixture -eq 1 ]]; then
   readonly generator_package_name="${generator_package_name_prefix#*/*/*/}"
   readonly generator_name="${generator_package_name##*/}"
 
+  if command -v /sbin/md5 >/dev/null 2>&1; then
+    readonly md5_command="/sbin/md5"
+  elif command -v md5sum >/dev/null 2>&1; then
+    readonly md5_command="md5sum"
+  else
+    fail "ERROR: Unable to find a command to calculate MD5 hash; please install" \
+      "md5 or md5sum"
+  fi
+
   # Copy over generated generator
-  output_base_hash=$(/sbin/md5 -q -s "${execution_root%/*/*}")
+  output_base_hash=$(echo "${execution_root%/*/*}" | "$md5_command" | awk '{print $1}')
   readonly src_generator_package_directory="/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash/generator/$generator_package_name"
   readonly dest_generator_package_directory="$project_dir/generated"
   readonly dest_generator_package="${dest_generator_package_directory:?}/$generator_name"
