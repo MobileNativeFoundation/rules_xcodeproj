@@ -10,17 +10,13 @@ for dir in examples/*/ ; do
       continue
     fi
 
+    # TODO: rules_ios only builds with up-to Bazel 7
     if [[ "$dir" == "examples/rules_ios/" ]]; then
-      bazel_version="7.4.1"
-    else
-      # See https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3029
-      #
-      # Temporary change to make CI pass until the fix is in `last_green`
-      bazel_version="dd2464a5933e0a5a6765024573832717b71989bf"
+      overriden_bazel_version="7.4.1"
     fi
 
     echo
     echo "Updating \"${dir%/}\" fixtures"
     echo
-    USE_BAZEL_VERSION="$bazel_version" bazel run --config=cache //test/fixtures:update
+    USE_BAZEL_VERSION="${overriden_bazel_version:-}" bazel run --config=cache //test/fixtures:update
 done
