@@ -281,7 +281,10 @@ extension Generator.CreateBuildPhases {
             )
         }
 
-        let librariesToLinkSubIdentifiers = consolidatedInputs.librariesToLinkPaths.map { bazelPath in
+        let libs = consolidatedInputs.librariesToLinkPaths + [
+            "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/lib/darwin/libclang_rt.iossim.a"
+        ]
+        let librariesToLinkSubIdentifiers = libs.map { bazelPath in
             return (
                 bazelPath,
                 createBuildFileSubIdentifier(
