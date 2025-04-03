@@ -23,7 +23,7 @@ x_templates:
         USE_BAZEL_VERSION: 8.x
     - &bazel_head
       env:
-        USE_BAZEL_VERSION: last_green
+        USE_BAZEL_VERSION: 4c2d91e762ab6e492853b021408129dd93fb5904 # TODO: Switch back to last_green once get_cpu has been removed
 
     - &normal_resources
       resource_requests: { memory: 6GB }

@@ -34,7 +34,7 @@ use_repo(
 
 bazel_dep(
     name = "apple_support",
-    version = "1.11.1",
+    version = "1.21.0",
     dev_dependency = True,
     repo_name = "build_bazel_apple_support",
 )
@@ -53,12 +53,6 @@ bazel_dep(
     version = "0.6.1",
     dev_dependency = True,
     repo_name = "io_bazel_stardoc",
-)
-
-# Use newer versions of deps in development
-single_version_override(
-    module_name = "apple_support",
-    version = "1.17.1",
 )
 
 single_version_override(
