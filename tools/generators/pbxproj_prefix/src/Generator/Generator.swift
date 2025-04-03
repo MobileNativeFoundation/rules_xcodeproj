@@ -62,7 +62,8 @@ struct Generator {
                     ),
                     /*workspace:*/ arguments.workspace,
                     /*createBuildSettingsAttribute:*/
-                        environment.createBuildSettingsAttribute
+                        environment.createBuildSettingsAttribute,
+                    /*customToolchainID:*/ arguments.customToolchainID
             ),
             /*compatibilityVersion:*/ environment.compatibilityVersion(
                 arguments.minimumXcodeVersion
