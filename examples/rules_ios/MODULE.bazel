@@ -5,7 +5,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "apple_support",
-    version = "1.15.1",
+    version = "1.21.0",
     repo_name = "build_bazel_apple_support",
 )
 bazel_dep(
@@ -33,6 +33,3 @@ use_repo(
     "local_config_apple_cc",
     "local_config_apple_cc_toolchains",
 )
-
-# TODO: Remove manual register once https://github.com/bazelbuild/rules_cc/commit/c8c38f8c710cbbf834283e4777916b68261b359c is released
-register_toolchains("@local_config_apple_cc_toolchains//:all")
