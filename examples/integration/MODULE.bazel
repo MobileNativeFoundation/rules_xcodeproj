@@ -5,7 +5,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "apple_support",
-    version = "1.15.1",
+    version = "1.21.0",
     repo_name = "build_bazel_apple_support",
 )
 bazel_dep(
@@ -50,13 +50,18 @@ use_repo(
     "local_config_apple_cc_toolchains",
 )
 
-# TODO: Remove manual register once https://github.com/bazelbuild/rules_cc/commit/c8c38f8c710cbbf834283e4777916b68261b359c is released
-register_toolchains("@local_config_apple_cc_toolchains//:all")
-
 non_module_deps = use_extension(":repositories.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
     "FXPageControl",
     "com_github_krzyzanowskim_cryptoswift",
     "com_google_google_maps",
+)
+
+new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
+
+new_local_repository(
+    name = "examples_command_line_external",
+    build_file = "//CommandLine/external:BUILD.tpl",
+    path = "CommandLine/external",
 )
