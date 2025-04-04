@@ -306,6 +306,17 @@ extension XCScheme.TestAction {
     }
 }
 
+extension XCScheme.TestableReference {
+    convenience init(skipped: Bool, buildableReference: XCScheme.BuildableReference) {
+        self.init(
+            skipped: skipped,
+            // This works around an ambigous `XcodeProj.XCScheme.TestableReference.init` issue.
+            parallelization: .none,
+            buildableReference: buildableReference
+        )
+    }
+}
+
 extension XCScheme.LaunchAction {
     convenience init(
         buildMode: BuildMode,
