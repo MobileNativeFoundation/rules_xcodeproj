@@ -114,7 +114,7 @@ extension Generator.CalculateSharedBuildSettings {
         }
 
         if productType != .resourceBundle {
-            // This is used in `calculate_output_groups.py`. We only want to set
+            // This is used in `calculate_output_groups`. We only want to set
             // it on buildable targets.
             buildSettings.append(
                 .init(
