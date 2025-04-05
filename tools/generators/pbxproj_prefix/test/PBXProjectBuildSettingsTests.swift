@@ -11,6 +11,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let config = "rxcp_custom_config"
         let importIndexBuildIndexstores = false
+        let legacyIndexImport = "external/legacy-index-import"
         let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project dir"
         let projectDir = "/some/project dir"
@@ -58,6 +59,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "/some/project dir";
@@ -83,6 +85,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
             importIndexBuildIndexstores: importIndexBuildIndexstores,
+            legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             projectDir: projectDir,

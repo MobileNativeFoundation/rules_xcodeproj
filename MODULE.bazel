@@ -10,7 +10,7 @@ bazel_dep(name = "bazel_features", version = "1.3.0")
 bazel_dep(name = "bazel_skylib", version = "1.3.0")
 bazel_dep(
     name = "rules_swift",
-    version = "1.18.0",
+    version = "2.8.0",
     max_compatibility_level = 2,
     repo_name = "build_bazel_rules_swift",
 )
@@ -28,6 +28,7 @@ non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
     "rules_xcodeproj_index_import",
+    "rules_xcodeproj_legacy_index_import",
 )
 
 # Non-release dependencies
@@ -53,12 +54,6 @@ bazel_dep(
     version = "0.6.1",
     dev_dependency = True,
     repo_name = "io_bazel_stardoc",
-)
-
-# Use newer versions of deps in development
-single_version_override(
-    module_name = "rules_swift",
-    version = "2.3.0",
 )
 
 # Some of our deps are forcing a new stardoc on us, so pinning for now

@@ -356,13 +356,14 @@ def _process_output_group_files(
         is_indexstores,
         output_group_name,
         additional_bwb_outputs,
+        legacy_index_import,
         index_import):
     # `list` copy is needed for some reason to prevent depset from changing
     # underneath us. Without this it's nondeterministic which files are in it.
     outputs_depsets = list(additional_bwb_outputs.get(output_group_name, []))
 
     if is_indexstores:
-        direct = [index_import]
+        direct = [legacy_index_import, index_import]
     else:
         direct = None
 
@@ -375,6 +376,7 @@ def _to_output_groups_fields(
         *,
         outputs,
         additional_bwb_outputs = {},
+        legacy_index_import,
         index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
@@ -383,7 +385,8 @@ def _to_output_groups_fields(
         additional_bwb_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
-        index_import: A `File` for `index-import`.
+        legacy_index_import: A `File` for `index-import` version 5.8.x.
+        index_import: A `File` for `index-import` version 6.1.x.+.
 
     Returns:
         A `dict` where the keys are output group names and the values are
@@ -395,6 +398,7 @@ def _to_output_groups_fields(
             is_indexstores = is_indexstores,
             output_group_name = name,
             additional_bwb_outputs = additional_bwb_outputs,
+            legacy_index_import = legacy_index_import,
             index_import = index_import,
         )
         for name, is_indexstores, files in outputs._output_group_list.to_list()

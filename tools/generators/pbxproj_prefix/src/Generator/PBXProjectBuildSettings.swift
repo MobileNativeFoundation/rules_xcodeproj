@@ -9,8 +9,10 @@ extension Generator {
     ///   - config: The value to be used for the `BAZEL_CONFIG` build setting.
     ///   - importIndexBuildIndexstores: Whether to import index build
     ///     indexstores.
+    ///   - legacyIndexImport: The Bazel execution root relative path to the
+    ///     `index_import` (version 5.8) executable.
     ///   - indexImport: The Bazel execution root relative path to the
-    ///     `index_import` executable.
+    ///     `index_import` (version 6.1+) executable.
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
     ///   - projectDir: The value returned from `Generator.projectDir()`.
@@ -20,6 +22,7 @@ extension Generator {
     static func pbxProjectBuildSettings(
         config: String,
         importIndexBuildIndexstores: Bool,
+        legacyIndexImport: String,
         indexImport: String,
         indexingProjectDir: String,
         projectDir: String,
@@ -123,6 +126,12 @@ extension Generator {
             .init(key: "LD_DYLIB_INSTALL_NAME", value: #""""#),
             .init(key: "LD_OBJC_ABI_VERSION", value: #""""#),
             .init(key: "LD_RUNPATH_SEARCH_PATHS", value: #""""#),
+            .init(
+                key: "LEGACY_INDEX_IMPORT",
+                value: legacyIndexImport
+                    .executionRootBasedBuildSettingPath
+                    .pbxProjEscaped
+            ),
             .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
             .init(
                 key: "PROJECT_DIR",

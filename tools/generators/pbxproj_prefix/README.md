@@ -216,7 +216,7 @@ Here is an example output:
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IMPORT_INDEX_BUILD_INDEXSTORES = YES;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
+				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import_legacy";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
@@ -285,6 +285,7 @@ Here is an example output:
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LEGACY_INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import_legacy";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main";
