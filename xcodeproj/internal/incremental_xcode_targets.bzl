@@ -83,7 +83,9 @@ def _make_incremental_xcode_target(
         test_host = None,
         transitive_dependencies,
         unfocus_if_not_test_host = False,
-        watchkit_extension = None):
+        watchkit_extension = None,
+        linker_inputs_for_libs_search_paths,
+        libraries_path_to_link):
     """Creates the internal data structure of the `xcode_targets` module.
 
     Args:
@@ -119,6 +121,10 @@ def _make_incremental_xcode_target(
             isn't another target's test host.
         watchkit_extension: the target ID of this target's WatchKit extension,
             or `None`.
+        linker_inputs_for_libs_search_paths: Used to generated the
+            `LIBRARY_SEARCH_PATHS` build setting.
+        libraries_path_to_link: A depset of libraries paths to link to the
+            target.
     """
     if not is_top_level:
         compile_stub_needed = False
@@ -167,6 +173,8 @@ def _make_incremental_xcode_target(
         test_host = test_host,
         watchkit_extension = watchkit_extension,
         transitive_dependencies = transitive_dependencies,
+        linker_inputs_for_libs_search_paths = linker_inputs_for_libs_search_paths,
+        libraries_path_to_link = libraries_path_to_link,
     )
 
 def _merge_xcode_inputs(*, dest_inputs, mergeable_info):

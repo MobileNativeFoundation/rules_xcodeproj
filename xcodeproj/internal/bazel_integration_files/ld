@@ -7,6 +7,11 @@ passthrough_args=("${@:1}")
 while test $# -gt 0
 do
   case $1 in
+  -version_details)
+    # Pass through for version details
+    exec "$(xcrun --find ld)" -version_details
+    ;;
+
   *_dependency_info.dat)
     ld_version=$(ld -v 2>&1 | grep ^@)
     printf "\0%s\0" "$ld_version" > "$1"
