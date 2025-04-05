@@ -325,6 +325,7 @@ def _write_project_contents(
         files_and_groups_generator,
         generation_shard_count,
         import_index_build_indexstores,
+        legacy_index_import,
         index_import,
         install_path,
         minimum_xcode_version,
@@ -448,6 +449,7 @@ def _write_project_contents(
         execution_root_file = execution_root_file,
         generator_name = name,
         import_index_build_indexstores = import_index_build_indexstores,
+        legacy_index_import = legacy_index_import,
         index_import = index_import,
         install_path = install_path,
         minimum_xcode_version = minimum_xcode_version,
@@ -622,6 +624,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     actions = ctx.actions
     colorize = ctx.attr.colorize
     config = ctx.attr.config
+    legacy_index_import = ctx.executable._legacy_index_import
     index_import = ctx.executable._index_import
     install_path = ctx.attr.install_path
     is_fixture = ctx.attr._is_fixture
@@ -654,6 +657,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         import_index_build_indexstores = (
             ctx.attr.import_index_build_indexstores
         ),
+        legacy_index_import = legacy_index_import,
         index_import = index_import,
         install_path = install_path,
         minimum_xcode_version = (
@@ -780,7 +784,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         ),
         OutputGroupInfo(
             all_targets = output_groups_fields["all_b"],
-            index_import = depset([index_import]),
+            index_import = depset([legacy_index_import, index_import]),
             target_ids_list = depset([target_ids_list]),
             **output_groups_fields
         ),
@@ -883,6 +887,12 @@ def _xcodeproj_incremental_attrs(
             ),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
+        # TODO: Remove 5.8 when support for Xcode 16.x is dropped.
+        "_legacy_index_import": attr.label(
+            cfg = "exec",
+            default = Label("@rules_xcodeproj_legacy_index_import//:index_import"),
+            executable = True,
+        ),
         "_pbxnativetargets_generator": attr.label(
             cfg = "exec",
             default = Label(
