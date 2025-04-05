@@ -30,6 +30,9 @@ Path to a file that contains the absolute path to the Bazel execution root.
         @Argument(help: "Path to the target IDs list file.")
         var targetIdsFile: String
 
+        @Argument(help: "Path to the legacy index_import executable.")
+        var legacyIndexImport: String
+
         @Argument(help: "Path to the index_import executable.")
         var indexImport: String
 

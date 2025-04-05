@@ -12,6 +12,7 @@ extension Generator {
         forFixtures: Bool,
         project: Project,
         directories: Directories,
+        legacyIndexImport: String,
         indexImport: String,
         minimumXcodeVersion: SemanticVersion
     ) -> PBXProj {
@@ -94,6 +95,7 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
             "IMPORT_INDEX_BUILD_INDEXSTORES": true,
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "LEGACY_INDEX_IMPORT": legacyIndexImport,
             "INDEX_IMPORT": indexImport,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
