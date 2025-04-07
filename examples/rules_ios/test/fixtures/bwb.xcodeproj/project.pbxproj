@@ -17,6 +17,8 @@
 			dependencies = (
 			);
 			name = BazelDependencies;
+			packageProductDependencies = (
+			);
 			productName = BazelDependencies;
 		};
 /* End PBXAggregateTarget section */
@@ -1884,6 +1886,8 @@
 				E780D6205BA107AFA73B3E92 /* PBXTargetDependency */,
 			);
 			name = "iOSApp (Library)";
+			packageProductDependencies = (
+			);
 			productName = iOSApp.library_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -1901,6 +1905,8 @@
 				1C5ED8977D811D055C6F806A /* PBXTargetDependency */,
 			);
 			name = "UI (Library)";
+			packageProductDependencies = (
+			);
 			productName = UI_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -1918,6 +1924,8 @@
 				53EE3516049107420E36C535 /* PBXTargetDependency */,
 			);
 			name = "iOSApp (App)";
+			packageProductDependencies = (
+			);
 			productName = iOSApp;
 			productReference = BC0D919D9C4954991E8C1FB8 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
@@ -1936,6 +1944,8 @@
 				D50C8B7B5DD295DC216FF605 /* PBXTargetDependency */,
 			);
 			name = "Lib (Library)";
+			packageProductDependencies = (
+			);
 			productName = Lib_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -1955,6 +1965,8 @@
 				C28BC0830C39AA3B68A40297 /* PBXTargetDependency */,
 			);
 			name = iOSAppUITests_macro;
+			packageProductDependencies = (
+			);
 			productName = iOSAppUITests_macro;
 			productReference = 84D536C15661BD27060E7E20 /* iOSAppUITests_macro.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -1973,6 +1985,8 @@
 				90383196DFEDC8F8E447133E /* PBXTargetDependency */,
 			);
 			name = MixedAnswer_objc;
+			packageProductDependencies = (
+			);
 			productName = MixedAnswer_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -1989,6 +2003,8 @@
 				CB913CCEE8A52CB7A51E7D5F /* PBXTargetDependency */,
 			);
 			name = "MixedAnswer (Static Framework)";
+			packageProductDependencies = (
+			);
 			productName = MixedAnswer;
 			productReference = 52B2AC2862BABA072E8E134C /* MixedAnswer.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2007,6 +2023,8 @@
 				1D3750704C1DFC91E758F7F0 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTestSuite_macro_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTestSuite_macro_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2024,6 +2042,8 @@
 				35AB6099BCE66D02B4443FD4 /* PBXTargetDependency */,
 			);
 			name = "MixedAnswer (Library)";
+			packageProductDependencies = (
+			);
 			productName = MixedAnswer_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2042,6 +2062,8 @@
 				8414F98152B053B6B880BDDA /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTestSuite_macro;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTestSuite_macro;
 			productReference = 82EB7F75FFE3A3A7726520D4 /* iOSAppObjCUnitTestSuite_macro.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2060,6 +2082,8 @@
 				73560295C70B92BBD39E58EF /* PBXTargetDependency */,
 			);
 			name = "WidgetExtension (App Extension)";
+			packageProductDependencies = (
+			);
 			productName = WidgetExtension;
 			productReference = D57326ECD169C0334D30213B /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -2079,6 +2103,8 @@
 				A91B906E52AB5D5C329B53D7 /* PBXTargetDependency */,
 			);
 			name = "iOSAppMixedUnitTests (Unit Tests)";
+			packageProductDependencies = (
+			);
 			productName = iOSAppMixedUnitTests;
 			productReference = 5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2096,6 +2122,8 @@
 				500A3D79B76C06DD2D4FFF95 /* PBXTargetDependency */,
 			);
 			name = "Lib (Static Framework)";
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = FDC975FBEFB4C3DC4E3AB334 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2115,6 +2143,8 @@
 				AB5E2D3C28D8D7360B79C0C8 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTestSuite;
 			productReference = A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2133,6 +2163,8 @@
 				5A53C8822FB4F1FD3BC6EFD7 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests_macro_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTests_macro_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2150,6 +2182,8 @@
 				3BACD3FDA2BBA6CC470A94D0 /* PBXTargetDependency */,
 			);
 			name = "Lib (Framework)";
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = A9721D8883D73A3F13BF89BB /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2170,6 +2204,8 @@
 				B95290DA3E2D19E9A8F2C6CF /* PBXTargetDependency */,
 			);
 			name = iOSAppUITestSuite_macro;
+			packageProductDependencies = (
+			);
 			productName = iOSAppUITestSuite_macro;
 			productReference = 66DE447C5CAD1C6E0B2660E9 /* iOSAppUITestSuite_macro.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -2190,6 +2226,8 @@
 				4CBA39D82BBC27E4408D4B1F /* PBXTargetDependency */,
 			);
 			name = iOSAppSwiftUnitTestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppSwiftUnitTestSuite;
 			productReference = 830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2209,6 +2247,8 @@
 				C2DC363798B54D4839B9DAD9 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests_macro;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTests_macro;
 			productReference = 2758952B8073EA1E165156C3 /* iOSAppObjCUnitTests_macro.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2227,6 +2267,8 @@
 				C8C1B51D4306C9A6500CEC7F /* PBXTargetDependency */,
 			);
 			name = "UI (Framework)";
+			packageProductDependencies = (
+			);
 			productName = UI;
 			productReference = 9976EDECD75BB7E69C34D585 /* UI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2244,6 +2286,8 @@
 				DD4579E6126C9BF492ED5840 /* PBXTargetDependency */,
 			);
 			name = "iOSApp (Static Framework)";
+			packageProductDependencies = (
+			);
 			productName = iOSApp;
 			productReference = 7B553D2592F70436D7DAF371 /* iOSApp.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2264,6 +2308,8 @@
 				8A8C8FE311CFD2F80147C020 /* PBXTargetDependency */,
 			);
 			name = iOSAppSwiftUnitTests;
+			packageProductDependencies = (
+			);
 			productName = iOSAppSwiftUnitTests;
 			productReference = 9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2282,6 +2328,8 @@
 				201008E8F8763E09265E700D /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTests_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2299,6 +2347,8 @@
 				E22819C7D1961494E950D75E /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTestSuite_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTestSuite_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2317,6 +2367,8 @@
 				C9A0DE6B03887E1111815599 /* PBXTargetDependency */,
 			);
 			name = iOS_App_ObjC_UnitTests;
+			packageProductDependencies = (
+			);
 			productName = iOS_App_ObjC_UnitTests;
 			productReference = F83791E95A589B7A7CE1D66E /* iOS_App_ObjC_UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2336,6 +2388,8 @@
 				FAF0FDC3CD61CD6D76781F2A /* PBXTargetDependency */,
 			);
 			name = iOS_App_ObjC_UnitTests_macro_with_bundle_name;
+			packageProductDependencies = (
+			);
 			productName = iOS_App_ObjC_UnitTests_macro_with_bundle_name;
 			productReference = 7EB7D6BC94C4C2C633DD26D2 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2354,6 +2408,8 @@
 				055E89C667E3DE8919214323 /* PBXTargetDependency */,
 			);
 			name = CoreUtilsObjC_objc;
+			packageProductDependencies = (
+			);
 			productName = CoreUtilsObjC_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2371,6 +2427,8 @@
 				F8D8D0C6E3BCC24CCDD0BEF0 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests_macro_with_bundle_name_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTests_macro_with_bundle_name_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2388,6 +2446,8 @@
 				E9EA76FF3B2A70BE0469AFA5 /* PBXTargetDependency */,
 			);
 			name = iOSAppMixedUnitTests_objc;
+			packageProductDependencies = (
+			);
 			productName = iOSAppMixedUnitTests_objc;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2407,6 +2467,8 @@
 				D32A865E4DDF9E520E481086 /* PBXTargetDependency */,
 			);
 			name = iOSAppUITestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppUITestSuite;
 			productReference = 96E433D903880812811BA7D0 /* iOSAppUITestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -2425,6 +2487,8 @@
 				EC1CB11920D4280AC9BDBC15 /* PBXTargetDependency */,
 			);
 			name = "iOSAppMixedUnitTests (Library)";
+			packageProductDependencies = (
+			);
 			productName = iOSAppMixedUnitTests_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -2442,6 +2506,8 @@
 				83C7B9A9D775318FF583B1B1 /* PBXTargetDependency */,
 			);
 			name = "WidgetExtension (Static Framework)";
+			packageProductDependencies = (
+			);
 			productName = WidgetExtension;
 			productReference = CE4E0C5227F007E09928D8C7 /* WidgetExtension.framework */;
 			productType = "com.apple.product-type.framework";
