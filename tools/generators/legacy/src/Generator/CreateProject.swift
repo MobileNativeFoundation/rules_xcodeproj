@@ -202,6 +202,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             compatibilityVersion: """
 Xcode \(min(project.minimumXcodeVersion.major, 15)).0
 """,
+            preferredProjectObjectVersion: nil,
+            minimizedProjectReferenceProxies: nil,
             mainGroup: mainGroup,
             developmentRegion: options.developmentRegion,
             projectDirPath: projectDirPath,

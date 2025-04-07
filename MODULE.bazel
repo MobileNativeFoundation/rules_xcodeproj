@@ -31,6 +31,11 @@ use_repo(
     "rules_xcodeproj_legacy_index_import",
 )
 
+# Legacy generator
+
+bazel_dep(name = "xcodeproj", version = "8.27.3", repo_name = "com_github_tuist_xcodeproj")
+bazel_dep(name = "pathkit", version = "1.0.1", repo_name = "com_github_kylef_pathkit")
+
 # Non-release dependencies
 
 bazel_dep(
@@ -73,12 +78,10 @@ use_repo(
     non_module_deps,
     "com_github_apple_swift_argument_parser",
     "com_github_apple_swift_collections",
-    "com_github_kylef_pathkit",
     "com_github_michaeleisel_jjliso8601dateformatter",
     "com_github_michaeleisel_zippyjson",
     "com_github_michaeleisel_zippyjsoncfamily",
     "com_github_tadija_aexml",
-    "com_github_tuist_xcodeproj",
 )
 
 dev_non_module_deps = use_extension(
