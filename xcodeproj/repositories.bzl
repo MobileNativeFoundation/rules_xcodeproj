@@ -121,8 +121,8 @@ def xcodeproj_rules_dependencies(
         _maybe(
             http_archive,
             name = "build_bazel_rules_swift",
-            sha256 = "bb01097c7c7a1407f8ad49a1a0b1960655cf823c26ad2782d0b7d15b323838e2",
-            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.18.0/rules_swift.1.18.0.tar.gz",
+            sha256 = "68290c747eab415d924a3e2a8d2d32a4686dd1e0b091a6b4db4892d1bc0e8308",
+            url = "https://github.com/bazelbuild/rules_swift/releases/download/2.8.0/rules_swift.2.8.0.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
@@ -148,10 +148,10 @@ def xcodeproj_rules_dependencies(
     # here in order to reuse it, and in case `rules_swift` stops depending on it
     # in the future. We don't though, because we need 5.5.3.1 or higher, and the
     # current lowest version of rules_swift we support uses 5.3.2.6.
-    _maybe(
-        http_archive,
-        name = "rules_xcodeproj_index_import",
-        build_file_content = """\
+    # TODO: we must depend on two versions of index-import to support backwards
+    # compatibility between Xcode 16.3+ and older versions, we can remove the older
+    # version once we drop support for Xcode 16.x.
+    index_import_build_file_content = """\
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 
 native_binary(
@@ -160,9 +160,23 @@ native_binary(
     out = "index-import",
     visibility = ["//visibility:public"],
 )
-""",
+"""
+    _maybe(
+        http_archive,
+        name = "rules_xcodeproj_legacy_index_import",
+        build_file_content = index_import_build_file_content,
+        canonical_id = "index-import-5.8.0.1",
         sha256 = "28c1ffa39d99e74ed70623899b207b41f79214c498c603915aef55972a851a15",
         url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.8.0.1/index-import.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+    _maybe(
+        http_archive,
+        name = "rules_xcodeproj_index_import",
+        build_file_content = index_import_build_file_content,
+        canonical_id = "index-import-6.1.0",
+        sha256 = "54d0477526bba0dc1560189dfc4f02d90aea536e9cb329e911f32b2a564b66f1",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/6.1.0/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
