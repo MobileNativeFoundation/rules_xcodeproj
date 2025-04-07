@@ -1,16 +1,27 @@
 - [Bazel aspects](#bazel-aspects)
   - [`compile_only_aspect`](#compile_only_aspect)
 - [Bazel configs](#bazel-configs)
-  - [`rules_xcodeproj`](#rules_xcodeproj)
-  - [`rules_xcodeproj_generator`](#rules_xcodeproj_generator)
-  - [`rules_xcodeproj_indexbuild`](#rules_xcodeproj_indexbuild)
-  - [`rules_xcodeproj_swiftuipreviews`](#rules_xcodeproj_swiftuipreviews)
+    - [`rules_xcodeproj`](#rules_xcodeproj)
+    - [`rules_xcodeproj_generator`](#rules_xcodeproj_generator)
+    - [`rules_xcodeproj_indexbuild`](#rules_xcodeproj_indexbuild)
+    - [`rules_xcodeproj_swiftuipreviews`](#rules_xcodeproj_swiftuipreviews)
   - [Project-level configs](#project-level-configs)
   - [Extra config flags](#extra-config-flags)
   - [`.bazelrc` files](#bazelrc-files)
+    - [Project `xcodeproj.bazelrc`](#project-xcodeprojbazelrc)
+    - [Workspace `xcodeproj.bazelrc`](#workspace-xcodeprojbazelrc)
+    - [Workspace `.bazelrc`](#workspace-bazelrc)
+    - [Project `xcodeproj_extra_flags.bazelrc`](#project-xcodeproj_extra_flagsbazelrc)
 - [Command-line API](#command-line-api)
   - [Commands](#commands)
+    - [`build`](#build)
+    - [`clean`](#clean)
+    - [`query`/`cquery`/`aquery`](#querycqueryaquery)
   - [Options](#options)
+    - [`-v`/`--verbose`](#-v--verbose)
+    - [`--config`](#--config)
+    - [`--generator_output_groups`](#--generator_output_groups)
+    - [`--download_intermediates`](#--download_intermediates)
   - [Substitutions](#substitutions)
 
 # Bazel aspects
@@ -28,7 +39,7 @@ To use the aspect, you apply it at the command line:
 ```
 bazel build //some:target \
   --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect \
-  --output_groups=compile_only
+  --output_groups=compiles
 ```
 
 You can also create a Bazel configuration in a `.bazelrc` file to reuse the
@@ -36,7 +47,7 @@ aspect easily:
 
 ```
 common:compile_only --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect
-common:compile_only --output_groups=compile_only
+common:compile_only --output_groups=compiles
 ```
 
 And use it, for example, with the command-line API:
