@@ -44,8 +44,7 @@ And use it, for example, with the command-line API:
 ```
 bazel run //label/to:xcodeproj \
   -- \
-  --generator_output_groups=all_targets \
-  'build --config=compile_only --remote_download_minimal'
+  'build \$_GENERATOR_LABEL_ --config=compile_only --remote_download_minimal'
 ```
 
 # Bazel configs
