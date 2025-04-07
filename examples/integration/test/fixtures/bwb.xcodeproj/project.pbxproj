@@ -18,6 +18,8 @@
 			dependencies = (
 			);
 			name = BazelDependencies;
+			packageProductDependencies = (
+			);
 			productName = BazelDependencies;
 		};
 /* End PBXAggregateTarget section */
@@ -8220,6 +8222,8 @@
 				8744C84690612B8497832054 /* PBXTargetDependency */,
 			);
 			name = WidgetExtension;
+			packageProductDependencies = (
+			);
 			productName = WidgetExtension;
 			productReference = D57326ECD169C0334D30213B /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -8238,6 +8242,8 @@
 				12CDFF786E537420141653B8 /* PBXTargetDependency */,
 			);
 			name = "@@//cc/lib/impl:cc_lib_impl";
+			packageProductDependencies = (
+			);
 			productName = cc_lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8256,6 +8262,8 @@
 				C66DABC2BBE7033F54586AB3 /* PBXTargetDependency */,
 			);
 			name = proto;
+			packageProductDependencies = (
+			);
 			productName = proto;
 			productReference = 5D1ABF79BD2B800CF411882A /* proto */;
 			productType = "com.apple.product-type.tool";
@@ -8275,6 +8283,8 @@
 				042CE1381B4CE19CAE198BC1 /* PBXTargetDependency */,
 			);
 			name = AppClip;
+			packageProductDependencies = (
+			);
 			productName = AppClip;
 			productReference = 65FE043974334DC5DC5E16DD /* AppClip.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
@@ -8293,6 +8303,8 @@
 				EA596F412B85D7F7D01BC6C5 /* PBXTargetDependency */,
 			);
 			name = "lib_impl (arm64)";
+			packageProductDependencies = (
+			);
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8311,6 +8323,8 @@
 				588C37BAE74BD661E5366E96 /* PBXTargetDependency */,
 			);
 			name = iOSApp;
+			packageProductDependencies = (
+			);
 			productName = iOSApp;
 			productReference = BC0D919D9C4954991E8C1FB8 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
@@ -8330,6 +8344,8 @@
 				A44D31FE0D119010E44282B5 /* PBXTargetDependency */,
 			);
 			name = CommandLineTool;
+			packageProductDependencies = (
+			);
 			productName = CommandLineTool;
 			productReference = 81ADEB4D40193C79091D1519 /* CommandLineTool */;
 			productType = "com.apple.product-type.tool";
@@ -8348,6 +8364,8 @@
 				895042EDCC96B46AB2E119D2 /* PBXTargetDependency */,
 			);
 			name = LibFramework.watchOS;
+			packageProductDependencies = (
+			);
 			productName = LibFramework.watchOS;
 			productReference = 222CF04F551342682A2DEA9D /* LibFramework.watchOS.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8366,6 +8384,8 @@
 				DFED98D401063B1474FD4B03 /* PBXTargetDependency */,
 			);
 			name = iOS;
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = FDC975FBEFB4C3DC4E3AB334 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8385,6 +8405,8 @@
 				7176C357250A109C7B9B42E1 /* PBXTargetDependency */,
 			);
 			name = tool;
+			packageProductDependencies = (
+			);
 			productName = tool;
 			productReference = 592EEFBB1B45D1BF7E0E5BEB /* tool */;
 			productType = "com.apple.product-type.tool";
@@ -8404,6 +8426,8 @@
 				5FBF95324D58B98BB7A85AF5 /* PBXTargetDependency */,
 			);
 			name = iMessageAppExtension;
+			packageProductDependencies = (
+			);
 			productName = iMessageAppExtension;
 			productReference = 0C8C8454418DDFFE862326C6 /* iMessageAppExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
@@ -8423,6 +8447,8 @@
 				DCFC3BB75E277BE43D89F2EF /* PBXTargetDependency */,
 			);
 			name = "UniversalCommandLineTool (arm64)";
+			packageProductDependencies = (
+			);
 			productName = tool.binary;
 			productReference = FC00C85AEA7136F459F898C6 /* tool.binary */;
 			productType = "com.apple.product-type.tool";
@@ -8441,6 +8467,8 @@
 				C9C9DADA79BC31148CA0E926 /* PBXTargetDependency */,
 			);
 			name = "private_lib (arm64)";
+			packageProductDependencies = (
+			);
 			productName = private_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8459,6 +8487,8 @@
 				D5B6D9348B4FF1077A2E0334 /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtension;
+			packageProductDependencies = (
+			);
 			productName = watchOSAppExtension;
 			productReference = 0982B680A74E8BD8A971CC76 /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -8475,6 +8505,8 @@
 				D67DF0B8A7647D3BE4D7B3F2 /* PBXTargetDependency */,
 			);
 			name = iMessageApp;
+			packageProductDependencies = (
+			);
 			productName = iMessageApp;
 			productReference = 0F7908A7AA17DC572020AD5A /* iMessageApp.app */;
 			productType = "com.apple.product-type.application.messages";
@@ -8494,6 +8526,8 @@
 				30C215E946C59DD63443973B /* PBXTargetDependency */,
 			);
 			name = echo_server;
+			packageProductDependencies = (
+			);
 			productName = echo_server;
 			productReference = 020AF219F3B55D5F1AD74A59 /* echo_server */;
 			productType = "com.apple.product-type.tool";
@@ -8512,6 +8546,8 @@
 				6160161B0AEDB993335C4D34 /* PBXTargetDependency */,
 			);
 			name = Utils;
+			packageProductDependencies = (
+			);
 			productName = Utils;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8529,6 +8565,8 @@
 				D00968CB27E9CBAF7654E75E /* PBXTargetDependency */,
 			);
 			name = "private_lib (x86_64) (c75a6)";
+			packageProductDependencies = (
+			);
 			productName = private_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8548,6 +8586,8 @@
 				780FBF246337B208F1876734 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTests;
 			productReference = 2389FC2E3790FF01911CDBCC /* iOSAppObjCUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -8566,6 +8606,8 @@
 				F295ADD3AD33893CA818A1BC /* PBXTargetDependency */,
 			);
 			name = echo_client_services_swift;
+			packageProductDependencies = (
+			);
 			productName = echo_client_services_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8583,6 +8625,8 @@
 				52ADE345742B3F7CCE21F533 /* PBXTargetDependency */,
 			);
 			name = "@@//cc/lib2:cc_lib_impl";
+			packageProductDependencies = (
+			);
 			productName = cc_lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8600,6 +8644,8 @@
 				E6D21EC013E95D851E765817 /* PBXTargetDependency */,
 			);
 			name = "Lib (iOS 15.0, macOS, tvOS)";
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8619,6 +8665,8 @@
 				13CF19A557C5048EBF49ABB3 /* PBXTargetDependency */,
 			);
 			name = UIFramework.iOS;
+			packageProductDependencies = (
+			);
 			productName = UIFramework.iOS;
 			productReference = D5B1B196D3BD3E293524907D /* UIFramework.iOS.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8637,6 +8685,8 @@
 				429CBDE22CE3777969080300 /* PBXTargetDependency */,
 			);
 			name = macOSLib.framework;
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = 987FEEE3F6EAAD46236D0430 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8655,6 +8705,8 @@
 				C8266F34CD6359363EC4B56D /* PBXTargetDependency */,
 			);
 			name = "LibSwift (arm64)";
+			packageProductDependencies = (
+			);
 			productName = lib_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8674,6 +8726,8 @@
 				216ACAA73877561C3F7572A9 /* PBXTargetDependency */,
 			);
 			name = tvOSAppUITests;
+			packageProductDependencies = (
+			);
 			productName = tvOSAppUITests;
 			productReference = BDD13702FC4B105C40BB6E4A /* tvOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -8693,6 +8747,8 @@
 				4EB7433C65C85B60771F7494 /* PBXTargetDependency */,
 			);
 			name = CommandLineToolTests;
+			packageProductDependencies = (
+			);
 			productName = CommandLineToolTests;
 			productReference = 211F5D02396A5F7F21B372C0 /* CommandLineToolTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -8711,6 +8767,8 @@
 				73CEB371BD64C24E67656F3B /* PBXTargetDependency */,
 			);
 			name = "LibSwift (x86_64) (c75a6)";
+			packageProductDependencies = (
+			);
 			productName = lib_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8728,6 +8786,8 @@
 				51342E1978F3847359D08B29 /* PBXTargetDependency */,
 			);
 			name = watchOSApp;
+			packageProductDependencies = (
+			);
 			productName = watchOSApp;
 			productReference = 26E5833F2697196812B9D228 /* watchOSApp.app */;
 			productType = "com.apple.product-type.application.watchapp2";
@@ -8748,6 +8808,8 @@
 				3D0D293F05E542E6491A9560 /* PBXTargetDependency */,
 			);
 			name = CoreUtilsObjC;
+			packageProductDependencies = (
+			);
 			productName = CoreUtilsObjC;
 			productReference = 8D59CB4DD416D596DF065CE3 /* CoreUtilsObjC.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8766,6 +8828,8 @@
 				141DA52B2ACB146F5114E93A /* PBXTargetDependency */,
 			);
 			name = watchOS;
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = A9721D8883D73A3F13BF89BB /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -8784,6 +8848,8 @@
 				5C366AD7BF32633829EAD94E /* PBXTargetDependency */,
 			);
 			name = "lib_impl (x86_64) (71903)";
+			packageProductDependencies = (
+			);
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8801,6 +8867,8 @@
 				C3AABA33C4332E23DA9FB495 /* PBXTargetDependency */,
 			);
 			name = FXPageControl;
+			packageProductDependencies = (
+			);
 			productName = FXPageControl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8820,6 +8888,8 @@
 				86FFAA921A7F01C5E85BC317 /* PBXTargetDependency */,
 			);
 			name = tvOSAppUnitTests;
+			packageProductDependencies = (
+			);
 			productName = tvOSAppUnitTests;
 			productReference = 1E84E717BC47B0961159FC23 /* tvOSAppUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -8838,6 +8908,8 @@
 				F39D05D495FE00BE1965A7CD /* PBXTargetDependency */,
 			);
 			name = "LibSwift (x86_64) (71903)";
+			packageProductDependencies = (
+			);
 			productName = lib_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8855,6 +8927,8 @@
 				5A12402353D8CD1962F921E5 /* PBXTargetDependency */,
 			);
 			name = "Lib (watchOS)";
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8872,6 +8946,8 @@
 				76A7498CF18F75AE54121F14 /* PBXTargetDependency */,
 			);
 			name = "_SwiftLib (x86_64) (71903)";
+			packageProductDependencies = (
+			);
 			productName = private_swift_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8889,6 +8965,8 @@
 				2CB49C73C92151B621E1581D /* PBXTargetDependency */,
 			);
 			name = UnwantedScheme_Swift;
+			packageProductDependencies = (
+			);
 			productName = UnwantedScheme_Swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8906,6 +8984,8 @@
 				DBA3DA5F76344CDE8E63AAFA /* PBXTargetDependency */,
 			);
 			name = cc_lib_defines;
+			packageProductDependencies = (
+			);
 			productName = cc_lib_defines;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8925,6 +9005,8 @@
 				24DB9924D58A426ABF3035C3 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppObjCUnitTestSuite;
 			productReference = A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -8943,6 +9025,8 @@
 				9B63911C30274AABC62875F2 /* PBXTargetDependency */,
 			);
 			name = cc_external_lib_impl;
+			packageProductDependencies = (
+			);
 			productName = cc_external_lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8960,6 +9044,8 @@
 				44B628660F45F0955131607C /* PBXTargetDependency */,
 			);
 			name = UndesiredScheme_Swift;
+			packageProductDependencies = (
+			);
 			productName = UndesiredScheme_Swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8977,6 +9063,8 @@
 				22E0F29D84AB9AF7793CE5BC /* PBXTargetDependency */,
 			);
 			name = "lib_impl (x86_64) (c75a6)";
+			packageProductDependencies = (
+			);
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -8994,6 +9082,8 @@
 				3E749764F68211F25DC3E2EC /* PBXTargetDependency */,
 			);
 			name = "_SwiftLib (arm64)";
+			packageProductDependencies = (
+			);
 			productName = private_swift_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9012,6 +9102,8 @@
 				88204E7FBE8FD76500DD532C /* PBXTargetDependency */,
 			);
 			name = BasicTests;
+			packageProductDependencies = (
+			);
 			productName = BasicTests;
 			productReference = 73917B7C7306B4D7388ED79C /* BasicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -9030,6 +9122,8 @@
 				5DC34F5F249BA917602208F9 /* PBXTargetDependency */,
 			);
 			name = MixedAnswer;
+			packageProductDependencies = (
+			);
 			productName = MixedAnswer;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9048,6 +9142,8 @@
 				DB571D368646BD594FBC1A29 /* PBXTargetDependency */,
 			);
 			name = UIFramework.tvOS;
+			packageProductDependencies = (
+			);
 			productName = UIFramework.tvOS;
 			productReference = FE0CE46FA0CA3A3880DC4937 /* UIFramework.tvOS.framework */;
 			productType = "com.apple.product-type.framework";
@@ -9066,6 +9162,8 @@
 				D86F903E43C01912B1C0A462 /* PBXTargetDependency */,
 			);
 			name = "c_lib (arm64)";
+			packageProductDependencies = (
+			);
 			productName = c_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9083,6 +9181,8 @@
 				D5FDC86163FA2852FEACAF0E /* PBXTargetDependency */,
 			);
 			name = ABundle;
+			packageProductDependencies = (
+			);
 			productName = ABundle;
 			productReference = BBCBDDE5A101E5D9FE49EA69 /* ABundle.aplugin */;
 			productType = "com.apple.product-type.bundle";
@@ -9103,6 +9203,8 @@
 				056DB65DBAB7821A70C8A2E2 /* PBXTargetDependency */,
 			);
 			name = iOSAppSwiftUnitTestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppSwiftUnitTestSuite;
 			productReference = 830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -9122,6 +9224,8 @@
 				0E54586AEB47B3853C7BA936 /* PBXTargetDependency */,
 			);
 			name = tvOSApp;
+			packageProductDependencies = (
+			);
 			productName = tvOSApp;
 			productReference = 6D9C8C1A0B07E081B22A6110 /* tvOSApp.app */;
 			productType = "com.apple.product-type.application";
@@ -9141,6 +9245,8 @@
 				8C6BEBAEB5E2CB75D0992097 /* PBXTargetDependency */,
 			);
 			name = macOSApp;
+			packageProductDependencies = (
+			);
 			productName = macOSApp;
 			productReference = 5E55DA8F79F29EE0A6752C35 /* macOSApp.app */;
 			productType = "com.apple.product-type.application";
@@ -9159,6 +9265,8 @@
 				535148DB4C37DBF485A0227E /* PBXTargetDependency */,
 			);
 			name = "private_lib (x86_64) (71903)";
+			packageProductDependencies = (
+			);
 			productName = private_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9176,6 +9284,8 @@
 				1DC4A965BF36C18F355826EC /* PBXTargetDependency */,
 			);
 			name = echo_server_services_swift;
+			packageProductDependencies = (
+			);
 			productName = echo_server_services_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9193,6 +9303,8 @@
 				D5238E02CE2FDF15D59AB02D /* PBXTargetDependency */,
 			);
 			name = MixedAnswerLib_Swift;
+			packageProductDependencies = (
+			);
 			productName = MixedAnswerLib_Swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9210,6 +9322,8 @@
 				127DF1FA609C87377C876CE1 /* PBXTargetDependency */,
 			);
 			name = LibFramework.tvOS;
+			packageProductDependencies = (
+			);
 			productName = LibFramework.tvOS;
 			productReference = 1D1177806FD1B277EEDB91BB /* LibFramework.tvOS.framework */;
 			productType = "com.apple.product-type.framework";
@@ -9228,6 +9342,8 @@
 				449069F0FD4BDEA943156F69 /* PBXTargetDependency */,
 			);
 			name = "Lib (iOS 16.0)";
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9247,6 +9363,8 @@
 				CA6DBE9DA75C01226CEB0984 /* PBXTargetDependency */,
 			);
 			name = watchOSAppUITests;
+			packageProductDependencies = (
+			);
 			productName = watchOSAppUITests;
 			productReference = 82081A6BD08E21EB1E306B59 /* watchOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -9266,6 +9384,8 @@
 				1BC1A8F75F0781AD1E81EFED /* PBXTargetDependency */,
 			);
 			name = ExtensionKitExtension;
+			packageProductDependencies = (
+			);
 			productName = ExtensionKitExtension;
 			productReference = 53D0746B57065053DECF192B /* ExtensionKitExtension.appex */;
 			productType = "com.apple.product-type.extensionkit-extension";
@@ -9286,6 +9406,8 @@
 				469B77E36F90ED7F2CF18F82 /* PBXTargetDependency */,
 			);
 			name = iOSAppUITests;
+			packageProductDependencies = (
+			);
 			productName = iOSAppUITests;
 			productReference = F6F1090237FF04C38B58E42A /* iOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -9304,6 +9426,8 @@
 				875D0132E94C65561BFB531E /* PBXTargetDependency */,
 			);
 			name = "c_lib (x86_64) (c75a6)";
+			packageProductDependencies = (
+			);
 			productName = c_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9323,6 +9447,8 @@
 				A3FA33D2339398D7EF50574C /* PBXTargetDependency */,
 			);
 			name = iOSAppSwiftUnitTests;
+			packageProductDependencies = (
+			);
 			productName = iOSAppSwiftUnitTests;
 			productReference = 9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -9341,6 +9467,8 @@
 				A643DB283BA7F6E896FA0C4B /* PBXTargetDependency */,
 			);
 			name = "c_lib (x86_64) (71903)";
+			packageProductDependencies = (
+			);
 			productName = c_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9358,6 +9486,8 @@
 				4171FECEFD8445A1128AA950 /* PBXTargetDependency */,
 			);
 			name = "_SwiftLib (x86_64) (c75a6)";
+			packageProductDependencies = (
+			);
 			productName = private_swift_lib;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9376,6 +9506,8 @@
 				92344A87083B6565903B692B /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtensionUnitTests;
+			packageProductDependencies = (
+			);
 			productName = watchOSAppExtensionUnitTests;
 			productReference = BBF2A4EF912B9BBF0F538961 /* watchOSAppExtensionUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -9395,6 +9527,8 @@
 				C516CAC4BD87D19A8AD264BF /* PBXTargetDependency */,
 			);
 			name = "UniversalCommandLineTool (x86_64)";
+			packageProductDependencies = (
+			);
 			productName = tool.binary;
 			productReference = 477D3B8D6C3F621AC9FFDDF7 /* tool.binary */;
 			productType = "com.apple.product-type.tool";
@@ -9415,6 +9549,8 @@
 				0576A3A5933E955D30A2375D /* PBXTargetDependency */,
 			);
 			name = macOSAppUITests;
+			packageProductDependencies = (
+			);
 			productName = macOSAppUITests;
 			productReference = CB3DC152A3E3107BA02D60A1 /* macOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -9434,6 +9570,8 @@
 				6467D8F4E5342C08384507C4 /* PBXTargetDependency */,
 			);
 			name = echo_client;
+			packageProductDependencies = (
+			);
 			productName = echo_client;
 			productReference = 66E4E06396F34EA685DC743C /* echo_client */;
 			productType = "com.apple.product-type.tool";
@@ -9452,6 +9590,8 @@
 				88712C49317127B18137063A /* PBXTargetDependency */,
 			);
 			name = Proto_person_proto;
+			packageProductDependencies = (
+			);
 			productName = person_proto_swift;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9469,6 +9609,8 @@
 				B040424B8F138957D0E22A3D /* PBXTargetDependency */,
 			);
 			name = tvOS;
+			packageProductDependencies = (
+			);
 			productName = Lib;
 			productReference = E4976A0A8B1D38CB8334D1E4 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -9487,6 +9629,8 @@
 				96160E1B8AE0CFB0577BE6A9 /* PBXTargetDependency */,
 			);
 			name = TestingUtils;
+			packageProductDependencies = (
+			);
 			productName = TestingUtils;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -9506,6 +9650,8 @@
 				EA3262D22600F18937ADF1E6 /* PBXTargetDependency */,
 			);
 			name = iOSAppUITestSuite;
+			packageProductDependencies = (
+			);
 			productName = iOSAppUITestSuite;
 			productReference = 96E433D903880812811BA7D0 /* iOSAppUITestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -9525,6 +9671,8 @@
 				42955B98D55F02972C1C0908 /* PBXTargetDependency */,
 			);
 			name = UIFramework.watchOS;
+			packageProductDependencies = (
+			);
 			productName = UIFramework.watchOS;
 			productReference = 9EDD583C3B1836877AAAC18F /* UIFramework.watchOS.framework */;
 			productType = "com.apple.product-type.framework";
