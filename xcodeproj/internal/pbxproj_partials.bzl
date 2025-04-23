@@ -1049,6 +1049,8 @@ def _write_swift_debug_settings(
     )
 
     args = actions.args()
+    args.use_param_file("@%s")
+    args.set_param_file_format(format = "multiline")
 
     # colorize
     args.add(TRUE_ARG if colorize else FALSE_ARG)
