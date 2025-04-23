@@ -765,7 +765,11 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
             target: test,
-            testOptions: .init(appLanguage: "en", appRegion: "US", codeCoverage: false)
+                        testOptions: .init(
+                appLanguage: "en",
+                appRegion: "US",
+                codeCoverage: false
+            )
         )
 
         // Assert
