@@ -727,7 +727,11 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
-                options: .init(appLanguage: "en", appRegion: "US", codeCoverage: false),
+                                options: .init(
+                    appLanguage: "en",
+                    appRegion: "US",
+                    codeCoverage: false
+                ),
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
