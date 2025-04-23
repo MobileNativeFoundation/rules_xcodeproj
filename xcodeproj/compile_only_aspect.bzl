@@ -66,17 +66,13 @@ def _compile_only_aspect_impl(target, ctx):
     else:
         return []
 
-    for dep in deps:
-        if OutputGroupInfo in dep and not hasattr(dep[OutputGroupInfo], "compiles"):
-            fail(target, dep)
-
     return [
         OutputGroupInfo(
             compiles = depset(
                 transitive = outs + [
                     dep[OutputGroupInfo].compiles
                     for dep in deps
-                    if OutputGroupInfo in dep
+                    if OutputGroupInfo in dep and hasattr(dep[OutputGroupInfo], "compiles")
                 ],
             ),
         ),
