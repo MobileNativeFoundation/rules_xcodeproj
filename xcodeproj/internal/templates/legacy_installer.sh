@@ -150,7 +150,7 @@ rsync \
   --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
   --exclude=rules_xcodeproj/bazel \
-  --exclude=xcuserdata \
+  --exclude="*.xcbkptlist" \
   --delete \
   "$src/" "$dest/"
 
