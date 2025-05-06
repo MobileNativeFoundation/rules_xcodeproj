@@ -10,7 +10,7 @@ bazel_dep(name = "bazel_features", version = "1.3.0")
 bazel_dep(name = "bazel_skylib", version = "1.3.0")
 bazel_dep(
     name = "rules_swift",
-    version = "2.8.0",
+    version = "2.8.2",
     max_compatibility_level = 2,
     repo_name = "build_bazel_rules_swift",
 )
