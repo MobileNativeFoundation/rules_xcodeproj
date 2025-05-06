@@ -174,9 +174,9 @@ native_binary(
         http_archive,
         name = "rules_xcodeproj_index_import",
         build_file_content = index_import_build_file_content,
-        canonical_id = "index-import-6.1.0",
-        sha256 = "54d0477526bba0dc1560189dfc4f02d90aea536e9cb329e911f32b2a564b66f1",
-        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/6.1.0/index-import.tar.gz",
+        canonical_id = "index-import-6.1.0.1",
+        sha256 = "9a54fc1674af6031125a9884480a1e31e1bcf48b8f558b3e8bcc6b6fcd6e8b61",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/6.1.0.1/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
