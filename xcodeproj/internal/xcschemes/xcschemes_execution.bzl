@@ -218,6 +218,7 @@ def _write_schemes(
     def _add_test_options(test_options):
         custom_scheme_args.add(test_options.app_language)
         custom_scheme_args.add(test_options.app_region)
+        custom_scheme_args.add(test_options.code_coverage)
 
     def _add_env(env):
         if env == None:
