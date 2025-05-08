@@ -82,6 +82,9 @@ rsync \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"
 
+# Works around an rsync issue causing "Permission denied" errors
+chmod +w "$dest_xcschemes/"
+
 if [[ $(uname) == "Darwin" ]]; then
   is_macos=1
 else
