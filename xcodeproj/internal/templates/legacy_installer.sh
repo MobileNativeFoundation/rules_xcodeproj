@@ -137,7 +137,13 @@ fi
 # Sync over the project, changing the permissions to be writable
 
 # Don't touch project.xcworkspace as that will make Xcode prompt
-rsync \
+# NOTE: use `which` to find the path to `rsync`.
+# In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
+# This allows users to workaround the issue by overriding the system `rsync` with a working version.
+# Remove this once we no longer support macOS versions with broken `rsync`.
+# shellcheck disable=SC2046
+PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+  rsync \
   --archive \
   --copy-links \
   --perms \
