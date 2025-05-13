@@ -154,6 +154,9 @@ PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
   --delete \
   "$src/" "$dest/"
 
+# Works around an rsync issue causing "Permission denied" errors
+chmod +w "$dest/"
+
 # Copy over the bazel integration files
 mkdir -p "$dest/rules_xcodeproj/bazel"
 rm -rf "$dest/rules_xcodeproj/bazel"/*

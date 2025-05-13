@@ -48,6 +48,9 @@ if [[ "$ACTION" != indexbuild ]]; then
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
 
+      # Works around an rsync issue causing "Permission denied" errors
+      chmod +w "$TARGET_BUILD_DIR"
+
       if [[ -n "${TEST_HOST:-}" ]]; then
         # We need to re-sign test frameworks that Xcode placed into the test
         # host un-signed

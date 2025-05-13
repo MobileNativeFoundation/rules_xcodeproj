@@ -68,6 +68,9 @@ if [[ -n "${BAZEL_OUTPUTS_DSYM:-}" ]]; then
     $(xargs -n1 <<< "$BAZEL_OUTPUTS_DSYM") \
     "$TARGET_BUILD_DIR"
 
+  # Works around an rsync issue causing "Permission denied" errors
+  chmod +w "$TARGET_BUILD_DIR"
+
   cd "${TARGET_BUILD_DIR}"
 
   export -f patch_dsym
