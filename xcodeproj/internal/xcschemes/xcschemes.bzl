@@ -1142,7 +1142,7 @@ def _env_value(value, *, enabled = True):
             checked in the scheme. An unchecked checkbox means Xcode won't
             include that environment variable when running a target.
     """
-    if not value:
+    if not value and value != "":
         fail("""
 `value` must be provided to `xcschemes.env_value`.
 """)

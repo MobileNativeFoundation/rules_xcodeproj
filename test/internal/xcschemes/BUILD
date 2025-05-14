@@ -2,12 +2,15 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load(":info_constructors_tests.bzl", "info_constructors_test_suite")
 load(":infos_from_json_tests.bzl", "infos_from_json_test_suite")
 load(":write_schemes_tests.bzl", "write_schemes_test_suite")
+load(":xcschemes_base_tests.bzl", "xcschemes_base_test_suite")
 
 info_constructors_test_suite(name = "info_constructors")
 
 infos_from_json_test_suite(name = "infos_from_json")
 
 write_schemes_test_suite(name = "write_schemes")
+
+xcschemes_base_test_suite(name = "xcschemes_base")
 
 test_suite(name = "xcschemes")
 
