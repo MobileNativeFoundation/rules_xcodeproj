@@ -4,6 +4,7 @@ import ToolCommon
 struct AutogenerationConfigArguments {
     let appLanguage: String?
     let appRegion: String?
+    let codeCoverage: Bool
     let schemeNameExcludePatterns: [String]
 
     static func parse(
@@ -21,6 +22,11 @@ struct AutogenerationConfigArguments {
            as: String?.self,
           in: url
       )
+      let codeCoverage = try rawArgs.consumeArg(
+          "code-coverage",
+           as: Bool.self,
+          in: url
+      )
       let schemeNameExcludePatterns = try rawArgs.consumeArgs(
           "scheme-name-exclude-patterns",
           in: url
@@ -29,6 +35,7 @@ struct AutogenerationConfigArguments {
       return AutogenerationConfigArguments(
         appLanguage: appLanguage,
         appRegion: appRegion,
+        codeCoverage: codeCoverage,
         schemeNameExcludePatterns: schemeNameExcludePatterns
       )
     }

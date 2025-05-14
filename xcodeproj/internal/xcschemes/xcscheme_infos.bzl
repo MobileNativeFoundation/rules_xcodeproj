@@ -52,10 +52,12 @@ def _make_diagnostics(
 def _make_test_options(
         *,
         app_region = EMPTY_STRING,
-        app_language = EMPTY_STRING):
+        app_language = EMPTY_STRING,
+        code_coverage = FALSE_ARG):
     return struct(
         app_region = app_region,
         app_language = app_language,
+        code_coverage = code_coverage,
     )
 
 def _make_launch_target(
@@ -312,6 +314,7 @@ def _options_info_from_dict(options):
     return _make_test_options(
         app_region = options["app_region"],
         app_language = options["app_language"],
+        code_coverage = options["code_coverage"],
     )
 
 def _env_infos_from_dict(env):
