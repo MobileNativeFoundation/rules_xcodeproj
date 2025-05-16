@@ -25,6 +25,8 @@ This is only used when xcodeproj.generation_mode = "incremental" is set.
 **EXAMPLE**
 
 ```starlark
+load("@rules_xcodeproj//xcodeproj:xcodeproj_extra_files.bzl", "xcodeproj_extra_files")
+
 swift_library(
     ...
     aspect_hints = [":library_extra_files"],
