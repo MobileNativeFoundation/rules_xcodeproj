@@ -1,11 +1,5 @@
 """Rule for providing extra files from targets to the project generator"""
-
-XcodeProjExtraFilesHintInfo = provider(
-    doc = "Provides a list of extra files to include during project generation",
-    fields = {
-        "files": "List of files to include in the extra files.",
-    },
-)
+load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 
 def _xcodeproj_extra_files_impl(ctx):
     """Create a provider to surface extra files via an aspect hint.

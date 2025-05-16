@@ -23,7 +23,7 @@ _DOC_COMPONENTS = [
         tags = ["manual"],
         deps = [
             "//xcodeproj/internal",
-            "//xcodeproj/internal/files",
+            "//xcodeproj",
         ],
     )
     for component in _DOC_COMPONENTS

@@ -11,7 +11,7 @@ load(
     "memory_efficient_depset",
 )
 load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
-load(":xcodeproj_extra_files.bzl", "XcodeProjExtraFilesHintInfo")
+load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 load(":incremental_resources.bzl", resources_module = "incremental_resources")
 load(":linker_input_files.bzl", "linker_input_files")
 

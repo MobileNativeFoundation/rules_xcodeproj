@@ -1,5 +1,6 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "analysistest")
-load("//xcodeproj/internal/files:xcodeproj_extra_files.bzl", "xcodeproj_extra_files", "XcodeProjExtraFilesHintInfo")
+load("//xcodeproj:xcodeproj_extra_files.bzl", "xcodeproj_extra_files")
+load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 
 def _provider_contents_test_impl(ctx):
     env = analysistest.begin(ctx)
