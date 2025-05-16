@@ -5,6 +5,7 @@ load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 # Generating
 
 _DOC_COMPONENTS = [
+    "aspect_hints",
     "project_options",
     "providers",
     "top_level_target",
@@ -20,7 +21,10 @@ _DOC_COMPONENTS = [
         out = "{}.md".format(component),
         input = "//xcodeproj/internal/docs:{}.bzl".format(component),
         tags = ["manual"],
-        deps = ["//xcodeproj/internal"],
+        deps = [
+            "//xcodeproj",
+            "//xcodeproj/internal",
+        ],
     )
     for component in _DOC_COMPONENTS
 ]
@@ -36,6 +40,7 @@ genrule(
         ":xcode_schemes",
         ":xcode_build_settings",
         ":providers",
+        ":aspect_hints",
     ],
     outs = ["bazel.generated.md"],
     cmd = """\
