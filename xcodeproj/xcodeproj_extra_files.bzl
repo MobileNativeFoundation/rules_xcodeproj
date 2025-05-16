@@ -1,4 +1,5 @@
 """Rule for providing extra files from targets to the project generator"""
+
 load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 
 def _xcodeproj_extra_files_impl(ctx):

@@ -22,8 +22,8 @@ _DOC_COMPONENTS = [
         input = "//xcodeproj/internal/docs:{}.bzl".format(component),
         tags = ["manual"],
         deps = [
-            "//xcodeproj/internal",
             "//xcodeproj",
+            "//xcodeproj/internal",
         ],
     )
     for component in _DOC_COMPONENTS

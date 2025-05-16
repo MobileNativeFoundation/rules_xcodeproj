@@ -1,4 +1,4 @@
-load("@bazel_skylib//lib:unittest.bzl", "asserts", "analysistest")
+load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("//xcodeproj:xcodeproj_extra_files.bzl", "xcodeproj_extra_files")
 load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 
