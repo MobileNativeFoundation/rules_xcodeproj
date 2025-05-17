@@ -394,6 +394,7 @@ extension Generator.CreateScheme {
                 enableThreadPerformanceChecker: schemeInfo.run.enableThreadPerformanceChecker,
                 environmentVariables: launchRunnable == nil ?
                     [] : schemeInfo.run.environmentVariables,
+                storeKitConfigurationPath: schemeInfo.run.storeKitConfigurationPath,
                 postActions: launchPostActions
                     .sorted(by: compareExecutionActions)
                     .map(\.action),

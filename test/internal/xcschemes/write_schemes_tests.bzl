@@ -519,6 +519,7 @@ def write_schemes_test_suite(name):
                         ),
                     },
                     env_include_defaults = "0",
+                    storekit_configuration = "run storekit config",
                     launch_target = xcscheme_infos_testable.make_launch_target(
                         extension_host = "run extension host id",
                         id = "run launch id",
@@ -660,6 +661,7 @@ def write_schemes_test_suite(name):
             xcscheme_infos_testable.make_scheme(
                 name = "Scheme 3",
                 run = xcscheme_infos_testable.make_run(
+                    storekit_configuration = "/Configuration.storekit",
                     launch_target = xcscheme_infos_testable.make_launch_target(
                         path = "/Foo/Bar.app",
                     ),
@@ -1100,6 +1102,8 @@ def write_schemes_test_suite(name):
                 "-1",
                 # - run - environmentVariablesIncludeDefaults
                 "1",
+                # - run - storeKitConfigurationPath
+                "",
                 # - run - enableAddressSanitizer
                 "0",
                 # - run - enableThreadSanitizer
@@ -1226,6 +1230,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - run - environmentVariablesIncludeDefaults
                 "0",
+                # - run - storeKitConfigurationPath
+                "run storekit config",
                 # - run - enableAddressSanitizer
                 "1",
                 # - run - enableThreadSanitizer
@@ -1330,6 +1336,8 @@ def write_schemes_test_suite(name):
                 "-1",
                 # - run - environmentVariablesIncludeDefaults
                 "1",
+                # - run - storeKitConfigurationPath
+                "/Configuration.storekit",
                 # - run - enableAddressSanitizer
                 "0",
                 # - run - enableThreadSanitizer

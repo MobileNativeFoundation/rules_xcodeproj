@@ -138,6 +138,7 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: runEnvironmentVariables,
+                storeKitConfigurationPath: nil,
                 launchTarget: launchTarget,
                 xcodeConfiguration: nil
             ),
