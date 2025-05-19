@@ -153,7 +153,7 @@ if [[ $apply_sanitizers -eq 1 ]]; then
       --copt=-fno-sanitize-recover=all
       --copt=-fsanitize=address
       --linkopt=-fsanitize=address
-      --swiftcopt=-sanitize=address
+      --@build_bazel_rules_swift//swift:copt=-sanitize=address
       --copt=-Wno-macro-redefined
       --copt=-D_FORTIFY_SOURCE=0
     )
@@ -164,7 +164,7 @@ if [[ $apply_sanitizers -eq 1 ]]; then
       --copt=-fno-sanitize-recover=all
       --copt=-fsanitize=thread
       --linkopt=-fsanitize=thread
-      --swiftcopt=-sanitize=thread
+      --@build_bazel_rules_swift//swift:copt=-sanitize=thread
       )
   fi
   if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
