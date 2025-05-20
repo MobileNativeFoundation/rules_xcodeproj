@@ -143,7 +143,8 @@ def _make_run(
         env = None,
         env_include_defaults = TRUE_ARG,
         launch_target = _make_launch_target(),
-        xcode_configuration = EMPTY_STRING):
+        xcode_configuration = EMPTY_STRING,
+        storekit_configuration = EMPTY_STRING):
     return struct(
         args = args,
         build_targets = build_targets,
@@ -152,6 +153,7 @@ def _make_run(
         env_include_defaults = env_include_defaults,
         launch_target = launch_target,
         xcode_configuration = xcode_configuration,
+        storekit_configuration = storekit_configuration,
     )
 
 def _make_test(
@@ -620,6 +622,7 @@ def _run_info_from_dict(
         env_include_defaults = run["env_include_defaults"],
         launch_target = launch_target,
         xcode_configuration = xcode_configuration,
+        storekit_configuration = run["storekit_configuration"],
     )
 
 def _test_info_from_dict(

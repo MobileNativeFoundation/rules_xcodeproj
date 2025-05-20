@@ -68,6 +68,7 @@ struct SchemeInfo: Equatable {
         let enableUBSanitizer: Bool
         let enableMainThreadChecker: Bool
         let enableThreadPerformanceChecker: Bool
+        let storeKitConfiguration: String?
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
         let xcodeConfiguration: String?

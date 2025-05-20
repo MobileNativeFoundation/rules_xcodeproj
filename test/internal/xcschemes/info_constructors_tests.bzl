@@ -590,6 +590,7 @@ def info_constructors_test_suite(name):
             env_include_defaults = "1",
             launch_target = xcscheme_infos_testable.make_launch_target(),
             xcode_configuration = "",
+            storekit_configuration = "",
         ),
     )
 
@@ -622,6 +623,7 @@ def info_constructors_test_suite(name):
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
             xcode_configuration = "Run",
+            storekit_configuration = "",
         ),
 
         # Expected
@@ -652,6 +654,7 @@ def info_constructors_test_suite(name):
                 id = "L",
             ),
             xcode_configuration = "Run",
+            storekit_configuration = "",
         ),
     )
 

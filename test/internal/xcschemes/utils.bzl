@@ -65,6 +65,7 @@ def _dict_to_run_info(d):
         env_include_defaults = d["env_include_defaults"],
         launch_target = _dict_to_launch_target_info(d["launch_target"]),
         xcode_configuration = d["xcode_configuration"],
+        storekit_configuration = d["storekit_configuration"],
     )
 
 def _dict_to_test_info(d):

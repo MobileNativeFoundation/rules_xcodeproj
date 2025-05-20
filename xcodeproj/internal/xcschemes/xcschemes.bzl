@@ -212,7 +212,8 @@ def _run(
         env = "inherit",
         env_include_defaults = True,
         launch_target = None,
-        xcode_configuration = None):
+        xcode_configuration = None,
+        storekit_configuration = None):
     """Defines the Run action.
 
     Args:
@@ -343,6 +344,7 @@ def _run(
             If not set, the value of
             [`xcodeproj.default_xcode_configuration`](#xcodeproj-default_xcode_configuration)
             is used.
+        storekit_configuration: a label that points to a storekit configuration file.
     """
     return struct(
         args = args or [],
@@ -352,6 +354,7 @@ def _run(
         env_include_defaults = TRUE_ARG if env_include_defaults else FALSE_ARG,
         launch_target = launch_target,
         xcode_configuration = xcode_configuration or "",
+        storekit_configuration = storekit_configuration,
     )
 
 def _test(

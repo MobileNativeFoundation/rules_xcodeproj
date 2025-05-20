@@ -112,6 +112,7 @@ def _resolve_run_labels(run):
         env_include_defaults = run.env_include_defaults,
         launch_target = _resolve_launch_target_labels(run.launch_target),
         xcode_configuration = run.xcode_configuration,
+        storekit_configuration = run.storekit_configuration,
     )
 
 def _resolve_test_labels(test):

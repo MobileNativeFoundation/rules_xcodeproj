@@ -18,6 +18,7 @@ public struct CreateLaunchAction {
         enableUBSanitizer: Bool,
         enableMainThreadChecker: Bool,
         enableThreadPerformanceChecker: Bool,
+        storeKitConfiguration: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -32,6 +33,7 @@ public struct CreateLaunchAction {
             /*enableUBSanitizer:*/ enableUBSanitizer,
             /*enableMainThreadChecker:*/ enableMainThreadChecker,
             /*enableThreadPerformanceChecker:*/ enableThreadPerformanceChecker,
+            /*storeKitConfiguration:*/ storeKitConfiguration,
             /*environmentVariables:*/ environmentVariables,
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
@@ -52,6 +54,7 @@ extension CreateLaunchAction {
         _ enableUBSanitizer: Bool,
         _ enableMainThreadChecker: Bool,
         _ enableThreadPerformanceChecker: Bool,
+        _ storeKitConfiguration: String?,
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
@@ -67,6 +70,7 @@ extension CreateLaunchAction {
         enableUBSanitizer: Bool,
         enableMainThreadChecker: Bool,
         enableThreadPerformanceChecker: Bool,
+        storeKitConfiguration: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
@@ -202,12 +206,26 @@ ignoresPersistentStateOnLaunch = "NO"
             runnableString = ""
         }
 
+        let storeKitConfigurationString: String
+        if let storeKitConfiguration, storeKitConfiguration.count > 0, storeKitConfiguration != "None" {
+            
+        storeKitConfigurationString = #"""
+      <StoreKitConfigurationFileReference
+         identifier = "\#(storeKitConfiguration)">
+      </StoreKitConfigurationFileReference>
+
+"""#
+        } else {
+            storeKitConfigurationString = ""
+        }
+
         return #"""
    <LaunchAction
       \#(components.joined(separator: "\n      "))>
 \#(preActions.preActionsString)\#
 \#(postActions.postActionsString)\#
 \#(runnableString)\#
+\#(storeKitConfigurationString)\#
 \#(commandLineArguments.commandLineArgumentsString)\#
 \#(environmentVariables.environmentVariablesString)\#
    </LaunchAction>

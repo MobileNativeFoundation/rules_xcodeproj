@@ -184,7 +184,8 @@ def _launch_action(
         args = None,
         diagnostics = None,
         env = None,
-        working_directory = None):
+        working_directory = None,
+        storekit_configuration = None):
     """Constructs a launch action for an Xcode scheme.
 
     Args:
@@ -198,6 +199,8 @@ def _launch_action(
             environment variables when the target is executed.
         working_directory: Optional. A `string` that will be set as the custom
             working directory in the Xcode scheme's launch action.
+        storekit_configuration: Optional. A `string` that will be set as the
+            StoreKit configuration in the Xcode scheme's launch action.
 
     Returns:
         A `struct` representing a launch action.
@@ -209,6 +212,7 @@ def _launch_action(
         diagnostics = diagnostics,
         env = env if env != None else {},
         working_directory = working_directory,
+        storekit_configuration = storekit_configuration,
     )
 
 def _profile_action(

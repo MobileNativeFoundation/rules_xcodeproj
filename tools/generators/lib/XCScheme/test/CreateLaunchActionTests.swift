@@ -605,6 +605,7 @@ private func createLaunchActionWithDefaults(
         enableUBSanitizer: enableUBSanitizer,
         enableMainThreadChecker: enableMainThreadChecker,
         enableThreadPerformanceChecker: enableThreadPerformanceChecker,
+        storeKitConfiguration: nil,
         environmentVariables: environmentVariables,
         postActions: postActions,
         preActions: preActions,

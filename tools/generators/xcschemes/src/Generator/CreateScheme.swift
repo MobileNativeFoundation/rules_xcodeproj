@@ -392,6 +392,7 @@ extension Generator.CreateScheme {
                 enableUBSanitizer: schemeInfo.run.enableUBSanitizer,
                 enableMainThreadChecker: schemeInfo.run.enableMainThreadChecker,
                 enableThreadPerformanceChecker: schemeInfo.run.enableThreadPerformanceChecker,
+                storeKitConfiguration: schemeInfo.run.storeKitConfiguration,
                 environmentVariables: launchRunnable == nil ?
                     [] : schemeInfo.run.environmentVariables,
                 postActions: launchPostActions

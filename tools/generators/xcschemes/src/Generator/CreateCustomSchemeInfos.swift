@@ -23,7 +23,9 @@ extension Generator {
             environmentVariables: [TargetID: [EnvironmentVariable]],
             executionActionsFile: URL,
             extensionHostIDs: [TargetID: [TargetID]],
-            targetsByID: [TargetID: Target]
+            targetsByID: [TargetID: Target],
+            installPath: String,
+            workspace: String
         ) async throws -> [SchemeInfo] {
             try await callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -31,7 +33,9 @@ extension Generator {
                 /*environmentVariables:*/ environmentVariables,
                 /*executionActionsFile:*/ executionActionsFile,
                 /*extensionHostIDs:*/ extensionHostIDs,
-                /*targetsByID:*/ targetsByID
+                /*targetsByID:*/ targetsByID,
+                /*installPath:*/ installPath,
+                /*workspace:*/ workspace
             )
         }
     }
@@ -40,13 +44,15 @@ extension Generator {
 // MARK: - CreateCustomSchemeInfos.Callable
 
 extension Generator.CreateCustomSchemeInfos {
-    typealias Callable = (
+    typealias Callable = (        
         _ commandLineArguments: [TargetID: [CommandLineArgument]],
         _ customSchemesFile: URL,
         _ environmentVariables: [TargetID: [EnvironmentVariable]],
         _ executionActionsFile: URL,
         _ extensionHostIDs: [TargetID: [TargetID]],
-        _ targetsByID: [TargetID: Target]
+        _ targetsByID: [TargetID: Target],
+        _ installPath: String,
+        _ workspace: String
     ) async throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -55,7 +61,9 @@ extension Generator.CreateCustomSchemeInfos {
         environmentVariables: [TargetID: [EnvironmentVariable]],
         executionActionsFile: URL,
         extensionHostIDs: [TargetID: [TargetID]],
-        targetsByID: [TargetID: Target]
+        targetsByID: [TargetID: Target],
+        installPath: String,
+        workspace: String
     ) async throws -> [SchemeInfo] {
         let executionActions: [String: [SchemeInfo.ExecutionAction]] =
             try await .parse(
@@ -95,7 +103,9 @@ extension Generator.CreateCustomSchemeInfos {
                 name: name,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID
+                targetsByID: targetsByID,
+                installPath: installPath,
+                workspace: workspace
             )
 
             let profile = try rawArgs.consumeArg(
@@ -453,6 +463,8 @@ set
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
+        installPath: String,
+        workspace: String,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Run {
@@ -502,6 +514,19 @@ set
         let xcodeConfiguration =
             try consumeArg("run-xcode-configuration", as: String?.self, in: url)
 
+        let storeKitConfiguration = try consumeArg(
+            "run-storekit-configuration",
+            as: String?.self,
+            in: url
+        )
+        var storeKitConfigurationWorkspaceRelativePath: String?
+        if let storeKitConfiguration {
+            // Provide an example path to xcschemes to relativize against
+            let installRootURL = URL(filePath: "\(workspace)/\(installPath)/xcshareddata/xcschemes")
+            let storekitConfigAbsolutePath = URL(filePath: "\(workspace)/\(storeKitConfiguration)")
+            storeKitConfigurationWorkspaceRelativePath = storekitConfigAbsolutePath.relativize(from: installRootURL)
+        }
+
         var (
             launchTarget,
             commandLineArguments,
@@ -543,6 +568,7 @@ set
             enableUBSanitizer: enableUBSanitizer,
             enableMainThreadChecker: enableMainThreadChecker,
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
+            storeKitConfiguration: storeKitConfigurationWorkspaceRelativePath,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
             xcodeConfiguration: xcodeConfiguration

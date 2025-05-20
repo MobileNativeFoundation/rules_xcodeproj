@@ -352,7 +352,8 @@ also be modified in Xcode.
             build_configuration = None,
             diagnostics = None,
             env = None,
-            working_directory = None):
+            working_directory = None,
+            storekit_configuration = None):
         """Constructs a launch action for an Xcode scheme.
 
         Args:
@@ -372,6 +373,9 @@ also be modified in Xcode.
                 custom working directory in the Xcode scheme's launch action.
                 Relative paths will be relative to the value of `target`'s
                 `BUILT_PRODUCTS_DIR`, which is unique to it.
+            storekit_configuration: Optional. A `string` that will be set as
+                the custom StoreKit configuration in the Xcode scheme's launch
+                action. This should be a path relative to the workspace root.
 
         Returns:
             A `struct` representing a launch action.
@@ -383,6 +387,7 @@ also be modified in Xcode.
             diagnostics = diagnostics,
             env = env,
             working_directory = working_directory,
+            storekit_configuration = storekit_configuration,
         )
 
     def _profile_action(
