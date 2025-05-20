@@ -150,6 +150,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: baseEnvironmentVariables,
                 launchTarget: .target(
                     primary: launchable,
@@ -232,6 +233,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: baseEnvironmentVariables,
                 launchTarget: .target(
                     primary: launchable,
@@ -310,6 +312,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: baseEnvironmentVariables,
                 launchTarget: .target(
                     primary: launchable,
@@ -387,6 +390,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables:
                     baseEnvironmentVariables + environmentVariables,
                 launchTarget: .target(
@@ -463,6 +467,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: baseEnvironmentVariables,
                 launchTarget: nil,
                 xcodeConfiguration: nil
@@ -531,6 +536,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: [],
                 launchTarget: nil,
                 xcodeConfiguration: nil
@@ -602,6 +608,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: [],
                 launchTarget: nil,
                 xcodeConfiguration: nil
@@ -674,6 +681,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: [],
                 launchTarget: nil,
                 xcodeConfiguration: nil
@@ -741,6 +749,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableUBSanitizer: false,
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
+                storeKitConfiguration: nil,
                 environmentVariables: [],
                 launchTarget: nil,
                 xcodeConfiguration: nil

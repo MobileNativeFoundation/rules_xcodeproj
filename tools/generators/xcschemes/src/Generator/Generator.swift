@@ -45,7 +45,9 @@ struct Generator {
             environmentVariables: environmentVariables,
             executionActionsFile: arguments.executionActionsFile,
             extensionHostIDs: extensionHostIDs,
-            targetsByID: targetsByID
+            targetsByID: targetsByID,
+            installPath: arguments.installPath,
+            workspace: arguments.workspace
         )
 
         let automaticSchemeInfos = try environment.createAutomaticSchemeInfos(

@@ -256,6 +256,7 @@ def _launch_action_test(ctx):
         diagnostics = None,
         env = env,
         working_directory = None,
+        storekit_configuration = None,
     )
     asserts.equals(test_env, expected, actual)
 

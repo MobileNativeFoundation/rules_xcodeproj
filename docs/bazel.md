@@ -479,7 +479,7 @@ Defines the Profile action.
 
 <pre>
 xcschemes.run(<a href="#xcschemes.run-args">args</a>, <a href="#xcschemes.run-build_targets">build_targets</a>, <a href="#xcschemes.run-diagnostics">diagnostics</a>, <a href="#xcschemes.run-env">env</a>, <a href="#xcschemes.run-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.run-launch_target">launch_target</a>,
-              <a href="#xcschemes.run-xcode_configuration">xcode_configuration</a>)
+              <a href="#xcschemes.run-xcode_configuration">xcode_configuration</a>, <a href="#xcschemes.run-storekit_configuration">storekit_configuration</a>)
 </pre>
 
 Defines the Run action.
@@ -496,6 +496,7 @@ Defines the Run action.
 | <a id="xcschemes.run-env_include_defaults"></a>env_include_defaults |  Whether to include the rules_xcodeproj provided default Bazel environment variables (e.g. `BUILD_WORKING_DIRECTORY` and `BUILD_WORKSPACE_DIRECTORY`), in addition to any set by [`env`](#xcschemes.run-env). This does not apply to [`xcschemes.launch_path`](#xcschemes.launch_path)s.   |  `True` |
 | <a id="xcschemes.run-launch_target"></a>launch_target |  The target to launch when running.<br><br>Can be `None`, a label string, a value returned by [`xcschemes.launch_target`](#xcschemes.launch_target), or a value returned by [`xcschemes.launch_path`](#xcschemes.launch_path). If a label string, `xcschemes.launch_target(label_str)` will be used. If `None`, `xcschemes.launch_target()` will be used, which means no launch target will be set (i.e. the `Executable` dropdown will be set to `None`).   |  `None` |
 | <a id="xcschemes.run-xcode_configuration"></a>xcode_configuration |  The name of the Xcode configuration to use to build the targets referenced in the Run action (i.e in the [`build_targets`](#xcschemes.run-build_targets) and [`launch_target`](#xcschemes.run-launch_target) attributes).<br><br>If not set, the value of [`xcodeproj.default_xcode_configuration`](#xcodeproj-default_xcode_configuration) is used.   |  `None` |
+| <a id="xcschemes.run-storekit_configuration"></a>storekit_configuration |  a label that points to a storekit configuration file.   |  `None` |
 
 
 <a id="xcschemes.scheme"></a>
@@ -757,7 +758,8 @@ A `struct` representing scheme's diagnostics.
 ## xcode_schemes.launch_action
 
 <pre>
-xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
+xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>,
+                            <a href="#xcode_schemes.launch_action-storekit_configuration">storekit_configuration</a>)
 </pre>
 
 Constructs a launch action for an Xcode scheme.
@@ -773,6 +775,7 @@ Constructs a launch action for an Xcode scheme.
 | <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A value returned by `xcode_schemes.diagnostics`.   |  `None` |
 | <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A `dict` of `string` values that will be set as environment variables when the target is executed.   |  `None` |
 | <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A `string` that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of `target`'s `BUILT_PRODUCTS_DIR`, which is unique to it.   |  `None` |
+| <a id="xcode_schemes.launch_action-storekit_configuration"></a>storekit_configuration |  Optional. A `string` that will be set as the custom StoreKit configuration in the Xcode scheme's launch action. This should be a path relative to the workspace root.   |  `None` |
 
 **RETURNS**
 

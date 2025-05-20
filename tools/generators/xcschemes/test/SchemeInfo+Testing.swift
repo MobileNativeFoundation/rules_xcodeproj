@@ -52,6 +52,7 @@ extension SchemeInfo.Run {
         enableAddressSanitizer: Bool = false,
         enableThreadSanitizer: Bool = false,
         enableUBSanitizer: Bool = false,
+        storeKitConfiguration: String? = nil,
         environmentVariables: [EnvironmentVariable] = [],
         launchTarget: SchemeInfo.LaunchTarget? = nil,
         xcodeConfiguration: String? = nil
@@ -65,6 +66,7 @@ extension SchemeInfo.Run {
             enableUBSanitizer: enableUBSanitizer,
             enableMainThreadChecker: enableMainThreadChecker,
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
+            storeKitConfiguration: storeKitConfiguration,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
             xcodeConfiguration: xcodeConfiguration
