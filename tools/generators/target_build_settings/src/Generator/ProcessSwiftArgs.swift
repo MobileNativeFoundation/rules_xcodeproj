@@ -317,6 +317,12 @@ extension Generator.ProcessSwiftArgs {
             ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
         )
 
+        // Workaround for bug in Xcode 16.3+
+        // https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3171
+        buildSettings.append(
+            ("SWIFT_ENABLE_EMIT_CONST_VALUES", "NO")
+        )
+
         return (
             hasDebugInfo,
             clangArgs,
