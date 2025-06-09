@@ -121,8 +121,8 @@ def xcodeproj_rules_dependencies(
         _maybe(
             http_archive,
             name = "build_bazel_rules_swift",
-            sha256 = "bb01097c7c7a1407f8ad49a1a0b1960655cf823c26ad2782d0b7d15b323838e2",
-            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.18.0/rules_swift.1.18.0.tar.gz",
+            sha256 = "a632eaf9d0d7564ae7dbd12f94fc2047cc00706a7f037a4af1fc10e20b7875a4",
+            url = "https://github.com/bazelbuild/rules_swift/releases/download/2.8.2/rules_swift.2.8.2.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
@@ -148,10 +148,10 @@ def xcodeproj_rules_dependencies(
     # here in order to reuse it, and in case `rules_swift` stops depending on it
     # in the future. We don't though, because we need 5.5.3.1 or higher, and the
     # current lowest version of rules_swift we support uses 5.3.2.6.
-    _maybe(
-        http_archive,
-        name = "rules_xcodeproj_index_import",
-        build_file_content = """\
+    # TODO: we must depend on two versions of index-import to support backwards
+    # compatibility between Xcode 16.3+ and older versions, we can remove the older
+    # version once we drop support for Xcode 16.x.
+    index_import_build_file_content = """\
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 
 native_binary(
@@ -160,9 +160,23 @@ native_binary(
     out = "index-import",
     visibility = ["//visibility:public"],
 )
-""",
+"""
+    _maybe(
+        http_archive,
+        name = "rules_xcodeproj_legacy_index_import",
+        build_file_content = index_import_build_file_content,
+        canonical_id = "index-import-5.8.0.1",
         sha256 = "28c1ffa39d99e74ed70623899b207b41f79214c498c603915aef55972a851a15",
         url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.8.0.1/index-import.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+    _maybe(
+        http_archive,
+        name = "rules_xcodeproj_index_import",
+        build_file_content = index_import_build_file_content,
+        canonical_id = "index-import-6.1.0.1",
+        sha256 = "9a54fc1674af6031125a9884480a1e31e1bcf48b8f558b3e8bcc6b6fcd6e8b61",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/6.1.0.1/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
@@ -200,24 +214,6 @@ swift_library(
         sha256 = "4a10bbef290a2167c5cc340b39f1f7ff6a8cf4e1b5433b68548bf5f1e542e908",
         strip_prefix = "swift-argument-parser-1.2.3",
         url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/1.2.3.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
-
-    _maybe(
-        http_archive,
-        name = "com_github_kylef_pathkit",
-        build_file_content = """\
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
-    name = "PathKit",
-    srcs = glob(["Sources/**/*.swift"]),
-    visibility = ["//visibility:public"],
-)
-""",
-        sha256 = "fcda78cdf12c1c6430c67273333e060a9195951254230e524df77841a0235dae",
-        strip_prefix = "PathKit-1.0.1",
-        url = "https://github.com/kylef/PathKit/archive/refs/tags/1.0.1.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
@@ -316,28 +312,6 @@ swift_library(
         sha256 = "4b256843c9c3686c527e76dde54f8d76b6201c1fd903c07dc2211ab1b250bd04",
         strip_prefix = "ZippyJSON-1.2.10",
         url = "https://github.com/michaeleisel/ZippyJSON/archive/refs/tags/1.2.10.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
-
-    _maybe(
-        http_archive,
-        name = "com_github_tuist_xcodeproj",
-        build_file_content = """\
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
-    name = "XcodeProj",
-    srcs = glob(["Sources/XcodeProj/**/*.swift"]),
-    visibility = ["//visibility:public"],
-    deps = [
-        "@com_github_tadija_aexml//:AEXML",
-        "@com_github_kylef_pathkit//:PathKit",
-    ],
-)
-""",
-        sha256 = "70a4504d5cfd30e1c1968df3929bf0c40cba91bdb2ef0e3143c0e72bbe1d8092",
-        strip_prefix = "XcodeProj-8.9.0",
-        url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.9.0.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 

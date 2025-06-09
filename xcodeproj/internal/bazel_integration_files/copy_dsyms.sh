@@ -49,22 +49,20 @@ EOF
 if [[ -n "${BAZEL_OUTPUTS_DSYM:-}" ]]; then
   cd "${BAZEL_OUT%/*}"
 
-  if [[ $(sw_vers -productVersion | cut -d '.' -f 1-2) == "15.4" ]]; then
-    # 15.4's `rsync` has a bug that requires the src to have write permissions.
-    # We normally shouldn't do this as it modifies the bazel output base, so we
-    # limit this to only macOS 15.4.
-    # shellcheck disable=SC2046
-    chmod -R +w $(xargs -n1 <<< "$BAZEL_OUTPUTS_DSYM")
-  fi
-
+  # NOTE: use `which` to find the path to `rsync`.
+  # In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
+  # This allows users to workaround the issue by overriding the system `rsync` with a working version.
+  # Remove this once we no longer support macOS versions with broken `rsync`.
   # shellcheck disable=SC2046
-  rsync \
+  PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+    rsync \
     --copy-links \
     --recursive \
     --times \
     --archive \
     --delete \
     ${exclude_list:+--exclude-from="$exclude_list"} \
+    --perms \
     --chmod=u+w \
     --out-format="%n%L" \
     $(xargs -n1 <<< "$BAZEL_OUTPUTS_DSYM") \

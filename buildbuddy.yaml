@@ -23,7 +23,7 @@ x_templates:
         USE_BAZEL_VERSION: 8.x
     - &bazel_head
       env:
-        USE_BAZEL_VERSION: last_green
+        USE_BAZEL_VERSION: 4c2d91e762ab6e492853b021408129dd93fb5904 # TODO: Switch back to last_green once get_cpu has been removed
 
     - &normal_resources
       resource_requests: { memory: 6GB }
@@ -114,7 +114,7 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      # Not validate since Bazel 8 Bzlmod paths are different
+      # Not validate since Bazel 8+ Bzlmod paths are different
       - *generate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS
@@ -124,8 +124,7 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      # Not validate since Bazel 8 Bzlmod paths are different
-      - *generate_integration
+      - *validate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel HEAD
     <<: *bazel_head
@@ -134,7 +133,10 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      # Not validate as Bazel HEAD has incompatible path changes to repo rules
+      # - "external/+_repo_rules+examples_command_line_external/",
+      # + "external/+new_local_repository+examples_command_line_external/
+      - *generate_integration
       - *build_all
 
   - name: Integration Test - "examples/rules_ios" - Bazel Previous LTS

@@ -44,7 +44,6 @@ ios_application(
         ":release_build": [],
         "//conditions:default": [
             "--digest-algorithm=sha1",
-            "--resource-rules=$(RESOURCE_RULES)",
         ],
     }),
     entitlements = "ios app.entitlements",

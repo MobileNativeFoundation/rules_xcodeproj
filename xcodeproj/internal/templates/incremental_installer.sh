@@ -74,16 +74,17 @@ dest_dir="$(dirname "${dest}")"
 # Copy over `xcschemes`
 readonly dest_xcschemes="$dest/xcshareddata/xcschemes"
 
-if [[ $(sw_vers -productVersion | cut -d '.' -f 1-2) == "15.4" ]]; then
-  # 15.4's `rsync` has a bug that requires the src to have write permissions.
-  # We normally shouldn't do this as it modifies the bazel output base, so we
-  # limit this to only macOS 15.4.
-  chmod -R +w "$src_xcschemes"
-fi
-
 mkdir -p "$dest_xcschemes"
-rsync \
+
+# NOTE: use `which` to find the path to `rsync`.
+# In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
+# This allows users to workaround the issue by overriding the system `rsync` with a working version.
+# Remove this once we no longer support macOS versions with broken `rsync`.
+# shellcheck disable=SC2046
+PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+  rsync \
   --archive \
+  --perms \
   --chmod=u+w,F-x \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"

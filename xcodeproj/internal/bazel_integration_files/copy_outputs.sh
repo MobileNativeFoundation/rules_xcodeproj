@@ -38,20 +38,19 @@ if [[ "$ACTION" != indexbuild ]]; then
       # rpaths to work
       ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/lib$PRODUCT_NAME.a"
     else
-      if [[ $(sw_vers -productVersion | cut -d '.' -f 1-2) == "15.4" ]]; then
-        # 15.4's `rsync` has a bug that requires the src to have write
-        # permissions. We normally shouldn't do this as it modifies the bazel
-        # output base, so we limit this to only macOS 15.4.
-        chmod -R +w "$BAZEL_OUTPUTS_PRODUCT_BASENAME"
-      fi
-
       # Product is a bundle
-      rsync \
+      # NOTE: use `which` to find the path to `rsync`.
+      # In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
+      # This allows users to workaround the issue by overriding the system `rsync` with a working version.
+      # Remove this once we no longer support macOS versions with broken `rsync`.
+      PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+        rsync \
         --copy-links \
         --recursive \
         --times \
         --delete \
         ${exclude_list:+--exclude-from="$exclude_list"} \
+        --perms \
         --chmod=u+w \
         --out-format="%n%L" \
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \

@@ -136,17 +136,17 @@ fi
 
 # Sync over the project, changing the permissions to be writable
 
-if [[ $(sw_vers -productVersion | cut -d '.' -f 1-2) == "15.4" ]]; then
-  # 15.4's `rsync` has a bug that requires the src to have write permissions.
-  # We normally shouldn't do this as it modifies the bazel output base, so we
-  # limit this to only macOS 15.4.
-  chmod -R +w "$src"
-fi
-
 # Don't touch project.xcworkspace as that will make Xcode prompt
-rsync \
+# NOTE: use `which` to find the path to `rsync`.
+# In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
+# This allows users to workaround the issue by overriding the system `rsync` with a working version.
+# Remove this once we no longer support macOS versions with broken `rsync`.
+# shellcheck disable=SC2046
+PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
+  rsync \
   --archive \
   --copy-links \
+  --perms \
   --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
   --exclude=rules_xcodeproj/bazel \

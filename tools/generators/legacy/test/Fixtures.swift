@@ -43,6 +43,7 @@ enum Fixtures {
         customXcodeSchemes: [],
         targetIdsFile: "/tmp/target_ids",
         targetNameMode: .auto,
+        legacyIndexImport: "/tmp/legacy-index-import",
         indexImport: "/tmp/index-import",
         preBuildScript: "./pre-build.sh",
         postBuildScript: "./post-build.sh"
@@ -405,6 +406,8 @@ enum Fixtures {
             name: "Project",
             buildConfigurationList: buildConfigurationList,
             compatibilityVersion: "Xcode 13.0",
+            preferredProjectObjectVersion: nil,
+            minimizedProjectReferenceProxies: nil,
             mainGroup: mainGroup
         )
         pbxProj.add(object: pbxProject)
