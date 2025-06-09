@@ -328,6 +328,16 @@ def _collect_mixed_language_output_files(
         ],
     )
 
+    # TODO: Once BwB mode no longer has target dependencies, remove
+    # transitive products. Until then we need them, to allow `Copy Bazel
+    # Outputs` to be able to copy the products of transitive dependencies.
+    transitive_products = memory_efficient_depset(
+        transitive = [
+            info.outputs._transitive_products
+            for info in mixed_target_infos
+        ],
+    )
+
     transitive_compile_params = memory_efficient_depset(
         compile_params_files,
         transitive = [
@@ -352,13 +362,15 @@ def _collect_mixed_language_output_files(
     )
 
     products_depset = memory_efficient_depset(
-        (
-            # We don't want to declare indexstore files as outputs, because they
-            # expand to individual files and blow up the BEP. Instead they are
-            # declared as inputs to `indexstores_filelist`, ensuring they are
-            # downloaded as needed.
-            [indexstores_filelist]
-        ),
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP. Instead they are
+        # declared as inputs to `indexstores_filelist`, ensuring they are
+        # downloaded as needed.
+        [indexstores_filelist],
+        transitive = [
+            info.outputs._transitive_products
+            for info in mixed_target_infos
+        ],
     )
 
     direct_group_list = [
@@ -380,8 +392,7 @@ def _collect_mixed_language_output_files(
             _transitive_indexstores = transitive_indexstores,
             _transitive_infoplists = transitive_infoplists,
             _transitive_link_params = transitive_link_params,
-            # Only top-level targets will have products or dSYM files
-            _transitive_products = EMPTY_DEPSET,
+            _transitive_products = products_depset,
         ),
         struct(
             _direct_group_list = direct_group_list,
@@ -422,7 +433,12 @@ def _merge_output_files(*, transitive_infos):
                 for info in transitive_infos
             ],
         ),
-        _transitive_products = EMPTY_DEPSET,
+        _transitive_products = memory_efficient_depset(
+            transitive = [
+                info.outputs._transitive_products
+                for info in transitive_infos
+            ],
+        ),
     )
 
 # Output groups
