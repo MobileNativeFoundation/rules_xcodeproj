@@ -29,6 +29,8 @@ struct TargetArguments: Equatable {
     let nonArcSrcs: [BazelPath]
 
     let dSYMPathsBuildSetting: String
+    let librarySearchPaths: [BazelPath]
+    let librariesToLinkPaths: [BazelPath]
 }
 
 extension Dictionary<TargetID, TargetArguments> {
@@ -92,6 +94,16 @@ extension Dictionary<TargetID, TargetArguments> {
                 "xcode-configurations",
                 in: url
             )
+            let librarySearchPaths = try rawArgs.consumeArgs(
+                "library-search-paths",
+                as: BazelPath.self,
+                in: url
+            )
+            let librariesToLinkPaths = try rawArgs.consumeArgs(
+                "libraries_to_link_paths",
+                as: BazelPath.self,
+                in: url
+            )
 
             var buildSettings: [PlatformVariantBuildSetting] = []
             if let buildSettingsFile {
@@ -130,7 +142,9 @@ extension Dictionary<TargetID, TargetArguments> {
                         hasCxxParams: hasCxxParams,
                         srcs: srcs,
                         nonArcSrcs: nonArcSrcs,
-                        dSYMPathsBuildSetting: dSYMPathsBuildSetting
+                        dSYMPathsBuildSetting: dSYMPathsBuildSetting,
+                        librarySearchPaths: librarySearchPaths,
+                        librariesToLinkPaths: librariesToLinkPaths
                     )
                 )
             )

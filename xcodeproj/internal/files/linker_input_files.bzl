@@ -63,13 +63,43 @@ def _collect_linker_inputs(
         )
         top_level_values = None
 
+    all_libs = objc_libraries + [
+        lib.static_library if lib.static_library else lib.dynamic_library
+        for linker_input in cc_linker_inputs
+        for lib in linker_input.libraries
+    ]
+
+    libraries = [
+        lib
+        for lib in all_libs
+        if lib.basename.endswith(".a") and lib.owner != target.label
+    ]
+
+    linker_inputs_for_libs_search_paths = depset([
+        lib.dirname
+        for lib in libraries
+    ])
+
+    framework_files = depset([
+        lib.path
+        for lib in libraries
+    ])
+
     return struct(
         _cc_linker_inputs = tuple(cc_linker_inputs),
         _compilation_providers = compilation_providers,
         _objc_libraries = tuple(objc_libraries),
         _primary_static_library = primary_static_library,
         _top_level_values = top_level_values,
+        _linker_inputs_for_libs_search_paths = linker_inputs_for_libs_search_paths,
+        _framework_files = framework_files,
     )
+
+def _get_linker_inputs_for_libs_search_paths(linker_inputs):
+    return linker_inputs._linker_inputs_for_libs_search_paths
+
+def _get_libraries_path_to_link(linker_inputs):
+    return linker_inputs._framework_files
 
 def _merge_linker_inputs(*, compilation_providers):
     return _collect_linker_inputs(
@@ -386,4 +416,6 @@ linker_input_files = struct(
         _get_transitive_static_libraries_for_bwx
     ),
     to_input_files = _to_input_files,
+    get_linker_inputs_for_libs_search_paths = _get_linker_inputs_for_libs_search_paths,
+    get_libraries_path_to_link = _get_libraries_path_to_link,
 )
