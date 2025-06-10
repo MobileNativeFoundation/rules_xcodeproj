@@ -1,5 +1,6 @@
 load(
     "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_interop_hint",
     "swift_library",
 )
 load(
@@ -22,15 +23,21 @@ module_map(
     ],
 )
 
+swift_interop_hint(
+    name = "MixedAnswer_swift_interop",
+    module_map = ":MixedAnswer_objc_modulemap",
+    module_name = "MixedAnswer",
+)
+
 objc_library(
     name = "MixedAnswer",
     srcs = ["MixedAnswer.m"],
     hdrs = ["MixedAnswer.h"],
+    aspect_hints = [":MixedAnswer_swift_interop"],
     copts = [
         "-I$(BINDIR)/iOSApp/CoreUtilsMixed",
     ],
     defines = ["NEEDS_QUOTES=Two\\ words"],
-    module_map = ":MixedAnswer_objc_modulemap",
     visibility = ["//iOSApp:__subpackages__"],
     deps = [
         ":MixedAnswerLib_Swift",
