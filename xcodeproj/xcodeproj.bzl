@@ -1,13 +1,16 @@
 """Macro wrapper for the `xcodeproj` rule."""
 
+load("//xcodeproj/internal:bazel_labels.bzl", "bazel_labels")
+load("//xcodeproj/internal:xcodeproj_runner.bzl", "xcodeproj_runner")
 load(
     "//xcodeproj/internal/xcschemes:xcscheme_labels.bzl",
     "xcscheme_labels",
 )
-load(":bazel_labels.bzl", "bazel_labels")
-load(":project_options.bzl", _default_project_options = "project_options")
-load(":top_level_target.bzl", "top_level_target")
-load(":xcodeproj_runner.bzl", "xcodeproj_runner")
+load(
+    "//xcodeproj:project_options.bzl",
+    _default_project_options = "project_options",
+)
+load("//xcodeproj:top_level_target.bzl", "top_level_target")
 
 def _normalize_build_setting(flag):
     if flag.startswith("//command_line_option:"):

@@ -34,7 +34,6 @@ load("//xcodeproj/internal:products.bzl", "PRODUCT_TYPE_ENCODED", "products")
 load("//xcodeproj/internal:provisioning_profiles.bzl", "provisioning_profiles")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
 load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal/files:app_icons.bzl", "app_icons")
 load("//xcodeproj/internal/files:info_plists.bzl", "info_plists")
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
@@ -44,6 +43,7 @@ load(
     "output_files",
     "output_groups",
 )
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":mergeable_infos.bzl", "mergeable_infos")
 load(":processed_targets.bzl", "processed_targets")
 

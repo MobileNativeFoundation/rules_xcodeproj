@@ -1,7 +1,7 @@
 """"""
 
 load(
-    "//xcodeproj/internal:xcodeproj_macro.bzl",
+    "//xcodeproj:xcodeproj.bzl",
     _xcodeproj = "xcodeproj",
 )
 

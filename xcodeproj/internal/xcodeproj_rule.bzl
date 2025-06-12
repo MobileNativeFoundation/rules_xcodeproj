@@ -16,6 +16,7 @@ load(
     "//xcodeproj/internal/xcschemes:xcschemes_execution.bzl",
     "xcschemes_execution",
 )
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
 load(
@@ -25,7 +26,6 @@ load(
 load(":selected_model_versions.bzl", "write_selected_model_versions_file")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", xcode_targets_module = "xcode_targets")
-load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility
 

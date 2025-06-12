@@ -28,7 +28,8 @@ load(
     "//xcodeproj/internal/processed_targets:unsupported_targets.bzl",
     "unsupported_targets",
 )
-load(":automatic_target_info.bzl", "calculate_automatic_target_info")
+load("//xcodeproj:automatic_target_info.bzl", "calculate_automatic_target_info")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":dependencies.bzl", "dependencies")
 load(
@@ -38,7 +39,6 @@ load(
     "memory_efficient_depset",
 )
 load(":targets.bzl", "targets")
-load(":xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 
 # Creating `XcodeProjInfo`
 

@@ -1,4 +1,4 @@
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
+load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
     "SCHEME_AUTOGENERATION_MODE",

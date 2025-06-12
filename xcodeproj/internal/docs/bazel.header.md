@@ -2,14 +2,14 @@
 
 ### Usage
 
-To use these rules and macros in your `BUILD` files, `load` them from
-`xcodeproj/defs.bzl`.
+To use these rules and macros in your `BUILD` files, `load` them from their
+respective bzl file.
 
 For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
+load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 ```
 
 ### Index

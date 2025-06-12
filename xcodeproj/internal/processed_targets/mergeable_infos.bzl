@@ -7,7 +7,7 @@ load(
     "EMPTY_STRING",
     "memory_efficient_depset",
 )
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 

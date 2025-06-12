@@ -2,14 +2,14 @@
 
 ### Usage
 
-To use these rules and macros in your `BUILD` files, `load` them from
-`xcodeproj/defs.bzl`.
+To use these rules and macros in your `BUILD` files, `load` them from their
+respective bzl file.
 
 For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
+load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 ```
 
 ### Index
@@ -207,10 +207,11 @@ A `dict` containing fields for the provided arguments.
 
 # Custom Xcode schemes
 
-To use these functions, `load` the `xcschemes` module from `xcodeproj/defs.bzl`:
+To use these functions, `load` the `xcschemes` module from
+`xcodeproj/xcschemes.bzl`:
 
 ```starlark
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcschemes")
+load("@rules_xcodeproj//xcodeproj:xcschemes.bzl", "xcschemes")
 ```
 
 <a id="xcschemes.arg"></a>

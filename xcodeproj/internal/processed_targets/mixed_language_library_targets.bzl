@@ -10,7 +10,6 @@ load("//xcodeproj/internal:platforms.bzl", "platforms")
 load("//xcodeproj/internal:products.bzl", "products")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
 load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
@@ -18,6 +17,7 @@ load(
     "output_files",
     "output_groups",
 )
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":mergeable_infos.bzl", mergeable_infos_module = "mergeable_infos")
 load(":processed_targets.bzl", "processed_targets")
 

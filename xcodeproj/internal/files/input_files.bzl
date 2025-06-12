@@ -10,7 +10,7 @@ load(
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":resources.bzl", resources_module = "resources")
 
