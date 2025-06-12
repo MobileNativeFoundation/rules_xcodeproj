@@ -1,11 +1,5 @@
 # Frequently Asked Questions
 
-## What do BwB and BwX mean?
-
-The `xcodeproj` rule supports two different
-[build modes](bazel.md#xcodeproj-build_mode), `"bazel"` and `"xcode"`, commonly
-referred to as Build with Bazel (BwB) and Build with Xcode (BwX).
-
 ## Why do I get a visibility or unexported files error with `xcodeproj`?
 
 Even though you might have your `xcodeproj` target declared in the same package
@@ -94,25 +88,6 @@ changes (e.g. because of a Bazel configuration change), and generate the project
 without closing and reopening it, or performing a clean build, Xcode will warn
 about the old paths. This seems to be a caching bug in Xcode.
 
-## Do I need to place my custom Xcode scheme declarations in a function like `tools/generators/legacy`?
-
-No. Unless you are sharing your Xcode declarations with multiple `xcodeproj`
-targets, there is no need to place them in a function. You are encouraged to
-declare them directly in your `BUILD` file.
-
-The Xcode schemes for `tools/generators/legacy` are loaded from a function
-because several of the `xcode_schemes` functions must be called on a `BUILD`
-file thread as they resolve and normalize Bazel labels. These functions use
-`bazel_labels.parse` which, in turn, use `workspace_name_resolvers`
-functions. It is the `workspace_name_resolvers` functions that must be called
-on a BUILD file thread.
-
-Most `rules_xcodeproj` clients should not need to wrap their custom scheme
-declarations in a function. They should be declared in a `BUILD` file alongside
-or inline with their `xcodeproj` target. Wrapping the declarations in a function
-is only necessary when sharing a set of custom schemes as is done with the
-fixture tests in this repository.
-
 ## Why does “X” happen when switching between build modes?
 
 The different build modes configure the project in different ways. Because of
@@ -128,8 +103,7 @@ This can happen if you have opened Xcode using `rosetta`, the solution is to get
 
 ## Why do I get an error like “Provisioning profile "PROFILE_NAME" is Xcode managed, but signing settings require a manually managed profile”?
 
-This error should only occur if `build_mode = "xcode"`. If you are using another
-`build_mode`, please report this as a bug.
+This error should no longer happen, please report this as a bug.
 
 The `provisioning_profile` you have set on your top level target (i.e
 `ios_application` and the like) is resolving to an Xcode managed profile. This
@@ -158,8 +132,7 @@ to be set on the `:xcode_profile` target.
 
 ## Why do I get an error like “Xcode couldn't find any provisioning profiles matching 'TEAM_ID/PROFILE_NAME'”?
 
-This error should only occur if `build_mode = "xcode"`. If you are using another
-`build_mode`, please report this as a bug.
+This error should no longer happen, please report this as a bug.
 
 The `provisioning_profile` you have set on your top level target (i.e
 `ios_application` and the like) is resolving to a provisioning profile that

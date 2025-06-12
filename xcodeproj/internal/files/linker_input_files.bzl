@@ -1,6 +1,5 @@
 """Module containing functions dealing with target linker input files."""
 
-load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_TUPLE")
 
 _SKIP_INPUT_EXTENSIONS = {
@@ -19,7 +18,6 @@ _SKIP_INPUT_EXTENSIONS = {
 def _collect_linker_inputs(
         *,
         automatic_target_info,
-        avoid_compilation_providers = None,
         target,
         compilation_providers,
         is_top_level = False):
@@ -28,10 +26,6 @@ def _collect_linker_inputs(
     Args:
         automatic_target_info:  The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
-        avoid_compilation_providers: A value from
-            `compilation_providers.collect`. The linker inputs from these
-            providers will be excluded from the return list. Should only be set
-            used `xcodeproj.generation_mode = "legacy"` is set.
         compilation_providers: A value returned by
             `compilation_providers.collect`.
         is_top_level: Whether `target` is the top-level target.
@@ -52,7 +46,6 @@ def _collect_linker_inputs(
             target = target,
             automatic_target_info = automatic_target_info,
             compilation_providers = compilation_providers,
-            avoid_compilation_providers = avoid_compilation_providers,
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
         )
@@ -139,7 +132,6 @@ def _extract_top_level_values(
         target,
         automatic_target_info,
         compilation_providers,
-        avoid_compilation_providers,
         objc_libraries,
         cc_linker_inputs):
     link_args = None
@@ -159,70 +151,21 @@ def _extract_top_level_values(
 
     if compilation_providers.objc:
         objc = compilation_providers.objc
-        if avoid_compilation_providers:
-            avoid_objc = avoid_compilation_providers.objc
-            if not avoid_objc:
-                fail("""\
-`avoid_compilation_providers` doesn't have `ObjcProvider`, but \
-`compilation_providers` does
-""")
-            avoid_static_framework_files = {
-                file: None
-                for file in avoid_objc.static_framework_file.to_list()
-            }
-            static_frameworks = [
-                file
-                for file in objc.static_framework_file.to_list()
-                if file.is_source and file not in avoid_static_framework_files
-            ]
-
-            avoid_static_libraries = {
-                file: None
-                for file in depset(transitive = [
-                    avoid_objc.library,
-                    avoid_objc.imported_library,
-                ]).to_list()
-            }
-            static_libraries = [
-                file
-                for file in objc_libraries
-                if file not in avoid_static_libraries
-            ]
-        else:
-            static_frameworks = [
-                file
-                for file in objc.static_framework_file.to_list()
-                if file.is_source
-            ]
-            static_libraries = [
-                file
-                for file in objc_libraries
-            ]
+        static_frameworks = [
+            file
+            for file in objc.static_framework_file.to_list()
+            if file.is_source
+        ]
+        static_libraries = [
+            file
+            for file in objc_libraries
+        ]
 
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
         additional_input_files = _process_additional_inputs(
             objc.link_inputs.to_list(),
         )
     elif compilation_providers.cc_info:
-        if avoid_compilation_providers:
-            avoid_cc_info = avoid_compilation_providers.cc_info
-            if not avoid_cc_info:
-                fail("""\
-`avoid_compilation_providers` doesn't have `CcInfo`, but \
-`compilation_providers` does
-""")
-            avoid_linking_context = avoid_cc_info.linking_context
-            avoid_libraries = {
-                library: None
-                for library in flatten([
-                    input.libraries
-                    for input in avoid_linking_context.linker_inputs.to_list()
-                ])
-                if library.static_library or library.pic_static_library
-            }
-        else:
-            avoid_libraries = {}
-
         dynamic_frameworks = []
         static_frameworks = []
 
@@ -233,9 +176,6 @@ def _extract_top_level_values(
                 input.additional_inputs,
             ))
             for library in input.libraries:
-                if library in avoid_libraries:
-                    continue
-
                 if library.dynamic_library:
                     if library.dynamic_library.dirname.endswith(".framework"):
                         dynamic_frameworks.append(
@@ -261,10 +201,6 @@ def _extract_top_level_values(
         dynamic_frameworks.extend(
             compilation_providers.framework_files.to_list(),
         )
-
-        # TODO: Remove `uniq` when removing legacy generation mode
-        # Dedup libraries
-        static_libraries = uniq(static_libraries)
     else:
         return struct(
             _additional_input_files = EMPTY_TUPLE,

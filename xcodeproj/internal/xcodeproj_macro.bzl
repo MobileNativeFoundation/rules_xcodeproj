@@ -5,10 +5,8 @@ load(
     "xcscheme_labels",
 )
 load(":bazel_labels.bzl", "bazel_labels")
-load(":logging.bzl", "warn")
 load(":project_options.bzl", _default_project_options = "project_options")
 load(":top_level_target.bzl", "top_level_target")
-load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
 def _normalize_build_setting(flag):
@@ -19,20 +17,16 @@ def _normalize_build_setting(flag):
 def xcodeproj(
         *,
         name,
-        adjust_schemes_for_swiftui_previews = True,
         associated_extra_files = {},
         bazel_path = "bazel",
         bazel_env = {
             "LANG": "en_US.UTF-8",
             "PATH": "/bin:/usr/bin",
         },
-        build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
-        fail_for_invalid_extra_files_targets = True,
         focused_targets = [],
-        generation_mode = "incremental",
         import_index_build_indexstores = True,
         install_directory = None,
         ios_device_cpus = "arm64",
@@ -44,7 +38,6 @@ def xcodeproj(
         project_options = None,
         scheme_autogeneration_mode = "auto",
         scheme_autogeneration_config = {},
-        schemes = [],
         target_name_mode = "auto",
         top_level_targets,
         tvos_device_cpus = "arm64",
@@ -81,15 +74,6 @@ def xcodeproj(
 
     Args:
         name: A unique name for this target.
-        adjust_schemes_for_swiftui_previews: Optional. Whether to adjust schemes
-            in BwB mode to explicitly include transitive dependencies that are
-            able to run Xcode Previews.
-
-            For example, this changes a scheme for an single application target
-            to also include any app clip, app extension, framework, or watchOS
-            app dependencies.
-
-            This is only used when `generation_mode = "legacy"`.
         associated_extra_files: Optional. A `dict` of files to be added to the
             project.
 
@@ -130,30 +114,6 @@ def xcodeproj(
             environment variable that is set when generating the project. If you
             want to specify a path to a workspace-relative binary, you must
             prepend the path with `./` (e.g. `"./bazelw"`).
-        build_mode: Optional. The build mode the generated project should use.
-
-            <ul>
-            <li>
-                `bazel`: The project will use Bazel to build targets, inside of
-                Xcode. The Xcode build system still unavoidably orchestrates
-                some things at a high level.
-            </li>
-            <li>
-                `xcode`: The project will use the Xcode build system to build
-                targets. Generated files and unfocused targets (see the
-                [`focused_targets`](#xcodeproj-focused_targets) and
-                [`unfocused_targets`](#xcodeproj-unfocused_targets) attributes)
-                will be built with Bazel.
-
-                **Note:** This mode is does not work with Bazel 7+.
-
-                **Note:** This mode is does not work with `generation_mode =
-                "incremental"`.
-
-                **Note:** This mode is deprecated and will be removed in a
-                future version of **rules_xcodeproj**.
-            </li>
-            </ul>
         config: Optional. The Bazel config to use when generating the project or
             invoking `bazel` inside of Xcode.
 
@@ -179,9 +139,6 @@ def xcodeproj(
             to adjust Xcode configurations.
         extra_files: Optional. A `list` of extra `File`s to be added to the
             project.
-        fail_for_invalid_extra_files_targets: Optional. Determines wether, when
-            processing targets, invalid extra files without labels will fail or
-            just emit a warning.
         focused_targets: Optional. A `list` of target labels as `string` values.
 
             If specified, only these targets will be included in the generated
@@ -189,31 +146,6 @@ def xcodeproj(
             listed explicitly in the `unfocused_targets` argument. The labels
             must match transitive dependencies of the targets specified in the
             `top_level_targets` argument.
-        generation_mode: Optional. Determines how the project is generated.
-
-            <ul>
-            <li>
-              `incremental`: The project is generated in pieces by multiple
-              Bazel actions and then combined together. This allows for
-              incremental generation where some of those pieces can be reused
-              in subsequent project generations.
-
-              The way information is collected and processed has also changed
-              compared to legacy generation mode. This has resulted in some bug
-              fixes and improvements that don't exist in legacy generation mode.
-
-              **Note:** Only `build_mode = "bazel"` is supported in this mode.
-
-              **Note:** The [`xcschemes`](#xcodeproj-xcschemes) attribute is
-              used instead of [`schemes`](#xcodeproj-schemes) in this mode.
-            </li>
-            <li>
-              `legacy`: The project is generated by a monolith Bazel action.
-
-              This mode is deprecated and will be removed in a future version of
-              **rules_xcodeproj**.
-            </li>
-            </ul>
         import_index_build_indexstores: Optional. Whether to import the index
             stores generated by Index Build.
 
@@ -309,16 +241,6 @@ def xcodeproj(
             [`xcschemes.autogeneration_config`](#xcschemes.autogeneration_config).
 
             Allows further configuration of `scheme_autogeneration_mode`.
-        schemes: Optional. A `list` of values returned by
-            `xcode_schemes.scheme`.
-
-            This and the `scheme_autogeneration_mode` argument together
-            customize how schemes for targets are generated, when using
-            `generation_mode = "legacy"`.
-
-            Target labels listed in the schemes need to be from the transitive
-            dependencies of the targets specified in the `top_level_targets`
-            argument.
         target_name_mode: Optional. Specifies how Xcode targets names are
             represented:
 
@@ -430,12 +352,10 @@ def xcodeproj(
             `xcschemes.scheme`.
 
             This and the `scheme_autogeneration_mode` argument together
-            customize how schemes for targets are generated, when using
-            `generation_mode = "incremental"`.
+            customize how schemes for targets are generated.
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
-    is_fixture = kwargs.pop("is_fixture", False)
     testonly = kwargs.pop("testonly", True)
     generation_shard_count = kwargs.pop("generation_shard_count", 10)
 
@@ -447,10 +367,6 @@ def xcodeproj(
         bazel_env["PATH"] = "/bin:/usr/bin"
     if "LANG" not in bazel_env:
         bazel_env["LANG"] = "en_US.UTF-8"
-    if not generation_mode:
-        generation_mode = "incremental"
-    if not build_mode:
-        build_mode = "bazel"
     if install_directory == None:
         install_directory = native.package_name()
     if not project_name:
@@ -536,52 +452,17 @@ configuration alphabetically ("{default}").
         for f in extra_files
     ]
 
-    schemes_json = None
-    xcschemes_json = "[]"
-    if generation_mode == "incremental":
-        if build_mode == "xcode":
-            fail("""
-{target}: `xcodeproj.generation_mode = "incremental"` does not work with \
-`xcodeproj.build_mode = "xcode"`.
-""".format(
-                target = bazel_labels.normalize_string(name),
-            ))
-
-        xcschemes = xcschemes or []
-        if type(xcschemes) != "list":
-            fail("""
+    xcschemes = xcschemes or []
+    if type(xcschemes) != "list":
+        fail("""
 {target}: `xcodeproj.xcschemes` must be a list.
 """.format(
-                target = bazel_labels.normalize_string(name),
-            ))
+            target = bazel_labels.normalize_string(name),
+        ))
 
-        if schemes and len(schemes) != len(xcschemes):
-            warn("""\
-{target}: `xcodeproj.generation_mode = "incremental"` and `xcodeproj.schemes` \
-({schemes_len}) are set, but `xcodeproj.xcschemes` ({xcschemes_len}) doesn't \
-have the same number of elements. Your schemes will not be the same as when \
-`xcodeproj.generation_mode = "legacy"` is set.\
-""".format(
-                schemes_len = len(schemes),
-                target = bazel_labels.normalize_string(name),
-                xcschemes_len = len(xcschemes),
-            ))
-
-        xcschemes_json = json.encode(
-            xcscheme_labels.resolve_labels(xcschemes),
-        )
-    elif schemes:
-        if unfocused_labels:
-            schemes = unfocus_schemes(
-                schemes = schemes,
-                unfocused_labels = unfocused_labels,
-            )
-        if focused_labels:
-            schemes = focus_schemes(
-                schemes = schemes,
-                focused_labels = focused_labels,
-            )
-        schemes_json = json.encode(schemes)
+    xcschemes_json = json.encode(
+        xcscheme_labels.resolve_labels(xcschemes),
+    )
 
     normalized_xcode_configurations = {}
     xcode_configuration_inverse_map = {}
@@ -634,23 +515,16 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
 
     xcodeproj_runner(
         name = name,
-        adjust_schemes_for_swiftui_previews = (
-            adjust_schemes_for_swiftui_previews
-        ),
-        build_mode = build_mode,
         bazel_path = bazel_path,
         bazel_env = bazel_env,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
-        fail_for_invalid_extra_files_targets = fail_for_invalid_extra_files_targets,
         focused_labels = focused_labels,
-        generation_mode = generation_mode,
         generation_shard_count = generation_shard_count,
         import_index_build_indexstores = import_index_build_indexstores,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
-        is_fixture = is_fixture,
         minimum_xcode_version = minimum_xcode_version,
         owned_extra_files = owned_extra_files,
         post_build = post_build,
@@ -659,7 +533,6 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         scheme_autogeneration_config = scheme_autogeneration_config,
-        schemes_json = schemes_json,
         target_name_mode = target_name_mode,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,

@@ -57,10 +57,6 @@ common:rules_xcodeproj --features=swift.cacheable_swiftmodules
 common:rules_xcodeproj --features=swift.index_while_building
 common:rules_xcodeproj --features=swift.use_global_index_store
 
-# TODO: Remove once 1.5.0+ is our minimum supported rules_swift
-# `swift.use_global_module_cache` drastically speeds up swift builds
-common:rules_xcodeproj --features=swift.use_global_module_cache
-
 # Removes potentially large unneeded event from the BEP
 common:rules_xcodeproj --nolegacy_important_outputs
 

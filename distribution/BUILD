@@ -33,7 +33,6 @@ shasum -a 256 $< > $@
 
 _GENERATORS = [
     "tools/generators/files_and_groups/universal_files_and_groups",
-    "tools/generators/legacy/universal_generator",
     "tools/generators/pbxnativetargets/universal_pbxnativetargets",
     "tools/generators/pbxproj_prefix/universal_pbxproj_prefix",
     "tools/generators/pbxtargetdependencies/universal_pbxtargetdependencies",

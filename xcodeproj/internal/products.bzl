@@ -1,5 +1,4 @@
-"""Module for collecting product information for a target, when using \
-`generation_mode = "incremental"`."""
+"""Module for collecting product information for a target."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")

@@ -7,16 +7,12 @@ merging `main` into your PR branch to update it and resolve conflicts.
 ## Building And Running Locally
 
 1. `git clone https://github.com/MobileNativeFoundation/rules_xcodeproj.git`
-1. `cd rules_xcodeproj`
-1. `bazel run //tools/generators/legacy:xcodeproj` to generate an Xcode project
-and develop in Xcode, or just open the directory in your favourite text
-editor.
-1. Build with Xcode:
-    1. Select the `generator` scheme to compile the executable.
-    1. Select the `tests` scheme to run the tests.
-1. Build with Bazel:
-    1. `bazel build //tools/generators/legacy:generator` to compile the executable.
-    1. `bazel test //tools/generators/legacy/test/...` to run the tests.
+2. `cd rules_xcodeproj`
+3. `bazel run //tools:xcodeproj` to generate an Xcode project and develop in
+   Xcode, or just open the directory in your favorite text editor.
+4. Building locally:
+    * `bazel build //tools/...` to compile the tools.
+    * `bazel test //tools/...` to run the tests.
 
 ## Developing
 
@@ -44,15 +40,6 @@ build --override_repository=rules_xcodeproj=/path/to/rules_xcodeproj
 ```
 It's important to add it to the `.bazelrc` instead of passing it as a
 flag to ensure all invocations will use the same configuration.
-
-## Test fixtures
-
-While developing, you might need to regenerate the test fixtures.
-You can do so with `./test/update_all_fixtures.sh`.
-
-All of the test fixture projects aren't buildable, because we use empty files in
-place of things that are the same in every project. If you need to verify
-anything in those projects, regenerate them locally.
 
 ## Updating docs
 

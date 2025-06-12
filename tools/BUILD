@@ -550,7 +550,6 @@ xcodeproj(
     extra_files = [
         "//tools/generators:README.md",
     ],
-    generation_mode = "incremental",
     project_name = "tools",
     scheme_autogeneration_mode = "none",
     top_level_targets = _TOOLS.values() + uniq(flatten(_TESTS.values())),

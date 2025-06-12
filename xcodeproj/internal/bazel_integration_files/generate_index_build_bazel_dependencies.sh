@@ -21,8 +21,6 @@ indexstores_filelists=()
 if [[ "$IMPORT_INDEX_BUILD_INDEXSTORES" == "YES" ]]; then
   output_groups+=(
     "index_import"
-    # TODO: Remove `bi` once we remove support for legacy generation mode
-    "bi $BAZEL_TARGET_ID"
   )
 
   readonly targetid_regex='@{0,2}(.*)//(.*):(.*) ([^\ ]+)$'

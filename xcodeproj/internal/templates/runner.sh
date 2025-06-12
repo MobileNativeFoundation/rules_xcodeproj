@@ -130,20 +130,8 @@ cp "$generator_build_file" "$generator_package_directory/BUILD"
 chmod u+w "$generator_package_directory/BUILD"
 cp "$generator_defs_bzl" "$generator_package_directory/defs.bzl"
 chmod u+w "$generator_package_directory/defs.bzl"
-cp "$schemes_json" "$generator_package_directory/custom_xcode_schemes.json"
-chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
 
-if [[ %is_fixture% -eq 1 ]]; then
-  cat >> "$generator_package_directory/defs.bzl" <<EOF
-
-# Constants
-
-BAZEL_ENV = {}
-BAZEL_PATH = "FIXTURE_BAZEL_PATH"
-WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
-EOF
-else
-  cat >> "$generator_package_directory/defs.bzl" <<EOF
+cat >> "$generator_package_directory/defs.bzl" <<EOF
 
 # Constants
 
@@ -151,7 +139,6 @@ BAZEL_ENV = $def_env
 BAZEL_PATH = "$bazel_path"
 WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
 EOF
-fi
 
 pre_xcodeproj_bazelrc_dir=$(mktemp -d)
 readonly pre_xcodeproj_bazelrc_dir

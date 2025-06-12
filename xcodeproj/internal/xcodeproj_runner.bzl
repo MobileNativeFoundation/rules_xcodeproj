@@ -111,18 +111,6 @@ def _write_extra_flags_bazelrc(name, actions, attr, config):
 
     return output
 
-def _write_schemes_json(*, actions, name, schemes_json):
-    output = actions.declare_file(
-        "{}-custom_xcode_schemes.json".format(name),
-    )
-
-    # A new line character is added to make this file a valid unix text file,
-    # without this unexpected behaviours may occur when interacting with other
-    # unix-compatible tools (e.g. updating fixtures in the repo).
-    schemes_json = schemes_json if schemes_json else "[]"
-    actions.write(output, schemes_json + "\n")
-    return output
-
 _APPEND_TRANSITION_FLAGS = {
     "//command_line_option:features": None,
 }
@@ -131,14 +119,11 @@ def _write_generator_defz_bzl(
         *,
         actions,
         attr,
-        is_fixture,
         name,
         repo,
-        template,
-        use_incremental):
+        template):
     output = actions.declare_file("{}.generator.defs.bzl".format(name))
 
-    build_mode = attr.build_mode
     outputs = attr.xcode_configuration_flags
 
     inputs = {
@@ -161,14 +146,6 @@ load(
     "make_xcodeproj_target_transitions",
 )""".format(repo = repo),
     ]
-    if is_fixture:
-        loads.append("""\
-
-# buildifier: disable=bzl-visibility
-load(
-    "{repo}//xcodeproj/internal:fixtures.bzl",
-    "fixtures_transition",
-)""".format(repo = repo))
 
     target_transitions = """\
 _INPUTS = {inputs}
@@ -203,20 +180,11 @@ _target_transitions = make_xcodeproj_target_transitions(
         template = template,
         output = output,
         substitutions = {
-            "%adjust_schemes_for_swiftui_previews%": (
-                str(attr.adjust_schemes_for_swiftui_previews)
-            ),
-            "%build_mode%": build_mode,
             "%focused_labels%": str(attr.focused_labels),
             "%generator_name%": name,
-            "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
             "%target_transitions%": target_transitions,
             "%unfocused_labels%": str(attr.unfocused_labels),
-            "%use_incremental%": str(use_incremental),
-            "%xcodeproj_transitions%": (
-                "fixtures_transition" if is_fixture else "None"
-            ),
         },
     )
 
@@ -242,16 +210,10 @@ def _write_generator_build_file(
         template = template,
         output = output,
         substitutions = {
-            # TODO: Remove after dropping legacy generation mode
-            "%build_mode%": attr.build_mode,
             "%colorize%": str(attr._colorize[BuildSettingInfo].value),
             "%config%": attr.config,
             "%default_xcode_configuration%": (
                 _serialize_nullable_string(attr.default_xcode_configuration)
-            ),
-            # TODO: Remove after dropping legacy generation mode
-            "%fail_for_invalid_extra_files_targets%": (
-                str(attr.fail_for_invalid_extra_files_targets)
             ),
             "%generation_shard_count%": str(attr.generation_shard_count),
             "%import_index_build_indexstores%": str(
@@ -266,8 +228,6 @@ def _write_generator_build_file(
             "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
-            # TODO: Remove after dropping legacy generation mode
-            "%project_name%": attr.project_name,
             "%project_options%": str(attr.project_options),
             "%runner_build_file%": build_file_path,
             "%runner_label%": runner_label,
@@ -307,11 +267,9 @@ def _write_runner(
         generator_build_file,
         generator_defs_bzl,
         install_path,
-        is_fixture,
         name,
         package,
         runner_label,
-        schemes_json,
         template,
         xcode_version,
         xcodeproj_bazelrc):
@@ -374,8 +332,6 @@ def_env+='}}'""".format(
         collect_statements = "\n".join(collect_statements),
     )
 
-    is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
-
     generator_package_name = paths.join("generator", package, name)
     generator_label = "{repo}//{package}".format(
         package = generator_package_name,
@@ -400,10 +356,7 @@ def_env+='}}'""".format(
             "%generator_label%": generator_label,
             "%generator_package_name%": generator_package_name,
             "%install_path%": install_path,
-            "%is_bazel_6%": "1" if is_bazel_6 else "0",
-            "%is_fixture%": "1" if is_fixture else "0",
             "%runner_label%": runner_label,
-            "%schemes_json%": schemes_json.short_path,
             "%xcode_version%": xcode_version,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
@@ -415,7 +368,6 @@ def _xcodeproj_runner_impl(ctx):
     actions = ctx.actions
     attr = ctx.attr
     config = ctx.attr.config
-    is_fixture = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
     repo = (
@@ -423,7 +375,6 @@ def _xcodeproj_runner_impl(ctx):
         "@"
     )
     runner_label = str(ctx.label)
-    use_incremental = ctx.attr.generation_mode == "incremental"
 
     install_path = paths.join(
         ctx.attr.install_directory,
@@ -451,29 +402,17 @@ def _xcodeproj_runner_impl(ctx):
         bin_dir_path = ctx.bin_dir.path,
         name = name,
     )
-    schemes_json = _write_schemes_json(
-        actions = actions,
-        name = name,
-        schemes_json = ctx.attr.schemes_json,
-    )
     generator_defs_bzl = _write_generator_defz_bzl(
         actions = actions,
         attr = attr,
-        is_fixture = is_fixture,
         name = name,
         repo = repo,
         template = ctx.file._generator_defs_bzl_template,
-        use_incremental = use_incremental,
     )
 
-    if use_incremental:
-        build_file_template = (
-            ctx.file._generator_incremental_build_file_template
-        )
-    else:
-        build_file_template = (
-            ctx.file._generator_legacy_build_file_template
-        )
+    build_file_template = (
+        ctx.file._generator_build_file_template
+    )
 
     generator_build_file = _write_generator_build_file(
         actions = actions,
@@ -501,9 +440,7 @@ def _xcodeproj_runner_impl(ctx):
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
         install_path = install_path,
-        is_fixture = is_fixture,
         runner_label = runner_label,
-        schemes_json = schemes_json,
         template = ctx.file._runner_template,
         xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
@@ -518,7 +455,6 @@ def _xcodeproj_runner_impl(ctx):
                     extra_flags_bazelrc,
                     generator_build_file,
                     generator_defs_bzl,
-                    schemes_json,
                     xcodeproj_bazelrc,
                 ],
             ),
@@ -532,30 +468,16 @@ def _xcodeproj_runner_impl(ctx):
 xcodeproj_runner = rule(
     implementation = _xcodeproj_runner_impl,
     attrs = {
-        "adjust_schemes_for_swiftui_previews": attr.bool(
-            default = True,
-            mandatory = True,
-        ),
         "bazel_env": attr.string_dict(mandatory = True),
         "bazel_path": attr.string(mandatory = True),
-        "build_mode": attr.string(
-            mandatory = True,
-            values = ["xcode", "bazel"],
-        ),
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
-        "fail_for_invalid_extra_files_targets": attr.bool(default = True),
         "focused_labels": attr.string_list(default = []),
-        "generation_mode": attr.string(
-            values = ["incremental", "legacy"],
-            mandatory = True,
-        ),
         "generation_shard_count": attr.int(mandatory = True),
         "import_index_build_indexstores": attr.bool(mandatory = True),
         "install_directory": attr.string(mandatory = True),
         "ios_device_cpus": attr.string(mandatory = True),
         "ios_simulator_cpus": attr.string(),
-        "is_fixture": attr.bool(mandatory = True),
         "minimum_xcode_version": attr.string(),
         "owned_extra_files": attr.string_dict(),
         "post_build": attr.string(),
@@ -567,7 +489,6 @@ xcodeproj_runner = rule(
             default = "auto",
             values = ["auto", "none", "all"],
         ),
-        "schemes_json": attr.string(),
         "target_name_mode": attr.string(
             default = "auto",
             values = ["auto", "label"],
@@ -610,22 +531,16 @@ xcodeproj_runner = rule(
             default = Label("//xcodeproj:extra_swiftuipreviews_flags"),
             providers = [BuildSettingInfo],
         ),
+        "_generator_build_file_template": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal/templates:generator.BUILD.bazel",
+            ),
+        ),
         "_generator_defs_bzl_template": attr.label(
             allow_single_file = True,
             default = Label(
                 "//xcodeproj/internal/templates:generator.defs.bzl",
-            ),
-        ),
-        "_generator_incremental_build_file_template": attr.label(
-            allow_single_file = True,
-            default = Label(
-                "//xcodeproj/internal/templates:generator.incremental.BUILD.bazel",
-            ),
-        ),
-        "_generator_legacy_build_file_template": attr.label(
-            allow_single_file = True,
-            default = Label(
-                "//xcodeproj/internal/templates:generator.legacy.BUILD.bazel",
             ),
         ),
         "_runner_template": attr.label(
