@@ -1,4 +1,4 @@
-"""# Custom Xcode schemes (Incremental generation mode)
+"""# Custom Xcode schemes
 
 To use these functions, `load` the `xcschemes` module from `xcodeproj/defs.bzl`:
 
