@@ -61,7 +61,7 @@ def _xcodeproj_incremental_aspect_attrs(
     return {
         "_allow_remote_write_target_build_settings": attr.label(
             default = Label(
-                "//xcodeproj:allow_remote_write_target_build_settings"
+                "//xcodeproj:allow_remote_write_target_build_settings",
             ),
             providers = [BuildSettingInfo],
         ),
