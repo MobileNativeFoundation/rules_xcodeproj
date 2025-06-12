@@ -5,15 +5,12 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 def build_setting_path(
         path = None,
         *,
-        file = None,
-        use_build_dir = False):
+        file = None):
     """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
         path: A path `string. One of `file` or `path` must be specified.
         file: A `File`. One of `file` or `path` must be specified.
-        use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
-            for generated files.
 
     Returns:
         A `string`.
@@ -35,15 +32,8 @@ def build_setting_path(
 
     if type == "g":
         # Generated
-        if use_build_dir:
-            if path:
-                build_setting = "$(BUILD_DIR)/{}".format(path)
-            else:
-                # Support directory reference
-                build_setting = "$(BUILD_DIR)"
-        else:
-            # Removing "bazel-out" prefix
-            build_setting = "$(BAZEL_OUT){}".format(path[9:])
+        # Removing "bazel-out" prefix
+        build_setting = "$(BAZEL_OUT){}".format(path[9:])
     elif type == "e":
         # External
         if path:

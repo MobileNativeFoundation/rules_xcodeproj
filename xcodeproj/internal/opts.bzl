@@ -1,6 +1,5 @@
 """Functions for processing compiler and linker options."""
 
-load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load("//xcodeproj/internal/files:files.bzl", "build_setting_path", "is_relative_path", "quote_if_needed")
 load(":collections.bzl", "set_if_true")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
@@ -20,120 +19,7 @@ _CC_COMPILE_ACTIONS = {
     "ObjcCompile": None,
 }
 
-# Defensive list of features that can appear in the CC toolchain, but that we
-# definitely don't want to enable (meaning we don't want them to contribute
-# command line flags).
-_UNSUPPORTED_CC_FEATURES = [
-    "debug_prefix_map_pwd_is_dot",
-    # TODO: See if we need to exclude or handle it properly
-    "thin_lto",
-    "module_maps",
-    "use_header_modules",
-    "fdo_instrument",
-    "fdo_optimize",
-]
-
-def _legacy_get_unprocessed_cc_compiler_opts(
-        *,
-        ctx,
-        c_sources,
-        cxx_sources,
-        has_swift_opts,
-        target,
-        implementation_compilation_context):
-    if (has_swift_opts or
-        not implementation_compilation_context or
-        not (c_sources or cxx_sources)):
-        return (EMPTY_LIST, EMPTY_LIST, EMPTY_LIST, EMPTY_LIST)
-
-    cc_toolchain = find_cpp_toolchain(ctx)
-
-    user_copts = getattr(ctx.rule.attr, "copts", [])
-    user_copts = _expand_locations(
-        ctx = ctx,
-        values = user_copts,
-        targets = getattr(ctx.rule.attr, "data", []),
-    )
-    user_copts = _expand_make_variables(
-        ctx = ctx,
-        values = user_copts,
-        attribute_name = "copts",
-    )
-
-    is_objc = apple_common.Objc in target
-    if is_objc:
-        objc = ctx.fragments.objc
-        user_copts = (
-            # TODO: Remove when we drop 7.x
-            getattr(objc, "copts", []) +
-            user_copts +
-            objc.copts_for_current_compilation_mode
-        )
-
-    feature_configuration = cc_common.configure_features(
-        ctx = ctx,
-        cc_toolchain = cc_toolchain,
-        requested_features = (
-            # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
-            ctx.features + ["objc-compile", "objc++-compile"]
-        ),
-        unsupported_features = (
-            ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
-        ),
-    )
-    variables = cc_common.create_compile_variables(
-        feature_configuration = feature_configuration,
-        cc_toolchain = cc_toolchain,
-        user_compile_flags = user_copts,
-        include_directories = implementation_compilation_context.includes,
-        quote_include_directories = implementation_compilation_context.quote_includes,
-        system_include_directories = implementation_compilation_context.system_includes,
-        framework_include_directories = (
-            implementation_compilation_context.framework_includes
-        ),
-        preprocessor_defines = depset(
-            transitive = [
-                implementation_compilation_context.local_defines,
-                implementation_compilation_context.defines,
-            ],
-        ),
-    )
-
-    cpp = ctx.fragments.cpp
-
-    if c_sources:
-        base_copts = cc_common.get_memory_inefficient_command_line(
-            feature_configuration = feature_configuration,
-            action_name = "objc-compile" if is_objc else "c-compile",
-            variables = variables,
-        )
-        conlyopts = base_copts + cpp.copts + cpp.conlyopts
-        args = ctx.actions.args()
-        args.add("wrapped_clang")
-        args.add_all(conlyopts)
-        conly_args = [args]
-    else:
-        conlyopts = []
-        conly_args = []
-
-    if cxx_sources:
-        base_cxxopts = cc_common.get_memory_inefficient_command_line(
-            feature_configuration = feature_configuration,
-            action_name = "objc++-compile" if is_objc else "c++-compile",
-            variables = variables,
-        )
-        cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts
-        args = ctx.actions.args()
-        args.add("wrapped_clang_pp")
-        args.add_all(cxxopts)
-        cxx_args = [args]
-    else:
-        cxxopts = []
-        cxx_args = []
-
-    return conlyopts, conly_args, cxxopts, cxx_args
-
-def _modern_get_unprocessed_cc_compiler_opts(
+def _get_unprocessed_cc_compiler_opts(
         *,
         # buildifier: disable=unused-variable
         ctx,
@@ -177,11 +63,6 @@ def _modern_get_unprocessed_cc_compiler_opts(
 
     return conlyopts, conly_args, cxxopts, cxx_args
 
-# Bazel 6 check
-_get_unprocessed_cc_compiler_opts = (
-    _modern_get_unprocessed_cc_compiler_opts if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_get_unprocessed_cc_compiler_opts
-)
-
 _LOAD_PLUGIN_OPTS = {
     "-load-plugin-executable": None,
     "-load-plugin-library": None,
@@ -195,7 +76,6 @@ _OVERLAY_OPTS = {
 def _get_unprocessed_compiler_opts(
         *,
         ctx,
-        build_mode,
         c_sources,
         cxx_sources,
         target,
@@ -204,7 +84,6 @@ def _get_unprocessed_compiler_opts(
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
         c_sources: A `dict` of C source paths.
         cxx_sources: A `dict` of C++ source paths.
         target: The `Target` that the compiler options will be retrieved from.
@@ -242,13 +121,6 @@ def _get_unprocessed_compiler_opts(
         implementation_compilation_context = implementation_compilation_context,
     )
 
-    if build_mode == "xcode":
-        for opt in conlyopts + cxxopts:
-            if opt.startswith("-ivfsoverlay`"):
-                fail("""\
-Using VFS overlays with `build_mode = "xcode"` is unsupported.
-""")
-
     return (
         conlyopts,
         conly_args,
@@ -268,14 +140,12 @@ _CLANG_SEARCH_PATH_OPTS = {
 def _process_swiftcopts(
         opts,
         *,
-        build_mode,
         package_bin_dir,
         build_settings):
     """Processes the full Swift compiler options (including Bazel ones).
 
     Args:
         opts: A `list` of Swift compiler options.
-        build_mode: See `xcodeproj.build_mode`.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -284,8 +154,6 @@ def _process_swiftcopts(
     Returns:
         A `bool` indicting if the target has debug info enabled.
     """
-    is_bwx = build_mode == "xcode"
-
     has_debug_info = False
     next_previous_opt = None
     next_previous_clang_opt = None
@@ -375,37 +243,27 @@ under {}""".format(opt, package_bin_dir))
             # -ivfsoverlay doesn't apply `-working_directory=`, so we need to
             # prefix it ourselves
             if previous_clang_opt == "-ivfsoverlay":
-                if is_bwx:
-                    fail("""\
-Using VFS overlays with `build_mode = "xcode"` is unsupported.
-""")
+                path = opt
+                if is_relative_path(path):
+                    absolute_opt = "$(PROJECT_DIR)/" + path
                 else:
-                    path = opt
-                    if is_relative_path(path):
-                        absolute_opt = "$(PROJECT_DIR)/" + path
-                    else:
-                        absolute_opt = opt
-                    project_set_opts.append(absolute_opt)
+                    absolute_opt = opt
+                project_set_opts.append(absolute_opt)
                 continue
 
             if opt.startswith("-ivfsoverlay"):
-                if is_bwx:
-                    fail("""\
-Using VFS overlays with `build_mode = "xcode"` is unsupported.
-""")
+                path = opt[12:]
+                if path.startswith("="):
+                    path = path[1:]
+                if not path:
+                    absolute_opt = opt
+                elif is_relative_path(path):
+                    absolute_opt = (
+                        "-ivfsoverlay$(PROJECT_DIR)/" + path
+                    )
                 else:
-                    path = opt[12:]
-                    if path.startswith("="):
-                        path = path[1:]
-                    if not path:
-                        absolute_opt = opt
-                    elif is_relative_path(path):
-                        absolute_opt = (
-                            "-ivfsoverlay$(PROJECT_DIR)/" + path
-                        )
-                    else:
-                        absolute_opt = opt
-                    project_set_opts.append(absolute_opt)
+                    absolute_opt = opt
+                project_set_opts.append(absolute_opt)
                 continue
 
             project_set_opts.append(opt)
@@ -413,25 +271,25 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         else:
             if previous_opt == "-I":
                 path = opt
-                if not is_bwx or not is_relative_path(path):
-                    # We include non-relative paths in BwX mode to account for
-                    # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
-                    absolute_opt = build_setting_path(opt)
-                    project_set_opts.append(previous_opt)
-                    project_set_opts.append(absolute_opt)
-                    continue
+
+                # We include non-relative paths in BwX mode to account for
+                # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
+                absolute_opt = build_setting_path(opt)
+                project_set_opts.append(previous_opt)
+                project_set_opts.append(absolute_opt)
+                continue
 
             if opt.startswith("-I"):
                 path = opt[2:]
-                if not is_bwx or not is_relative_path(path):
-                    # We include non-relative paths in BwX mode to account for
-                    # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
-                    if not path:
-                        # We will add the opt back above
-                        continue
-                    absolute_opt = "-I" + build_setting_path(path)
-                    project_set_opts.append(absolute_opt)
+
+                # We include non-relative paths in BwX mode to account for
+                # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
+                if not path:
+                    # We will add the opt back above
                     continue
+                absolute_opt = "-I" + build_setting_path(path)
+                project_set_opts.append(absolute_opt)
+                continue
 
             if previous_opt == "-F":
                 path = opt
@@ -456,15 +314,11 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             append_previous_opt = False
 
         if previous_opt_to_check in _OVERLAY_OPTS:
-            if is_bwx:
-                fail('Using {} with `build_mode = "xcode"` is unsupported.'
-                    .format(previous_opt_to_check))
-            else:
-                path = opt
-                absolute_opt = build_setting_path(path)
-                if append_previous_opt:
-                    project_set_opts.append(previous_opt)
-                project_set_opts.append(absolute_opt)
+            path = opt
+            absolute_opt = build_setting_path(path)
+            if append_previous_opt:
+                project_set_opts.append(previous_opt)
+            project_set_opts.append(absolute_opt)
             continue
 
         if opt == "-explicit-swift-module-map-file":
@@ -481,31 +335,23 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
         if previous_opt_to_check in _LOAD_PLUGIN_OPTS:
             path = opt
-
-            # FIXME: This breaks in BwX mode when the compiler plugin is
-            # unfocused
-            absolute_opt = build_setting_path(path, use_build_dir = is_bwx)
+            absolute_opt = build_setting_path(path)
             if append_previous_opt:
                 project_set_opts.append(previous_opt)
             project_set_opts.append(absolute_opt)
             continue
 
         if opt.startswith("-vfsoverlay"):
-            if is_bwx:
-                fail("""\
-Using -vfsoverlay with `build_mode = "xcode"` is unsupported.
-""")
+            path = opt[11:]
+            if path.startswith("="):
+                path = path[1:]
+            if not path:
+                absolute_opt = opt
             else:
-                path = opt[11:]
-                if path.startswith("="):
-                    path = path[1:]
-                if not path:
-                    absolute_opt = opt
-                else:
-                    absolute_opt = "-vfsoverlay" + build_setting_path(path)
-                if append_previous_opt:
-                    project_set_opts.append(previous_opt)
-                project_set_opts.append(absolute_opt)
+                absolute_opt = "-vfsoverlay" + build_setting_path(path)
+            if append_previous_opt:
+                project_set_opts.append(previous_opt)
+            project_set_opts.append(absolute_opt)
             continue
 
     # Xcode's SourceKit `source.request.editor.open.interface` request filters a
@@ -576,7 +422,6 @@ def _create_compile_params(
 def _process_compiler_opts(
         *,
         actions,
-        build_mode,
         build_settings,
         cc_compiler_params_processor,
         conly_args,
@@ -593,7 +438,6 @@ def _process_compiler_opts(
 
     Args:
         actions: `ctx.actions`.
-        build_mode: See `xcodeproj.build_mode`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
@@ -630,20 +474,16 @@ def _process_compiler_opts(
     cxx_has_debug_info = "-g" in cxxopts
     swift_has_debug_info = _process_swiftcopts(
         opts = swiftcopts,
-        build_mode = build_mode,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
     if conlyopts or cxxopts or has_swiftcopts:
         if cpp_fragment.apple_generate_dsym:
-            if build_mode == "xcode":
-                build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
-            else:
-                # Set to dwarf, because Bazel will generate the dSYMs
-                # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
-                # that at the project level
-                pass
+            # Set to dwarf, because Bazel will generate the dSYMs
+            # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
+            # that at the project level
+            pass
         elif c_has_debug_info or cxx_has_debug_info or swift_has_debug_info:
             # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set that
             # at the project level
@@ -688,7 +528,6 @@ def _process_compiler_opts(
 def _process_target_compiler_opts(
         *,
         ctx,
-        build_mode,
         c_sources,
         cxx_sources,
         target,
@@ -699,7 +538,6 @@ def _process_target_compiler_opts(
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
         c_sources: A `dict` of C source paths.
         cxx_sources: A `dict` of C++ source paths.
         target: The `Target` that the compiler options will be retrieved from.
@@ -731,7 +569,6 @@ def _process_target_compiler_opts(
         swift_args,
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
-        build_mode = build_mode,
         c_sources = c_sources,
         cxx_sources = cxx_sources,
         target = target,
@@ -746,7 +583,6 @@ def _process_target_compiler_opts(
         cxx_args = cxx_args,
         swiftcopts = swiftcopts,
         swift_args = swift_args,
-        build_mode = build_mode,
         cpp_fragment = ctx.fragments.cpp,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
@@ -758,49 +594,11 @@ def _process_target_compiler_opts(
         ),
     )
 
-# Utility
-
-def _expand_locations(*, ctx, values, targets = []):
-    """Expands the `$(location)` placeholders in each of the given values.
-
-    Args:
-        ctx: The aspect context.
-        values: A `list` of strings, which may contain `$(location)`
-            placeholders.
-        targets: A `list` of additional targets (other than the calling rule's
-            `deps`) that should be searched for substitutable labels.
-
-    Returns:
-        A `list` of strings with any `$(location)` placeholders filled in.
-    """
-    return [ctx.expand_location(value, targets) for value in values]
-
-def _expand_make_variables(*, ctx, values, attribute_name):
-    """Expands all references to Make variables in each of the given values.
-
-    Args:
-        ctx: The aspect context.
-        values: A `list` of strings, which may contain Make variable
-            placeholders.
-        attribute_name: The attribute name string that will be presented in the
-            console when an error occurs.
-
-    Returns:
-        A `list` of strings with Make variables placeholders filled in.
-    """
-    return [
-        ctx.expand_make_variables(attribute_name, token, {})
-        for value in values
-        # TODO: Handle `no_copts_tokenization`
-        for token in ctx.tokenize(value)
-    ]
-
 # API
 
 def process_opts(
         *,
         ctx,
-        build_mode,
         c_sources,
         cxx_sources,
         target,
@@ -811,7 +609,6 @@ def process_opts(
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
         c_sources: A `dict` of C source paths.
         cxx_sources: A `dict` of C++ source paths.
         target: The `Target` that the compiler and linker options will be
@@ -837,7 +634,6 @@ def process_opts(
     """
     return _process_target_compiler_opts(
         ctx = ctx,
-        build_mode = build_mode,
         c_sources = c_sources,
         cxx_sources = cxx_sources,
         target = target,

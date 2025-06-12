@@ -71,12 +71,6 @@ return an `XcodeProjInfo` provider instance instead.
 > stabilizing it.
 """,
     fields = {
-        # TODO: Remove when dropping legacy generation mode
-        "alternate_icons": """\
-An attribute name (or `None`) to collect the application alternate icons.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
-""",
         "app_icons": """\
 An attribute name (or `None`) to collect the application icons.
 """,
@@ -86,18 +80,6 @@ should execute or test with.
 """,
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
-""",
-        # TODO: Remove when dropping legacy generation mode
-        "codesign_inputs": """\
-An attribute name (or `None`) to collect the `codesign_inputs` `list` from.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
-""",
-        # TODO: Remove when dropping legacy generation mode
-        "codesignopts": """\
-An attribute name (or `None`) to collect the `codesignopts` `list` from.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "collect_uncategorized_files": """\
 Whether to collect files from uncategorized attributes.
@@ -114,46 +96,19 @@ An attribute name (or `None`) to collect `File`s from for the
 A `dict` representing the environment variables that this target should execute
 or test with.
 """,
-        # TODO: Remove when dropping legacy generation mode
-        "exported_symbols_lists": """\
-A sequence of attribute names to collect `File`s from for the
-`exported_symbols_lists`-like attributes.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
-""",
         "extra_files": """\
 A sequence of attribute names to collect `File`s from to include in the project,
 which don't fall under other categorized attributes.
-
-This is only used when `xcodeproj.generation_mode = "incremental"` is set.
-""",
-        # TODO: Remove when dropping legacy generation mode
-        "hdrs": """\
-A sequence of attribute names to collect `File`s from for `hdrs`-like
-attributes.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "implementation_deps": """\
 A sequence of attribute names to collect `Target`s from for
 `implementation_deps`-like attributes.
 """,
-        # TODO: Remove when dropping legacy generation mode
-        "infoplists": """\
-A sequence of attribute names to collect `File`s from for the `infoplists`-like
-attributes.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
-""",
         "is_header_only_library": """\
 Whether this target doesn't contain src files.
-
-This is only used when `xcodeproj.generation_mode = "incremental"` is set.
 """,
         "is_mixed_language": """\
 Whether this target is a mixed-language target.
-
-This is only used when `xcodeproj.generation_mode = "incremental"` is set.
 """,
         "is_supported": """\
 Whether an Xcode target can be generated for this target. Even if this value is
@@ -167,15 +122,6 @@ Whether this target is a "top-level" (e.g. bundled or executable) target.
 The effective `Label` to use for the target. This should generally be
 `target.label`, but in the case of skipped wrapper rules (e.g. `*_unit_test`
 targets), you might want to rename the target to the skipped target's label.
-
-This is only used when `xcodeproj.generation_mode = "incremental"` is set.
-""",
-        # TODO: Remove when dropping legacy generation mode
-        "launchdplists": """\
-A sequence of attribute names to collect `File`s from for the
-`launchdplists`-like attributes.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
 """,
         "link_mnemonics": """\
 A sequence of mnemonic (action) names to gather link parameters. The first
@@ -185,21 +131,9 @@ action that matches any of the mnemonics is used.
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.
 """,
-        "pch": """\
-An attribute name (or `None`) to collect `File`s from for the `pch`-like
-attribute.
-
-This is only used when `xcodeproj.generation_mode = "legacy"` is set.
-""",
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
-""",
-        "should_generate": """\
-If `is_supported` is `True`, this determines whether an Xcode target should be
-generated for this target.
-
-This is only used when `xcodeproj.generation_mode = "incremental"` is set.
 """,
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
@@ -231,11 +165,8 @@ _BUNDLE_DEPS_ATTRS = [
 ]
 _CMAKE_SRCS_ATTRS = ["lib_source"]
 _DEPS_ATTRS = ["deps"]
-_EXPORTED_SYMBOLS_LISTS_ATTRS = ["exported_symbols_lists"]
 _HDRS_DEPS_ATTRS = ["hdrs"]
 _IMPLEMENTATION_DEPS_ATTRS = ["implementation_deps"]
-_INFOPLISTS_ATTRS = ["infoplists"]
-_LAUNCHDPLISTS_ATTRS = ["launchdplists"]
 _NON_ARC_SRCS_ATTRS = ["non_arc_srcs"]
 _SRCS_ATTRS = ["srcs"]
 
@@ -358,7 +289,6 @@ _DEFAULT_XCODE_TARGETS = {
 def calculate_automatic_target_info(
         *,
         ctx,
-        build_mode = "bazel",
         rule_attr,
         rule_kind,
         target):
@@ -366,7 +296,6 @@ def calculate_automatic_target_info(
 
     Args:
         ctx: The aspect context.
-        build_mode: See `xcodeproj.build_mode`.
         rule_attr: `ctx.rule.attr`.
         rule_kind: `ctx.rule.kind`.
         target: The `Target` to calculate the automatic target info for.
@@ -384,30 +313,22 @@ def calculate_automatic_target_info(
     else:
         srcs = EMPTY_LIST
 
-    alternate_icons = None
     app_icons = None
     args = None
     bundle_id = None
-    codesign_inputs = None
-    codesignopts = None
     collect_uncategorized_files = False
     deps = _DEPS_ATTRS
     entitlements = None
     env = None
     extra_files = EMPTY_LIST
-    exported_symbols_lists = EMPTY_LIST
-    hdrs = EMPTY_LIST
     implementation_deps = EMPTY_LIST
-    infoplists = EMPTY_LIST
     is_header_only_library = False
     is_mixed_language = False
     is_supported = True
     is_top_level = False
     label = target.label
-    launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
     non_arc_srcs = EMPTY_LIST
-    pch = None
     provisioning_profile = None
 
     if rule_kind == "cc_library":
@@ -431,7 +352,6 @@ def calculate_automatic_target_info(
         extra_files = _OBJC_LIBRARY_EXTRA_FILES_ATTRS
         implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
         non_arc_srcs = _NON_ARC_SRCS_ATTRS
-        pch = "pch"
         xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
 
         is_supported = (
@@ -467,20 +387,15 @@ def calculate_automatic_target_info(
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
         extra_files = _RESOURCE_BUNDLE_EXTRA_FILES_ATTRS
-        infoplists = _INFOPLISTS_ATTRS
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif rule_kind == "apple_resource_group":
         is_supported = False
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif _is_test_target(target):
         args = "args"
-        codesign_inputs = "codesign_inputs"
-        codesignopts = "codesignopts"
         entitlements = "entitlements"
         env = "env"
         extra_files = _TEST_EXTRA_FILES_ATTRS
-        exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
-        infoplists = _INFOPLISTS_ATTRS
         is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _TEST_BUNDLE_XCODE_TARGETS
@@ -496,16 +411,10 @@ def calculate_automatic_target_info(
         )
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
-        alternate_icons = "alternate_icons"
         app_icons = "app_icons"
-        codesign_inputs = "codesign_inputs"
-        codesignopts = "codesignopts"
         deps = _BUNDLE_DEPS_ATTRS
         entitlements = "entitlements"
         extra_files = _BUNDLE_EXTRA_FILES_ATTRS
-        exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
-        hdrs = _HDRS_DEPS_ATTRS
-        infoplists = _INFOPLISTS_ATTRS
         is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _BUNDLE_XCODE_TARGETS
@@ -514,13 +423,8 @@ def calculate_automatic_target_info(
         collect_uncategorized_files = rule_kind != "apple_bundle_import"
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif rule_kind == "macos_command_line_application":
-        codesign_inputs = "codesign_inputs"
-        codesignopts = "codesignopts"
         extra_files = _COMMAND_LINE_EXTRA_FILES_ATTRS
-        exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
-        infoplists = _INFOPLISTS_ATTRS
         is_top_level = True
-        launchdplists = _LAUNCHDPLISTS_ATTRS
         xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind in _SWIFT_BINARY_OR_TEST_RULES:
         extra_files = _SWIFT_COMPILATION_EXTRA_FILES_ATTRS
@@ -533,12 +437,6 @@ def calculate_automatic_target_info(
         is_top_level = True
         xcode_targets = _BINARY_XCODE_TARGETS
     elif AppleFrameworkImportInfo in target:
-        if (getattr(rule_attr, "bundle_only", False) and
-            build_mode == "xcode"):
-            fail("""\
-`bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
-""".format(target.label))
-
         is_supported = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     elif rule_kind == "cmake":
@@ -566,32 +464,23 @@ def calculate_automatic_target_info(
                 break
 
     return XcodeProjAutomaticTargetProcessingInfo(
-        alternate_icons = alternate_icons,
         app_icons = app_icons,
         args = args,
         bundle_id = bundle_id,
-        codesign_inputs = codesign_inputs,
-        codesignopts = codesignopts,
         collect_uncategorized_files = collect_uncategorized_files,
         deps = deps,
         entitlements = entitlements,
         env = env,
         extra_files = extra_files,
-        exported_symbols_lists = exported_symbols_lists,
-        hdrs = hdrs,
-        infoplists = infoplists,
         is_header_only_library = is_header_only_library,
         is_mixed_language = is_mixed_language,
         is_supported = is_supported,
         is_top_level = is_top_level,
         implementation_deps = implementation_deps,
         label = label,
-        launchdplists = launchdplists,
         link_mnemonics = link_mnemonics,
         non_arc_srcs = non_arc_srcs,
-        pch = pch,
         provisioning_profile = provisioning_profile,
-        should_generate = True,
         srcs = srcs,
         target_type = this_target_type,
         xcode_targets = xcode_targets,

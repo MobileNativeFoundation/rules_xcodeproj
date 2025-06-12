@@ -1,16 +1,19 @@
-"""Functions for processing mixed-language library targets."""
+"""Functions for processing library targets."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
+load("//xcodeproj/internal:compiler_args.bzl", "compiler_args")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 load("//xcodeproj/internal:dependencies.bzl", "dependencies")
+load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_TUPLE")
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load("//xcodeproj/internal:platforms.bzl", "platforms")
 load("//xcodeproj/internal:products.bzl", "products")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
 load("//xcodeproj/internal:xcode_targets.bzl", "xcode_targets")
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 load(
@@ -18,13 +21,13 @@ load(
     "output_files",
     "output_groups",
 )
-load(":mergeable_infos.bzl", mergeable_infos_module = "mergeable_infos")
 load(":processed_targets.bzl", "processed_targets")
 
-def _process_mixed_language_library_target(
+def _process_library_target(
         *,
         ctx,
         target,
+        attrs,
         automatic_target_info,
         generate_target,
         rule_attr,
@@ -34,6 +37,7 @@ def _process_mixed_language_library_target(
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         generate_target: Whether an Xcode target should be generated for this
@@ -43,20 +47,12 @@ def _process_mixed_language_library_target(
             dependencies of `target`.
 
     Returns:
-        A `tuple` of three values:
-
-        *   A value from `processed_target`.
-        *   The `Label` of the Swift target.
-        *   The `Label` of the Clang target.
+        A value from `processed_target`.
     """
     bin_dir_path = ctx.bin_dir.path
     configuration = calculate_configuration(bin_dir_path = bin_dir_path)
     label = automatic_target_info.label
     id = get_id(label = label, configuration = configuration)
-
-    clang_target_info = rule_attr.clang_target[XcodeProjInfo]
-    swift_target_info = rule_attr.swift_target[XcodeProjInfo]
-    mixed_target_infos = [swift_target_info, clang_target_info]
 
     product_name = rule_attr.name
 
@@ -64,12 +60,15 @@ def _process_mixed_language_library_target(
         transitive_infos = transitive_infos,
     )
 
+    cc_info = target[CcInfo]
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+
     (
         target_compilation_providers,
         provider_compilation_providers,
     ) = compilation_providers.collect(
-        cc_info = target[CcInfo],
+        cc_info = cc_info,
         objc = objc,
     )
     linker_inputs = linker_input_files.collect(
@@ -94,53 +93,34 @@ def _process_mixed_language_library_target(
         target = target,
     )
 
-    mergeable_info_and_ids = mergeable_infos_module.calculate_mixed_language(
-        clang_target_info = clang_target_info,
-        product_type = product_type,
-        swift_target_info = swift_target_info,
-    )
-    if mergeable_info_and_ids:
-        merged_target_ids = [(id, mergeable_info_and_ids.ids)]
-        mergeable_info = mergeable_info_and_ids.merged
-    else:
-        merged_target_ids = None
-        mergeable_info = None
-
-    (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
-        mergeable_info = mergeable_info,
-        mixed_target_infos = mixed_target_infos,
+    (target_inputs, provider_inputs) = input_files.collect(
+        ctx = ctx,
+        attrs = attrs,
+        automatic_target_info = automatic_target_info,
+        label = label,
+        linker_inputs = linker_inputs,
+        platform = platform,
+        rule_attr = rule_attr,
+        swift_proto_info = (
+            target[SwiftProtoInfo] if SwiftProtoInfo in target else None
+        ),
+        transitive_infos = transitive_infos,
     )
 
-    actual_package_bin_dir = products.calculate_packge_bin_dir(
+    package_bin_dir = products.calculate_packge_bin_dir(
         bin_dir_path = bin_dir_path,
         label = label,
     )
 
-    if mergeable_info:
-        package_bin_dir = mergeable_info.package_bin_dir
-        args = struct(
-            conly = mergeable_info.conly_args,
-            cxx = mergeable_info.cxx_args,
-            swift = mergeable_info.swift_args,
-        )
-
-        indexstore_override_path = actual_package_bin_dir + "/" + label.name
-        indexstore_overrides = [
-            (indexstore, indexstore_override_path)
-            for indexstore in mergeable_info.indexstores
-        ]
-    else:
-        package_bin_dir = actual_package_bin_dir
-        args = struct(
-            conly = [],
-            cxx = [],
-            swift = [],
-        )
-        indexstore_overrides = []
+    args = compiler_args.collect(
+        c_sources = target_inputs.c_sources,
+        cxx_sources = target_inputs.cxx_sources,
+        target = target,
+    )
 
     (
         target_build_settings,
-        _,
+        swift_debug_settings_file,
         params_files,
     ) = pbxproj_partials.write_target_build_settings(
         actions = actions,
@@ -153,41 +133,75 @@ def _process_mixed_language_library_target(
         conly_args = args.conly,
         cxx_args = args.cxx,
         generate_build_settings = generate_target,
-        generate_swift_debug_settings = False,
-        include_self_swift_debug_settings = False,
+        generate_swift_debug_settings = bool(args.swift),
         name = label.name,
         swift_args = args.swift,
         tool = ctx.executable._target_build_settings_generator,
     )
 
+    swift_debug_settings = depset(
+        [swift_debug_settings_file] if swift_debug_settings_file else None,
+        transitive = [
+            info.swift_debug_settings
+            for info in transitive_infos
+        ] if not swift_debug_settings_file else None,
+    )
+
+    if AppleDebugOutputsInfo in target:
+        debug_outputs = target[AppleDebugOutputsInfo]
+    else:
+        debug_outputs = None
+
     (
         target_outputs,
         provider_outputs,
         target_output_groups_metadata,
-    ) = output_files.collect_mixed_language(
+    ) = output_files.collect(
         actions = actions,
         compile_params_files = params_files,
+        debug_outputs = debug_outputs,
         id = id,
-        indexstore_overrides = indexstore_overrides,
         name = label.name,
-        mixed_target_infos = mixed_target_infos,
+        output_group_info = (
+            target[OutputGroupInfo] if OutputGroupInfo in target else None
+        ),
+        product = product,
+        swift_info = swift_info,
+        transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
         metadata = target_output_groups_metadata,
-        transitive_infos = mixed_target_infos,
+        transitive_infos = transitive_infos,
     )
 
-    if generate_target and mergeable_info_and_ids:
+    swift_outputs = target_outputs.direct_outputs.swift
+
+    if generate_target:
         module_name_attribute, module_name = get_product_module_name(
             rule_attr = rule_attr,
             target = target,
         )
 
+        if swift_outputs and swift_outputs.indexstore:
+            indexstores = (swift_outputs.indexstore,)
+        else:
+            indexstores = EMPTY_TUPLE
+
         mergeable_infos = depset(
             [
                 struct(
+                    args = args,
                     id = id,
-                    premerged_info = mergeable_info,
+                    indexstores = indexstores,
+                    inputs = target_inputs.xcode_inputs,
+                    module_name = module_name,
+                    package_bin_dir = package_bin_dir,
+                    premerged_info = None,
+                    product_file = product.file,
+                    swift_debug_settings = swift_debug_settings,
+                    swiftmodule = (
+                        swift_outputs.module.swiftmodule if swift_outputs else None
+                    ),
                 ),
             ],
         )
@@ -199,7 +213,7 @@ def _process_mixed_language_library_target(
             has_c_params = bool(args.conly),
             has_cxx_params = bool(args.cxx),
             id = id,
-            inputs = xcode_inputs,
+            inputs = target_inputs.xcode_inputs,
             is_top_level = False,
             label = label,
             module_name = module_name,
@@ -218,34 +232,26 @@ def _process_mixed_language_library_target(
                 # in `top_level_targets.bzl`.
                 struct(
                     id = None,
-                    # `premerged_info` is only checked for truthiness if
-                    # `id == None`. No other values are checked in this case.
-                    premerged_info = True,
+                    premerged_info = None,
+                    swiftmodule = bool(swift_outputs),
                 ),
             ],
         )
         xcode_target = None
 
-    processed_target = processed_targets.make(
+    return processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
         inputs = provider_inputs,
         mergeable_infos = mergeable_infos,
-        merged_target_ids = merged_target_ids,
         outputs = provider_outputs,
         platform = platform.apple_platform,
-        swift_debug_settings = swift_target_info.swift_debug_settings,
+        swift_debug_settings = swift_debug_settings,
         target_output_groups = target_output_groups,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
     )
 
-    return (
-        processed_target,
-        swift_target_info.label,
-        clang_target_info.label,
-    )
-
-mixed_language_library_targets = struct(
-    process = _process_mixed_language_library_target,
+library_targets = struct(
+    process = _process_library_target,
 )

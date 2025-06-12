@@ -6,7 +6,6 @@ filegroup(
     name = "release_files",
     srcs = [
         "//" + package_name() + "/files_and_groups:release_files",
-        "//" + package_name() + "/legacy:release_files",
         "//" + package_name() + "/pbxnativetargets:release_files",
         "//" + package_name() + "/pbxproj_prefix:release_files",
         "//" + package_name() + "/pbxtargetdependencies:release_files",

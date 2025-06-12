@@ -14,11 +14,8 @@ build --watchos_cpus=x86_64
 build --macos_minimum_os=13.0
 build --host_macos_minimum_os=13.0
 
-# In-repo output_base makes fixtures relative
+# In-repo output_base makes examples relative
 startup --output_base=bazel-output-base
-
-# Prevent trying to evaluate checked in generated fixtures
-build --deleted_packages=test/fixtures/generated/xcodeproj_bwx,test/fixtures/generated/xcodeproj_bwb
 
 # Ensure we work with BwtB
 build --remote_download_outputs=minimal

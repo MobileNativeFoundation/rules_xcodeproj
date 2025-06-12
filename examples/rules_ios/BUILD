@@ -5,26 +5,16 @@ load(
     "XCODEPROJ_TARGETS",
     "XCSCHEMES",
     "get_extra_files",
-    "get_xcode_schemes",
 )
 
 exports_files(["README.md"])
 
-[
-    xcodeproj(
-        name = "xcodeproj-{}".format(generation_mode),
-        build_mode = "bazel",
-        extra_files = get_extra_files(),
-        generation_mode = generation_mode,
-        project_name = "rules_ios",
-        scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
-        schemes = get_xcode_schemes(),
-        tags = ["manual"],
-        top_level_targets = XCODEPROJ_TARGETS,
-        xcschemes = XCSCHEMES,
-    )
-    for generation_mode in [
-        "legacy",
-        "incremental",
-    ]
-]
+xcodeproj(
+    name = "xcodeproj",
+    extra_files = get_extra_files(),
+    project_name = "rules_ios",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+    tags = ["manual"],
+    top_level_targets = XCODEPROJ_TARGETS,
+    xcschemes = XCSCHEMES,
+)

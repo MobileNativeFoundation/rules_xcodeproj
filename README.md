@@ -30,7 +30,6 @@ on it, or [file a new issue][file-an-issue]!
   - Debugging
   - Runtime sanitizers
   - Inline warnings and errors
-  - Fix-its (currently only in BwX mode)
   - Test selection and running
   - Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - Dynamic frameworks
@@ -38,7 +37,6 @@ on it, or [file a new issue][file-an-issue]!
 - Focused Projects
   - Include a subset of your targets in Xcode
   - Unfocused targets are built with Bazel
-  - Works in BwX mode as well!
 - Comprehensive Bazel rules support
   - Core Bazel C/C++/Objective-C
   - rules_swift

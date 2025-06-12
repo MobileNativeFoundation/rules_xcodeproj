@@ -7,30 +7,18 @@ cd "$SRCROOT"
 # Calculate Bazel `--output_groups`
 
 if [ "$ACTION" == "indexbuild" ]; then
-  if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-    # Inputs for compiling
-    readonly output_groups=("all_xc")
-  else
-    echo "error: \`BazelDependencies\` should not run during Index Build." \
+  echo >&2 "error: \`BazelDependencies\` should not run during Index Build." \
 "Please file a bug report here:" \
-"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
-        >&2
-    exit 1
-  fi
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md"
+  exit 1
 else
-  if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-    # Inputs for compiling, inputs for linking, and index store data
-    readonly output_group_prefixes="xc,xl,xi"
-  elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+  if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
     # Compile params, products (i.e. bundles) and index store data, and link
     # params
-    # TODO: Remove `bi` once we remove support for legacy generation mode
-    readonly output_group_prefixes="bc,bp,bi,bl"
+    readonly output_group_prefixes="bc,bp,bl"
   else
     # Products (i.e. bundles) and index store data
-    # TODO: Remove `bc` and `bi` once we remove support for legacy generation
-    # mode
-    readonly output_group_prefixes="bc,bp,bi"
+    readonly output_group_prefixes="bp"
   fi
 
   # In Xcode 14 the "Index" directory was renamed to "Index.noindex".

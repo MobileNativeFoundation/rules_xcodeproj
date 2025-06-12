@@ -219,24 +219,6 @@ swift_library(
 
     _maybe(
         http_archive,
-        name = "com_github_tadija_aexml",
-        build_file_content = """\
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
-    name = "AEXML",
-    srcs = glob(["Sources/AEXML/**/*.swift"]),
-    visibility = ["//visibility:public"],
-)
-""",
-        sha256 = "5a76c28e4fa9dcc1cbfb87a8518652628e990e522ecfbc98bdad17eabf4631d5",
-        strip_prefix = "AEXML-4.6.1",
-        url = "https://github.com/tadija/AEXML/archive/refs/tags/4.6.1.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
-
-    _maybe(
-        http_archive,
         name = "com_github_michaeleisel_jjliso8601dateformatter",
         build_file_content = """\
 objc_library(

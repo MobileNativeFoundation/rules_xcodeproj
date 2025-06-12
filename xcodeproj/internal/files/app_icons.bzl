@@ -26,10 +26,6 @@ def _find_resource_set(app_icon_files):
 
     return None, None
 
-# TODO: Remove when dropping support for legacy generation mode
-def _should_find_default_icon_path(ctx):
-    return getattr(ctx.attr, "_build_mode", None) != "xcode"
-
 _IMAGE_EXTS = {
     ".jpeg": None,
     ".jpg": None,
@@ -50,11 +46,10 @@ def _find_default_icon_path(set_path, app_icon_files):
 
     return None
 
-def _get_app_icon_info(ctx, automatic_target_info, rule_attr):
+def _get_app_icon_info(automatic_target_info, rule_attr):
     """Attempts to find the application icon name.
 
     Args:
-        ctx: The aspect context.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         rule_attr: `ctx.rule.attr`.
@@ -79,10 +74,7 @@ def _get_app_icon_info(ctx, automatic_target_info, rule_attr):
     if not set_name:
         return None
 
-    if _should_find_default_icon_path(ctx):
-        default_icon_path = _find_default_icon_path(set_path, app_icon_files)
-    else:
-        default_icon_path = None
+    default_icon_path = _find_default_icon_path(set_path, app_icon_files)
 
     return _create(
         set_name = set_name,

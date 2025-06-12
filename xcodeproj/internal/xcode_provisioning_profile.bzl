@@ -71,12 +71,11 @@ Developer Account, and otherwise fully manage the profile. If `False`, "Manual
 Code Signing" will be enabled in Xcode, and the profile name will be used to
 determine which profile to use.
 
-If `xcodeproj.build_mode != "xcode"`, then Xcode will still manage the profile
-when this is `True`, but otherwise won't use it to actually sign the binary.
-Instead Bazel will perform the code signing with the file set to
-`provisioning_profile`. Using rules_apple's `local_provisioning_profile` as the
-target set to `provisioning_profile` will then allow Bazel to code sign with the
-Xcode managed profile.
+Xcode will still manage the profile when this is `True`, but otherwise won't use
+it to actually sign the binary. Instead Bazel will perform the code signing with
+the file set to `provisioning_profile`. Using rules_apple's
+`local_provisioning_profile` as the target set to `provisioning_profile` will
+then allow Bazel to code sign with the Xcode managed profile.
 """,
             mandatory = True,
         ),
@@ -94,9 +93,6 @@ build setting will be set to this value. If this is `None` (the default), and
 The `File` that Bazel will use when code signing. If the target returns the
 `AppleProvisioningProfileInfo` provider (as `local_provisioning_profile` does),
 then it will provide default values for `profile_name` and `team_id`.
-
-When `xcodeproj.build_mode = "xcode"`, the actual file isn't used directly by
-Xcode, but in order to satisfy Bazel constraints this can't be `None`.
 """,
             allow_single_file = True,
             mandatory = True,

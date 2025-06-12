@@ -32,7 +32,6 @@ def _process_compiler_opts_test_impl(ctx):
         cxx_args = [],
         swiftcopts = swiftcopts,
         swift_args = [],
-        build_mode = ctx.attr.build_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
@@ -77,7 +76,6 @@ def _process_compiler_opts_test_impl(ctx):
 process_compiler_opts_test = unittest.make(
     impl = _process_compiler_opts_test_impl,
     attrs = {
-        "build_mode": attr.string(mandatory = True),
         "conlyopts": attr.string_list(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
         "cxxopts": attr.string_list(mandatory = True),
@@ -121,7 +119,6 @@ def process_compiler_opts_test_suite(name):
             conlyopts = [],
             cxxopts = [],
             swiftcopts = [],
-            build_mode = "bazel",
             cpp_fragment = None,
             package_bin_dir = ""):
         test_names.append(name)
@@ -130,7 +127,6 @@ def process_compiler_opts_test_suite(name):
             conlyopts = conlyopts,
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
-            build_mode = build_mode,
             cpp_fragment = cpp_fragment,
             package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
@@ -142,45 +138,7 @@ def process_compiler_opts_test_suite(name):
     # Base
 
     _add_test(
-        name = "{}_swift_integration_bazel".format(name),
-        build_mode = "bazel",
-        swiftcopts = [
-            "-target",
-            "arm64-apple-ios15.0-simulator",
-            "-sdk",
-            "__BAZEL_XCODE_SDKROOT__",
-            "-emit-object",
-            "-output-file-map",
-            "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.library.output_file_map.json",
-            "-Xfrontend",
-            "-no-clang-module-breadcrumbs",
-            "-emit-module-path",
-            "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.swiftmodule",
-            "-DDEBUG",
-            "-Onone",
-            "-Xfrontend",
-            "-serialize-debugging-options",
-            "-enable-testing",
-            "-application-extension",
-            "weird",
-            "-gline-tables-only",
-            "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
-            "-Xwrapped-swift=-ephemeral-module-cache",
-            "-Xfrontend",
-            "-color-diagnostics",
-            "-enable-batch-mode",
-            "-unhandled",
-            "-module-name",
-            "ExampleUITests",
-            "-parse-as-library",
-            "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
-            "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
-        ],
-    )
-
-    _add_test(
-        name = "{}_swift_integration_xcode".format(name),
-        build_mode = "xcode",
+        name = "{}_swift_integration".format(name),
         swiftcopts = [
             "-target",
             "arm64-apple-ios15.0-simulator",
@@ -226,8 +184,7 @@ def process_compiler_opts_test_suite(name):
     # Skips
 
     _add_test(
-        name = "{}_skips_bazel".format(name),
-        build_mode = "bazel",
+        name = "{}_skips".format(name),
         conlyopts = [
             "-mtvos-simulator-version-min=8.0",
             "-passthrough",
@@ -299,93 +256,6 @@ def process_compiler_opts_test_suite(name):
             "-num-threads",
             "6",
             "-passthrough",
-            "-parse-as-library",
-            "-passthrough",
-            "-parse-as-library",
-            "-keep-me=something.swift",
-            "reject-me.swift",
-            "-target",
-            "ios",
-            "-Xwrapped-swift",
-            "-passthrough",
-        ],
-    )
-
-    _add_test(
-        name = "{}_skips_xcode".format(name),
-        build_mode = "xcode",
-        conlyopts = [
-            "-mtvos-simulator-version-min=8.0",
-            "-passthrough",
-            "-isysroot",
-            "other",
-            "-mios-simulator-version-min=11.2",
-            "-miphoneos-version-min=9.0",
-            "-passthrough",
-            "-mtvos-version-min=12.1",
-            "-mwatchos-simulator-version-min=10.1",
-            "-passthrough",
-            "-mwatchos-version-min=9.2",
-            "-target",
-            "ios",
-            "-mmacosx-version-min=12.0",
-            "-passthrough",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
-            "-index-ignore-system-symbols",
-            "--config",
-            "relative/Path.yaml",
-        ],
-        cxxopts = [
-            "-isysroot",
-            "something",
-            "-miphoneos-version-min=9.4",
-            "-mmacosx-version-min=10.9",
-            "-passthrough",
-            "-mtvos-version-min=12.2",
-            "-mwatchos-simulator-version-min=9.3",
-            "-passthrough",
-            "-mtvos-simulator-version-min=12.1",
-            "-mwatchos-version-min=10.2",
-            "-I__BAZEL_XCODE_BOSS_",
-            "-target",
-            "macos",
-            "-passthrough",
-            "-mios-simulator-version-min=14.0",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
-            "-index-ignore-system-symbols",
-            "--config",
-            "relative/Path.yaml",
-        ],
-        swiftcopts = [
-            "-output-file-map",
-            "path",
-            "-passthrough",
-            "-debug-prefix-map",
-            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
-            "-file-prefix-map",
-            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
-            "-emit-module-path",
-            "path",
-            "-passthrough",
-            "-Xfrontend",
-            "-color-diagnostics",
-            "-Xfrontend",
-            "-import-underlying-module",
-            "-emit-object",
-            "-enable-batch-mode",
-            "-passthrough",
-            "-gline-tables-only",
-            "-sdk",
-            "something",
-            "-module-name",
-            "name",
-            "-passthrough",
-            "-num-threads",
-            "6",
-            "-passthrough",
-            "-Ibazel-out/...",
             "-parse-as-library",
             "-passthrough",
             "-parse-as-library",
@@ -402,7 +272,6 @@ def process_compiler_opts_test_suite(name):
 
     _add_test(
         name = "{}_swift_xcc".format(name),
-        build_mode = "bazel",
         swiftcopts = [
             # -fmodule-map-file
             "-Xcc",
@@ -615,8 +484,7 @@ def process_compiler_opts_test_suite(name):
     # -I
 
     _add_test(
-        name = "{}_swift_I_paths_bazel".format(name),
-        build_mode = "bazel",
+        name = "{}_swift_I_paths".format(name),
         swiftcopts = [
             # -I
             "-I__BAZEL_XCODE_SOMETHING_/path",
@@ -664,50 +532,11 @@ $(PROJECT_DIR)\
         },
     )
 
-    _add_test(
-        name = "{}_swift_I_paths_xcode".format(name),
-        build_mode = "xcode",
-        swiftcopts = [
-            # -I
-            "-I__BAZEL_XCODE_SOMETHING_/path",
-            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-I",
-            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-Irelative/path",
-            "-Ibazel-out/relative/path",
-            "-Iexternal/relative/path",
-            "-I/absolute/path",
-            "-I.",
-            "-I",
-            "relative/path",
-            "-I",
-            "bazel-out/relative/path",
-            "-I",
-            "external/relative/path",
-            "-I",
-            "/absolute/path",
-            "-I",
-            ".",
-        ],
-        expected_build_settings = {
-            "OTHER_SWIFT_FLAGS": """\
--I__BAZEL_XCODE_SOMETHING_/path \
--I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--I \
-$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--I/absolute/path \
--I \
-/absolute/path\
-""",
-        },
-    )
-
     # -F, -explicit-swift-module-map-file, -load-plugin-executable,
     # -load-plugin-library, and -vfsoverlay
 
     _add_test(
         name = "{}_swift_other_paths".format(name),
-        build_mode = "bazel",
         swiftcopts = [
             # -explicit-swift-module-map-file
             "-explicit-swift-module-map-file",
@@ -1006,26 +835,13 @@ $(PROJECT_DIR)\
     ## DEBUG_INFORMATION_FORMAT
 
     _add_test(
-        name = "{}_all-debug-dsym-bazel".format(name),
-        build_mode = "bazel",
+        name = "{}_all-debug-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
         swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
-        },
-    )
-
-    _add_test(
-        name = "{}_all-debug-dsym-xcode".format(name),
-        build_mode = "xcode",
-        conlyopts = ["-g"],
-        cxxopts = ["-g"],
-        swiftcopts = ["-g"],
-        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
-        expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
         },
     )
 
@@ -1052,26 +868,13 @@ $(PROJECT_DIR)\
     )
 
     _add_test(
-        name = "{}_c-debug-dsym-bazel".format(name),
-        build_mode = "bazel",
+        name = "{}_c-debug-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
         swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
-        },
-    )
-
-    _add_test(
-        name = "{}_c-debug-dsym-xcode".format(name),
-        build_mode = "xcode",
-        conlyopts = ["-g"],
-        cxxopts = ["-g"],
-        swiftcopts = [],
-        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
-        expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
         },
     )
 
@@ -1109,26 +912,13 @@ $(PROJECT_DIR)\
     )
 
     _add_test(
-        name = "{}_swift-debug-dsym-bazel".format(name),
-        build_mode = "bazel",
+        name = "{}_swift-debug-dsym".format(name),
         conlyopts = [],
         cxxopts = [],
         swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
-        },
-    )
-
-    _add_test(
-        name = "{}_swift-debug-dsym-xcode".format(name),
-        build_mode = "xcode",
-        conlyopts = [],
-        cxxopts = [],
-        swiftcopts = ["-g"],
-        cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
-        expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
         },
     )
 

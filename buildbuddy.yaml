@@ -49,13 +49,12 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
-    - &generate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:update"
-    - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
+    - &generate_integration "--output_base=bazel-output-base run --config=workflows //:xcodeproj"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows //..."
     - &nobzlmod_build_all "--output_base=bazel-output-base build --config=workflows --config=nobzlmod //..."
     - &nobzlmod_test_all "--output_base=bazel-output-base test --config=workflows --config=nobzlmod //..."
-    - &nobzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=nobzlmod //test/fixtures:update"
+    - &nobzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=nobzlmod //:xcodeproj"
 
 actions:
   - name: Buildifier Lint
@@ -114,7 +113,6 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      # Not validate since Bazel 8+ Bzlmod paths are different
       - *generate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS
@@ -124,7 +122,7 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      - *generate_integration
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel HEAD
     <<: *bazel_head
@@ -133,9 +131,6 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      # Not validate as Bazel HEAD has incompatible path changes to repo rules
-      # - "external/+_repo_rules+examples_command_line_external/",
-      # + "external/+new_local_repository+examples_command_line_external/
       - *generate_integration
       - *build_all
 
@@ -146,7 +141,6 @@ actions:
     <<: *normal_resources
     <<: *examples_rules_ios_workspace
     bazel_commands:
-      # Not validate since Bazel 7 Bzlmod paths are different
       - *generate_integration
       - *build_all
   ## Uncomment once rules_ios supports Bazel 8
@@ -157,7 +151,7 @@ actions:
   #   <<: *normal_resources
   #   <<: *examples_rules_ios_workspace
   #   bazel_commands:
-  #     - *validate_integration
+  #     - *generate_integration
   #     - *build_all
   # - name: Integration Test - "examples/rules_ios" - Bazel HEAD
   #   <<: *bazel_head
@@ -165,5 +159,5 @@ actions:
   #   <<: *normal_resources
   #   <<: *examples_rules_ios_workspace
   #   bazel_commands:
-  #     - *validate_integration
+  #     - *generate_integration
   #     - *build_all

@@ -3,7 +3,6 @@
 load(
     "@rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_targets",
-    "xcode_schemes",
     "xcschemes",
 )
 
@@ -54,28 +53,6 @@ XCSCHEMES = [
         ),
     ),
 ]
-
-def get_xcode_schemes():
-    return [
-        xcode_schemes.scheme(
-            name = "iOSAppUnitTests_Scheme",
-            test_action = xcode_schemes.test_action(
-                env = {
-                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
-                },
-                targets = [
-                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
-                ],
-                post_actions = [
-                    xcode_schemes.pre_post_action(
-                        name = "Run After Tests",
-                        script = "echo \"Hi\"",
-                        expand_variables_based_on = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
-                    ),
-                ],
-            ),
-        ),
-    ]
 
 def get_extra_files():
     return [
