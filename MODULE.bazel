@@ -1,7 +1,7 @@
 module(
     name = "rules_xcodeproj",
     version = "0.0.0",
-    bazel_compatibility = [">=6.3.0"],
+    bazel_compatibility = [">=7.0.0"],
     compatibility_level = 1,
     repo_name = "rules_xcodeproj",
 )
@@ -10,13 +10,12 @@ bazel_dep(name = "bazel_features", version = "1.3.0")
 bazel_dep(name = "bazel_skylib", version = "1.3.0")
 bazel_dep(
     name = "rules_swift",
-    version = "2.8.2",
-    max_compatibility_level = 2,
+    version = "3.0.2",
     repo_name = "build_bazel_rules_swift",
 )
 bazel_dep(
     name = "rules_apple",
-    version = "3.16.1",
+    version = "4.0.1",
     repo_name = "build_bazel_rules_apple",
 )
 bazel_dep(name = "rules_python", version = "0.27.1")

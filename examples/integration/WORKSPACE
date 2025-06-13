@@ -7,8 +7,8 @@ local_repository(
 
 http_archive(
     name = "build_bazel_rules_swift",
-    sha256 = "32eeb4ef33c708d9c9a4ee0fa8475322ef149dabc81884ddc3b50eb2efff7843",
-    url = "https://github.com/bazelbuild/rules_swift/releases/download/2.0.0/rules_swift.2.0.0.tar.gz",
+    sha256 = "ae6673d27024914fa89e32fd1369e9563fb8ede463feac703aaec1ba6ca0358c",
+    url = "https://github.com/bazelbuild/rules_swift/releases/download/3.0.2/rules_swift.3.0.2.tar.gz",
 )
 
 load(

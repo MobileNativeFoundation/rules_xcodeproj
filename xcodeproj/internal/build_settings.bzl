@@ -1,10 +1,10 @@
 """Functions for handling Xcode build settings."""
 
+load("@build_bazel_rules_swift//swift:module_name.bzl", "derive_swift_module_name")
 load(
     "@build_bazel_rules_swift//swift:swift.bzl",
     "SwiftInfo",
     "SwiftProtoInfo",
-    "swift_common",
 )
 
 # Maps the strings passed in to the `families` attribute to the numerical
@@ -55,12 +55,12 @@ def get_product_module_name(*, rule_attr, target):
         # The module name of the Swift library produced by a
         # `swift_proto_library` is based on the name of the `proto_library`
         # target, *not* the name of the `swift_proto_library` target.
-        return (None, swift_common.derive_module_name(
+        return (None, derive_swift_module_name(
             target_to_derive_module_name.label,
         ))
 
     if SwiftInfo in target:
-        return (None, swift_common.derive_module_name(target.label))
+        return (None, derive_swift_module_name(target.label))
 
     return (None, None)
 
