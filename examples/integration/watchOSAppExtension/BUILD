@@ -16,13 +16,6 @@ config_setting(
     },
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "watchos_arm64_32",
-    },
-)
-
 watchos_extension(
     name = "watchOSAppExtension",
     bundle_id = "{}.extension".format(WATCHOS_BUNDLE_ID),
@@ -31,7 +24,7 @@ watchos_extension(
     minimum_deployment_os_version = "8.0",
     minimum_os_version = "7.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     resources = [":ResourceGroup"],
