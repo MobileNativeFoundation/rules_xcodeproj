@@ -2,12 +2,12 @@
 aspect."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     ":provisioning_profiles.bzl",
     "XcodeProjProvisioningProfileInfo",
     "provisioning_profiles",
 )
-load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":xcodeprojinfos.bzl", "xcodeprojinfos")
 
 # Utility

@@ -1,5 +1,5 @@
 load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
-load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
+load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",

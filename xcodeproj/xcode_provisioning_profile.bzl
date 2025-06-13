@@ -1,6 +1,6 @@
 """Implementation of the `xcode_provisioning_profile` rule."""
 
-load(":provisioning_profiles.bzl", "provisioning_profiles")
+load("//xcodeproj/internal:provisioning_profiles.bzl", "provisioning_profiles")
 
 # API
 

@@ -1,6 +1,7 @@
 """Implementation of the `xcodeproj` rule."""
 
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load(
     "//xcodeproj/internal/bazel_integration_files:actions.bzl",
@@ -25,7 +26,6 @@ load(
 load(":selected_model_versions.bzl", "write_selected_model_versions_file")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", xcode_targets_module = "xcode_targets")
-load(":xcodeprojinfo.bzl", "XcodeProjInfo")
 
 # Utility
 

@@ -4,13 +4,13 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
 )
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
-load("//xcodeproj/internal:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":resources.bzl", resources_module = "resources")
 
