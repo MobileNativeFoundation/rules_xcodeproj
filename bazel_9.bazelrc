@@ -1,0 +1,2 @@
+# TODO: Remove once rules_apple is updated to support the new test toolchain
+common --@bazel_tools//tools/test:incompatible_use_default_test_toolchain=no
