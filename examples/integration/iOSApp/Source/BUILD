@@ -20,13 +20,6 @@ config_setting(
     },
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "ios_arm64",
-    },
-)
-
 ios_application(
     name = "iOSApp",
     alternate_icons = glob(["AltIcons/AltIcon-60.alticon/**"]),
@@ -48,7 +41,7 @@ ios_application(
     }),
     entitlements = "ios app.entitlements",
     executable_name = select({
-        ":device_build": None,
+        "@build_bazel_apple_support//constraints:device": None,
         "//conditions:default": "iOSApp_ExecutableName",
     }),
     extensions = [
@@ -62,16 +55,18 @@ ios_application(
     ],
     infoplists = [":Info.plist"],
     launch_images = select({
-        ":device_build": glob(["launch_images_ios.xcassets/**"]),
+        "@build_bazel_apple_support//constraints:device": glob(
+            ["launch_images_ios.xcassets/**"],
+        ),
         "//conditions:default": [],
     }),
     launch_storyboard = select({
-        ":device_build": None,
+        "@build_bazel_apple_support//constraints:device": None,
         "//conditions:default": "Launch.storyboard",
     }),
     minimum_os_version = "15.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     resources = [

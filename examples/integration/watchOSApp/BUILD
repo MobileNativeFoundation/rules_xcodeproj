@@ -8,13 +8,6 @@ load(
     "WATCHOS_BUNDLE_ID",
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "watchos_arm64_32",
-    },
-)
-
 watchos_application(
     name = "watchOSApp",
     app_icons = ["AppIcon.xcassets"],
@@ -23,7 +16,7 @@ watchos_application(
     infoplists = [":infoplist"],
     minimum_os_version = "8.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     version = "//iOSApp:Version",

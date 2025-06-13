@@ -15,13 +15,6 @@ config_setting(
     },
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "tvos_arm64",
-    },
-)
-
 tvos_application(
     name = "tvOSApp",
     bundle_id = TVOS_BUNDLE_ID,
@@ -30,7 +23,7 @@ tvos_application(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     resources = ["//tvOSApp/Resources:ResourceGroup"],

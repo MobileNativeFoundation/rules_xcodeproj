@@ -17,13 +17,6 @@ config_setting(
     },
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "ios_arm64",
-    },
-)
-
 ios_app_clip(
     name = "AppClip",
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
@@ -34,7 +27,7 @@ ios_app_clip(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     resources = [":ResourceGroup"],
