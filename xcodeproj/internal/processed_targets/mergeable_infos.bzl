@@ -1,5 +1,6 @@
 """Module for calculating mergeable info for processed targets."""
 
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_DEPSET",
@@ -7,7 +8,6 @@ load(
     "EMPTY_STRING",
     "memory_efficient_depset",
 )
-load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 

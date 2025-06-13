@@ -1,6 +1,7 @@
 """Functions for processing mixed-language library targets."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
@@ -17,7 +18,6 @@ load(
     "output_files",
     "output_groups",
 )
-load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":mergeable_infos.bzl", mergeable_infos_module = "mergeable_infos")
 load(":processed_targets.bzl", "processed_targets")
 

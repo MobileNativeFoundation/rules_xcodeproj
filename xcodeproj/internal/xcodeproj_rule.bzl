@@ -1,6 +1,7 @@
 """Implementation of the `xcodeproj` rule."""
 
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load(
     "//xcodeproj/internal/bazel_integration_files:actions.bzl",
@@ -16,7 +17,6 @@ load(
     "//xcodeproj/internal/xcschemes:xcschemes_execution.bzl",
     "xcschemes_execution",
 )
-load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
 load(

@@ -10,6 +10,7 @@ load(
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     "//xcodeproj/internal:build_settings.bzl",
     "get_product_module_name",
@@ -43,7 +44,6 @@ load(
     "output_files",
     "output_groups",
 )
-load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(":mergeable_infos.bzl", "mergeable_infos")
 load(":processed_targets.bzl", "processed_targets")
 

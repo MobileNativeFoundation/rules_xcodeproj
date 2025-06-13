@@ -6,8 +6,8 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
 )
-load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
 load("//xcodeproj:xcodeprojinfo.bzl", "target_type")
+load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
 
 ## Utility
 

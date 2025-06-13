@@ -6,6 +6,8 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBinaryInfo",
 )
+load("//xcodeproj:automatic_target_info.bzl", "calculate_automatic_target_info")
+load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load(
     "//xcodeproj/internal/files:output_files.bzl",
@@ -28,8 +30,6 @@ load(
     "//xcodeproj/internal/processed_targets:unsupported_targets.bzl",
     "unsupported_targets",
 )
-load("//xcodeproj:automatic_target_info.bzl", "calculate_automatic_target_info")
-load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo", "target_type")
 load(":compilation_providers.bzl", "compilation_providers")
 load(":dependencies.bzl", "dependencies")
 load(
