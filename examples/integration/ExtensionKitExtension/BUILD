@@ -8,13 +8,6 @@ load(
     "TEAMID",
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "ios_arm64",
-    },
-)
-
 ios_extension(
     name = "ExtensionKitExtension",
     bundle_id = "{}.extensionkit-extension".format(IOS_BUNDLE_ID),
@@ -23,7 +16,7 @@ ios_extension(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     version = "//iOSApp:Version",

@@ -23,13 +23,6 @@ config_setting(
     },
 )
 
-config_setting(
-    name = "device_build",
-    values = {
-        "cpu": "ios_arm64",
-    },
-)
-
 rules_ios_ios_application(
     name = "iOSApp",
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
@@ -43,7 +36,7 @@ rules_ios_ios_application(
     launch_storyboard = "Launch.storyboard",
     minimum_os_version = "15.0",
     provisioning_profile = select({
-        ":device_build": ":xcode_profile",
+        "@build_bazel_apple_support//constraints:device": ":xcode_profile",
         "//conditions:default": None,
     }),
     resource_bundles = {
