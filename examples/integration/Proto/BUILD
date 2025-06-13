@@ -1,6 +1,7 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
 load("@build_bazel_rules_swift//proto:proto.bzl", "swift_proto_library")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
 
 proto_library(
     name = "person_proto",
