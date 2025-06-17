@@ -5,9 +5,20 @@ import re
 import subprocess
 import sys
 from typing import List
+import signal
 
 
 def _main(command: List[str]) -> None:
+
+    def _signal_handler(signum, frame):
+        """Print signal information and ignore the signal."""
+        signal_name = signal.Signals(signum).name
+        print(f"\nReceived signal {signal_name} ({signum})\n", file=sys.stderr)
+        return
+
+    # Set up signal handler for SIGINT
+    signal.signal(signal.SIGINT, _signal_handler)
+    
     srcroot = os.getenv("SRCROOT")
     if not srcroot:
         sys.exit("SRCROOT environment variable must be set")
