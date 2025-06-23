@@ -27,10 +27,11 @@ if [[ "$ACTION" != indexbuild ]]; then
 
     # Symlink .o files from BAZEL_PACKAGE_BIN_DIR to OBJECT_FILE_DIR_normal/arm64
     find "$PWD/${PRODUCT_NAME}_objs" -name '*.o' -exec sh -c '
-      TARGET_FILE="$OBJECT_FILE_DIR_normal/arm64/$(basename "$1" | sed "s/\.swift//")"
-      rm -f $TARGET_FILE
-      cp "$1" $TARGET_FILE
-      chmod 644 $TARGET_FILE
+      FILENAME=$(echo "${1}" | sed "s/__SPACE__/ /g")
+      TARGET_FILE="${OBJECT_FILE_DIR_normal}/arm64/$(basename "${FILENAME}" | sed "s/\.swift//")"
+      rm -f "${TARGET_FILE}"
+      cp "$1" "${TARGET_FILE}"
+      chmod 644 "${TARGET_FILE}"
     ' _ {} \;
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
