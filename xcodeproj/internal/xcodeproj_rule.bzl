@@ -24,7 +24,6 @@ load(
     "extension_point_identifiers.bzl",
     "write_extension_point_identifiers_file",
 )
-load(":incremental_xcode_targets.bzl", xcode_targets_module = "incremental_xcode_targets")
 load(":providers.bzl", "ToolchainInfo")
 load(":selected_model_versions.bzl", "write_selected_model_versions_file")
 load(":target_id.bzl", "write_target_ids_list")
