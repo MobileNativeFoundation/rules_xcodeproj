@@ -45,7 +45,10 @@ def _main(command: List[str]) -> None:
 
     strip_color = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
     relative_diagnostic = re.compile(
-        r"^.+?:\d+(:\d+)?: (error|warning): ."
+        r"^.+?:\d+(:\d+)?: (fatal\s)?(error|warning): ."
+    )
+    fatal_error_diagnostic = re.compile(
+        r": fatal error: "
     )
     has_relative_diagnostic = False
 
@@ -54,6 +57,9 @@ def _main(command: List[str]) -> None:
 
         # Uppercase the first letter of the (actual) message
         message = message[:-1] + message[-1].upper()
+
+        # Replace 'fatal error:' with 'error:' to match Xcode's native build system
+        message = fatal_error_diagnostic.sub(': error: ', message)
 
         if message.startswith(execution_root):
             # VFS overlays can make paths absolute, so make them relative again
