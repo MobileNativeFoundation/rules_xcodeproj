@@ -6,6 +6,7 @@ load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load(
     "//xcodeproj/internal/bazel_integration_files:actions.bzl",
     "write_bazel_build_script",
+    "write_generate_bazel_dependencies_script",
 )
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load("//xcodeproj/internal/files:output_files.bzl", "output_groups")
@@ -227,6 +228,7 @@ def _write_bazel_integration_files(
         *,
         actions,
         bazel_build_script_template,
+        bazel_dependencies_script_template,
         bazel_path,
         bazel_env,
         colorize,
@@ -246,6 +248,12 @@ def _write_bazel_integration_files(
         template = bazel_build_script_template,
     )
 
+    generate_bazel_dependencies_script = write_generate_bazel_dependencies_script(
+        actions = actions,
+        generator_label = label,
+        template = bazel_dependencies_script_template,
+    )
+
     swift_debug_settings = xcode_targets_module.write_swift_debug_settings(
         actions = actions,
         colorize = colorize,
@@ -255,7 +263,11 @@ def _write_bazel_integration_files(
         tool = swift_debug_settings_generator,
     )
 
-    return [bazel_build_script] + swift_debug_settings + static_files
+    return (
+        [bazel_build_script, generate_bazel_dependencies_script] +
+        swift_debug_settings +
+        static_files
+    )
 
 def _write_installer(
         *,
@@ -724,6 +736,9 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     bazel_integration_files = _write_bazel_integration_files(
         actions = actions,
         bazel_build_script_template = ctx.file._bazel_build_script_template,
+        bazel_dependencies_script_template = (
+            ctx.file._generate_bazel_dependencies_script_template
+        ),
         bazel_path = ctx.attr.bazel_path,
         bazel_env = ctx.attr.bazel_env,
         colorize = colorize,
@@ -857,6 +872,12 @@ def _xcodeproj_attrs(
                 "//tools/generators/files_and_groups:universal_files_and_groups",
             ),
             executable = True,
+        ),
+        "_generate_bazel_dependencies_script_template": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal/templates:generate_bazel_dependencies.sh",
+            ),
         ),
         "_index_import": attr.label(
             cfg = "exec",

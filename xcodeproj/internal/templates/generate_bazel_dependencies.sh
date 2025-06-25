@@ -141,7 +141,7 @@ if [[ $apply_sanitizers -eq 1 ]]; then
       --copt=-fno-sanitize-recover=all
       --copt=-fsanitize=address
       --linkopt=-fsanitize=address
-      --swiftcopt=-sanitize=address
+      --%swiftcopt%=-sanitize=address
       --copt=-Wno-macro-redefined
       --copt=-D_FORTIFY_SOURCE=0
     )
@@ -152,7 +152,7 @@ if [[ $apply_sanitizers -eq 1 ]]; then
       --copt=-fno-sanitize-recover=all
       --copt=-fsanitize=thread
       --linkopt=-fsanitize=thread
-      --swiftcopt=-sanitize=thread
+      --%swiftcopt%=-sanitize=thread
       )
   fi
   if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
