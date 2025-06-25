@@ -8,14 +8,7 @@ _BASE_FILES = [
 ]
 
 filegroup(
-    name = "bwx_integration_files",
-    srcs = _BASE_FILES,
-    # This is made public for internal use only
-    visibility = ["//visibility:public"],
-)
-
-filegroup(
-    name = "bwb_integration_files",
+    name = "bazel_integration_files",
     srcs = _BASE_FILES + [
         ":renamed_swiftc_stub",
         ":rsync_excludes",

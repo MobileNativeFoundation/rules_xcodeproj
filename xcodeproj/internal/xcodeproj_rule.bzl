@@ -837,19 +837,13 @@ def _xcodeproj_attrs(
             cfg = "exec",
             allow_files = True,
             default = Label(
-                "//xcodeproj/internal/bazel_integration_files:bwb_integration_files",
+                "//xcodeproj/internal/bazel_integration_files",
             ),
         ),
         "_contents_xcworkspacedata": attr.label(
             allow_single_file = True,
             default = Label(
                 "//xcodeproj/internal/templates:contents.xcworkspacedata",
-            ),
-        ),
-        "_create_xcode_overlay_script_template": attr.label(
-            allow_single_file = True,
-            default = Label(
-                "//xcodeproj/internal/templates:create_xcode_overlay.sh",
             ),
         ),
         "_extension_point_identifiers_parser": attr.label(
