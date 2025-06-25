@@ -13,9 +13,6 @@ common:rules_xcodeproj --cache_computed_file_digests=500000
 # We default to `dbg` since debugging is broken otherwise
 common:rules_xcodeproj --compilation_mode=dbg
 
-# Work around https://github.com/bazelbuild/bazel/issues/13912
-common:rules_xcodeproj --experimental_action_cache_store_output_metadata
-
 # Xcode builds shouldn't mess with the workspace's symlinks
 common:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
