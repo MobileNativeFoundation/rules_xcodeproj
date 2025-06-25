@@ -54,3 +54,35 @@ def write_bazel_build_script(
     )
 
     return output
+
+def write_generate_bazel_dependencies_script(
+        *,
+        actions,
+        generator_label,
+        template):
+    """Writes the `generate_bazel_dependencies.sh` script.
+
+    Args:
+        actions: `ctx.actions`.
+        generator_label: The `Label` of the `xcodeproj` generator target.
+        template: `xcodeproj/internal/templates/generate_bazel_dependencies.sh`.
+
+    Returns:
+        The `File` for `generate_bazel_dependencies.sh`.
+    """
+    output = actions.declare_file(
+        "{}_bazel_integration_files/generate_bazel_dependencies.sh".format(
+            generator_label.name,
+        ),
+    )
+
+    actions.expand_template(
+        template = template,
+        output = output,
+        is_executable = True,
+        substitutions = {
+            "%swiftcopt%": str(Label("@build_bazel_rules_swift//swift:copt")),
+        },
+    )
+
+    return output

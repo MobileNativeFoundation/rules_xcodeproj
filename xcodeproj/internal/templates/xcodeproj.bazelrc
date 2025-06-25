@@ -94,9 +94,9 @@ common:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
 common:rules_xcodeproj_swiftuipreviews --linkopt="-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks"
 
 # `swiftc` flags needed for SwiftUI Previews
-common:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-implicit-dynamic
-common:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
-common:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
+common:rules_xcodeproj_swiftuipreviews --%swiftcopt%=-Xfrontend --%swiftcopt%=-enable-implicit-dynamic
+common:rules_xcodeproj_swiftuipreviews --%swiftcopt%=-Xfrontend --%swiftcopt%=-enable-private-imports
+common:rules_xcodeproj_swiftuipreviews --%swiftcopt%=-Xfrontend --%swiftcopt%=-enable-dynamic-replacement-chaining
 
 ### `--config=_rules_xcodeproj_build`
 #

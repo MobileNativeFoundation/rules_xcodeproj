@@ -2,7 +2,6 @@ _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",
     "create_lldbinit.sh",
-    "generate_bazel_dependencies.sh",
     ":renamed_import_indexstores",
     "process_bazel_build_log.py",
 ]

@@ -69,6 +69,7 @@ common:_{config}_build --config={config}
         output = output,
         substitutions = {
             "%project_configs%": project_configs,
+            "%swiftcopt%": str(Label("@build_bazel_rules_swift//swift:copt")),
         },
     )
 
