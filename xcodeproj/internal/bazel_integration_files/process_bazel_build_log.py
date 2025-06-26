@@ -8,6 +8,18 @@ from typing import List
 import signal
 
 
+STRIP_COLOR_RE = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
+RELATIVE_DIAGNOSTICS_RE = re.compile(
+    r"""
+    ^
+    (?P<loc>.+?:\d+(?::\d+)?:\s)  # Capture location (e.g. "foo/bar:12:3: ")
+    (?:fatal\s)?                  # Dropping "fatal "
+    (?P<sev>(?:error|warning):\s) # Capture severity
+    (?P<msg>.*)                   # Capture the rest of the message
+    """,
+    re.VERBOSE,
+)
+
 def _main(command: List[str]) -> None:
 
     def _signal_handler(signum, frame):
@@ -18,7 +30,7 @@ def _main(command: List[str]) -> None:
 
     # Set up signal handler for SIGINT
     signal.signal(signal.SIGINT, _signal_handler)
-    
+
     srcroot = os.getenv("SRCROOT")
     if not srcroot:
         sys.exit("SRCROOT environment variable must be set")
@@ -43,23 +55,12 @@ def _main(command: List[str]) -> None:
 
     should_strip_color = os.getenv("COLOR_DIAGNOSTICS", default="YES") != "YES"
 
-    strip_color = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
-    relative_diagnostic = re.compile(
-        r"^.+?:\d+(:\d+)?: (fatal\s)?(error|warning): ."
-    )
-    fatal_error_diagnostic = re.compile(
-        r": fatal error: "
-    )
     has_relative_diagnostic = False
 
     def _replacement(match: re.Match) -> str:
-        message = match.group(0)
-
-        # Uppercase the first letter of the (actual) message
-        message = message[:-1] + message[-1].upper()
-
-        # Replace 'fatal error:' with 'error:' to match Xcode's native build system
-        message = fatal_error_diagnostic.sub(': error: ', message)
+        message = f"""\
+{match.group("loc")}{match.group("sev")}{match.group("msg").capitalize()}\
+"""
 
         if message.startswith(execution_root):
             # VFS overlays can make paths absolute, so make them relative again
@@ -87,12 +88,12 @@ def _main(command: List[str]) -> None:
         input_line = line.rstrip()
 
         if should_strip_color:
-            input_line = strip_color.sub("", input_line)
+            input_line = STRIP_COLOR_RE.sub("", input_line)
 
         if not input_line:
             return
 
-        output_line = relative_diagnostic.sub(_replacement, input_line)
+        output_line = RELATIVE_DIAGNOSTICS_RE.sub(_replacement, input_line)
         # Record if we have performed a relative diagnostic substitution.
         if output_line != input_line:
             nonlocal has_relative_diagnostic
@@ -106,7 +107,7 @@ def _main(command: List[str]) -> None:
     for line in process.stderr:
         _process_log_line(line)
 
-    # If the Bazel invocation failed and there was no formatted error found, 
+    # If the Bazel invocation failed and there was no formatted error found,
     # print a nicer error message instead of a cryptic in Xcode:
     # 'Command PhaseScriptExecution failed with a nonzero exit code'
     if process.returncode != 0 and not has_relative_diagnostic:
