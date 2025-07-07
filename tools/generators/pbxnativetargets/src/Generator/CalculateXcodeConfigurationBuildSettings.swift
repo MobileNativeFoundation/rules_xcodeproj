@@ -236,7 +236,7 @@ private extension Platform {
     }
 }
 
-private extension String {
+extension String {
     var quoteIfNeeded: String {
         guard !contains(" ") else {
             return #""\#(self)""#

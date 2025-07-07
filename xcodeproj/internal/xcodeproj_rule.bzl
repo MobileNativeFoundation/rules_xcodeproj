@@ -24,6 +24,7 @@ load(
     "extension_point_identifiers.bzl",
     "write_extension_point_identifiers_file",
 )
+load(":providers.bzl", "ToolchainInfo")
 load(":selected_model_versions.bzl", "write_selected_model_versions_file")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", xcode_targets_module = "xcode_targets")
@@ -353,7 +354,8 @@ def _write_project_contents(
         xcode_configurations,
         xcode_target_configurations,
         xcode_targets,
-        xcode_targets_by_label):
+        xcode_targets_by_label,
+        toolchain_info):
     execution_root_file = write_execution_root_file(
         actions = actions,
         bin_dir_path = bin_dir_path,
@@ -449,6 +451,7 @@ def _write_project_contents(
         actions = actions,
         colorize = colorize,
         config = config,
+        custom_toolchain_id = toolchain_info.identifier,
         default_xcode_configuration = default_xcode_configuration,
         execution_root_file = execution_root_file,
         generator_name = name,
@@ -708,6 +711,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         xcode_configurations = xcode_configurations,
         xcode_targets = xcode_targets,
         xcode_targets_by_label = xcode_targets_by_label,
+        toolchain_info = ctx.attr._rulesxcodeproj_toolchain[ToolchainInfo],
     )
 
     # Schemes
@@ -783,7 +787,9 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         DefaultInfo(
             executable = installer,
             files = depset(
-                transitive = [inputs.important_generated],
+                transitive = [inputs.important_generated] + [
+                    ctx.attr._rulesxcodeproj_toolchain.files
+                ],
             ),
             runfiles = ctx.runfiles(files = runfiles),
         ),
@@ -916,6 +922,9 @@ def _xcodeproj_attrs(
                 "//tools/generators/pbxtargetdependencies:universal_pbxtargetdependencies",
             ),
             executable = True,
+        ),
+        "_rulesxcodeproj_toolchain": attr.label(
+            default = Label(":rulesxcodeproj_toolchain"),
         ),
         "_selected_model_versions_generator": attr.label(
             cfg = "exec",

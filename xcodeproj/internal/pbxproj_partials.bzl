@@ -316,6 +316,18 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
+            targets_args.add_all(
+                xcode_target.linker_inputs_for_libs_search_paths.to_list(),
+                omit_if_empty = False,
+                terminate_with = "",
+            )
+
+            targets_args.add_all(
+                xcode_target.libraries_path_to_link.to_list(),
+                omit_if_empty = False,
+                terminate_with = "",
+            )
+
             # `outputs.product_path` is only set for top-level targets
             if xcode_target.outputs.product_path:
                 top_level_targets_args.add(xcode_target.id)
@@ -658,6 +670,7 @@ def _write_pbxproj_prefix(
         ),
         colorize,
         config,
+        custom_toolchain_id,
         default_xcode_configuration,
         execution_root_file,
         generator_name,
@@ -682,6 +695,7 @@ def _write_pbxproj_prefix(
         apple_platform_to_platform_name: Exposed for testing. Don't set.
         colorize: A `bool` indicating whether to colorize the output.
         config: The name of the `.bazelrc` config.
+        custom_toolchain_id: The custom toolchain ID.
         default_xcode_configuration: The name of the the Xcode configuration to
             use when building, if not overridden by custom schemes.
         execution_root_file: A `File` containing the absolute path to the Bazel
@@ -745,6 +759,9 @@ def _write_pbxproj_prefix(
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
+
+    # customToolchainID
+    args.add(custom_toolchain_id)
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)

@@ -33,14 +33,12 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
-				CC = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
-				CXX = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEBUG_DYLIB = NO;
@@ -54,23 +52,19 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
-				LD = "$(BAZEL_INTEGRATION_DIR)/ld";
-				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				TOOLCHAINS = "com.rules_xcodeproj.BazelRulesXcodeProj.16B40";
 				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
-				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "/some/project dir";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SRCROOT = "/Users/TimApple/Star Board";
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_USE_INTEGRATED_DRIVER = NO;
 				SWIFT_VERSION = 5.0;
 				TAPI_EXEC = /usr/bin/true;
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
@@ -91,7 +85,8 @@ class PBXProjectBuildSettingsTests: XCTestCase {
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace,
-            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute(),
+            customToolchainID: "com.rules_xcodeproj.BazelRulesXcodeProj.16B40"
         )
 
         // Assert

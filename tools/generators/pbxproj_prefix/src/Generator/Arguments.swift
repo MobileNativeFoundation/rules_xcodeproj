@@ -45,6 +45,9 @@ setting.
         )
         var resolvedRepositoriesFile: URL
 
+        @Argument(help: "The custom toolchain ID.")
+        var customToolchainID: String
+
         @Argument(help: """
 Minimum Xcode version that the generated project supports.
 """)

@@ -124,8 +124,29 @@ fi
     ],
 )
 
-# Release
+filegroup(
+    name = "libtool_binary",
+    srcs = ["libtool"],
+    tags = ["manual"],
+    # This is made public for internal use only
+    visibility = ["//:__subpackages__"],
+)
 
+filegroup(
+    name = "ld_binary",
+    srcs = ["ld"],
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+)
+
+filegroup(
+    name = "clang_binary",
+    srcs = ["clang.sh"],
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+)
+
+# Release
 filegroup(
     name = "release_files",
     srcs = glob(

@@ -94,15 +94,6 @@ readonly base_pre_config_flags=(
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
 )
 
-# Custom Swift toolchains
-
-if [[ -n "${TOOLCHAINS-}" ]]; then
-  toolchain="${TOOLCHAINS%% *}"
-  if [[ "$toolchain" == "com.apple.dt.toolchain.XcodeDefault" ]]; then
-    unset toolchain
-  fi
-fi
-
 # Build
 
 echo "Starting Bazel build"
@@ -114,7 +105,6 @@ echo "Starting Bazel build"
   ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
   --config="$config" \
   --color=yes \
-  ${toolchain:+--action_env=TOOLCHAINS="$toolchain"} \
   "$output_groups_flag" \
   "%generator_label%" \
   ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \

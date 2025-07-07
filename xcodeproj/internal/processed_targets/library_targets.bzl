@@ -159,6 +159,7 @@ def _process_library_target(
     ) = output_files.collect(
         actions = actions,
         compile_params_files = params_files,
+        copy_product_transitively = True,
         debug_outputs = debug_outputs,
         id = id,
         name = label.name,
@@ -223,6 +224,10 @@ def _process_library_target(
             platform = platform,
             product = product.xcode_product,
             transitive_dependencies = transitive_dependencies,
+            linker_inputs_for_libs_search_paths = linker_input_files
+                .get_linker_inputs_for_libs_search_paths(linker_inputs),
+            libraries_path_to_link = linker_input_files
+                .get_libraries_path_to_link(linker_inputs),
         )
     else:
         mergeable_infos = depset(

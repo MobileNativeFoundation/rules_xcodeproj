@@ -38,7 +38,8 @@ extension Generator {
             _ projectDir: String,
             _ resolvedRepositories: String,
             _ workspace: String,
-            _ createBuildSettingsAttribute: CreateBuildSettingsAttribute
+            _ createBuildSettingsAttribute: CreateBuildSettingsAttribute,
+            _ customToolchainID: String
         ) -> String
 
         let pbxProjectPrefixPartial: (

@@ -1,10 +1,33 @@
+#!/usr/bin/env swift
+
 import Foundation
+
+extension String {
+    func appendLineToURL(fileURL: URL) throws {
+        try (self + "\n").appendToURL(fileURL: fileURL)
+    }
+
+    func appendToURL(fileURL: URL) throws {
+        let data = self.data(using: String.Encoding.utf8)!
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            let fileHandle = try FileHandle(forWritingTo: fileURL)
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(data)
+            fileHandle.closeFile()
+        } else {
+            try self.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        }
+    }
+}
 
 // MARK: - Helpers
 
 enum PathKey: String {
     case emitModulePath = "-emit-module-path"
-    case emitObjCHeaderPath = "-emit-objc-header-path"
+    case emitModuleSourceInfoPath = "-emit-module-source-info-path"
+    case emitDependenciesPath = "-emit-dependencies-path"
+    case emitABIDescriptorPath = "-emit-abi-descriptor-path"
+    case emitModuleDocPath = "-emit-module-doc-path"
     case outputFileMap = "-output-file-map"
     case sdk = "-sdk"
 }
@@ -14,25 +37,31 @@ func processArgs(
 ) async throws -> (
     isPreviewThunk: Bool,
     isWMO: Bool,
-    paths: [PathKey: URL]
+    paths: [PathKey: [URL]]
 ) {
     var isPreviewThunk = false
     var isWMO = false
-    var paths: [PathKey: URL] = [:]
+    var paths: [PathKey: [URL]] = [:]
 
     var previousArg: String?
-    func processArg(_ arg: String) {
+    func processArg(_ arg: String) throws{
         if let rawPathKey = previousArg,
             let key = PathKey(rawValue: rawPathKey)
         {
-            paths[key] = URL(fileURLWithPath: arg)
+            let url = URL(fileURLWithPath: arg)
+            if paths[key] != nil {
+                paths[key]?.append(url)
+            } else {
+                paths[key] = [url]
+            }
             previousArg = nil
             return
         }
 
         if arg == "-wmo" || arg == "-whole-module-optimization" {
             isWMO = true
-        } else if arg.hasSuffix(".preview-thunk.swift") {
+        } else if arg.hasSuffix(".preview-thunk.o") {
+            try "isPreviewThunk".appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
             isPreviewThunk = true
         } else {
             previousArg = arg
@@ -45,13 +74,13 @@ func processArgs(
                 = URL(fileURLWithPath: String(arg.dropFirst()))
             for try await line in argumentFileURL.lines {
                 if line.hasPrefix(#"""#) && line.hasSuffix(#"""#) {
-                    processArg(String(line.dropFirst().dropLast()))
+                    try processArg(String(line.dropFirst().dropLast()))
                 } else {
-                    processArg(String(line))
+                    try processArg(String(line))
                 }
             }
         } else {
-            processArg(arg)
+            try processArg(arg)
         }
     }
 
@@ -75,17 +104,22 @@ extension URL {
     }
 }
 
-/// Touch the Xcode-required `.d` files
-func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
-    guard let outputFileMapPath = paths[PathKey.outputFileMap] else { return }
+extension Array where Element == URL {
+    mutating func touch() throws {
+        for var url in self {
+            try url.touch()
+        }
+    }
+}
+
+/// Touch the Xcode-required `.d` and `-master-emit-module.d` files
+func touchDepsFiles(isWMO: Bool, paths: [PathKey: [URL]]) throws {
+    guard let outputFileMapPaths = paths[PathKey.outputFileMap], let outputFileMapPath = outputFileMapPaths.first else { return }
 
     if isWMO {
-        let dPath = String(
-            outputFileMapPath.path.dropLast("-OutputFileMap.json".count) +
-            "-master.d"
-        )
-        var url = URL(fileURLWithPath: dPath)
-        try url.touch()
+        let pathNoExtension = String(outputFileMapPath.path.dropLast("-OutputFileMap.json".count))
+        var masterDFilePath = URL(fileURLWithPath: pathNoExtension + "-master.d")
+        try masterDFilePath.touch()
     } else {
         let data = try Data(contentsOf: outputFileMapPath)
         let outputFileMapRaw = try JSONSerialization.jsonObject(
@@ -98,33 +132,56 @@ func touchDepsFiles(isWMO: Bool, paths: [PathKey: URL]) throws {
         }
 
         for entry in outputFileMap.values {
-            guard let dPath = entry["dependencies"] as? String else {
-                continue
+            if let dPath = entry["dependencies"] as? String {
+                var url = URL(fileURLWithPath: dPath)
+                try url.touch()
             }
-            var url = URL(fileURLWithPath: dPath)
-            try url.touch()
+            continue
         }
     }
 }
 
-/// Touch the Xcode-required `.swift{module,doc,sourceinfo}` files
-func touchSwiftmoduleArtifacts(paths: [PathKey: URL]) throws {
-    if var swiftmodulePath = paths[PathKey.emitModulePath] {
-        var swiftdocPath = swiftmodulePath.deletingPathExtension()
-            .appendingPathExtension("swiftdoc")
-        var swiftsourceinfoPath = swiftmodulePath.deletingPathExtension()
-            .appendingPathExtension("swiftsourceinfo")
-        var swiftinterfacePath = swiftmodulePath.deletingPathExtension()
-            .appendingPathExtension("swiftinterface")
+/// Touch the Xcode-required `-master-emit-module.d`, `.{d,abi.json}` and `.swift{module,doc,sourceinfo}` files
+func touchSwiftmoduleArtifacts(paths: [PathKey: [URL]]) throws {
+    if let swiftmodulePaths = paths[PathKey.emitModulePath] {
+        for var swiftmodulePath in swiftmodulePaths {
+            let pathNoExtension = swiftmodulePath.deletingPathExtension()
+            var swiftdocPath = pathNoExtension
+                .appendingPathExtension("swiftdoc")
+            var swiftsourceinfoPath = pathNoExtension
+                .appendingPathExtension("swiftsourceinfo")
+            var swiftinterfacePath = pathNoExtension
+                .appendingPathExtension("swiftinterface")
+            var abiDescriptorPath = pathNoExtension
+                .appendingPathExtension("abi.json")
 
-        try swiftmodulePath.touch()
-        try swiftdocPath.touch()
-        try swiftsourceinfoPath.touch()
-        try swiftinterfacePath.touch()
+            try swiftmodulePath.touch()
+            try swiftdocPath.touch()
+            try swiftsourceinfoPath.touch()
+            try swiftinterfacePath.touch()
+            try abiDescriptorPath.touch()
+        }
     }
 
-    if var generatedHeaderPath = paths[PathKey.emitObjCHeaderPath] {
-        try generatedHeaderPath.touch()
+    if var modulePaths = paths[PathKey.emitModuleSourceInfoPath] {
+        try modulePaths.touch()
+    }
+
+    if var dependencyPaths = paths[PathKey.emitDependenciesPath] {
+        try dependencyPaths.touch()
+    }
+
+    if var abiPaths = paths[PathKey.emitABIDescriptorPath] {
+        try abiPaths.touch()
+    }
+
+    if let docPaths = paths[PathKey.emitModuleDocPath] {
+        for var path in docPaths {
+            var swiftModulePath = path.deletingPathExtension()
+                .appendingPathExtension("swiftmodule")
+            try swiftModulePath.touch()
+            try path.touch()
+        }
     }
 }
 
@@ -137,8 +194,8 @@ func runSubProcess(executable: String, args: [String]) throws -> Int32 {
     return task.terminationStatus
 }
 
-func handleXcodePreviewThunk(args: [String], paths: [PathKey: URL]) throws -> Never {
-    guard let sdkPath = paths[PathKey.sdk]?.path else {
+func handleXcodePreviewThunk(args: [String], paths: [PathKey: [URL]]) throws -> Never {
+    guard let sdkPath = paths[PathKey.sdk]?.first?.path else {
         fputs(
             "error: No such argument '-sdk'. Using /usr/bin/swiftc.",
             stderr
@@ -165,11 +222,23 @@ error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
     }
     let developerDir = sdkPath[range]
 
+    let processedArgs = args.dropFirst().map { arg in
+        if let range = arg.range(of: "BazelRulesXcodeProj") {
+            let substring = arg[..<range.lowerBound]
+            // Extract the version suffix (e.g. "16B40" from "BazelRulesXcodeProj16B40")
+            let toolchainSuffix = arg[range.upperBound...].prefix(while: { $0 != "." })
+            return arg.replacingOccurrences(
+                of: String(substring) + "BazelRulesXcodeProj" + toolchainSuffix + ".xctoolchain",
+                with: "\(developerDir)/Toolchains/XcodeDefault.xctoolchain"
+            )
+        }
+        return arg
+    }
     try exit(runSubProcess(
         executable: """
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 """,
-        args: Array(args.dropFirst())
+        args: Array(processedArgs)
     ))
 }
 
