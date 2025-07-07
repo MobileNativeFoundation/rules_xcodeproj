@@ -2,12 +2,6 @@
 
 import Foundation
 
-// Log command and arguments
-let logMessage = """
-\(CommandLine.arguments.joined(separator: " "))
-"""
-try logMessage.appendLineToURL(fileURL: URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("rulesxcodeproj_ld.log"))
-
 extension String {
     func appendLineToURL(fileURL: URL) throws {
         try (self + "\n").appendToURL(fileURL: fileURL)
@@ -158,11 +152,14 @@ func touchSwiftmoduleArtifacts(paths: [PathKey: [URL]]) throws {
                 .appendingPathExtension("swiftsourceinfo")
             var swiftinterfacePath = pathNoExtension
                 .appendingPathExtension("swiftinterface")
+            var abiDescriptorPath = pathNoExtension
+                .appendingPathExtension("abi.json")
 
             try swiftmodulePath.touch()
             try swiftdocPath.touch()
             try swiftsourceinfoPath.touch()
             try swiftinterfacePath.touch()
+            try abiDescriptorPath.touch()
         }
     }
 
