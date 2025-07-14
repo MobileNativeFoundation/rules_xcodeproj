@@ -13,6 +13,7 @@ readonly test_frameworks=(
   "libXCTestSwiftSupport.dylib"
   "IDEBundleInjection.framework"
   "XCTAutomationSupport.framework"
+  "Testing.framework"
   "XCTest.framework"
   "XCTestCore.framework"
   "XCTestSupport.framework"
