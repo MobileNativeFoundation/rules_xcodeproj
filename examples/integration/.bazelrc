@@ -22,7 +22,8 @@ build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
 build:rules_xcodeproj --apple_generate_dsym
 
 # To force swift_test to a specific OS version
-build:rules_xcodeproj --macos_minimum_os=12.0
+build:rules_xcodeproj --macos_minimum_os=13.0
+build:rules_xcodeproj --host_macos_minimum_os=13.0
 
 build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 
