@@ -97,9 +97,20 @@ readonly base_pre_config_flags=(
 # Custom Swift toolchains
 
 if [[ -n "${TOOLCHAINS-}" ]]; then
-  toolchain="${TOOLCHAINS%% *}"
-  if [[ "$toolchain" == "com.apple.dt.toolchain.XcodeDefault" ]]; then
-    unset toolchain
+  # We remove all Metal toolchains from the list first
+  toolchains_array=($TOOLCHAINS)
+  filtered_toolchains=()
+  for tc in "${toolchains_array[@]}"; do
+    if [[ "$tc" != "com.apple.dt.toolchain.Metal"* ]]; then
+      filtered_toolchains+=("$tc")
+    fi
+  done
+
+  if [[ ${#filtered_toolchains[@]} -gt 0 ]]; then
+    toolchain="${filtered_toolchains[0]}"
+    if [[ "$toolchain" == "com.apple.dt.toolchain.XcodeDefault" ]]; then
+      unset toolchain
+    fi
   fi
 fi
 
