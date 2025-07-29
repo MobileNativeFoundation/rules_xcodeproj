@@ -20,6 +20,9 @@ RELATIVE_DIAGNOSTICS_RE = re.compile(
     re.VERBOSE,
 )
 
+def _uppercase_first_letter(s: str) -> str:
+    return s[:1].upper() + s[1:]
+
 def _main(command: List[str]) -> None:
 
     def _signal_handler(signum, frame):
@@ -59,7 +62,7 @@ def _main(command: List[str]) -> None:
 
     def _replacement(match: re.Match) -> str:
         message = f"""\
-{match.group("loc")}{match.group("sev")}{match.group("msg").capitalize()}\
+{match.group("loc")}{match.group("sev")}{uppercase_first_letter(match.group("msg"))}\
 """
 
         if message.startswith(execution_root):
