@@ -40,7 +40,7 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.1...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -56,11 +56,20 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* Fixed improper capitalization of build diagnostics: [#3217](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3217)
+* TBD
 
 ### Ruleset Development Changes
 
 * TBD
+
+<a id="3.1.1"></a>
+## [3.1.1] - 2025-07-29
+
+[3.1.1]: https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/3.1.1
+
+### Fixed
+
+* Fixed improper capitalization of build diagnostics: [#3217](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3217)
 
 <a id="3.1.0"></a>
 ## [3.1.0] - 2025-07-25
