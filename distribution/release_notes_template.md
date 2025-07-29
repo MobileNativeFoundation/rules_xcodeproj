@@ -1,38 +1,7 @@
 ## What’s Changed
 
-### Since %LAST_TAG%
-
-* TBD
-
-**Below are the changes that were in %LAST_TAG%.**
-
-### ⚠️ Breaking changes ⚠️
-
-* TBD
-
-### New
-
-* TBD
-
-### Adjusted
-
-* TBD
-
-### Fixed
-
-* TBD
-
-### Ruleset Development Changes
-
-* TBD
-
-### Full Changelog
-
-https://github.com/buildbuddy-io/rules_xcodeproj/compare/%LAST_MINOR_TAG%...%CURRENT_TAG%
-
-## Contributors
-
-* TBD
+* [User facing changelog](CHANGELOG.md#%CURRENT_TAG%)
+* Full changelog: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/%PREVIOUS_TAG%...%CURRENT_TAG%
 
 ## Bzlmod Snippet
 

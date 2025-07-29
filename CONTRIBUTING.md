@@ -1,10 +1,12 @@
-## Pull Requests
+# Contributing guide
+
+## Pull requests
 
 All changes, no matter how trivial, must be done via pull request. Commits
 should never be made directly on the `main` branch. Prefer rebasing over
-merging `main` into your PR branch to update it and resolve conflicts.
+merging `main` into your pull request branch to update it and resolve conflicts.
 
-## Building And Running Locally
+## Building and running locally
 
 1. `git clone https://github.com/MobileNativeFoundation/rules_xcodeproj.git`
 2. `cd rules_xcodeproj`
@@ -28,29 +30,41 @@ into the directory if the example app is in a separate `WORKSPACE` with
 `cd examples/integration; bazel run //:xcodeproj`.
 
 You can run the internal tests as well:
-`bazel test //test/internal/xcschemes:all`
+
+```
+bazel test //test/internal/xcschemes:all
+```
 
 You can even test your changes in a separate project living outside this
-repo by overriding the module or repository in your `.bazelrc`.
+repo by overriding the module or repository in your `.bazelrc`:
+
 ```
 # With bzlmod:
 build --override_module=rules_xcodeproj=/path/to/rules_xcodeproj
 # Without bzlmod:
 build --override_repository=rules_xcodeproj=/path/to/rules_xcodeproj
 ```
+
 It's important to add it to the `.bazelrc` instead of passing it as a
 flag to ensure all invocations will use the same configuration.
 
 ## Updating docs
 
-Run `./docs/update_docs.sh` to generate to documentation based on the comments.
+Run `docs/update_docs.sh` to generate to documentation based on the comments.
 
 ## Linting and formatting
 
-Before submitting your PR you should run the linter and formatter to
-make sure everything if formatted properly in your bazel files
+Before submitting your pull request you should run the linter and formatter to
+make sure everything if formatted properly in your bazel files:
 
-`bazel run //:buildifier.fix`
+```
+bazel run //:buildifier.fix
+```
 
-you can run `bazel run //:buildifier.check` to make sure your formatting
+You can run `bazel run //:buildifier.check` to make sure your formatting
 is correct.
+
+## Changelog
+
+If warranted, add an entry to `CHANGELOG.md`. Try to predict the pull request
+number, or adjust it after opening the pull request.
