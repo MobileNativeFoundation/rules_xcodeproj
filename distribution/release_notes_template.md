@@ -1,6 +1,6 @@
 ## What’s Changed
 
-* [User facing changelog](CHANGELOG.md#%CURRENT_TAG%)
+* [User facing changelog](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/main/CHANGELOG.md#%CURRENT_TAG%)
 * Full changelog: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/%PREVIOUS_TAG%...%CURRENT_TAG%
 
 ## Bzlmod Snippet
