@@ -62,7 +62,7 @@ def _main(command: List[str]) -> None:
 
     def _replacement(match: re.Match) -> str:
         message = f"""\
-{match.group("loc")}{match.group("sev")}{uppercase_first_letter(match.group("msg"))}\
+{match.group("loc")}{match.group("sev")}{_uppercase_first_letter(match.group("msg"))}\
 """
 
         if message.startswith(execution_root):
