@@ -40,7 +40,7 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.1...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.2...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -61,6 +61,15 @@ END_UNRELEASED_TEMPLATE
 ### Ruleset Development Changes
 
 * TBD
+*
+<a id="3.1.2"></a>
+## [3.1.2] - 2025-07-29
+
+[3.1.2]: https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/3.1.2
+
+### Fixed
+
+* Fixed typo in previous fix: [#3218](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3218)
 
 <a id="3.1.1"></a>
 ## [3.1.1] - 2025-07-29
