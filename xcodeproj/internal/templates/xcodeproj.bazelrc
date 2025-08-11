@@ -65,6 +65,9 @@ common:rules_xcodeproj --show_result=0
 common:rules_xcodeproj --noworker_sandboxing
 common:rules_xcodeproj --spawn_strategy=remote,worker,local
 
+# Output group outputs aren't downloaded with minimal, we need to use toplevel with Xcode
+build:rules_xcodeproj --remote_download=toplevel
+
 ### `--config=rules_xcodeproj_generator`
 #
 # Used when generating a project.
