@@ -1,5 +1,9 @@
+"""Tests for the `xcodeproj_extra_files` module."""
+
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("//xcodeproj:xcodeproj_extra_files.bzl", "xcodeproj_extra_files")
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
 
 def _provider_contents_test_impl(ctx):
@@ -10,7 +14,11 @@ def _provider_contents_test_impl(ctx):
     files_list = target_under_test[XcodeProjExtraFilesHintInfo].files.to_list()
 
     asserts.equals(env, len(files_list), 1)
-    asserts.equals(env, files_list[0].path, "test/internal/xcodeproj_extra_files/BUILD")
+    asserts.equals(
+        env,
+        files_list[0].path,
+        "test/internal/xcodeproj_extra_files/BUILD",
+    )
 
     return analysistest.end(env)
 

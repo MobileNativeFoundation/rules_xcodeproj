@@ -20,8 +20,6 @@ project navigator, but otherwise aren't inputs to a target. The provider
 created by this rule should be attached to the related target via an aspect
 hint.
 
-This is only used when xcodeproj.generation_mode = "incremental" is set.
-
 **EXAMPLE**
 
 ```starlark
