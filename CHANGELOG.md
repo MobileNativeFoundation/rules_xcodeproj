@@ -48,7 +48,7 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* TBD
+* Added `xcodeproj_extra_files` aspect hint: [#3150](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3150)
 
 ### Adjusted
 
