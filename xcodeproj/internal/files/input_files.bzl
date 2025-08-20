@@ -409,7 +409,7 @@ def _collect_input_files(
         rule_files = ctx.rule.files,
     )
 
-    # Collect any extra fila provided via the `xcodeproj_extra_files` aspect hint
+    # Collect extra fila provided via the `xcodeproj_extra_files` aspect hint
     for hint in rule_attr.aspect_hints:
         if XcodeProjExtraFilesHintInfo in hint:
             hint_extra_files = hint[XcodeProjExtraFilesHintInfo].files
