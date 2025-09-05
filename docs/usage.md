@@ -58,6 +58,14 @@ bazel run //label/to:xcodeproj \
   'build --config=compile_only --remote_download_minimal $_GENERATOR_LABEL_'
 ```
 
+If you want to also cache resource processing (e.g. asset catalog compiles,
+`Info.plist` processing, entitlement processing, etc.), then you can also
+include the `resources` output group:
+
+```
+common:compile_only --output_groups=compiles,resources
+```
+
 # Bazel configs
 
 The way your project is generated, and the way Bazel builds it inside of Xcode,

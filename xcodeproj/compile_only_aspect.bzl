@@ -1,59 +1,106 @@
 """
-Aspect that collects the outputs of all compile actions of a given build.
-Useful to be able to build and cache compile actions on CI, without having to
-link, bundle, or codesign as well (which we don't cache anyway).
+Aspect that collects the outputs of all actions that we want to cache for
+developers in a given build.
+
+Useful to be able to build and cache actions on CI, without having to link,
+bundle, or codesign as well (which we don't cache anyway).
 """
 
-_DOWNSTREAM_VALID_RULE_KINDS = {
-    "apple_dynamic_framework_import": None,
-    "apple_dynamic_xcframework_import": None,
-    "apple_static_framework_import": None,
-    "apple_static_xcframework_import": None,
-    "cc_binary": None,
-    "ios_app_clip": None,
-    "ios_application": None,
-    "ios_extension": None,
-    "ios_framework": None,
-    "ios_ui_test": None,
-    "ios_unit_test": None,
-    "swift_binary": None,
-    "swift_test": None,
-    "_ios_internal_ui_test_bundle": None,
-    "_ios_internal_unit_test_bundle": None,
-    "_precompiled_apple_resource_bundle": None,
-}
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleResourceInfo")
+load("@build_bazel_rules_swift//swift:providers.bzl", "SwiftInfo")
 
-_SWIFT_LIBRARY_KINDS = [
-    "swift_library",
-    "swift_test",
-]
+_BUNDLING_RULE_KINDS = set([
+    "ios_app_clip",
+    "ios_application",
+    "ios_build_test",
+    "ios_extension",
+    "macos_application",
+    "macos_build_test",
+    "macos_extension",
+    "tvos_application",
+    "tvos_build_test",
+    "tvos_extension",
+    "visionos_application",
+    "visionos_build_test",
+    "visionos_extension",
+    "watchos_application",
+    "watchos_build_test",
+    "watchos_extension",
+    "_ios_internal_ui_test_bundle",
+    "_ios_internal_unit_test_bundle",
+    "_macos_internal_ui_test_bundle",
+    "_macos_internal_unit_test_bundle",
+    "_tvos_internal_ui_test_bundle",
+    "_tvos_internal_unit_test_bundle",
+    "_visionos_internal_ui_test_bundle",
+    "_visionos_internal_unit_test_bundle",
+    "_watchos_internal_ui_test_bundle",
+    "_watchos_internal_unit_test_bundle",
+])
 
-def _compile_only_aspect_impl(target, ctx):
-    outs = []
-    deps = []
-    if ctx.rule.kind in _DOWNSTREAM_VALID_RULE_KINDS or CcInfo in target:
-        if ctx.rule.kind in _SWIFT_LIBRARY_KINDS:
-            for action in target.actions:
-                if action.mnemonic == "SwiftCompile":
-                    outs = [action.outputs]
-                    break
-        elif ctx.rule.kind == "objc_library":
-            outs = [
-                action.outputs
-                for action in target.actions
-                if action.mnemonic == "ObjcCompile"
-            ]
+_COMPILE_MNEMONICS = set([
+    "CppCompile",
+    "ObjcCompile",
+    "SwiftCompile",
+])
+
+_RESOURCE_MNEMONICS = set([
+    "AlternateIconsInsert",
+    "AppIntentsMetadataProcessor",
+    "AssetCatalogCompile",
+    "CompileInfoPlist",
+    "CompilePlist",
+    "CompileRootInfoPlist",
+    "CompileStrings",
+    "CompileTextureAtlas",
+    "CompileXCStrings",
+    "CopyPng",
+    "MappingModelCompile",
+    "MetalCompile",
+    "MlmodelCompile",
+    "MomCompile",
+    "ProcessEntitlementsFiles",
+    "ProcessDEREntitlements",
+    "ProcessSimulatorEntitlementsFile",
+    "StoryboardCompile",
+    "StoryboardLink",
+    "XibCompile",
+])
+
+def _xcodeproj_cache_warm_aspect_impl(target, ctx):
+    compile_outs = []
+    resource_outs = []
+
+    if ctx.rule.kind in _BUNDLING_RULE_KINDS:
         deps = (
-            getattr(ctx.rule.attr, "deps", []) +
-            getattr(ctx.rule.attr, "implementation_deps", []) +
-            getattr(ctx.rule.attr, "private_deps", [])
+            ctx.rule.attr.deps +
+            getattr(ctx.rule.attr, "extensions", []) +
+            getattr(ctx.rule.attr, "frameworks", [])
         )
-        swift_target = getattr(ctx.rule.attr, "swift_target", None)
-        if swift_target:
-            deps.append(swift_target)
-        clang_target = getattr(ctx.rule.attr, "clang_target", None)
-        if clang_target:
-            deps.append(clang_target)
+
+        # Collect already processed resources from dependencies
+        resource_info = target[AppleResourceInfo]
+        dep_resources = [
+            resources
+            for (_, _, resources) in (
+                resource_info.processed +
+                resource_info.unprocessed
+            )
+        ]
+
+        # Collect resources from this target
+        self_resources = [
+            action.outputs
+            for action in target.actions
+            if action.mnemonic in _RESOURCE_MNEMONICS
+        ]
+
+        resource_outs = self_resources + dep_resources
+    elif ctx.rule.kind == "mixed_language_library":
+        deps = [
+            ctx.rule.attr.swift_target,
+            ctx.rule.attr.clang_target,
+        ]
     elif ctx.rule.kind == "test_suite":
         deps = ctx.rule.attr.tests
     elif ctx.rule.kind == "ios_build_test":
@@ -63,35 +110,74 @@ def _compile_only_aspect_impl(target, ctx):
             getattr(ctx.rule.attr, "top_level_device_targets", []) +
             getattr(ctx.rule.attr, "top_level_simulator_targets", [])
         )
+    elif CcInfo in target or SwiftInfo in target:
+        compile_outs = [
+            action.outputs
+            for action in target.actions
+            if action.mnemonic in _COMPILE_MNEMONICS
+        ]
+
+        if compile_outs:
+            # If this target compiled code, we don't need the transitive
+            # outputs, since they are implicitly compiled
+            deps = []
+        else:
+            # Otherwise collect the transitive outputs
+            deps = (
+                getattr(ctx.rule.attr, "deps", []) +
+                getattr(ctx.rule.attr, "implementation_deps", []) +
+                getattr(ctx.rule.attr, "private_deps", [])
+            )
     else:
-        return []
+        deps = getattr(ctx.rule.attr, "deps", [])
 
     return [
         OutputGroupInfo(
             compiles = depset(
-                transitive = outs + [
+                transitive = compile_outs + [
                     dep[OutputGroupInfo].compiles
                     for dep in deps
-                    if OutputGroupInfo in dep and hasattr(dep[OutputGroupInfo], "compiles")
+                    if (
+                        OutputGroupInfo in dep and
+                        hasattr(dep[OutputGroupInfo], "compiles")
+                    )
+                ],
+            ),
+            resources = depset(
+                transitive = resource_outs + [
+                    dep[OutputGroupInfo].resources
+                    for dep in deps
+                    if (
+                        OutputGroupInfo in dep and
+                        hasattr(dep[OutputGroupInfo], "resources")
+                    )
                 ],
             ),
         ),
     ]
 
-compile_only_aspect = aspect(
-    implementation = _compile_only_aspect_impl,
+xcodeproj_cache_warm_aspect = aspect(
+    implementation = _xcodeproj_cache_warm_aspect_impl,
     attr_aspects = [
         "deps",
         "implementation_deps",
         "private_deps",
-        # from `mixed_language_library`
+
+        # `*_application`
+        "extensions",
+        "frameworks",
+
+        # `mixed_language_library`
         "clang_target",
         "swift_target",
-        # from `test_suite`
-        "targets",
-        # from `*_build_test`
+
+        # `test_suite`
         "tests",
-        # from `xcodeproj`
+
+        # `*_build_test`
+        "targets",
+
+        # `xcodeproj`
         "top_level_device_targets",
         "top_level_simulator_targets",
     ],
