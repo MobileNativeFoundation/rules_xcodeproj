@@ -116,18 +116,11 @@ def _xcodeproj_cache_warm_aspect_impl(target, ctx):
             for action in target.actions
             if action.mnemonic in _COMPILE_MNEMONICS
         ]
-
-        if compile_outs:
-            # If this target compiled code, we don't need the transitive
-            # outputs, since they are implicitly compiled
-            deps = []
-        else:
-            # Otherwise collect the transitive outputs
-            deps = (
-                getattr(ctx.rule.attr, "deps", []) +
-                getattr(ctx.rule.attr, "implementation_deps", []) +
-                getattr(ctx.rule.attr, "private_deps", [])
-            )
+        deps = (
+            getattr(ctx.rule.attr, "deps", []) +
+            getattr(ctx.rule.attr, "implementation_deps", []) +
+            getattr(ctx.rule.attr, "private_deps", [])
+        )
     else:
         deps = getattr(ctx.rule.attr, "deps", [])
 
