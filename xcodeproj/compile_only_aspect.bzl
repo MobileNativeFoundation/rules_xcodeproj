@@ -83,8 +83,8 @@ def _xcodeproj_cache_warm_aspect_impl(target, ctx):
         dep_resources = [
             resources
             for (_, _, resources) in (
-                resource_info.processed +
-                resource_info.unprocessed
+                getattr(resource_info, "processed", []) +
+                getattr(resource_info, "unprocessed", [])
             )
         ]
 
