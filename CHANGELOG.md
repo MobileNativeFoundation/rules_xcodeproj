@@ -40,11 +40,32 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.2...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.2.0...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
 * TBD
+
+### New
+
+* TBD
+
+### Adjusted
+
+* TBD
+
+### Fixed
+
+* TBD
+
+### Ruleset Development Changes
+
+* TBD
+
+<a id="3.2.0"></a>
+## [3.2.0] - 2025-09-12
+
+[3.2.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.1.2...3.2.0
 
 ### New
 
@@ -59,10 +80,6 @@ END_UNRELEASED_TEMPLATE
 ### Fixed
 
 * Added work around for “Extract app intents metadata” failure [#3225](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3225)
-
-### Ruleset Development Changes
-
-* TBD
 
 <a id="3.1.2"></a>
 ## [3.1.2] - 2025-07-29
