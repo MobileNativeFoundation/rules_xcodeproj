@@ -73,13 +73,13 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* Improved `compile_only_aspect` [#3222](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3222) & [#3223](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3223)
+* Improved `compile_only_aspect`: [#3222](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3222) & [#3223](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3223)
   * Now collects `CppCompile` action outputs
   * Has a new `resources` output group to collect generated and processed resources
 
 ### Fixed
 
-* Added work around for “Extract app intents metadata” failure [#3225](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3225)
+* Added work around for “Extract app intents metadata” failure: [#3225](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3225)
 
 <a id="3.1.2"></a>
 ## [3.1.2] - 2025-07-29
@@ -1231,7 +1231,7 @@ Since this is the first major release, every feature can be seen as “new”, s
 * Fixed BwX handling of `--apple_generate_dsym`: [#1714](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1714)
 
 
-See the [1.0.0rc1 release note](https://github.com/buildbuddy-io/rules_xcodeproj/releases/tag/1.0.0rc1) for more details of what is in the 1.0.0rc release.
+See the [1.0.0rc1 release note](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/1.0.0rc1) for more details of what is in the 1.0.0rc release.
 
 <a id="1.0.0rc1"></a>
 ## [1.0.0rc1] - 2023-01-30
@@ -1271,7 +1271,7 @@ See the [1.0.0rc1 release note](https://github.com/buildbuddy-io/rules_xcodeproj
 * Fixed `depset` mutability issue: [#1615](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1615)
 
 
-See the [0.12.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/releases/tag/0.12.0) for more details of what is in the 0.12.0 release.
+See the [0.12.0 release note](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/0.12.0) for more details of what is in the 0.12.0 release.
 
 <a id="0.12.2"></a>
 ## [0.12.2] - 2023-01-19
@@ -1284,7 +1284,7 @@ See the [0.12.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 * Header search paths are no longer made absolute: [#1603](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1603)
 
 
-See the [0.12.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/releases/tag/0.12.0) for more details of what is in the 0.12.0 release.
+See the [0.12.0 release note](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/0.12.0) for more details of what is in the 0.12.0 release.
 
 <a id="0.12.0"></a>
 ## [0.12.0] - 2023-01-18
@@ -1307,7 +1307,7 @@ See the [0.12.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 * **rules_xcodeproj**’s `.lldbinit` is now created in a launch pre-action: [#1532](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1532), [#1533](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1533), [#1534](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1534), [#1535](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1535), and [#1587](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1587)
 * The `link.params` file is now lazily generated, and has most flags passed through directly from Bazel: [#1521](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1521), [#1522](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1522), [#1538](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1538), [#1541](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1541), [#1542](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1542), [#1543](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1543), [#1544](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1544), [#1546](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1546), [#1547](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1547), [#1548](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1548), [#1549](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1549), [#1551](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1551), [#1557](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1557), [#1569](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1569), [#1570](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1570), [#1572](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1572), [#1582](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1582), and [#1595](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1595)
 * Started work on passing through compiler flags directly from Bazel: [#1565](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1565), [#1566](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1566), [#1568](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1568), [#1569](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1569), [#1570](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1570), [#1573](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1573), [#1574](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1574), [#1575](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1575), [#1576](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1576), [#1577](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1577), [#1578](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1578), [#1579](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1579), [#1583](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1583), [#1581](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1581), [#1592](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1592), and [#1595](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1595)
-* BwX mode now picks up additional "headers" (e.g. hmaps), though see [this FAQ](https://github.com/buildbuddy-io/rules_xcodeproj/blob/0.12.0/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode) for caveats : [#1539](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1539) and [#1540](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1540)
+* BwX mode now picks up additional "headers" (e.g. hmaps), though see [this FAQ](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/0.12.0/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode) for caveats : [#1539](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1539) and [#1540](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1540)
 * Added support for command line args in test schemes: [#1520](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1520)
 * If a custom scheme sets `custom_working_directory`, it's now also applied to the Profile action: [#1501](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1501)
 * Improved iMessage app extension scheme creation: [#1531](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1531)
@@ -1366,7 +1366,7 @@ See the [0.12.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 * Fixed capitalization of error messages: [#1380](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1380)
 * Fixed indexing of generated and external sources: [#1381](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1381)
 
-See the [0.10.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/releases/tag/0.10.0) for more details of what is in the 0.10.0 release.
+See the [0.10.0 release note](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/0.10.0) for more details of what is in the 0.10.0 release.
 
 <a id="0.10.1"></a>
 ## [0.10.1] - 2022-10-28
@@ -1375,7 +1375,7 @@ See the [0.10.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 
 * Fixed some BwX linker bugs
 
-See the [0.10.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/releases/tag/0.10.0) for more details of what is in the 0.10.0 release.
+See the [0.10.0 release note](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/tag/0.10.0) for more details of what is in the 0.10.0 release.
 
 <a id="0.10.0"></a>
 ## [0.10.0] - 2022-10-28
@@ -1478,7 +1478,7 @@ See the [0.10.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 
 * The project generator is now run inside a runner script, and allows for configuration via Bazel configs: [#911](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/911), [#950](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/950), [#952](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/952), [#990](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/990), [#1061](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1061), [#1062](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1062), and [#1075](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1075)
     * This means that most command-line flags you pass to `bazel run //:xcodeproj` are ignored
-    * To adjust the project generation, use the newly available [Bazel configs](https://github.com/buildbuddy-io/rules_xcodeproj/blob/0.8.0/docs/usage.md#bazel-configs)
+    * To adjust the project generation, use the newly available [Bazel configs](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/0.8.0/docs/usage.md#bazel-configs)
 * Bazel-built Swift now uses index-while-building: [#1040](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1040), [#1043](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1043), [#1096](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1096), and [#1098](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1098)
 * Added support for custom working directory in custom scheme launch actions: [#1051](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1051), [#1074](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1074), and [#1076](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1076)
 * Added support for custom Swift toolchains: [#1027](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1027)
@@ -1491,7 +1491,7 @@ See the [0.10.0 release note](https://github.com/buildbuddy-io/rules_xcodeproj/r
 * Test targets now use their non-internal name: [#980](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/980) and [#1044](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1044)
 * All versions of Info.plist for a given target are now generated when building: [#985](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/985)
 * Added support for the "Compile File" command: [#976](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/976)
-* Fixed handling of missing `AppleBinaryInfo.infoplist`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/1002
+* Fixed handling of missing `AppleBinaryInfo.infoplist`: [#1002](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1002)
 * (Mostly) fixed handling of `apple_universal_binary` targets: [#1003](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1003), [#1004](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1004), and [#1034](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1034)
 * The generator is now a universal target with a set minimum OS: [#1008](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1008)
 * Extracted `bazel_build.sh` to a script: [#1009](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1009) and [#1016](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/1016)
@@ -1621,7 +1621,7 @@ A small bug fix/improvements release:
 
 ### First PRs
 
-* @luispadron made their first contribution in https://github.com/buildbuddy-io/rules_xcodeproj/pull/647
+* @luispadron made their first contribution in [#647](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/647)
 
 <a id="0.5.0"></a>
 ## [0.5.0] - 2022-07-01
@@ -1715,35 +1715,35 @@ A small bug fix release:
 
 ### New
 
-* Added initial support for Building with Bazel: https://github.com/buildbuddy-io/rules_xcodeproj/pull/313, https://github.com/buildbuddy-io/rules_xcodeproj/pull/316, https://github.com/buildbuddy-io/rules_xcodeproj/pull/350, https://github.com/buildbuddy-io/rules_xcodeproj/pull/359, https://github.com/buildbuddy-io/rules_xcodeproj/pull/362, https://github.com/buildbuddy-io/rules_xcodeproj/pull/384, https://github.com/buildbuddy-io/rules_xcodeproj/pull/389, https://github.com/buildbuddy-io/rules_xcodeproj/pull/394, https://github.com/buildbuddy-io/rules_xcodeproj/pull/396, https://github.com/buildbuddy-io/rules_xcodeproj/pull/401, https://github.com/buildbuddy-io/rules_xcodeproj/pull/404, https://github.com/buildbuddy-io/rules_xcodeproj/pull/405, https://github.com/buildbuddy-io/rules_xcodeproj/pull/408, https://github.com/buildbuddy-io/rules_xcodeproj/pull/407, https://github.com/buildbuddy-io/rules_xcodeproj/pull/420, https://github.com/buildbuddy-io/rules_xcodeproj/pull/422, https://github.com/buildbuddy-io/rules_xcodeproj/pull/423, https://github.com/buildbuddy-io/rules_xcodeproj/pull/425, https://github.com/buildbuddy-io/rules_xcodeproj/pull/426, https://github.com/buildbuddy-io/rules_xcodeproj/pull/440, https://github.com/buildbuddy-io/rules_xcodeproj/pull/446, and more
-  * ⚠️ Support for Building with Bazel is still very rough, and has a bit more to go in order to reach our [high level goals](https://github.com/buildbuddy-io/rules_xcodeproj/blob/0.3.0/doc/design/high-level.md). Also, in Bazel versions that still have [this bug](https://github.com/bazelbuild/bazel/issues/13997), the rapidly changing nature of the support (which will involve more transitions changes) can make it annoying to use this mode. _With that said_, we would appreciate all the feedback we can get from early testers! :warning:
-* Added support for `cc_library.includes`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/310  and https://github.com/buildbuddy-io/rules_xcodeproj/pull/325
-* Added support for `swift_library.private_deps`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/342
-* Added support for `objc_import`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/347
-* Schemes are now generated instead of letting Xcode generate them: https://github.com/buildbuddy-io/rules_xcodeproj/pull/361, https://github.com/buildbuddy-io/rules_xcodeproj/pull/397, and https://github.com/buildbuddy-io/rules_xcodeproj/pull/385
-* Added support for code signing entitlements: https://github.com/buildbuddy-io/rules_xcodeproj/pull/367
-* Added support for `objc_library.sdk_dylibs`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/372
-* Added support for Core Data model files: https://github.com/buildbuddy-io/rules_xcodeproj/pull/288
+* Added initial support for Building with Bazel: [#313](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/313), [#316](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/316), [#350](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/350), [#359](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/359), [#362](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/362), [#384](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/384), [#389](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/389), [#394](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/394), [#396](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/396), [#401](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/401), [#404](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/404), [#405](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/405), [#408](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/408), [#407](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/407), [#420](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/420), [#422](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/422), [#423](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/423), [#425](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/425), [#426](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/426), [#440](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/440), [#446](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/446), and more
+  * ⚠️ Support for Building with Bazel is still very rough, and has a bit more to go in order to reach our [high level goals](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/0.3.0/doc/design/high-level.md). Also, in Bazel versions that still have [this bug](https://github.com/bazelbuild/bazel/issues/13997), the rapidly changing nature of the support (which will involve more transitions changes) can make it annoying to use this mode. _With that said_, we would appreciate all the feedback we can get from early testers! :warning:
+* Added support for `cc_library.includes`: [#310](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/310)  and [#325](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/325)
+* Added support for `swift_library.private_deps`: [#342](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/342)
+* Added support for `objc_import`: [#347](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/347)
+* Schemes are now generated instead of letting Xcode generate them: [#361](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/361), [#397](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/397), and [#385](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/385)
+* Added support for code signing entitlements: [#367](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/367)
+* Added support for `objc_library.sdk_dylibs`: [#372](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/372)
+* Added support for Core Data model files: [#288](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/288)
 
 ### Fixes and Improvements
 
-* Fixed explosive memory use of inefficient `_process_dependencies()`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/307
-* Fixed projects failing to build after being moved: https://github.com/buildbuddy-io/rules_xcodeproj/pull/319
-* Improved indexing: https://github.com/buildbuddy-io/rules_xcodeproj/pull/329 and https://github.com/buildbuddy-io/rules_xcodeproj/pull/330
-* Improved handling of projects without Bazel generated files: https://github.com/buildbuddy-io/rules_xcodeproj/pull/331, https://github.com/buildbuddy-io/rules_xcodeproj/pull/332, https://github.com/buildbuddy-io/rules_xcodeproj/pull/337, and  https://github.com/buildbuddy-io/rules_xcodeproj/pull/381
-* Improved handling of Bazel outputs: https://github.com/buildbuddy-io/rules_xcodeproj/pull/333, https://github.com/buildbuddy-io/rules_xcodeproj/pull/353, https://github.com/buildbuddy-io/rules_xcodeproj/pull/430, https://github.com/buildbuddy-io/rules_xcodeproj/pull/431, and https://github.com/buildbuddy-io/rules_xcodeproj/pull/434
-* Various linking improvements: https://github.com/buildbuddy-io/rules_xcodeproj/pull/340, https://github.com/buildbuddy-io/rules_xcodeproj/pull/345, https://github.com/buildbuddy-io/rules_xcodeproj/pull/348,  https://github.com/buildbuddy-io/rules_xcodeproj/pull/365, https://github.com/buildbuddy-io/rules_xcodeproj/pull/409
-* Improved handling of frameworks: https://github.com/buildbuddy-io/rules_xcodeproj/pull/346 and https://github.com/buildbuddy-io/rules_xcodeproj/pull/444
-* Objective-C is now used instead of Swift for the compile stub: https://github.com/buildbuddy-io/rules_xcodeproj/pull/369
-* A work around for an Xcode debugging crash related to `DYLD_LIBRARY_PATH` is now used: https://github.com/buildbuddy-io/rules_xcodeproj/pull/373
+* Fixed explosive memory use of inefficient `_process_dependencies()`: [#307](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/307)
+* Fixed projects failing to build after being moved: [#319](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/319)
+* Improved indexing: [#329](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/329) and [#330](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/330)
+* Improved handling of projects without Bazel generated files: [#331](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/331), [#332](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/332), [#337](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/337), and  [#381](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/381)
+* Improved handling of Bazel outputs: [#333](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/333), [#353](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/353), [#430](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/430), [#431](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/431), and [#434](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/434)
+* Various linking improvements: [#340](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/340), [#345](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/345), [#348](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/348),  [#365](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/365), [#409](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/409)
+* Improved handling of frameworks: [#346](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/346) and [#444](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/444)
+* Objective-C is now used instead of Swift for the compile stub: [#369](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/369)
+* A work around for an Xcode debugging crash related to `DYLD_LIBRARY_PATH` is now used: [#373](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/373)
 * Various changes to ensure that `--incompatible_disallow_empty_glob` is supported
-* Removed color ansi codes from bazel output within Xcode: https://github.com/buildbuddy-io/rules_xcodeproj/pull/410
-* Info.plist patching warning is now silenced: https://github.com/buildbuddy-io/rules_xcodeproj/pull/411
-* `dbg` compilation mode is used when building insides Xcode: https://github.com/buildbuddy-io/rules_xcodeproj/pull/413
-* Fixed default `GCC_OPTIMIZATION_LEVEL`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/412
-* Fixed `-debug-prefix-map` handling: https://github.com/buildbuddy-io/rules_xcodeproj/pull/416
-* Improved disambiguation of targets with names that only differ by case: https://github.com/buildbuddy-io/rules_xcodeproj/pull/424
-* Improved filtering of input files: https://github.com/buildbuddy-io/rules_xcodeproj/pull/442
+* Removed color ansi codes from bazel output within Xcode: [#410](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/410)
+* Info.plist patching warning is now silenced: [#411](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/411)
+* `dbg` compilation mode is used when building insides Xcode: [#413](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/413)
+* Fixed default `GCC_OPTIMIZATION_LEVEL`: [#412](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/412)
+* Fixed `-debug-prefix-map` handling: [#416](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/416)
+* Improved disambiguation of targets with names that only differ by case: [#424](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/424)
+* Improved filtering of input files: [#442](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/442)
 
 <a id="0.2.0"></a>
 ## [0.2.0] - 2022-04-15
@@ -1752,30 +1752,30 @@ A small bug fix release:
 
 ### New
 
-* Added support for `macos_unit_test`,`tvos_unit_test`, and `watchos_unit_test`:  https://github.com/buildbuddy-io/rules_xcodeproj/pull/267, https://github.com/buildbuddy-io/rules_xcodeproj/pull/282, and https://github.com/buildbuddy-io/rules_xcodeproj/pull/286
-* Added support for `-application-extension`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/287
-* Added support for the `pch` attribute: https://github.com/buildbuddy-io/rules_xcodeproj/pull/280
-* `BUILD` files are now included in Xcode's Project navigator: https://github.com/buildbuddy-io/rules_xcodeproj/pull/301
+* Added support for `macos_unit_test`,`tvos_unit_test`, and `watchos_unit_test`:  [#267](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/267), [#282](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/282), and [#286](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/286)
+* Added support for `-application-extension`: [#287](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/287)
+* Added support for the `pch` attribute: [#280](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/280)
+* `BUILD` files are now included in Xcode's Project navigator: [#301](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/301)
 
 ### Fixes and Improvements
 
-* Fixed build errors when no targets produced `modulemap` files: https://github.com/buildbuddy-io/rules_xcodeproj/pull/251
-* The `ARCHS` build setting is now set: https://github.com/buildbuddy-io/rules_xcodeproj/pull/249
-* Fixed `PRODUCT_MODULE_NAME` calculation: https://github.com/buildbuddy-io/rules_xcodeproj/pull/253
-* Fixed `UIDeviceFamily` Info.plist warning: https://github.com/buildbuddy-io/rules_xcodeproj/pull/260
-* Fixed various framework linking issues: https://github.com/buildbuddy-io/rules_xcodeproj/pull/259, https://github.com/buildbuddy-io/rules_xcodeproj/pull/258, https://github.com/buildbuddy-io/rules_xcodeproj/pull/277, and https://github.com/buildbuddy-io/rules_xcodeproj/pull/278
-* Converted last use of `python` to `python3`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/254
-* Fixed file permissions of copied generated files: https://github.com/buildbuddy-io/rules_xcodeproj/pull/255
-* We now list sources in the same order that Bazel sees them: https://github.com/buildbuddy-io/rules_xcodeproj/pull/265
-* Fixed function name typo in warning message: https://github.com/buildbuddy-io/rules_xcodeproj/pull/274
-* Fixed PCM compilation by setting `GCC_PREPROCESSOR_DEFINITIONS` instead of `OTHER_CFLAGS`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/275
-* Fixed modulemap rewriting: https://github.com/buildbuddy-io/rules_xcodeproj/pull/279 and https://github.com/buildbuddy-io/rules_xcodeproj/pull/284
-* Improved `defines` and `local_defines` detection: https://github.com/buildbuddy-io/rules_xcodeproj/pull/276
-* Fixed resource collection for targets that are included via `deps`: https://github.com/buildbuddy-io/rules_xcodeproj/pull/263
-* The `SUPPORTED_PLATFORMS` build setting is now set: https://github.com/buildbuddy-io/rules_xcodeproj/pull/289
-* Fixed Swift `copt` set PCM header search paths: https://github.com/buildbuddy-io/rules_xcodeproj/pull/291
-* Improved Indexing: https://github.com/buildbuddy-io/rules_xcodeproj/pull/292 and https://github.com/buildbuddy-io/rules_xcodeproj/pull/294
-* Improved initial project generation experience: https://github.com/buildbuddy-io/rules_xcodeproj/pull/297 and https://github.com/buildbuddy-io/rules_xcodeproj/pull/298
+* Fixed build errors when no targets produced `modulemap` files: [#251](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/251)
+* The `ARCHS` build setting is now set: [#249](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/249)
+* Fixed `PRODUCT_MODULE_NAME` calculation: [#253](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/253)
+* Fixed `UIDeviceFamily` Info.plist warning: [#260](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/260)
+* Fixed various framework linking issues: [#259](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/259), [#258](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/258), [#277](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/277), and [#278](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/278)
+* Converted last use of `python` to `python3`: [#254](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/254)
+* Fixed file permissions of copied generated files: [#255](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/255)
+* We now list sources in the same order that Bazel sees them: [#265](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/265)
+* Fixed function name typo in warning message: [#274](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/274)
+* Fixed PCM compilation by setting `GCC_PREPROCESSOR_DEFINITIONS` instead of `OTHER_CFLAGS`: [#275](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/275)
+* Fixed modulemap rewriting: [#279](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/279) and [#284](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/284)
+* Improved `defines` and `local_defines` detection: [#276](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/276)
+* Fixed resource collection for targets that are included via `deps`: [#263](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/263)
+* The `SUPPORTED_PLATFORMS` build setting is now set: [#289](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/289)
+* Fixed Swift `copt` set PCM header search paths: [#291](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/291)
+* Improved Indexing: [#292](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/292) and [#294](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/294)
+* Improved initial project generation experience: [#297](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/297) and [#298](http://github.com/MobileNativeFoundation/rules_xcodeproj/pull/298)
 
 <a id="0.1.0"></a>
 ## [0.1.0] - 2022-04-05
