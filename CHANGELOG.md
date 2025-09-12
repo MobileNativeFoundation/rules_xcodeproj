@@ -52,16 +52,18 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* TBD
+* Improved `compile_only_aspect` [#3222](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3222) & [#3223](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3223)
+  * Now collects `CppCompile` action outputs
+  * Has a new `resources` output group to collect generated and processed resources
 
 ### Fixed
 
-* TBD
+* Added work around for “Extract app intents metadata” failure [#3225](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3225)
 
 ### Ruleset Development Changes
 
 * TBD
-*
+
 <a id="3.1.2"></a>
 ## [3.1.2] - 2025-07-29
 
