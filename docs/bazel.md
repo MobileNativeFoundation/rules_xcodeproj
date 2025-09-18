@@ -9,7 +9,7 @@ For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
-load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 ```
 
 ### Index
