@@ -42,6 +42,9 @@ _COMPILE_MNEMONICS = set([
     "CppCompile",
     "ObjcCompile",
     "SwiftCompile",
+    "SwiftCompileCodegen",
+    "SwiftCompileModule",
+    "SwiftDeriveFiles",
 ])
 
 _RESOURCE_MNEMONICS = set([
