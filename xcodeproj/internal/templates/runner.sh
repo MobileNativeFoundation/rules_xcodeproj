@@ -170,7 +170,7 @@ common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
 EOF
 
 if command -v /usr/bin/xcode-select >/dev/null 2>&1; then
-  developer_dir=$(/usr/bin/xcode-select -p)
+  developer_dir="$(/usr/bin/xcode-select -p)"
 else
   developer_dir="${DEVELOPER_DIR:-}"
 fi
@@ -179,7 +179,7 @@ if [[ -n "$developer_dir" ]]; then
   cat >> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
 
 # Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
-common:rules_xcodeproj --repo_env=DEVELOPER_DIR=$developer_dir
+common:rules_xcodeproj --repo_env="DEVELOPER_DIR=$developer_dir"
 EOF
 fi
 
