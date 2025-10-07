@@ -19,6 +19,9 @@ def write_execution_root_file(*, actions, bin_dir_path, name):
         command = """\
 bin_dir_full="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir}";)"
 execution_root="${{bin_dir_full%/{bin_dir}}}"
+if [[ $execution_root == /private/* ]]; then
+  execution_root="${{execution_root#/private}}"
+fi
 
 echo "$execution_root" > "{output}"
 """.format(
