@@ -56,7 +56,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed incompatible output base causing startup options change: [#3229](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3229)
 
 ### Ruleset Development Changes
 
