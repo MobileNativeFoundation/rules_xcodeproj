@@ -56,7 +56,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed potential stale `--xcode_version` in `runner.sh`: [#3232](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3232)
 
 ### Ruleset Development Changes
 
