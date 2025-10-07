@@ -57,6 +57,7 @@ END_UNRELEASED_TEMPLATE
 ### Fixed
 
 * Fixed incompatible output base causing startup options change: [#3229](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3229)
+* Fixed potential stale `--xcode_version` in `runner.sh`: [#3232](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3232)
 
 ### Ruleset Development Changes
 
