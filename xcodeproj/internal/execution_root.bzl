@@ -4,6 +4,10 @@ def write_execution_root_file(*, actions, bin_dir_path, name):
     """Creates a `File` containing the absolute path to the Bazel execution \
     root.
 
+    If the execution root is under `/private/`, this prefix is stripped so that
+    we don't end up with a different path than what Xcode uses (since we also
+    remove this prefix for Xcode).
+
     Args:
         actions: `ctx.actions`.
         bin_dir_path: `ctx.bin_dir.path`.
@@ -19,6 +23,9 @@ def write_execution_root_file(*, actions, bin_dir_path, name):
         command = """\
 bin_dir_full="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir}";)"
 execution_root="${{bin_dir_full%/{bin_dir}}}"
+if [[ $execution_root == /private/* ]]; then
+  execution_root="${{execution_root#/private}}"
+fi
 
 echo "$execution_root" > "{output}"
 """.format(
