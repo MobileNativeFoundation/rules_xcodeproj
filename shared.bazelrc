@@ -31,8 +31,6 @@ common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_common_flags='--config=nobzl
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --bes_upload_mode=nowait_for_upload_complete
-build:cache --experimental_remote_cache_async
-build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
 build:cache --modify_execution_info=^(AppleLipo|BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppArchive|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build:cache --remote_cache=grpcs://remote.buildbuddy.io

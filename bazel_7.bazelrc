@@ -1,1 +1,4 @@
 common --incompatible_disallow_empty_glob
+
+build:cache --experimental_remote_cache_async
+build:cache --experimental_remote_cache_compression
