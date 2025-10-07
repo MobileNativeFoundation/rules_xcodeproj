@@ -4,6 +4,10 @@ def write_execution_root_file(*, actions, bin_dir_path, name):
     """Creates a `File` containing the absolute path to the Bazel execution \
     root.
 
+    If the execution root is under `/private/`, this prefix is stripped so that
+    we don't end up with a different path than what Xcode uses (since we also
+    remove this prefix for Xcode).
+
     Args:
         actions: `ctx.actions`.
         bin_dir_path: `ctx.bin_dir.path`.
