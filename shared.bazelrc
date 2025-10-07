@@ -37,7 +37,6 @@ build:cache --jobs=100
 build:cache --modify_execution_info=^(AppleLipo|BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppArchive|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
 build:cache --@rules_xcodeproj//xcodeproj:extra_common_flags='--config=cache'
-build:cache --@rules_xcodeproj//xcodeproj:extra_generator_flags='--bes_backend= --bes_results_url='
 
 # Build with --config=remote to use BuildBuddy RBE
 build:remote --config=cache
