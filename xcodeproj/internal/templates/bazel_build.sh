@@ -19,7 +19,7 @@
 # - output_groups
 # - (optional) target_ids
 
-output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
+output_groups_flag="--output_groups='$(IFS=, ; echo "${output_groups[*]}")'"
 readonly output_groups_flag
 
 # Set `output_base`
