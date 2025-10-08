@@ -59,13 +59,25 @@ package_group(
 """,
     )
 
-    if repository_ctx.execute(["command", "-v", "/sbin/md5"]).return_code == 0:
-        md5_command = "/sbin/md5"
-    else:
-        md5_command = "md5sum"
+    # Calculate the hash of the output base path, stripping /private if needed.
+    output_base_script = """
+        set -euo pipefail
 
+        if command -v /sbin/md5 >/dev/null 2>&1; then
+            md5_command=/sbin/md5
+        else
+            md5_command=md5sum
+        fi
+
+        output_base="${PWD%/*/*/*/*}"
+        if [[ $output_base == /private/* ]]; then
+            output_base="${output_base#/private}"
+        fi
+
+        echo "$output_base" | $md5_command | awk '{print $1}'
+    """
     output_base_hash_result = repository_ctx.execute(
-        ["bash", "-c", "set -euo pipefail; echo \"${PWD%/*/*/*/*}\" | " + md5_command + " | awk '{print $1}'"],
+        ["bash", "-c", output_base_script],
     )
     if output_base_hash_result.return_code != 0:
         fail("Failed to calculate output base hash: {}".format(
