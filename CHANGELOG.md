@@ -52,7 +52,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* TBD
+* Moved generator path inside main output base: [#3234](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3234)
 
 ### Fixed
 

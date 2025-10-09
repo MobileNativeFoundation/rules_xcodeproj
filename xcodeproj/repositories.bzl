@@ -59,35 +59,26 @@ package_group(
 """,
     )
 
-    # Calculate the hash of the output base path, stripping /private if needed.
+    # Construct the output base path, stripping leading /private if needed.
     output_base_script = """
-        set -euo pipefail
-
-        if command -v /sbin/md5 >/dev/null 2>&1; then
-            md5_command=/sbin/md5
-        else
-            md5_command=md5sum
-        fi
-
         output_base="${PWD%/*/*/*/*}"
         if [[ $output_base == /private/* ]]; then
             output_base="${output_base#/private}"
         fi
-
-        echo "$output_base" | $md5_command | awk '{print $1}'
+        echo "$output_base"
     """
-    output_base_hash_result = repository_ctx.execute(
+    output_base_result = repository_ctx.execute(
         ["bash", "-c", output_base_script],
     )
-    if output_base_hash_result.return_code != 0:
-        fail("Failed to calculate output base hash: {}".format(
-            output_base_hash_result.stderr,
+    if output_base_result.return_code != 0:
+        fail("Failed to construct output base path: {}".format(
+            output_base_result.stderr,
         ))
 
-    # Ensure that this repository is unique per output base
-    output_base_hash = output_base_hash_result.stdout.strip()
+    # Create the generator symlink inside the output base.
+    output_base_path = output_base_result.stdout.strip()
     repository_ctx.symlink(
-        "/var/tmp/rules_xcodeproj/generated_v2/{}/generator".format(output_base_hash),
+        output_base_path + "/rules_xcodeproj.noindex/generator",
         "generator",
     )
 
