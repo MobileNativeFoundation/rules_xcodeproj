@@ -188,7 +188,7 @@ if [[ $is_macos -eq 1 ]]; then
   plutil -replace IDEDidComputeMac32BitWarning -bool true "$workspace_checks"
 
   # - Configure the project to use Xcode's new build system.
-  plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
+  plutil -remove BuildSystemType "$workspace_settings" > /dev/null 2>&1 || true
 
   # - Prevent Xcode from prompting the user to autocreate schemes for all targets
   plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
