@@ -38,7 +38,7 @@ To use the aspect, you apply it at the command line:
 
 ```
 bazel build //some:target \
-  --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect \
+  --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%xcodeproj_cache_warm_aspect \
   --output_groups=compiles
 ```
 
@@ -46,7 +46,7 @@ You can also create a Bazel configuration in a `.bazelrc` file to reuse the
 aspect easily:
 
 ```
-common:compile_only --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%compile_only_aspect
+common:compile_only --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%xcodeproj_cache_warm_aspect
 common:compile_only --output_groups=compiles
 ```
 

@@ -12,19 +12,14 @@ load("@build_bazel_rules_swift//swift:providers.bzl", "SwiftInfo")
 _BUNDLING_RULE_KINDS = set([
     "ios_app_clip",
     "ios_application",
-    "ios_build_test",
     "ios_extension",
     "macos_application",
-    "macos_build_test",
     "macos_extension",
     "tvos_application",
-    "tvos_build_test",
     "tvos_extension",
     "visionos_application",
-    "visionos_build_test",
     "visionos_extension",
     "watchos_application",
-    "watchos_build_test",
     "watchos_extension",
     "_ios_internal_ui_test_bundle",
     "_ios_internal_unit_test_bundle",
@@ -36,6 +31,14 @@ _BUNDLING_RULE_KINDS = set([
     "_visionos_internal_unit_test_bundle",
     "_watchos_internal_ui_test_bundle",
     "_watchos_internal_unit_test_bundle",
+])
+
+_BUILD_TEST_RULE_KINDS = set([
+    "ios_build_test",
+    "macos_build_test",
+    "tvos_build_test",
+    "visionos_build_test",
+    "watchos_build_test",
 ])
 
 _COMPILE_MNEMONICS = set([
@@ -106,7 +109,7 @@ def _xcodeproj_cache_warm_aspect_impl(target, ctx):
         ]
     elif ctx.rule.kind == "test_suite":
         deps = ctx.rule.attr.tests
-    elif ctx.rule.kind == "ios_build_test":
+    elif ctx.rule.kind in _BUILD_TEST_RULE_KINDS:
         deps = ctx.rule.attr.targets
     elif ctx.rule.kind == "xcodeproj":
         deps = (
