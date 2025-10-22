@@ -5,6 +5,6 @@ load(
     "xcodeproj_rules_dependencies",
 )
 
-internal = module_extension(implementation = lambda _: xcodeproj_rules_dependencies(internal_only = True))
+internal = module_extension(implementation = lambda mctx: xcodeproj_rules_dependencies(mctx, internal_only = True))
 
-non_module_deps = module_extension(implementation = lambda _: xcodeproj_rules_dependencies(include_bzlmod_ready_dependencies = False))
+non_module_deps = module_extension(implementation = lambda mctx: xcodeproj_rules_dependencies(mctx, include_bzlmod_ready_dependencies = False))
