@@ -100,19 +100,23 @@ def xcodeproj_rules_dependencies(
     from changes to those dependencies.
 
     Args:
+        module_ctx: The module_ctx object provided from the module extension.
         ignore_version_differences: If `True`, warnings about potentially
             incompatible versions of dependency repositories will be silenced.
         include_bzlmod_ready_dependencies: Whether or not bzlmod-ready
             dependencies should be included.
         internal_only: If `True`, only internal dependencies will be included.
             Should only be called from `extensions.bzl`.
+
+    Returns:
+        A value from `module_ctx.extension_metadata()` if applicable, or `None`.
     """
     if internal_only or include_bzlmod_ready_dependencies:
         # Used to house generated files
         generated_files_repo(name = "rules_xcodeproj_generated")
 
     if internal_only:
-        return
+        return None
 
     if include_bzlmod_ready_dependencies:
         _maybe(
