@@ -1,5 +1,6 @@
 """Definitions for handling Bazel repositories used by rules_xcodeproj."""
 
+load("@bazel_features//:features.bzl", "bazel_features")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//xcodeproj/internal:logging.bzl", "green", "warn", "yellow")
 
@@ -88,6 +89,7 @@ generated_files_repo = repository_rule(
 
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
+        module_ctx,
         ignore_version_differences = False,
         include_bzlmod_ready_dependencies = True,
         internal_only = False):
@@ -185,6 +187,11 @@ native_binary(
 
     # Source dependencies
     _xcodeproj_rules_source_dependencies(ignore_version_differences)
+
+    if bazel_features.external_deps.extension_metadata_has_reproducible:
+        return module_ctx.extension_metadata(reproducible = True)
+    else:
+        return None
 
 # buildifier: disable=unnamed-macro
 def _xcodeproj_rules_source_dependencies(ignore_version_differences = False):
