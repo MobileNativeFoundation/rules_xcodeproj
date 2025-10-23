@@ -29,6 +29,8 @@ echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
+echo "settings set target.experimental.swift-enable-cxx-interop false"
+
 # Project files and locally resolved external repositories
 #
 # lldb seems to match breakpoints based on the second argument, using a simple
