@@ -1,5 +1,5 @@
 - [Bazel aspects](#bazel-aspects)
-  - [`compile_only_aspect`](#compile_only_aspect)
+  - [`xcodeproj_cache_warm_aspect`](#xcodeproj_cache_warm_aspect)
 - [Bazel configs](#bazel-configs)
     - [`rules_xcodeproj`](#rules_xcodeproj)
     - [`rules_xcodeproj_generator`](#rules_xcodeproj_generator)
@@ -26,19 +26,19 @@
 
 # Bazel aspects
 
-## `compile_only_aspect`
+## `xcodeproj_cache_warm_aspect`
 
-The `compile_only_aspect` aspect is useful for skipping non-compilation
-related actions. For example, in CI it can be used to help with disk
-space usage by skipping actions that are typically not cached during
-a cache warming job. It can also be used to validate that the targets
-compile while skipping costly actions like bundling, signing, etc.
+The `xcodeproj_cache_warm_aspect` aspect is useful for skipping non-compilation
+related actions. For example, in CI it can be used to help with disk space
+usage by skipping actions that are typically not cached during a cache warming
+job. It can also be used to validate that the targets compile while skipping
+costly actions like bundling, signing, etc.
 
 To use the aspect, you apply it at the command line:
 
 ```
 bazel build //some:target \
-  --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%xcodeproj_cache_warm_aspect \
+  --aspects=@rules_xcodeproj//xcodeproj:xcodeproj_cache_warm_aspect.bzl%xcodeproj_cache_warm_aspect \
   --output_groups=compiles
 ```
 
@@ -46,8 +46,8 @@ You can also create a Bazel configuration in a `.bazelrc` file to reuse the
 aspect easily:
 
 ```
-common:compile_only --aspects=@rules_xcodeproj//xcodeproj:compile_only_aspect.bzl%xcodeproj_cache_warm_aspect
-common:compile_only --output_groups=compiles
+common:cache_warming --aspects=@rules_xcodeproj//xcodeproj:xcodeproj_cache_warm_aspect.bzl%xcodeproj_cache_warm_aspect
+common:cache_warming --output_groups=compiles
 ```
 
 And use it, for example, with the command-line API:
@@ -55,7 +55,7 @@ And use it, for example, with the command-line API:
 ```
 bazel run //label/to:xcodeproj \
   -- \
-  'build --config=compile_only --remote_download_minimal $_GENERATOR_LABEL_'
+  'build --config=cache_warming --remote_download_minimal $_GENERATOR_LABEL_'
 ```
 
 If you want to also cache resource processing (e.g. asset catalog compiles,
@@ -63,7 +63,7 @@ If you want to also cache resource processing (e.g. asset catalog compiles,
 include the `resources` output group:
 
 ```
-common:compile_only --output_groups=compiles,resources
+common:cache_warming --output_groups=compiles,resources
 ```
 
 # Bazel configs

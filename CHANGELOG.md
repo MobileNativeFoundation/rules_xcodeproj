@@ -44,7 +44,7 @@ END_UNRELEASED_TEMPLATE
 
 ### ⚠️ Breaking changes ⚠️
 
-* TBD
+* Renamed `compile_only_aspect.bzl` to `xcodeproj_cache_warm_aspect.bzl`
 
 ### New
 
