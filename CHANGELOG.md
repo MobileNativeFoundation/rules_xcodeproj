@@ -20,7 +20,7 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### New
 
-* Set remote_download_outputs to toplevel as required download needed outputs
+* Set remote_download_outputs to toplevel as required to download needed outputs
 
 ### Adjusted
 
