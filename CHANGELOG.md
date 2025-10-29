@@ -20,11 +20,10 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### New
 
-* Set remote_download_outputs to toplevel as required to download needed outputs
 
 ### Adjusted
 
-* TBD
+We now set `--remote_download_outputs=toplevel` on the `rules_xcodeproj` config: [3239](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3239)
 
 ### Fixed
 

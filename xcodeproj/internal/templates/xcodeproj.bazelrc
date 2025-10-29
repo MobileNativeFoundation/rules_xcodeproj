@@ -65,7 +65,7 @@ common:rules_xcodeproj --show_result=0
 common:rules_xcodeproj --noworker_sandboxing
 common:rules_xcodeproj --spawn_strategy=remote,worker,local
 
-# rules_xcodeproj needs toplevel to download needed outputs
+# Needed to download aspect output groups
 build:rules_xcodeproj --remote_download_outputs=toplevel
 
 ### `--config=rules_xcodeproj_generator`
