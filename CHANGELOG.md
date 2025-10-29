@@ -53,6 +53,7 @@ END_UNRELEASED_TEMPLATE
 ### Adjusted
 
 * Moved generator path inside main output base: [#3234](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3234)
+* We now set `--remote_download_outputs=toplevel` on the `rules_xcodeproj` config: [3239](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3239)
 
 ### Fixed
 
