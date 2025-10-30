@@ -235,9 +235,12 @@ if [[ $original_arg_count -eq 0 ]]; then
     "%generator_label%" \
     -- "${installer_flags[@]}"
 else
-  if [[ $config == "build" || $config == "indexbuild" ]]; then
+  if [[ $config == "build" ]]; then
     readonly bazel_config="_%config%_build"
     readonly output_base_name="build_output_base"
+  elif [[ $config == "indexbuild" ]]; then
+    readonly bazel_config="%config%_$config"
+    readonly output_base_name="indexbuild_output_base"
   else
     readonly bazel_config="%config%_$config"
     readonly output_base_name="build_output_base"

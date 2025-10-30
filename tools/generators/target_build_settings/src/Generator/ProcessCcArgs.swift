@@ -58,6 +58,8 @@ extension Generator.ProcessCcArgs {
         var args: [String] = [
             "-working-directory",
             "$(PROJECT_DIR)",
+            "-ivfsoverlay",
+            "$(OBJROOT)/bazel-out-overlay.yaml",
         ]
 
         var hasDebugInfo = false

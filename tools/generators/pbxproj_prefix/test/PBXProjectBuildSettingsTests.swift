@@ -49,6 +49,9 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IMPORT_INDEX_BUILD_INDEXSTORES = NO;
+				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
+				INDEXING_PROJECT_DIR__NO = "/some/project dir";
+				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
@@ -62,7 +65,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
-				PROJECT_DIR = "/some/project dir";
+				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SRCROOT = "/Users/TimApple/Star Board";

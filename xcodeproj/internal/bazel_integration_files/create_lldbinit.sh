@@ -3,7 +3,15 @@
 set -euo pipefail
 
 readonly execution_root="$PROJECT_DIR"
+
+readonly output_base="${execution_root%/*/*}"
 readonly build_external="$execution_root/external"
+
+readonly workspace_name="${execution_root##*/}"
+readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot/$workspace_name"
+
+readonly index_bazel_out="$index_execution_root/bazel-out"
+readonly index_external="$index_execution_root/external"
 
 {
 
@@ -12,6 +20,9 @@ readonly build_external="$execution_root/external"
 # This is needed because we use the `oso_prefix_is_pwd` feature, which makes the
 # paths to archives relative to the exec root.
 echo "platform settings -w \"$execution_root\""
+
+mkdir -p "$index_bazel_out"
+mkdir -p "$index_external"
 
 # "Undo" `-debug-prefix-map` for breakpoints
 #
@@ -23,9 +34,13 @@ echo "platform settings -w \"$execution_root\""
 
 # `bazel-out` when set from Project navigator or swiftsourcefile
 echo "settings set target.source-map ./bazel-out/ \"$BAZEL_OUT\""
+# `bazel-out` when set from indexing opened file
+echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 
 # `external` when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
+# `external` when set from indexing opened file
+echo "settings append target.source-map ./external/ \"$index_external\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 

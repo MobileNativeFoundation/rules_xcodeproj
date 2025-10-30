@@ -105,6 +105,18 @@ extension Generator {
                 value: importIndexBuildIndexstores ? "YES" : "NO"
             ),
             .init(
+                key: "INDEXING_PROJECT_DIR__",
+                value: #""$(INDEXING_PROJECT_DIR__NO)""#
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__NO",
+                value: projectDir.pbxProjEscaped
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__YES",
+                value: indexingProjectDir.pbxProjEscaped
+            ),
+            .init(
                 key: "INDEX_DATA_STORE_DIR",
                 value: #""$(INDEX_DATA_STORE_DIR)""#
             ),
@@ -135,7 +147,8 @@ extension Generator {
             .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
             .init(
                 key: "PROJECT_DIR",
-                value: projectDir.pbxProjEscaped
+                value:
+                    #""$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))""#
             ),
             .init(
                 key: "RESOLVED_REPOSITORIES",
