@@ -6,21 +6,6 @@ load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 
-def _get_xcode_product_version(*, xcode_config):
-    raw_version = str(xcode_config.xcode_version())
-    if not raw_version:
-        fail("""\
-`xcode_config.xcode_version` was not set. This is a bazel bug. Try again.
-""")
-
-    version_components = raw_version.split(".")
-    if len(version_components) < 4:
-        # This will result in analysis cache misses, but it's better than
-        # failing
-        return raw_version
-
-    return version_components[3]
-
 def _process_extra_flags(*, attr, content, setting, config, config_suffix):
     extra_flags = getattr(attr, setting)[BuildSettingInfo].value
     if extra_flags:
@@ -272,7 +257,6 @@ def _write_runner(
         package,
         runner_label,
         template,
-        xcode_version,
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
@@ -358,7 +342,6 @@ def_env+='}}'""".format(
             "%generator_package_name%": generator_package_name,
             "%install_path%": install_path,
             "%runner_label%": runner_label,
-            "%xcode_version%": xcode_version,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
     )
@@ -380,10 +363,6 @@ def _xcodeproj_runner_impl(ctx):
     install_path = paths.join(
         ctx.attr.install_directory,
         "{}.xcodeproj".format(project_name),
-    )
-
-    xcode_version = _get_xcode_product_version(
-        xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
     )
 
     xcodeproj_bazelrc = _write_xcodeproj_bazelrc(
@@ -443,7 +422,6 @@ def _xcodeproj_runner_impl(ctx):
         install_path = install_path,
         runner_label = runner_label,
         template = ctx.file._runner_template,
-        xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
     )
 
@@ -547,12 +525,6 @@ xcodeproj_runner = rule(
         "_runner_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:runner.sh"),
-        ),
-        "_xcode_config": attr.label(
-            default = configuration_field(
-                name = "xcode_config_label",
-                fragment = "apple",
-            ),
         ),
     },
     executable = True,

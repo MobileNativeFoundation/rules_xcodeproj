@@ -22,7 +22,6 @@ readonly execution_root_file="$PWD/%execution_root_file%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 readonly generator_build_file="$PWD/%generator_build_file%"
 readonly generator_defs_bzl="$PWD/%generator_defs_bzl%"
-readonly schemes_json="$PWD/%schemes_json%"
 readonly xcodeproj_bazelrc="$PWD/%xcodeproj_bazelrc%"
 
 installer_flags=(
@@ -121,7 +120,7 @@ chmod u+w "$generator_package_directory/BUILD"
 cp "$generator_defs_bzl" "$generator_package_directory/defs.bzl"
 chmod u+w "$generator_package_directory/defs.bzl"
 
-cat >> "$generator_package_directory/defs.bzl" <<EOF
+cat <<EOF >> "$generator_package_directory/defs.bzl"
 
 # Constants
 
@@ -146,27 +145,47 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
   bazelrcs+=("--bazelrc=$extra_flags_bazelrc")
 fi
 
+if [[ -n "${DEVELOPER_DIR:-}" ]]; then
+  if [[ ! -f "${DEVELOPER_DIR%/*}/version.plist" ]]; then
+    echo >&2 "DEVELOPER_DIR is set to invalid path: $DEVELOPER_DIR"
+    exit 1
+  fi
+
+  developer_dir="$DEVELOPER_DIR"
+
+  # We can use a fast path when `DEVELOPER_DIR` is set for us
+  xcode_version=$(
+    /usr/libexec/PlistBuddy \
+      -c 'print ProductBuildVersion' \
+      "${DEVELOPER_DIR%/*}/version.plist"
+  )
+elif command -v xcodebuild > /dev/null 2>&1; then
+  developer_dir="$(/usr/bin/xcode-select -p)"
+
+  # Xcode 15.4\nBuild version 15F31d -> 15F31d
+  xcode_version=$(xcodebuild -version | awk '/Build version/{print $NF}')
+else
+  developer_dir=""
+  xcode_version=""
+fi
+
 # We write to a `.bazelrc` file instead of passing flags directly in order to
 # support all Bazel commands via the `common` pseudo-command
-cat > "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
+if [[ -n "$xcode_version" ]]; then
+  cat <<EOF > "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
 # Be explicit about our desired Xcode version
-common:rules_xcodeproj --xcode_version=%xcode_version%
+common:rules_xcodeproj --xcode_version=$xcode_version
 
 # Work around https://github.com/bazelbuild/bazel/issues/8902
 # \`USE_CLANG_CL\` is only used on Windows, we set it here to cause Bazel to
 # re-evaluate the cc_toolchain for a different Xcode version
-common:rules_xcodeproj --repo_env=USE_CLANG_CL=%xcode_version%
-common:rules_xcodeproj --repo_env=XCODE_VERSION=%xcode_version%
+common:rules_xcodeproj --repo_env=USE_CLANG_CL=$xcode_version
+common:rules_xcodeproj --repo_env=XCODE_VERSION=$xcode_version
 EOF
-
-if command -v /usr/bin/xcode-select >/dev/null 2>&1; then
-  developer_dir="$(/usr/bin/xcode-select -p)"
-else
-  developer_dir="${DEVELOPER_DIR:-}"
 fi
 
 if [[ -n "$developer_dir" ]]; then
-  cat >> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc" <<EOF
+  cat <<EOF>> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
 
 # Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
 common:rules_xcodeproj --repo_env="DEVELOPER_DIR=$developer_dir"
