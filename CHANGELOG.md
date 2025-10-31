@@ -40,15 +40,36 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.2.0...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.3.0...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
-* Renamed `compile_only_aspect.bzl` to `xcodeproj_cache_warm_aspect.bzl`: [#3238](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3238)
+* TBD
 
 ### New
 
 * TBD
+
+### Adjusted
+
+* TBD
+
+### Fixed
+
+* TBD
+
+### Ruleset Development Changes
+
+* TBD
+
+<a id="3.3.0"></a>
+## [3.3.0] - 2025-10-31
+
+[3.3.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.2.0...3.3.0
+
+### ⚠️ Breaking changes ⚠️
+
+* Renamed `compile_only_aspect.bzl` to `xcodeproj_cache_warm_aspect.bzl`: [#3238](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3238)
 
 ### Adjusted
 
@@ -58,10 +79,6 @@ END_UNRELEASED_TEMPLATE
 ### Fixed
 
 * Fixed incompatible output base causing startup options change: [#3229](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3229), [#3233](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3233)
-
-### Ruleset Development Changes
-
-* TBD
 
 <a id="3.2.0"></a>
 ## [3.2.0] - 2025-09-12
