@@ -105,6 +105,19 @@ extension ElementCreator.CreateGroupChild {
                     )
                 )
 
+            case "xcmappingmodel":
+                return .elementAndChildren(
+                    createFile(
+                        name: name,
+                        bazelPath: BazelPath(
+                            parent: parentBazelPath,
+                            path: name
+                        ),
+                        bazelPathType: parentBazelPathType,
+                        transitiveBazelPaths: []
+                    )
+                )
+
             default:
                 return .elementAndChildren(
                     createGroup(
