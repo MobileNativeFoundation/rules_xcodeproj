@@ -32,6 +32,7 @@ installer_flags=(
 config="build"
 original_arg_count=$#
 download_intermediates=0
+separate_indexbuild_output_base=0
 verbose=0
 while (("$#")); do
   case "$1" in
@@ -49,6 +50,10 @@ while (("$#")); do
       ;;
     --download_intermediates)
       download_intermediates=1
+      shift 1
+      ;;
+    --separate_indexbuild_output_base)
+      separate_indexbuild_output_base=1
       shift 1
       ;;
     -v|--verbose)
@@ -71,6 +76,10 @@ if [[ $original_arg_count -gt 0 ]]; then
   elif [[ $# -gt 1 ]]; then
     fail "ERROR: The bazel command must be a string instead of individual arguments"
   fi
+fi
+
+if [[ $separate_indexbuild_output_base -eq 1 ]]; then
+  installer_flags+=(--separate_indexbuild_output_base)
 fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
@@ -235,10 +244,10 @@ if [[ $original_arg_count -eq 0 ]]; then
     "%generator_label%" \
     -- "${installer_flags[@]}"
 else
-  if [[ $config == "build" ]]; then
+  if [[ $config == "build" ]] || [[ $config == "indexbuild" && $separate_indexbuild_output_base -ne 1 ]]; then
     readonly bazel_config="_%config%_build"
     readonly output_base_name="build_output_base"
-  elif [[ $config == "indexbuild" ]]; then
+  elif [[ $config == "indexbuild" && $separate_indexbuild_output_base -eq 1 ]]; then
     readonly bazel_config="%config%_$config"
     readonly output_base_name="indexbuild_output_base"
   else

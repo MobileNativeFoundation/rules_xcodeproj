@@ -38,6 +38,7 @@ extension Generator {
             includeSelfSwiftDebugSettings: Bool,
             previewsFrameworkPaths: String,
             previewsIncludePath: String,
+            separateIndexBuildOutputBase: Bool,
             transitiveSwiftDebugSettingPaths: [URL]
         ) async throws -> (
             hasDebugInfo: Bool,
@@ -58,7 +59,8 @@ extension Generator {
                     parseTransitiveSwiftDebugSettings,
                 /*processSwiftArg:*/ processSwiftArg,
                 /*processSwiftClangArg:*/ processSwiftClangArg,
-                /*processSwiftFrontendArg:*/ processSwiftFrontendArg
+                /*processSwiftFrontendArg:*/ processSwiftFrontendArg,
+                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase
             )
         }
     }
@@ -78,7 +80,8 @@ extension Generator.ProcessSwiftArgs {
             Generator.ParseTransitiveSwiftDebugSettings,
         _ processSwiftArg: Generator.ProcessSwiftArg,
         _ processSwiftClangArg: Generator.ProcessSwiftClangArg,
-        _ processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg
+        _ processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
+        _ separateIndexBuildOutputBase: Bool
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -97,7 +100,8 @@ extension Generator.ProcessSwiftArgs {
             Generator.ParseTransitiveSwiftDebugSettings,
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
-        processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg
+        processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
+        separateIndexBuildOutputBase: Bool
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -122,7 +126,8 @@ extension Generator.ProcessSwiftArgs {
                 parseTransitiveSwiftDebugSettings,
             processSwiftArg: processSwiftArg,
             processSwiftClangArg: processSwiftClangArg,
-            processSwiftFrontendArg: processSwiftFrontendArg
+            processSwiftFrontendArg: processSwiftFrontendArg,
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase
         )
 
         if includeTransitiveSwiftDebugSettings {
@@ -149,7 +154,8 @@ extension Generator.ProcessSwiftArgs {
             Generator.ParseTransitiveSwiftDebugSettings,
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
-        processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg
+        processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
+        separateIndexBuildOutputBase: Bool
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -181,12 +187,16 @@ extension Generator.ProcessSwiftArgs {
             "$(PROJECT_DIR)",
             "-working-directory",
             "$(PROJECT_DIR)",
-
-            "-Xcc",
-            "-ivfsoverlay$(OBJROOT)/bazel-out-overlay.yaml",
-            "-vfsoverlay",
-            "$(OBJROOT)/bazel-out-overlay.yaml",
         ]
+        if separateIndexBuildOutputBase {
+            args.append(contentsOf: [
+                "-Xcc",
+                "-ivfsoverlay$(OBJROOT)/bazel-out-overlay.yaml",
+                "-vfsoverlay",
+                "$(OBJROOT)/bazel-out-overlay.yaml",
+            ])
+        }
+
         var clangArgs: [String] = []
         var frameworkIncludes: OrderedSet<String> = []
         var onceClangArgs: Set<String> = []

@@ -25,12 +25,14 @@ extension Generator {
         /// Processes all the C++/Objective-C++ arguments.
         func callAsFunction(
             argsStream: AsyncThrowingStream<String, Error>,
-            buildSettings: inout [(key: String, value: String)]
+            buildSettings: inout [(key: String, value: String)],
+            separateIndexBuildOutputBase: Bool
         ) async throws -> Bool {
             try await callable(
                 /*argsStream:*/ argsStream,
                 /*buildSettings:*/ &buildSettings,
                 /*processCcArgs:*/ processCcArgs,
+                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase,
                 /*write:*/ write
             )
         }
@@ -44,6 +46,7 @@ extension Generator.ProcessCxxArgs {
         _ argsStream: AsyncThrowingStream<String, Error>,
         _ buildSettings: inout [(key: String, value: String)],
         _ processCcArgs: Generator.ProcessCcArgs,
+        _ separateIndexBuildOutputBase: Bool,
         _ write: Write
     ) async throws -> Bool
 
@@ -51,6 +54,7 @@ extension Generator.ProcessCxxArgs {
         argsStream: AsyncThrowingStream<String, Error>,
         buildSettings: inout [(key: String, value: String)],
         processCcArgs: Generator.ProcessCcArgs,
+        separateIndexBuildOutputBase: Bool,
         write: Write
     ) async throws -> Bool {
         var iterator = argsStream.makeAsyncIterator()
@@ -67,7 +71,8 @@ extension Generator.ProcessCxxArgs {
         _ = try await iterator.next()
 
         let (args, hasDebugInfo, fortifySourceLevel) = try await processCcArgs(
-            argsStream: argsStream
+            argsStream: argsStream,
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase
         )
 
         let content = args.map { $0 + "\n" }.joined()

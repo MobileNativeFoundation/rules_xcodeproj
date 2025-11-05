@@ -27,6 +27,7 @@ The generator accepts the following command-line arguments:
 - Positional `package-bin-dir`
 - Positional `preview-framework-paths`
 - Positional `previews-include-path`
+- Positional `separate-index-build-output-base`
 - The command-line arguments for a Bazel `SwiftCompile`
 action
 - `---` to signify the end of the Swift arguments
@@ -60,6 +61,7 @@ $ target_build_settings \
     bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib \
     '' \
     '' \
+    0 \
     -target \
     arm64_32-apple-watchos7.0 \
     -sdk \

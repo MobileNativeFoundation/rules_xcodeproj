@@ -29,7 +29,7 @@ readonly output_groups_flag
 # changes relative to that changed path.
 readonly build_output_base="$BAZEL_OUTPUT_BASE"
 
-if [ "$ACTION" == "indexbuild" ]; then
+if [ "$ACTION" == "indexbuild" ] && [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other. We nest it inside of the
   # normal output base directory so that it's not cleaned up when running
@@ -77,7 +77,7 @@ for var in "${allowed_vars[@]}"; do
   fi
 done
 
-readonly bazel_cmd=(
+bazel_cmd=(
   env -i
   "${passthrough_env[@]}"
 %bazel_env%
@@ -90,6 +90,11 @@ readonly bazel_cmd=(
 
   --output_base "$output_base"
 )
+if [ "$ACTION" == "indexbuild" ] && [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" != "YES" ]]; then
+  # Allow normal builds to cancel Index Builds
+  bazel_cmd+=("--preemptible")
+fi
+readonly bazel_cmd
 
 readonly base_pre_config_flags=(
   # Be explicit about our desired Xcode version
@@ -108,11 +113,14 @@ readonly base_pre_config_flags=(
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
 )
 
-# Create VFS overlay
 
-cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
-EOF
+if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
+    # Create VFS overlay
+    
+    cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
+    {"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
+    EOF
+fi
 
 # Custom Swift toolchains
 
