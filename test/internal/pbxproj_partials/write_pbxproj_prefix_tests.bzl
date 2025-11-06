@@ -62,6 +62,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         pre_build_script = ctx.attr.pre_build_script,
         project_options = ctx.attr.project_options,
         resolved_repositories_file = ctx.attr.resolved_repositories_file,
+        separate_index_build_output_base = ctx.attr.separate_index_build_output_base,
         target_ids_list = ctx.attr.target_ids_list,
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
@@ -153,6 +154,7 @@ write_pbxproj_prefix_test = unittest.make(
         "pre_build_script": attr.string(),
         "project_options": attr.string_dict(mandatory = True),
         "resolved_repositories_file": attr.string(mandatory = True),
+        "separate_index_build_output_base": attr.bool(mandatory = True),
         "target_ids_list": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
         "xcode_configurations": attr.string_list(mandatory = True),
@@ -190,6 +192,7 @@ def write_pbxproj_prefix_test_suite(name):
             pre_build_script = None,
             project_options,
             resolved_repositories_file,
+            separate_index_build_output_base = False,
             target_ids_list,
             workspace_directory,
             xcode_configurations,
@@ -215,6 +218,7 @@ def write_pbxproj_prefix_test_suite(name):
             pre_build_script = pre_build_script,
             project_options = project_options,
             resolved_repositories_file = resolved_repositories_file,
+            separate_index_build_output_base = separate_index_build_output_base,
             target_ids_list = target_ids_list,
             workspace_directory = workspace_directory,
             xcode_configurations = xcode_configurations,
@@ -271,6 +275,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/legacy/index_import",
             # indexImport
             "some/path/to/index_import",
+            # separateIndexBuildOutputBase
+            "0",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
             # minimumXcodeVersion
@@ -316,6 +322,7 @@ def write_pbxproj_prefix_test_suite(name):
             "organization_name": "MobileNativeFoundation 2",
         },
         minimum_xcode_version = "14.2.1",
+        separate_index_build_output_base = True,
         resolved_repositories_file = "some/path/to/resolved_repositories_file",
         target_ids_list = "a/path/to/target_ids_list",
         workspace_directory = "/Users/TimApple/StarBoard",
@@ -340,6 +347,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/legacy/index_import",
             # indexImport
             "some/path/to/index_import",
+            # separateIndexBuildOutputBase
+            "1",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
             # minimumXcodeVersion

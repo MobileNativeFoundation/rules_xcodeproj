@@ -18,6 +18,8 @@ fail() {
 
 # Process Args
 
+separate_indexbuild_output_base=0
+
 while (("$#")); do
   case "${1}" in
     "--bazel_path")
@@ -39,6 +41,10 @@ while (("$#")); do
     "--extra_flags_bazelrc")
       extra_flags_bazelrc="${2}"
       shift 2
+      ;;
+    "--separate_indexbuild_output_base")
+      separate_indexbuild_output_base=1
+      shift 1
       ;;
     *)
       fail "Unrecognized argument: ${1}"
@@ -194,11 +200,24 @@ if [[ $is_macos -eq 1 ]]; then
   plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 fi
 
+if [[ $separate_indexbuild_output_base -eq 1 ]]; then
+  # Create Index Build execution root (`$INDEXING_PROJECT_DIR__YES`)
+  readonly workspace_name="${execution_root##*/}"
+  readonly output_base="${execution_root%/*/*}"
+  readonly indexbuild_exec_root="$output_base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/$workspace_name"
+
+  mkdir -p "$indexbuild_exec_root"
+fi
+
 # Create folder structure in bazel-out to work around Xcode red generated files
 if [[ -s "$src_generated_directories_filelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  readonly nested_execution_root="${execution_root%/*/*}/rules_xcodeproj.noindex/build_output_base/execroot/${execution_root##*/}"
+  if [[ $separate_indexbuild_output_base -eq 1 ]]; then
+    readonly nested_execution_root="$output_base/rules_xcodeproj.noindex/build_output_base/execroot/$workspace_name"
+  else
+    readonly nested_execution_root="${execution_root%/*/*}/rules_xcodeproj.noindex/build_output_base/execroot/${execution_root##*/}"
+  fi
 
   # Create directory structure in bazel-out
   cd "$nested_execution_root"

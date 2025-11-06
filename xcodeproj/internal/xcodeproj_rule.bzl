@@ -344,6 +344,7 @@ def _write_project_contents(
         project_options,
         resource_bundle_xcode_targets,
         selected_model_versions_generator,
+        separate_index_build_output_base,
         target_name_mode,
         unique_directories,
         unowned_extra_files,
@@ -462,6 +463,7 @@ def _write_project_contents(
         pre_build_script = pre_build_script,
         project_options = project_options,
         resolved_repositories_file = resolved_repositories_file,
+        separate_index_build_output_base = separate_index_build_output_base,
         target_ids_list = target_ids_list,
         tool = pbxproj_prefix_generator,
         xcode_configurations = xcode_configurations,
@@ -631,6 +633,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     legacy_index_import = ctx.executable._legacy_index_import
     index_import = ctx.executable._index_import
     install_path = ctx.attr.install_path
+    separate_index_build_output_base = ctx.attr.separate_index_build_output_base
     name = ctx.attr.name
     workspace_directory = ctx.attr.workspace_directory
 
@@ -698,6 +701,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         selected_model_versions_generator = (
             ctx.executable._selected_model_versions_generator
         ),
+        separate_index_build_output_base = separate_index_build_output_base,
         target_name_mode = ctx.attr.target_name_mode,
         unique_directories = ctx.executable._unique_directories,
         unowned_extra_files = ctx.files.unowned_extra_files,
@@ -817,6 +821,7 @@ def _xcodeproj_attrs(
         "runner_label": attr.string(mandatory = True),
         "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
+        "separate_index_build_output_base": attr.bool(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,

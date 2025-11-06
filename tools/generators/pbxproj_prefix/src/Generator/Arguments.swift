@@ -37,6 +37,12 @@ Path to a file that contains the absolute path to the Bazel execution root.
         var indexImport: String
 
         @Argument(
+            help: "Whether to use a separate output base for index builds from other builds.",
+            transform: { $0 == "1" }
+        )
+        var separateIndexBuildOutputBase: Bool
+
+        @Argument(
             help: """
 Path to a file that contains a string for the `RESOLVED_REPOSITORIES` build \
 setting.

@@ -29,6 +29,24 @@ echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
+if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
+  readonly output_base="${execution_root%/*/*}"
+
+  readonly workspace_name="${execution_root##*/}"
+  readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot/$workspace_name"
+
+  readonly index_bazel_out="$index_execution_root/bazel-out"
+  readonly index_external="$index_execution_root/external"
+  
+  mkdir -p "$index_bazel_out"
+  mkdir -p "$index_external"
+  
+  # `bazel-out` when set from indexing opened file
+  echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
+  # `external` when set from indexing opened file
+  echo "settings append target.source-map ./external/ \"$index_external\""
+fi
+
 # Project files and locally resolved external repositories
 #
 # lldb seems to match breakpoints based on the second argument, using a simple

@@ -671,6 +671,7 @@ def _write_pbxproj_prefix(
         pre_build_script,
         project_options,
         resolved_repositories_file,
+        separate_index_build_output_base,
         target_ids_list,
         tool,
         workspace_directory,
@@ -702,6 +703,8 @@ def _write_pbxproj_prefix(
         project_options: A `dict` as returned by `project_options`.
         resolved_repositories_file: A `File` containing containing a string for
             the `RESOLVED_REPOSITORIES` build setting.
+        separate_index_build_output_base: Whether or not to use a separate
+            output base for index builds.
         target_ids_list: A `File` containing a list of target IDs.
         tool: The executable that will generate the `PBXProj` partial.
         workspace_directory: The absolute path to the Bazel workspace
@@ -742,6 +745,9 @@ def _write_pbxproj_prefix(
 
     # indexImport
     args.add(index_import)
+
+    # separateIndexBuildOutputBase
+    args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
@@ -1101,6 +1107,7 @@ def _write_target_build_settings(
         previews_include_path = EMPTY_STRING,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
+        separate_index_build_output_base,
         swift_args,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
@@ -1138,6 +1145,8 @@ def _write_target_build_settings(
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
             for code signing.
+        separate_index_build_output_base: Whether or not to use a separate
+            output base for index builds.
         swift_args: A `list` of `Args` for the `SwiftCompile` action for this
             target.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
@@ -1246,6 +1255,9 @@ def _write_target_build_settings(
 
     # previewsIncludePath
     args.add(previews_include_path)
+
+    # separateIndexBuildOutputBase
+    args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
 
     c_output_args = actions.args()
 

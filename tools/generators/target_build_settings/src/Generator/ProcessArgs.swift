@@ -105,6 +105,10 @@ extension Generator.ProcessArgs {
             try rawArguments.consumeArg("previews-framework-paths")
         let previewsIncludePath =
             try rawArguments.consumeArg("previews-include-path")
+        let separateIndexBuildOutputBase = try rawArguments.consumeArg(
+            "separate-index-build-output-base",
+            as: Bool.self
+        )
 
         let argsStream = argsStream(from: rawArguments)
 
@@ -121,6 +125,7 @@ extension Generator.ProcessArgs {
             includeSelfSwiftDebugSettings: includeSelfSwiftDebugSettings,
             previewsFrameworkPaths: previewsFrameworkPaths,
             previewsIncludePath: previewsIncludePath,
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase,
             transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths
         )
 
@@ -130,12 +135,14 @@ extension Generator.ProcessArgs {
 
         let cHasDebugInfo = try await processCArgs(
             argsStream: argsStream,
-            buildSettings: &buildSettings
+            buildSettings: &buildSettings,
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase
         )
 
         let cxxHasDebugInfo = try await processCxxArgs(
             argsStream: argsStream,
-            buildSettings: &buildSettings
+            buildSettings: &buildSettings,
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase
         )
 
         if generatesDsyms || swiftHasDebugInfo || cHasDebugInfo ||

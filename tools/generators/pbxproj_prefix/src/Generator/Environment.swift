@@ -35,6 +35,7 @@ extension Generator {
             _ legacyIndexImport: String,
             _ indexImport: String,
             _ indexingProjectDir: String,
+            _ separateIndexBuildOutputBase: Bool,
             _ projectDir: String,
             _ resolvedRepositories: String,
             _ workspace: String,

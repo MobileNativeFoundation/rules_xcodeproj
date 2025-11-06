@@ -27,7 +27,29 @@ readonly output_groups_flag
 # In `runner.sh` the generator has the build output base set inside of the outer
 # bazel's output path (`bazel-out/`). So here we need to make our output base
 # changes relative to that changed path.
-readonly output_base="$BAZEL_OUTPUT_BASE"
+readonly build_output_base="$BAZEL_OUTPUT_BASE"
+
+if [[
+  "$ACTION" == "indexbuild" &&
+  "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES"
+]]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other. We nest it inside of the
+  # normal output base directory so that it's not cleaned up when running
+  # `bazel clean`, but is when running `bazel clean --expunge`. This matches
+  # Xcode behavior of not cleaning the Index Build outputs by default.
+  readonly output_base="${build_output_base%/*}/indexbuild_output_base"
+  readonly workspace_name="${PROJECT_DIR##*/}"
+  readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
+
+  # Use current path for "bazel-out/" and "external/"
+  # This fixes Index Build to use its version of generated and external files
+  readonly vfs_overlay_roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"},{\"external-contents\": \"$output_base/external\",\"name\": \"$BAZEL_EXTERNAL\",\"type\": \"directory-remap\"}"
+else
+  readonly output_base="$build_output_base"
+  readonly output_path="$BAZEL_OUT"
+  readonly vfs_overlay_roots=""
+fi
 
 # Set `bazel_cmd` for calling `bazel`
 
@@ -71,7 +93,10 @@ bazel_cmd=(
 
   --output_base "$output_base"
 )
-if [ "$ACTION" == "indexbuild" ]; then
+if [[
+  "$ACTION" == "indexbuild" &&
+  "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" != "YES"
+]]; then
   # Allow normal builds to cancel Index Builds
   bazel_cmd+=("--preemptible")
 fi
@@ -93,6 +118,14 @@ readonly base_pre_config_flags=(
   # Don't block the end of the build for BES upload (artifacts OR events)
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
 )
+
+
+if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
+  # Create VFS overlay
+  cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
+EOF
+fi
 
 # Custom Swift toolchains
 
@@ -156,13 +189,13 @@ if [[ -n "${target_ids:-}" ]]; then
   )
 
   if [ -n "$diff_output" ]; then
-      missing_target_ids=("${diff_output[@]}")
-      echo "error: There were some target IDs that weren't known to Bazel" \
+    missing_target_ids=("${diff_output[@]}")
+    echo "error: There were some target IDs that weren't known to Bazel" \
 "(e.g. \"${missing_target_ids[0]}\"). Please regenerate the project to fix" \
 "this. If you are still getting this error after regenerating your project," \
 "please file a bug report here:" \
 "https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
-        >&2
-      exit 1
+      >&2
+    exit 1
   fi
 fi

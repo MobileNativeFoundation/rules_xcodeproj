@@ -25,12 +25,13 @@ extension Generator {
         legacyIndexImport: String,
         indexImport: String,
         indexingProjectDir: String,
+        separateIndexBuildOutputBase: Bool,
         projectDir: String,
         resolvedRepositories: String,
         workspace: String,
         createBuildSettingsAttribute: CreateBuildSettingsAttribute
     ) -> String {
-        return createBuildSettingsAttribute(buildSettings: [
+        var buildSettings: [BuildSetting] = [
             .init(key: "ALWAYS_SEARCH_USER_PATHS", value: "NO"),
             .init(
                 key: "ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS",
@@ -105,6 +106,18 @@ extension Generator {
                 value: importIndexBuildIndexstores ? "YES" : "NO"
             ),
             .init(
+                key: "INDEXING_PROJECT_DIR__",
+                value: #""$(INDEXING_PROJECT_DIR__NO)""#
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__NO",
+                value: projectDir.pbxProjEscaped
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__YES",
+                value: indexingProjectDir.pbxProjEscaped
+            ),
+            .init(
                 key: "INDEX_DATA_STORE_DIR",
                 value: #""$(INDEX_DATA_STORE_DIR)""#
             ),
@@ -134,10 +147,6 @@ extension Generator {
             ),
             .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
             .init(
-                key: "PROJECT_DIR",
-                value: projectDir.pbxProjEscaped
-            ),
-            .init(
                 key: "RESOLVED_REPOSITORIES",
                 value: resolvedRepositories.pbxProjEscaped
             ),
@@ -165,6 +174,39 @@ extension Generator {
                 key: "_BAZEL_OUTPUT_BASE",
                 value: #""$(PROJECT_DIR)/../..""#
             ),
-        ])
+        ]
+        if separateIndexBuildOutputBase {
+            buildSettings.append(contentsOf: [
+                .init(
+                    key: "BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE",
+                    value: "YES"
+                ),
+                .init(
+                    key: "INDEXING_PROJECT_DIR__",
+                    value: #""$(INDEXING_PROJECT_DIR__NO)""#
+                ),
+                .init(
+                    key: "INDEXING_PROJECT_DIR__NO",
+                    value: projectDir.pbxProjEscaped
+                ),
+                .init(
+                    key: "INDEXING_PROJECT_DIR__YES",
+                    value: indexingProjectDir.pbxProjEscaped
+                ),
+                .init(
+                    key: "PROJECT_DIR",
+                    value:
+                        #""$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))""#
+                ),
+            ])
+        } else {
+            buildSettings.append(
+                .init(
+                    key: "PROJECT_DIR",
+                    value: projectDir.pbxProjEscaped
+                )
+            )
+        }
+        return createBuildSettingsAttribute(buildSettings: buildSettings)
     }
 }

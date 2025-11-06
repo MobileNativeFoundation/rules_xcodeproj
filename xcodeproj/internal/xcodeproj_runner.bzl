@@ -219,6 +219,7 @@ def _write_generator_build_file(
             "%runner_label%": runner_label,
             "%scheme_autogeneration_config%": str(attr.scheme_autogeneration_config),
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
+            "%separate_index_build_output_base%": str(attr._separate_index_build_output_base[BuildSettingInfo].value),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
@@ -525,6 +526,10 @@ xcodeproj_runner = rule(
         "_runner_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:runner.sh"),
+        ),
+        "_separate_index_build_output_base": attr.label(
+            default = Label("//xcodeproj:separate_index_build_output_base"),
+            providers = [BuildSettingInfo],
         ),
     },
     executable = True,

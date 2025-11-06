@@ -18,7 +18,8 @@ extension Generator {
 
         /// Processes all of the common flags for C or C++ arguments.
         func callAsFunction(
-            argsStream: AsyncThrowingStream<String, Error>
+            argsStream: AsyncThrowingStream<String, Error>,
+            separateIndexBuildOutputBase: Bool
         ) async throws -> (
             args: [String],
             hasDebugInfo: Bool,
@@ -26,7 +27,8 @@ extension Generator {
         ) {
             try await callable(
                 /*argsStream:*/ argsStream,
-                /*processCcArg:*/ processCcArg
+                /*processCcArg:*/ processCcArg,
+                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase
             )
         }
     }
@@ -37,7 +39,8 @@ extension Generator {
 extension Generator.ProcessCcArgs {
     typealias Callable = (
         _ argsStream: AsyncThrowingStream<String, Error>,
-        _ processCcArg: Generator.ProcessCcArg
+        _ processCcArg: Generator.ProcessCcArg,
+        _ separateIndexBuildOutputBase: Bool
     ) async throws -> (
         args: [String],
         hasDebugInfo: Bool,
@@ -46,7 +49,8 @@ extension Generator.ProcessCcArgs {
 
     static func defaultCallable(
         argsStream: AsyncThrowingStream<String, Error>,
-        processCcArg: Generator.ProcessCcArg
+        processCcArg: Generator.ProcessCcArg,
+        separateIndexBuildOutputBase: Bool
     ) async throws -> (
         args: [String],
         hasDebugInfo: Bool,
@@ -59,6 +63,12 @@ extension Generator.ProcessCcArgs {
             "-working-directory",
             "$(PROJECT_DIR)",
         ]
+        if separateIndexBuildOutputBase {
+            args.append(contentsOf: [
+                "-ivfsoverlay",
+                "$(OBJROOT)/bazel-out-overlay.yaml",
+            ])
+        }
 
         var hasDebugInfo = false
         var fortifySourceLevel = 0

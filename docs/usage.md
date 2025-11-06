@@ -12,6 +12,7 @@
     - [Workspace `xcodeproj.bazelrc`](#workspace-xcodeprojbazelrc)
     - [Workspace `.bazelrc`](#workspace-bazelrc)
     - [Project `xcodeproj_extra_flags.bazelrc`](#project-xcodeproj_extra_flagsbazelrc)
+  - [Separate the index build output base](#separate-the-index-build-output-base)
 - [Command-line API](#command-line-api)
   - [Commands](#commands)
     - [`build`](#build)
@@ -186,6 +187,15 @@ flags were used during project generation, then those adjustments are made in
 a project `xcodeproj_extra_flags.bazelrc` file, which is loaded after the
 workspace `.bazelrc` file. This ensures that they override any flags set
 earlier, mimicking the behavior of command-line set flags taking precedence.
+
+## Separate the index build output base
+
+By default, rules_xcodeproj configures Xcode to use a combined output base For
+both normal builds and index builds. This is done to save disk space and improve
+cache hit rates, since both types of builds can share outputs. However, if you
+find that index builds are interfering with normal builds, you can disable
+this behavior during project generation by setting
+`--@rules_xcodeproj//xcodeproj:separate_index_build_output_base` in your bazelrc.
 
 # Command-line API
 
