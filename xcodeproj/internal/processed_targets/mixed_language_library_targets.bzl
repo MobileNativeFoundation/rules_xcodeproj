@@ -156,6 +156,9 @@ def _process_mixed_language_library_target(
         generate_swift_debug_settings = False,
         include_self_swift_debug_settings = False,
         name = label.name,
+        separate_index_build_output_base = (
+            ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
+        ),
         swift_args = args.swift,
         tool = ctx.executable._target_build_settings_generator,
     )

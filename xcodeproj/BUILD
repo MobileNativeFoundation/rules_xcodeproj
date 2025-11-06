@@ -45,6 +45,12 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
+bool_flag(
+    name = "separate_index_build_output_base",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
 package_group(
     name = "generated",
     includes = ["@rules_xcodeproj_generated//:package_group"],

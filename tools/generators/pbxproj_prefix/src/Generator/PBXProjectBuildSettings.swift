@@ -178,7 +178,7 @@ extension Generator {
         if separateIndexBuildOutputBase {
             buildSettings.append(contentsOf: [
                 .init(
-                    name: "BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE",
+                    key: "BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE",
                     value: "YES"
                 ),
                 .init(

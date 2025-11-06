@@ -526,6 +526,10 @@ xcodeproj_runner = rule(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:runner.sh"),
         ),
+        "_separate_index_build_output_base": attr.label(
+            default = Label("//xcodeproj:separate_index_build_output_base"),
+            providers = [BuildSettingInfo],
+        ),
     },
     executable = True,
 )

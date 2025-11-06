@@ -478,6 +478,9 @@ def _process_focused_top_level_target(
             provisioning_profile_props.is_xcode_managed
         ),
         provisioning_profile_name = provisioning_profile_props.name,
+        separate_index_build_output_base = (
+            ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
+        ),
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = provisioning_profile_props.team_id,
@@ -785,6 +788,9 @@ def _process_unfocused_top_level_target(
         generate_build_settings = False,
         generate_swift_debug_settings = True,
         name = label.name,
+        separate_index_build_output_base = (
+            ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
+        ),
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         tool = ctx.executable._target_build_settings_generator,

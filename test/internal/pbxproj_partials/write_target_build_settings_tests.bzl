@@ -96,6 +96,7 @@ def _write_target_build_settings_test_impl(ctx):
         previews_include_path = ctx.attr.previews_include_path,
         provisioning_profile_is_xcode_managed = ctx.attr.provisioning_profile_is_xcode_managed,
         provisioning_profile_name = ctx.attr.provisioning_profile_name,
+        separate_index_build_output_base = ctx.attr.separate_index_build_output_base,
         swift_args = swift_args,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = ctx.attr.team_id,
@@ -185,6 +186,7 @@ write_target_build_settings_test = unittest.make(
         "previews_include_path": attr.string(mandatory = True),
         "provisioning_profile_is_xcode_managed": attr.bool(mandatory = True),
         "provisioning_profile_name": attr.string(),
+        "separate_index_build_output_base": attr.bool(mandatory = True),
         "swift_debug_settings_to_merge": attr.string_list(mandatory = True),
         "swift_args": attr.string_list(mandatory = True),
         "team_id": attr.string(),
@@ -229,6 +231,7 @@ def write_target_build_settings_test_suite(name):
             previews_include_path = "",
             provisioning_profile_is_xcode_managed = False,
             provisioning_profile_name = None,
+            separate_index_build_output_base = False,
             swift_args,
             swift_debug_settings_to_merge = [],
             team_id = None,
@@ -261,6 +264,7 @@ def write_target_build_settings_test_suite(name):
             previews_include_path = previews_include_path,
             provisioning_profile_is_xcode_managed = provisioning_profile_is_xcode_managed,
             provisioning_profile_name = provisioning_profile_name,
+            separate_index_build_output_base = separate_index_build_output_base,
             swift_args = swift_args,
             swift_debug_settings_to_merge = swift_debug_settings_to_merge,
             team_id = team_id,
@@ -338,6 +342,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -386,6 +392,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -432,6 +440,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -478,6 +488,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -531,6 +543,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -584,6 +598,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -636,6 +652,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -692,6 +710,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # previewsIncludePath
             "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 
@@ -717,6 +737,7 @@ def write_target_build_settings_test_suite(name):
             "external/repo/1.framework",
         ],
         previews_include_path = "bazel-out/swiftmodule/parent",
+        separate_index_build_output_base = True,
         swift_args = [],
         swift_debug_settings_to_merge = [
             "transitive_debug_settings/3",
@@ -771,6 +792,8 @@ def write_target_build_settings_test_suite(name):
 """,
             # previewsIncludePath
             "bazel-out/swiftmodule/parent",
+            # separateIndexBuildOutputBase
+            "1",
         ],
     )
 

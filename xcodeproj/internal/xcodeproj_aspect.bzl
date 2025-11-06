@@ -88,6 +88,10 @@ def _xcodeproj_aspect_attrs(
             ),
             executable = True,
         ),
+        "_separate_index_build_output_base": attr.label(
+            default = Label("//xcodeproj:separate_index_build_output_base"),
+            providers = [BuildSettingInfo],
+        ),
         "_target_build_settings_generator": attr.label(
             cfg = "exec",
             default = Label(
