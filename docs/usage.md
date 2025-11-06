@@ -12,6 +12,7 @@
     - [Workspace `xcodeproj.bazelrc`](#workspace-xcodeprojbazelrc)
     - [Workspace `.bazelrc`](#workspace-bazelrc)
     - [Project `xcodeproj_extra_flags.bazelrc`](#project-xcodeproj_extra_flagsbazelrc)
+  - [Separate the index build output base](#separate-the-index-build-output-base)
 - [Command-line API](#command-line-api)
   - [Commands](#commands)
     - [`build`](#build)

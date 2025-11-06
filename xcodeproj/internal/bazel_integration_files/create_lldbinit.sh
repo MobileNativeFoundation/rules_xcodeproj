@@ -3,7 +3,6 @@
 set -euo pipefail
 
 readonly execution_root="$PROJECT_DIR"
-
 readonly build_external="$execution_root/external"
 
 {
@@ -30,7 +29,7 @@ echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
-if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-0}" -eq 1 ]]; then
+if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
   readonly output_base="${execution_root%/*/*}"
 
   readonly workspace_name="${execution_root##*/}"

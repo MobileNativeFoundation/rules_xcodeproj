@@ -200,12 +200,12 @@ extension Generator {
                 ),
             ])
         } else {
-        buildSettings.append(
-        .init(
-            key: "PROJECT_DIR",
-            value: projectDir.pbxProjEscaped
-        )
-        )
+            buildSettings.append(
+                .init(
+                    key: "PROJECT_DIR",
+                    value: projectDir.pbxProjEscaped
+                )
+            )
         }
         return createBuildSettingsAttribute(buildSettings: buildSettings)
     }

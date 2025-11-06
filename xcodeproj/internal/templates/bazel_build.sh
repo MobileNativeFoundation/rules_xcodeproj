@@ -29,7 +29,10 @@ readonly output_groups_flag
 # changes relative to that changed path.
 readonly build_output_base="$BAZEL_OUTPUT_BASE"
 
-if [ "$ACTION" == "indexbuild" ] && [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
+if [[
+  "$ACTION" == "indexbuild" &&
+  "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES"
+]]; then
   # We use a different output base for Index Build to prevent normal builds and
   # indexing waiting on bazel locks from the other. We nest it inside of the
   # normal output base directory so that it's not cleaned up when running
@@ -90,7 +93,10 @@ bazel_cmd=(
 
   --output_base "$output_base"
 )
-if [ "$ACTION" == "indexbuild" ] && [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" != "YES" ]]; then
+if [[
+  "$ACTION" == "indexbuild" &&
+  "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" != "YES"
+]]; then
   # Allow normal builds to cancel Index Builds
   bazel_cmd+=("--preemptible")
 fi

@@ -244,10 +244,16 @@ if [[ $original_arg_count -eq 0 ]]; then
     "%generator_label%" \
     -- "${installer_flags[@]}"
 else
-  if [[ $config == "build" ]] || [[ $config == "indexbuild" && $separate_indexbuild_output_base -ne 1 ]]; then
+  if [[
+    $config == "build" ||
+    ($config == "indexbuild" && $separate_indexbuild_output_base -ne 1)
+  ]]; then
     readonly bazel_config="_%config%_build"
     readonly output_base_name="build_output_base"
-  elif [[ $config == "indexbuild" && $separate_indexbuild_output_base -eq 1 ]]; then
+  elif [[
+    $config == "indexbuild" &&
+    $separate_indexbuild_output_base -eq 1
+  ]]; then
     readonly bazel_config="%config%_$config"
     readonly output_base_name="indexbuild_output_base"
   else
