@@ -819,9 +819,9 @@ def _xcodeproj_attrs(
         "project_options": attr.string_dict(mandatory = True),
         "runner_build_file": attr.string(mandatory = True),
         "runner_label": attr.string(mandatory = True),
-        "separate_index_build_output_base": attr.bool(mandatory = True),
         "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
+        "separate_index_build_output_base": attr.bool(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
