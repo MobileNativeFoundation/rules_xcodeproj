@@ -115,11 +115,10 @@ readonly base_pre_config_flags=(
 
 
 if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
-    # Create VFS overlay
-    
-    cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-    {"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
-    EOF
+  # Create VFS overlay
+  cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
+EOF
 fi
 
 # Custom Swift toolchains
@@ -184,13 +183,13 @@ if [[ -n "${target_ids:-}" ]]; then
   )
 
   if [ -n "$diff_output" ]; then
-      missing_target_ids=("${diff_output[@]}")
-      echo "error: There were some target IDs that weren't known to Bazel" \
+    missing_target_ids=("${diff_output[@]}")
+    echo "error: There were some target IDs that weren't known to Bazel" \
 "(e.g. \"${missing_target_ids[0]}\"). Please regenerate the project to fix" \
 "this. If you are still getting this error after regenerating your project," \
 "please file a bug report here:" \
 "https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
-        >&2
-      exit 1
+      >&2
+    exit 1
   fi
 fi
