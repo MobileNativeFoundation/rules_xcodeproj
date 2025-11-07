@@ -156,8 +156,6 @@ def xcodeproj(
             Index Build to speed up Xcode's indexing process. You may not want
             this enabled if the additional work (mainly disk IO) of importing
             the index stores is not worth it for your project.
-
-            This only applies when using `generation_mode = "incremental"`.
         install_directory: Optional. The directory where the generated project
             will be written to.
 
