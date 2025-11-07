@@ -1,5 +1,4 @@
-"""Module for collecting dependencies. Only to be used when \
-`xcodeproj.generation_mode = "incremental"` is set."""
+"""Module for collecting dependencies."""
 
 load(":memory_efficiency.bzl", "memory_efficient_depset")
 
