@@ -132,6 +132,8 @@ def join_paths_ignoring_empty(*components):
 
 def relativize_unchecked(path, start):
     """
+    Calculates a naïve relative path from a `start` path to `path`.
+
     Prefer `paths.relativize(...)` from skylib over this function. This function
     unconditionally attempts to establish a relative path between two paths,
     regardless of whether or not the path is under the source. It is inherently
@@ -140,6 +142,9 @@ def relativize_unchecked(path, start):
     Args:
         path: The path to relativize, as the destination.
         start: The path to relativize against, as the source.
+
+    Returns:
+        A path string.
     """
     segments = paths.normalize(path).split("/")
     start_segments = paths.dirname(paths.normalize(start)).split("/")
