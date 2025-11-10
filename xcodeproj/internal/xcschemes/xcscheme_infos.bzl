@@ -1,5 +1,6 @@
 """Module for parsing macro custom Xcode schemes json in the analysis phase."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
     "EMPTY_LIST",
@@ -7,6 +8,7 @@ load(
     "FALSE_ARG",
     "TRUE_ARG",
 )
+load("//xcodeproj/internal/files:files.bzl", "relativize_unchecked")
 
 # Constructors
 
@@ -143,6 +145,7 @@ def _make_run(
         env = None,
         env_include_defaults = TRUE_ARG,
         launch_target = _make_launch_target(),
+        storekit_configuration = EMPTY_STRING,
         xcode_configuration = EMPTY_STRING):
     return struct(
         args = args,
@@ -151,6 +154,7 @@ def _make_run(
         env = env,
         env_include_defaults = env_include_defaults,
         launch_target = launch_target,
+        storekit_configuration = storekit_configuration,
         xcode_configuration = xcode_configuration,
     )
 
@@ -522,6 +526,17 @@ def _pre_post_action_info_from_dicts(pre_post_actions):
         for pre_post_action in pre_post_actions
     ]
 
+def _resolve_storekit_configuration(
+        label,
+        *,
+        install_path,
+        storekit_configurations_map):
+    if not label or label not in storekit_configurations_map:
+        return ""
+    path = storekit_configurations_map[label]
+    scheme_dir = paths.join(install_path, "xcshareddata", "xcschemes")
+    return relativize_unchecked(path, scheme_dir)
+
 def _profile_info_from_dict(
         profile,
         *,
@@ -581,7 +596,9 @@ def _run_info_from_dict(
         run,
         *,
         default_xcode_configuration,
+        install_path,
         scheme_name,
+        storekit_configurations_map,
         top_level_deps):
     if not run:
         return _make_run()
@@ -619,6 +636,11 @@ def _run_info_from_dict(
         env = _env_infos_from_dict(run["env"]),
         env_include_defaults = run["env_include_defaults"],
         launch_target = launch_target,
+        storekit_configuration = _resolve_storekit_configuration(
+            run["storekit_configuration"],
+            install_path = install_path,
+            storekit_configurations_map = storekit_configurations_map,
+        ),
         xcode_configuration = xcode_configuration,
     )
 
@@ -729,13 +751,17 @@ def _scheme_info_from_dict(
         scheme,
         *,
         default_xcode_configuration,
+        install_path,
+        storekit_configurations_map,
         top_level_deps):
     name = scheme["name"]
 
     run = _run_info_from_dict(
         scheme["run"],
         default_xcode_configuration = default_xcode_configuration,
+        install_path = install_path,
         scheme_name = name,
+        storekit_configurations_map = storekit_configurations_map,
         top_level_deps = top_level_deps,
     )
 
@@ -759,11 +785,19 @@ def _scheme_info_from_dict(
 
 # API
 
-def _from_json(json_str, *, default_xcode_configuration, top_level_deps):
+def _from_json(
+        json_str,
+        *,
+        default_xcode_configuration,
+        install_path,
+        storekit_configurations_map,
+        top_level_deps):
     return [
         _scheme_info_from_dict(
             scheme,
             default_xcode_configuration = default_xcode_configuration,
+            install_path = install_path,
+            storekit_configurations_map = storekit_configurations_map,
             top_level_deps = top_level_deps,
         )
         for scheme in json.decode(json_str)

@@ -523,6 +523,7 @@ def _write_schemes(
         infos,
         install_path,
         name,
+        storekit_configurations_map,
         top_level_deps,
         workspace_directory,
         xcschemes_generator,
@@ -542,6 +543,8 @@ def _write_schemes(
     xcscheme_infos = xcscheme_infos_module.from_json(
         xcschemes_json,
         default_xcode_configuration = default_xcode_configuration,
+        install_path = install_path,
+        storekit_configurations_map = storekit_configurations_map,
         top_level_deps = top_level_deps,
     )
 
@@ -729,6 +732,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         infos = infos,
         install_path = install_path,
         name = name,
+        storekit_configurations_map = ctx.attr.storekit_configurations_map,
         top_level_deps = top_level_deps,
         workspace_directory = workspace_directory,
         xcschemes_generator = ctx.executable._xcschemes_generator,
@@ -822,6 +826,7 @@ def _xcodeproj_attrs(
         "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
         "separate_index_build_output_base": attr.bool(mandatory = True),
+        "storekit_configurations_map": attr.string_dict(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,

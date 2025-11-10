@@ -594,7 +594,8 @@ private func createLaunchActionWithDefaults(
     environmentVariables: [EnvironmentVariable] = [],
     postActions: [ExecutionAction] = [],
     preActions: [ExecutionAction] = [],
-    runnable: Runnable? = nil
+    runnable: Runnable? = nil,
+    storeKitConfiguration: String? = nil
 ) -> String {
     return CreateLaunchAction.defaultCallable(
         buildConfiguration: buildConfiguration,
@@ -608,6 +609,7 @@ private func createLaunchActionWithDefaults(
         environmentVariables: environmentVariables,
         postActions: postActions,
         preActions: preActions,
-        runnable: runnable
+        runnable: runnable,
+        storeKitConfiguration: storeKitConfiguration
     )
 }

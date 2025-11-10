@@ -499,6 +499,8 @@ set
             as: Bool.self,
             in: url
         )
+        let storeKitConfiguration =
+            try consumeArg("run-storekit-configuration", as: String?.self, in: url)
         let xcodeConfiguration =
             try consumeArg("run-xcode-configuration", as: String?.self, in: url)
 
@@ -545,6 +547,7 @@ set
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
+            storeKitConfiguration: storeKitConfiguration,
             xcodeConfiguration: xcodeConfiguration
         )
     }

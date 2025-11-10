@@ -41,7 +41,9 @@ def _infos_from_json_test_impl(ctx):
 
     infos = xcscheme_infos.from_json(
         ctx.attr.json_str,
+        install_path = ctx.attr.install_path,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
+        storekit_configurations_map = ctx.attr.storekit_configurations_map,
         top_level_deps = _json_to_top_level_deps(ctx.attr.top_level_deps),
     )
 
@@ -62,7 +64,9 @@ infos_from_json_test = unittest.make(
     attrs = {
         # Inputs
         "default_xcode_configuration": attr.string(mandatory = True),
+        "install_path": attr.string(mandatory = True),
         "json_str": attr.string(mandatory = True),
+        "storekit_configurations_map": attr.string_dict(mandatory = True),
         "top_level_deps": attr.string(mandatory = True),
 
         # Expected
@@ -86,7 +90,9 @@ def infos_from_json_test_suite(name):
 
             # Inputs
             default_xcode_configuration,
+            install_path,
             json_str,
+            storekit_configurations_map,
             top_level_deps,
 
             # Expected
@@ -97,7 +103,9 @@ def infos_from_json_test_suite(name):
 
             # Inputs
             default_xcode_configuration = default_xcode_configuration,
+            install_path = install_path,
             json_str = json_str,
+            storekit_configurations_map = storekit_configurations_map,
             top_level_deps = json.encode(top_level_deps),
 
             # Expected
@@ -149,6 +157,7 @@ def infos_from_json_test_suite(name):
         },
     }
 
+    install_path = "test/internal/InfosFromJSONTests.xcodeproj"
     full_args = [
         "-a\nnewline",
         xcscheme_infos_testable.make_arg(
@@ -390,7 +399,9 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([]),
+        storekit_configurations_map = {},
         top_level_deps = {},
 
         # Expected
@@ -404,6 +415,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -418,6 +430,7 @@ def infos_from_json_test_suite(name):
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = {},
 
         # Expected
@@ -438,6 +451,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "custom",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -485,6 +499,7 @@ def infos_from_json_test_suite(name):
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -514,6 +529,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -530,6 +546,7 @@ def infos_from_json_test_suite(name):
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -557,6 +574,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -565,6 +583,7 @@ def infos_from_json_test_suite(name):
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = {},
 
         # Expected
@@ -581,6 +600,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -594,11 +614,13 @@ def infos_from_json_test_suite(name):
                     env = {"A": "B"},
                     env_include_defaults = "1",
                     launch_target = full_launch_target,
+                    storekit_configuration = "",
                     xcode_configuration = "custom",
                 ),
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -626,6 +648,7 @@ def infos_from_json_test_suite(name):
                     env = {"A": xcscheme_infos_testable.make_env("B")},
                     env_include_defaults = "1",
                     launch_target = expected_full_launch_target,
+                    storekit_configuration = "",
                     xcode_configuration = "custom",
                 ),
             ),
@@ -639,6 +662,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "custom",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -681,11 +705,13 @@ def infos_from_json_test_suite(name):
                         target_environment = "",
                         working_directory = "",
                     ),
+                    storekit_configuration = "",
                     xcode_configuration = "",
                 ),
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -744,6 +770,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -781,11 +808,13 @@ def infos_from_json_test_suite(name):
                         ],
                         working_directory = "wd",
                     ),
+                    storekit_configuration = "",
                     xcode_configuration = "custom",
                 ),
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -821,6 +850,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -839,11 +869,15 @@ def infos_from_json_test_suite(name):
                     env_include_defaults = "0",
                     launch_target = full_launch_target,
                     use_run_args_and_env = "0",
+                    storekit_configuration = "//test/internal/xcschemes:fixture.storekit",
                     xcode_configuration = "custom",
                 ),
                 "test": None,
             },
         ]),
+        storekit_configurations_map = {
+            "//test/internal/xcschemes:fixture.storekit": "test/internal/xcschemes/fixture.storekit",
+        },
         top_level_deps = top_level_deps,
 
         # Expected
@@ -866,6 +900,9 @@ def infos_from_json_test_suite(name):
                     env = expected_full_env,
                     env_include_defaults = "0",
                     launch_target = expected_full_launch_target,
+                    # from the install path and two levels inside the project, up to the execution root
+                    # <install_path>/xcshareddata/xcschemes
+                    storekit_configuration = "../../xcschemes/fixture.storekit",
                     xcode_configuration = "custom",
                 ),
             ),
@@ -879,6 +916,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "custom",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -913,6 +951,7 @@ def infos_from_json_test_suite(name):
                 ),
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected
@@ -938,6 +977,7 @@ def infos_from_json_test_suite(name):
 
         # Inputs
         default_xcode_configuration = "AppStore",
+        install_path = install_path,
         json_str = json.encode([
             {
                 "name": "A scheme",
@@ -1009,6 +1049,7 @@ def infos_from_json_test_suite(name):
                 ),
             },
         ]),
+        storekit_configurations_map = {},
         top_level_deps = top_level_deps,
 
         # Expected

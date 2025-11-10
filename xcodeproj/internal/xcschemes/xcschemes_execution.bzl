@@ -341,6 +341,7 @@ def _write_schemes(
         _add_env(info.run.env)
         custom_scheme_args.add(info.run.env_include_defaults)
         _add_diagnostics(info.run.diagnostics)
+        custom_scheme_args.add(info.run.storekit_configuration)
         custom_scheme_args.add(info.run.xcode_configuration)
 
         _add_launch_target(
