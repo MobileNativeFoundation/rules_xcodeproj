@@ -49,6 +49,7 @@ END_UNRELEASED_TEMPLATE
 ### New
 
 * Added `--@rules_xcodeproj//xcodeproj:separate_index_build_output_base` flag to configure the generator to use a separate output base for index builds: [#3243](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3243)
+* Added support for StoreKit configuration files to `xcschemes.run`, for use with [StoreKit Testing](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode).
 
 ### Adjusted
 

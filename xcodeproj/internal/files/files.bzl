@@ -136,6 +136,10 @@ def relativize_unchecked(path, start):
     unconditionally attempts to establish a relative path between two paths,
     regardless of whether or not the path is under the source. It is inherently
     unsafe.
+
+    Args:
+        path: The path to relativize, as the destination.
+        start: The path to relativize against, as the source.
     """
     segments = paths.normalize(path).split("/")
     start_segments = paths.dirname(paths.normalize(start)).split("/")
