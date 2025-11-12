@@ -49,6 +49,7 @@ END_UNRELEASED_TEMPLATE
 ### New
 
 * Added `--@rules_xcodeproj//xcodeproj:separate_index_build_output_base` flag to configure the generator to use a separate output base for index builds: [#3243](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3243)
+* Add support for viewing and edit xcmappingmodel files: [#3242](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3242)
 
 ### Adjusted
 
