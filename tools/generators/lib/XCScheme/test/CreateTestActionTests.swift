@@ -417,11 +417,45 @@ final class CreateTestActionTests: XCTestCase {
 
         XCTAssertNoDifference(action, expectedAction)
     }
+    
+    func test_codeCoverageEnable() {
+        // Arrange
+
+        let buildConfiguration = "Release"
+        let useLaunchSchemeArgsEnv = false
+
+        let expectedAction = #"""
+   <TestAction
+      buildConfiguration = "Release"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "NO"
+      language = "en"
+      region = "US">
+      <Testables>
+      </Testables>
+   </TestAction>
+"""#
+
+        // Act
+
+        let action = createTestActionWithDefaults(
+            appLanguage: "en",
+            appRegion: "US",
+            buildConfiguration: buildConfiguration,
+            useLaunchSchemeArgsEnv: useLaunchSchemeArgsEnv
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
 }
 
 private func createTestActionWithDefaults(
     appLanguage: String? = nil,
     appRegion: String? = nil,
+    codeCoverage: Bool = false,
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
     enableAddressSanitizer: Bool = false,
@@ -439,6 +473,7 @@ private func createTestActionWithDefaults(
     return CreateTestAction.defaultCallable(
         appLanguage: appLanguage,
         appRegion: appRegion,
+        codeCoverage: codeCoverage,
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
         enableAddressSanitizer: enableAddressSanitizer,
