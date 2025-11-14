@@ -212,6 +212,7 @@ def _run(
         env = "inherit",
         env_include_defaults = True,
         launch_target = None,
+        storekit_configuration = None,
         xcode_configuration = None):
     """Defines the Run action.
 
@@ -335,6 +336,10 @@ def _run(
             `None`, `xcschemes.launch_target()` will be used, which means no
             launch target will be set (i.e. the `Executable` dropdown will be
             set to `None`).
+        storekit_configuration: A StoreKit configuration file for use with
+            [StoreKit Testing](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode).
+
+            Can be `None`, or a label string referring to a single configuration file.
         xcode_configuration: The name of the Xcode configuration to use to build
             the targets referenced in the Run action (i.e in the
             [`build_targets`](#xcschemes.run-build_targets) and
@@ -351,6 +356,7 @@ def _run(
         env = env or {},
         env_include_defaults = TRUE_ARG if env_include_defaults else FALSE_ARG,
         launch_target = launch_target,
+        storekit_configuration = storekit_configuration,
         xcode_configuration = xcode_configuration or "",
     )
 

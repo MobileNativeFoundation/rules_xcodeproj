@@ -21,7 +21,8 @@ public struct CreateLaunchAction {
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
-        runnable: Runnable?
+        runnable: Runnable?,
+        storeKitConfiguration: String?
     ) -> String {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
@@ -35,7 +36,8 @@ public struct CreateLaunchAction {
             /*environmentVariables:*/ environmentVariables,
             /*postActions:*/ postActions,
             /*preActions:*/ preActions,
-            /*runnable:*/ runnable
+            /*runnable:*/ runnable,
+            /*storeKitConfiguration:*/ storeKitConfiguration
         )
     }
 }
@@ -55,7 +57,8 @@ extension CreateLaunchAction {
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
         _ preActions: [ExecutionAction],
-        _ runnable: Runnable?
+        _ runnable: Runnable?,
+        _ storeKitConfiguration: String?
     ) -> String
 
     public static func defaultCallable(
@@ -70,7 +73,8 @@ extension CreateLaunchAction {
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
         preActions: [ExecutionAction],
-        runnable: Runnable?
+        runnable: Runnable?,
+        storeKitConfiguration: String?
     ) -> String {
         // 3 spaces for indentation is intentional
 
@@ -202,12 +206,24 @@ ignoresPersistentStateOnLaunch = "NO"
             runnableString = ""
         }
 
+        let storeKitConfigurationString = if let storeKitConfiguration, !storeKitConfiguration.isEmpty && storeKitConfiguration != "None" {
+             #"""
+      <StoreKitConfigurationFileReference
+         identifier = "\#(storeKitConfiguration)">
+      </StoreKitConfigurationFileReference>
+
+"""#
+        } else {
+            ""
+        }
+
         return #"""
    <LaunchAction
       \#(components.joined(separator: "\n      "))>
 \#(preActions.preActionsString)\#
 \#(postActions.postActionsString)\#
 \#(runnableString)\#
+\#(storeKitConfigurationString)\#
 \#(commandLineArguments.commandLineArgumentsString)\#
 \#(environmentVariables.environmentVariablesString)\#
    </LaunchAction>

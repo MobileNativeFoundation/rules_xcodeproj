@@ -461,6 +461,12 @@ configuration alphabetically ("{default}").
             target = bazel_labels.normalize_string(name),
         ))
 
+    storekit_configurations_map = {
+        scheme.name: scheme.run.storekit_configuration
+        for scheme in xcschemes
+        if scheme.run and scheme.run.storekit_configuration
+    }
+
     xcschemes_json = json.encode(
         xcscheme_labels.resolve_labels(xcschemes),
     )
@@ -534,6 +540,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         scheme_autogeneration_config = scheme_autogeneration_config,
+        storekit_configurations_map = storekit_configurations_map,
         target_name_mode = target_name_mode,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,

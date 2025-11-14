@@ -589,6 +589,7 @@ def info_constructors_test_suite(name):
             env = None,
             env_include_defaults = "1",
             launch_target = xcscheme_infos_testable.make_launch_target(),
+            storekit_configuration = "",
             xcode_configuration = "",
         ),
     )
@@ -621,6 +622,7 @@ def info_constructors_test_suite(name):
             },
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
+            storekit_configuration = "",
             xcode_configuration = "Run",
         ),
 
@@ -651,6 +653,7 @@ def info_constructors_test_suite(name):
             launch_target = xcscheme_infos_testable.make_launch_target(
                 id = "L",
             ),
+            storekit_configuration = "",
             xcode_configuration = "Run",
         ),
     )

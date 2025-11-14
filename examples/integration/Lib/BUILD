@@ -7,7 +7,10 @@ load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_framework")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_framework")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-exports_files(["README.md"])
+exports_files([
+    "README.md",
+    "Resources/Configuration.storekit",
+])
 
 exports_files(
     ["Info.plist"],

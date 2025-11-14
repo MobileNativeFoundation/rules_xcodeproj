@@ -552,6 +552,7 @@ def write_schemes_test_suite(name):
                         ],
                         working_directory = "run working dir",
                     ),
+                    storekit_configuration = "StoreKitConfig",
                     xcode_configuration = "Run",
                 ),
                 test = xcscheme_infos_testable.make_test(
@@ -1110,6 +1111,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - test - enableThreadPerformanceChecker
                 "1",
+                # - run - storekitConfiguration
+                "",
                 # - run - xcodeConfiguration
                 "",
                 # - run - launchTarget - isPath
@@ -1236,6 +1239,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - test - enableThreadPerformanceChecker
                 "1",
+                # - run - storekitConfiguration
+                "StoreKitConfig",
                 # - run - xcodeConfiguration
                 "Run",
                 # - run - launchTarget - isPath
@@ -1340,6 +1345,8 @@ def write_schemes_test_suite(name):
                 "1",
                 # - test - enableThreadPerformanceChecker
                 "1",
+                # - run - storekitConfiguration
+                "",
                 # - run - xcodeConfiguration
                 "",
                 # - run - launchTarget - isPath

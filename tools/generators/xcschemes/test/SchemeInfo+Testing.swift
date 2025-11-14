@@ -54,6 +54,7 @@ extension SchemeInfo.Run {
         enableUBSanitizer: Bool = false,
         environmentVariables: [EnvironmentVariable] = [],
         launchTarget: SchemeInfo.LaunchTarget? = nil,
+        storeKitConfiguration: String? = nil,
         xcodeConfiguration: String? = nil
     ) -> Self {
         return Self(
@@ -67,6 +68,7 @@ extension SchemeInfo.Run {
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
+            storeKitConfiguration: storeKitConfiguration,
             xcodeConfiguration: xcodeConfiguration
         )
     }
