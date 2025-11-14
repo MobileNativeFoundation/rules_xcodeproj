@@ -497,4 +497,37 @@ final class CreateFileElementTests: XCTestCase {
         )
         XCTAssertEqual(result.resolvedRepository, stubbedResolvedRepository)
     }
+
+    func test_element_content_explicitFileType_xcmappingmodel() {
+        // Arrange
+
+        let name = "Mapping.xcmappingmodel"
+        let ext = "xcmappingmodel"
+        let bazelPath = BazelPath("a/bazel/path/Mapping.xcmappingmodel")
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedContent = #"""
+{isa = PBXFileReference; explicitFileType = wrapper.xcmappingmodel; path = a_path; sourceTree = "<group>"; }
+"""#
+
+        // Act
+
+        let result = ElementCreator.CreateFileElement.defaultCallable(
+            name: name,
+            ext: ext,
+            bazelPath: bazelPath,
+            bazelPathType: .workspace,
+            createAttributes: createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
+        )
+
+        // Assert
+
+        XCTAssertEqual(result.element.object.content, expectedContent)
+    }
 }
