@@ -204,6 +204,12 @@ fi
 readonly allowed_vars=(
   "BUILD_WORKSPACE_DIRECTORY"
   "HOME"
+  "HTTP_PROXY"
+  "http_proxy"
+  "HTTPS_PROXY"
+  "https_proxy"
+  "NO_PROXY"
+  "no_proxy"
   "SSH_AUTH_SOCK"
   "TERM"
   "USER"
