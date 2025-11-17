@@ -15,6 +15,7 @@ def write_execution_root_file(*, actions, bin_dir_path, name):
     output = actions.declare_file("{}_execution_root_file".format(name))
 
     actions.run_shell(
+        use_default_shell_env = True,
         outputs = [output],
         command = """\
 bin_dir_full="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir}";)"
