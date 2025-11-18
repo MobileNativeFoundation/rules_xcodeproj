@@ -41,12 +41,12 @@ x_templates:
         - setup-bazel-output-base
         - examples/integration/bazel-output-base
         - examples/integration/setup-bazel-output-base
-    - &examples_rules_ios_workspace
-      bazel_workspace_dir: examples/rules_ios
-      git_clean_exclude:
-        - setup-bazel-output-base
-        - examples/sanitizers/bazel-output-base
-        - examples/sanitizers/setup-bazel-output-base
+    # - &examples_rules_ios_workspace
+    #   bazel_workspace_dir: examples/rules_ios
+    #   git_clean_exclude:
+    #     - setup-bazel-output-base
+    #     - examples/sanitizers/bazel-output-base
+    #     - examples/sanitizers/setup-bazel-output-base
 
   commands:
     - &generate_integration "--output_base=bazel-output-base run --config=workflows //:xcodeproj"
@@ -134,15 +134,16 @@ actions:
       - *generate_integration
       - *build_all
 
-  - name: Integration Test - "examples/rules_ios" - Bazel Previous LTS
-    <<: *bazel_previous_lts
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_rules_ios_workspace
-    bazel_commands:
-      - *generate_integration
-      - *build_all
+  ## Uncomment if we ever decide to commit to supporting rules_ios again
+  # - name: Integration Test - "examples/rules_ios" - Bazel Previous LTS
+  #   <<: *bazel_previous_lts
+  #   <<: *arm64
+  #   <<: *action_base
+  #   <<: *normal_resources
+  #   <<: *examples_rules_ios_workspace
+  #   bazel_commands:
+  #     - *generate_integration
+  #     - *build_all
   ## Uncomment once rules_ios supports Bazel 8
   # - name: Integration Test - "examples/rules_ios" - Bazel LTS
   #   <<: *bazel_lts
