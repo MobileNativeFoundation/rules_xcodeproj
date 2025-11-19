@@ -23,7 +23,9 @@ extension Generator {
             environmentVariables: [TargetID: [EnvironmentVariable]],
             executionActionsFile: URL,
             extensionHostIDs: [TargetID: [TargetID]],
-            targetsByID: [TargetID: Target]
+            schemesDirectory: URL,
+            targetsByID: [TargetID: Target],
+            workspace: URL
         ) async throws -> [SchemeInfo] {
             try await callable(
                 /*commandLineArguments:*/ commandLineArguments,
@@ -31,7 +33,9 @@ extension Generator {
                 /*environmentVariables:*/ environmentVariables,
                 /*executionActionsFile:*/ executionActionsFile,
                 /*extensionHostIDs:*/ extensionHostIDs,
-                /*targetsByID:*/ targetsByID
+                /*schemesDirectory:*/ schemesDirectory,
+                /*targetsByID:*/ targetsByID,
+                /*workspace:*/ workspace
             )
         }
     }
@@ -46,7 +50,9 @@ extension Generator.CreateCustomSchemeInfos {
         _ environmentVariables: [TargetID: [EnvironmentVariable]],
         _ executionActionsFile: URL,
         _ extensionHostIDs: [TargetID: [TargetID]],
-        _ targetsByID: [TargetID: Target]
+        _ schemesDirectory: URL,
+        _ targetsByID: [TargetID: Target],
+        _ workspace: URL
     ) async throws -> [SchemeInfo]
 
     static func defaultCallable(
@@ -55,7 +61,9 @@ extension Generator.CreateCustomSchemeInfos {
         environmentVariables: [TargetID: [EnvironmentVariable]],
         executionActionsFile: URL,
         extensionHostIDs: [TargetID: [TargetID]],
-        targetsByID: [TargetID: Target]
+        schemesDirectory: URL,
+        targetsByID: [TargetID: Target],
+        workspace: URL
     ) async throws -> [SchemeInfo] {
         let executionActions: [String: [SchemeInfo.ExecutionAction]] =
             try await .parse(
@@ -93,9 +101,11 @@ extension Generator.CreateCustomSchemeInfos {
                 allTargetIDs: &allTargetIDs,
                 extensionHostIDs: extensionHostIDs,
                 name: name,
+                schemesDirectory: schemesDirectory,
                 targetCommandLineArguments: commandLineArguments,
                 targetEnvironmentVariables: environmentVariables,
-                targetsByID: targetsByID
+                targetsByID: targetsByID,
+                workspace: workspace
             )
 
             let profile = try rawArgs.consumeArg(
@@ -450,9 +460,11 @@ set
         allTargetIDs: inout Set<TargetID>,
         extensionHostIDs: [TargetID: [TargetID]],
         name: String,
+        schemesDirectory: URL,
         targetCommandLineArguments: [TargetID: [CommandLineArgument]],
         targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
         targetsByID: [TargetID: Target],
+        workspace: URL,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> SchemeInfo.Run {
@@ -500,7 +512,11 @@ set
             in: url
         )
         let storeKitConfiguration =
-            try consumeArg("run-storekit-configuration", as: String?.self, in: url)
+            (try consumeArg("run-storekit-configuration", as: String?.self, in: url)).map {
+                // relativize the StoreKit Testing configuration file against the scheme directory within the install path
+                URL(filePath: $0, relativeTo: workspace)
+                    .relativize(from: schemesDirectory)
+            }
         let xcodeConfiguration =
             try consumeArg("run-xcode-configuration", as: String?.self, in: url)
 
@@ -803,5 +819,31 @@ private extension SchemeInfo.LaunchTarget {
         case .target: return true
         case .path: return false
         }
+    }
+}
+
+private extension URL {
+    func relativize(from source: URL) -> String {
+        let sourceComponents = source.deletingLastPathComponent().pathComponents
+        let destComponents = self.pathComponents
+
+        // Find common prefix
+        var commonPrefixCount = 0
+        while commonPrefixCount < sourceComponents.count &&
+              commonPrefixCount < destComponents.count &&
+              sourceComponents[commonPrefixCount] == destComponents[commonPrefixCount] {
+            commonPrefixCount += 1
+        }
+
+        // Build relative path
+        var result = [String]()
+
+        // Add "../" for each level to go up
+        result.append(contentsOf: Array(repeating: "..", count: sourceComponents.count - commonPrefixCount))
+
+        // Add remaining destination components
+        result.append(contentsOf: destComponents[commonPrefixCount...])
+
+        return result.joined(separator: "/")
     }
 }

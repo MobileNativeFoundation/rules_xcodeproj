@@ -488,7 +488,15 @@ xcodeproj_runner = rule(
             default = "auto",
             values = ["auto", "none", "all"],
         ),
-        "storekit_configurations_map": attr.string_keyed_label_dict(allow_files = True),
+        "storekit_configurations_map": attr.string_keyed_label_dict(
+            allow_files = True,
+            mandatory = True,
+            doc = """\
+A dict mapping xcscheme names to Labels of StoreKit Testing configuration files.
+
+While the attr allows for Labels that make up multiple files, the Label must point
+to a single file.""",
+        ),
         "target_name_mode": attr.string(
             default = "auto",
             values = ["auto", "label"],

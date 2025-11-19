@@ -41,7 +41,6 @@ def _infos_from_json_test_impl(ctx):
 
     infos = xcscheme_infos.from_json(
         ctx.attr.json_str,
-        install_path = ctx.attr.install_path,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
         storekit_configurations_map = ctx.attr.storekit_configurations_map,
         top_level_deps = _json_to_top_level_deps(ctx.attr.top_level_deps),
@@ -902,7 +901,7 @@ def infos_from_json_test_suite(name):
                     launch_target = expected_full_launch_target,
                     # from the install path and two levels inside the project, up to the execution root
                     # <install_path>/xcshareddata/xcschemes
-                    storekit_configuration = "../../xcschemes/fixture.storekit",
+                    storekit_configuration = "test/internal/xcschemes/fixture.storekit",
                     xcode_configuration = "custom",
                 ),
             ),

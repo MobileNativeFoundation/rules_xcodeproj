@@ -130,48 +130,6 @@ def join_paths_ignoring_empty(*components):
         return ""
     return paths.join(*non_empty_components)
 
-def relativize_unchecked(path, start):
-    """
-    Calculates a naïve relative path from a `start` path to `path`.
-
-    Prefer `paths.relativize(...)` from skylib over this function. This function
-    unconditionally attempts to establish a relative path between two paths,
-    regardless of whether or not the path is under the source. It is inherently
-    unsafe.
-
-    Args:
-        path: The path to relativize, as the destination.
-        start: The path to relativize against, as the source.
-
-    Returns:
-        A path string.
-    """
-    segments = paths.normalize(path).split("/")
-    start_segments = paths.dirname(paths.normalize(start)).split("/")
-    if start_segments == ["."]:
-        start_segments = []
-    start_length = len(start_segments)
-
-    if (
-        path.startswith("/") != start.startswith("/") or
-        len(segments) < start_length
-    ):
-        fail("Path '{}' has no ancestor in common with '{}'".format(path, start))
-
-    common_prefix_count = 0
-    for ancestor_segment, segment in zip(start_segments, segments):
-        # This is the point we fork from `paths.relativize`. Instead of failing
-        # here, we break instead and form the path as best we can. This may
-        # ultimately be misguided.
-        if ancestor_segment != segment:
-            break
-        common_prefix_count += 1
-
-    parent_segments = [".."] * (start_length - common_prefix_count)
-    result_segments = parent_segments + segments[common_prefix_count:]
-
-    return "/".join(result_segments)
-
 def replace_bazel_placeholders(path):
     # Use Xcode set `DEVELOPER_DIR`
     path = path.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")

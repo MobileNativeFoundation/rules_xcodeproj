@@ -543,7 +543,6 @@ def _write_schemes(
     xcscheme_infos = xcscheme_infos_module.from_json(
         xcschemes_json,
         default_xcode_configuration = default_xcode_configuration,
-        install_path = install_path,
         storekit_configurations_map = storekit_configurations_map,
         top_level_deps = top_level_deps,
     )
@@ -826,7 +825,11 @@ def _xcodeproj_attrs(
         "scheme_autogeneration_config": attr.string_list_dict(mandatory = True),
         "scheme_autogeneration_mode": attr.string(mandatory = True),
         "separate_index_build_output_base": attr.bool(mandatory = True),
-        "storekit_configurations_map": attr.string_dict(mandatory = True),
+        "storekit_configurations_map": attr.string_dict(
+            mandatory = True,
+            doc = """\
+A dict mapping of Labels for StoreKit Testing configuration files to their File paths.""",
+        ),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
