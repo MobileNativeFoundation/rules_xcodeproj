@@ -40,7 +40,7 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.3.0...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.4.0...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -48,9 +48,7 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* Added `--@rules_xcodeproj//xcodeproj:separate_index_build_output_base` flag to configure the generator to use a separate output base for index builds: [#3243](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3243)
-* Add support for viewing and edit xcmappingmodel files: [#3242](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3242)
-* Added support for StoreKit configuration files to `xcschemes.run`, for use with [StoreKit Testing](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode). [#3242](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3245)
+* TBD
 
 ### Adjusted
 
@@ -58,11 +56,26 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* Fixed potential stale `--xcode_version` in `runner.sh`: [#3232](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3232)
+* TBD
 
 ### Ruleset Development Changes
 
 * TBD
+
+<a id="3.4.0"></a>
+## [3.4.0] - 2025-11-19
+
+[3.4.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.3.0...3.4.0
+
+### New
+
+* Added `--@rules_xcodeproj//xcodeproj:separate_index_build_output_base` flag to configure the generator to use a separate output base for index builds: [#3243](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3243)
+* Added support for viewing and editing `.xcmappingmodel` files: [#3242](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3242)
+* Added support for StoreKit configuration files to `xcschemes.run`, for use with [StoreKit Testing](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode). [#3242](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3245)
+
+### Fixed
+
+* Fixed potential stale `--xcode_version` in `runner.sh`: [#3232](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3232)
 
 <a id="3.3.0"></a>
 ## [3.3.0] - 2025-10-31
