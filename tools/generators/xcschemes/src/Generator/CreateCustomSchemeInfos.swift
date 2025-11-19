@@ -512,8 +512,9 @@ set
             in: url
         )
         let storeKitConfiguration =
-            (try consumeArg("run-storekit-configuration", as: String?.self, in: url)).map {
-                // relativize the StoreKit Testing configuration file against the scheme directory within the install path
+            (try consumeArg("run-storekit-configuration", as: String?.self, in: url)).flatMap {
+                // Relativize the StoreKit Testing configuration file against
+                // the scheme directory within the install path.
                 URL(filePath: $0, relativeTo: workspace)
                     .relativize(from: schemesDirectory)
             }
@@ -822,8 +823,12 @@ private extension SchemeInfo.LaunchTarget {
     }
 }
 
-private extension URL {
-    func relativize(from source: URL) -> String {
+extension URL {
+    func relativize(from source: URL) -> String? {
+        if self == source {
+            return self.path
+        }
+
         let sourceComponents = source.deletingLastPathComponent().pathComponents
         let destComponents = self.pathComponents
 
