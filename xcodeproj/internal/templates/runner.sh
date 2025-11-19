@@ -178,10 +178,12 @@ else
   xcode_version=""
 fi
 
+touch "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
+
 # We write to a `.bazelrc` file instead of passing flags directly in order to
 # support all Bazel commands via the `common` pseudo-command
 if [[ -n "$xcode_version" ]]; then
-  cat <<EOF > "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
+  cat <<EOF >> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
 # Be explicit about our desired Xcode version
 common:rules_xcodeproj --xcode_version=$xcode_version
 
@@ -194,7 +196,7 @@ EOF
 fi
 
 if [[ -n "$developer_dir" ]]; then
-  cat <<EOF>> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
+  cat <<EOF >> "$pre_xcodeproj_bazelrc_dir/pre_xcodeproj.bazelrc"
 
 # Set \`DEVELOPER_DIR\` in case a bazel wrapper filters it
 common:rules_xcodeproj --repo_env="DEVELOPER_DIR=$developer_dir"
