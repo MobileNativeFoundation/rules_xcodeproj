@@ -13,6 +13,22 @@ def _process_extra_flags(*, attr, content, setting, config, config_suffix):
             "common:{}{} {}".format(config, config_suffix, extra_flags),
         )
 
+def _resolve_storekit_configurations_map(storekit_configurations_map):
+    file_paths = {}
+    for scheme_name, target in storekit_configurations_map.items():
+        if target.label in file_paths:
+            continue
+        files = target.files.to_list()
+        if not files:
+            continue
+        elif len(files) > 1:
+            fail("""\
+Scheme `{scheme_name}` declares a `storekit_configuration` on its `run` action \
+that is composed of multiple files. The `storekit_configuration` for a scheme \
+must be a single file.""".format(scheme_name = scheme_name))
+        file_paths[str(target.label)] = files[0].path
+    return file_paths
+
 def _serialize_nullable_string(value):
     if not value:
         return "None"
@@ -185,6 +201,7 @@ def _write_generator_build_file(
         name,
         runner_label,
         repo,
+        storekit_configurations_map,
         template):
     output = actions.declare_file("{}.generator.BUILD.bazel".format(name))
 
@@ -220,6 +237,7 @@ def _write_generator_build_file(
             "%scheme_autogeneration_config%": str(attr.scheme_autogeneration_config),
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
             "%separate_index_build_output_base%": str(attr._separate_index_build_output_base[BuildSettingInfo].value),
+            "%storekit_configurations_map%": str(storekit_configurations_map),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
@@ -403,6 +421,7 @@ def _xcodeproj_runner_impl(ctx):
         name = name,
         runner_label = runner_label,
         repo = repo,
+        storekit_configurations_map = _resolve_storekit_configurations_map(attr.storekit_configurations_map),
         template = build_file_template,
     )
 
@@ -468,6 +487,15 @@ xcodeproj_runner = rule(
         "scheme_autogeneration_mode": attr.string(
             default = "auto",
             values = ["auto", "none", "all"],
+        ),
+        "storekit_configurations_map": attr.string_keyed_label_dict(
+            allow_files = True,
+            mandatory = True,
+            doc = """\
+A dict mapping xcscheme names to Labels of StoreKit Testing configuration files.
+
+While the attr allows for Labels that make up multiple files, the Label must point
+to a single file.""",
         ),
         "target_name_mode": attr.string(
             default = "auto",

@@ -155,6 +155,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -237,6 +238,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: extensionHost
                 ),
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -315,6 +317,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -393,6 +396,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                     primary: launchable,
                     extensionHost: nil
                 ),
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -465,6 +469,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
                 launchTarget: nil,
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -533,6 +538,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
                 launchTarget: nil,
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -604,6 +610,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
                 launchTarget: nil,
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -676,6 +683,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
                 launchTarget: nil,
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(
@@ -743,6 +751,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: [],
                 launchTarget: nil,
+                storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
             profile: .init(

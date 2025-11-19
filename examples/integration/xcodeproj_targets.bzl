@@ -228,6 +228,7 @@ XCSCHEMES = [
                     ],
                 ),
             ],
+            storekit_configuration = "//Lib:Resources/Configuration.storekit",
         ),
     ),
 ]

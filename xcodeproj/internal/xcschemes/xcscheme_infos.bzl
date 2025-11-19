@@ -143,6 +143,7 @@ def _make_run(
         env = None,
         env_include_defaults = TRUE_ARG,
         launch_target = _make_launch_target(),
+        storekit_configuration = EMPTY_STRING,
         xcode_configuration = EMPTY_STRING):
     return struct(
         args = args,
@@ -151,6 +152,7 @@ def _make_run(
         env = env,
         env_include_defaults = env_include_defaults,
         launch_target = launch_target,
+        storekit_configuration = storekit_configuration,
         xcode_configuration = xcode_configuration,
     )
 
@@ -321,6 +323,17 @@ def _env_infos_from_dict(env):
         key: _env_info_from_dict(value)
         for key, value in env.items()
     }
+
+def _storekit_configuration_info(label, storekit_configurations_map):
+    """
+    Extract the full path (from the execution root) for a StoreKit Testing \
+    configuration file from the `storekit_configurations_map`.
+
+    Args:
+        label: A Label to a StoreKit Testing configuration file.
+        storekit_configurations_map: A dict of Labels to File paths.
+    """
+    return storekit_configurations_map.get(label, "")
 
 def _get_library_target_id(label, *, scheme_name, target_ids):
     target_id = target_ids.get(label)
@@ -582,6 +595,7 @@ def _run_info_from_dict(
         *,
         default_xcode_configuration,
         scheme_name,
+        storekit_configurations_map,
         top_level_deps):
     if not run:
         return _make_run()
@@ -619,6 +633,10 @@ def _run_info_from_dict(
         env = _env_infos_from_dict(run["env"]),
         env_include_defaults = run["env_include_defaults"],
         launch_target = launch_target,
+        storekit_configuration = _storekit_configuration_info(
+            run["storekit_configuration"],
+            storekit_configurations_map,
+        ),
         xcode_configuration = xcode_configuration,
     )
 
@@ -729,6 +747,7 @@ def _scheme_info_from_dict(
         scheme,
         *,
         default_xcode_configuration,
+        storekit_configurations_map,
         top_level_deps):
     name = scheme["name"]
 
@@ -736,6 +755,7 @@ def _scheme_info_from_dict(
         scheme["run"],
         default_xcode_configuration = default_xcode_configuration,
         scheme_name = name,
+        storekit_configurations_map = storekit_configurations_map,
         top_level_deps = top_level_deps,
     )
 
@@ -759,11 +779,17 @@ def _scheme_info_from_dict(
 
 # API
 
-def _from_json(json_str, *, default_xcode_configuration, top_level_deps):
+def _from_json(
+        json_str,
+        *,
+        default_xcode_configuration,
+        storekit_configurations_map,
+        top_level_deps):
     return [
         _scheme_info_from_dict(
             scheme,
             default_xcode_configuration = default_xcode_configuration,
+            storekit_configurations_map = storekit_configurations_map,
             top_level_deps = top_level_deps,
         )
         for scheme in json.decode(json_str)
