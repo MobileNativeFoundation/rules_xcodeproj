@@ -615,6 +615,7 @@ def write_schemes_test_suite(name):
                     options = xcscheme_infos_testable.make_test_options(
                         app_language = "en",
                         app_region = "US",
+                        code_coverage = "0",
                     ),
                     test_targets = [
                         xcscheme_infos_testable.make_test_target(
@@ -1091,6 +1092,8 @@ def write_schemes_test_suite(name):
                 "",
                 # - test - app_region
                 "",
+                # - test - code_coverage
+                "0",
                 # - test - xcodeConfiguration
                 "",
                 # - run - buildTargets
@@ -1194,6 +1197,8 @@ def write_schemes_test_suite(name):
                 "en",
                 # - test - app_region
                 "US",
+                # - test - code_coverage
+                "0",
                 # - test - xcodeConfiguration
                 "Test",
                 # - run - buildTargets
@@ -1325,6 +1330,8 @@ def write_schemes_test_suite(name):
                 "",
                 # - test - app_region
                 "",
+                # - test - code_coverage
+                "0",
                 # - test - xcodeConfiguration
                 "",
                 # - run - buildTargets

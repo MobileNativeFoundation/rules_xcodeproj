@@ -997,6 +997,7 @@ def infos_from_json_test_suite(name):
                     options = struct(
                         app_language = "en",
                         app_region = "US",
+                        code_coverage = "0",
                     ),
                     test_targets = [
                         "tt 1 label",
@@ -1090,6 +1091,7 @@ def infos_from_json_test_suite(name):
                     options = xcscheme_infos_testable.make_test_options(
                         app_language = "en",
                         app_region = "US",
+                        code_coverage = "0",
                     ),
                     test_targets = [
                         xcscheme_infos_testable.make_test_target("sim tt 1"),
