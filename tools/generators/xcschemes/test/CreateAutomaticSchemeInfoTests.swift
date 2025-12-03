@@ -735,7 +735,11 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
-                options: .init(appLanguage: "en", appRegion: "US"),
+                options: .init(
+                    appLanguage: "en",
+                    appRegion: "US",
+                    codeCoverage: false
+                ),
                 testTargets: [.init(target: test, isEnabled: true)],
                 useRunArgsAndEnv: false,
                 xcodeConfiguration: nil
@@ -770,7 +774,11 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
             target: test,
-            testOptions: .init(appLanguage: "en", appRegion: "US")
+            testOptions: .init(
+                appLanguage: "en",
+                appRegion: "US",
+                codeCoverage: false
+            )
         )
 
         // Assert

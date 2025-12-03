@@ -85,7 +85,7 @@ extension SchemeInfo.Test {
         enableMainThreadChecker: Bool = false,
         enableThreadPerformanceChecker: Bool = false,
         environmentVariables: [EnvironmentVariable] = [],
-        options: SchemeInfo.Test.Options = .init(appLanguage: nil, appRegion: nil),
+        options: SchemeInfo.Test.Options = .init(appLanguage: nil, appRegion: nil, codeCoverage: false),
         testTargets: [SchemeInfo.TestTarget] = [],
         useRunArgsAndEnv: Bool = true,
         xcodeConfiguration: String? = nil
