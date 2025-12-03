@@ -91,7 +91,7 @@ common:rules_xcodeproj_coverage --config=rules_xcodeproj
 
 # Enable features that allow for building for instrumentation.
 #
-# Of particular note are the (swift./)coverage_prefix_map_canonical_non_hermetic
+# Of particular note are the (swift./)_coverage_prefix_map_absolute_sources_non_hermetic
 # features, which remap the execroot during the build as the absolute, canonical path
 # to the source root.
 #
@@ -100,11 +100,11 @@ common:rules_xcodeproj_coverage --config=rules_xcodeproj
 # coverage).
 common:rules_xcodeproj_coverage --features=coverage
 common:rules_xcodeproj_coverage --features=llvm_coverage_map_format
-common:rules_xcodeproj_coverage --features=coverage_prefix_map_canonical_non_hermetic
+common:rules_xcodeproj_coverage --features=_coverage_prefix_map_absolute_sources_non_hermetic
 common:rules_xcodeproj_coverage --features=swift.coverage
-common:rules_xcodeproj_coverage --features=swift.coverage_prefix_map_canonical_non_hermetic
+common:rules_xcodeproj_coverage --features=swift._coverage_prefix_map_absolute_sources_non_hermetic
 
-# Disable features that interfere with (swift./)coverage_prefix_map_canonical_non_hermetic
+# Disable features that interfere with (swift./)_coverage_prefix_map_absolute_sources_non_hermetic
 common:rules_xcodeproj_coverage --features=-coverage_prefix_map
 common:rules_xcodeproj_coverage --features=-file_prefix_map
 common:rules_xcodeproj_coverage --features=-swift.coverage_prefix_map
