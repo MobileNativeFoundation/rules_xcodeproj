@@ -735,7 +735,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
                 enableMainThreadChecker: false,
                 enableThreadPerformanceChecker: false,
                 environmentVariables: baseEnvironmentVariables,
-                                options: .init(
+                options: .init(
                     appLanguage: "en",
                     appRegion: "US",
                     codeCoverage: false
@@ -774,7 +774,7 @@ final class CreateAutomaticSchemeInfoTests: XCTestCase {
 
         let schemeInfo = try createAutomaticSchemeInfoWithDefaults(
             target: test,
-                        testOptions: .init(
+            testOptions: .init(
                 appLanguage: "en",
                 appRegion: "US",
                 codeCoverage: false
