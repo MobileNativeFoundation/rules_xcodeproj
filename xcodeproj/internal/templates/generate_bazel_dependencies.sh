@@ -123,6 +123,8 @@ elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   readonly config="${BAZEL_CONFIG}_swiftuipreviews"
 elif [ "${ENABLE_CODE_COVERAGE:-}" == "YES" ]; then
   readonly config="${BAZEL_CONFIG}_coverage"
+  
+  echo "warning: Code coverage is enabled. In order to maintain compatibility with Xcode, the instrumented build is not hermetic. Remote cache performance will be affected." >&2
 else
   readonly config="_${BAZEL_CONFIG}_build"
 fi
