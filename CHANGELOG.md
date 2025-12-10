@@ -62,10 +62,23 @@ END_UNRELEASED_TEMPLATE
 
 * TBD
 
+<a id="3.5.0"></a>
+## [3.5.0] - 2025-12-10
+
+[3.5.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.4.1...3.5.0
+
+### New
+
+* Support Code Coverage in Xcode schemes: [#3111](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3111)
+* Display inline Code Coverage in the Xcode Source Editor: [#3250](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3250)
+
+> ![NOTE]
+> Code Coverage in Xcode requires [apple_support 2.0.0 or later](https://github.com/bazelbuild/apple_support/releases), and [rules_swift 3.4.1 or later](https://github.com/bazelbuild/rules_swift/releases).
+
 <a id="3.4.1"></a>
 ## [3.4.1] - 2025-11-19
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.4.0...3.4.1
+[3.4.1]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.4.0...3.4.1
 
 ### Fixed
 
