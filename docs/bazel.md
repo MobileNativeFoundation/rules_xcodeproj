@@ -549,7 +549,7 @@ Defines the test options for a custom scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcschemes.test_options-app_language"></a>app_language |  Language to set in scheme.<br><br>Defaults to system settings if not set.   |  `None` |
 | <a id="xcschemes.test_options-app_region"></a>app_region |  Region to set in scheme.<br><br>Defaults to system settings if not set.   |  `None` |
-| <a id="xcschemes.test_options-code_coverage"></a>code_coverage |  Whether to enable code coverage.<br><br>If `True`, code coverage will be enabled.   |  `False` |
+| <a id="xcschemes.test_options-code_coverage"></a>code_coverage |  Whether to enable code coverage.<br><br>If `True`, code coverage will be enabled. Note that out-of-the-box support for inline code coverage UI in Xcode when using Build with Bazel mode requires [apple_support](https://github.com/bazelbuild/apple_support) 2.0.0 or later, and [rules_swift](https://github.com/bazelbuild/rules_swift) 3.4.1 or later.   |  `False` |
 
 
 <a id="xcschemes.test_target"></a>

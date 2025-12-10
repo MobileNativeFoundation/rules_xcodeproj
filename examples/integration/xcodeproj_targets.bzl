@@ -188,7 +188,7 @@ XCSCHEMES = [
             test_options = xcschemes.test_options(
                 app_language = "en",
                 app_region = "US",
-                code_coverage = False,
+                code_coverage = True,
             ),
             test_targets = [
                 "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",

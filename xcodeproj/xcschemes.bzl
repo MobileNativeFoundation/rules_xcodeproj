@@ -1218,7 +1218,10 @@ def _test_options(
             Defaults to system settings if not set.
         code_coverage: Whether to enable code coverage.
 
-            If `True`, code coverage will be enabled.
+            If `True`, code coverage will be enabled. Note that out-of-the-box support for inline
+            code coverage UI in Xcode when using Build with Bazel mode requires
+            [apple_support](https://github.com/bazelbuild/apple_support) 2.0.0 or later, and
+            [rules_swift](https://github.com/bazelbuild/rules_swift) 3.4.1 or later.
     """
 
     return struct(

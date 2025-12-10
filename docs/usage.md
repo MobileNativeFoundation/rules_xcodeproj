@@ -5,6 +5,7 @@
     - [`rules_xcodeproj_generator`](#rules_xcodeproj_generator)
     - [`rules_xcodeproj_indexbuild`](#rules_xcodeproj_indexbuild)
     - [`rules_xcodeproj_swiftuipreviews`](#rules_xcodeproj_swiftuipreviews)
+    - [`rules_xcodeproj_coverage`](#rules_xcodeproj_coverage)
   - [Project-level configs](#project-level-configs)
   - [Extra config flags](#extra-config-flags)
   - [`.bazelrc` files](#bazelrc-files)
@@ -118,6 +119,34 @@ SwiftUI Preview build.
 
 You shouldn’t need to adjust this config. The default config applies the needed
 build adjusting flags.
+
+### `rules_xcodeproj_coverage`
+
+> [!NOTE]
+> Code coverage in Xcode with Bazel requires [apple_support](https://github.com/bazelbuild/apple_support) 2.0.0 or later and [rules_swift](https://github.com/bazelbuild/rules_swift) 3.4.1 or later.
+
+The `rules_xcodeproj_coverage` config is used when building the project tests
+inside of Xcode when code coverage is enabled. This config sets the needed
+features inside apple_support and rules_swift to generate coverage data with
+absolute paths to sources so Xcode can map them correctly.
+
+By default, code coverage is **disabled** for test actions of schemes. You can
+enable code coverage in Xcode by setting `code_coverage = True` on an
+[`xcschemes.test_options`](/doc/bazel.md#xcschemes.test_options-code_coverage)
+declaration, or by enabling the "Gather coverage data" option in the scheme editor.
+
+> [!WARNING]
+> Enabling code coverage will cause tests to be built for coverage, which is a
+> distinct configuration mode from normal test builds. For building in Xcode
+> in particular, this results in build outputs that are inherently non-hermetic
+> as they contain absolute paths to source files. This will result in poor
+> cache hit rates for these builds. This does not impact `coverage` builds run
+> using the [command-line API](#command-line-api) or normal `bazel test` runs.
+>
+> It is recommended to only enable code coverage inside of Xcode when actively
+> using it for development, and to use tool sets like
+> [lcov](https://registry.bazel.build/modules/lcov) to produce coverage reports
+> from normal `bazel` test runs.
 
 ## Project-level configs
 
