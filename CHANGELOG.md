@@ -72,7 +72,7 @@ END_UNRELEASED_TEMPLATE
 * Support Code Coverage in Xcode schemes: [#3111](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3111)
 * Display inline Code Coverage in the Xcode Source Editor: [#3250](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3250)
 
-> ![NOTE]
+> [!NOTE]
 > Code Coverage in Xcode requires [apple_support 2.0.0 or later](https://github.com/bazelbuild/apple_support/releases), and [rules_swift 3.4.1 or later](https://github.com/bazelbuild/rules_swift/releases).
 
 <a id="3.4.1"></a>
