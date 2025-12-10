@@ -122,6 +122,9 @@ build adjusting flags.
 
 ### `rules_xcodeproj_coverage`
 
+> [!NOTE]
+> Code coverage in Xcode with Bazel requires [apple_support](https://github.com/bazelbuild/apple_support) 2.0.0 or later and [rules_swift](https://github.com/bazelbuild/rules_swift) 3.4.1 or later.
+
 The `rules_xcodeproj_coverage` config is used when building the project tests
 inside of Xcode when code coverage is enabled. This config sets the needed
 features inside apple_support and rules_swift to generate coverage data with
