@@ -5,7 +5,7 @@ def _force_release_settings_impl(_settings, _attr):
         "//command_line_option:compilation_mode": "opt",
 
         # Lock down distribution to a specific Xcode version
-        "//command_line_option:xcode_version": "17B55",  # 26.1
+        "//command_line_option:xcode_version": "17B100",  # 26.1.1
     }
 
 _force_release_settings = transition(
