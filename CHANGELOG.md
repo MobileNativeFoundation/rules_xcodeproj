@@ -56,7 +56,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* Fix broken hyperlink to `xcscheme.test_options` section in usage docs for code coverage: [#3256](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3256)
+* TBD
 
 ### Ruleset Development Changes
 
