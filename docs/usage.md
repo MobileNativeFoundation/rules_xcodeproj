@@ -132,7 +132,7 @@ absolute paths to sources so Xcode can map them correctly.
 
 By default, code coverage is **disabled** for test actions of schemes. You can
 enable code coverage in Xcode by setting `code_coverage = True` on an
-[`xcschemes.test_options`](/doc/bazel.md#xcschemes.test_options-code_coverage)
+[`xcschemes.test_options`](bazel.md#xcschemes.test_options-code_coverage)
 declaration, or by enabling the "Gather coverage data" option in the scheme editor.
 
 > [!WARNING]
