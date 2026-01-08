@@ -6,6 +6,7 @@ load(
 load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_framework")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_framework")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("@build_bazel_rules_swift//mixed_language:mixed_language_library.bzl", "mixed_language_library")
 
 exports_files([
     "README.md",
@@ -53,6 +54,35 @@ swift_library(
         "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
     ],
     alwayslink = True,
+)
+
+ios_build_test(
+    name = "ios_mixed_Lib",
+    minimum_os_version = "16.0",
+    tags = ["manual"],
+    targets = [":MixedLib"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+)
+
+mixed_language_library(
+    name = "MixedLib",
+    clang_srcs = [
+        "foo_mixed.h",
+        "foo_mixed.m",
+    ],
+    swift_srcs = [
+        "foo_mixed.swift",
+    ],
+    module_name = "MixedLib",
+    tags = ["manual"],
+    visibility = [
+        "//AppClip:__subpackages__",
+        "//Lib:__subpackages__",
+        "//UI:__subpackages__",
+        "//WidgetExtension:__subpackages__",
+        "//iMessageApp:__subpackages__",
+        "//macOSApp:__subpackages__",
+    ],
 )
 
 genrule(

@@ -99,6 +99,7 @@ XCODEPROJ_TARGETS = [
         labels = [
             "//iOSApp",
             "//Lib:ios_Lib",
+            "//Lib:ios_mixed_Lib",
             "//Lib/dist/dynamic:iOS",
             "//Lib/dist/dynamic:tvOS",
             "//Lib/dist/dynamic:watchOS",
