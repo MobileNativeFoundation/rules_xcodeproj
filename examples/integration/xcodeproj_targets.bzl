@@ -102,6 +102,7 @@ XCODEPROJ_TARGETS = [
             "//Lib/dist/dynamic:iOS",
             "//Lib/dist/dynamic:tvOS",
             "//Lib/dist/dynamic:watchOS",
+            "//MixedLib:ios_MixedLib",
             "//tvOSApp",
         ],
         target_environments = ["device", "simulator"],

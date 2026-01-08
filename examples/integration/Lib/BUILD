@@ -50,6 +50,7 @@ swift_library(
         "//macOSApp:__subpackages__",
     ],
     deps = [
+        "//MixedLib",
         "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
     ],
     alwayslink = True,
