@@ -292,16 +292,23 @@ def _collect_mixed_language_output_files(
         *,
         actions,
         compile_params_files,
+        debug_outputs,
         id,
         indexstore_overrides,
         mixed_target_infos,
-        name):
+        name,
+        output_group_info,
+        product = None,
+        swift_info,
+        transitive_infos):
     """Collects the outputs of a target.
 
     Args:
         actions: `ctx.actions`.
         compile_params_files: A `list` of compiler params `File`s that should be
             generated for Index Build and Xcode Previews.
+        debug_outputs: The `AppleDebugOutputsInfo` provider for the target, or
+            `None`.
         id: A unique identifier for the target.
         indexstore_overrides: A `list` of `(indexstore, target_name)` `tuple`s
             that override the indexstore for the target. This is used for merged
@@ -309,11 +316,28 @@ def _collect_mixed_language_output_files(
         mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
             Clang and Swift targets.
         name: Name (potentially replaced) of the target.
+        output_group_info: The `OutputGroupInfo` provider for the target, or
+            `None`.
+        product: A value from `process_product`.
+        swift_info: The `SwiftInfo` provider for the target, or `None`.
+        transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
+            dependencies of the target.
 
     Returns:
         An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
+    direct_outputs = _get_outputs(
+        debug_outputs = debug_outputs,
+        output_group_info = output_group_info,
+        product = product,
+        swift_info = swift_info,
+    )
+
+    direct_products = []
+    if direct_outputs.product:
+        direct_products.append(direct_outputs.product)
+
     transitive_indexstore_overrides = memory_efficient_depset(
         indexstore_overrides,
         transitive = [
@@ -326,6 +350,17 @@ def _collect_mixed_language_output_files(
             info.outputs._transitive_indexstores
             for info in mixed_target_infos
         ],
+    )
+
+    # TODO: Once BwB mode no longer has target dependencies, remove
+    # transitive products. Until then we need them, to allow `Copy Bazel
+    # Outputs` to be able to copy the products of transitive dependencies.
+    transitive_products = memory_efficient_depset(
+        direct_products,
+        transitive = [
+            info.outputs._transitive_products
+            for info in transitive_infos
+        ]
     )
 
     transitive_compile_params = memory_efficient_depset(
@@ -357,8 +392,9 @@ def _collect_mixed_language_output_files(
             # expand to individual files and blow up the BEP. Instead they are
             # declared as inputs to `indexstores_filelist`, ensuring they are
             # downloaded as needed.
-            [indexstores_filelist]
+            [indexstores_filelist] + direct_products
         ),
+        transitive = [transitive_products],
     )
 
     direct_group_list = [
