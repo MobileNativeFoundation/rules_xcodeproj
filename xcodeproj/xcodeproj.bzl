@@ -237,6 +237,10 @@ def xcodeproj(
               `all`: A scheme is generated for every buildable target even if
               custom schemes are provided.
             </li>
+            <li>
+              `top_level_only`: A scheme is generated for every top-level
+              (bundled or executable) buildable target.
+            </li>
             </ul>
         scheme_autogeneration_config: Optional. A value returned by
             [`xcschemes.autogeneration_config`](#xcschemes.autogeneration_config).

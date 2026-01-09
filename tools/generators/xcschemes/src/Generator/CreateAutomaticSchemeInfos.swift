@@ -84,7 +84,7 @@ extension Generator.CreateAutomaticSchemeInfos {
     ) throws -> [SchemeInfo] {
         let autogenerateSchemes: Bool
         switch autogenerationMode {
-        case .all:
+        case .all, .topLevelOnly:
             autogenerateSchemes = true
         case .auto:
             autogenerateSchemes = customSchemeNames.isEmpty
@@ -96,8 +96,18 @@ extension Generator.CreateAutomaticSchemeInfos {
             return []
         }
 
-        return try targets
-            .filter { $0.productType.shouldCreateScheme }
+        let filteredTargets: [Target]
+        switch autogenerationMode {
+        case .topLevelOnly:
+            filteredTargets = targets
+                .filter { $0.productType.shouldCreateScheme }
+                .filter { $0.productType.isTopLevelForSchemeAutogeneration }
+        default:
+            filteredTargets = targets
+                .filter { $0.productType.shouldCreateScheme }
+        }
+
+        return try filteredTargets
             // Sort targets so resulting `SchemeInfo` is properly sorted for
             // `xcschememanagement.plist`
             .sorted { lhs, rhs in
@@ -136,6 +146,31 @@ private extension PBXProductType {
             return false
         default:
             return true
+        }
+    }
+
+    var isTopLevelForSchemeAutogeneration: Bool {
+        switch self {
+        case .application,
+             .appExtension,
+             .commandLineTool,
+             .driverExtension,
+             .extensionKitExtension,
+             .instrumentsPackage,
+             .intentsServiceExtension,
+             .messagesExtension,
+             .onDemandInstallCapableApplication,
+             .ocUnitTestBundle,
+             .systemExtension,
+             .tvExtension,
+             .uiTestBundle,
+             .unitTestBundle,
+             .watch2App,
+             .xcodeExtension,
+             .xpcService:
+            return true
+        default:
+            return false
         }
     }
 

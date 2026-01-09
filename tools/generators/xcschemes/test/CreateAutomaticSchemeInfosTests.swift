@@ -162,6 +162,46 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
         XCTAssertNoDifference(schemeInfos, expectedSchemeInfos)
     }
 
+    func test_autogenerationMode_topLevelOnly() throws {
+        // Arrange
+
+        let autogenerationMode = AutogenerationMode.topLevelOnly
+        let targets: [Target] = [
+            .mock(key: "A", productType: .framework),
+            .mock(key: "B", productType: .application),
+            .mock(key: "C", productType: .staticLibrary),
+            .mock(key: "D", productType: .unitTestBundle),
+        ]
+
+        let createTargetAutomaticSchemeInfos =
+            Generator.CreateTargetAutomaticSchemeInfos.mock(
+                targetSchemeInfos: [
+                    [.mock(name: "A scheme")],
+                    [.mock(name: "B scheme")],
+                    [.mock(name: "C scheme")],
+                    [.mock(name: "D scheme")],
+                ]
+            )
+
+        let expectedSchemeInfos: [SchemeInfo] = [
+            .mock(name: "B scheme"),
+            .mock(name: "D scheme"),
+        ]
+
+        // Act
+
+        let schemeInfos = try createAutomaticSchemeInfosWithDefaults(
+            autogenerationMode: autogenerationMode,
+            targets: targets,
+            createTargetAutomaticSchemeInfos:
+                createTargetAutomaticSchemeInfos.mock
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(schemeInfos, expectedSchemeInfos)
+    }
+
     // MARK: - createTargetAutomaticSchemeInfos
 
     func test_createTargetAutomaticSchemeInfos() throws {
