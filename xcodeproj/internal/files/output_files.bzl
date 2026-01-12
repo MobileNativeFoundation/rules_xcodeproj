@@ -360,7 +360,7 @@ def _collect_mixed_language_output_files(
         transitive = [
             info.outputs._transitive_products
             for info in transitive_infos
-        ]
+        ],
     )
 
     transitive_compile_params = memory_efficient_depset(
