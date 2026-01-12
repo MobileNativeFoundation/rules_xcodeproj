@@ -1,6 +1,8 @@
 """Functions for processing mixed-language library targets."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
@@ -65,6 +67,8 @@ def _process_mixed_language_library_target(
     )
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
+
     (
         target_compilation_providers,
         provider_compilation_providers,
@@ -163,6 +167,11 @@ def _process_mixed_language_library_target(
         tool = ctx.executable._target_build_settings_generator,
     )
 
+    if AppleDebugOutputsInfo in target:
+        debug_outputs = target[AppleDebugOutputsInfo]
+    else:
+        debug_outputs = None
+
     (
         target_outputs,
         provider_outputs,
@@ -170,10 +179,17 @@ def _process_mixed_language_library_target(
     ) = output_files.collect_mixed_language(
         actions = actions,
         compile_params_files = params_files,
+        debug_outputs = debug_outputs,
         id = id,
         indexstore_overrides = indexstore_overrides,
-        name = label.name,
         mixed_target_infos = mixed_target_infos,
+        name = label.name,
+        output_group_info = (
+            target[OutputGroupInfo] if OutputGroupInfo in target else None
+        ),
+        product = product,
+        swift_info = swift_info,
+        transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
         metadata = target_output_groups_metadata,
