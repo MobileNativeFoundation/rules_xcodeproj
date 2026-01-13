@@ -2,6 +2,8 @@ x_templates:
   action_setup:
     - &action_base
       os: "darwin"
+      self_hosted: true
+      pool: workflows
       triggers:
         push:
           branches:
