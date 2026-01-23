@@ -6,6 +6,7 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
 )
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj:xcodeprojinfo.bzl", "target_type")
 load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
 

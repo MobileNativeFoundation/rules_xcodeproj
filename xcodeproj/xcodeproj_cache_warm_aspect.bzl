@@ -8,6 +8,7 @@ bundle, or codesign as well (which we don't cache anyway).
 
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleResourceInfo")
 load("@build_bazel_rules_swift//swift:providers.bzl", "SwiftInfo")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 
 _BUNDLING_RULE_KINDS = set([
     "ios_app_clip",
