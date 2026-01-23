@@ -4,6 +4,7 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceBundleInfo",
 )
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 load("//xcodeproj/internal:dependencies.bzl", "dependencies")

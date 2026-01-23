@@ -10,6 +10,7 @@ load(
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     "//xcodeproj/internal:build_settings.bzl",
