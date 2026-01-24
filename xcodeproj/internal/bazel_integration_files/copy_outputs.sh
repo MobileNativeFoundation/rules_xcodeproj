@@ -21,6 +21,8 @@ readonly test_frameworks=(
   "XCUnit.framework"
 )
 
+readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
+
 if [[ "$ACTION" != indexbuild ]]; then
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
@@ -32,12 +34,7 @@ if [[ "$ACTION" != indexbuild ]]; then
       ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
     else
       # Product is a bundle
-      # NOTE: use `which` to find the path to `rsync`.
-      # In macOS 15.4, the system `rsync` is using `openrsync` which contains some permission issues.
-      # This allows users to workaround the issue by overriding the system `rsync` with a working version.
-      # Remove this once we no longer support macOS versions with broken `rsync`.
-      PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" \
-        rsync \
+      "$rsync" \
         --copy-links \
         --recursive \
         --times \
