@@ -131,6 +131,7 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/UITests:iOSAppUITestSuite",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+    "//MixedLib/Test:MixedLibTests",
     "//Proto:proto",
     "//GRPC:echo_client",
     "//GRPC:echo_server",

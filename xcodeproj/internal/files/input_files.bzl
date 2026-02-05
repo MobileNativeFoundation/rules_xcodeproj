@@ -721,8 +721,12 @@ def _collect_mixed_language_input_files(
                     for info in mixed_target_infos
                 ],
             ),
-            # Same as resource collection, so no need to merge
-            xccurrentversions = EMPTY_DEPSET,
+            xccurrentversions = memory_efficient_depset(
+                transitive = [
+                    info.inputs.xccurrentversions
+                    for info in mixed_target_infos
+                ],
+            ),
         ),
     )
 
