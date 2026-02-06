@@ -48,7 +48,7 @@ jobs:
 
       - name: Build release archive
         run: |
-          bazel build //distribution:release
+          bazel build --config=cache //distribution:release
 
       - name: Compute integrity
         id: integrity
