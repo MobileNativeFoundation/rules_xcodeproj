@@ -1,0 +1,215 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The new version to tag, ex: 1.0.5'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-release:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Resolve previous tag
+        id: tags
+        run: |
+          TAG="${{ inputs.tag }}"
+          git fetch --tags --force
+
+          PREVIOUS_TAG="$(git tag --merged HEAD --sort=-v:refname | head -n 1)"
+          if [[ -z "$PREVIOUS_TAG" ]]; then
+            echo "No existing tags found; unable to determine previous tag." >&2
+            exit 1
+          fi
+
+          if [[ "$PREVIOUS_TAG" == "$TAG" ]]; then
+            PREVIOUS_TAG="$(git tag --merged HEAD --sort=-v:refname | sed -n '2p')"
+          fi
+          if [[ -z "$PREVIOUS_TAG" ]]; then
+            echo "Unable to determine previous tag." >&2
+            exit 1
+          fi
+
+          echo "previous_tag=$PREVIOUS_TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Build release archive
+        run: |
+          bazel build //distribution:release
+
+      - name: Compute integrity
+        id: integrity
+        run: |
+          SHA_PATH="bazel-bin/distribution/release.tar.gz.sha256"
+          if [[ ! -f "$SHA_PATH" ]]; then
+            echo "Missing $SHA_PATH" >&2
+            ls -la bazel-bin/distribution >&2 || true
+            exit 1
+          fi
+
+          INTEGRITY="$(cat "$SHA_PATH" \
+            | cut -d ' ' -f 1 \
+            | xxd -r -p \
+            | openssl base64 -A \
+            | sed 's/^/sha256-/')"
+          echo "integrity=$INTEGRITY" >> "$GITHUB_OUTPUT"
+
+      - name: Generate release notes
+        run: |
+          TAG="${{ inputs.tag }}"
+          PREVIOUS_TAG="${{ steps.tags.outputs.previous_tag }}"
+          INTEGRITY="${{ steps.integrity.outputs.integrity }}"
+          INTEGRITY_ESCAPED="$(printf '%s' "$INTEGRITY" | sed -e 's/[\\/&|]/\\&/g')"
+
+          sed -e "s/%CURRENT_TAG%/${TAG}/g" \
+              -e "s/%PREVIOUS_TAG%/${PREVIOUS_TAG}/g" \
+              -e "s|%INTEGRITY%|${INTEGRITY_ESCAPED}|g" \
+              distribution/release_notes_template.md > release_notes.md
+
+      - name: Create annotated tag
+        run: |
+          TAG="${{ inputs.tag }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "Tag $TAG already exists." >&2
+            exit 1
+          fi
+
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
+
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ inputs.tag }}"
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --draft \
+            --notes-file release_notes.md \
+            "bazel-bin/distribution/release.tar.gz" \
+            "bazel-bin/distribution/release.tar.gz.sha256"
+
+      - name: Update changelog and open draft PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          TAG="${{ inputs.tag }}"
+          PREVIOUS_TAG="${{ steps.tags.outputs.previous_tag }}"
+          TODAY="$(date -u +%Y-%m-%d)"
+          BRANCH="release-notes-${TAG}"
+          BASE_BRANCH="${GITHUB_REF_NAME}"
+
+          export TAG
+          export PREVIOUS_TAG
+          export TODAY
+          export BASE_BRANCH
+
+          git checkout -b "$BRANCH"
+
+          python3 - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          tag = os.environ["TAG"]
+          previous_tag = os.environ["PREVIOUS_TAG"]
+          today = os.environ["TODAY"]
+
+          path = Path("CHANGELOG.md")
+          text = path.read_text()
+
+          begin = "BEGIN_UNRELEASED_TEMPLATE"
+          end = "END_UNRELEASED_TEMPLATE"
+          begin_idx = text.find(begin)
+          end_idx = text.find(end)
+          if begin_idx == -1 or end_idx == -1:
+              raise SystemExit("Unreleased template markers not found in CHANGELOG.md")
+
+          template_block = text[begin_idx:end_idx].splitlines()
+          template_lines = []
+          in_block = False
+          for line in template_block:
+              if line.strip() == begin:
+                  in_block = True
+                  continue
+              if in_block:
+                  template_lines.append(line)
+          template = "\n".join(template_lines).strip("\n")
+          if not template:
+              raise SystemExit("Unreleased template content is empty")
+
+          search_start = end_idx
+          unreleased_match = re.search(
+              r'<a id="unreleased"></a>\n## \[Unreleased\]\n',
+              text[search_start:],
+          )
+          if not unreleased_match:
+              raise SystemExit("Unreleased section not found in CHANGELOG.md")
+          unreleased_start = search_start + unreleased_match.start()
+
+          next_anchor = re.search(r'\n<a id="[^"]+"></a>\n## \[', text[unreleased_start + 1 :])
+          if not next_anchor:
+              raise SystemExit("Unable to find end of Unreleased section")
+          unreleased_end = unreleased_start + 1 + next_anchor.start()
+
+          unreleased_section = text[unreleased_start:unreleased_end].strip("\n")
+
+          release_section = unreleased_section
+          release_section = release_section.replace('<a id="unreleased"></a>', f'<a id="{tag}"></a>', 1)
+          release_section = release_section.replace('## [Unreleased]', f'## [{tag}] - {today}', 1)
+          release_section = re.sub(
+              r'\[Unreleased\]: .*',
+              f'[{tag}]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/{previous_tag}...{tag}',
+              release_section,
+              count=1,
+          )
+
+          new_unreleased = template.replace("%PREVIOUS_TAG%", tag)
+
+          new_text = (
+              text[:unreleased_start].rstrip("\n")
+              + "\n\n"
+              + new_unreleased.strip("\n")
+              + "\n\n"
+              + release_section.strip("\n")
+              + "\n"
+              + text[unreleased_end:].lstrip("\n")
+          )
+
+          path.write_text(new_text)
+          PY
+
+          git add CHANGELOG.md
+          if git diff --cached --quiet; then
+            echo "No changelog changes to commit." >&2
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update CHANGELOG for ${TAG}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --draft \
+            --title "Update CHANGELOG for ${TAG}" \
+            --body "Updates CHANGELOG.md for ${TAG} and resets the Unreleased section." \
+            --base "$BASE_BRANCH" \
+            --head "$BRANCH"
