@@ -47,8 +47,13 @@ jobs:
           echo "previous_tag=$PREVIOUS_TAG" >> "$GITHUB_OUTPUT"
 
       - name: Build release archive
+        env:
+          BUILDBUDDY_RBE_API_KEY: ${{ secrets.BUILDBUDDY_RBE_API_KEY }}
         run: |
-          bazel build --config=cache //distribution:release
+          bazel build \
+            --config=remote \
+            --remote_header="x-buildbuddy-api-key=${BUILDBUDDY_RBE_API_KEY}" \
+            //distribution:release
 
       - name: Compute integrity
         id: integrity
