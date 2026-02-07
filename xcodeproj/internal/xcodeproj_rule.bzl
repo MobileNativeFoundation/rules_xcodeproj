@@ -906,11 +906,6 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//xcodeproj/internal/templates:installer.sh",
             ),
         ),
-        "_rsync": attr.label(
-            allow_single_file = True,
-            cfg = "exec",
-            default = Label("//xcodeproj/internal/bazel_integration_files:renamed_rsync"),
-        ),
         # TODO: Remove 5.8 when support for Xcode 16.x is dropped.
         "_legacy_index_import": attr.label(
             cfg = "exec",
@@ -937,6 +932,11 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//tools/generators/pbxtargetdependencies:universal_pbxtargetdependencies",
             ),
             executable = True,
+        ),
+        "_rsync": attr.label(
+            allow_single_file = True,
+            cfg = "exec",
+            default = Label("//xcodeproj/internal/bazel_integration_files:renamed_rsync"),
         ),
         "_selected_model_versions_generator": attr.label(
             cfg = "exec",
