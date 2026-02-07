@@ -25,6 +25,7 @@ bazel_dep(
     repo_name = "build_bazel_rules_apple",
 )
 bazel_dep(name = "rules_python", version = "1.7.0")
+bazel_dep(name = "rsync", version = "3.4.1")
 
 repos = use_extension("//xcodeproj:extensions.bzl", "rules_repos")
 use_repo(
@@ -44,11 +45,6 @@ use_repo(
 bazel_dep(
     name = "buildifier_prebuilt",
     version = "6.3.3",
-    dev_dependency = True,
-)
-bazel_dep(
-    name = "rsync",
-    version = "3.4.1",
     dev_dependency = True,
 )
 bazel_dep(
