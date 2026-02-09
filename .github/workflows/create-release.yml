@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   create-release:
-    runs-on: macos-15
+    runs-on: macos-26 # arm64 image: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
     steps:
       - name: Checkout
         uses: actions/checkout@v4
