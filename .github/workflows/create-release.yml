@@ -58,10 +58,20 @@ jobs:
       - name: Compute integrity
         id: integrity
         run: |
-          SHA_PATH="bazel-bin/distribution/release.tar.gz.sha256"
+          OUTPUT_PATH="$(bazel info output_path)"
+          SHA_PATH="$(find "$OUTPUT_PATH" -type f -path '*/bin/distribution/release.tar.gz.sha256' -print -quit)"
+          if [[ -z "$SHA_PATH" ]]; then
+            echo "Missing release.tar.gz.sha256 under $OUTPUT_PATH" >&2
+            exit 1
+          fi
+          TAR_PATH="${SHA_PATH%.sha256}"
+
+          if [[ ! -f "$TAR_PATH" ]]; then
+            echo "Missing $TAR_PATH" >&2
+            exit 1
+          fi
           if [[ ! -f "$SHA_PATH" ]]; then
             echo "Missing $SHA_PATH" >&2
-            ls -la bazel-bin/distribution >&2 || true
             exit 1
           fi
 
@@ -71,6 +81,8 @@ jobs:
             | openssl base64 -A \
             | sed 's/^/sha256-/')"
           echo "integrity=$INTEGRITY" >> "$GITHUB_OUTPUT"
+          echo "release_tar_path=$TAR_PATH" >> "$GITHUB_OUTPUT"
+          echo "release_sha_path=$SHA_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Generate release notes
         run: |
@@ -102,12 +114,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ inputs.tag }}"
+          TAR_PATH="${{ steps.integrity.outputs.release_tar_path }}"
+          SHA_PATH="${{ steps.integrity.outputs.release_sha_path }}"
+          if [[ ! -f "$TAR_PATH" || ! -f "$SHA_PATH" ]]; then
+            echo "Missing release assets for upload." >&2
+            echo "TAR_PATH=$TAR_PATH" >&2
+            echo "SHA_PATH=$SHA_PATH" >&2
+            exit 1
+          fi
+
           gh release create "$TAG" \
             --title "$TAG" \
             --draft \
             --notes-file release_notes.md \
-            "bazel-bin/distribution/release.tar.gz" \
-            "bazel-bin/distribution/release.tar.gz.sha256"
+            "$TAR_PATH" \
+            "$SHA_PATH"
 
       - name: Update changelog and open draft PR
         env:
