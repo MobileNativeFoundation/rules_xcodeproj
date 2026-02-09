@@ -51,7 +51,7 @@ jobs:
           BUILDBUDDY_RBE_API_KEY: ${{ secrets.BUILDBUDDY_RBE_API_KEY }}
         run: |
           bazel build \
-            --config=remote \
+            --config=cache \
             --remote_header="x-buildbuddy-api-key=${BUILDBUDDY_RBE_API_KEY}" \
             //distribution:release
 
