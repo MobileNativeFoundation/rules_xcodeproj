@@ -27,20 +27,11 @@ jobs:
       - name: Resolve previous tag
         id: tags
         run: |
-          TAG="${{ inputs.tag }}"
           git fetch --tags --force
 
-          PREVIOUS_TAG="$(git tag --merged HEAD --sort=-v:refname | head -n 1)"
+          PREVIOUS_TAG="$(git tag --sort=-v:refname | head -n 1)"
           if [[ -z "$PREVIOUS_TAG" ]]; then
             echo "No existing tags found; unable to determine previous tag." >&2
-            exit 1
-          fi
-
-          if [[ "$PREVIOUS_TAG" == "$TAG" ]]; then
-            PREVIOUS_TAG="$(git tag --merged HEAD --sort=-v:refname | sed -n '2p')"
-          fi
-          if [[ -z "$PREVIOUS_TAG" ]]; then
-            echo "Unable to determine previous tag." >&2
             exit 1
           fi
 
