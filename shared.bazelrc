@@ -5,6 +5,7 @@ build --experimental_convenience_symlinks=ignore
 startup --digest_function=blake3
 
 build --remote_default_exec_properties=OSFamily=darwin
+build --remote_default_exec_properties=Arch=arm64
 build --remote_default_exec_properties=cache_bust=macOS_13.0/1
 
 # Use x86_64 instead of i386 for watchOS
