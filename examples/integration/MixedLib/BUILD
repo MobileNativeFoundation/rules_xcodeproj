@@ -23,7 +23,7 @@ apple_precompiled_resource_bundle(
     bundle_name = "MixedLibResources",
     resources = glob(
         [
-            "Model.xcdatamodeld/**",
+            "Resources/**",
         ],
     ),
 )

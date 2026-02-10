@@ -245,6 +245,12 @@ def _process_mixed_language_library_target(
         )
         xcode_target = None
 
+    resource_bundle_ids = [
+        rb_id
+        for info in mixed_target_infos
+        for rb_id in info.resource_bundle_ids.to_list()
+    ]
+
     processed_target = processed_targets.make(
         compilation_providers = provider_compilation_providers,
         direct_dependencies = direct_dependencies,
@@ -253,6 +259,7 @@ def _process_mixed_language_library_target(
         merged_target_ids = merged_target_ids,
         outputs = provider_outputs,
         platform = platform.apple_platform,
+        resource_bundle_ids = resource_bundle_ids if resource_bundle_ids else None,
         swift_debug_settings = swift_target_info.swift_debug_settings,
         target_output_groups = target_output_groups,
         transitive_dependencies = transitive_dependencies,
