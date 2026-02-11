@@ -9,6 +9,7 @@ _BASE_FILES = [
 filegroup(
     name = "bazel_integration_files",
     srcs = _BASE_FILES + [
+        ":renamed_rsync",
         ":renamed_swiftc_stub",
         ":rsync_excludes",
     ] + glob(
@@ -123,6 +124,27 @@ fi
         "manual",
         "no-sandbox",
     ],
+)
+
+genrule(
+    name = "renamed_rsync",
+    srcs = ["@rsync"],
+    outs = ["rsync"],
+    # Make `rsync` have the right name
+    cmd = """\
+readonly output="$@"
+if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
+  cp -c "$<" "$@"
+else
+  cp "$<" "$@"
+fi
+""",
+    message = "Renaming rsync",
+    tags = [
+        "manual",
+        "no-sandbox",
+    ],
+    visibility = ["//visibility:public"],
 )
 
 # Release
