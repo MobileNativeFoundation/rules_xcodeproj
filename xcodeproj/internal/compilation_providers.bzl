@@ -25,6 +25,7 @@ def _legacy_merge_cc_compilation_context(
         return direct_compilation_context
 
     compilation_context = cc_common.create_compilation_context(
+        # TODO: This comment should be updated to not reference opts.bzl
         # Maybe not correct, but we don't use this value in `opts.bzl`, so not
         # worth the computation to merge it
         headers = direct_compilation_context.headers,

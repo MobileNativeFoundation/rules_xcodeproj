@@ -7,7 +7,6 @@ test_suite(
         "//test/internal/build_settings",
         "//test/internal/flattened_key_values",
         "//test/internal/info_plists",
-        "//test/internal/opts",
         "//test/internal/pbxproj_partials",
         "//test/internal/platforms",
         "//test/internal/target",
