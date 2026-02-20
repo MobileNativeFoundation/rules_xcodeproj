@@ -109,6 +109,9 @@ extension Generator.ProcessArgs {
             "separate-index-build-output-base",
             as: Bool.self
         )
+        let clangParamsOutputPath = try rawArguments.consumeArg(
+            "clang-params-output-path"
+        )
 
         let argsStream = argsStream(from: rawArguments)
 
@@ -126,7 +129,8 @@ extension Generator.ProcessArgs {
             previewsFrameworkPaths: previewsFrameworkPaths,
             previewsIncludePath: previewsIncludePath,
             separateIndexBuildOutputBase: separateIndexBuildOutputBase,
-            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths
+            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths,
+            clangParamsOutputPath: clangParamsOutputPath
         )
 
         guard generateBuildSettings else {

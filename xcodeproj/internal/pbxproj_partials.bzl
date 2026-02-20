@@ -1259,6 +1259,20 @@ def _write_target_build_settings(
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
 
+    # Declare clang params file if Swift args exist
+    if generate_build_settings and swift_args:
+        clang_params = actions.declare_file(
+            "{}.clang.params".format(name),
+        )
+
+        # clangParamsOutputPath
+        args.add(clang_params)
+    else:
+        clang_params = None
+
+        # clangParamsOutputPath (empty)
+        args.add("")
+
     c_output_args = actions.args()
 
     # C argsSeparator
@@ -1288,6 +1302,10 @@ def _write_target_build_settings(
 
         # cxxParams
         cxx_output_args.add(cxx_params)
+
+    if clang_params:
+        params.append(clang_params)
+        outputs.append(clang_params)
 
     execution_requirements = {}
     if not allow_remote:

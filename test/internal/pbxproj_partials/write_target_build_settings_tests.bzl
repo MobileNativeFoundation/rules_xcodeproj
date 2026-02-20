@@ -18,6 +18,9 @@ _C_PARAMS_DECLARED_FILE = mock_actions.mock_file(
 _CXX_PARAMS_DECLARED_FILE = mock_actions.mock_file(
     "a_target_name.cxx.compile.params",
 )
+_CLANG_PARAMS_DECLARED_FILE = mock_actions.mock_file(
+    "a_target_name.clang.params",
+)
 
 def _write_target_build_settings_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -58,6 +61,10 @@ def _write_target_build_settings_test_impl(ctx):
         expected_declared_files[_CXX_PARAMS_DECLARED_FILE] = None
         expected_outputs.append(_CXX_PARAMS_DECLARED_FILE)
         expected_params.append(_CXX_PARAMS_DECLARED_FILE)
+    if ctx.attr.expect_clang_params:
+        expected_declared_files[_CLANG_PARAMS_DECLARED_FILE] = None
+        expected_outputs.append(_CLANG_PARAMS_DECLARED_FILE)
+        expected_params.append(_CLANG_PARAMS_DECLARED_FILE)
 
     expect_outputs = bool(expected_build_settings or expected_debug_settings)
 
@@ -194,6 +201,7 @@ write_target_build_settings_test = unittest.make(
         # Expected
         "expect_build_settings": attr.bool(mandatory = True),
         "expect_c_params": attr.bool(mandatory = True),
+        "expect_clang_params": attr.bool(mandatory = True),
         "expect_cxx_params": attr.bool(mandatory = True),
         "expect_debug_settings": attr.bool(mandatory = True),
         "expected_args": attr.string_list(mandatory = True),
@@ -239,6 +247,7 @@ def write_target_build_settings_test_suite(name):
             # Expected
             expect_build_settings = True,
             expect_c_params,
+            expect_clang_params,
             expect_cxx_params,
             expect_debug_settings,
             expected_args):
@@ -272,6 +281,7 @@ def write_target_build_settings_test_suite(name):
             # Expected
             expect_build_settings = expect_build_settings,
             expect_c_params = expect_c_params,
+            expect_clang_params = expect_clang_params,
             expect_cxx_params = expect_cxx_params,
             expect_debug_settings = expect_debug_settings,
             expected_args = expected_args,
@@ -292,6 +302,7 @@ def write_target_build_settings_test_suite(name):
         # Expected
         expect_build_settings = False,
         expect_c_params = False,
+        expect_clang_params = False,
         expect_cxx_params = False,
         expect_debug_settings = False,
         expected_args = [],
@@ -311,6 +322,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = False,
+        expect_clang_params = False,
         expect_cxx_params = False,
         expect_debug_settings = False,
         expected_args = [
@@ -344,6 +356,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            "",
         ],
     )
 
@@ -361,6 +375,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = True,
+        expect_clang_params = False,
         expect_cxx_params = False,
         expect_debug_settings = False,
         expected_args = [
@@ -394,6 +409,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            "",
         ],
     )
 
@@ -409,6 +426,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = False,
+        expect_clang_params = False,
         expect_cxx_params = True,
         expect_debug_settings = False,
         expected_args = [
@@ -442,6 +460,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            "",
         ],
     )
 
@@ -457,6 +477,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = True,
+        expect_clang_params = False,
         expect_cxx_params = True,
         expect_debug_settings = False,
         expected_args = [
@@ -490,6 +511,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            "",
         ],
     )
 
@@ -508,6 +531,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = True,
+        expect_clang_params = True,
         expect_cxx_params = True,
         expect_debug_settings = True,
         expected_args = [
@@ -545,6 +569,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            _CLANG_PARAMS_DECLARED_FILE.path,
         ],
     )
 
@@ -567,6 +593,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = False,
+        expect_clang_params = False,
         expect_cxx_params = False,
         expect_debug_settings = False,
         expected_args = [
@@ -600,6 +627,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            "",
         ],
     )
 
@@ -617,6 +646,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = False,
+        expect_clang_params = True,
         expect_cxx_params = False,
         expect_debug_settings = True,
         expected_args = [
@@ -654,6 +684,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            _CLANG_PARAMS_DECLARED_FILE.path,
         ],
     )
 
@@ -673,6 +705,7 @@ def write_target_build_settings_test_suite(name):
 
         # Expected
         expect_c_params = False,
+        expect_clang_params = True,
         expect_cxx_params = False,
         expect_debug_settings = True,
         expected_args = [
@@ -712,6 +745,8 @@ def write_target_build_settings_test_suite(name):
             "",
             # separateIndexBuildOutputBase
             "0",
+            # clangParamsOutputPath
+            _CLANG_PARAMS_DECLARED_FILE.path,
         ],
     )
 
@@ -748,6 +783,7 @@ def write_target_build_settings_test_suite(name):
         # Expected
         expect_build_settings = False,
         expect_c_params = False,
+        expect_clang_params = False,
         expect_cxx_params = False,
         expect_debug_settings = True,
         expected_args = [
@@ -794,6 +830,8 @@ def write_target_build_settings_test_suite(name):
             "bazel-out/swiftmodule/parent",
             # separateIndexBuildOutputBase
             "1",
+            # clangParamsOutputPath
+            "",
         ],
     )
 

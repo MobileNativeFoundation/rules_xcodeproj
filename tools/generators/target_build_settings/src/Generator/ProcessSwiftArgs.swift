@@ -39,7 +39,8 @@ extension Generator {
             previewsFrameworkPaths: String,
             previewsIncludePath: String,
             separateIndexBuildOutputBase: Bool,
-            transitiveSwiftDebugSettingPaths: [URL]
+            transitiveSwiftDebugSettingPaths: [URL],
+            clangParamsOutputPath: String
         ) async throws -> (
             hasDebugInfo: Bool,
             clangArgs: [String],
@@ -60,7 +61,8 @@ extension Generator {
                 /*processSwiftArg:*/ processSwiftArg,
                 /*processSwiftClangArg:*/ processSwiftClangArg,
                 /*processSwiftFrontendArg:*/ processSwiftFrontendArg,
-                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase
+                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase,
+                /*clangParamsOutputPath:*/ clangParamsOutputPath
             )
         }
     }
@@ -81,7 +83,8 @@ extension Generator.ProcessSwiftArgs {
         _ processSwiftArg: Generator.ProcessSwiftArg,
         _ processSwiftClangArg: Generator.ProcessSwiftClangArg,
         _ processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        _ separateIndexBuildOutputBase: Bool
+        _ separateIndexBuildOutputBase: Bool,
+        _ clangParamsOutputPath: String
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -101,7 +104,8 @@ extension Generator.ProcessSwiftArgs {
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        clangParamsOutputPath: String
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -127,7 +131,8 @@ extension Generator.ProcessSwiftArgs {
             processSwiftArg: processSwiftArg,
             processSwiftClangArg: processSwiftClangArg,
             processSwiftFrontendArg: processSwiftFrontendArg,
-            separateIndexBuildOutputBase: separateIndexBuildOutputBase
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase,
+            clangParamsOutputPath: clangParamsOutputPath
         )
 
         if includeTransitiveSwiftDebugSettings {
@@ -155,7 +160,8 @@ extension Generator.ProcessSwiftArgs {
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        clangParamsOutputPath: String
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -226,7 +232,7 @@ extension Generator.ProcessSwiftArgs {
         }
 
         var hasDebugInfo = false
-        for try await arg in argsStream {
+        while let arg = try await iterator.next() {
             guard arg != Generator.argsSeparator else {
                 break
             }
@@ -326,6 +332,61 @@ extension Generator.ProcessSwiftArgs {
                 includeSelfSwiftDebugSettings: includeSelfSwiftDebugSettings,
                 swiftIncludes: &swiftIncludes
             )
+        }
+
+        // Filter out clang flags to be sent to clang.params file
+        if !clangParamsOutputPath.isEmpty {
+            var clangOnlyArgs: [String] = []
+            var filteredArgs: [String] = []
+            var i = 0
+            while i < args.count {
+                if args[i] == "-Xcc" && i + 1 < args.count {
+                    clangOnlyArgs.append(args[i + 1])
+                    i += 2
+                } else {
+                    filteredArgs.append(args[i])
+                    i += 1
+                }
+            }
+            args = filteredArgs
+
+            // Paths to be replaced in the clang.params file
+            let cwd = FileManager.default.currentDirectoryPath
+            let outputBase = cwd.replacingOccurrences(of: "/execroot/_main", with: "")
+            let projectDir = "\(outputBase)/execroot/_main"
+            let bazelExternal = "\(outputBase)/external"
+            let bazelOut = "\(projectDir)/bazel-out"
+
+            // Non-exhaustive list of values to replace in the clang.params file,
+            // Xcode won't automatically resolve values in files referenced by OTHER_SWIFT_FLAGS
+            let processedClangArgs = clangOnlyArgs.map { arg in
+                arg.replacingOccurrences(of: "$(PROJECT_DIR)", with: projectDir)
+                   .replacingOccurrences(of: "$(BAZEL_OUT)", with: bazelOut)
+                   .replacingOccurrences(of: "$(BAZEL_EXTERNAL)", with: bazelExternal)
+                   .replacingOccurrences(of: "/private/var", with: "/var")
+            }
+
+            let clangContent = processedClangArgs.map { $0 + "\n" }.joined()
+            let clangURL = URL(fileURLWithPath: clangParamsOutputPath)
+            try clangContent.write(to: clangURL, atomically: true, encoding: .utf8)
+
+            // Set build setting pointing to the bazel-out location of the clang.params file
+            buildSettings.append(
+                (
+                    "CLANG_PARAMS_FILE",
+                    #"""
+"$(BAZEL_OUT)\#(clangParamsOutputPath.dropFirst(9))"
+"""#
+                )
+            )
+
+            // See: https://clang.llvm.org/docs/UsersManual.html#configuration-files
+            //
+            // Leverages clang's --config feature to pass clang flags in OTHER_SWIFT_FLAGS
+            if !clangOnlyArgs.isEmpty {
+                args.append("-Xcc")
+                args.append("--config=$(CLANG_PARAMS_FILE)")
+            }
         }
 
         buildSettings.append(
