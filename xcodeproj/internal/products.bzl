@@ -1,6 +1,7 @@
 """Module for collecting product information for a target."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")
 load("//xcodeproj/internal/files:linker_input_files.bzl", "linker_input_files")
 

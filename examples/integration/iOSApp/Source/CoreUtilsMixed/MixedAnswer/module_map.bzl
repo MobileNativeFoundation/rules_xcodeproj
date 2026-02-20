@@ -1,6 +1,8 @@
 """ Allows for the creation of modulemaps given a list of headers """
 
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 
 HEADERS_FILE_TYPES = [
     ".h",
