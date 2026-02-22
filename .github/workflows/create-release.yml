@@ -199,6 +199,32 @@ jobs:
               count=1,
           )
 
+          section_pattern = re.compile(r"(?m)^### .+$")
+          section_matches = list(section_pattern.finditer(release_section))
+          if section_matches:
+              preamble = release_section[:section_matches[0].start()].rstrip("\n")
+              kept_sections = []
+              for idx, match in enumerate(section_matches):
+                  start = match.start()
+                  end = section_matches[idx + 1].start() if idx + 1 < len(section_matches) else len(release_section)
+                  section = release_section[start:end].strip("\n")
+                  lines = section.splitlines()
+                  heading = lines[0]
+                  body_lines = [
+                      line for line in lines[1:]
+                      if not re.fullmatch(r"\s*[*-]\s*TBD\s*", line)
+                  ]
+                  while body_lines and not body_lines[0].strip():
+                      body_lines.pop(0)
+                  while body_lines and not body_lines[-1].strip():
+                      body_lines.pop()
+                  if body_lines:
+                      kept_sections.append("\n".join([heading, "", *body_lines]))
+
+              release_section = preamble
+              if kept_sections:
+                  release_section = f"{release_section}\n\n" + "\n\n".join(kept_sections)
+
           new_unreleased = template.replace("%PREVIOUS_TAG%", tag)
 
           new_text = (
