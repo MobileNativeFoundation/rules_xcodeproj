@@ -702,27 +702,8 @@ set
         var environmentVariables: [EnvironmentVariable]
         if let specifiedEnvironmentVariables {
             environmentVariables = specifiedEnvironmentVariables
-        } else if let firstTestTargetID, let aEnvironmentVariables =
-            targetEnvironmentVariables[firstTestTargetID]
-        {
-            // If the custom scheme inherits environment variables, and every
-            // test target defines the same env, then use them
-            var allEnvironmentVariablesTheSame = true
-            for testTarget in testTargets {
-                let id = testTarget.target.key.sortedIds.first!
-                guard aEnvironmentVariables ==
-                    targetEnvironmentVariables[id]
-                else {
-                    allEnvironmentVariablesTheSame = false
-                    break
-                }
-            }
-
-            if allEnvironmentVariablesTheSame {
-                environmentVariables = aEnvironmentVariables
-            } else {
-                environmentVariables = []
-            }
+        } else if let firstTestTargetID, targetEnvironmentVariables[firstTestTargetID] != nil {
+            environmentVariables = try mergingEnvironmentVariables(targetEnvironmentVariables, in: testTargets)
         } else {
             environmentVariables = []
         }
@@ -751,6 +732,31 @@ set
             xcodeConfiguration: xcodeConfiguration
         )
     }
+}
+
+func mergingEnvironmentVariables(
+    _ targetEnvironmentVariables: [TargetID: [EnvironmentVariable]],
+    in testTargets: [SchemeInfo.TestTarget]
+) throws -> [EnvironmentVariable] {
+    var uniqueEnvironmentVariables: [String: EnvironmentVariable] = [:]
+
+    for testTarget in testTargets {
+        let id = testTarget.target.key.sortedIds.first!
+
+        for variable in targetEnvironmentVariables[id, default: []] {
+            if let storedVariable = uniqueEnvironmentVariables[variable.key],
+                storedVariable.value != variable.value {
+                throw UsageError(message: """
+(\(id)) found key "\(variable.key)" in two environment variable \
+declarations with different values: "\(storedVariable.value)" != "\(variable.value)"
+""")
+            }
+
+            uniqueEnvironmentVariables[variable.key] = variable
+        }
+    }
+
+    return uniqueEnvironmentVariables.values.sorted { $0.key < $1.key }
 }
 
 private extension Dictionary where
