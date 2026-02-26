@@ -23,6 +23,7 @@ _CC_SKIP_OPTS = {
     "-c": 2,
     "-o": 2,
 
+    # TODO: This comment should be updated to not reference opts.bzl
     # Debug info is handled in `opts.bzl`
     "-g": 1,
 
