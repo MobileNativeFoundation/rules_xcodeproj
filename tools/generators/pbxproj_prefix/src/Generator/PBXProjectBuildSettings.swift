@@ -21,6 +21,7 @@ extension Generator {
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         config: String,
+        suppressCoverageBuild: Bool,
         importIndexBuildIndexstores: Bool,
         legacyIndexImport: String,
         indexImport: String,
@@ -175,6 +176,14 @@ extension Generator {
                 value: #""$(PROJECT_DIR)/../..""#
             ),
         ]
+        if suppressCoverageBuild {
+            buildSettings.append(
+                .init(
+                    key: "BAZEL_SUPPRESS_COVERAGE_BUILD",
+                    value: "YES"
+                )
+            )
+        }
         if separateIndexBuildOutputBase {
             buildSettings.append(contentsOf: [
                 .init(

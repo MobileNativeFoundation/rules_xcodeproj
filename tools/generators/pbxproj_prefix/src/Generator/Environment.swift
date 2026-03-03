@@ -31,6 +31,7 @@ extension Generator {
 
         let pbxProjectBuildSettings: (
             _ config: String,
+            _ suppressCoverageBuild: Bool,
             _ importIndexBuildIndexstores: Bool,
             _ legacyIndexImport: String,
             _ indexImport: String,

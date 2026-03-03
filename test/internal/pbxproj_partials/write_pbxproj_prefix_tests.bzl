@@ -48,6 +48,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         colorize = ctx.attr.colorize,
         config = ctx.attr.config,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
+        suppress_coverage_build = ctx.attr.suppress_coverage_build,
         execution_root_file = ctx.attr.execution_root_file,
         generator_name = "a_generator_name",
         import_index_build_indexstores = (
@@ -153,6 +154,7 @@ write_pbxproj_prefix_test = unittest.make(
         "post_build_script": attr.string(),
         "pre_build_script": attr.string(),
         "project_options": attr.string_dict(mandatory = True),
+        "suppress_coverage_build": attr.bool(mandatory = True),
         "resolved_repositories_file": attr.string(mandatory = True),
         "separate_index_build_output_base": attr.bool(mandatory = True),
         "target_ids_list": attr.string(mandatory = True),
@@ -182,6 +184,7 @@ def write_pbxproj_prefix_test_suite(name):
             colorize = False,
             config,
             default_xcode_configuration,
+            suppress_coverage_build = False,
             execution_root_file,
             import_index_build_indexstores,
             index_import,
@@ -208,6 +211,7 @@ def write_pbxproj_prefix_test_suite(name):
             colorize = colorize,
             config = config,
             default_xcode_configuration = default_xcode_configuration,
+            suppress_coverage_build = suppress_coverage_build,
             execution_root_file = execution_root_file,
             import_index_build_indexstores = import_index_build_indexstores,
             index_import = index_import,
@@ -276,6 +280,8 @@ def write_pbxproj_prefix_test_suite(name):
             # indexImport
             "some/path/to/index_import",
             # separateIndexBuildOutputBase
+            "0",
+            # suppressCoverageBuild
             "0",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
@@ -349,6 +355,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/index_import",
             # separateIndexBuildOutputBase
             "1",
+            # suppressCoverageBuild
+            "0",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
             # minimumXcodeVersion

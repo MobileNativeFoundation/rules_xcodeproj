@@ -659,6 +659,7 @@ def _write_pbxproj_prefix(
         colorize,
         config,
         default_xcode_configuration,
+        suppress_coverage_build,
         execution_root_file,
         generator_name,
         import_index_build_indexstores,
@@ -685,6 +686,8 @@ def _write_pbxproj_prefix(
         config: The name of the `.bazelrc` config.
         default_xcode_configuration: The name of the the Xcode configuration to
             use when building, if not overridden by custom schemes.
+        suppress_coverage_build: Whether or not to disable coverage builds even
+            when `CLANG_COVERAGE_MAPPING` is set.
         execution_root_file: A `File` containing the absolute path to the Bazel
             execution root.
         generator_name: The name of the `xcodeproj` generator target.
@@ -748,6 +751,9 @@ def _write_pbxproj_prefix(
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
+
+    # suppressCoverageBuild
+    args.add(TRUE_ARG if suppress_coverage_build else FALSE_ARG)
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)

@@ -240,6 +240,7 @@ def _write_generator_build_file(
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
             "%separate_index_build_output_base%": str(attr._separate_index_build_output_base[BuildSettingInfo].value),
             "%storekit_configurations_map%": str(storekit_configurations_map),
+            "%suppress_coverage_build%": str(attr._suppress_coverage_build[BuildSettingInfo].value),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
@@ -559,6 +560,10 @@ to a single file.""",
         ),
         "_separate_index_build_output_base": attr.label(
             default = Label("//xcodeproj:separate_index_build_output_base"),
+            providers = [BuildSettingInfo],
+        ),
+        "_suppress_coverage_build": attr.label(
+            default = Label("//xcodeproj:suppress_coverage_build"),
             providers = [BuildSettingInfo],
         ),
     },
