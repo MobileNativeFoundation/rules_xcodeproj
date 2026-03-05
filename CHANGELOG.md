@@ -69,23 +69,18 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* Support enabling Code Coverage for all targets in scheme test action by @lucasromanomr in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3111
-* Enable code coverage in Xcode by @aaronsky in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3250
-* Add mixed_language_library target example by @luispadron in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3259
+* Added support for enabling Code Coverage for all targets in scheme test action: [#3111](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3111)
+* Enabled code coverage in Xcode: [#3250](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3250), [#3257](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3257)
 
 ### Adjusted
 
-* Adjust when we build for code coverage when it isn't enabled by @aaronsky in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3257
-* Collect additional mixed_language_library output files by @thiagohmcruz in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3261
+* Additional `mixed_language_library` output files are now collected: [#3261](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3261)
 
 ### Fixed
 
-* Fix broken link in code coverage section of usage docs by @ssarad in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3256
-* collect and merge xcdatamodel correctly for `mixed_language_library` targets by @luispadron in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3268
+* `xcdatamodel` are now collected correctly for `mixed_language_library` targets: [#3268](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3268)
+* Fixed `mixed_language_library` resource propagation [#3277](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3277)
 
-### Ruleset Development Changes
-
-* Create workflow for cutting a release by @adincebic in https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3270
 <a id="3.5.1"></a>
 ## [3.5.1] - 2025-12-10
 
