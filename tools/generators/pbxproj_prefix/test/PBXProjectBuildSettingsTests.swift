@@ -87,16 +87,16 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute(),
             importIndexBuildIndexstores: importIndexBuildIndexstores,
-            legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
-            separateIndexBuildOutputBase: false,
-            suppressCoverageBuild: false,
+            legacyIndexImport: legacyIndexImport,
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
-            workspace: workspace,
-            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
+            separateIndexBuildOutputBase: false,
+            suppressCoverageBuild: false,
+            workspace: workspace
         )
 
         // Assert
@@ -119,12 +119,12 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				BAZEL_CONFIG = rxcp_custom_config;
-				BAZEL_SUPPRESS_COVERAGE_BUILD = YES;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_SUPPRESS_COVERAGE_BUILD = YES;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
@@ -145,6 +145,9 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IMPORT_INDEX_BUILD_INDEXSTORES = NO;
+				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
+				INDEXING_PROJECT_DIR__NO = "/some/project dir";
+				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
@@ -178,16 +181,16 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute(),
             importIndexBuildIndexstores: importIndexBuildIndexstores,
-            legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
-            separateIndexBuildOutputBase: false,
-            suppressCoverageBuild: true,
+            legacyIndexImport: legacyIndexImport,
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
-            workspace: workspace,
-            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
+            separateIndexBuildOutputBase: false,
+            suppressCoverageBuild: true,
+            workspace: workspace
         )
         XCTAssertNoDifference(buildSettings, expectedBuildSettings)
     }
@@ -274,16 +277,16 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
-            suppressCoverageBuild: false,
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute(),
             importIndexBuildIndexstores: importIndexBuildIndexstores,
-            legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
-            separateIndexBuildOutputBase: true,
+            legacyIndexImport: legacyIndexImport,
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
-            workspace: workspace,
-            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
+            separateIndexBuildOutputBase: true,
+            suppressCoverageBuild: false,
+            workspace: workspace
         )
 
         // Assert
