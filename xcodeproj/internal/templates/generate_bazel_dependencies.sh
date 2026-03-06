@@ -121,7 +121,7 @@ if [ "$ACTION" == "indexbuild" ]; then
   apply_sanitizers=0
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
   readonly config="${BAZEL_CONFIG}_swiftuipreviews"
-elif [ "${CLANG_COVERAGE_MAPPING:-}" == YES ]; then
+elif [ "${CLANG_COVERAGE_MAPPING:-}" == YES ] && [ "${BAZEL_SUPPRESS_COVERAGE_BUILD:-}" != YES ]; then
   # Code coverage build
   #
   # CLANG_COVERAGE_MAPPING is set to YES when the active scheme's test action has code coverage enabled. It is configured

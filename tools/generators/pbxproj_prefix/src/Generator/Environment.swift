@@ -31,15 +31,16 @@ extension Generator {
 
         let pbxProjectBuildSettings: (
             _ config: String,
+            _ createBuildSettingsAttribute: CreateBuildSettingsAttribute,
             _ importIndexBuildIndexstores: Bool,
-            _ legacyIndexImport: String,
             _ indexImport: String,
             _ indexingProjectDir: String,
-            _ separateIndexBuildOutputBase: Bool,
+            _ legacyIndexImport: String,
             _ projectDir: String,
             _ resolvedRepositories: String,
+            _ separateIndexBuildOutputBase: Bool,
+            _ suppressCoverageBuild: Bool,
             _ workspace: String,
-            _ createBuildSettingsAttribute: CreateBuildSettingsAttribute
         ) -> String
 
         let pbxProjectPrefixPartial: (
