@@ -512,7 +512,7 @@ final class CreateFileElementTests: XCTestCase {
         )
 
         let expectedContent = #"""
-{isa = PBXFileReference; explicitFileType = wrapper.xcmappingmodel; path = a_path; sourceTree = "<group>"; }
+{isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = a_path; sourceTree = "<group>"; }
 """#
 
         // Act
