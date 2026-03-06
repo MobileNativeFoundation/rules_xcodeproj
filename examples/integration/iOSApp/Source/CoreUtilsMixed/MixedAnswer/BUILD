@@ -3,6 +3,7 @@ load(
     "swift_interop_hint",
     "swift_library",
 )
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
 load(
     ":module_map.bzl",
     "module_map",

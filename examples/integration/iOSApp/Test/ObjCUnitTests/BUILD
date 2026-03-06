@@ -7,6 +7,7 @@ load(
     "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
     "ios_test_runner",
 )
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
 
 ios_unit_test(
     name = "iOSAppObjCUnitTests",

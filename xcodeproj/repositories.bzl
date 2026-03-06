@@ -235,6 +235,8 @@ swift_library(
         http_archive,
         name = "com_github_michaeleisel_jjliso8601dateformatter",
         build_file_content = """\
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+
 objc_library(
     name = "JJLISO8601DateFormatter",
     srcs = glob(["Sources/JJLISO8601DateFormatter/**/*"]),
@@ -264,6 +266,8 @@ objc_library(
         http_archive,
         name = "com_github_michaeleisel_zippyjsoncfamily",
         build_file_content = """\
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+
 objc_library(
     name = "ZippyJSONCFamily",
     copts = [

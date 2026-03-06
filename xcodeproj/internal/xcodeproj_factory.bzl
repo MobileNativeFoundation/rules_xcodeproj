@@ -1,6 +1,6 @@
 """Module to create `xcodeproj` rules and transitions."""
 
-load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
+load("@rules_cc//cc:use_cc_toolchain.bzl", "use_cc_toolchain")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 load(":xcodeproj_rule.bzl", "xcodeproj_rule")
 load(":xcodeproj_transitions.bzl", "XCODEPROJ_TRANSITION_ATTRS")
@@ -22,7 +22,7 @@ def _make_xcodeproj_aspect(
         attr_aspects = ["*"],
         attrs = attrs,
         fragments = ["apple", "cpp", "objc"],
-        toolchains = use_cpp_toolchain(),
+        toolchains = use_cc_toolchain(),
     )
 
 def _make_xcodeproj_rule(
