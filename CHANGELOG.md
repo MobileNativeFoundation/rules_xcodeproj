@@ -40,7 +40,7 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.4.1...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.6.0...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -52,7 +52,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* TBD
+* Added support for Bazel 9: [#3286](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3286)
 
 ### Fixed
 
@@ -61,6 +61,25 @@ END_UNRELEASED_TEMPLATE
 ### Ruleset Development Changes
 
 * TBD
+
+<a id="3.6.0"></a>
+## [3.6.0] - 2026-02-09
+
+[3.6.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.5.1...3.6.0
+
+### New
+
+* Added support for enabling Code Coverage for all targets in scheme test action: [#3111](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3111)
+* Enabled code coverage in Xcode: [#3250](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3250), [#3257](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3257)
+
+### Adjusted
+
+* Additional `mixed_language_library` output files are now collected: [#3261](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3261)
+
+### Fixed
+
+* `xcdatamodel` are now collected correctly for `mixed_language_library` targets: [#3268](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3268)
+* Fixed `mixed_language_library` resource propagation [#3277](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3277)
 
 <a id="3.5.1"></a>
 ## [3.5.1] - 2025-12-10

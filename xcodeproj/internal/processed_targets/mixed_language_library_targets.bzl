@@ -3,6 +3,7 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@build_bazel_rules_apple//apple:providers.bzl", "AppleDebugOutputsInfo")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:build_settings.bzl", "get_product_module_name")
 load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")

@@ -50,13 +50,15 @@ load("@rules_xcodeproj//xcodeproj:xcodeproj.bzl", "xcodeproj")
 ## xcodeproj
 
 <pre>
-xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-bazel_env">bazel_env</a>, <a href="#xcodeproj-config">config</a>, <a href="#xcodeproj-default_xcode_configuration">default_xcode_configuration</a>,
-          <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-import_index_build_indexstores">import_index_build_indexstores</a>, <a href="#xcodeproj-install_directory">install_directory</a>,
-          <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>, <a href="#xcodeproj-minimum_xcode_version">minimum_xcode_version</a>, <a href="#xcodeproj-post_build">post_build</a>, <a href="#xcodeproj-pre_build">pre_build</a>,
-          <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-project_options">project_options</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-scheme_autogeneration_config">scheme_autogeneration_config</a>,
-          <a href="#xcodeproj-target_name_mode">target_name_mode</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>, <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>,
-          <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-visionos_device_cpus">visionos_device_cpus</a>, <a href="#xcodeproj-visionos_simulator_cpus">visionos_simulator_cpus</a>, <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>,
-          <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-xcode_configurations">xcode_configurations</a>, <a href="#xcodeproj-xcschemes">xcschemes</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcodeproj.bzl", "xcodeproj")
+
+xcodeproj(*, <a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-bazel_env">bazel_env</a>, <a href="#xcodeproj-config">config</a>,
+          <a href="#xcodeproj-default_xcode_configuration">default_xcode_configuration</a>, <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-import_index_build_indexstores">import_index_build_indexstores</a>,
+          <a href="#xcodeproj-install_directory">install_directory</a>, <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>, <a href="#xcodeproj-minimum_xcode_version">minimum_xcode_version</a>, <a href="#xcodeproj-post_build">post_build</a>,
+          <a href="#xcodeproj-pre_build">pre_build</a>, <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-project_options">project_options</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>,
+          <a href="#xcodeproj-scheme_autogeneration_config">scheme_autogeneration_config</a>, <a href="#xcodeproj-target_name_mode">target_name_mode</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>,
+          <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>, <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-visionos_device_cpus">visionos_device_cpus</a>, <a href="#xcodeproj-visionos_simulator_cpus">visionos_simulator_cpus</a>,
+          <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>, <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-xcode_configurations">xcode_configurations</a>, <a href="#xcodeproj-xcschemes">xcschemes</a>, <a href="#xcodeproj-kwargs">**kwargs</a>)
 </pre>
 
 Creates an `.xcodeproj` file in the workspace when run.
@@ -127,7 +129,9 @@ xcodeproj(
 ## top_level_target
 
 <pre>
-top_level_target(<a href="#top_level_target-label">label</a>, <a href="#top_level_target-target_environments">target_environments</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:top_level_target.bzl", "top_level_target")
+
+top_level_target(<a href="#top_level_target-label">label</a>, *, <a href="#top_level_target-target_environments">target_environments</a>)
 </pre>
 
 Constructs a top-level target for use in `xcodeproj.top_level_targets`.
@@ -150,7 +154,9 @@ A `struct` containing fields for the provided arguments.
 ## top_level_targets
 
 <pre>
-top_level_targets(<a href="#top_level_targets-labels">labels</a>, <a href="#top_level_targets-target_environments">target_environments</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:top_level_target.bzl", "top_level_targets")
+
+top_level_targets(<a href="#top_level_targets-labels">labels</a>, *, <a href="#top_level_targets-target_environments">target_environments</a>)
 </pre>
 
 Constructs a list of top-level target for use in     `xcodeproj.top_level_targets`.
@@ -175,7 +181,9 @@ A `list` of values from `top_level_target`.
 ## project_options
 
 <pre>
-project_options(<a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-organization_name">organization_name</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:project_options.bzl", "project_options")
+
+project_options(*, <a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-organization_name">organization_name</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
 </pre>
 
 Project options for use in `xcodeproj.project_options`.
@@ -210,7 +218,9 @@ load("@rules_xcodeproj//xcodeproj:xcschemes.bzl", "xcschemes")
 ## xcschemes.arg
 
 <pre>
-xcschemes.arg(<a href="#xcschemes.arg-value">value</a>, <a href="#xcschemes.arg-enabled">enabled</a>, <a href="#xcschemes.arg-literal_string">literal_string</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.arg(<a href="#xcschemes.arg-value">value</a>, *, <a href="#xcschemes.arg-enabled">enabled</a>, <a href="#xcschemes.arg-literal_string">literal_string</a>)
 </pre>
 
 Defines a command-line argument.
@@ -230,7 +240,9 @@ Defines a command-line argument.
 ## xcschemes.autogeneration.test
 
 <pre>
-xcschemes.autogeneration.test(<a href="#xcschemes.autogeneration.test-options">options</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.autogeneration.test(*, <a href="#xcschemes.autogeneration.test-options">options</a>)
 </pre>
 
 Creates a value for the `test` argument of `xcschemes.autogeneration_config`.
@@ -254,7 +266,9 @@ An opaque value for the
 ## xcschemes.autogeneration_config
 
 <pre>
-xcschemes.autogeneration_config(<a href="#xcschemes.autogeneration_config-scheme_name_exclude_patterns">scheme_name_exclude_patterns</a>, <a href="#xcschemes.autogeneration_config-test">test</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.autogeneration_config(*, <a href="#xcschemes.autogeneration_config-scheme_name_exclude_patterns">scheme_name_exclude_patterns</a>, <a href="#xcschemes.autogeneration_config-test">test</a>)
 </pre>
 
 Creates a value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autogeneration_config) attribute of `xcodeproj`.
@@ -277,7 +291,9 @@ An opaque value for the [`scheme_autogeneration_config`](xcodeproj-scheme_autoge
 ## xcschemes.diagnostics
 
 <pre>
-xcschemes.diagnostics(<a href="#xcschemes.diagnostics-address_sanitizer">address_sanitizer</a>, <a href="#xcschemes.diagnostics-thread_sanitizer">thread_sanitizer</a>, <a href="#xcschemes.diagnostics-undefined_behavior_sanitizer">undefined_behavior_sanitizer</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.diagnostics(*, <a href="#xcschemes.diagnostics-address_sanitizer">address_sanitizer</a>, <a href="#xcschemes.diagnostics-thread_sanitizer">thread_sanitizer</a>, <a href="#xcschemes.diagnostics-undefined_behavior_sanitizer">undefined_behavior_sanitizer</a>,
                       <a href="#xcschemes.diagnostics-main_thread_checker">main_thread_checker</a>, <a href="#xcschemes.diagnostics-thread_performance_checker">thread_performance_checker</a>)
 </pre>
 
@@ -300,7 +316,9 @@ Defines the diagnostics to enable.
 ## xcschemes.env_value
 
 <pre>
-xcschemes.env_value(<a href="#xcschemes.env_value-value">value</a>, <a href="#xcschemes.env_value-enabled">enabled</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.env_value(<a href="#xcschemes.env_value-value">value</a>, *, <a href="#xcschemes.env_value-enabled">enabled</a>)
 </pre>
 
 Defines an environment variable value.
@@ -319,7 +337,9 @@ Defines an environment variable value.
 ## xcschemes.launch_path
 
 <pre>
-xcschemes.launch_path(<a href="#xcschemes.launch_path-path">path</a>, <a href="#xcschemes.launch_path-post_actions">post_actions</a>, <a href="#xcschemes.launch_path-pre_actions">pre_actions</a>, <a href="#xcschemes.launch_path-working_directory">working_directory</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.launch_path(<a href="#xcschemes.launch_path-path">path</a>, *, <a href="#xcschemes.launch_path-post_actions">post_actions</a>, <a href="#xcschemes.launch_path-pre_actions">pre_actions</a>, <a href="#xcschemes.launch_path-working_directory">working_directory</a>)
 </pre>
 
 Defines the launch path for a pre-built executable.
@@ -340,7 +360,9 @@ Defines the launch path for a pre-built executable.
 ## xcschemes.launch_target
 
 <pre>
-xcschemes.launch_target(<a href="#xcschemes.launch_target-label">label</a>, <a href="#xcschemes.launch_target-extension_host">extension_host</a>, <a href="#xcschemes.launch_target-library_targets">library_targets</a>, <a href="#xcschemes.launch_target-post_actions">post_actions</a>, <a href="#xcschemes.launch_target-pre_actions">pre_actions</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.launch_target(<a href="#xcschemes.launch_target-label">label</a>, *, <a href="#xcschemes.launch_target-extension_host">extension_host</a>, <a href="#xcschemes.launch_target-library_targets">library_targets</a>, <a href="#xcschemes.launch_target-post_actions">post_actions</a>, <a href="#xcschemes.launch_target-pre_actions">pre_actions</a>,
                         <a href="#xcschemes.launch_target-target_environment">target_environment</a>, <a href="#xcschemes.launch_target-working_directory">working_directory</a>)
 </pre>
 
@@ -365,7 +387,9 @@ Defines a launch target.
 ## xcschemes.library_target
 
 <pre>
-xcschemes.library_target(<a href="#xcschemes.library_target-label">label</a>, <a href="#xcschemes.library_target-post_actions">post_actions</a>, <a href="#xcschemes.library_target-pre_actions">pre_actions</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.library_target(<a href="#xcschemes.library_target-label">label</a>, *, <a href="#xcschemes.library_target-post_actions">post_actions</a>, <a href="#xcschemes.library_target-pre_actions">pre_actions</a>)
 </pre>
 
 Defines a library target to build.
@@ -390,7 +414,9 @@ or `objc_library`.
 ## xcschemes.pre_post_actions.build_script
 
 <pre>
-xcschemes.pre_post_actions.build_script(<a href="#xcschemes.pre_post_actions.build_script-title">title</a>, <a href="#xcschemes.pre_post_actions.build_script-order">order</a>, <a href="#xcschemes.pre_post_actions.build_script-script_text">script_text</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.pre_post_actions.build_script(<a href="#xcschemes.pre_post_actions.build_script-title">title</a>, *, <a href="#xcschemes.pre_post_actions.build_script-order">order</a>, <a href="#xcschemes.pre_post_actions.build_script-script_text">script_text</a>)
 </pre>
 
 Defines a pre-action or post-action script to run when building.
@@ -414,7 +440,9 @@ Build section of the scheme.
 ## xcschemes.pre_post_actions.launch_script
 
 <pre>
-xcschemes.pre_post_actions.launch_script(<a href="#xcschemes.pre_post_actions.launch_script-title">title</a>, <a href="#xcschemes.pre_post_actions.launch_script-order">order</a>, <a href="#xcschemes.pre_post_actions.launch_script-script_text">script_text</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.pre_post_actions.launch_script(<a href="#xcschemes.pre_post_actions.launch_script-title">title</a>, *, <a href="#xcschemes.pre_post_actions.launch_script-order">order</a>, <a href="#xcschemes.pre_post_actions.launch_script-script_text">script_text</a>)
 </pre>
 
 Defines a pre-action or post-action script to run when running.
@@ -438,7 +466,9 @@ Test, Run, or Profile section of the scheme.
 ## xcschemes.profile
 
 <pre>
-xcschemes.profile(<a href="#xcschemes.profile-args">args</a>, <a href="#xcschemes.profile-build_targets">build_targets</a>, <a href="#xcschemes.profile-env">env</a>, <a href="#xcschemes.profile-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.profile-launch_target">launch_target</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.profile(*, <a href="#xcschemes.profile-args">args</a>, <a href="#xcschemes.profile-build_targets">build_targets</a>, <a href="#xcschemes.profile-env">env</a>, <a href="#xcschemes.profile-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.profile-launch_target">launch_target</a>,
                   <a href="#xcschemes.profile-use_run_args_and_env">use_run_args_and_env</a>, <a href="#xcschemes.profile-xcode_configuration">xcode_configuration</a>)
 </pre>
 
@@ -463,7 +493,9 @@ Defines the Profile action.
 ## xcschemes.run
 
 <pre>
-xcschemes.run(<a href="#xcschemes.run-args">args</a>, <a href="#xcschemes.run-build_targets">build_targets</a>, <a href="#xcschemes.run-diagnostics">diagnostics</a>, <a href="#xcschemes.run-env">env</a>, <a href="#xcschemes.run-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.run-launch_target">launch_target</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.run(*, <a href="#xcschemes.run-args">args</a>, <a href="#xcschemes.run-build_targets">build_targets</a>, <a href="#xcschemes.run-diagnostics">diagnostics</a>, <a href="#xcschemes.run-env">env</a>, <a href="#xcschemes.run-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.run-launch_target">launch_target</a>,
               <a href="#xcschemes.run-storekit_configuration">storekit_configuration</a>, <a href="#xcschemes.run-xcode_configuration">xcode_configuration</a>)
 </pre>
 
@@ -489,7 +521,9 @@ Defines the Run action.
 ## xcschemes.scheme
 
 <pre>
-xcschemes.scheme(<a href="#xcschemes.scheme-name">name</a>, <a href="#xcschemes.scheme-profile">profile</a>, <a href="#xcschemes.scheme-run">run</a>, <a href="#xcschemes.scheme-test">test</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.scheme(<a href="#xcschemes.scheme-name">name</a>, *, <a href="#xcschemes.scheme-profile">profile</a>, <a href="#xcschemes.scheme-run">run</a>, <a href="#xcschemes.scheme-test">test</a>)
 </pre>
 
 Defines a custom scheme.
@@ -510,7 +544,9 @@ Defines a custom scheme.
 ## xcschemes.test
 
 <pre>
-xcschemes.test(<a href="#xcschemes.test-args">args</a>, <a href="#xcschemes.test-build_targets">build_targets</a>, <a href="#xcschemes.test-diagnostics">diagnostics</a>, <a href="#xcschemes.test-env">env</a>, <a href="#xcschemes.test-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.test-test_options">test_options</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.test(*, <a href="#xcschemes.test-args">args</a>, <a href="#xcschemes.test-build_targets">build_targets</a>, <a href="#xcschemes.test-diagnostics">diagnostics</a>, <a href="#xcschemes.test-env">env</a>, <a href="#xcschemes.test-env_include_defaults">env_include_defaults</a>, <a href="#xcschemes.test-test_options">test_options</a>,
                <a href="#xcschemes.test-test_targets">test_targets</a>, <a href="#xcschemes.test-use_run_args_and_env">use_run_args_and_env</a>, <a href="#xcschemes.test-xcode_configuration">xcode_configuration</a>)
 </pre>
 
@@ -537,7 +573,9 @@ Defines the Test action.
 ## xcschemes.test_options
 
 <pre>
-xcschemes.test_options(<a href="#xcschemes.test_options-app_language">app_language</a>, <a href="#xcschemes.test_options-app_region">app_region</a>, <a href="#xcschemes.test_options-code_coverage">code_coverage</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.test_options(*, <a href="#xcschemes.test_options-app_language">app_language</a>, <a href="#xcschemes.test_options-app_region">app_region</a>, <a href="#xcschemes.test_options-code_coverage">code_coverage</a>)
 </pre>
 
 Defines the test options for a custom scheme.
@@ -557,7 +595,9 @@ Defines the test options for a custom scheme.
 ## xcschemes.test_target
 
 <pre>
-xcschemes.test_target(<a href="#xcschemes.test_target-label">label</a>, <a href="#xcschemes.test_target-enabled">enabled</a>, <a href="#xcschemes.test_target-library_targets">library_targets</a>, <a href="#xcschemes.test_target-post_actions">post_actions</a>, <a href="#xcschemes.test_target-pre_actions">pre_actions</a>,
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.test_target(<a href="#xcschemes.test_target-label">label</a>, *, <a href="#xcschemes.test_target-enabled">enabled</a>, <a href="#xcschemes.test_target-library_targets">library_targets</a>, <a href="#xcschemes.test_target-post_actions">post_actions</a>, <a href="#xcschemes.test_target-pre_actions">pre_actions</a>,
                       <a href="#xcschemes.test_target-target_environment">target_environment</a>)
 </pre>
 
@@ -581,7 +621,9 @@ Defines a test target.
 ## xcschemes.top_level_anchor_target
 
 <pre>
-xcschemes.top_level_anchor_target(<a href="#xcschemes.top_level_anchor_target-label">label</a>, <a href="#xcschemes.top_level_anchor_target-extension_host">extension_host</a>, <a href="#xcschemes.top_level_anchor_target-library_targets">library_targets</a>, <a href="#xcschemes.top_level_anchor_target-target_environment">target_environment</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.top_level_anchor_target(<a href="#xcschemes.top_level_anchor_target-label">label</a>, *, <a href="#xcschemes.top_level_anchor_target-extension_host">extension_host</a>, <a href="#xcschemes.top_level_anchor_target-library_targets">library_targets</a>, <a href="#xcschemes.top_level_anchor_target-target_environment">target_environment</a>)
 </pre>
 
 Defines a top-level anchor target for library build targets.
@@ -609,8 +651,10 @@ instead.
 ## xcschemes.top_level_build_target
 
 <pre>
-xcschemes.top_level_build_target(<a href="#xcschemes.top_level_build_target-label">label</a>, <a href="#xcschemes.top_level_build_target-extension_host">extension_host</a>, <a href="#xcschemes.top_level_build_target-library_targets">library_targets</a>, <a href="#xcschemes.top_level_build_target-post_actions">post_actions</a>, <a href="#xcschemes.top_level_build_target-pre_actions">pre_actions</a>,
-                                 <a href="#xcschemes.top_level_build_target-target_environment">target_environment</a>)
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcschemes.bzl", "xcschemes")
+
+xcschemes.top_level_build_target(<a href="#xcschemes.top_level_build_target-label">label</a>, *, <a href="#xcschemes.top_level_build_target-extension_host">extension_host</a>, <a href="#xcschemes.top_level_build_target-library_targets">library_targets</a>, <a href="#xcschemes.top_level_build_target-post_actions">post_actions</a>,
+                                 <a href="#xcschemes.top_level_build_target-pre_actions">pre_actions</a>, <a href="#xcschemes.top_level_build_target-target_environment">target_environment</a>)
 </pre>
 
 Defines a top-level target to build.
@@ -645,6 +689,8 @@ so that it can properly determine values for various Xcode build settings.
 ## xcode_provisioning_profile
 
 <pre>
+load("@rules_xcodeproj//xcodeproj/internal/docs:xcode_build_settings.bzl", "xcode_provisioning_profile")
+
 xcode_provisioning_profile(<a href="#xcode_provisioning_profile-name">name</a>, <a href="#xcode_provisioning_profile-managed_by_xcode">managed_by_xcode</a>, <a href="#xcode_provisioning_profile-profile_name">profile_name</a>, <a href="#xcode_provisioning_profile-provisioning_profile">provisioning_profile</a>, <a href="#xcode_provisioning_profile-team_id">team_id</a>)
 </pre>
 
@@ -708,6 +754,8 @@ rules, then you will use these providers to communicate between them.
 ## XcodeProjAutomaticTargetProcessingInfo
 
 <pre>
+load("@rules_xcodeproj//xcodeproj/internal/docs:providers.bzl", "XcodeProjAutomaticTargetProcessingInfo")
+
 XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcessingInfo-app_icons">app_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-args">args</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-bundle_id">bundle_id</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-collect_uncategorized_files">collect_uncategorized_files</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-deps">deps</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-entitlements">entitlements</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-env">env</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-extra_files">extra_files</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-implementation_deps">implementation_deps</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-is_header_only_library">is_header_only_library</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-is_mixed_language">is_mixed_language</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-is_supported">is_supported</a>,
@@ -727,7 +775,6 @@ return an `XcodeProjInfo` provider instance instead.
 > stabilizing it.
 
 **FIELDS**
-
 
 | Name  | Description |
 | :------------- | :------------- |
@@ -758,6 +805,8 @@ return an `XcodeProjInfo` provider instance instead.
 ## XcodeProjInfo
 
 <pre>
+load("@rules_xcodeproj//xcodeproj/internal/docs:providers.bzl", "XcodeProjInfo")
+
 XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-direct_dependencies">direct_dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>,
               <a href="#XcodeProjInfo-focused_labels">focused_labels</a>, <a href="#XcodeProjInfo-focused_library_deps">focused_library_deps</a>, <a href="#XcodeProjInfo-framework_product_mappings">framework_product_mappings</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
               <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>, <a href="#XcodeProjInfo-mergeable_infos">mergeable_infos</a>,
@@ -774,7 +823,6 @@ Provides information needed to generate an Xcode project.
 > stabilizing it.
 
 **FIELDS**
-
 
 | Name  | Description |
 | :------------- | :------------- |
@@ -816,6 +864,8 @@ Aspect hints that can be used to provide additional information during project g
 ## xcodeproj_extra_files
 
 <pre>
+load("@rules_xcodeproj//xcodeproj/internal/docs:aspect_hints.bzl", "xcodeproj_extra_files")
+
 xcodeproj_extra_files(<a href="#xcodeproj_extra_files-name">name</a>, <a href="#xcodeproj_extra_files-files">files</a>)
 </pre>
 

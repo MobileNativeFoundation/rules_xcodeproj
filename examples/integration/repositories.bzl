@@ -76,6 +76,8 @@ apple_dynamic_xcframework_import(
     http_archive(
         name = "FXPageControl",
         build_file_content = """
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+
 objc_library(
     name = "FXPageControl",
     module_name = "FXPageControl",
