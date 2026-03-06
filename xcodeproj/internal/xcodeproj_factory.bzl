@@ -1,6 +1,6 @@
 """Module to create `xcodeproj` rules and transitions."""
 
-load("@rules_cc//cc:use_cc_toolchain.bzl", "use_cc_toolchain")
+load("@rules_cc//cc:find_cc_toolchain.bzl", "use_cc_toolchain")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 load(":xcodeproj_rule.bzl", "xcodeproj_rule")
 load(":xcodeproj_transitions.bzl", "XCODEPROJ_TRANSITION_ATTRS")
