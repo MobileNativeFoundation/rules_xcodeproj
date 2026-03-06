@@ -49,6 +49,9 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IMPORT_INDEX_BUILD_INDEXSTORES = NO;
+				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
+				INDEXING_PROJECT_DIR__NO = "/some/project dir";
+				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
@@ -123,6 +126,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE = YES;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
