@@ -1,4 +1,5 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_bundle")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
 
 cc_library(
     name = "aplugin.library",

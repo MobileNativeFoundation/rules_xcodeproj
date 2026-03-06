@@ -1,4 +1,5 @@
 load("@examples_cc_external//:local_includes.bzl", "local_includes")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
 
 cc_library(
     name = "cc_lib_impl",

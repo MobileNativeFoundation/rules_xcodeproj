@@ -52,7 +52,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* TBD
+* Added support for Bazel 9: [#3286](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3286)
 
 ### Fixed
 

@@ -73,7 +73,7 @@ def _xcodeproj_aspect_attrs(
             executable = True,
         ),
         "_cc_toolchain": attr.label(default = Label(
-            "@bazel_tools//tools/cpp:current_cc_toolchain",
+            "@rules_cc//cc:current_cc_toolchain",
         )),
         "_colorize": attr.label(
             default = Label("//xcodeproj:color"),

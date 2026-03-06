@@ -1,6 +1,7 @@
 """Module for propagating compilation providers."""
 
 load("@bazel_features//:features.bzl", "bazel_features")
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_DEPSET",

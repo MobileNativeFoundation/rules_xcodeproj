@@ -2,6 +2,8 @@ load(
     "@build_bazel_rules_apple//apple:apple.bzl",
     "apple_static_framework_import",
 )
+load("@rules_cc//cc:objc_import.bzl", "objc_import")
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
 
 apple_static_framework_import(
     name = "ExternalFramework",

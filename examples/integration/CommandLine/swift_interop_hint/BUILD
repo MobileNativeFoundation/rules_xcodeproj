@@ -2,6 +2,7 @@ load(
     "@build_bazel_rules_swift//swift:swift_interop_hint.bzl",
     "swift_interop_hint",
 )
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
 
 cc_library(
     name = "c_lib",
