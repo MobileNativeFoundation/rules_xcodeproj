@@ -87,12 +87,12 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
-            suppressCoverageBuild: false,
             importIndexBuildIndexstores: importIndexBuildIndexstores,
             legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             separateIndexBuildOutputBase: false,
+            suppressCoverageBuild: false,
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace,
@@ -178,12 +178,12 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             config: config,
-            suppressCoverageBuild: true,
             importIndexBuildIndexstores: importIndexBuildIndexstores,
             legacyIndexImport: legacyIndexImport,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             separateIndexBuildOutputBase: false,
+            suppressCoverageBuild: true,
             projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace,

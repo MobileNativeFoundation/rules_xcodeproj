@@ -21,12 +21,12 @@ extension Generator {
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         config: String,
-        suppressCoverageBuild: Bool,
         importIndexBuildIndexstores: Bool,
         legacyIndexImport: String,
         indexImport: String,
         indexingProjectDir: String,
         separateIndexBuildOutputBase: Bool,
+        suppressCoverageBuild: Bool,
         projectDir: String,
         resolvedRepositories: String,
         workspace: String,

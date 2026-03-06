@@ -342,10 +342,10 @@ def _write_project_contents(
         post_build_script,
         pre_build_script,
         project_options,
-        suppress_coverage_build,
         resource_bundle_xcode_targets,
         selected_model_versions_generator,
         separate_index_build_output_base,
+        suppress_coverage_build,
         target_name_mode,
         unique_directories,
         unowned_extra_files,
@@ -464,8 +464,8 @@ def _write_project_contents(
         pre_build_script = pre_build_script,
         project_options = project_options,
         resolved_repositories_file = resolved_repositories_file,
-        suppress_coverage_build = suppress_coverage_build,
         separate_index_build_output_base = separate_index_build_output_base,
+        suppress_coverage_build = suppress_coverage_build,
         target_ids_list = target_ids_list,
         tool = pbxproj_prefix_generator,
         xcode_configurations = xcode_configurations,
@@ -637,8 +637,8 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     legacy_index_import = ctx.executable._legacy_index_import
     index_import = ctx.executable._index_import
     install_path = ctx.attr.install_path
-    suppress_coverage_build = ctx.attr.suppress_coverage_build
     separate_index_build_output_base = ctx.attr.separate_index_build_output_base
+    suppress_coverage_build = ctx.attr.suppress_coverage_build
     name = ctx.attr.name
     workspace_directory = ctx.attr.workspace_directory
 
@@ -703,11 +703,11 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
                 ).to_list(),
             )
         ),
-        suppress_coverage_build = suppress_coverage_build,
         selected_model_versions_generator = (
             ctx.executable._selected_model_versions_generator
         ),
         separate_index_build_output_base = separate_index_build_output_base,
+        suppress_coverage_build = suppress_coverage_build,
         target_name_mode = ctx.attr.target_name_mode,
         unique_directories = ctx.executable._unique_directories,
         unowned_extra_files = ctx.files.unowned_extra_files,

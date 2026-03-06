@@ -31,12 +31,12 @@ extension Generator {
 
         let pbxProjectBuildSettings: (
             _ config: String,
-            _ suppressCoverageBuild: Bool,
             _ importIndexBuildIndexstores: Bool,
             _ legacyIndexImport: String,
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ separateIndexBuildOutputBase: Bool,
+            _ suppressCoverageBuild: Bool,
             _ projectDir: String,
             _ resolvedRepositories: String,
             _ workspace: String,

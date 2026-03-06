@@ -49,7 +49,6 @@ struct Generator {
         let pbxProjectPrefixPartial = environment.pbxProjectPrefixPartial(
             /*buildSettings:*/ environment.pbxProjectBuildSettings(
                 /*config:*/ arguments.config,
-                /*suppressCoverageBuild:*/ arguments.suppressCoverageBuild,
                 /*importIndexBuildIndexstores:*/ arguments
                     .importIndexBuildIndexstores,
                 /*legacyIndexImport:*/ arguments.legacyIndexImport,
@@ -58,6 +57,7 @@ struct Generator {
                     /*projectDir:*/ projectDir
                 ),
                 /*separateIndexBuildOutputBase:*/ arguments.separateIndexBuildOutputBase,
+                /*suppressCoverageBuild:*/ arguments.suppressCoverageBuild,
                 /*projectDir:*/ projectDir,
                 /*resolvedRepositories:*/
                     try environment.readResolvedRepositoriesFile(
