@@ -1,7 +1,7 @@
 public struct EnvironmentVariable: Equatable {
-    let key: String
-    let value: String
-    let isEnabled: Bool
+    public let key: String
+    public let value: String
+    public let isEnabled: Bool
 
     public init(key: String, value: String, isEnabled: Bool = true) {
         self.key = key
