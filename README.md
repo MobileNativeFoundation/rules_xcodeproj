@@ -41,7 +41,6 @@ on it, or [file a new issue][file-an-issue]!
   - Core Bazel C/C++/Objective-C
   - rules_swift
   - rules_apple
-  - rules_ios
   - Most likely your custom rules as well!
 - Minimal configuration needed (see the [usage](#usage) section below)
 - It “just works”

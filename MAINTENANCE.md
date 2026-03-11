@@ -13,8 +13,7 @@ healthy by:
 - Ensuring changes don’t break existing projects as much as possible (e.g.
   maintaining Bazel, rules, and Xcode version backwards compatibility)
 - Participating in idea and design discussions
-- Adding support for new Bazel, rules (e.g. rules_apple, rules_swift,
-  rules_ios), and Xcode versions
+- Adding support for new Bazel, rules (e.g. rules_apple, rules_swift), and Xcode versions
 - Keeping CI green
 
 ## Access control
