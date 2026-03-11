@@ -16,7 +16,7 @@ def _impl(ctx):
 set -euo pipefail
 
 tar -xf "$1" -C "$2"
-touch "$2/WORKSPACE"
+touch "$2/MODULE.bazel"
 """,
     )
 

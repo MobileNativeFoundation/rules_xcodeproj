@@ -27,7 +27,7 @@ string_flag(
 
 # Example of xcodeproj cache warming
 #
-# 1. Register a single macOS execution platform in `WORKSPACE`:
+# 1. Register a single macOS execution platform in `MODULE.bazel`:
 #
 #      register_execution_platforms("@build_bazel_apple_support//platforms:macos_x86_64")
 #

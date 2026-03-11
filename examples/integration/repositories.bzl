@@ -1,5 +1,6 @@
 """Module extension for loading dependencies not yet compatible with bzlmod."""
 
+load("@bazel_skylib//lib:modules.bzl", "modules")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 def non_bzlmod_dependencies():
@@ -92,4 +93,4 @@ objc_library(
         url = "https://github.com/nicklockwood/FXPageControl/archive/refs/tags/1.5.tar.gz",
     )
 
-non_module_deps = module_extension(implementation = lambda _: non_bzlmod_dependencies())
+non_module_deps = modules.as_extension(non_bzlmod_dependencies)

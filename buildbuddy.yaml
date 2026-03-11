@@ -14,8 +14,7 @@ x_templates:
     - &arm64
       arch: "arm64"
 
-    - &bazel_in_repo_version
-      # No change, uses `.bazelversion`, just used to make it clear
+    - &bazel_in_repo_version # No change, uses `.bazelversion`, just used to make it clear
       env: {}
     - &bazel_previous_lts
       env:
@@ -48,9 +47,6 @@ x_templates:
     - &generate_integration "--output_base=bazel-output-base run --config=workflows //:xcodeproj"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows //..."
-    - &nobzlmod_build_all "--output_base=bazel-output-base build --config=workflows --config=nobzlmod //..."
-    - &nobzlmod_test_all "--output_base=bazel-output-base test --config=workflows --config=nobzlmod //..."
-    - &nobzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=nobzlmod //:xcodeproj"
 
 actions:
   - name: Buildifier Lint
