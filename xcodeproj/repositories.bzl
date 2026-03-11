@@ -1,7 +1,6 @@
 """Definitions for handling Bazel repositories used by rules_xcodeproj."""
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("//xcodeproj/internal:logging.bzl", "green", "warn", "yellow")
 
 def _generated_files_repo_impl(repository_ctx):
     repository_ctx.file(
@@ -43,6 +42,8 @@ generated_files_repo = repository_rule(
 
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_repos():
+    """Fetches repositories that are dependencies of `rules_xcodeproj`."""
+
     generated_files_repo(name = "rules_xcodeproj_generated")
 
     # `rules_swift` depends on `build_bazel_rules_swift_index_import`, and we
@@ -212,6 +213,8 @@ swift_library(
     )
 
 def xcodeproj_rules_dev_repos():
+    """Fetches repositories that are dev dependencies of `rules_xcodeproj`."""
+
     # Setup Swift Custom Dump test dependency
     http_archive(
         name = "com_github_pointfreeco_xctest_dynamic_overlay",
