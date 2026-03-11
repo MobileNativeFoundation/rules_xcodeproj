@@ -1,6 +1,4 @@
-## Bzlmod Snippet
-
-Add to your `MODULE.bazel` file:
+## `MODULE.bazel` Snippet
 
 ```starlark
 bazel_dep(name = "rules_xcodeproj", version = "%CURRENT_TAG%")
