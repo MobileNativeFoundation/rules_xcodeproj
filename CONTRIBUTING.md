@@ -26,7 +26,7 @@ to guide contributors with an implementation through discussions if needed.
 
 You can test your changes in the example projects by generating their
 projects with `bazel run //examples/cc:xcodeproj`. You might need to `cd`
-into the directory if the example app is in a separate `WORKSPACE` with
+into the directory if the example app is in a separate `MODULE.bazel` with
 `cd examples/integration; bazel run //:xcodeproj`.
 
 You can run the internal tests as well:

@@ -11,7 +11,7 @@ bazel_dep(
     version = "2.2.0",
     repo_name = "build_bazel_apple_support",
 )
-bazel_dep(name = "bazel_features", version = "1.36.0")
+bazel_dep(name = "bazel_features", version = "1.42.1")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_cc", version = "0.2.17")
 bazel_dep(
@@ -26,12 +26,15 @@ bazel_dep(
 )
 bazel_dep(name = "rules_python", version = "1.7.0")
 
-internal = use_extension("//xcodeproj:extensions.bzl", "internal")
-use_repo(internal, "rules_xcodeproj_generated")
-
-non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
+repos = use_extension("//xcodeproj:extensions.bzl", "rules_repos")
 use_repo(
-    non_module_deps,
+    repos,
+    "com_github_apple_swift_argument_parser",
+    "com_github_apple_swift_collections",
+    "com_github_michaeleisel_jjliso8601dateformatter",
+    "com_github_michaeleisel_zippyjson",
+    "com_github_michaeleisel_zippyjsoncfamily",
+    "rules_xcodeproj_generated",
     "rules_xcodeproj_index_import",
     "rules_xcodeproj_legacy_index_import",
 )
@@ -67,22 +70,9 @@ apple_cc_configure = use_extension(
 )
 use_repo(apple_cc_configure, "local_config_apple_cc")
 
+dev_repos = use_extension("//xcodeproj:extensions.bzl", "rules_dev_repos", dev_dependency = True)
 use_repo(
-    non_module_deps,
-    "com_github_apple_swift_argument_parser",
-    "com_github_apple_swift_collections",
-    "com_github_michaeleisel_jjliso8601dateformatter",
-    "com_github_michaeleisel_zippyjson",
-    "com_github_michaeleisel_zippyjsoncfamily",
-)
-
-dev_non_module_deps = use_extension(
-    "//xcodeproj:dev_extensions.bzl",
-    "dev_non_module_deps",
-    dev_dependency = True,
-)
-use_repo(
-    dev_non_module_deps,
+    dev_repos,
     "com_github_pointfreeco_swift_custom_dump",
     "com_github_pointfreeco_xctest_dynamic_overlay",
 )

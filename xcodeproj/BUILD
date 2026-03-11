@@ -89,7 +89,6 @@ filegroup(
         ["**"],
         exclude = [
             "**/.*",
-            "dev_extensions.bzl",
             "repositories.bzl",
         ],
     ) + [
