@@ -46,6 +46,12 @@ string_flag(
 )
 
 bool_flag(
+    name = "suppress_coverage_build",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
+bool_flag(
     name = "separate_index_build_output_base",
     build_setting_default = False,
     visibility = ["//visibility:public"],

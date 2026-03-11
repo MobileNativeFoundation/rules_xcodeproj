@@ -49,22 +49,23 @@ struct Generator {
         let pbxProjectPrefixPartial = environment.pbxProjectPrefixPartial(
             /*buildSettings:*/ environment.pbxProjectBuildSettings(
                 /*config:*/ arguments.config,
+                /*createBuildSettingsAttribute:*/
+                        environment.createBuildSettingsAttribute,
                 /*importIndexBuildIndexstores:*/ arguments
                     .importIndexBuildIndexstores,
-                /*legacyIndexImport:*/ arguments.legacyIndexImport,
                 /*indexImport:*/ arguments.indexImport,
                 /*indexingProjectDir:*/ environment.indexingProjectDir(
                     /*projectDir:*/ projectDir
                 ),
-                /*separateIndexBuildOutputBase:*/ arguments.separateIndexBuildOutputBase,
+                /*legacyIndexImport:*/ arguments.legacyIndexImport,
                 /*projectDir:*/ projectDir,
                 /*resolvedRepositories:*/
                     try environment.readResolvedRepositoriesFile(
                         arguments.resolvedRepositoriesFile
                     ),
-                    /*workspace:*/ arguments.workspace,
-                    /*createBuildSettingsAttribute:*/
-                        environment.createBuildSettingsAttribute
+                /*separateIndexBuildOutputBase:*/ arguments.separateIndexBuildOutputBase,
+                /*suppressCoverageBuild:*/ arguments.suppressCoverageBuild,
+                /*workspace:*/ arguments.workspace
             ),
             /*compatibilityVersion:*/ environment.compatibilityVersion(
                 arguments.minimumXcodeVersion

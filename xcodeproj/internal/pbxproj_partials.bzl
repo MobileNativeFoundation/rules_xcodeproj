@@ -672,6 +672,7 @@ def _write_pbxproj_prefix(
         project_options,
         resolved_repositories_file,
         separate_index_build_output_base,
+        suppress_coverage_build,
         target_ids_list,
         tool,
         workspace_directory,
@@ -705,6 +706,8 @@ def _write_pbxproj_prefix(
             the `RESOLVED_REPOSITORIES` build setting.
         separate_index_build_output_base: Whether or not to use a separate
             output base for index builds.
+        suppress_coverage_build: Whether or not to disable coverage builds even
+            when `CLANG_COVERAGE_MAPPING` is set.
         target_ids_list: A `File` containing a list of target IDs.
         tool: The executable that will generate the `PBXProj` partial.
         workspace_directory: The absolute path to the Bazel workspace
@@ -748,6 +751,9 @@ def _write_pbxproj_prefix(
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
+
+    # suppressCoverageBuild
+    args.add(TRUE_ARG if suppress_coverage_build else FALSE_ARG)
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)

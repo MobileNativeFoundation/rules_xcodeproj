@@ -43,6 +43,12 @@ Path to a file that contains the absolute path to the Bazel execution root.
         var separateIndexBuildOutputBase: Bool
 
         @Argument(
+            help: "Whether to suppress coverage builds even when CLANG_COVERAGE_MAPPING is set.",
+            transform: { $0 == "1" }
+        )
+        var suppressCoverageBuild: Bool
+
+        @Argument(
             help: """
 Path to a file that contains a string for the `RESOLVED_REPOSITORIES` build \
 setting.

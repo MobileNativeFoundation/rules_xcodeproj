@@ -48,7 +48,7 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* TBD
+* Added `--@rules_xcodeproj//xcodeproj:suppress_code_coverage` flag option to bypass building for Coverage even if it's configured in the scheme: [#3285](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3285)
 
 ### Adjusted
 
