@@ -79,6 +79,8 @@ macos_unit_test(
     ],
     deps = [
         ":xcschemes_tests.library",
+        "//tools/generators/lib/PBXProj",
+        "//tools/generators/lib/XCScheme",
     ],
 )
 
