@@ -28,7 +28,7 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed Xcode navigation for stack trace paths with leading slash: [#3290](https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3290)
 
 ### Ruleset Development Changes
 
@@ -56,7 +56,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed Xcode navigation for stack trace paths with leading slash: [#3290](https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3290)
 
 ### Ruleset Development Changes
 
