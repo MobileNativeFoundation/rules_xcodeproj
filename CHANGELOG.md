@@ -44,7 +44,7 @@ END_UNRELEASED_TEMPLATE
 
 ### ⚠️ Breaking changes ⚠️
 
-* TBD
+* Removed WORKSPACE support. WORKSPACE is gone in Bazel 9, and was formally deprecated in Bazel 8: [#3289](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3289)
 
 ### New
 
@@ -56,11 +56,11 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed conflicting environment variables among test targets in custom schemes: [#3284](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3284)
 
 ### Ruleset Development Changes
 
-* TBD
+* Removed `rules_ios` example and maintenance commitments. `rules_ios` is [deprecated](https://github.com/bazel-ios/rules_ios/discussions/952) by its maintainers and being sunset: [#3288](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3288)
 
 <a id="3.6.0"></a>
 ## [3.6.0] - 2026-02-09
