@@ -87,6 +87,7 @@ END_UNRELEASED_TEMPLATE
 ### Adjusted
 
 * Added support for Bazel 9: [#3286](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3286)
+* Integrated [Samba rsync](https://rsync.samba.org) from BCR so that users no longer need to install it via homebrew: [#3265](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3265)
 
 ### Fixed
 
