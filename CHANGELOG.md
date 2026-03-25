@@ -40,7 +40,32 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.6.0...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.0...HEAD
+
+### ⚠️ Breaking changes ⚠️
+
+* TBD
+
+### New
+
+* TBD
+
+### Adjusted
+
+* TBD
+
+### Fixed
+
+* TBD
+
+### Ruleset Development Changes
+
+* TBD
+
+<a id="4.0.0"></a>
+## [4.0.0] - 2026-03-25
+
+[4.0.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/3.6.0...4.0.0
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -61,7 +86,6 @@ END_UNRELEASED_TEMPLATE
 ### Ruleset Development Changes
 
 * Removed `rules_ios` example and maintenance commitments. `rules_ios` is [deprecated](https://github.com/bazel-ios/rules_ios/discussions/952) by its maintainers and being sunset: [#3288](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3288)
-
 <a id="3.6.0"></a>
 ## [3.6.0] - 2026-02-09
 
