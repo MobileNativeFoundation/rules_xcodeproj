@@ -113,28 +113,34 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         )
 
     def wait_for_build_request():
-        xcbuilddata = max(
-            glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
-            key = os.path.getctime,
-        )
-        if os.path.getctime(xcbuilddata) >= build_request_min_ctime:
-            build_request_file = f"{xcbuilddata}/build-request.json"
-            if os.path.exists(build_request_file):
-                with open(build_request_file, encoding = "utf-8") as f:
-                    # Parse the build-request.json file
-                    try:
-                        return json.load(f)
-                    except Exception as error:
-                        print(
-                            f"""\
+        try:
+            xcbuilddata = max(
+                glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
+                key = os.path.getctime,
+            )
+            if os.path.getctime(xcbuilddata) < build_request_min_ctime:
+                return None
+        except (ValueError, FileNotFoundError, OSError):
+            # ValueError: no .xcbuilddata files yet (empty glob)
+            # FileNotFoundError/OSError: TOCTOU race - file deleted between glob and getctime
+            return None
+        build_request_file = f"{xcbuilddata}/build-request.json"
+        if os.path.exists(build_request_file):
+            with open(build_request_file, encoding = "utf-8") as f:
+                # Parse the build-request.json file
+                try:
+                    return json.load(f)
+                except Exception as error:
+                    print(
+                        f"""\
 error: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
 Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                            file = sys.stderr,
-                        )
-                        exit(1)
+                        file = sys.stderr,
+                    )
+                    sys.exit(1)
         return None
 
     return _wait_for_value(
