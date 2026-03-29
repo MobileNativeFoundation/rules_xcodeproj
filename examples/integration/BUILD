@@ -25,6 +25,13 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
+string_flag(
+    name = "flag_with_make_variable",
+    build_setting_default = "",
+    make_variable = "FLAG_WITH_MAKE_VARIABLE",
+    visibility = ["//visibility:public"],
+)
+
 # Example of xcodeproj cache warming
 #
 # 1. Register a single macOS execution platform in `MODULE.bazel`:

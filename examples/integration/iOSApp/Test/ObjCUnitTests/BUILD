@@ -14,6 +14,7 @@ ios_unit_test(
     bundle_id = "rules-xcodeproj.example.objctests",
     env = {
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
+        "IOS_APP_UNIT_TESTS_MAKE": "$(FLAG_WITH_MAKE_VARIABLE)",
     },
     minimum_os_version = "15.0",
     tags = ["manual"],
