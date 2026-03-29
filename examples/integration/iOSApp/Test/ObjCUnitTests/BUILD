@@ -19,12 +19,12 @@ ios_unit_test(
     minimum_os_version = "15.0",
     tags = ["manual"],
     test_host = "//iOSApp",
+    toolchains = ["//:flag_with_make_variable"],
     visibility = [
         "//iOSApp:__subpackages__",
         "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":iOSAppObjCUnitTests.library"],
-    toolchains = ["//:flag_with_make_variable"],
 )
 
 objc_library(
