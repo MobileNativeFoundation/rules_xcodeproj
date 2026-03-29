@@ -24,6 +24,7 @@ ios_unit_test(
         "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":iOSAppObjCUnitTests.library"],
+    toolchains = ["//:flag_with_make_variable"],
 )
 
 objc_library(
