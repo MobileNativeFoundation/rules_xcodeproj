@@ -115,6 +115,8 @@ def _xcodeproj_aspect_impl(target, ctx):
         # Only create a `XcodeProjInfo` if the target hasn't already created
         # one
         rule_attr = ctx.rule.attr
+        # Update when Bazel 8 is dropped
+        var_attr = getattr(ctx.rule, "var", ctx.var)
 
         attrs = dir(rule_attr)
         info = xcodeprojinfos.make(
@@ -127,6 +129,7 @@ def _xcodeproj_aspect_impl(target, ctx):
                 attrs = attrs,
                 rule_attr = rule_attr,
             ),
+            var_attr = var_attr,
         )
         if info:
             providers.append(info)
