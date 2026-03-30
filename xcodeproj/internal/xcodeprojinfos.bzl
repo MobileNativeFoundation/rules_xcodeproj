@@ -260,7 +260,8 @@ def _make_skipped_target_xcodeprojinfo(
         rule_attr,
         skip_type,
         test_env,
-        transitive_infos):
+        transitive_infos,
+        var_attr):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -275,6 +276,7 @@ def _make_skipped_target_xcodeprojinfo(
         test_env: `ctx.configuration.test_env`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
+        var_attr: `ctx.rule.var` (or `ctx.var` for Bazel 8 and below).
 
     Returns:
         The return value of `_target_info_fields`, with values merged from
@@ -367,7 +369,7 @@ def _make_skipped_target_xcodeprojinfo(
 
             info_env = getattr(rule_attr, automatic_target_info.env, {})
             info_env = {
-                k: ctx.expand_make_variables("env", v, {})
+                k: ctx.expand_make_variables("env", v, var_attr)
                 for k, v in info_env.items()
             }
             env = dicts.add(info_env, test_env)
@@ -756,7 +758,8 @@ def _make_xcodeprojinfo(
         rule_attr,
         rule_kind,
         target,
-        transitive_infos):
+        transitive_infos,
+        var_attr):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
@@ -767,6 +770,7 @@ def _make_xcodeprojinfo(
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
+        var_attr: `ctx.rule.var` (or `ctx.var` for Bazel 8 and below).
 
     Returns:
         An `XcodeProjInfo` populated with information from `target` and
@@ -799,6 +803,7 @@ def _make_xcodeprojinfo(
             skip_type = target_skip_type,
             test_env = ctx.configuration.test_env,
             transitive_infos = transitive_infos,
+            var_attr = var_attr,
         )
     else:
         info_fields = _make_non_skipped_target_xcodeprojinfo(
