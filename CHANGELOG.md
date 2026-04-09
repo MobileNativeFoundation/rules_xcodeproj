@@ -81,7 +81,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed "Make" variable expansion for test rules under Bazel 9: [#3297](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3297)
 
 ### Ruleset Development Changes
 
