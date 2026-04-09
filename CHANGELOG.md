@@ -40,7 +40,7 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.1...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
@@ -62,6 +62,30 @@ END_UNRELEASED_TEMPLATE
 
 * TBD
 
+<a id="4.0.1"></a>
+## [4.0.1] - 2026-04-09
+
+[4.0.1]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.0...4.0.1
+
+### ⚠️ Breaking changes ⚠️
+
+* TBD
+
+### New
+
+* TBD
+
+### Adjusted
+
+* TBD
+
+### Fixed
+
+* TBD
+
+### Ruleset Development Changes
+
+* TBD
 <a id="4.0.0"></a>
 ## [4.0.0] - 2026-03-25
 
