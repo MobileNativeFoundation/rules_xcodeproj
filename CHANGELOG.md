@@ -67,25 +67,10 @@ END_UNRELEASED_TEMPLATE
 
 [4.0.1]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.0...4.0.1
 
-### ⚠️ Breaking changes ⚠️
-
-* TBD
-
-### New
-
-* TBD
-
-### Adjusted
-
-* TBD
-
 ### Fixed
 
 * Fixed "Make" variable expansion for test rules under Bazel 9: [#3297](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3297)
 
-### Ruleset Development Changes
-
-* TBD
 <a id="4.0.0"></a>
 ## [4.0.0] - 2026-03-25
 
