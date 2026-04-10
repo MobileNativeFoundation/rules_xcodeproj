@@ -10,11 +10,12 @@ readonly config="${BAZEL_CONFIG}_indexbuild"
 output_groups=(
   # Compile params
   "bc $BAZEL_TARGET_ID"
-  # Products (i.e. bundles) and index store data. The products themselves aren't
-  # used, they cause transitive files to be created. We use
-  # `--remote_download_regex` below to collect the files we care
+  # Indexstores and their filelist. Requesting indexstore directories triggers
+  # transitive Swift compilation (producing swiftmodules, indexstores, and
+  # generated headers) without linking, avoiding large product binaries. We use
+  # `--remote_download_regex` below to download the files we care
   # about.
-  "bp $BAZEL_TARGET_ID"
+  "bi $BAZEL_TARGET_ID"
 )
 
 indexstores_filelists=()

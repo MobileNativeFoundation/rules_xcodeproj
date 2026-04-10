@@ -262,8 +262,17 @@ def _collect_output_files(
         transitive = [transitive_products],
     )
 
+    # Indexing output group: contains indexstores (to trigger Swift compilation)
+    # and the indexstores filelist (for import_indexstores). Unlike `bp`, this
+    # does not include linked products, avoiding large binary materialization.
+    indexing_depset = memory_efficient_depset(
+        [indexstores_filelist],
+        transitive = [transitive_indexstores],
+    )
+
     direct_group_list = [
         ("bc {}".format(id), transitive_compile_params),
+        ("bi {}".format(id), indexing_depset),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]
