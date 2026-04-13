@@ -91,6 +91,7 @@ def _write_files_and_groups_test_impl(ctx):
         install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
+        synchronized_folders_files = [],
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
     )

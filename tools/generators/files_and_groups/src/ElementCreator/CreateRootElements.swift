@@ -120,7 +120,7 @@ extension ElementCreator.CreateRootElements {
                     )
                 }
 
-            case .file, .generatedFiles:
+            case .file, .generatedFiles, .synchronizedGroup:
                 groupChildren.append(
                     createGroupChild(
                         for: node,

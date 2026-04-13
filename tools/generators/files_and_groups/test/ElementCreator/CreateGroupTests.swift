@@ -197,4 +197,5 @@ final class CreateGroupTests: XCTestCase {
         )
         XCTAssertNoDifference(result, expectedResult)
     }
+
 }

@@ -94,6 +94,27 @@ extension ElementCreator {
 }
 
 extension ElementCreator.Environment {
+    func createCreateSynchronizedGroup(
+        executionRoot: String,
+        externalDir: String,
+        installPath: String,
+        workspace: String
+    ) -> ElementCreator.CreateSynchronizedGroup {
+        let createAttributes = ElementCreator.CreateAttributes(
+            executionRoot: executionRoot,
+            externalDir: externalDir,
+            workspace: workspace,
+            resolveSymlink: resolveSymlink,
+            callable: createAttributesCallable
+        )
+
+        return ElementCreator.CreateSynchronizedGroup(
+            createAttributes: createAttributes,
+            installPath: installPath,
+            workspace: workspace
+        )
+    }
+
     func createCreateRootElements(
         executionRoot: String,
         externalDir: String,
@@ -145,6 +166,11 @@ extension ElementCreator.Environment {
             createGroupChildElements: createGroupChildElements,
             createGroupElement: createGroupElement,
             callable: createGroupCallable
+        )
+        let createSynchronizedGroup = ElementCreator.CreateSynchronizedGroup(
+            createAttributes: createAttributes,
+            installPath: installPath,
+            workspace: workspace
         )
 
         let createLocalizedFileElement =
@@ -204,6 +230,7 @@ extension ElementCreator.Environment {
             createGroup: createGroup,
             createInlineBazelGeneratedFiles: createInlineBazelGeneratedFiles,
             createLocalizedFiles: createLocalizedFiles,
+            createSynchronizedGroup: createSynchronizedGroup,
             createVersionGroup: createVersionGroup,
             callable: createGroupChildCallable
         )

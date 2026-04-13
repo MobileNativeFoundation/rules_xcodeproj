@@ -45,6 +45,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
     output = pbxproj_partials.write_pbxproj_prefix(
         actions = actions.mock,
         apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
+        buildable_folders = ctx.attr.buildable_folders,
         colorize = ctx.attr.colorize,
         config = ctx.attr.config,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
@@ -143,6 +144,7 @@ write_pbxproj_prefix_test = unittest.make(
     attrs = {
         # Inputs
         "colorize": attr.bool(mandatory = True),
+        "buildable_folders": attr.bool(default = False),
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
@@ -182,6 +184,7 @@ def write_pbxproj_prefix_test_suite(name):
 
             # Inputs
             colorize = False,
+            buildable_folders = False,
             config,
             default_xcode_configuration,
             execution_root_file,
@@ -209,6 +212,7 @@ def write_pbxproj_prefix_test_suite(name):
 
             # Inputs
             colorize = colorize,
+            buildable_folders = buildable_folders,
             config = config,
             default_xcode_configuration = default_xcode_configuration,
             execution_root_file = execution_root_file,
@@ -287,6 +291,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/resolved_repositories_file",
             # minimumXcodeVersion
             "14.2.1",
+            # buildableFolders
+            "0",
             # importIndexBuildIndexstores
             "1",
             # defaultXcodeConfiguration
@@ -311,6 +317,7 @@ def write_pbxproj_prefix_test_suite(name):
 
         # Inputs
         colorize = True,
+        buildable_folders = True,
         config = "custom_rxcp_config",
         default_xcode_configuration = "Release",
         execution_root_file = "an/execution/root/file",
@@ -361,6 +368,8 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/resolved_repositories_file",
             # minimumXcodeVersion
             "14.2.1",
+            # buildableFolders
+            "1",
             # importIndexBuildIndexstores
             "0",
             # defaultXcodeConfiguration

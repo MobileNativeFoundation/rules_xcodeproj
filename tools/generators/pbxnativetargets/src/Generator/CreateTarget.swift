@@ -42,7 +42,8 @@ extension Generator {
             xcodeConfigurations: Set<String>
         ) async throws -> (
             buildFileSubIdentifiers: [Identifiers.BuildFiles.SubIdentifier],
-            objects: [Object]
+            objects: [Object],
+            synchronizedFolders: [SynchronizedFolderTarget]
         ) {
             return try await callable(
                 /*consolidationMapEntry:*/ entry,
@@ -80,7 +81,8 @@ extension Generator.CreateTarget {
         _ createXcodeConfigurations: Generator.CreateXcodeConfigurations
     ) async throws -> (
         buildFileSubIdentifiers: [Identifiers.BuildFiles.SubIdentifier],
-        objects: [Object]
+        objects: [Object],
+        synchronizedFolders: [SynchronizedFolderTarget]
     )
 
     static func defaultCallable(
@@ -98,7 +100,8 @@ extension Generator.CreateTarget {
         createXcodeConfigurations: Generator.CreateXcodeConfigurations
     ) async throws -> (
         buildFileSubIdentifiers: [Identifiers.BuildFiles.SubIdentifier],
-        objects: [Object]
+        objects: [Object],
+        synchronizedFolders: [SynchronizedFolderTarget]
     ) {
         let ids = entry.key.sortedIds
         let id = ids.first!
@@ -119,8 +122,10 @@ extension Generator.CreateTarget {
         )
 
         let (
+            synchronizedFolders,
             platformVariants,
             conditionalFiles,
+            hasSourceInputs,
             consolidatedInputs
         ) = try calculatePlatformVariants(
             ids: ids,
@@ -135,6 +140,7 @@ extension Generator.CreateTarget {
             buildPhaseFileSubIdentifiers
         ) = createBuildPhases(
             consolidatedInputs: consolidatedInputs,
+            hasSourceInputs: hasSourceInputs,
             hasCParams: aTargetArguments.hasCParams,
             hasCxxParams: aTargetArguments.hasCxxParams,
             hasLinkParams: topLevelTargetAttributes[id]?.linkParams != nil,
@@ -178,7 +184,15 @@ extension Generator.CreateTarget {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: entry.dependencySubIdentifiers,
             buildConfigurationListIdentifier: configurationList.identifier,
-            buildPhaseIdentifiers: buildPhases.map(\.identifier)
+            buildPhaseIdentifiers: buildPhases.map(\.identifier),
+            synchronizedFolderIdentifiers: synchronizedFolders.map { folder in
+                let name = folder.path.path.split(separator: "/").last.map(String.init) ??
+                    folder.path.path
+                return Identifiers.FilesAndGroups.synchronizedRootGroup(
+                    folder.path.path,
+                    name: name
+                )
+            }
         )
 
         let buildFileSubIdentifiers =
@@ -186,7 +200,17 @@ extension Generator.CreateTarget {
         let objects = buildPhases + buildFileObjects + configurationObjects +
             [product, target]
 
-        return (buildFileSubIdentifiers, objects)
+        let synchronizedFolderTargets = synchronizedFolders.map { folder in
+            SynchronizedFolderTarget(
+                folderPath: folder.path,
+                targetIdentifier: identifier.full,
+                targetName: entry.name,
+                includedPaths: folder.includedPaths,
+                excludedPaths: folder.excludedPaths
+            )
+        }
+
+        return (buildFileSubIdentifiers, objects, synchronizedFolderTargets)
     }
 }
 

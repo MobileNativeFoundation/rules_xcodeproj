@@ -12,7 +12,8 @@ extension Generator {
 
         let calculatePathTree: (
             _ paths: [BazelPath],
-            _ generatedPaths: [GeneratedPath]
+            _ generatedPaths: [GeneratedPath],
+            _ synchronizedFolders: [SynchronizedFolderTarget]
         ) -> [PathTreeNode]
 
         let createTargetFileObjects: CreateTargetFileObjects

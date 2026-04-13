@@ -1,4 +1,5 @@
 import PBXProj
+import ToolCommon
 
 extension Generator {
     /// Calculates the `PBXProject` prefix `PBXProj` partial.
@@ -7,6 +8,8 @@ extension Generator {
         compatibilityVersion: String,
         defaultXcodeConfiguration: String,
         developmentRegion: String,
+        minimumXcodeVersion: SemanticVersion,
+        buildableFolders: Bool,
         organizationName: String?,
         projectDir: String,
         workspace: String,
@@ -43,6 +46,46 @@ extension Generator {
                 )
             }
 
+        let projectObjectElement: String
+        if minimumXcodeVersion.major >= 16 && buildableFolders {
+            projectObjectElement = #"""
+		\#(Identifiers.Project.id) = {
+			isa = PBXProject;
+			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
+			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
+			developmentRegion = \#(developmentRegion.pbxProjEscaped);
+			hasScannedForEncodings = 0;
+			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup(workspace));
+			preferredProjectObjectVersion = 77;
+			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup);
+			projectDirPath = \#(projectDir.pbxProjEscaped);
+			projectRoot = "";
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 9999;
+				LastUpgradeCheck = 9999;
+\#(organizationNameAttribute)
+"""#
+        } else {
+            projectObjectElement = #"""
+		\#(Identifiers.Project.id) = {
+			isa = PBXProject;
+			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
+			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
+			developmentRegion = \#(developmentRegion.pbxProjEscaped);
+			hasScannedForEncodings = 0;
+			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup(workspace));
+			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup);
+			projectDirPath = \#(projectDir.pbxProjEscaped);
+			projectRoot = "";
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 9999;
+				LastUpgradeCheck = 9999;
+\#(organizationNameAttribute)
+"""#
+        }
+
         // Final form
 
         // This is a `PBXProj` partial for `PBXProject` related objects and
@@ -69,21 +112,7 @@ extension Generator {
                 defaultXcodeConfiguration.pbxProjEscaped
             );
 		};
-		\#(Identifiers.Project.id) = {
-			isa = PBXProject;
-			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
-			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
-			developmentRegion = \#(developmentRegion.pbxProjEscaped);
-			hasScannedForEncodings = 0;
-			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup(workspace));
-			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup);
-			projectDirPath = \#(projectDir.pbxProjEscaped);
-			projectRoot = "";
-			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 9999;
-				LastUpgradeCheck = 9999;
-\#(organizationNameAttribute)
+\#(projectObjectElement)
 """#
     }
 }

@@ -19,8 +19,10 @@ extension Generator {
             topLevelTargetAttributes: [TargetID: TopLevelTargetAttributes],
             unitTestHosts: [TargetID: Target.UnitTestHost]
         ) throws -> (
+            synchronizedFolders: [Target.SynchronizedFolder],
             platformVariants: [Target.PlatformVariant],
             conditionalFiles: Set<BazelPath>,
+            hasSourceInputs: Bool,
             consolidatedInputs: Target.ConsolidatedInputs
         ) {
             return try callable(
@@ -42,8 +44,10 @@ extension Generator.CalculatePlatformVariants {
         _ topLevelTargetAttributes: [TargetID: TopLevelTargetAttributes],
         _ unitTestHosts: [TargetID: Target.UnitTestHost]
     ) throws -> (
+        synchronizedFolders: [Target.SynchronizedFolder],
         platformVariants: [Target.PlatformVariant],
         conditionalFiles: Set<BazelPath>,
+        hasSourceInputs: Bool,
         consolidatedInputs: Target.ConsolidatedInputs
     )
 
@@ -53,8 +57,10 @@ extension Generator.CalculatePlatformVariants {
         topLevelTargetAttributes: [TargetID: TopLevelTargetAttributes],
         unitTestHosts: [TargetID: Target.UnitTestHost]
     ) throws -> (
+        synchronizedFolders: [Target.SynchronizedFolder],
         platformVariants: [Target.PlatformVariant],
         conditionalFiles: Set<BazelPath>,
+        hasSourceInputs: Bool,
         consolidatedInputs: Target.ConsolidatedInputs
     ) {
         var srcs: [[BazelPath]] = []
@@ -143,8 +149,37 @@ extension Generator.CalculatePlatformVariants {
             srcs: consolidatePaths(srcs),
             nonArcSrcs: consolidatePaths(nonArcSrcs)
         )
+        let hasSourceInputs = !consolidatedInputs.srcs.isEmpty ||
+            !consolidatedInputs.nonArcSrcs.isEmpty
 
-        return (platformVariants, allConditionalFiles, consolidatedInputs)
+        let synchronizedFolders = calculateSynchronizedFolders(
+            ids: ids,
+            targetArguments: targetArguments
+        )
+
+        let synchronizedFolderPaths = synchronizedFolders.map(\.path)
+        let filteredInputs = Target.ConsolidatedInputs(
+            srcs: consolidatedInputs.srcs.filter { path in
+                !isDescendantOfSynchronizedFolder(
+                    path: path,
+                    synchronizedFolderPaths: synchronizedFolderPaths
+                )
+            },
+            nonArcSrcs: consolidatedInputs.nonArcSrcs.filter { path in
+                !isDescendantOfSynchronizedFolder(
+                    path: path,
+                    synchronizedFolderPaths: synchronizedFolderPaths
+                )
+            }
+        )
+
+        return (
+            synchronizedFolders,
+            platformVariants,
+            allConditionalFiles,
+            hasSourceInputs,
+            filteredInputs
+        )
     }
 }
 
@@ -203,4 +238,69 @@ private func consolidatePaths(_ paths: [[BazelPath]]) -> [BazelPath] {
     }
 
     return consolidatedPaths.elements
+}
+
+private func calculateSynchronizedFolders(
+    ids: [TargetID],
+    targetArguments: [TargetID: TargetArguments]
+) -> [Target.SynchronizedFolder] {
+    guard let firstID = ids.first else {
+        return []
+    }
+
+    let firstFolders = Dictionary(
+        uniqueKeysWithValues: targetArguments[firstID]!.buildableFolders.map {
+            ($0.path, $0)
+        }
+    )
+    var commonPaths = Set(firstFolders.keys)
+
+    for id in ids.dropFirst() {
+        let folders = Dictionary(
+            uniqueKeysWithValues: targetArguments[id]!.buildableFolders.map {
+                ($0.path, $0)
+            }
+        )
+        commonPaths.formIntersection(folders.keys)
+
+        for path in Array(commonPaths) {
+            if folders[path] != firstFolders[path] {
+                commonPaths.remove(path)
+            }
+        }
+    }
+
+    let synchronizedFolders = commonPaths
+        .sorted()
+        .compactMap { path -> Target.SynchronizedFolder? in
+            guard let folder = firstFolders[path] else {
+                return nil
+            }
+
+            return .init(
+                path: folder.path,
+                includedPaths: folder.includedPaths,
+                excludedPaths: folder.excludedPaths
+            )
+        }
+
+    return synchronizedFolders.filter { folder in
+        !synchronizedFolders.contains { candidate in
+            candidate.path != folder.path &&
+                isPathDescendant(folder.path.path, of: candidate.path.path)
+        }
+    }
+}
+
+private func isDescendantOfSynchronizedFolder(
+    path: BazelPath,
+    synchronizedFolderPaths: [BazelPath]
+) -> Bool {
+    return synchronizedFolderPaths.contains { folderPath in
+        isPathDescendant(path.path, of: folderPath.path)
+    }
+}
+
+private func isPathDescendant(_ path: String, of folder: String) -> Bool {
+    return path == folder || path.hasPrefix("\(folder)/")
 }

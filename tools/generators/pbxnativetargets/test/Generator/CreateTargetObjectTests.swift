@@ -30,6 +30,7 @@ class CreateTargetObjectTests: XCTestCase {
             "BP2",
             "BPA",
         ]
+        let synchronizedFolderIdentifiers: [String] = []
 
         // The tabs for indenting are intentional
         let expectedObject = Object(
@@ -65,7 +66,8 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolderIdentifiers: synchronizedFolderIdentifiers
         )
 
         // Assert
@@ -102,6 +104,7 @@ class CreateTargetObjectTests: XCTestCase {
             "BP2",
             "BPA",
         ]
+        let synchronizedFolderIdentifiers: [String] = []
 
         // The tabs for indenting are intentional
         let expectedObject = Object(
@@ -140,7 +143,8 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolderIdentifiers: synchronizedFolderIdentifiers
         )
 
         // Assert
@@ -173,6 +177,7 @@ class CreateTargetObjectTests: XCTestCase {
             "BP2",
             "BPA",
         ]
+        let synchronizedFolderIdentifiers: [String] = []
 
         // The tabs for indenting are intentional
         let expectedObject = Object(
@@ -207,10 +212,68 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolderIdentifiers: synchronizedFolderIdentifiers
         )
 
         // Assert
+
+        XCTAssertNoDifference(object, expectedObject)
+    }
+
+    func test_synchronizedFolders() {
+        let identifier = Identifiers.Targets.Identifier(
+            pbxProjEscapedName: "a",
+            subIdentifier: .init(shard: "A_SHARD", hash: "A_HASH"),
+            full: "A_ID /* a */",
+            withoutComment: "A_ID"
+        )
+        let productType = PBXProductType.commandLineTool
+        let productName = "A"
+        let productSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
+            shard: "B_SHARD",
+            type: .product,
+            path: "product.basename",
+            hash: "B_HASH"
+        )
+        let expectedObject = Object(
+            identifier: "A_ID /* a */",
+            content: #"""
+{
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCL_ID;
+			buildPhases = (
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FE1 /* Sources */,
+				FE2 /* Resources */,
+			);
+			name = a;
+			productName = A;
+			productReference = B_SHARD00B_HASH0000000000FF /* product.basename */;
+			productType = "com.apple.product-type.tool";
+		}
+"""#
+        )
+
+        let object = Generator.CreateTargetObject.defaultCallable(
+            identifier: identifier,
+            productType: productType,
+            productName: productName,
+            productSubIdentifier: productSubIdentifier,
+            setsProductReference: true,
+            dependencySubIdentifiers: [],
+            buildConfigurationListIdentifier: "BCL_ID",
+            buildPhaseIdentifiers: [],
+            synchronizedFolderIdentifiers: [
+                "FE1 /* Sources */",
+                "FE2 /* Resources */",
+            ]
+        )
 
         XCTAssertNoDifference(object, expectedObject)
     }

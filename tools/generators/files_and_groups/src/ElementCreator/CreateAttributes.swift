@@ -1,6 +1,6 @@
 import PBXProj
 
-struct ElementAttributes {
+struct ElementAttributes: Equatable {
     let sourceTree: SourceTree
     let name: String?
     let path: String

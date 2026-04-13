@@ -1,5 +1,9 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load(
+    ":infer_buildable_folders_tests.bzl",
+    "infer_buildable_folders_test_suite",
+)
+load(
     ":write_files_and_groups_tests.bzl",
     "write_files_and_groups_test_suite",
 )
@@ -19,6 +23,8 @@ load(
     ":write_target_build_settings_tests.bzl",
     "write_target_build_settings_test_suite",
 )
+
+infer_buildable_folders_test_suite(name = "infer_buildable_folders")
 
 write_files_and_groups_test_suite(name = "write_files_and_groups")
 

@@ -7,6 +7,7 @@ extension ElementCreator {
         private let createInlineBazelGeneratedFiles:
             ElementCreator.CreateInlineBazelGeneratedFiles
         private let createLocalizedFiles: CreateLocalizedFiles
+        private let createSynchronizedGroup: CreateSynchronizedGroup
         private let createVersionGroup: CreateVersionGroup
 
         private let callable: Callable
@@ -20,6 +21,7 @@ extension ElementCreator {
             createInlineBazelGeneratedFiles:
                 ElementCreator.CreateInlineBazelGeneratedFiles,
             createLocalizedFiles: CreateLocalizedFiles,
+            createSynchronizedGroup: CreateSynchronizedGroup,
             createVersionGroup: CreateVersionGroup,
             callable: @escaping Callable
         ) {
@@ -28,6 +30,7 @@ extension ElementCreator {
             self.createInlineBazelGeneratedFiles =
                 createInlineBazelGeneratedFiles
             self.createLocalizedFiles = createLocalizedFiles
+            self.createSynchronizedGroup = createSynchronizedGroup
             self.createVersionGroup = createVersionGroup
             self.callable = callable
         }
@@ -47,6 +50,7 @@ extension ElementCreator {
                 /*createInlineBazelGeneratedFiles:*/
                     createInlineBazelGeneratedFiles,
                 /*createLocalizedFiles:*/ createLocalizedFiles,
+                /*createSynchronizedGroup:*/ createSynchronizedGroup,
                 /*createVersionGroup:*/ createVersionGroup
             )
         }
@@ -66,6 +70,7 @@ extension ElementCreator.CreateGroupChild {
         _ createInlineBazelGeneratedFiles:
             ElementCreator.CreateInlineBazelGeneratedFiles,
         _ createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
+        _ createSynchronizedGroup: ElementCreator.CreateSynchronizedGroup,
         _ createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild
 
@@ -79,6 +84,7 @@ extension ElementCreator.CreateGroupChild {
         createInlineBazelGeneratedFiles:
             ElementCreator.CreateInlineBazelGeneratedFiles,
         createLocalizedFiles: ElementCreator.CreateLocalizedFiles,
+        createSynchronizedGroup: ElementCreator.CreateSynchronizedGroup,
         createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild {
         switch node {
@@ -148,6 +154,14 @@ extension ElementCreator.CreateGroupChild {
                 createInlineBazelGeneratedFiles(
                     for: generatedFiles,
                     createGroupChild: createGroupChild
+                )
+            )
+        case .synchronizedGroup(let name, let synchronizedFolder):
+            return .elementAndChildren(
+                createSynchronizedGroup(
+                    name: name,
+                    synchronizedFolder: synchronizedFolder,
+                    bazelPathType: parentBazelPathType
                 )
             )
         }

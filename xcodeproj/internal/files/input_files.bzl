@@ -551,6 +551,7 @@ def _collect_input_files(
             cxx_sources = cxx_sources,
             entitlements = entitlements[0] if entitlements else None,
             xcode_inputs = struct(
+                entitlements = entitlements[0] if entitlements else None,
                 extra_file_paths = extra_file_paths,
                 extra_files = memory_efficient_depset(
                     extra_files,
@@ -559,6 +560,11 @@ def _collect_input_files(
                 extra_generated_file_paths = extra_generated_file_paths,
                 infoplist = infoplist,
                 non_arc_srcs = memory_efficient_depset(non_arc_srcs),
+                resource_file_paths = (
+                    memory_efficient_depset(resources_result.resource_file_paths)
+                    if resource_info else
+                    EMPTY_DEPSET
+                ),
                 srcs = memory_efficient_depset(srcs),
             ),
         ),
@@ -659,11 +665,13 @@ def _collect_mixed_language_input_files(
     if not mergeable_info:
         return (
             struct(
+                entitlements = None,
                 extra_file_paths = EMPTY_DEPSET,
                 extra_files = EMPTY_DEPSET,
                 extra_generated_file_paths = EMPTY_DEPSET,
                 infoplist = None,
                 non_arc_srcs = EMPTY_LIST,
+                resource_file_paths = EMPTY_DEPSET,
                 srcs = EMPTY_LIST,
             ),
             struct(
@@ -682,11 +690,13 @@ def _collect_mixed_language_input_files(
 
     return (
         struct(
+            entitlements = None,
             extra_file_paths = mergeable_info.extra_file_paths,
             extra_files = mergeable_info.extra_files,
             extra_generated_file_paths = EMPTY_DEPSET,
             infoplist = None,
             non_arc_srcs = mergeable_info.non_arc_srcs,
+            resource_file_paths = EMPTY_DEPSET,
             srcs = mergeable_info.srcs,
         ),
         struct(

@@ -51,6 +51,7 @@ extension Generator {
         /// Creates the build phase `Object`s for a target.
         func callAsFunction(
             consolidatedInputs: Target.ConsolidatedInputs,
+            hasSourceInputs: Bool,
             hasCParams: Bool,
             hasCxxParams: Bool,
             hasLinkParams: Bool,
@@ -67,6 +68,7 @@ extension Generator {
         ) {
             return callable(
                 /*consolidatedInputs:*/ consolidatedInputs,
+                /*hasSourceInputs:*/ hasSourceInputs,
                 /*hasCParams:*/ hasCParams,
                 /*hasCxxParams:*/ hasCxxParams,
                 /*hasLinkParams:*/ hasLinkParams,
@@ -97,6 +99,7 @@ extension Generator {
 extension Generator.CreateBuildPhases {
     typealias Callable = (
         _ consolidatedInputs: Target.ConsolidatedInputs,
+        _ hasSourceInputs: Bool,
         _ hasCParams: Bool,
         _ hasCxxParams: Bool,
         _ hasLinkParams: Bool,
@@ -125,6 +128,7 @@ extension Generator.CreateBuildPhases {
 
     static func defaultCallable(
         consolidatedInputs: Target.ConsolidatedInputs,
+        hasSourceInputs: Bool,
         hasCParams: Bool,
         hasCxxParams: Bool,
         hasLinkParams: Bool,
@@ -196,9 +200,7 @@ extension Generator.CreateBuildPhases {
         }
 
         let hasCompilePhase = productType.hasCompilePhase
-        let hasCompileStub = hasCompilePhase &&
-            consolidatedInputs.srcs.isEmpty &&
-            consolidatedInputs.nonArcSrcs.isEmpty
+        let hasCompileStub = hasCompilePhase && !hasSourceInputs
 
         if hasLinkParams {
             buildPhases.append(

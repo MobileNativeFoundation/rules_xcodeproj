@@ -154,6 +154,12 @@ extension ElementCreator {
             ]
         )
 
+        static let createSynchronizedGroup = CreateSynchronizedGroup(
+            createAttributes: createAttributes,
+            installPath: "Project.xcodeproj",
+            workspace: "/tmp/workspace"
+        )
+
         static let createExternalRepositoriesGroup =
             CreateExternalRepositoriesGroup.stub(
                 groupChildElements: [

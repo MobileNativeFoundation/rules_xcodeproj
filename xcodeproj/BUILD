@@ -21,6 +21,12 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
+bool_flag(
+    name = "buildable_folders",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
 string_flag(
     name = "extra_common_flags",
     build_setting_default = "",

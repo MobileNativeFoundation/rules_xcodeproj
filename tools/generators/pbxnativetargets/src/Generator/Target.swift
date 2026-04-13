@@ -9,6 +9,12 @@ enum Target {
         var nonArcSrcs: [BazelPath]
     }
 
+    struct SynchronizedFolder: Equatable {
+        let path: BazelPath
+        let includedPaths: [BazelPath]
+        let excludedPaths: [BazelPath]
+    }
+
     struct Host: Equatable {
         let pbxProjEscapedID: String
         let pbxProjEscapedLabel: String

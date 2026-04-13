@@ -4,6 +4,12 @@ import PBXProj
 import ToolCommon
 
 struct TargetArguments: Equatable {
+    struct BuildableFolder: Equatable {
+        let path: BazelPath
+        let includedPaths: [BazelPath]
+        let excludedPaths: [BazelPath]
+    }
+
     let xcodeConfigurations: [String]
     let productType: PBXProductType
     let packageBinDir: String
@@ -25,6 +31,7 @@ struct TargetArguments: Equatable {
     let hasCxxParams: Bool
 
     // FIXME: Extract to `Inputs` type
+    let buildableFolders: [BuildableFolder]
     let srcs: [BazelPath]
     let nonArcSrcs: [BazelPath]
 
@@ -78,6 +85,37 @@ extension Dictionary<TargetID, TargetArguments> {
                 try rawArgs.consumeArg("has-c-params", as: Bool.self, in: url)
             let hasCxxParams =
                 try rawArgs.consumeArg("has-cxx-params", as: Bool.self, in: url)
+            let buildableFolderCount = try rawArgs.consumeArg(
+                "buildable-folder-count",
+                as: Int.self,
+                in: url
+            )
+            var buildableFolders: [TargetArguments.BuildableFolder] = []
+            buildableFolders.reserveCapacity(buildableFolderCount)
+            for _ in 0..<buildableFolderCount {
+                let path = try rawArgs.consumeArg(
+                    "buildable-folder-path",
+                    as: BazelPath.self,
+                    in: url
+                )
+                let includedPaths = try rawArgs.consumeArgs(
+                    "buildable-folder-included-paths",
+                    as: BazelPath.self,
+                    in: url
+                )
+                let excludedPaths = try rawArgs.consumeArgs(
+                    "buildable-folder-excluded-paths",
+                    as: BazelPath.self,
+                    in: url
+                )
+                buildableFolders.append(
+                    .init(
+                        path: path,
+                        includedPaths: includedPaths,
+                        excludedPaths: excludedPaths
+                    )
+                )
+            }
             let srcs = try rawArgs.consumeArgs(
                 "srcs",
                 as: BazelPath.self,
@@ -128,6 +166,7 @@ extension Dictionary<TargetID, TargetArguments> {
                         buildSettingsFromFile: buildSettings,
                         hasCParams: hasCParams,
                         hasCxxParams: hasCxxParams,
+                        buildableFolders: buildableFolders,
                         srcs: srcs,
                         nonArcSrcs: nonArcSrcs,
                         dSYMPathsBuildSetting: dSYMPathsBuildSetting

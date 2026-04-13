@@ -69,5 +69,15 @@ read from.
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
         var buildFileSubIdentifiersFiles: [URL]
+
+        @Option(
+            parsing: .upToNextOption,
+            help: """
+Paths to JSON files containing synchronized-folder metadata for generated \
+targets.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var synchronizedFoldersFiles: [URL] = []
     }
 }

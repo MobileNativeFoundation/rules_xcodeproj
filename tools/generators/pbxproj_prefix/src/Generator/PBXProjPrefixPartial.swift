@@ -6,7 +6,8 @@ extension Generator {
     static func pbxProjPrefixPartial(
         bazelDependenciesPartial: String,
         pbxProjectPrefixPartial: String,
-        minimumXcodeVersion: SemanticVersion
+        minimumXcodeVersion: SemanticVersion,
+        buildableFolders: Bool
     ) -> String {
         // This is a `PBXProj` partial for the start of the `PBXProj` element.
         //
@@ -19,7 +20,10 @@ extension Generator {
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = \#(minimumXcodeVersion.pbxProjObjectVersion);
+	objectVersion = \#(pbxProjObjectVersion(
+        minimumXcodeVersion: minimumXcodeVersion,
+        buildableFolders: buildableFolders
+    ));
 	objects = {
 \#(bazelDependenciesPartial)\#
 \#(pbxProjectPrefixPartial)\#
@@ -28,12 +32,17 @@ extension Generator {
     }
 }
 
-private extension SemanticVersion {
-    var pbxProjObjectVersion: UInt {
-        switch major {
-            case 15...: return 60
-            case 14: return 56
-            default: return 55 // Xcode 13
-        }
+private func pbxProjObjectVersion(
+    minimumXcodeVersion: SemanticVersion,
+    buildableFolders: Bool
+) -> UInt {
+    switch projectObjectMajorVersion(
+        minimumXcodeVersion: minimumXcodeVersion,
+        buildableFolders: buildableFolders
+    ) {
+        case 16...: return 77
+        case 15: return 60
+        case 14: return 56
+        default: return 55 // Xcode 13
     }
 }

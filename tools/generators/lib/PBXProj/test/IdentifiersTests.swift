@@ -5,6 +5,31 @@ import XCTest
 
 final class IdentifiersTests: XCTestCase {
 
+    func test_filesAndGroups_synchronizedRootGroupIdentifier() {
+        let identifier = Identifiers.FilesAndGroups.synchronizedRootGroup(
+            "App/Sources",
+            name: "Sources"
+        )
+
+        XCTAssertEqual(
+            identifier,
+            "FEA782FD064A9AC03431E8CB /* Sources */"
+        )
+    }
+
+    func test_filesAndGroups_synchronizedBuildFileExceptionSetIdentifier() {
+        let identifier = Identifiers.FilesAndGroups
+            .synchronizedBuildFileExceptionSet(
+                path: "App/Sources",
+                targetIdentifier: "ABC /* App */"
+            )
+
+        XCTAssertEqual(
+            identifier,
+            "FE08D184A8B490A7AF371A98 /* PBXFileSystemSynchronizedBuildFileExceptionSet */"
+        )
+    }
+
     // MARK: - BuildFiles.compileStubSubIdentifier
 
     func test_buildFiles_subIdentifier_type_compileStub() {

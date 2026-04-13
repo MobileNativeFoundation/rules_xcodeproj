@@ -39,6 +39,8 @@ extension ElementCreator.CreateGroupChild {
             createInlineBazelGeneratedFiles:
                 ElementCreator.Stubs.createInlineBazelGeneratedFiles,
             createLocalizedFiles: ElementCreator.Stubs.createLocalizedFiles,
+            createSynchronizedGroup:
+                ElementCreator.Stubs.createSynchronizedGroup,
             createVersionGroup: ElementCreator.Stubs.createVersionGroup,
             callable: {
                 node,
@@ -49,6 +51,7 @@ extension ElementCreator.CreateGroupChild {
                 createGroupChild,
                 createInlineBazelGeneratedFiles,
                 createLocalizedFiles,
+                createSynchronizedGroup,
                 createVersionGroup
             in
                 mockTracker.called.append(.init(

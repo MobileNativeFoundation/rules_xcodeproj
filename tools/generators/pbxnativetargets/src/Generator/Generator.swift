@@ -53,10 +53,12 @@ correctly
         var buildFileSubIdentifiers:
             [Identifiers.BuildFiles.SubIdentifier] = []
         var objects: [Object] = []
+        var synchronizedFolders: [SynchronizedFolderTarget] = []
         for entry in consolidationMapEntries {
             let (
                 targetBuildFileSubIdentifiers,
-                targetObjects
+                targetObjects,
+                targetSynchronizedFolders
             ) = try await environment.createTarget(
                 consolidationMapEntry: entry,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -69,10 +71,12 @@ correctly
             buildFileSubIdentifiers
                 .append(contentsOf: targetBuildFileSubIdentifiers)
             objects.append(contentsOf: targetObjects)
+            synchronizedFolders.append(contentsOf: targetSynchronizedFolders)
         }
 
         let finalBuildFileSubIdentifiers = buildFileSubIdentifiers
         let finalObjects = objects
+        let finalSynchronizedFolders = synchronizedFolders
 
         let writeTargetsTask = Task {
             try environment.write(
@@ -86,9 +90,15 @@ correctly
                 to: arguments.buildFileSubIdentifiersOutputPath
             )
         }
+        let writeSynchronizedFoldersTask = Task {
+            try finalSynchronizedFolders.encode(
+                to: arguments.synchronizedFoldersOutputPath
+            )
+        }
 
         // Wait for all of the writes to complete
         try await writeTargetsTask.value
         try await writeBuildFileSubIdentifiersTask.value
+        try await writeSynchronizedFoldersTask.value
     }
 }

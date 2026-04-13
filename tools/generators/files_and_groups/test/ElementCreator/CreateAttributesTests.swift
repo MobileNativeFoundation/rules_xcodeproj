@@ -168,4 +168,5 @@ final class CreateAttributesTests: XCTestCase {
 
         XCTAssertNil(result.resolvedRepository)
     }
+
 }

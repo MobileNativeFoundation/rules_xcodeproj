@@ -48,7 +48,7 @@ def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
 
-def _dirname(file):
+def _file_dirname(file):
     return file.dirname
 
 def _generated_dirname(file):
@@ -111,6 +111,107 @@ def _generated_file_path(generated_file_path):
         generated_file_path.owner,
     )
 
+def _file_path(file):
+    return file.path
+
+def _is_bazel_build_file_path(path):
+    basename = path.split("/")[-1]
+    return basename == "BUILD" or basename == "BUILD.bazel"
+
+def _is_descendant_path(path, folder):
+    return path == folder or path.startswith(folder + "/")
+
+def _path_dirname(path):
+    idx = path.rfind("/")
+    if idx == -1:
+        return ""
+    return path[:idx]
+
+def _is_workspace_local_folder(folder):
+    return bool(folder) and not (
+        folder.startswith("bazel-out/") or
+        folder.startswith("external/") or
+        folder.startswith("../")
+    )
+
+def _source_candidate_folder(file):
+    if file.owner.workspace_name:
+        return None
+    return file.owner.package
+
+def _broaden_dependency_folder(folder):
+    components = folder.split("/")
+    if len(components) <= 1:
+        return folder
+    return "/".join(components[:2])
+
+def _buildable_label_folder(xcode_target):
+    if not xcode_target.label or xcode_target.label.workspace_name:
+        return None
+
+    label_folder = xcode_target.label.package
+    if getattr(xcode_target.outputs, "product_path", None):
+        # Products are best represented at their concrete package root so the
+        # synchronized folder lines up with the target's navigator location.
+        return label_folder
+
+    # Dependency-style targets often live in nested API/Impl-style packages.
+    # We currently promote them to a stable branch root so related packages can
+    # share one synchronized folder instead of producing many overlapping ones.
+    return _broaden_dependency_folder(label_folder)
+
+def _resource_candidate_folder(path, label_folder):
+    if label_folder and _is_descendant_path(path, label_folder):
+        return label_folder
+    return _path_dirname(path)
+
+def _collapse_nested_folders(sorted_folders):
+    collapsed_folders = []
+
+    for folder in sorted_folders:
+        is_nested = False
+        for candidate in sorted_folders:
+            if candidate == folder:
+                continue
+            if _is_descendant_path(folder, candidate):
+                is_nested = True
+                break
+
+        if not is_nested:
+            collapsed_folders.append(folder)
+
+    return collapsed_folders
+
+def _infer_buildable_folders(xcode_target):
+    # Buildable folders are inferred from the target inputs rather than being
+    # declared separately. We intentionally choose the coarsest workspace-local
+    # roots that can still be described with synchronized-folder exceptions:
+    #
+    # - source inputs follow the target/package ownership heuristic
+    # - resources prefer the label root when they already live under it
+    # - nested folders collapse to the outermost root to avoid redundant
+    #   synchronized groups
+    folders = {}
+    label_folder = _buildable_label_folder(xcode_target)
+
+    for file in xcode_target.inputs.srcs.to_list():
+        folder = label_folder or _source_candidate_folder(file)
+        if _is_workspace_local_folder(folder):
+            folders[folder] = None
+
+    for file in xcode_target.inputs.non_arc_srcs.to_list():
+        folder = label_folder or _source_candidate_folder(file)
+        if _is_workspace_local_folder(folder):
+            folders[folder] = None
+
+    for path in xcode_target.inputs.resource_file_paths.to_list():
+        folder = _resource_candidate_folder(path, label_folder)
+        if _is_workspace_local_folder(folder):
+            folders[folder] = None
+
+    sorted_folders = sorted(folders.keys())
+    return _collapse_nested_folders(sorted_folders)
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
@@ -123,6 +224,7 @@ _FLAGS = struct(
     platforms = "--platforms",
     post_build_script = "--post-build-script",
     pre_build_script = "--pre-build-script",
+    synchronized_folders_files = "--synchronized-folders-files",
     target_and_test_hosts = "--target-and-test-hosts",
     target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
     use_base_internationalization = "--use-base-internationalization",
@@ -135,6 +237,7 @@ def _write_consolidation_map_targets(
         apple_platform_to_platform_name = (
             platforms.apple_platform_to_platform_name
         ),
+        buildable_folders,
         colorize,
         consolidation_map,
         default_xcode_configuration,
@@ -170,12 +273,14 @@ def _write_consolidation_map_targets(
             `dict` mapping `xcode_target.id` to `xcode_target`s.
 
     Returns:
-        A tuple with two elements:
+        A tuple with three elements:
 
         *   `pbxnativetargets`: A `File` for the `PBNativeTarget` `PBXProj`
             partial.
         *   `buildfile_subidentifiers`: A `File` that contain serialized
             `[Identifiers.BuildFile.SubIdentifier]`.
+        *   `synchronized_folders`: A `File` containing synchronized-folder
+            metadata for the generated targets.
     """
     pbxnativetargets = actions.declare_file(
         "{}_pbxproj_partials/pbxnativetargets/{}".format(
@@ -185,6 +290,12 @@ def _write_consolidation_map_targets(
     )
     buildfile_subidentifiers = actions.declare_file(
         "{}_pbxproj_partials/buildfile_subidentifiers/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+    synchronized_folders = actions.declare_file(
+        "{}_pbxproj_partials/synchronized_folders/{}".format(
             generator_name,
             idx,
         ),
@@ -218,6 +329,9 @@ def _write_consolidation_map_targets(
 
     # buildFileSubIdentifiersOutputPath
     args.add(buildfile_subidentifiers)
+
+    # synchronizedFoldersOutputPath
+    args.add(synchronized_folders)
 
     # consolidationMap
     args.add(consolidation_map)
@@ -298,6 +412,55 @@ def _write_consolidation_map_targets(
             targets_args.add(
                 TRUE_ARG if xcode_target.has_cxx_params else FALSE_ARG,
             )
+
+            declared_buildable_folders = (
+                _infer_buildable_folders(xcode_target)
+                if buildable_folders else
+                []
+            )
+            targets_args.add(len(declared_buildable_folders))
+            for folder in declared_buildable_folders:
+                targets_args.add(folder)
+
+                included_paths = {}
+                for path in xcode_target.inputs.extra_file_paths.to_list():
+                    if _is_descendant_path(path, folder):
+                        included_paths[path] = None
+                for path in xcode_target.inputs.resource_file_paths.to_list():
+                    if _is_descendant_path(path, folder):
+                        included_paths[path] = None
+                for file in xcode_target.inputs.extra_files.to_list():
+                    if _is_descendant_path(file.path, folder):
+                        included_paths[file.path] = None
+                for file in xcode_target.inputs.srcs.to_list():
+                    if _is_descendant_path(file.path, folder):
+                        included_paths[file.path] = None
+                for file in xcode_target.inputs.non_arc_srcs.to_list():
+                    if _is_descendant_path(file.path, folder):
+                        included_paths[file.path] = None
+
+                excluded_paths = {}
+                infoplist = xcode_target.inputs.infoplist
+                if infoplist and _is_descendant_path(infoplist.path, folder):
+                    excluded_paths[infoplist.path] = None
+                entitlements = xcode_target.inputs.entitlements
+                if entitlements and _is_descendant_path(entitlements.path, folder):
+                    excluded_paths[entitlements.path] = None
+                for path in xcode_target.inputs.extra_file_paths.to_list():
+                    if (_is_descendant_path(path, folder) and
+                        _is_bazel_build_file_path(path)):
+                        excluded_paths[path] = None
+
+                targets_args.add_all(
+                    sorted(included_paths.keys()),
+                    omit_if_empty = False,
+                    terminate_with = "",
+                )
+                targets_args.add_all(
+                    sorted(excluded_paths.keys()),
+                    omit_if_empty = False,
+                    terminate_with = "",
+                )
 
             targets_args.add_all(
                 xcode_target.inputs.srcs,
@@ -380,6 +543,7 @@ Target ID for unit test host '{}' not found in xcode_targets
         outputs = [
             pbxnativetargets,
             buildfile_subidentifiers,
+            synchronized_folders,
         ],
         progress_message = message,
         mnemonic = "WritePBXNativeTargets",
@@ -392,6 +556,7 @@ Target ID for unit test host '{}' not found in xcode_targets
     return (
         pbxnativetargets,
         buildfile_subidentifiers,
+        synchronized_folders,
     )
 
 def _write_files_and_groups(
@@ -408,6 +573,7 @@ def _write_files_and_groups(
         install_path,
         project_options,
         selected_model_versions_file,
+        synchronized_folders_files,
         tool,
         workspace_directory):
     """Creates `File`s representing files and groups in a `.pbxproj`.
@@ -434,6 +600,8 @@ def _write_files_and_groups(
         selected_model_versions_file: A `File` that contains a JSON
             representation of `[BazelPath: String]`, mapping `.xcdatamodeld`
             file paths to selected `.xcdatamodel` file names.
+        synchronized_folders_files: A `list` of `File`s containing
+            synchronized-folder metadata written by the target generator.
         tool: The executable that will generate the output files.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
@@ -559,6 +727,11 @@ def _write_files_and_groups(
         buildfile_subidentifiers_files,
     )
 
+    args.add_all(
+        _FLAGS.synchronized_folders_files,
+        synchronized_folders_files,
+    )
+
     # colorize
     if colorize:
         args.add(_FLAGS.colorize)
@@ -573,7 +746,7 @@ def _write_files_and_groups(
             generated_file_paths_file,
             execution_root_file,
             selected_model_versions_file,
-        ] + buildfile_subidentifiers_files,
+        ] + buildfile_subidentifiers_files + synchronized_folders_files,
         outputs = [
             files_and_groups,
             pbxproject_known_regions,
@@ -601,7 +774,7 @@ def _write_generated_directories_filelist(
     directories_args.set_param_file_format("multiline")
     directories_args.use_param_file("%s", use_always = True)
 
-    directories_args.add_all(infoplists, map_each = _dirname)
+    directories_args.add_all(infoplists, map_each = _file_dirname)
     directories_args.add_all(srcs, map_each = _generated_dirname)
 
     filelist = actions.declare_file(
@@ -656,6 +829,7 @@ def _write_pbxproj_prefix(
         apple_platform_to_platform_name = (
             platforms.apple_platform_to_platform_name
         ),
+        buildable_folders,
         colorize,
         config,
         default_xcode_configuration,
@@ -682,6 +856,8 @@ def _write_pbxproj_prefix(
     Args:
         actions: `ctx.actions`.
         apple_platform_to_platform_name: Exposed for testing. Don't set.
+        buildable_folders: A `bool` indicating whether buildable folders are
+            enabled.
         colorize: A `bool` indicating whether to colorize the output.
         config: The name of the `.bazelrc` config.
         default_xcode_configuration: The name of the the Xcode configuration to
@@ -760,6 +936,9 @@ def _write_pbxproj_prefix(
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
+
+    # buildableFolders
+    args.add("1" if buildable_folders else "0")
 
     # importIndexBuildIndexstores
     args.add("1" if import_index_build_indexstores else "0")
@@ -1317,6 +1496,7 @@ def _write_target_build_settings(
 def _write_targets(
         *,
         actions,
+        buildable_folders,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -1347,21 +1527,26 @@ def _write_targets(
             `dict` mapping `xcode_target.id` to `xcode_target`s.
 
     Returns:
-        A tuple with two elements:
+        A tuple with three elements:
 
         *   `pbxnativetargets`: A `list` of `File`s for the `PBNativeTarget`
             `PBXProj` partials.
         *   `buildfile_subidentifiers_files`: A `list` of `File`s that contain
             serialized `[Identifiers.BuildFile.SubIdentifier]`s.
+        *   `synchronized_folders_files`: A `list` of `File`s containing
+            synchronized-folder metadata for the generated targets.
     """
     pbxnativetargets = []
     buildfile_subidentifiers_files = []
+    synchronized_folders_files = []
     for consolidation_map, labels in consolidation_maps.items():
         (
             label_pbxnativetargets,
             label_buildfile_subidentifiers,
+            label_synchronized_folders,
         ) = _write_consolidation_map_targets(
             actions = actions,
+            buildable_folders = buildable_folders,
             colorize = colorize,
             consolidation_map = consolidation_map,
             default_xcode_configuration = default_xcode_configuration,
@@ -1377,10 +1562,12 @@ def _write_targets(
 
         pbxnativetargets.append(label_pbxnativetargets)
         buildfile_subidentifiers_files.append(label_buildfile_subidentifiers)
+        synchronized_folders_files.append(label_synchronized_folders)
 
     return (
         pbxnativetargets,
         buildfile_subidentifiers_files,
+        synchronized_folders_files,
     )
 
 # `project.pbxproj`
@@ -1469,4 +1656,9 @@ pbxproj_partials = struct(
     write_swift_debug_settings = _write_swift_debug_settings,
     write_target_build_settings = _write_target_build_settings,
     write_targets = _write_targets,
+)
+
+# These functions are exposed only for access in unit tests
+pbxproj_partials_testable = struct(
+    infer_buildable_folders = _infer_buildable_folders,
 )

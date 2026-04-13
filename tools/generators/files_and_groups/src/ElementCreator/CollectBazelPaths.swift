@@ -57,6 +57,10 @@ extension ElementCreator.CollectBazelPaths {
         case .generatedFiles:
             // Impossible to have generated files under localized or model files
             fatalError()
+        case .synchronizedGroup:
+            // Synchronized folders are not represented as explicit descendants
+            // under localized or version-group structures.
+            fatalError()
         }
     }
 
@@ -83,6 +87,10 @@ extension ElementCreator.CollectBazelPaths {
             return bazelPaths
         case .generatedFiles:
             // Impossible to have generated files under localized or model files
+            fatalError()
+        case .synchronizedGroup:
+            // Synchronized folders are not represented as explicit descendants
+            // under localized or version-group structures.
             fatalError()
         }
     }

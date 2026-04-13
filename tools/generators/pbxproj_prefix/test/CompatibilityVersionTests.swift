@@ -13,7 +13,8 @@ class CompatibilityVersionTests: XCTestCase {
         // Act
 
         let compatibilityVersion = Generator.compatibilityVersion(
-            minimumXcodeVersion: minimumXcodeVersion
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
         )
 
         // Assert
@@ -33,7 +34,8 @@ class CompatibilityVersionTests: XCTestCase {
         // Act
 
         let compatibilityVersion = Generator.compatibilityVersion(
-            minimumXcodeVersion: minimumXcodeVersion
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
         )
 
         // Assert
@@ -53,7 +55,8 @@ class CompatibilityVersionTests: XCTestCase {
         // Act
 
         let compatibilityVersion = Generator.compatibilityVersion(
-            minimumXcodeVersion: minimumXcodeVersion
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
         )
 
         // Assert
@@ -73,7 +76,50 @@ class CompatibilityVersionTests: XCTestCase {
         // Act
 
         let compatibilityVersion = Generator.compatibilityVersion(
-            minimumXcodeVersion: minimumXcodeVersion
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
+        )
+
+        // Assert
+
+        XCTAssertEqual(
+            compatibilityVersion,
+            expectedCompatibilityVersion
+        )
+    }
+
+    func test_xcode16_withoutBuildableFolders() {
+        // Arrange
+
+        let minimumXcodeVersion: SemanticVersion = "16.2.0"
+        let expectedCompatibilityVersion = "Xcode 15.0"
+
+        // Act
+
+        let compatibilityVersion = Generator.compatibilityVersion(
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
+        )
+
+        // Assert
+
+        XCTAssertEqual(
+            compatibilityVersion,
+            expectedCompatibilityVersion
+        )
+    }
+
+    func test_xcode16_withBuildableFolders() {
+        // Arrange
+
+        let minimumXcodeVersion: SemanticVersion = "16.2.0"
+        let expectedCompatibilityVersion = "Xcode 16.0"
+
+        // Act
+
+        let compatibilityVersion = Generator.compatibilityVersion(
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: true
         )
 
         // Assert
@@ -93,7 +139,50 @@ class CompatibilityVersionTests: XCTestCase {
         // Act
 
         let compatibilityVersion = Generator.compatibilityVersion(
-            minimumXcodeVersion: minimumXcodeVersion
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: false
+        )
+
+        // Assert
+
+        XCTAssertEqual(
+            compatibilityVersion,
+            expectedCompatibilityVersion
+        )
+    }
+
+    func test_xcode17_withBuildableFolders() {
+        // Arrange
+
+        let minimumXcodeVersion: SemanticVersion = "17.0.0"
+        let expectedCompatibilityVersion = "Xcode 16.0"
+
+        // Act
+
+        let compatibilityVersion = Generator.compatibilityVersion(
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: true
+        )
+
+        // Assert
+
+        XCTAssertEqual(
+            compatibilityVersion,
+            expectedCompatibilityVersion
+        )
+    }
+
+    func test_tooLargeXcode_withBuildableFolders() {
+        // Arrange
+
+        let minimumXcodeVersion: SemanticVersion = "42.3.1"
+        let expectedCompatibilityVersion = "Xcode 16.0"
+
+        // Act
+
+        let compatibilityVersion = Generator.compatibilityVersion(
+            minimumXcodeVersion: minimumXcodeVersion,
+            buildableFolders: true
         )
 
         // Assert

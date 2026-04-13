@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
@@ -180,6 +181,22 @@ def _get_minimum_xcode_version(*, xcode_config):
 """)
     return ".".join(version.split(".")[0:3])
 
+def _buildable_folders_error(*, buildable_folders, minimum_xcode_version):
+    if not buildable_folders:
+        return None
+
+    major_version = int(minimum_xcode_version.split(".")[0])
+    if major_version >= 16:
+        return None
+
+    return """\
+`buildable_folders` requires Xcode 16 or newer, but `minimum_xcode_version` \
+resolved to {}.
+
+Either disable `buildable_folders` or set `minimum_xcode_version` to 16.0 or \
+newer.
+""".format(minimum_xcode_version)
+
 def _process_dep(dep):
     info = dep[XcodeProjInfo]
 
@@ -323,6 +340,7 @@ def _write_project_contents(
         *,
         actions,
         bin_dir_path,
+        buildable_folders,
         colorize,
         config,
         default_xcode_configuration,
@@ -413,8 +431,10 @@ def _write_project_contents(
     (
         target_partials,
         buildfile_subidentifiers_files,
+        synchronized_folders_files,
     ) = pbxproj_partials.write_targets(
         actions = actions,
+        buildable_folders = buildable_folders,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
         default_xcode_configuration = default_xcode_configuration,
@@ -443,12 +463,14 @@ def _write_project_contents(
         install_path = install_path,
         project_options = project_options,
         selected_model_versions_file = selected_model_versions_file,
+        synchronized_folders_files = synchronized_folders_files,
         tool = files_and_groups_generator,
         workspace_directory = workspace_directory,
     )
 
     pbxproj_prefix = pbxproj_partials.write_pbxproj_prefix(
         actions = actions,
+        buildable_folders = buildable_folders,
         colorize = colorize,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
@@ -648,6 +670,22 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     default_xcode_configuration = (
         ctx.attr.default_xcode_configuration or xcode_configurations[0]
     )
+    minimum_xcode_version = (
+        ctx.attr.minimum_xcode_version or
+        _get_minimum_xcode_version(
+            xcode_config = (
+                ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+            ),
+        )
+    )
+    buildable_folders = ctx.attr._buildable_folders[BuildSettingInfo].value
+
+    buildable_folders_error = _buildable_folders_error(
+        buildable_folders = buildable_folders,
+        minimum_xcode_version = minimum_xcode_version,
+    )
+    if buildable_folders_error:
+        fail(buildable_folders_error)
 
     # Project contents
 
@@ -660,6 +698,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     ) = _write_project_contents(
         actions = actions,
         bin_dir_path = ctx.bin_dir.path,
+        buildable_folders = buildable_folders,
         colorize = colorize,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
@@ -671,14 +710,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         legacy_index_import = legacy_index_import,
         index_import = index_import,
         install_path = install_path,
-        minimum_xcode_version = (
-            ctx.attr.minimum_xcode_version or
-            _get_minimum_xcode_version(
-                xcode_config = (
-                    ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
-                ),
-            )
-        ),
+        minimum_xcode_version = minimum_xcode_version,
         name = name,
         owned_extra_files = ctx.attr.owned_extra_files,
         pbxnativetargets_generator = (
@@ -866,6 +898,10 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//xcodeproj/internal/templates:bazel_build.sh",
             ),
         ),
+        "_buildable_folders": attr.label(
+            default = Label("//xcodeproj:buildable_folders"),
+            providers = [BuildSettingInfo],
+        ),
         "_bazel_integration_files": attr.label(
             cfg = "exec",
             allow_files = True,
@@ -972,4 +1008,8 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
 xcodeproj_rule = struct(
     attrs = _xcodeproj_attrs,
     impl = _xcodeproj_impl,
+)
+
+xcodeproj_rule_testable = struct(
+    buildable_folders_error = _buildable_folders_error,
 )

@@ -73,13 +73,23 @@ extension Generator.CreateShardTargetFileObjects {
                         Identifiers.BuildFiles.id(subIdentifier: subIdentifier)
                 )
             } else {
+                let fileIdentifier: String
+                switch subIdentifier.type {
+                case .compileStub:
+                    fileIdentifier = Identifiers.FilesAndGroups.compileStub
+                case .nonArcSource, .source:
+                    fileIdentifier = try fileIdentifiers.value(
+                        for: subIdentifier.path,
+                        context: "Build file referenced path"
+                    )
+                case .product, .watchKitExtension:
+                    preconditionFailure()
+                }
+
                 return .buildFile(
                     createBuildFileObject(
                         subIdentifier: subIdentifier,
-                        fileIdentifier: try fileIdentifiers.value(
-                            for: subIdentifier.path,
-                            context: "Build file referenced path"
-                        )
+                        fileIdentifier: fileIdentifier
                     )
                 )
             }

@@ -89,7 +89,8 @@ The `rules_xcodeproj_generator` config is used when generating the project (i.e.
 when you run `bazel run //:xcodeproj`).
 
 The types of things you might want to adjust on this config are non-build
-affecting, like adjusting build log output.
+affecting, like adjusting build log output or enabling buildable folder
+references.
 
 ### `rules_xcodeproj_indexbuild`
 

@@ -63,6 +63,12 @@ Minimum Xcode version that the generated project supports.
         var minimumXcodeVersion: SemanticVersion
 
         @Argument(
+            help: "Whether buildable folders are enabled.",
+            transform: { $0 == "1" }
+        )
+        var buildableFolders: Bool
+
+        @Argument(
             help: "Whether to import index build indexstores.",
             transform: { $0 == "1" }
         )

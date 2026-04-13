@@ -21,11 +21,16 @@ extension BazelPath: Comparable {
     }
 }
 
-// MARK: - Decodable
+// MARK: - Codable
 
-extension BazelPath: Decodable {
+extension BazelPath: Codable {
     public init(from decoder: Decoder) throws {
         self.init(try decoder.singleValueContainer().decode(String.self))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(path)
     }
 }
 

@@ -24,7 +24,8 @@ extension Generator {
         let createBuildSettingsAttribute: CreateBuildSettingsAttribute
 
         let compatibilityVersion: (
-            _ minimumXcodeVersion: SemanticVersion
+            _ minimumXcodeVersion: SemanticVersion,
+            _ buildableFolders: Bool
         ) -> String
 
         let indexingProjectDir: (_ projectDir: String) -> String
@@ -48,6 +49,8 @@ extension Generator {
             _ compatibilityVersion: String,
             _ defaultXcodeConfiguration: String,
             _ developmentRegion: String,
+            _ minimumXcodeVersion: SemanticVersion,
+            _ buildableFolders: Bool,
             _ organizationName: String?,
             _ projectDir: String,
             _ workspace: String,
@@ -57,7 +60,8 @@ extension Generator {
         let pbxProjPrefixPartial: (
             _ bazelDependenciesPartial: String,
             _ pbxProjectPrefixPartial: String,
-            _ xcodeVersion: SemanticVersion
+            _ minimumXcodeVersion: SemanticVersion,
+            _ buildableFolders: Bool
         ) -> String
 
         let projectDir: (_ executionRoot: String) -> String

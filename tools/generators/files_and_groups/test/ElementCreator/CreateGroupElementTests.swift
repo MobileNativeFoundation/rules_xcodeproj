@@ -259,4 +259,5 @@ final class CreateGroupElementTests: XCTestCase {
         )
         XCTAssertEqual(result.resolvedRepository, stubbedResolvedRepository)
     }
+
 }

@@ -17,6 +17,7 @@ build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
 
 # Enable dSYM generation
 build:rules_xcodeproj --apple_generate_dsym
+build:rules_xcodeproj_generator --@rules_xcodeproj//xcodeproj:buildable_folders
 
 # To force swift_test to a specific OS version
 build:rules_xcodeproj --macos_minimum_os=13.0

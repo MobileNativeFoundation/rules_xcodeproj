@@ -19,13 +19,23 @@ struct Generator {
     /// groups `PBXProj` partial, and `RESOLVED_REPOSITORIES` build setting.
     /// Then it writes them to disk.
     func generate(arguments: Arguments) async throws {
+        var synchronizedFolders: [SynchronizedFolderTarget] = []
+        for url in arguments.synchronizedFoldersFiles {
+            synchronizedFolders.append(
+                contentsOf: try await [SynchronizedFolderTarget].decode(
+                    from: url
+                )
+            )
+        }
+
         // FIXME: Do these in parallel as tasks
         let pathTree = try await environment.calculatePathTree(
             /*paths:*/
                 environment.readFilePathsFile(arguments.filePathsFile),
             /*generatedPaths:*/ environment.readGeneratedFilePathsFile(
                 arguments.generatedFilePathsFile
-            )
+            ),
+            /*synchronizedFolders:*/ synchronizedFolders
         )
 
         let elementsCreator = ElementCreator(environment: environment.elements)
@@ -34,7 +44,8 @@ struct Generator {
             return try elementsCreator.create(
                 pathTree: pathTree,
                 arguments: arguments.elementCreatorArguments,
-                compileStubNeeded: arguments.compileStubNeeded
+                compileStubNeeded: arguments.compileStubNeeded,
+                synchronizedFolders: synchronizedFolders
             )
         }
 

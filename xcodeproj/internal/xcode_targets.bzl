@@ -23,12 +23,13 @@ def _from_resource_bundle(bundle):
     return struct(
         compile_stub_needed = False,
         inputs = struct(
-            entitlements = EMPTY_DEPSET,
+            entitlements = None,
             extra_file_paths = bundle.resource_file_paths,
             extra_files = bundle.resources,
             extra_generated_file_paths = bundle.generated_resource_file_paths,
             infoplist = None,
             non_arc_srcs = EMPTY_DEPSET,
+            resource_file_paths = bundle.resource_file_paths,
             srcs = EMPTY_DEPSET,
         ),
         label = None,
@@ -171,6 +172,7 @@ def _make_xcode_target(
 
 def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
     return struct(
+        entitlements = dest_inputs.entitlements,
         extra_file_paths = memory_efficient_depset(
             transitive = [
                 dest_inputs.extra_file_paths,
@@ -183,6 +185,7 @@ def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
         extra_generated_file_paths = dest_inputs.extra_generated_file_paths,
         infoplist = dest_inputs.infoplist,
         non_arc_srcs = mergeable_info.non_arc_srcs,
+        resource_file_paths = dest_inputs.resource_file_paths,
         srcs = mergeable_info.srcs,
     )
 

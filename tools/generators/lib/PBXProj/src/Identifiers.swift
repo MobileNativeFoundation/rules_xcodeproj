@@ -258,6 +258,12 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
 
             /// A `XCVersionGroup` or child `PBXFileReference`.
             case coreData = "3"
+
+            /// A `PBXFileSystemSynchronizedRootGroup`.
+            case synchronizedRootGroup = "4"
+
+            /// A `PBXFileSystemSynchronizedBuildFileExceptionSet`.
+            case synchronizedBuildFileExceptionSet = "5"
         }
 
         public static func mainGroup(_ path: String) -> String {
@@ -304,6 +310,36 @@ FF0000000000000000000008 /* rules_xcodeproj */
             return #"FE\#(hash) /* \#(name) */"#
         }
 
+        /// Calculates a deterministic identifier for a synchronized root
+        /// group.
+        ///
+        /// Unlike `element`, this intentionally does not use a mutable hash
+        /// cache. The same identifier must be reproduced independently by
+        /// multiple generators.
+        public static func synchronizedRootGroup(
+            _ path: String,
+            name: String
+        ) -> String {
+            return staticElement(
+                path,
+                name: name,
+                type: .synchronizedRootGroup
+            )
+        }
+
+        /// Calculates a deterministic identifier for a synchronized build file
+        /// exception set for `path` and `targetIdentifier`.
+        public static func synchronizedBuildFileExceptionSet(
+            path: String,
+            targetIdentifier: String
+        ) -> String {
+            return staticElement(
+                "\(path)\0\(targetIdentifier)",
+                name: "PBXFileSystemSynchronizedBuildFileExceptionSet",
+                type: .synchronizedBuildFileExceptionSet
+            )
+        }
+
         /// Calculates a unique hash for the path encoded in `hashable`. The
         /// hash needs to be unique among all of the values in `hashCache`,
         /// because two different `hashable` might hash to the same value, and
@@ -346,6 +382,15 @@ FF0000000000000000000008 /* rules_xcodeproj */
                 .dropLast(5)
                 .map { byteHexStrings[$0]! }
                 .joined()
+        }
+
+        private static func staticElement(
+            _ path: String,
+            name: String,
+            type: ElementType
+        ) -> String {
+            let hash = elementHash(path + type.rawValue, retryCount: 0)
+            return #"FE\#(hash) /* \#(name) */"#
         }
     }
 

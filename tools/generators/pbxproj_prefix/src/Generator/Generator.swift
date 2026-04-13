@@ -68,11 +68,14 @@ struct Generator {
                 /*workspace:*/ arguments.workspace
             ),
             /*compatibilityVersion:*/ environment.compatibilityVersion(
-                arguments.minimumXcodeVersion
+                arguments.minimumXcodeVersion,
+                arguments.buildableFolders
             ),
             /*defaultXcodeConfiguration:*/ arguments
                 .defaultXcodeConfiguration,
             /*developmentRegion:*/ arguments.developmentRegion,
+            /*minimumXcodeVersion:*/ arguments.minimumXcodeVersion,
+            /*buildableFolders:*/ arguments.buildableFolders,
             /*organizationName:*/ arguments.organizationName,
             /*projectDir:*/ projectDir,
             /*workspace:*/ arguments.workspace,
@@ -83,7 +86,8 @@ struct Generator {
             environment.pbxProjPrefixPartial(
                 /*bazelDependenciesPartial:*/ bazelDependenciesPartial,
                 /*pbxProjectPrefixPartial:*/ pbxProjectPrefixPartial,
-                /*minimumXcodeVersion:*/ arguments.minimumXcodeVersion
+                /*minimumXcodeVersion:*/ arguments.minimumXcodeVersion,
+                /*buildableFolders:*/ arguments.buildableFolders
             ),
             to: arguments.outputPath
         )

@@ -20,7 +20,8 @@ extension Generator {
             setsProductReference: Bool,
             dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
             buildConfigurationListIdentifier: String,
-            buildPhaseIdentifiers: [String]
+            buildPhaseIdentifiers: [String],
+            synchronizedFolderIdentifiers: [String]
         ) -> Object {
             return callable(
                 /*identifier:*/ identifier,
@@ -31,7 +32,9 @@ extension Generator {
                 /*dependencySubIdentifiers:*/ dependencySubIdentifiers,
                 /*buildConfigurationListIdentifier:*/
                     buildConfigurationListIdentifier,
-                /*buildPhaseIdentifiers:*/ buildPhaseIdentifiers
+                /*buildPhaseIdentifiers:*/ buildPhaseIdentifiers,
+                /*synchronizedFolderIdentifiers:*/
+                    synchronizedFolderIdentifiers
             )
         }
     }
@@ -48,7 +51,8 @@ extension Generator.CreateTargetObject {
         _ setsProductReference: Bool,
         _ dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         _ buildConfigurationListIdentifier: String,
-        _ buildPhaseIdentifiers: [String]
+        _ buildPhaseIdentifiers: [String],
+        _ synchronizedFolderIdentifiers: [String]
     ) -> Object
 
     static func defaultCallable(
@@ -59,7 +63,8 @@ extension Generator.CreateTargetObject {
         setsProductReference: Bool,
         dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         buildConfigurationListIdentifier: String,
-        buildPhaseIdentifiers: [String]
+        buildPhaseIdentifiers: [String],
+        synchronizedFolderIdentifiers: [String]
     ) -> Object {
         let productReference: String
         if setsProductReference {
@@ -73,33 +78,22 @@ extension Generator.CreateTargetObject {
             productReference = ""
         }
 
-        // The tabs for indenting are intentional
         let content = #"""
 {
 			isa = PBXNativeTarget;
 			buildConfigurationList = \#(buildConfigurationListIdentifier);
 			buildPhases = (
-\#(buildPhaseIdentifiers.map { "\t\t\t\t\($0),\n" }.joined())\#
+\#(serializedEntries(buildPhaseIdentifiers))\#
 			);
 			buildRules = (
 			);
 			dependencies = (
-\#(
-    dependencySubIdentifiers
-        .map { depSubIdentifier in
-            return """
-\t\t\t\t\(
-    Identifiers.Targets.dependency(
-        from: identifier.subIdentifier,
-        to: depSubIdentifier
-    )
-),
-
-"""
-        }
-        .joined()
-)\#
+\#(serializedDependencies(
+    from: identifier.subIdentifier,
+    dependencySubIdentifiers: dependencySubIdentifiers
+))\#
 			);
+\#(serializedOptionalSynchronizedGroups(synchronizedFolderIdentifiers))\#
 			name = \#(identifier.pbxProjEscapedName);
 			productName = \#(productName.pbxProjEscaped);
 \#(productReference)\#
@@ -109,4 +103,43 @@ extension Generator.CreateTargetObject {
 
         return Object(identifier: identifier.full, content: content)
     }
+}
+
+private func serializedEntries(_ values: [String]) -> String {
+    return values.map { "\t\t\t\t\($0),\n" }.joined()
+}
+
+private func serializedDependencies(
+    from subIdentifier: Identifiers.Targets.SubIdentifier,
+    dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier]
+) -> String {
+    return dependencySubIdentifiers
+        .map { dependencySubIdentifier in
+            return """
+\t\t\t\t\(
+    Identifiers.Targets.dependency(
+        from: subIdentifier,
+        to: dependencySubIdentifier
+    )
+),
+
+"""
+        }
+        .joined()
+}
+
+private func serializedOptionalSynchronizedGroups(
+    _ synchronizedFolderIdentifiers: [String]
+) -> String {
+    guard !synchronizedFolderIdentifiers.isEmpty else {
+        return ""
+    }
+
+    return """
+			fileSystemSynchronizedGroups = (
+\(serializedEntries(
+        synchronizedFolderIdentifiers
+    ))			);
+
+"""
 }
