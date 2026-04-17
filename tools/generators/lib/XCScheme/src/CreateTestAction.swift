@@ -15,6 +15,7 @@ public struct CreateTestAction {
         codeCoverage: Bool,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -33,6 +34,7 @@ public struct CreateTestAction {
             /*codeCoverage:*/ codeCoverage,
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
+            /*customLLDBInitFile:*/ customLLDBInitFile,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
             /*enableUBSanitizer:*/ enableUBSanitizer,
@@ -57,6 +59,7 @@ extension CreateTestAction {
         _ codeCoverage: Bool,
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
+        _ customLLDBInitFile: String?,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
         _ enableUBSanitizer: Bool,
@@ -76,6 +79,7 @@ extension CreateTestAction {
         codeCoverage: Bool,
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
         enableUBSanitizer: Bool,
@@ -98,6 +102,12 @@ buildConfiguration = "\#(buildConfiguration)"
       shouldUseLaunchSchemeArgsEnv = "\#(useLaunchSchemeArgsEnv.xmlString)"
 """#,
         ]
+
+        if let customLLDBInitFile {
+            components.append(
+                #"customLLDBInitFile = "\#(customLLDBInitFile)""#
+            )
+        }
 
         if enableAddressSanitizer {
             components.append(#"enableAddressSanitizer = "YES""#)

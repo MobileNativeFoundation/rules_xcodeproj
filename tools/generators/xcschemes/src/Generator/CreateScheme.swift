@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 import PBXProj
 import XCScheme
@@ -157,6 +158,7 @@ extension Generator.CreateScheme {
             defaultXcodeConfiguration
 
         let launchRunnable: Runnable?
+        let launchBuildableReference: BuildableReference?
         let canUseLaunchSchemeArgsEnv: Bool
         let wasCreatedForAppExtension: Bool
         switch schemeInfo.run.launchTarget {
@@ -164,6 +166,7 @@ extension Generator.CreateScheme {
             canUseLaunchSchemeArgsEnv = true
 
             let buildableReference = primary.buildableReference
+            launchBuildableReference = buildableReference
 
             adjustBuildActionEntry(
                 for: buildableReference,
@@ -200,11 +203,13 @@ extension Generator.CreateScheme {
                 .appendUpdateLldbInitAndCopyDSYMs(for: buildableReference)
         case let .path(path):
             launchRunnable = .path(path: path)
+            launchBuildableReference = nil
             canUseLaunchSchemeArgsEnv = false
             wasCreatedForAppExtension = false
 
         case .none:
             launchRunnable = nil
+            launchBuildableReference = nil
             canUseLaunchSchemeArgsEnv = false
             wasCreatedForAppExtension = false
         }
@@ -219,9 +224,11 @@ extension Generator.CreateScheme {
         // MARK: Profile
 
         let profileRunnable: Runnable?
+        let profileBuildableReference: BuildableReference?
         switch schemeInfo.profile.launchTarget {
         case let .target(primary, extensionHost):
             let buildableReference = primary.buildableReference
+            profileBuildableReference = buildableReference
             adjustBuildActionEntry(for: buildableReference, include: .profiling)
 
             if let extensionHost {
@@ -255,9 +262,11 @@ extension Generator.CreateScheme {
 
         case let .path(path):
             profileRunnable = .path(path: path)
+            profileBuildableReference = nil
 
         case .none:
             profileRunnable = nil
+            profileBuildableReference = nil
         }
 
         for buildOnlyTarget in schemeInfo.profile.buildTargets {
@@ -366,6 +375,9 @@ extension Generator.CreateScheme {
                 buildConfiguration: schemeInfo.test.xcodeConfiguration ??
                     defaultXcodeConfiguration,
                 commandLineArguments: schemeInfo.test.commandLineArguments,
+                customLLDBInitFile: bazelLldbInitFile(
+                    for: testables.first?.buildableReference
+                ),
                 enableAddressSanitizer: schemeInfo.test.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.test.enableThreadSanitizer,
                 enableUBSanitizer: schemeInfo.test.enableUBSanitizer,
@@ -387,6 +399,9 @@ extension Generator.CreateScheme {
                 buildConfiguration: launchBuildConfiguration,
                 commandLineArguments: launchRunnable == nil ?
                     [] : schemeInfo.run.commandLineArguments,
+                customLLDBInitFile: bazelLldbInitFile(
+                    for: launchBuildableReference
+                ),
                 customWorkingDirectory: schemeInfo.run.customWorkingDirectory,
                 enableAddressSanitizer: schemeInfo.run.enableAddressSanitizer,
                 enableThreadSanitizer: schemeInfo.run.enableThreadSanitizer,
@@ -409,6 +424,9 @@ extension Generator.CreateScheme {
                     defaultXcodeConfiguration,
                 commandLineArguments: profileRunnable == nil ?
                     [] : schemeInfo.profile.commandLineArguments,
+                customLLDBInitFile: bazelLldbInitFile(
+                    for: profileBuildableReference
+                ),
                 customWorkingDirectory: schemeInfo.profile.customWorkingDirectory,
                 environmentVariables: profileRunnable == nil ?
                     [] : schemeInfo.profile.environmentVariables,
@@ -436,6 +454,26 @@ extension Generator.CreateScheme {
 
 private typealias OrderedExecutionAction =
     (action: ExecutionAction, order: Int?)
+
+private func bazelLldbInitFile(
+    for buildableReference: BuildableReference?
+) -> String? {
+    let containerPrefix = "container:"
+
+    guard
+        let referencedContainer = buildableReference?.referencedContainer,
+        referencedContainer.hasPrefix(containerPrefix)
+    else {
+        return nil
+    }
+
+    let projectFilePath = String(
+        referencedContainer.dropFirst(containerPrefix.count)
+    )
+    return (
+        projectFilePath as NSString
+    ).appendingPathComponent("rules_xcodeproj/bazel.lldbinit")
+}
 
 private func compareExecutionActions(
     lhs: OrderedExecutionAction,

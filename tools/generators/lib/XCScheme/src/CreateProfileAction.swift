@@ -12,6 +12,7 @@ public struct CreateProfileAction {
     public func callAsFunction(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         customWorkingDirectory: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
@@ -22,6 +23,7 @@ public struct CreateProfileAction {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
+            /*customLLDBInitFile:*/ customLLDBInitFile,
             /*customWorkingDirectory:*/ customWorkingDirectory,
             /*environmentVariables:*/ environmentVariables,
             /*postActions:*/ postActions,
@@ -38,6 +40,7 @@ extension CreateProfileAction {
     public typealias Callable = (
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
+        _ customLLDBInitFile: String?,
         _ customWorkingDirectory: String?,
         _ environmentVariables: [EnvironmentVariable],
         _ postActions: [ExecutionAction],
@@ -49,6 +52,7 @@ extension CreateProfileAction {
     public static func defaultCallable(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         customWorkingDirectory: String?,
         environmentVariables: [EnvironmentVariable],
         postActions: [ExecutionAction],
@@ -65,6 +69,12 @@ buildConfiguration = "\#(buildConfiguration)"
       savedToolIdentifier = ""
 """#,
         ]
+
+        if let customLLDBInitFile {
+            components.append(
+                #"customLLDBInitFile = "\#(customLLDBInitFile)""#
+            )
+        }
 
         if let customWorkingDirectory {
             components.append(

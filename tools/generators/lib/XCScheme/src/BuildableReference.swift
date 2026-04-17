@@ -2,7 +2,7 @@ public struct BuildableReference: Equatable, Hashable {
     public let blueprintIdentifier: String
     let buildableName: String
     public let blueprintName: String
-    let referencedContainer: String
+    public let referencedContainer: String
 
     public init(
         blueprintIdentifier: String,

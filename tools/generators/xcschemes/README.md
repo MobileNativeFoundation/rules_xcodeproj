@@ -155,6 +155,7 @@ Here is an example output:
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
+      customLLDBInitFile = "/Users/brentley/Developer/rules_xcodeproj/tools/tools.xcodeproj/rules_xcodeproj/bazel.lldbinit"
       enableAddressSanitizer = "YES">
       <PreActions>
          <ExecutionAction
@@ -223,6 +224,7 @@ Here is an example output:
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      customLLDBInitFile = "/Users/brentley/Developer/rules_xcodeproj/tools/tools.xcodeproj/rules_xcodeproj/bazel.lldbinit"
       enableAddressSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
@@ -329,6 +331,7 @@ Here is an example output:
       buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
+      customLLDBInitFile = "/Users/brentley/Developer/rules_xcodeproj/tools/tools.xcodeproj/rules_xcodeproj/bazel.lldbinit"
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
       <PreActions>

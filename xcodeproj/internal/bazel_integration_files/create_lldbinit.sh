@@ -72,21 +72,3 @@ fi
 echo "command script import \"$OBJROOT/$CONFIGURATION/swift_debug_settings.py\""
 
 } > "$BAZEL_LLDB_INIT"
-
-if  [[ -f "$HOME/.lldbinit-Xcode" ]]; then
-  readonly lldbinit="$HOME/.lldbinit-Xcode"
-elif [[ -f "$HOME/.lldbinit" ]]; then
-  readonly lldbinit="$HOME/.lldbinit"
-else
-  readonly lldbinit="$HOME/.lldbinit-Xcode"
-fi
-
-touch "$lldbinit"
-
-readonly required_source='command source ~/.lldbinit-rules_xcodeproj'
-if ! grep -m 1 -q "^$required_source$" "$lldbinit"; then
-  # Add a newline if the file doesn't end with one
-  tail -c 1 "$lldbinit" | read || echo >> "$lldbinit"
-  # Update `$lldbinit to source `~/.lldbinit-rules_xcodeproj`
-  echo "$required_source" >> "$lldbinit"
-fi

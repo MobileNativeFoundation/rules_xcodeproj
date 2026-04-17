@@ -77,6 +77,30 @@ final class CreateTestActionTests: XCTestCase {
         XCTAssertNoDifference(action, expectedAction)
     }
 
+    func test_customLLDBInitFile() {
+        let buildConfiguration = "Debug"
+        let customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj"
+
+        let expectedAction = #"""
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj">
+      <Testables>
+      </Testables>
+   </TestAction>
+"""#
+
+        let action = createTestActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            customLLDBInitFile: customLLDBInitFile
+        )
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
+
     func test_disableMainThreadChecker() {
         // Arrange
 
@@ -458,6 +482,7 @@ private func createTestActionWithDefaults(
     codeCoverage: Bool = false,
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
+    customLLDBInitFile: String? = nil,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
     enableUBSanitizer: Bool = false,
@@ -476,6 +501,7 @@ private func createTestActionWithDefaults(
         codeCoverage: codeCoverage,
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
+        customLLDBInitFile: customLLDBInitFile,
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,
         enableUBSanitizer: enableUBSanitizer,

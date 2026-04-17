@@ -12,6 +12,7 @@ public struct CreateLaunchAction {
     public func callAsFunction(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         customWorkingDirectory: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
@@ -27,6 +28,7 @@ public struct CreateLaunchAction {
         return callable(
             /*buildConfiguration:*/ buildConfiguration,
             /*commandLineArguments:*/ commandLineArguments,
+            /*customLLDBInitFile:*/ customLLDBInitFile,
             /*customWorkingDirectory:*/ customWorkingDirectory,
             /*enableAddressSanitizer:*/ enableAddressSanitizer,
             /*enableThreadSanitizer:*/ enableThreadSanitizer,
@@ -48,6 +50,7 @@ extension CreateLaunchAction {
     public typealias Callable = (
         _ buildConfiguration: String,
         _ commandLineArguments: [CommandLineArgument],
+        _ customLLDBInitFile: String?,
         _ customWorkingDirectory: String?,
         _ enableAddressSanitizer: Bool,
         _ enableThreadSanitizer: Bool,
@@ -64,6 +67,7 @@ extension CreateLaunchAction {
     public static func defaultCallable(
         buildConfiguration: String,
         commandLineArguments: [CommandLineArgument],
+        customLLDBInitFile: String?,
         customWorkingDirectory: String?,
         enableAddressSanitizer: Bool,
         enableThreadSanitizer: Bool,
@@ -97,6 +101,12 @@ selectedDebuggerIdentifier = ""
 selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
 """#
+            )
+        }
+
+        if let customLLDBInitFile {
+            components.append(
+                #"customLLDBInitFile = "\#(customLLDBInitFile)""#
             )
         }
 
