@@ -31,6 +31,7 @@ load(
     "unsupported_targets",
 )
 load(":compilation_providers.bzl", "compilation_providers")
+load(":configuration.bzl", "is_exec_config")
 load(":dependencies.bzl", "dependencies")
 load(
     ":memory_efficiency.bzl",
@@ -713,8 +714,8 @@ def _make_non_skipped_target_xcodeprojinfo(
         ),
     )
 
-def _should_create_provider(*, bin_dir_path, rule_kind, target):
-    if "-exec-" in bin_dir_path:
+def _should_create_provider(*, is_exec, rule_kind, target):
+    if is_exec:
         # Allow swift_compiler_plugin even in exec configuration
         if rule_kind == "swift_compiler_plugin":
             return True
@@ -777,7 +778,7 @@ def _make_xcodeprojinfo(
         `transitive_infos`.
     """
     if not _should_create_provider(
-        bin_dir_path = ctx.bin_dir.path,
+        is_exec = is_exec_config(ctx),
         rule_kind = rule_kind,
         target = target,
     ):
