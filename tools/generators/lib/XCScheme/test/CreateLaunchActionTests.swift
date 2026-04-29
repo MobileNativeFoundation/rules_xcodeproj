@@ -131,6 +131,33 @@ final class CreateLaunchActionTests: XCTestCase {
         XCTAssertNoDifference(action, expectedAction)
     }
 
+    func test_customLLDBInitFile() {
+        let buildConfiguration = "Release"
+        let customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj"
+
+        let expectedAction = #"""
+   <LaunchAction
+      buildConfiguration = "Release"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+   </LaunchAction>
+"""#
+
+        let action = createLaunchActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            customLLDBInitFile: customLLDBInitFile
+        )
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
+
     func test_disableMainThreadChecker() {
         // Arrange
 
@@ -585,6 +612,7 @@ final class CreateLaunchActionTests: XCTestCase {
 private func createLaunchActionWithDefaults(
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
+    customLLDBInitFile: String? = nil,
     customWorkingDirectory: String? = nil,
     enableAddressSanitizer: Bool = false,
     enableThreadSanitizer: Bool = false,
@@ -600,6 +628,7 @@ private func createLaunchActionWithDefaults(
     return CreateLaunchAction.defaultCallable(
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
+        customLLDBInitFile: customLLDBInitFile,
         customWorkingDirectory: customWorkingDirectory,
         enableAddressSanitizer: enableAddressSanitizer,
         enableThreadSanitizer: enableThreadSanitizer,

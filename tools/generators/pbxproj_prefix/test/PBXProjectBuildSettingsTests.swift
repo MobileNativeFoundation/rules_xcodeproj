@@ -26,7 +26,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_CONFIG = rxcp_custom_config;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
-				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
+				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
@@ -121,7 +121,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_CONFIG = rxcp_custom_config;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
-				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
+				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_SUPPRESS_COVERAGE_BUILD = YES;
@@ -215,7 +215,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_CONFIG = rxcp_custom_config;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
-				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
+				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE = YES;

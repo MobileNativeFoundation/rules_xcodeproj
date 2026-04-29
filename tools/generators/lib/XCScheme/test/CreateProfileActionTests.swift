@@ -104,6 +104,29 @@ final class CreateProfileActionTests: XCTestCase {
         XCTAssertNoDifference(prefix, expectedPrefix)
     }
 
+    func test_customLLDBInitFile() {
+        let buildConfiguration = "Profile"
+        let customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj"
+
+        let expectedPrefix = #"""
+   <ProfileAction
+      buildConfiguration = "Profile"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      customLLDBInitFile = "$(SRCROOT)/.lldbinit-rules_xcodeproj"
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+"""#
+
+        let prefix = createProfileActionWithDefaults(
+            buildConfiguration: buildConfiguration,
+            customLLDBInitFile: customLLDBInitFile
+        )
+
+        XCTAssertNoDifference(prefix, expectedPrefix)
+    }
+
     func test_environmentVariables() {
         // Arrange
 
@@ -379,6 +402,7 @@ final class CreateProfileActionTests: XCTestCase {
 private func createProfileActionWithDefaults(
     buildConfiguration: String,
     commandLineArguments: [CommandLineArgument] = [],
+    customLLDBInitFile: String? = nil,
     customWorkingDirectory: String? = nil,
     environmentVariables: [EnvironmentVariable] = [],
     postActions: [ExecutionAction] = [],
@@ -389,6 +413,7 @@ private func createProfileActionWithDefaults(
     return CreateProfileAction.defaultCallable(
         buildConfiguration: buildConfiguration,
         commandLineArguments: commandLineArguments,
+        customLLDBInitFile: customLLDBInitFile,
         customWorkingDirectory: customWorkingDirectory,
         environmentVariables: environmentVariables,
         postActions: postActions,

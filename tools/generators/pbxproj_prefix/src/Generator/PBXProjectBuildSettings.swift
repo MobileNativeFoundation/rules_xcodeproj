@@ -49,7 +49,7 @@ extension Generator {
             ),
             .init(
                 key: "BAZEL_LLDB_INIT",
-                value: #""$(HOME)/.lldbinit-rules_xcodeproj""#
+                value: #""$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit""#
             ),
             .init(
                 key: "BAZEL_OUT",
