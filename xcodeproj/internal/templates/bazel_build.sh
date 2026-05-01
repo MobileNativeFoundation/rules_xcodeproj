@@ -86,10 +86,12 @@ for var in "${allowed_vars[@]}"; do
   fi
 done
 
+source "$BAZEL_INTEGRATION_DIR/bazel_env.sh"
+
 bazel_cmd=(
   env -i
   "${passthrough_env[@]}"
-%bazel_env%
+  "${envs[@]}"
   "%bazel_path%"
 
   # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
