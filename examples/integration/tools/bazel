@@ -12,6 +12,42 @@ handle_bazel_exit() {
   esac
 }
 
+resolve_global_bazel() {
+  local ppid parent_comm parent_name candidate resolved_bazel
+
+  ppid="$(ps -o ppid= $$)"
+  ppid="${ppid// /}"
+  parent_comm="$(ps -ewwo comm= "$ppid" 2>/dev/null || true)"
+  parent_comm="${parent_comm#"${parent_comm%%[![:space:]]*}"}"
+  parent_name="${parent_comm##*/}"
+
+  case "$parent_name" in
+    bazel|bazelisk)
+      if [[ -x "$parent_comm" && "$parent_comm" != "$tool_location" ]]; then
+        echo "$parent_comm"
+        return
+      fi
+      ;;
+  esac
+
+  for candidate in "$parent_name" bazelisk; do
+    case "$candidate" in
+      bazel|bazelisk) ;;
+      *) continue ;;
+    esac
+
+    if resolved_bazel="$(type -P "$candidate" 2>/dev/null)" &&
+        [[ "$resolved_bazel" != "$tool_location" ]]
+    then
+      echo "$resolved_bazel"
+      return
+    fi
+  done
+
+  echo "Failed to find bazelisk on PATH" >&2
+  exit 1
+}
+
 readonly tool_location="${BASH_SOURCE[0]}"
 readonly workspace_dir="${tool_location%/*/*}"
 readonly root_dir="${workspace_dir%/*/*}"
@@ -32,10 +68,8 @@ if [[ -z "${BUILD_WORKSPACE_DIRECTORY:-}" ]]; then
   pushd "$root_dir" > /dev/null
 
   # Ensure that we use bazelisk with `.bazelversion`, not whatever is being used
-  # in the currenct command
-  ppid=$(ps -o ppid= $$)
-  bazelisk=$(ps -ewwo comm= "${ppid// /}")
-  global_bazel=$(env PATH=/opt/homebrew/bin:/usr/local/bin /usr/bin/which "$bazelisk")
+  # in the current command
+  global_bazel="$(resolve_global_bazel)"
   readonly root_bazel=(
     env
       BAZEL_REAL=
