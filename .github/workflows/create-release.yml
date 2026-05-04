@@ -141,78 +141,11 @@ jobs:
 
           git checkout -b "$BRANCH"
 
-          python3 - <<'PY'
-          import os
-          import re
-          from pathlib import Path
-
-          tag = os.environ["TAG"]
-          previous_tag = os.environ["PREVIOUS_TAG"]
-          today = os.environ["TODAY"]
-
-          path = Path("CHANGELOG.md")
-          text = path.read_text()
-
-          begin = "BEGIN_UNRELEASED_TEMPLATE"
-          end = "END_UNRELEASED_TEMPLATE"
-          begin_idx = text.find(begin)
-          end_idx = text.find(end)
-          if begin_idx == -1 or end_idx == -1:
-              raise SystemExit("Unreleased template markers not found in CHANGELOG.md")
-
-          template_block = text[begin_idx:end_idx].splitlines()
-          template_lines = []
-          in_block = False
-          for line in template_block:
-              if line.strip() == begin:
-                  in_block = True
-                  continue
-              if in_block:
-                  template_lines.append(line)
-          template = "\n".join(template_lines).strip("\n")
-          if not template:
-              raise SystemExit("Unreleased template content is empty")
-
-          search_start = end_idx
-          unreleased_match = re.search(
-              r'<a id="unreleased"></a>\n## \[Unreleased\]\n',
-              text[search_start:],
-          )
-          if not unreleased_match:
-              raise SystemExit("Unreleased section not found in CHANGELOG.md")
-          unreleased_start = search_start + unreleased_match.start()
-
-          next_anchor = re.search(r'\n<a id="[^"]+"></a>\n## \[', text[unreleased_start + 1 :])
-          if not next_anchor:
-              raise SystemExit("Unable to find end of Unreleased section")
-          unreleased_end = unreleased_start + 1 + next_anchor.start()
-
-          unreleased_section = text[unreleased_start:unreleased_end].strip("\n")
-
-          release_section = unreleased_section
-          release_section = release_section.replace('<a id="unreleased"></a>', f'<a id="{tag}"></a>', 1)
-          release_section = release_section.replace('## [Unreleased]', f'## [{tag}] - {today}', 1)
-          release_section = re.sub(
-              r'\[Unreleased\]: .*',
-              f'[{tag}]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/{previous_tag}...{tag}',
-              release_section,
-              count=1,
-          )
-
-          new_unreleased = template.replace("%PREVIOUS_TAG%", tag)
-
-          new_text = (
-              text[:unreleased_start].rstrip("\n")
-              + "\n\n"
-              + new_unreleased.strip("\n")
-              + "\n\n"
-              + release_section.strip("\n")
-              + "\n"
-              + text[unreleased_end:].lstrip("\n")
-          )
-
-          path.write_text(new_text)
-          PY
+          bazel run --run_in_cwd //tools/changelog:update_release_changelog -- \
+            --changelog CHANGELOG.md \
+            --tag "$TAG" \
+            --previous-tag "$PREVIOUS_TAG" \
+            --today "$TODAY"
 
           git add CHANGELOG.md
           if git diff --cached --quiet; then
