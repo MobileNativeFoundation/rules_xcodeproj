@@ -287,11 +287,10 @@ def _write_runner(
     collect_statements = []
     for key, value in bazel_env.items():
         if value == "\0":
+            base_def_env_values.append('  \\"{}\\": \\"\\\\0\\",'.format(key))
             collect_statements.append("""\
 if [[ -n "${{{key}:-}}" ]]; then
   envs+=("{key}=${key}")
-  def_env+="  \\"{key}\\": \\"${key}\\",
-"
 fi
 """.format(key = key))
         else:
