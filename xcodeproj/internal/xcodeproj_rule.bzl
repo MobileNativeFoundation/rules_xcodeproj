@@ -278,6 +278,7 @@ def _write_installer(
         install_path,
         name,
         project_pbxproj,
+        rsync,
         template,
         xcschememanagement,
         xcschemes):
@@ -301,6 +302,7 @@ def _write_installer(
             "%generated_xcfilelist%": generated_xcfilelist.short_path,
             "%output_path%": install_path,
             "%project_pbxproj%": project_pbxproj.short_path,
+            "%rsync%": rsync.short_path,
             "%xcschememanagement%": xcschememanagement.short_path,
             "%xcschemes%": xcschemes.short_path,
         },
@@ -773,6 +775,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         install_path = install_path,
         name = name,
         project_pbxproj = project_pbxproj,
+        rsync = ctx.file._rsync,
         template = ctx.file._installer_template,
         xcschememanagement = xcschememanagement,
         xcschemes = xcschemes,
@@ -931,6 +934,11 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//tools/generators/pbxtargetdependencies:universal_pbxtargetdependencies",
             ),
             executable = True,
+        ),
+        "_rsync": attr.label(
+            allow_single_file = True,
+            cfg = "exec",
+            default = Label("//xcodeproj/internal/bazel_integration_files:renamed_rsync"),
         ),
         "_selected_model_versions_generator": attr.label(
             cfg = "exec",
