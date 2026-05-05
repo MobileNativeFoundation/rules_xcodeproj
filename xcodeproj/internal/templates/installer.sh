@@ -22,6 +22,10 @@ separate_indexbuild_output_base=0
 
 while (("$#")); do
   case "${1}" in
+    "--bazel_env")
+      bazel_env="${2}"
+      shift 2
+      ;;
     "--bazel_path")
       bazel_path="${2}"
       shift 2
@@ -52,6 +56,9 @@ while (("$#")); do
   esac
 done
 
+if [[ -z "${bazel_env:-}" ]]; then
+  fail "Missing required argument: --bazel_env"
+fi
 if [[ -z "${bazel_path:-}" ]]; then
   fail "Missing required argument: --bazel_path"
 fi
@@ -118,6 +125,7 @@ readonly bazel_integration_files=%bazel_integration_files%
 mkdir -p "$dest/rules_xcodeproj/bazel"
 rm -rf "$dest/rules_xcodeproj/bazel"/*
 $cp_cmd "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
+$cp_cmd "$bazel_env" "$dest/rules_xcodeproj/bazel/bazel_env.sh"
 $cp_cmd "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 chmod u+rx "$dest/rules_xcodeproj/bazel/rsync"
 

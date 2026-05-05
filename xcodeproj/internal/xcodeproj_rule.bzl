@@ -230,7 +230,6 @@ def _write_bazel_integration_files(
         bazel_build_script_template,
         bazel_dependencies_script_template,
         bazel_path,
-        bazel_env,
         colorize,
         infos_per_xcode_configuration,
         install_path,
@@ -241,7 +240,6 @@ def _write_bazel_integration_files(
         target_ids_list):
     bazel_build_script = write_bazel_build_script(
         actions = actions,
-        bazel_env = bazel_env,
         bazel_path = bazel_path,
         generator_label = label,
         target_ids_list = target_ids_list,
@@ -753,7 +751,6 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
             ctx.file._generate_bazel_dependencies_script_template
         ),
         bazel_path = ctx.attr.bazel_path,
-        bazel_env = ctx.attr.bazel_env,
         colorize = colorize,
         infos_per_xcode_configuration = infos_per_xcode_configuration,
         install_path = install_path,
