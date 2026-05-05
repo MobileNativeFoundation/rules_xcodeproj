@@ -26,24 +26,43 @@ extension Generator {
         /// Creates `SchemeInfo`s for automatically generated schemes.
         func callAsFunction(
             autogenerationMode: AutogenerationMode,
+            buildPostActions: [AutogenerationConfig.Action],
+            buildPreActions: [AutogenerationConfig.Action],
+            buildRunPostActionsOnFailure: Bool,
+            profilePostActions: [AutogenerationConfig.Action],
+            profilePreActions: [AutogenerationConfig.Action],
             commandLineArguments: [TargetID: [CommandLineArgument]],
             customSchemeNames: Set<String>,
             environmentVariables: [TargetID: [EnvironmentVariable]],
             extensionHostIDs: [TargetID: [TargetID]],
+            runPostActions: [AutogenerationConfig.Action],
+            runPreActions: [AutogenerationConfig.Action],
             targets: [Target],
             targetsByID: [TargetID: Target],
             targetsByKey: [Target.Key: Target],
+            testPostActions: [AutogenerationConfig.Action],
+            testPreActions: [AutogenerationConfig.Action],
             testOptions: SchemeInfo.Test.Options?
         ) throws -> [SchemeInfo] {
             return try callable(
                 /*autogenerationMode:*/ autogenerationMode,
+                /*buildPostActions:*/ buildPostActions,
+                /*buildPreActions:*/ buildPreActions,
+                /*buildRunPostActionsOnFailure:*/
+                    buildRunPostActionsOnFailure,
+                /*profilePostActions:*/ profilePostActions,
+                /*profilePreActions:*/ profilePreActions,
                 /*commandLineArguments:*/ commandLineArguments,
                 /*customSchemeNames:*/ customSchemeNames,
                 /*environmentVariables:*/ environmentVariables,
                 /*extensionHostIDs:*/ extensionHostIDs,
+                /*runPostActions:*/ runPostActions,
+                /*runPreActions:*/ runPreActions,
                 /*targets:*/ targets,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
+                /*testPostActions:*/ testPostActions,
+                /*testPreActions:*/ testPreActions,
                 /*createTargetAutomaticSchemeInfos:*/
                     createTargetAutomaticSchemeInfos,
                 /*testOptions:*/ testOptions
@@ -57,13 +76,22 @@ extension Generator {
 extension Generator.CreateAutomaticSchemeInfos {
     typealias Callable = (
         _ autogenerationMode: AutogenerationMode,
+        _ buildPostActions: [AutogenerationConfig.Action],
+        _ buildPreActions: [AutogenerationConfig.Action],
+        _ buildRunPostActionsOnFailure: Bool,
+        _ profilePostActions: [AutogenerationConfig.Action],
+        _ profilePreActions: [AutogenerationConfig.Action],
         _ commandLineArguments: [TargetID: [CommandLineArgument]],
         _ customSchemeNames: Set<String>,
         _ environmentVariables: [TargetID: [EnvironmentVariable]],
         _ extensionHostIDs: [TargetID: [TargetID]],
+        _ runPostActions: [AutogenerationConfig.Action],
+        _ runPreActions: [AutogenerationConfig.Action],
         _ targets: [Target],
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
+        _ testPostActions: [AutogenerationConfig.Action],
+        _ testPreActions: [AutogenerationConfig.Action],
         _ createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos,
         _ testOptions: SchemeInfo.Test.Options?
@@ -71,13 +99,22 @@ extension Generator.CreateAutomaticSchemeInfos {
 
     static func defaultCallable(
         autogenerationMode: AutogenerationMode,
+        buildPostActions: [AutogenerationConfig.Action],
+        buildPreActions: [AutogenerationConfig.Action],
+        buildRunPostActionsOnFailure: Bool,
+        profilePostActions: [AutogenerationConfig.Action],
+        profilePreActions: [AutogenerationConfig.Action],
         commandLineArguments: [TargetID: [CommandLineArgument]],
         customSchemeNames: Set<String>,
         environmentVariables: [TargetID: [EnvironmentVariable]],
         extensionHostIDs: [TargetID: [TargetID]],
+        runPostActions: [AutogenerationConfig.Action],
+        runPreActions: [AutogenerationConfig.Action],
         targets: [Target],
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
+        testPostActions: [AutogenerationConfig.Action],
+        testPreActions: [AutogenerationConfig.Action],
         createTargetAutomaticSchemeInfos:
             Generator.CreateTargetAutomaticSchemeInfos,
         testOptions: SchemeInfo.Test.Options?
@@ -116,13 +153,23 @@ extension Generator.CreateAutomaticSchemeInfos {
                 let id = target.key.sortedIds.first!
 
                 return try createTargetAutomaticSchemeInfos(
+                    buildPostActions: buildPostActions,
+                    buildPreActions: buildPreActions,
+                    buildRunPostActionsOnFailure:
+                        buildRunPostActionsOnFailure,
+                    profilePostActions: profilePostActions,
+                    profilePreActions: profilePreActions,
                     commandLineArguments: commandLineArguments[id, default: []],
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables[id, default: []],
                     extensionHostIDs: extensionHostIDs,
+                    runPostActions: runPostActions,
+                    runPreActions: runPreActions,
                     target: target,
                     targetsByID: targetsByID,
                     targetsByKey: targetsByKey,
+                    testPostActions: testPostActions,
+                    testPreActions: testPreActions,
                     testOptions: testOptions
                 )
             }

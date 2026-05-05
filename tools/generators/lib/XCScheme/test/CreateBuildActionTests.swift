@@ -74,16 +74,46 @@ final class CreateBuildActionTests: XCTestCase {
 
         XCTAssertNoDifference(action, expectedAction)
     }
+
+    func test_runPostActionsOnFailure() {
+        // Arrange
+
+        let entries: [BuildActionEntry] = []
+
+        let expectedAction = #"""
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "NO"
+      runPostActionsOnFailure = "YES">
+      <BuildActionEntries>
+
+      </BuildActionEntries>
+   </BuildAction>
+"""#
+
+        // Act
+
+        let action = createBuildActionWithDefaults(
+            entries: entries,
+            runPostActionsOnFailure: true
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(action, expectedAction)
+    }
 }
 
 private func createBuildActionWithDefaults(
     entries: [BuildActionEntry],
     postActions: [ExecutionAction] = [],
-    preActions: [ExecutionAction] = []
+    preActions: [ExecutionAction] = [],
+    runPostActionsOnFailure: Bool = false
 ) -> String {
     return CreateBuildAction.defaultCallable(
         entries: entries,
         postActions: postActions,
-        preActions: preActions
+        preActions: preActions,
+        runPostActionsOnFailure: runPostActionsOnFailure
     )
 }

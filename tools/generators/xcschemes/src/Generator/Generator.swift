@@ -36,7 +36,7 @@ struct Generator {
             .readTargetArgsAndEnvFile(arguments.targetsArgsEnvFile)
         let extensionHostIDs = arguments.calculateExtensionHostIDs()
 
-        let autogenerationConfigArguments = try await AutogenerationConfigArguments.parse(
+        let autogenerationConfig = try await AutogenerationConfig.parse(
             from: arguments.autogenerationConfigFile
         )
 
@@ -61,23 +61,33 @@ struct Generator {
 
         let automaticSchemeInfos = try environment.createAutomaticSchemeInfos(
             autogenerationMode: arguments.autogenerationMode,
+            buildPostActions: autogenerationConfig.buildPostActions,
+            buildPreActions: autogenerationConfig.buildPreActions,
+            buildRunPostActionsOnFailure:
+                autogenerationConfig.buildRunPostActionsOnFailure,
+            profilePostActions: autogenerationConfig.profilePostActions,
+            profilePreActions: autogenerationConfig.profilePreActions,
             commandLineArguments: commandLineArguments,
             customSchemeNames: Set(customSchemeInfos.map(\.name)),
             environmentVariables: environmentVariables,
             extensionHostIDs: extensionHostIDs,
+            runPostActions: autogenerationConfig.runPostActions,
+            runPreActions: autogenerationConfig.runPreActions,
             targets: targets,
             targetsByID: targetsByID,
             targetsByKey: targetsByKey,
+            testPostActions: autogenerationConfig.testPostActions,
+            testPreActions: autogenerationConfig.testPreActions,
             testOptions: .init(
-                appLanguage: autogenerationConfigArguments.appLanguage,
-                appRegion: autogenerationConfigArguments.appRegion,
-                codeCoverage: autogenerationConfigArguments.codeCoverage
+                appLanguage: autogenerationConfig.appLanguage,
+                appRegion: autogenerationConfig.appRegion,
+                codeCoverage: autogenerationConfig.codeCoverage
             )
         )
 
         let filteredAutomaticSchemeInfos = try automaticSchemeInfos.filter { scheme in
             // Apply scheme auto-generation exclude patterns
-            for pattern in autogenerationConfigArguments.schemeNameExcludePatterns {
+            for pattern in autogenerationConfig.schemeNameExcludePatterns {
                 do {
                     let regex = try Regex(pattern)
                     let matches = scheme.name.matches(of: regex)

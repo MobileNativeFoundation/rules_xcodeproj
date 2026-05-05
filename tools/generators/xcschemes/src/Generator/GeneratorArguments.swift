@@ -35,7 +35,7 @@ schemes are provided.
         var autogenerationMode: AutogenerationMode
 
         @Argument(
-            help: "Path to a file containing `AutogenerationConfigArguments` inputs.",
+            help: "Path to a file containing `AutogenerationConfig` inputs.",
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
         var autogenerationConfigFile: URL

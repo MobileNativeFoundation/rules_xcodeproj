@@ -12,12 +12,14 @@ public struct CreateBuildAction {
     public func callAsFunction(
         entries: [BuildActionEntry],
         postActions: [ExecutionAction],
-        preActions: [ExecutionAction]
+        preActions: [ExecutionAction],
+        runPostActionsOnFailure: Bool = false
     ) -> String {
         return callable(
             /*entries:*/ entries,
             /*postActions:*/ postActions,
-            /*preActions:*/ preActions
+            /*preActions:*/ preActions,
+            /*runPostActionsOnFailure:*/ runPostActionsOnFailure
         )
     }
 }
@@ -55,19 +57,27 @@ extension CreateBuildAction {
     public typealias Callable = (
         _ entries: [BuildActionEntry],
         _ postActions: [ExecutionAction],
-        _ preActions: [ExecutionAction]
+        _ preActions: [ExecutionAction],
+        _ runPostActionsOnFailure: Bool
     ) -> String
 
     public static func defaultCallable(
         entries: [BuildActionEntry],
         postActions: [ExecutionAction],
-        preActions: [ExecutionAction]
+        preActions: [ExecutionAction],
+        runPostActionsOnFailure: Bool
     ) -> String {
+        let runPostActionsOnFailureAttribute = runPostActionsOnFailure ?
+            #"""
+
+      runPostActionsOnFailure = "YES"
+"""# : ""
+
         // 3 spaces for indentation is intentional
         return #"""
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "NO"\#(runPostActionsOnFailureAttribute)>
 \#(preActions.preActionsString)\#
 \#(postActions.postActionsString)\#
       <BuildActionEntries>

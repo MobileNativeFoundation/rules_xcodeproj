@@ -543,6 +543,11 @@ set
             as: String?.self,
             in: url
         )
+        let runBuildPostActionsOnFailure = try consumeArg(
+            "run-build-post-actions-on-failure",
+            as: Bool.self,
+            in: url
+        )
 
         if let launchTarget,
             launchTarget.canExpandMacros && environmentVariablesIncludeDefaults
@@ -564,6 +569,8 @@ set
             enableThreadPerformanceChecker: enableThreadPerformanceChecker,
             environmentVariables: environmentVariables,
             launchTarget: launchTarget,
+            runBuildPostActionsOnFailure:
+                runBuildPostActionsOnFailure,
             storeKitConfiguration: storeKitConfiguration,
             xcodeConfiguration: xcodeConfiguration
         )

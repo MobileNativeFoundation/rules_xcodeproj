@@ -366,7 +366,9 @@ extension Generator.CreateScheme {
                     .map(\.action),
                 preActions: buildPreActions
                     .sorted(by: compareExecutionActions)
-                    .map(\.action)
+                    .map(\.action),
+                runPostActionsOnFailure:
+                    schemeInfo.run.runBuildPostActionsOnFailure
             ),
             testAction: createTestAction(
                 appLanguage: schemeInfo.test.options?.appLanguage,

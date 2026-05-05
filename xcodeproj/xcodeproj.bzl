@@ -5,6 +5,7 @@ load(
     _default_project_options = "project_options",
 )
 load("//xcodeproj:top_level_target.bzl", "top_level_target")
+load("//xcodeproj:xcschemes.bzl", _xcschemes = "xcschemes")
 load("//xcodeproj/internal:bazel_labels.bzl", "bazel_labels")
 load("//xcodeproj/internal:xcodeproj_runner.bzl", "xcodeproj_runner")
 load(
@@ -40,7 +41,7 @@ def xcodeproj(
         project_name = None,
         project_options = None,
         scheme_autogeneration_mode = "auto",
-        scheme_autogeneration_config = {},
+        scheme_autogeneration_config = None,
         target_name_mode = "auto",
         top_level_targets,
         tvos_device_cpus = "arm64",
@@ -374,6 +375,8 @@ def xcodeproj(
         project_name = name
     if not project_options:
         project_options = _default_project_options()
+    if not scheme_autogeneration_config:
+        scheme_autogeneration_config = _xcschemes.autogeneration_config()
     if not xcode_configurations:
         xcode_configurations = {"Debug": {}}
 

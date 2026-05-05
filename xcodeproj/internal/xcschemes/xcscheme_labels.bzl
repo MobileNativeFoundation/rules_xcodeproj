@@ -111,6 +111,9 @@ def _resolve_run_labels(run):
         env = run.env,
         env_include_defaults = run.env_include_defaults,
         launch_target = _resolve_launch_target_labels(run.launch_target),
+        run_build_post_actions_on_failure = (
+            run.run_build_post_actions_on_failure
+        ),
         storekit_configuration = _resolve_label(run.storekit_configuration),
         xcode_configuration = run.xcode_configuration,
     )
