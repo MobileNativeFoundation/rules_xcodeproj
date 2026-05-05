@@ -20,6 +20,9 @@ load(
 
 # Utility
 
+_AUTOGENERATION_CONFIG_DECLARED_FILE = mock_actions.mock_file(
+    "a_generator_name-autogeneration-config-file",
+)
 _CUSTOM_SCHEMES_DECLARED_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/custom_schemes_file",
 )
@@ -73,13 +76,14 @@ def _write_schemes_test_impl(ctx):
         _OUTPUT_DECLARED_DIRECTORY: None,
     }
     expected_declared_files = {
+        _AUTOGENERATION_CONFIG_DECLARED_FILE: None,
         _CUSTOM_SCHEMES_DECLARED_FILE: None,
         _EXECUTION_ACTIONS_DECLARED_FILE: None,
         _TARGETS_ARGS_ENV_DECLARED_FILE: None,
         _XCSCHEMEMANAGEMENT_DECLARED_FILE: None,
     }
     expected_inputs = ctx.attr.consolidation_maps + [
-        ctx.attr.autogeneration_config_file,
+        _AUTOGENERATION_CONFIG_DECLARED_FILE,
         _CUSTOM_SCHEMES_DECLARED_FILE,
         _EXECUTION_ACTIONS_DECLARED_FILE,
         ctx.attr.extension_point_identifiers_file,
@@ -98,7 +102,7 @@ def _write_schemes_test_impl(ctx):
     ) = xcschemes_execution.write_schemes(
         actions = actions.mock,
         autogeneration_mode = ctx.attr.autogeneration_mode,
-        autogeneration_config_file = ctx.attr.autogeneration_config_file,
+        autogeneration_config = json.decode(ctx.attr.autogeneration_config),
         colorize = ctx.attr.colorize,
         consolidation_maps = ctx.attr.consolidation_maps,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
@@ -203,7 +207,7 @@ write_schemes_test = unittest.make(
     attrs = {
         # Inputs
         "autogeneration_mode": attr.string(mandatory = True),
-        "autogeneration_config_file": attr.string(mandatory = True),
+        "autogeneration_config": attr.string(mandatory = True),
         "colorize": attr.bool(mandatory = True),
         "consolidation_maps": attr.string_list(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
@@ -236,7 +240,19 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode,
-            autogeneration_config_file,
+            autogeneration_config = {
+                "build_post_actions": [],
+                "build_pre_actions": [],
+                "build_run_post_actions_on_failure": ["0"],
+                "profile_post_actions": [],
+                "profile_pre_actions": [],
+                "run_post_actions": [],
+                "run_pre_actions": [],
+                "scheme_name_exclude_patterns": [],
+                "test_options": ["", "", "0"],
+                "test_post_actions": [],
+                "test_pre_actions": [],
+            },
             colorize = False,
             consolidation_maps,
             default_xcode_configuration,
@@ -257,7 +273,7 @@ def write_schemes_test_suite(name):
 
             # Inputs
             autogeneration_mode = autogeneration_mode,
-            autogeneration_config_file = autogeneration_config_file,
+            autogeneration_config = json.encode(autogeneration_config),
             colorize = colorize,
             consolidation_maps = consolidation_maps,
             default_xcode_configuration = default_xcode_configuration,
@@ -282,6 +298,35 @@ def write_schemes_test_suite(name):
         "0",
     ]) + "\n"
 
+    no_autogeneration_config_content = "\n".join([
+        # appLanguage
+        "",
+        # appRegion
+        "",
+        # codeCoverage
+        "0",
+        # buildPreActionsCount
+        "0",
+        # buildPostActionsCount
+        "0",
+        # buildRunPostActionsOnFailure
+        "0",
+        # profilePreActionsCount
+        "0",
+        # profilePostActionsCount
+        "0",
+        # runPreActionsCount
+        "0",
+        # runPostActionsCount
+        "0",
+        # testPreActionsCount
+        "0",
+        # testPostActionsCount
+        "0",
+        # schemeNameExcludePatterns
+        "",
+    ]) + "\n"
+
     no_target_args_and_env_content = "\n".join([
         # argsCount
         "0",
@@ -296,7 +341,29 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "none",
-        autogeneration_config_file = "some/autogeneration-config-file",
+        autogeneration_config = {
+            "build_post_actions": [],
+            "build_pre_actions": [],
+            "build_run_post_actions_on_failure": ["1"],
+            "profile_post_actions": [],
+            "profile_pre_actions": [],
+            "run_post_actions": [],
+            "run_pre_actions": [
+                "Run Start (DevX & \"Logs\")",
+                "echo \"<run start & go>\"\n",
+                "-100",
+            ],
+            "scheme_name_exclude_patterns": [
+                "^App$",
+            ],
+            "test_options": [
+                "en",
+                "US",
+                "1",
+            ],
+            "test_post_actions": [],
+            "test_pre_actions": [],
+        },
         colorize = True,
         consolidation_maps = [
             "some/consolidation_maps/0",
@@ -316,7 +383,7 @@ def write_schemes_test_suite(name):
             # autogenerationMode
             "none",
             # autogenerationConfigFile
-            "some/autogeneration-config-file",
+            _AUTOGENERATION_CONFIG_DECLARED_FILE.path,
             # defaultXcodeConfiguration
             "Debug",
             # workspace
@@ -339,6 +406,41 @@ def write_schemes_test_suite(name):
             "--colorize",
         ],
         expected_writes = {
+            _AUTOGENERATION_CONFIG_DECLARED_FILE: "\n".join([
+                # appLanguage
+                "en",
+                # appRegion
+                "US",
+                # codeCoverage
+                "1",
+                # buildPreActionsCount
+                "0",
+                # buildPostActionsCount
+                "0",
+                # buildRunPostActionsOnFailure
+                "1",
+                # profilePreActionsCount
+                "0",
+                # profilePostActionsCount
+                "0",
+                # runPreActionsCount
+                "1",
+                # runPreActions - title
+                "Run Start (DevX & \"Logs\")",
+                # runPreActions - scriptText
+                "echo \"<run start & go>\"\0",
+                # runPreActions - order
+                "-100",
+                # runPostActionsCount
+                "0",
+                # testPreActionsCount
+                "0",
+                # testPostActionsCount
+                "0",
+                # schemeNameExcludePatterns
+                "^App$",
+                "",
+            ]) + "\n",
             _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
             _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
@@ -352,7 +454,6 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
-        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -552,6 +653,7 @@ def write_schemes_test_suite(name):
                         ],
                         working_directory = "run working dir",
                     ),
+                    run_build_post_actions_on_failure = "1",
                     storekit_configuration = "StoreKitConfig",
                     xcode_configuration = "Run",
                 ),
@@ -678,7 +780,7 @@ def write_schemes_test_suite(name):
             # autogenerationMode
             "auto",
             # autogenerationConfigFile
-            "some/autogeneration-config-file",
+            _AUTOGENERATION_CONFIG_DECLARED_FILE.path,
             # defaultXcodeConfiguration
             "AppStore",
             # workspace
@@ -699,6 +801,9 @@ def write_schemes_test_suite(name):
             "some/consolidation_maps/1",
         ],
         expected_writes = {
+            _AUTOGENERATION_CONFIG_DECLARED_FILE: (
+                no_autogeneration_config_content
+            ),
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n".join([
                 # schemeName
                 "Scheme 1",
@@ -1126,6 +1231,8 @@ def write_schemes_test_suite(name):
                 "",
                 # - run - customWorkingDirectory
                 "",
+                # - run - runBuildPostActionsOnFailure
+                "0",
                 # - profile - buildTargets
                 "",
                 # - profile - commandLineArguments count
@@ -1256,6 +1363,8 @@ def write_schemes_test_suite(name):
                 "run extension host id",
                 # - run - customWorkingDirectory
                 "run working dir",
+                # - run - runBuildPostActionsOnFailure
+                "1",
                 # - profile - buildTargets
                 "profile bt",
                 "",
@@ -1362,6 +1471,8 @@ def write_schemes_test_suite(name):
                 "/Foo/Bar.app",
                 # - run - customWorkingDirectory
                 "",
+                # - run - runBuildPostActionsOnFailure
+                "0",
                 # - profile - buildTargets
                 "",
                 # - profile - commandLineArguments count
@@ -1393,7 +1504,6 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
-        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1426,7 +1536,7 @@ def write_schemes_test_suite(name):
             # autogenerationMode
             "auto",
             # autogenerationConfigFile
-            "some/autogeneration-config-file",
+            _AUTOGENERATION_CONFIG_DECLARED_FILE.path,
             # defaultXcodeConfiguration
             "AppStore",
             # workspace
@@ -1455,6 +1565,9 @@ def write_schemes_test_suite(name):
             "IOS_APP_2",
         ],
         expected_writes = {
+            _AUTOGENERATION_CONFIG_DECLARED_FILE: (
+                no_autogeneration_config_content
+            ),
             _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
             _TARGETS_ARGS_ENV_DECLARED_FILE: no_target_args_and_env_content,
@@ -1468,7 +1581,6 @@ def write_schemes_test_suite(name):
 
         # Inputs
         autogeneration_mode = "auto",
-        autogeneration_config_file = "some/autogeneration-config-file",
         consolidation_maps = [
             "some/consolidation_maps/0",
             "some/consolidation_maps/1",
@@ -1503,7 +1615,7 @@ def write_schemes_test_suite(name):
             # autogenerationMode
             "auto",
             # autogenerationConfigFile
-            "some/autogeneration-config-file",
+            _AUTOGENERATION_CONFIG_DECLARED_FILE.path,
             # defaultXcodeConfiguration
             "AppStore",
             # workspace
@@ -1524,6 +1636,9 @@ def write_schemes_test_suite(name):
             "some/consolidation_maps/1",
         ],
         expected_writes = {
+            _AUTOGENERATION_CONFIG_DECLARED_FILE: (
+                no_autogeneration_config_content
+            ),
             _CUSTOM_SCHEMES_DECLARED_FILE: no_custom_schemes_content,
             _EXECUTION_ACTIONS_DECLARED_FILE: "\n",
             _TARGETS_ARGS_ENV_DECLARED_FILE: "\n".join([

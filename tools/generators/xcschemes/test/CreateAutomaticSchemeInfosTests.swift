@@ -167,6 +167,30 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
     func test_createTargetAutomaticSchemeInfos() throws {
         // Arrange
 
+        let buildPostActions: [AutogenerationConfig.Action] = [
+            .init(title: "Build End", scriptText: "echo end\n", order: 100),
+        ]
+        let buildPreActions: [AutogenerationConfig.Action] = [
+            .init(title: "Build Start", scriptText: "echo start\n", order: -200),
+        ]
+        let profilePostActions: [AutogenerationConfig.Action] = [
+            .init(title: "Profile End", scriptText: "echo profile-end\n", order: 75),
+        ]
+        let profilePreActions: [AutogenerationConfig.Action] = [
+            .init(title: "Profile Start", scriptText: "echo profile-start\n", order: -75),
+        ]
+        let runPostActions: [AutogenerationConfig.Action] = [
+            .init(title: "Run End", scriptText: "echo run-end\n", order: 200),
+        ]
+        let runPreActions: [AutogenerationConfig.Action] = [
+            .init(title: "Run Start", scriptText: "echo run-start\n", order: -100),
+        ]
+        let testPostActions: [AutogenerationConfig.Action] = [
+            .init(title: "Test End", scriptText: "echo test-end\n", order: 50),
+        ]
+        let testPreActions: [AutogenerationConfig.Action] = [
+            .init(title: "Test Start", scriptText: "echo test-start\n", order: -50),
+        ]
         let commandLineArguments: [TargetID: [CommandLineArgument]] = [
             "A": [
                 .init(value: "-v", isEnabled: true),
@@ -210,16 +234,30 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
             Generator.CreateTargetAutomaticSchemeInfos.MockTracker.Called
         ] = [
             .init(
+                buildPostActions: buildPostActions,
+                buildPreActions: buildPreActions,
+                buildRunPostActionsOnFailure: true,
+                profilePostActions: profilePostActions,
+                profilePreActions: profilePreActions,
                 commandLineArguments: [],
                 customSchemeNames: customSchemeNames,
                 environmentVariables: [],
                 extensionHostIDs: extensionHostIDs,
+                runPostActions: runPostActions,
+                runPreActions: runPreActions,
                 target: .mock(key: "C", productType: .application),
+                testPostActions: testPostActions,
+                testPreActions: testPreActions,
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
                 testOptions: nil
             ),
             .init(
+                buildPostActions: buildPostActions,
+                buildPreActions: buildPreActions,
+                buildRunPostActionsOnFailure: true,
+                profilePostActions: profilePostActions,
+                profilePreActions: profilePreActions,
                 commandLineArguments: [
                     .init(value: "-v", isEnabled: true),
                     .init(value: "version", isEnabled: false),
@@ -228,12 +266,21 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                 customSchemeNames: customSchemeNames,
                 environmentVariables: [],
                 extensionHostIDs: extensionHostIDs,
+                runPostActions: runPostActions,
+                runPreActions: runPreActions,
                 target: .mock(key: "A", productType: .messagesExtension),
+                testPostActions: testPostActions,
+                testPreActions: testPreActions,
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
                 testOptions: nil
             ),
             .init(
+                buildPostActions: buildPostActions,
+                buildPreActions: buildPreActions,
+                buildRunPostActionsOnFailure: true,
+                profilePostActions: profilePostActions,
+                profilePreActions: profilePreActions,
                 commandLineArguments: [],
                 customSchemeNames: customSchemeNames,
                 environmentVariables: [
@@ -241,7 +288,11 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
                     .init(key: "ENV VAR", value: "1", isEnabled: true),
                 ],
                 extensionHostIDs: extensionHostIDs,
+                runPostActions: runPostActions,
+                runPreActions: runPreActions,
                 target: .mock(key: "B", productType: .appExtension),
+                testPostActions: testPostActions,
+                testPreActions: testPreActions,
                 targetsByID: targetsByID,
                 targetsByKey: targetsByKey,
                 testOptions: nil
@@ -266,11 +317,20 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
         // Act
 
         let schemeInfos = try createAutomaticSchemeInfosWithDefaults(
+            buildPostActions: buildPostActions,
+            buildPreActions: buildPreActions,
+            buildRunPostActionsOnFailure: true,
+            profilePostActions: profilePostActions,
+            profilePreActions: profilePreActions,
             commandLineArguments: commandLineArguments,
             customSchemeNames: customSchemeNames,
             environmentVariables: environmentVariables,
             extensionHostIDs: extensionHostIDs,
+            runPostActions: runPostActions,
+            runPreActions: runPreActions,
             targets: targets,
+            testPostActions: testPostActions,
+            testPreActions: testPreActions,
             targetsByID: targetsByID,
             targetsByKey: targetsByKey,
             createTargetAutomaticSchemeInfos:
@@ -289,11 +349,20 @@ final class CreateAutomaticSchemeInfosTests: XCTestCase {
 
 private func createAutomaticSchemeInfosWithDefaults(
     autogenerationMode: AutogenerationMode = .all,
+    buildPostActions: [AutogenerationConfig.Action] = [],
+    buildPreActions: [AutogenerationConfig.Action] = [],
+    buildRunPostActionsOnFailure: Bool = false,
+    profilePostActions: [AutogenerationConfig.Action] = [],
+    profilePreActions: [AutogenerationConfig.Action] = [],
     commandLineArguments: [TargetID: [CommandLineArgument]] = [:],
     customSchemeNames: Set<String> = [],
     environmentVariables: [TargetID: [EnvironmentVariable]] = [:],
     extensionHostIDs: [TargetID : [TargetID]] = [:],
+    runPostActions: [AutogenerationConfig.Action] = [],
+    runPreActions: [AutogenerationConfig.Action] = [],
     targets: [Target],
+    testPostActions: [AutogenerationConfig.Action] = [],
+    testPreActions: [AutogenerationConfig.Action] = [],
     targetsByID: [TargetID : Target] = [:],
     targetsByKey: [Target.Key : Target] = [:],
     createTargetAutomaticSchemeInfos: Generator.CreateTargetAutomaticSchemeInfos,
@@ -301,13 +370,22 @@ private func createAutomaticSchemeInfosWithDefaults(
 ) throws -> [SchemeInfo] {
     return try Generator.CreateAutomaticSchemeInfos.defaultCallable(
         autogenerationMode: autogenerationMode,
+        buildPostActions: buildPostActions,
+        buildPreActions: buildPreActions,
+        buildRunPostActionsOnFailure: buildRunPostActionsOnFailure,
+        profilePostActions: profilePostActions,
+        profilePreActions: profilePreActions,
         commandLineArguments: commandLineArguments,
         customSchemeNames: customSchemeNames,
         environmentVariables: environmentVariables,
         extensionHostIDs: extensionHostIDs,
+        runPostActions: runPostActions,
+        runPreActions: runPreActions,
         targets: targets,
         targetsByID: targetsByID,
         targetsByKey: targetsByKey,
+        testPostActions: testPostActions,
+        testPreActions: testPreActions,
         createTargetAutomaticSchemeInfos: createTargetAutomaticSchemeInfos,
         testOptions: testOptions
     )

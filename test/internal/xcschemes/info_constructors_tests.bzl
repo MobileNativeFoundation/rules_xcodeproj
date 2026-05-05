@@ -592,6 +592,7 @@ def info_constructors_test_suite(name):
             env = None,
             env_include_defaults = "1",
             launch_target = xcscheme_infos_testable.make_launch_target(),
+            run_build_post_actions_on_failure = "0",
             storekit_configuration = "",
             xcode_configuration = "",
         ),
@@ -625,6 +626,7 @@ def info_constructors_test_suite(name):
             },
             env_include_defaults = "0",
             launch_target = xcscheme_infos_testable.make_launch_target("L"),
+            run_build_post_actions_on_failure = "1",
             storekit_configuration = "",
             xcode_configuration = "Run",
         ),
@@ -656,6 +658,7 @@ def info_constructors_test_suite(name):
             launch_target = xcscheme_infos_testable.make_launch_target(
                 id = "L",
             ),
+            run_build_post_actions_on_failure = "1",
             storekit_configuration = "",
             xcode_configuration = "Run",
         ),
@@ -689,6 +692,7 @@ def info_constructors_test_suite(name):
             ),
             run = xcscheme_infos_testable.make_run(
                 xcode_configuration = "R",
+                run_build_post_actions_on_failure = "1",
             ),
             test = xcscheme_infos_testable.make_test(
                 xcode_configuration = "R",
@@ -703,6 +707,7 @@ def info_constructors_test_suite(name):
             ),
             run = xcscheme_infos_testable.make_run(
                 xcode_configuration = "R",
+                run_build_post_actions_on_failure = "1",
             ),
             test = xcscheme_infos_testable.make_test(
                 xcode_configuration = "R",

@@ -32,7 +32,7 @@ def _write_schemes(
         *,
         actions,
         autogeneration_mode,
-        autogeneration_config_file,
+        autogeneration_config,
         colorize,
         consolidation_maps,
         default_xcode_configuration,
@@ -51,7 +51,8 @@ def _write_schemes(
         actions: `ctx.actions`.
         autogeneration_mode: Specifies how Xcode schemes are automatically
             generated.
-        autogeneration_config_file: A `File` containing `AutogenerationConfigArguments` inputs.
+        autogeneration_config: A `dict` of
+            `AutogenerationConfig` inputs.
         colorize: A `bool` indicating whether to colorize the output.
         consolidation_maps: A `list` of `File`s containing target consolidation
             maps.
@@ -98,6 +99,9 @@ def _write_schemes(
     custom_schemes_file = actions.declare_file(
         "{}_pbxproj_partials/custom_schemes_file".format(generator_name),
     )
+    autogeneration_config_file = actions.declare_file(
+        "{}-autogeneration-config-file".format(generator_name),
+    )
 
     inputs = consolidation_maps + [
         autogeneration_config_file,
@@ -119,6 +123,9 @@ def _write_schemes(
 
     custom_scheme_args = actions.args()
     custom_scheme_args.set_param_file_format("multiline")
+
+    autogeneration_config_args = actions.args()
+    autogeneration_config_args.set_param_file_format("multiline")
 
     # outputDirectory
     args.add_all([output], expand_directories = False)
@@ -180,6 +187,44 @@ def _write_schemes(
                 [key, value],
                 map_each = _null_newlines,
             )
+
+    # AutogenerationConfig
+
+    autogeneration_config_args.add_all(
+        autogeneration_config["test_options"],
+    )
+    for pre_post_actions_key in (
+        "build_pre_actions",
+        "build_post_actions",
+    ):
+        pre_post_actions = autogeneration_config[pre_post_actions_key]
+        autogeneration_config_args.add(len(pre_post_actions) // 3)
+        autogeneration_config_args.add_all(
+            pre_post_actions,
+            map_each = _null_newlines,
+        )
+    autogeneration_config_args.add_all(
+        autogeneration_config["build_run_post_actions_on_failure"],
+    )
+    for pre_post_actions_key in (
+        "profile_pre_actions",
+        "profile_post_actions",
+        "run_pre_actions",
+        "run_post_actions",
+        "test_pre_actions",
+        "test_post_actions",
+    ):
+        pre_post_actions = autogeneration_config[pre_post_actions_key]
+        autogeneration_config_args.add(len(pre_post_actions) // 3)
+        autogeneration_config_args.add_all(
+            pre_post_actions,
+            map_each = _null_newlines,
+        )
+    autogeneration_config_args.add_all(
+        autogeneration_config["scheme_name_exclude_patterns"],
+        omit_if_empty = False,
+        terminate_with = "",
+    )
 
     # CreateCustomSchemeInfos
 
@@ -351,6 +396,8 @@ def _write_schemes(
             scheme_name = scheme_name,
         )
 
+        custom_scheme_args.add(info.run.run_build_post_actions_on_failure)
+
         # Profile
 
         _add_build_targets(
@@ -378,6 +425,7 @@ def _write_schemes(
     actions.write(execution_actions_file, execution_actions_args)
     actions.write(targets_args_env_file, targets_args_env_args)
     actions.write(custom_schemes_file, custom_scheme_args)
+    actions.write(autogeneration_config_file, autogeneration_config_args)
 
     actions.run(
         arguments = [args],

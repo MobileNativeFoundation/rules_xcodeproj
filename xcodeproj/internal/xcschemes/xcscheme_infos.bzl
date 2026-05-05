@@ -145,6 +145,7 @@ def _make_run(
         env = None,
         env_include_defaults = TRUE_ARG,
         launch_target = _make_launch_target(),
+        run_build_post_actions_on_failure = FALSE_ARG,
         storekit_configuration = EMPTY_STRING,
         xcode_configuration = EMPTY_STRING):
     return struct(
@@ -154,6 +155,7 @@ def _make_run(
         env = env,
         env_include_defaults = env_include_defaults,
         launch_target = launch_target,
+        run_build_post_actions_on_failure = run_build_post_actions_on_failure,
         storekit_configuration = storekit_configuration,
         xcode_configuration = xcode_configuration,
     )
@@ -636,6 +638,9 @@ def _run_info_from_dict(
         env = _env_infos_from_dict(run["env"]),
         env_include_defaults = run["env_include_defaults"],
         launch_target = launch_target,
+        run_build_post_actions_on_failure = (
+            run["run_build_post_actions_on_failure"]
+        ),
         storekit_configuration = _storekit_configuration_info(
             run["storekit_configuration"],
             storekit_configurations_map,

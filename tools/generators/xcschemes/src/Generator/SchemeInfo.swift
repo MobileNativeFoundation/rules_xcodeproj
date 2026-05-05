@@ -71,6 +71,7 @@ struct SchemeInfo: Equatable {
         let enableThreadPerformanceChecker: Bool
         let environmentVariables: [EnvironmentVariable]
         let launchTarget: LaunchTarget?
+        let runBuildPostActionsOnFailure: Bool
         let storeKitConfiguration: String?
         let xcodeConfiguration: String?
     }

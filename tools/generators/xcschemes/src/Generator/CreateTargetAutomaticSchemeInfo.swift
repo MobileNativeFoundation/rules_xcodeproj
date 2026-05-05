@@ -23,23 +23,42 @@ extension Generator {
         /// Creates `SchemeInfo`s for a target's automatically generated
         /// schemes.
         func callAsFunction(
+            buildPostActions: [AutogenerationConfig.Action],
+            buildPreActions: [AutogenerationConfig.Action],
+            buildRunPostActionsOnFailure: Bool,
+            profilePostActions: [AutogenerationConfig.Action],
+            profilePreActions: [AutogenerationConfig.Action],
             commandLineArguments: [CommandLineArgument],
             customSchemeNames: Set<String>,
             environmentVariables: [EnvironmentVariable],
             extensionHostIDs: [TargetID: [TargetID]],
+            runPostActions: [AutogenerationConfig.Action],
+            runPreActions: [AutogenerationConfig.Action],
             target: Target,
             targetsByID: [TargetID: Target],
             targetsByKey: [Target.Key: Target],
+            testPostActions: [AutogenerationConfig.Action],
+            testPreActions: [AutogenerationConfig.Action],
             testOptions: SchemeInfo.Test.Options?
         ) throws -> [SchemeInfo] {
             return try callable(
+                /*buildPostActions:*/ buildPostActions,
+                /*buildPreActions:*/ buildPreActions,
+                /*buildRunPostActionsOnFailure:*/
+                    buildRunPostActionsOnFailure,
+                /*profilePostActions:*/ profilePostActions,
+                /*profilePreActions:*/ profilePreActions,
                 /*commandLineArguments:*/ commandLineArguments,
                 /*customSchemeNames:*/ customSchemeNames,
                 /*environmentVariables:*/ environmentVariables,
                 /*extensionHostIDs:*/ extensionHostIDs,
+                /*runPostActions:*/ runPostActions,
+                /*runPreActions:*/ runPreActions,
                 /*target:*/ target,
                 /*targetsByID:*/ targetsByID,
                 /*targetsByKey:*/ targetsByKey,
+                /*testPostActions:*/ testPostActions,
+                /*testPreActions:*/ testPreActions,
                 /*testOptions:*/ testOptions,
                 /*createAutomaticSchemeInfo:*/ createAutomaticSchemeInfo
             )
@@ -51,25 +70,43 @@ extension Generator {
 
 extension Generator.CreateTargetAutomaticSchemeInfos {
     typealias Callable = (
+        _ buildPostActions: [AutogenerationConfig.Action],
+        _ buildPreActions: [AutogenerationConfig.Action],
+        _ buildRunPostActionsOnFailure: Bool,
+        _ profilePostActions: [AutogenerationConfig.Action],
+        _ profilePreActions: [AutogenerationConfig.Action],
         _ commandLineArguments: [CommandLineArgument],
         _ customSchemeNames: Set<String>,
         _ environmentVariables: [EnvironmentVariable],
         _ extensionHostIDs: [TargetID: [TargetID]],
+        _ runPostActions: [AutogenerationConfig.Action],
+        _ runPreActions: [AutogenerationConfig.Action],
         _ target: Target,
         _ targetsByID: [TargetID: Target],
         _ targetsByKey: [Target.Key: Target],
+        _ testPostActions: [AutogenerationConfig.Action],
+        _ testPreActions: [AutogenerationConfig.Action],
         _ testOptions: SchemeInfo.Test.Options?,
         _ createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo]
 
     static func defaultCallable(
+        buildPostActions: [AutogenerationConfig.Action],
+        buildPreActions: [AutogenerationConfig.Action],
+        buildRunPostActionsOnFailure: Bool,
+        profilePostActions: [AutogenerationConfig.Action],
+        profilePreActions: [AutogenerationConfig.Action],
         commandLineArguments: [CommandLineArgument],
         customSchemeNames: Set<String>,
         environmentVariables: [EnvironmentVariable],
         extensionHostIDs: [TargetID: [TargetID]],
+        runPostActions: [AutogenerationConfig.Action],
+        runPreActions: [AutogenerationConfig.Action],
         target: Target,
         targetsByID: [TargetID: Target],
         targetsByKey: [Target.Key: Target],
+        testPostActions: [AutogenerationConfig.Action],
+        testPreActions: [AutogenerationConfig.Action],
         testOptions: SchemeInfo.Test.Options?,
         createAutomaticSchemeInfo: Generator.CreateAutomaticSchemeInfo
     ) throws -> [SchemeInfo] {
@@ -93,11 +130,21 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
 
         if extensionHostKeys.isEmpty {
             guard let schemeInfo = try createAutomaticSchemeInfo(
+                buildPostActions: buildPostActions,
+                buildPreActions: buildPreActions,
+                buildRunPostActionsOnFailure:
+                    buildRunPostActionsOnFailure,
+                profilePostActions: profilePostActions,
+                profilePreActions: profilePreActions,
                 commandLineArguments: commandLineArguments,
                 customSchemeNames: customSchemeNames,
                 environmentVariables: environmentVariables,
                 extensionHost: nil,
+                runPostActions: runPostActions,
+                runPreActions: runPreActions,
                 target: target,
+                testPostActions: testPostActions,
+                testPreActions: testPreActions,
                 testOptions: testOptions
             ) else {
                 return []
@@ -106,11 +153,21 @@ extension Generator.CreateTargetAutomaticSchemeInfos {
         } else {
             return try extensionHostKeys.compactMap { key in
                 return try createAutomaticSchemeInfo(
+                    buildPostActions: buildPostActions,
+                    buildPreActions: buildPreActions,
+                    buildRunPostActionsOnFailure:
+                        buildRunPostActionsOnFailure,
+                    profilePostActions: profilePostActions,
+                    profilePreActions: profilePreActions,
                     commandLineArguments: commandLineArguments,
                     customSchemeNames: customSchemeNames,
                     environmentVariables: environmentVariables,
                     extensionHost: targetsByKey[key]!,
+                    runPostActions: runPostActions,
+                    runPreActions: runPreActions,
                     target: target,
+                    testPostActions: testPostActions,
+                    testPreActions: testPreActions,
                     testOptions: testOptions
                 )
             }

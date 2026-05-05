@@ -16,19 +16,38 @@ extension Generator {
 
         /// Creates a `SchemeInfo` for an automatically generated scheme.
         func callAsFunction(
+            buildPostActions: [AutogenerationConfig.Action],
+            buildPreActions: [AutogenerationConfig.Action],
+            buildRunPostActionsOnFailure: Bool,
+            profilePostActions: [AutogenerationConfig.Action],
+            profilePreActions: [AutogenerationConfig.Action],
             commandLineArguments: [CommandLineArgument],
             customSchemeNames: Set<String>,
             environmentVariables: [EnvironmentVariable],
             extensionHost: Target?,
+            runPostActions: [AutogenerationConfig.Action],
+            runPreActions: [AutogenerationConfig.Action],
             target: Target,
+            testPostActions: [AutogenerationConfig.Action],
+            testPreActions: [AutogenerationConfig.Action],
             testOptions: SchemeInfo.Test.Options?
         ) throws -> SchemeInfo? {
             return try callable(
+                /*buildPostActions:*/ buildPostActions,
+                /*buildPreActions:*/ buildPreActions,
+                /*buildRunPostActionsOnFailure:*/
+                    buildRunPostActionsOnFailure,
+                /*profilePostActions:*/ profilePostActions,
+                /*profilePreActions:*/ profilePreActions,
                 /*commandLineArguments:*/ commandLineArguments,
                 /*customSchemeNames:*/ customSchemeNames,
                 /*environmentVariables:*/ environmentVariables,
                 /*extensionHost:*/ extensionHost,
+                /*runPostActions:*/ runPostActions,
+                /*runPreActions:*/ runPreActions,
                 /*target:*/ target,
+                /*testPostActions:*/ testPostActions,
+                /*testPreActions:*/ testPreActions,
                 /*testOptions:*/ testOptions
             )
         }
@@ -39,20 +58,38 @@ extension Generator {
 
 extension Generator.CreateAutomaticSchemeInfo {
     typealias Callable = (
+        _ buildPostActions: [AutogenerationConfig.Action],
+        _ buildPreActions: [AutogenerationConfig.Action],
+        _ buildRunPostActionsOnFailure: Bool,
+        _ profilePostActions: [AutogenerationConfig.Action],
+        _ profilePreActions: [AutogenerationConfig.Action],
         _ commandLineArguments: [CommandLineArgument],
         _ customSchemeNames: Set<String>,
         _ environmentVariables: [EnvironmentVariable],
         _ extensionHost: Target?,
+        _ runPostActions: [AutogenerationConfig.Action],
+        _ runPreActions: [AutogenerationConfig.Action],
         _ target: Target,
+        _ testPostActions: [AutogenerationConfig.Action],
+        _ testPreActions: [AutogenerationConfig.Action],
         _ testOptions: SchemeInfo.Test.Options?
     ) throws -> SchemeInfo?
 
     static func defaultCallable(
+        buildPostActions: [AutogenerationConfig.Action],
+        buildPreActions: [AutogenerationConfig.Action],
+        buildRunPostActionsOnFailure: Bool,
+        profilePostActions: [AutogenerationConfig.Action],
+        profilePreActions: [AutogenerationConfig.Action],
         commandLineArguments: [CommandLineArgument],
         customSchemeNames: Set<String>,
         environmentVariables: [EnvironmentVariable],
         extensionHost: Target?,
+        runPostActions: [AutogenerationConfig.Action],
+        runPreActions: [AutogenerationConfig.Action],
         target: Target,
+        testPostActions: [AutogenerationConfig.Action],
+        testPreActions: [AutogenerationConfig.Action],
         testOptions: SchemeInfo.Test.Options?
     ) throws -> SchemeInfo? {
         let baseSchemeName = target.buildableReference.blueprintName.schemeName
@@ -111,6 +148,83 @@ extension Generator.CreateAutomaticSchemeInfo {
                 .defaultEnvironmentVariables + environmentVariables
         }
 
+        let buildExecutionActions = buildPreActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .build,
+                isPreAction: true,
+                target: target,
+                order: $0.order
+            )
+        } + buildPostActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .build,
+                isPreAction: false,
+                target: target,
+                order: $0.order
+            )
+        }
+        let runExecutionActions = runPreActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .run,
+                isPreAction: true,
+                target: target,
+                order: $0.order
+            )
+        } + runPostActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .run,
+                isPreAction: false,
+                target: target,
+                order: $0.order
+            )
+        }
+        let testExecutionActions = testPreActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .test,
+                isPreAction: true,
+                target: target,
+                order: $0.order
+            )
+        } + testPostActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .test,
+                isPreAction: false,
+                target: target,
+                order: $0.order
+            )
+        }
+        let profileExecutionActions = profilePreActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .profile,
+                isPreAction: true,
+                target: target,
+                order: $0.order
+            )
+        } + profilePostActions.map {
+            SchemeInfo.ExecutionAction(
+                title: $0.title,
+                scriptText: $0.scriptText,
+                action: .profile,
+                isPreAction: false,
+                target: target,
+                order: $0.order
+            )
+        }
+
         return SchemeInfo(
             name: name,
             test: .init(
@@ -139,6 +253,8 @@ extension Generator.CreateAutomaticSchemeInfo {
                 enableThreadPerformanceChecker: false,
                 environmentVariables: runEnvironmentVariables,
                 launchTarget: launchTarget,
+                runBuildPostActionsOnFailure:
+                    buildRunPostActionsOnFailure,
                 storeKitConfiguration: nil,
                 xcodeConfiguration: nil
             ),
@@ -151,7 +267,11 @@ extension Generator.CreateAutomaticSchemeInfo {
                 useRunArgsAndEnv: true,
                 xcodeConfiguration: nil
             ),
-            executionActions: []
+            executionActions:
+                buildExecutionActions +
+                runExecutionActions +
+                testExecutionActions +
+                profileExecutionActions
         )
     }
 }

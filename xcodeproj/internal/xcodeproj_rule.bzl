@@ -203,27 +203,6 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 # Actions
 
-def _write_autogeneration_config_file(
-        actions,
-        config,
-        name):
-    autogeneration_config_file = actions.declare_file(
-        "{}-autogeneration-config-file".format(name),
-    )
-
-    args = actions.args()
-    args.set_param_file_format("multiline")
-
-    args.add_all(config.get("test_options", ["", "", False]))
-    args.add_all(
-        config.get("scheme_name_exclude_patterns", []),
-        omit_if_empty = False,
-        terminate_with = "",
-    )
-    actions.write(autogeneration_config_file, args)
-
-    return autogeneration_config_file
-
 def _write_bazel_integration_files(
         *,
         actions,
@@ -547,16 +526,10 @@ def _write_schemes(
         top_level_deps = top_level_deps,
     )
 
-    autogeneration_config_file = _write_autogeneration_config_file(
-        actions = actions,
-        config = autogeneration_config,
-        name = name,
-    )
-
     return xcschemes_execution.write_schemes(
         actions = actions,
         autogeneration_mode = autogeneration_mode,
-        autogeneration_config_file = autogeneration_config_file,
+        autogeneration_config = autogeneration_config,
         default_xcode_configuration = default_xcode_configuration,
         colorize = colorize,
         consolidation_maps = consolidation_maps,
