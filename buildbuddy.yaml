@@ -89,14 +89,16 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
-  - name: Test - Bazel HEAD
-    <<: *bazel_head
-    <<: *arm64
-    <<: *normal_resources
-    <<: *action_base
-    <<: *root_workspace
-    bazel_commands:
-      - *test_all
+  # TODO: Re-enable when rules_apple no longer depends on
+  # `//command_line_option:incompatible_enable_apple_toolchain_resolution`.
+  # - name: Test - Bazel HEAD
+  #   <<: *bazel_head
+  #   <<: *arm64
+  #   <<: *normal_resources
+  #   <<: *action_base
+  #   <<: *root_workspace
+  #   bazel_commands:
+  #     - *test_all
 
   - name: Integration Test - "examples/integration" - Bazel Previous LTS
     <<: *bazel_previous_lts
@@ -116,12 +118,14 @@ actions:
     bazel_commands:
       - *generate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - Bazel HEAD
-    <<: *bazel_head
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *generate_integration
-      - *build_all
+  # TODO: Re-enable when rules_apple no longer depends on
+  # `//command_line_option:incompatible_enable_apple_toolchain_resolution`.
+  # - name: Integration Test - "examples/integration" - Bazel HEAD
+  #   <<: *bazel_head
+  #   <<: *arm64
+  #   <<: *action_base
+  #   <<: *normal_resources
+  #   <<: *examples_integration_workspace
+  #   bazel_commands:
+  #     - *generate_integration
+  #     - *build_all
