@@ -40,11 +40,32 @@ END_UNRELEASED_TEMPLATE
 <a id="unreleased"></a>
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.1...HEAD
+[Unreleased]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.1.0...HEAD
 
 ### ⚠️ Breaking changes ⚠️
 
 * TBD
+
+### New
+
+* TBD
+
+### Adjusted
+
+* TBD
+
+### Fixed
+
+* TBD
+
+### Ruleset Development Changes
+
+* TBD
+
+<a id="4.1.0"></a>
+## [4.1.0] - 2026-05-07
+
+[4.1.0]: https://github.com/MobileNativeFoundation/rules_xcodeproj/compare/4.0.1...4.1.0
 
 ### New
 
@@ -55,14 +76,6 @@ END_UNRELEASED_TEMPLATE
 
 * We now resolve `bazel_env` earlier to reduce analysis cache invalidation when environment values are resolved dynamically: [#3305](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3305)
 * Integrated [Samba rsync](https://rsync.samba.org) from BCR so that users no longer need to install it via homebrew: [#3265](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3265)
-
-### Fixed
-
-* TBD
-
-### Ruleset Development Changes
-
-* TBD
 
 <a id="4.0.1"></a>
 ## [4.0.1] - 2026-04-09
