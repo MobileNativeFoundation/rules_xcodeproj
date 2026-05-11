@@ -290,7 +290,9 @@ def _write_runner(
 
     base_def_env_values = []
     base_envs_values = []
+    generator_envs_values = []
     collect_statements = []
+    generator_collect_statements = []
     for key, value in bazel_env.items():
         if value == _NULL_BAZEL_ENV_VALUE:
             base_def_env_values.append(
@@ -333,13 +335,13 @@ fi
 
     for key, value in generator_bazel_env.items():
         if value == _NULL_BAZEL_ENV_VALUE:
-            collect_statements.append("""\
+            generator_collect_statements.append("""\
 if [[ -n "${{{key}:-}}" ]]; then
-  envs+=("{key}=${key}")
+  generator_envs+=("{key}=${key}")
 fi
 """.format(key = key))
         else:
-            base_envs_values.append("  \"{}={}\"".format(
+            generator_envs_values.append("  \"{}={}\"".format(
                 key,
                 (
                     value.replace(
@@ -359,10 +361,17 @@ def_env="{{
 "
 
 {collect_statements}
+generator_envs=(
+  "${{envs[@]}}"
+{generator_envs_values}
+)
+{generator_collect_statements}
 def_env+='}}'""".format(
         base_def_env_values = "\n".join(base_def_env_values),
         base_envs_values = "\n".join(base_envs_values),
         collect_statements = "\n".join(collect_statements),
+        generator_collect_statements = "\n".join(generator_collect_statements),
+        generator_envs_values = "\n".join(generator_envs_values),
     )
 
     generator_package_name = paths.join("generator", package, name)

@@ -238,7 +238,7 @@ bazel_cmd=(
   env -i
   "DEVELOPER_DIR=$developer_dir"
   "${passthrough_env[@]}"
-  "${envs[@]}"
+  "${generator_envs[@]}"
   "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
