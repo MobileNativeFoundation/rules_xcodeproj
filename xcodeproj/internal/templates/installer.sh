@@ -90,18 +90,23 @@ readonly dest_xcschemes="$dest/xcshareddata/xcschemes"
 
 mkdir -p "$dest_xcschemes"
 
-"$src_rsync" \
+if [[ $(uname) == "Darwin" ]]; then
+  is_macos=1
+  readonly rsync="$src_rsync"
+else
+  is_macos=0
+  readonly rsync="$(command -v rsync || true)"
+  [[ -n "$rsync" ]] || fail \
+    "Failed to locate host rsync." \
+    "rules_xcodeproj's bundled rsync is only supported on macOS project generation."
+fi
+
+"$rsync" \
   --archive \
   --perms \
   --chmod=u+w,F-x \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"
-
-if [[ $(uname) == "Darwin" ]]; then
-  is_macos=1
-else
-  is_macos=0
-fi
 
 # Resolve the copy command (can't use `cp -c` if the files are on different
 # filesystems, or on Linux)
