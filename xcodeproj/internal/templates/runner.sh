@@ -120,22 +120,19 @@ readonly output_base="${execution_root%/*/*}"
 # Set bazel env
 %collect_bazel_env%
 
-function replace_if_changed() {
-  local -r _new_file="$1"
-  local -r _destination="$2"
-
-  if [[ -f "$_destination" ]] && cmp -s "$_new_file" "$_destination"; then
-    rm -f "$_new_file"
-    return
+cleanup() {
+  rm -f "${defs_bzl_tmp:-}"
+  if [[ -n "${installer_inputs_dir:-}" ]]; then
+    rm -r "$installer_inputs_dir"
   fi
-
-  mv -f "$_new_file" "$_destination"
-  chmod u+w "$_destination"
 }
+trap cleanup EXIT
 
 # Avoid touching files in `@rules_xcodeproj_generated` unless their contents
 # actually changed. Rewriting them on every invocation invalidates the
 # generated package and forces Bazel to redo package analysis on warm runs.
+# `BUILD` can be compared directly because it is copied verbatim.
+# `defs.bzl` is derived content, so compare its final contents before copying.
 # Create files for the generator target
 readonly generator_package_directory="$output_base/rules_xcodeproj.noindex/%generator_package_name%"
 
@@ -147,7 +144,7 @@ then
   chmod u+w "$generator_package_directory/BUILD"
 fi
 
-defs_bzl_tmp="$(mktemp "$generator_package_directory/defs.bzl.XXXXXX")"
+defs_bzl_tmp="$(mktemp)"
 cp "$generator_defs_bzl" "$defs_bzl_tmp"
 
 cat <<EOF >> "$defs_bzl_tmp"
@@ -159,11 +156,14 @@ BAZEL_PATH = "$bazel_path"
 WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
 EOF
 
-replace_if_changed "$defs_bzl_tmp" "$generator_package_directory/defs.bzl"
+if [[ ! -f "$generator_package_directory/defs.bzl" ]] ||   ! cmp -s "$defs_bzl_tmp" "$generator_package_directory/defs.bzl"
+then
+  cp "$defs_bzl_tmp" "$generator_package_directory/defs.bzl"
+  chmod u+w "$generator_package_directory/defs.bzl"
+fi
 
 installer_inputs_dir=$(mktemp -d)
 readonly installer_inputs_dir
-trap 'rm -r "$installer_inputs_dir"' EXIT
 
 bazelrcs=(
   --noworkspace_rc
