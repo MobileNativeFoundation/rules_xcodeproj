@@ -272,6 +272,7 @@ def _write_runner(
         execution_root_file,
         extra_flags_bazelrc,
         extra_generator_flags,
+        generator_bazel_env,
         generator_build_file,
         generator_defs_bzl,
         install_path,
@@ -312,6 +313,25 @@ fi
                     )
                 ),
             ))
+            base_envs_values.append("  \"{}={}\"".format(
+                key,
+                (
+                    value.replace(
+                        # Escape double quotes for bash
+                        "\"",
+                        "\\\"",
+                    )
+                ),
+            ))
+
+    for key, value in generator_bazel_env.items():
+        if value == "\0":
+            collect_statements.append("""\
+if [[ -n "${{{key}:-}}" ]]; then
+  envs+=("{key}=${key}")
+fi
+""".format(key = key))
+        else:
             base_envs_values.append("  \"{}={}\"".format(
                 key,
                 (
@@ -439,6 +459,7 @@ def _xcodeproj_runner_impl(ctx):
         extra_generator_flags = (
             ctx.attr._extra_generator_flags[BuildSettingInfo].value
         ),
+        generator_bazel_env = ctx.attr.generator_bazel_env,
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
         install_path = install_path,
@@ -474,6 +495,7 @@ xcodeproj_runner = rule(
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
         "focused_labels": attr.string_list(default = []),
+        "generator_bazel_env": attr.string_dict(mandatory = True),
         "generation_shard_count": attr.int(mandatory = True),
         "import_index_build_indexstores": attr.bool(mandatory = True),
         "install_directory": attr.string(mandatory = True),
