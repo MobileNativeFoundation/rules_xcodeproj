@@ -6,6 +6,11 @@ load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 
+# Null character is used to represent `None`, since `attr.string_dict`
+# requires non-`None` values.
+_NULL_BAZEL_ENV_VALUE = "\0"
+_NULL_BAZEL_ENV_VALUE_LITERAL = "\\0"
+
 def _process_extra_flags(*, attr, content, setting, config, config_suffix):
     extra_flags = getattr(attr, setting)[BuildSettingInfo].value
     if extra_flags:
@@ -287,8 +292,10 @@ def _write_runner(
     base_envs_values = []
     collect_statements = []
     for key, value in bazel_env.items():
-        if value == "\0":
-            base_def_env_values.append('  \\"{}\\": \\"\\\\0\\",'.format(key))
+        if value == _NULL_BAZEL_ENV_VALUE:
+            base_def_env_values.append(
+                '  \\"{}\\": \\"{}\\",'.format(key, _NULL_BAZEL_ENV_VALUE_LITERAL),
+            )
             collect_statements.append("""\
 if [[ -n "${{{key}:-}}" ]]; then
   envs+=("{key}=${key}")
@@ -325,7 +332,7 @@ fi
             ))
 
     for key, value in generator_bazel_env.items():
-        if value == "\0":
+        if value == _NULL_BAZEL_ENV_VALUE:
             collect_statements.append("""\
 if [[ -n "${{{key}:-}}" ]]; then
   envs+=("{key}=${key}")

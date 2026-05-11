@@ -13,6 +13,10 @@ load(
     "xcscheme_labels",
 )
 
+# Null character is used to represent `None`, since `attr.string_dict`
+# requires non-`None` values.
+_NULL_BAZEL_ENV_VALUE = "\0"
+
 def _normalize_build_setting(flag):
     if flag.startswith("//command_line_option:"):
         return flag
@@ -395,15 +399,11 @@ def xcodeproj(
     bazel_env["BAZELISK_SKIP_WRAPPER"] = None
 
     bazel_env = {
-        # Null character is used to represent `None`, since `attr.string_dict`
-        # requires non-`None` values.
-        key: "\0" if value == None else value
+        key: _NULL_BAZEL_ENV_VALUE if value == None else value
         for key, value in sorted(bazel_env.items())
     }
     generator_bazel_env = {
-        # Null character is used to represent `None`, since `attr.string_dict`
-        # requires non-`None` values.
-        key: "\0" if value == None else value
+        key: _NULL_BAZEL_ENV_VALUE if value == None else value
         for key, value in sorted(generator_bazel_env.items())
     }
 
