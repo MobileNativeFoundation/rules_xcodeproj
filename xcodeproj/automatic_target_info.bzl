@@ -457,6 +457,18 @@ def calculate_automatic_target_info(
 
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
 
+    if (
+        is_supported and
+        not is_top_level and
+        this_target_type == target_type.compile and
+        CcInfo in target and
+        not target[CcInfo].linking_context.linker_inputs
+    ):
+        # Some repositories intentionally keep configuration-filtered compile
+        # targets analyzable by returning empty linking providers such as
+        # `CcInfo()`. Route those through the unsupported-target path early.
+        is_supported = False
+
     # Xcode doesn't support some source types that Bazel supports
     for attr in srcs:
         for file in getattr(ctx.rule.files, attr, []):
