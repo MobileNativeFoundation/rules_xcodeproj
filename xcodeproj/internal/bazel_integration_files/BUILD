@@ -1,6 +1,7 @@
 _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",
+    "copy_tool.py",
     "create_lldbinit.sh",
     ":renamed_import_indexstores",
     "process_bazel_build_log.py",
@@ -9,7 +10,6 @@ _BASE_FILES = [
 filegroup(
     name = "bazel_integration_files",
     srcs = _BASE_FILES + [
-        ":renamed_rsync",
         ":renamed_swiftc_stub",
         ":rsync_excludes",
     ] + glob(
@@ -20,6 +20,11 @@ filegroup(
         ],
     ),
     # This is made public for internal use only
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["copy_tool.py"],
     visibility = ["//visibility:public"],
 )
 
@@ -124,27 +129,6 @@ fi
         "manual",
         "no-sandbox",
     ],
-)
-
-genrule(
-    name = "renamed_rsync",
-    srcs = ["@rsync"],
-    outs = ["rsync"],
-    # Make `rsync` have the right name
-    cmd = """\
-readonly output="$@"
-if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
-  cp -c "$<" "$@"
-else
-  cp "$<" "$@"
-fi
-""",
-    message = "Renaming rsync",
-    tags = [
-        "manual",
-        "no-sandbox",
-    ],
-    visibility = ["//visibility:public"],
 )
 
 # Release

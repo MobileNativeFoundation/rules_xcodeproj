@@ -21,7 +21,7 @@ readonly test_frameworks=(
   "XCUnit.framework"
 )
 
-readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
+readonly copy_tool="$BAZEL_INTEGRATION_DIR/copy_tool.py"
 
 if [[ "$ACTION" != indexbuild ]]; then
   # Copy product
@@ -29,20 +29,15 @@ if [[ "$ACTION" != indexbuild ]]; then
     cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
-      # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
+      # Product is a binary, so symlink instead of copying, to allow for Bazel-set
       # rpaths to work
       ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
     else
       # Product is a bundle
-      "$rsync" \
-        --copy-links \
-        --recursive \
-        --times \
+      "$copy_tool" \
         --delete \
         ${exclude_list:+--exclude-from="$exclude_list"} \
-        --perms \
-        --chmod=u+w \
-        --out-format="%n%L" \
+        --print \
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
 
