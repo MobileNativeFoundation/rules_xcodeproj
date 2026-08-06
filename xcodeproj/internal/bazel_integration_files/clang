@@ -1,0 +1,233 @@
+#!/bin/bash
+
+set -euo pipefail
+
+fail() {
+  printf 'rules_xcodeproj clang facade: %s\n' "$*" >&2
+  exit 64
+}
+
+readonly self_path="${BASH_SOURCE[0]}"
+case "$self_path" in
+  */*) readonly sibling_dir="${self_path%/*}" ;;
+  *) readonly sibling_dir=. ;;
+esac
+readonly sibling_ld="$sibling_dir/ld"
+readonly -a original_args=("$@")
+
+query_count=0
+output_count=0
+output_value=
+output_parse_error=0
+preview_output_seen=0
+joined_preview_output_seen=0
+
+for ((index = 0; index < ${#original_args[@]}; index++)); do
+  arg="${original_args[index]}"
+  if [[ "$arg" == "-###" ]]; then
+    query_count=$((query_count + 1))
+  fi
+  case "$arg" in
+    -o*.preview-thunk.dylib|-o*.debug.dylib)
+      joined_preview_output_seen=1
+      ;;
+  esac
+  if ((joined_preview_output_seen == 1)); then
+    continue
+  fi
+  if [[ "$arg" != "-o" ]]; then
+    continue
+  fi
+
+  value_index=$((index + 1))
+  if ((value_index >= ${#original_args[@]})) || \
+     [[ -z "${original_args[value_index]}" ]] || \
+     [[ "${original_args[value_index]}" == -* ]]; then
+    output_parse_error=1
+    continue
+  fi
+
+  output_count=$((output_count + 1))
+  output_value="${original_args[value_index]}"
+  case "$output_value" in
+    *.preview-thunk.dylib|*.debug.dylib) preview_output_seen=1 ;;
+  esac
+  index=$value_index
+done
+
+if ((joined_preview_output_seen == 1)); then
+  fail "Preview output must use a separate -o value"
+fi
+
+if ((query_count > 0)); then
+  readonly forwarding_mode=query
+elif ((preview_output_seen == 1)); then
+  readonly forwarding_mode=preview
+else
+  exec "$sibling_ld" "${original_args[@]}"
+fi
+
+if [[ "$forwarding_mode" == "query" && "$query_count" != "1" ]]; then
+  fail "query invocation must contain exactly one -### option (found $query_count)"
+fi
+
+if ((output_parse_error != 0)); then
+  fail "forwarding invocation has a missing -o value"
+fi
+if ((output_count != 1)); then
+  fail "forwarding invocation must contain exactly one -o value (found $output_count)"
+fi
+
+sysroot_count=0
+sysroot_value=
+for ((index = 0; index < ${#original_args[@]}; index++)); do
+  if [[ "${original_args[index]}" != "-isysroot" ]]; then
+    continue
+  fi
+
+  value_index=$((index + 1))
+  if ((value_index >= ${#original_args[@]})) || \
+     [[ -z "${original_args[value_index]}" ]] || \
+     [[ "${original_args[value_index]}" == -* ]]; then
+    fail "forwarding invocation has a missing -isysroot value"
+  fi
+  sysroot_count=$((sysroot_count + 1))
+  sysroot_value="${original_args[value_index]}"
+  index=$value_index
+done
+
+if ((sysroot_count != 1)); then
+  fail "forwarding invocation must contain exactly one -isysroot value (found $sysroot_count)"
+fi
+
+case "$sysroot_value" in
+  */Contents/Developer/Platforms/*.platform/Developer/SDKs/*.sdk)
+    readonly developer_dir="${sysroot_value%%/Platforms/*}"
+    ;;
+  *)
+    fail "-isysroot does not have the Developer/Platforms SDK shape"
+    ;;
+esac
+
+readonly real_clang="$developer_dir/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
+if [[ ! -f "$real_clang" || ! -x "$real_clang" ]]; then
+  fail "derived XcodeDefault clang is not a regular executable"
+fi
+if [[ ! -f "$self_path" ]]; then
+  fail "facade path is not a regular file"
+fi
+if [[ "$(/usr/bin/stat -f '%d:%i' "$real_clang")" == \
+      "$(/usr/bin/stat -f '%d:%i' "$self_path")" ]]; then
+  fail "derived XcodeDefault clang resolves to the facade itself"
+fi
+
+validate_working_directory() {
+  local directory="$1"
+  local normalized_directory
+  local normalized_physical_directory
+  local physical_directory
+  local workspace_name
+
+  case "$directory" in
+    /*) ;;
+    *) fail "-working-directory must be absolute" ;;
+  esac
+  case "$directory" in
+    *//*|*/./*|*/../*|*/.|*/..)
+      fail "-working-directory must use a normalized path"
+      ;;
+  esac
+  if [[ ! -d "$directory" ]]; then
+    fail "-working-directory does not exist: $directory"
+  fi
+
+  physical_directory="$(cd "$directory" && /bin/pwd -P)"
+  # `projectDir` deliberately removes macOS's `/private` alias because Xcode
+  # standardizes paths the same way.
+  normalized_directory="${directory#/private}"
+  normalized_physical_directory="${physical_directory#/private}"
+  if [[ "$normalized_physical_directory" != "$normalized_directory" ]]; then
+    fail "-working-directory does not use its canonical spelling"
+  fi
+
+  case "$normalized_directory" in
+    */execroot/*)
+      workspace_name="${normalized_directory##*/execroot/}"
+      ;;
+    *) fail "-working-directory is not a Bazel execution root" ;;
+  esac
+  if [[ -z "$workspace_name" || "$workspace_name" == */* ]]; then
+    fail "-working-directory is not a Bazel execution root"
+  fi
+}
+
+working_directory_count=0
+working_directory_value=
+for ((index = 0; index < ${#original_args[@]}; index++)); do
+  if [[ "${original_args[index]}" != "-working-directory" ]]; then
+    continue
+  fi
+
+  value_index=$((index + 1))
+  if ((value_index >= ${#original_args[@]})) || \
+     [[ -z "${original_args[value_index]}" ]] || \
+     [[ "${original_args[value_index]}" == -* ]]; then
+    fail "forwarding invocation has a missing -working-directory value"
+  fi
+  working_directory_count=$((working_directory_count + 1))
+  working_directory_value="${original_args[value_index]}"
+  index=$value_index
+done
+
+if ((working_directory_count != 1)); then
+  fail "forwarding invocation must contain exactly one -working-directory value (found $working_directory_count)"
+fi
+validate_working_directory "$working_directory_value"
+
+validate_response() {
+  local response_path="$1"
+  local line
+  local index
+  local -a response_args=()
+
+  if [[ -z "$response_path" || ! -f "$response_path" || \
+        ! -r "$response_path" || -L "$response_path" ]]; then
+    fail "response is not a readable regular non-symlink file: $response_path"
+  fi
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    response_args+=("$line")
+  done < "$response_path"
+
+  for ((index = 0; index < ${#response_args[@]}; index++)); do
+    line="${response_args[index]}"
+    case "$line" in
+      @*) fail "nested response reference is unsupported: $response_path" ;;
+      LINKED_BINARY=*)
+        fail "response contains a bare LINKED_BINARY record: $response_path"
+        ;;
+    esac
+
+    if [[ "$line" == "-objc_abi_version" ]]; then
+      if ((index < 1 || index + 2 >= ${#response_args[@]})) || \
+         [[ "${response_args[index - 1]}" != "-Xlinker" ]] || \
+         [[ "${response_args[index + 1]}" != "-Xlinker" ]] || \
+         [[ -z "${response_args[index + 2]}" ]] || \
+         [[ "${response_args[index + 2]}" == -* ]]; then
+        fail "response contains a malformed objc ABI linker group: $response_path"
+      fi
+    fi
+
+    if [[ "$line" == "-object_path_lto" ]]; then
+      fail "response contains Xcode-owned object_path_lto: $response_path"
+    fi
+  done
+}
+
+for arg in "${original_args[@]}"; do
+  case "$arg" in
+    @*) validate_response "${arg#@}" ;;
+  esac
+done
+
+exec "$real_clang" "${original_args[@]}"

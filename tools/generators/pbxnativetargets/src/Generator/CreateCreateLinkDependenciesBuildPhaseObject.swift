@@ -19,8 +19,8 @@ extension Generator {
             hasCompileStub: Bool
         ) -> Object {
             return callable(
-                /*subIdentifier:*/ subIdentifier,
-                /*hasCompileStub:*/ hasCompileStub
+                /* subIdentifier: */ subIdentifier,
+                /* hasCompileStub: */ hasCompileStub
             )
         }
     }
@@ -39,14 +39,20 @@ extension Generator.CreateCreateLinkDependenciesBuildPhaseObject {
         hasCompileStub: Bool
     ) -> Object {
         let action = #"""
+readonly link_params_tmp="$(mktemp "$SCRIPT_OUTPUT_FILE_0.tmp.XXXXXX")"
+trap 'rm -f "$link_params_tmp"' EXIT
 perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
-  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+  "$SCRIPT_INPUT_FILE_0" > "$link_params_tmp"
+chmod 0644 "$link_params_tmp"
+mv -f "$link_params_tmp" "$SCRIPT_OUTPUT_FILE_0"
+trap - EXIT
 """#
         var shellScriptComponents: [String] = [
             #"""
 set -euo pipefail
 
-if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+if [[ "${ENABLE_PREVIEWS:-}" == "YES" || \
+      "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
 \#(action)
 else
   touch "$SCRIPT_OUTPUT_FILE_0"

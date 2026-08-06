@@ -130,6 +130,7 @@ def _collect_output_files(
         link_params = None,
         name,
         output_group_info,
+        preview_framework_files = [],
         product = None,
         should_produce_dto = True,
         swift_info,
@@ -155,6 +156,8 @@ def _collect_output_files(
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_framework_files: A `list` of framework `File`s that should be
+            materialized for Xcode Previews.
         product: A value from `process_product`.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
             collected values. This will only be `True` if the generator can use
@@ -272,6 +275,7 @@ def _collect_output_files(
 
     direct_group_list = [
         ("bc {}".format(id), transitive_compile_params),
+        ("bf {}".format(id), memory_efficient_depset(preview_framework_files)),
         ("bi {}".format(id), indexing_depset),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),

@@ -30,18 +30,45 @@ _LD_SKIP_OPTS = {
 
 
 def _parse_args(args_files: List[str]) -> List[str]:
-    args = []
+    raw_args = []
     for args_path in args_files:
         # Each argument is a path to a file containing the actual arguments
         with open(args_path, encoding = "utf-8") as fp:
-            lines = fp.read().splitlines()
-            if lines[0].startswith("@"):
-                # Sometimes those arguments might be also be a redirect
-                with open(lines[0][1:], encoding = "utf-8") as f:
-                    args.extend(f.read().splitlines())
-            else:
-                # First argument is the tool name
-                args.extend(lines[1:])
+            raw_args.extend(fp.read().splitlines())
+
+    if not raw_args:
+        raise ValueError("Link arguments do not contain a tool")
+
+    def _expand_redirect(arg: str) -> List[str]:
+        redirect_path = arg[1:]
+        if not redirect_path:
+            raise ValueError("Link arguments contain an empty redirect")
+        with open(redirect_path, encoding = "utf-8") as fp:
+            redirected_args = fp.read().splitlines()
+        if not redirected_args:
+            raise ValueError("Link arguments contain an empty redirect")
+        if any(redirected_arg.startswith("@")
+               for redirected_arg in redirected_args):
+            raise ValueError("Nested link argument redirects are unsupported")
+        return redirected_args
+
+    # Some actions put their complete tool-plus-arguments list behind one
+    # redirect. Expand that first-level redirect before dropping the tool.
+    if raw_args[0].startswith("@"):
+        raw_args = _expand_redirect(raw_args[0]) + raw_args[1:]
+
+    tool = raw_args[0]
+    if not tool or tool.startswith("-") or tool.startswith("@"):
+        raise ValueError("Link arguments do not contain a tool")
+
+    # The first argument across all chunks is the tool name. Later chunks start
+    # with real arguments and must not lose their first value.
+    args = []
+    for arg in raw_args[1:]:
+        if arg.startswith("@"):
+            args.extend(_expand_redirect(arg))
+        else:
+            args.append(arg)
 
     return args
 
@@ -65,6 +92,24 @@ def _process_linkopts(
             for path in paths
             if not path in generated_product_paths and not path.endswith(".o")
         ]
+
+    for index, linkopt in enumerate(linkopts):
+        if linkopt == "-objc_abi_version":
+            if (index < 1 or
+                index + 2 >= len(linkopts) or
+                linkopts[index - 1] != "-Xlinker" or
+                linkopts[index + 1] != "-Xlinker" or
+                not linkopts[index + 2] or
+                linkopts[index + 2].startswith("-")):
+                raise ValueError("Malformed -objc_abi_version linker group")
+        if linkopt == "-object_path_lto":
+            if (index < 1 or
+                index + 2 >= len(linkopts) or
+                linkopts[index - 1] != "-Xlinker" or
+                linkopts[index + 1] != "-Xlinker" or
+                not linkopts[index + 2] or
+                not linkopts[index + 2].endswith(".lto.o")):
+                raise ValueError("Malformed -object_path_lto linker group")
 
     processed_linkopts = []
     def _quote_and_append_processed_linkopt(opt):
@@ -110,7 +155,8 @@ def _process_linkopts(
 
         # These flags are for wrapped_clang only
         if (opt.startswith("DSYM_HINT_DSYM_PATH=") or
-            opt.startswith("DSYM_HINT_LINKED_BINARY=")):
+            opt.startswith("DSYM_HINT_LINKED_BINARY=") or
+            opt.startswith("LINKED_BINARY=")):
             return
 
         # Use Xcode set `DEVELOPER_DIR`
@@ -122,9 +168,18 @@ def _process_linkopts(
         _quote_and_append_processed_linkopt(opt)
 
     skip_next = 0
-    for linkopt in linkopts:
+    for index, linkopt in enumerate(linkopts):
         if skip_next:
             skip_next -= 1
+            continue
+
+        # Xcode provides its own LTO object path. Remove the complete Bazel
+        # driver group so the leading `-Xlinker` can't become orphaned and
+        # consume the next option as the value of `-object_path_lto`.
+        if (linkopt == "-Xlinker" and
+            index + 1 < len(linkopts) and
+            linkopts[index + 1] == "-object_path_lto"):
+            skip_next = 3
             continue
 
         # Change "link.params" from `shell` to `multiline` format

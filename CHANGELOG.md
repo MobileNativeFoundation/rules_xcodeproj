@@ -28,7 +28,7 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed Xcode Previews on Xcode 26.5 for targets with link parameters and dynamic framework dependencies: [#3201](https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3201)
 
 ### Ruleset Development Changes
 

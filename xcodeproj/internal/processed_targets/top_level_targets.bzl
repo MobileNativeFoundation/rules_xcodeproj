@@ -539,6 +539,10 @@ def _process_focused_top_level_target(
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_framework_files = [
+            file
+            for file, _ in previews_dynamic_frameworks
+        ],
         product = product,
         swift_info = swift_info,
         transitive_infos = transitive_infos,

@@ -53,7 +53,8 @@ extension Generator {
             ),
             .init(
                 key: "BAZEL_OUT",
-                value: #""$(PROJECT_DIR)/bazel-out""#),
+                value: #""$(PROJECT_DIR)/bazel-out""#
+            ),
             .init(
                 key: "BAZEL_OUTPUT_BASE",
                 value: #""$(_BAZEL_OUTPUT_BASE:standardizepath)""#
@@ -93,7 +94,22 @@ extension Generator {
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
             .init(key: "ENABLE_USER_SCRIPT_SANDBOXING", value: "NO"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
-            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
+            .init(key: "LD", value: #""$(LD__$(ENABLE_PREVIEWS))""#),
+            .init(
+                key: "LD__",
+                value: #""$(LD_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "LD__NO",
+                value: #""$(LD_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(key: "LD__YES", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
+            .init(key: "LD_XOJIT__", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
+            .init(key: "LD_XOJIT__NO", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
+            .init(
+                key: "LD_XOJIT__YES",
+                value: #""$(BAZEL_INTEGRATION_DIR)/clang""#
+            ),
             .init(
                 key: "LDPLUSPLUS",
                 value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
@@ -148,6 +164,37 @@ extension Generator {
             ),
             .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
             .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH",
+                value:
+                    #""$(PREVIEW_SDK_LIBRARY_SEARCH_PATH_LEGACY__$(ENABLE_PREVIEWS))""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_LEGACY__",
+                value:
+                    #""$(PREVIEW_SDK_LIBRARY_SEARCH_PATH_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_LEGACY__NO",
+                value:
+                    #""$(PREVIEW_SDK_LIBRARY_SEARCH_PATH_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_LEGACY__YES",
+                value: #""""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_XOJIT__",
+                value: #""""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_XOJIT__NO",
+                value: #""""#
+            ),
+            .init(
+                key: "PREVIEW_SDK_LIBRARY_SEARCH_PATH_XOJIT__YES",
+                value: #""$(SDKROOT)/usr/lib""#
+            ),
+            .init(
                 key: "RESOLVED_REPOSITORIES",
                 value: resolvedRepositories.pbxProjEscaped
             ),
@@ -156,11 +203,56 @@ extension Generator {
             .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
             .init(
                 key: "SWIFT_EXEC",
+                value: #""$(SWIFT_EXEC_LEGACY__$(ENABLE_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_EXEC_LEGACY__",
+                value: #""$(SWIFT_EXEC__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_EXEC_LEGACY__NO",
+                value: #""$(SWIFT_EXEC__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_EXEC_LEGACY__YES",
                 value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
+            ),
+            .init(
+                key: "SWIFT_EXEC__",
+                value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
+            ),
+            .init(
+                key: "SWIFT_EXEC__NO",
+                value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
+            ),
+            .init(
+                key: "SWIFT_EXEC__YES",
+                value: #""$(DT_TOOLCHAIN_DIR)/usr/bin/swiftc""#
             ),
             .init(key: "SWIFT_OBJC_INTERFACE_HEADER_NAME", value: #""""#),
             .init(key: "SWIFT_OPTIMIZATION_LEVEL", value: #""-Onone""#),
-            .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
+            .init(
+                key: "SWIFT_USE_INTEGRATED_DRIVER",
+                value:
+                    #""$(SWIFT_USE_INTEGRATED_DRIVER_LEGACY__$(ENABLE_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_USE_INTEGRATED_DRIVER_LEGACY__",
+                value:
+                    #""$(SWIFT_USE_INTEGRATED_DRIVER__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_USE_INTEGRATED_DRIVER_LEGACY__NO",
+                value:
+                    #""$(SWIFT_USE_INTEGRATED_DRIVER__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "SWIFT_USE_INTEGRATED_DRIVER_LEGACY__YES",
+                value: "NO"
+            ),
+            .init(key: "SWIFT_USE_INTEGRATED_DRIVER__", value: "NO"),
+            .init(key: "SWIFT_USE_INTEGRATED_DRIVER__NO", value: "NO"),
+            .init(key: "SWIFT_USE_INTEGRATED_DRIVER__YES", value: "YES"),
             .init(key: "SWIFT_VERSION", value: "5.0"),
             .init(key: "TAPI_EXEC", value: "/usr/bin/true"),
             .init(

@@ -13,9 +13,13 @@ if [ "$ACTION" == "indexbuild" ]; then
   exit 1
 else
   if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-    # Compile params, products (i.e. bundles) and index store data, and link
-    # params
-    readonly output_group_prefixes="bc,bp,bl"
+    # Compile params, Preview frameworks, products (i.e. bundles) and index
+    # store data, and link params
+    readonly output_group_prefixes="bc,bf,bp,bl"
+  elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
+    # Shared XOJIT Previews reuse the ordinary build product, but need their
+    # runtime frameworks materialized.
+    readonly output_group_prefixes="bf,bp,bl"
   else
     # Products (i.e. bundles) and index store data
     readonly output_group_prefixes="bp"

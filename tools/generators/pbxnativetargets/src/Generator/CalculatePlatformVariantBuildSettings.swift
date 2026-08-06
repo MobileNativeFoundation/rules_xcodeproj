@@ -22,10 +22,10 @@ extension Generator {
             platformVariant: Target.PlatformVariant
         ) async throws -> [PlatformVariantBuildSetting] {
             return try await callable(
-                /*isBundle:*/ isBundle,
-                /*originalProductBasename:*/ originalProductBasename,
-                /*productType:*/ productType,
-                /*platformVariant:*/ platformVariant
+                /* isBundle: */ isBundle,
+                /* originalProductBasename: */ originalProductBasename,
+                /* productType: */ productType,
+                /* platformVariant: */ platformVariant
             )
         }
     }
@@ -165,6 +165,16 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let linkParams = platformVariant.linkParams {
+            if platformVariant.platform == .iOSSimulator {
+                buildSettings.append(
+                    .init(
+                        key: "LIBRARY_SEARCH_PATHS",
+                        value:
+                            #""$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)""#
+                    )
+                )
+            }
+
             // Drop the `bazel-out` prefix since we use the env var for this
             // portion of the path
             buildSettings.append(
@@ -178,7 +188,7 @@ extension Generator.CalculatePlatformVariantBuildSettings {
             buildSettings.append(
                 .init(
                     key: "OTHER_LDFLAGS",
-                    value: #""@$(DERIVED_FILE_DIR)/link.params""#
+                    value: #""-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params""#
                 )
             )
         }
