@@ -8,6 +8,7 @@ from typing import Iterable, Mapping, Sequence
 SCHEMA_VERSION = 1
 CAPABILITIES = {"actions": ["build"]}
 BAZELRC_PATH = "rules_xcodeproj/bazel/xcodeproj.bazelrc"
+BAZEL_DEPENDENCIES_TARGET_GUID = "FF0100000000000000000001"
 
 _REQUIRED_ENTRY_KEYS = {
     "action",
@@ -114,6 +115,7 @@ def assemble(
 
     manifest = {
         "capabilities": CAPABILITIES,
+        "ignoredXcodeTargetGUIDs": [BAZEL_DEPENDENCIES_TARGET_GUID],
         "invocation": {
             "bazelPath": bazel_path,
             "bazelrcPath": BAZELRC_PATH,

@@ -51,6 +51,10 @@ class BuildProxyManifestTests(unittest.TestCase):
         self.assertEqual(manifest["schemaVersion"], 1)
         self.assertEqual(manifest["capabilities"], {"actions": ["build"]})
         self.assertEqual(
+            manifest["ignoredXcodeTargetGUIDs"],
+            ["FF0100000000000000000001"],
+        )
+        self.assertEqual(
             manifest["invocation"],
             {
                 "bazelPath": "/usr/local/bin/bazel",
