@@ -1,6 +1,7 @@
 """Implementation of the `xcodeproj_runner` rule."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
@@ -38,6 +39,17 @@ def _serialize_nullable_string(value):
     if not value:
         return "None"
     return '"' + value + '"'
+
+def _validate_build_proxy_configuration(*, build_proxy, build_proxy_sha256):
+    if bool(build_proxy) != bool(build_proxy_sha256):
+        fail("`build_proxy` and `build_proxy_sha256` must be set together")
+    if not build_proxy:
+        return
+    if len(build_proxy_sha256) != 64 or any([
+        character not in "0123456789abcdef"
+        for character in build_proxy_sha256.elems()
+    ]):
+        fail("`build_proxy_sha256` must be a lowercase 64-character SHA-256 digest")
 
 def _write_xcodeproj_bazelrc(name, actions, config, template):
     output = actions.declare_file("{}.bazelrc".format(name))
@@ -273,6 +285,9 @@ def _write_runner(
         actions,
         bazel_env,
         bazel_path,
+        build_proxy,
+        build_proxy_label,
+        build_proxy_sha256,
         config,
         execution_root_file,
         extra_flags_bazelrc,
@@ -382,12 +397,30 @@ def_env+='}}'""".format(
         ),
     )
 
+    build_proxy_installer_flags = ""
+    if build_proxy:
+        build_proxy_installer_flags = """\
+readonly build_proxy="$PWD"/{build_proxy}
+installer_flags+=(
+  --build_proxy "$build_proxy"
+  --build_proxy_label {build_proxy_label}
+  --build_proxy_project_identity {generator_label}
+  --build_proxy_sha256 {build_proxy_sha256}
+)
+""".format(
+            build_proxy = shell.quote(build_proxy.short_path),
+            build_proxy_label = shell.quote(build_proxy_label),
+            build_proxy_sha256 = shell.quote(build_proxy_sha256),
+            generator_label = shell.quote(generator_label),
+        )
+
     actions.expand_template(
         template = template,
         output = output,
         is_executable = True,
         substitutions = {
             "%bazel_path%": bazel_path,
+            "%build_proxy_installer_flags%": build_proxy_installer_flags,
             "%collect_bazel_env%": collect_bazel_env,
             "%config%": config,
             "%execution_root_file%": execution_root_file.short_path,
@@ -416,6 +449,12 @@ def _xcodeproj_runner_impl(ctx):
         "@"
     )
     runner_label = str(ctx.label)
+
+    build_proxy = ctx.file.build_proxy
+    _validate_build_proxy_configuration(
+        build_proxy = build_proxy,
+        build_proxy_sha256 = ctx.attr.build_proxy_sha256,
+    )
 
     install_path = paths.join(
         ctx.attr.install_directory,
@@ -469,6 +508,9 @@ def _xcodeproj_runner_impl(ctx):
         actions = actions,
         bazel_env = ctx.attr.bazel_env,
         bazel_path = ctx.attr.bazel_path,
+        build_proxy = build_proxy,
+        build_proxy_label = str(ctx.attr.build_proxy.label) if build_proxy else "",
+        build_proxy_sha256 = ctx.attr.build_proxy_sha256,
         config = config,
         execution_root_file = execution_root_file,
         extra_flags_bazelrc = extra_flags_bazelrc,
@@ -488,7 +530,7 @@ def _xcodeproj_runner_impl(ctx):
         DefaultInfo(
             executable = runner,
             runfiles = ctx.runfiles(
-                files = [
+                files = ([build_proxy] if build_proxy else []) + [
                     execution_root_file,
                     extra_flags_bazelrc,
                     generator_build_file,
@@ -508,6 +550,13 @@ xcodeproj_runner = rule(
     attrs = {
         "bazel_env": attr.string_dict(mandatory = True),
         "bazel_path": attr.string(mandatory = True),
+        "build_proxy": attr.label(
+            # Deliberately do not use the exec transition. Project generation
+            # can use a remote/Linux execution platform, while the selected
+            # proxy must remain the exact macOS artifact supplied by the user.
+            allow_single_file = True,
+        ),
+        "build_proxy_sha256": attr.string(),
         "config": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(),
         "focused_labels": attr.string_list(default = []),

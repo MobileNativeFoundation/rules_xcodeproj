@@ -30,6 +30,22 @@ while (("$#")); do
       bazel_path="${2}"
       shift 2
       ;;
+    "--build_proxy")
+      build_proxy="${2}"
+      shift 2
+      ;;
+    "--build_proxy_label")
+      build_proxy_label="${2}"
+      shift 2
+      ;;
+    "--build_proxy_project_identity")
+      build_proxy_project_identity="${2}"
+      shift 2
+      ;;
+    "--build_proxy_sha256")
+      build_proxy_sha256="${2}"
+      shift 2
+      ;;
     "--xcodeproj_bazelrc")
       xcodeproj_bazelrc="${2}"
       shift 2
@@ -69,6 +85,8 @@ fi
 # Resolve the inputs
 readonly src_generated_xcfilelist="$PWD/%generated_xcfilelist%"
 readonly src_generated_directories_filelist="$PWD/%generated_directories_filelist%"
+readonly src_build_proxy_installer="$PWD/%build_proxy_installer%"
+readonly src_build_proxy_launcher="$PWD/%build_proxy_launcher%"
 readonly src_project_pbxproj="$PWD/%project_pbxproj%"
 readonly src_rsync="$PWD/%rsync%"
 readonly src_xcschememanagement="$PWD/%xcschememanagement%"
@@ -141,6 +159,22 @@ else
 fi
 
 chmod u+w "$dest/rules_xcodeproj/bazel/"*
+
+build_proxy_installer_args=(
+  --destination "$dest"
+)
+if [[ -n "${build_proxy:-}" || -n "${build_proxy_label:-}" || \
+      -n "${build_proxy_project_identity:-}" || -n "${build_proxy_sha256:-}" ]]
+then
+  build_proxy_installer_args+=(
+    --launcher "$src_build_proxy_launcher"
+    --project-identity "${build_proxy_project_identity:-}"
+    --proxy "${build_proxy:-}"
+    --proxy-label "${build_proxy_label:-}"
+    --proxy-sha256 "${build_proxy_sha256:-}"
+  )
+fi
+"$src_build_proxy_installer" "${build_proxy_installer_args[@]}"
 
 # Copy over `generated.xcfilelist`
 readonly dest_generated_xcfilelist="$dest/rules_xcodeproj/generated.xcfilelist"

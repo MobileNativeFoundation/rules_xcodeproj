@@ -31,6 +31,8 @@ def xcodeproj(
             "LANG": "en_US.UTF-8",
             "PATH": "/bin:/usr/bin",
         },
+        build_proxy = None,
+        build_proxy_sha256 = None,
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
@@ -123,6 +125,43 @@ def xcodeproj(
             environment variable that is set when generating the project. If you
             want to specify a path to a workspace-relative binary, you must
             prepend the path with `./` (e.g. `"./bazelw"`).
+        build_proxy: Optional. A label producing the exact standalone macOS
+            XCBBuildService proxy executable file to install with the generated
+            project. This input is intentionally not transitioned to Bazel's
+            execution platform, which might be remote or Linux.
+
+            This is an explicit opt-in. When it is unset, rules_xcodeproj does
+            not install a proxy launcher and Xcode continues to use its native
+            build service. The executable is supplied by the workspace; this
+            rule never downloads a proxy at generation time or runtime.
+
+            [`build_proxy_sha256`](#xcodeproj-build_proxy_sha256) must also be
+            set. The digest is checked before the executable is installed and
+            before every launch.
+
+            The executable must implement `--resolve-native-service`: it must
+            fail for an unsupported selected Xcode build, or print exactly one
+            absolute path to that Xcode's native build service. After project
+            generation, opt in with one of:
+
+            ```sh
+            App.xcodeproj/rules_xcodeproj/build_proxy/launch_with_build_proxy.sh xcode
+            App.xcodeproj/rules_xcodeproj/build_proxy/launch_with_build_proxy.sh \\
+              xcodebuild -project App.xcodeproj build
+            ```
+
+            The `xcode` mode starts a fresh Xcode instance so an already-running
+            native instance is not affected. The `xcodebuild` mode runs the
+            executable from the exact Xcode installation approved by the
+            proxy's compatibility check.
+        build_proxy_sha256: Optional. The lowercase SHA-256 digest of the
+            executable selected by
+            [`build_proxy`](#xcodeproj-build_proxy).
+
+            Project generation fails if the selected executable does not match
+            this digest. The generated launcher also validates the installed
+            executable and the generated build-proxy manifest before selecting
+            the proxy. Both attributes must be set together.
         config: Optional. The Bazel config to use when generating the project or
             invoking `bazel` inside of Xcode.
 
@@ -542,6 +581,8 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         name = name,
         bazel_path = bazel_path,
         bazel_env = bazel_env,
+        build_proxy = build_proxy,
+        build_proxy_sha256 = build_proxy_sha256,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
         focused_labels = focused_labels,
