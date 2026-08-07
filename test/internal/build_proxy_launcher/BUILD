@@ -42,6 +42,7 @@ sh_test(
     size = "small",
     srcs = ["build_proxy_launcher_tests.sh"],
     data = [
+        ":configured_runner",
         "//xcodeproj/internal/templates:build_proxy_launcher.sh",
         "//xcodeproj/internal/templates:install_build_proxy.sh",
     ],

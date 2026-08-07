@@ -396,6 +396,10 @@ def_env+='}}'""".format(
             str(Label("@rules_xcodeproj_generated//:BUILD")).split("//", 1)[0]
         ),
     )
+    generator_target_label = "{generator_label}:{name}".format(
+        generator_label = generator_label,
+        name = name,
+    )
 
     build_proxy_installer_flags = ""
     if build_proxy:
@@ -404,14 +408,14 @@ readonly build_proxy="$PWD"/{build_proxy}
 installer_flags+=(
   --build_proxy "$build_proxy"
   --build_proxy_label {build_proxy_label}
-  --build_proxy_project_identity {generator_label}
+  --build_proxy_project_identity {generator_target_label}
   --build_proxy_sha256 {build_proxy_sha256}
 )
 """.format(
             build_proxy = shell.quote(build_proxy.short_path),
             build_proxy_label = shell.quote(build_proxy_label),
             build_proxy_sha256 = shell.quote(build_proxy_sha256),
-            generator_label = shell.quote(generator_label),
+            generator_target_label = shell.quote(generator_target_label),
         )
 
     actions.expand_template(

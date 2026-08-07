@@ -29,6 +29,8 @@ installer="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/install_bui
 readonly installer
 launcher_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/build_proxy_launcher.sh")"
 readonly launcher_source
+configured_runner="$(rlocation "$TEST_WORKSPACE/test/internal/build_proxy_launcher/configured_runner-runner.sh")"
+readonly configured_runner
 test_root="$(mktemp -d "$TEST_TMPDIR/build-proxy-launcher.XXXXXX")"
 readonly test_root
 readonly project="$test_root/App.xcodeproj"
@@ -39,6 +41,10 @@ readonly native_service="$xcode_application/Contents/SharedFrameworks/SwiftBuild
 readonly xcode_executable="$xcode_application/Contents/MacOS/Xcode"
 readonly xcodebuild_executable="$xcode_application/Contents/Developer/usr/bin/xcodebuild"
 readonly capture="$test_root/capture"
+
+project_identity_flag="$(grep -F -- '--build_proxy_project_identity ' "$configured_runner")"
+readonly project_identity_flag
+[[ "$project_identity_flag" == *'//generator/test/internal/build_proxy_launcher/configured_runner:configured_runner' ]]
 
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then
