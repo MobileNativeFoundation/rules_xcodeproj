@@ -62,12 +62,28 @@ apple_universal_binary(
 swift_library(
     name = "pbxnativetargets_tests.library",
     testonly = True,
-    srcs = glob(["test/**/*.swift"]),
+    srcs = glob(
+        ["test/**/*.swift"],
+        exclude = ["test/Generator/BuildProxyManifestEntryTests.swift"],
+    ),
     module_name = "pbxnativetargets_tests",
     deps = [
         ":pbxnativetargets.library",
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
     ],
+)
+
+swift_library(
+    name = "build_proxy_manifest_tests.library",
+    testonly = True,
+    srcs = ["test/Generator/BuildProxyManifestEntryTests.swift"],
+    deps = [":pbxnativetargets.library"],
+)
+
+macos_unit_test(
+    name = "build_proxy_manifest_tests",
+    minimum_os_version = "13.0",
+    deps = [":build_proxy_manifest_tests.library"],
 )
 
 macos_unit_test(

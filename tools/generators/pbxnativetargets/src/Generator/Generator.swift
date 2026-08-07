@@ -41,6 +41,14 @@ struct Generator {
                     .formUnion(targetArguments.xcodeConfigurations)
             }
 
+        let buildProxyManifestEntries = try BuildProxyManifestEntry.calculate(
+            consolidationMapEntries: consolidationMapEntries,
+            targetArguments: targetArguments,
+            topLevelTargetAttributes: topLevelTargetAttributes
+        )
+        let buildProxyManifestEntriesData = try BuildProxyManifestEntry
+            .encodeJSONLines(buildProxyManifestEntries)
+
         guard
             let shard = UInt8(arguments.consolidationMap.lastPathComponent)
         else {
@@ -86,9 +94,16 @@ correctly
                 to: arguments.buildFileSubIdentifiersOutputPath
             )
         }
+        let writeBuildProxyManifestEntriesTask = Task {
+            try buildProxyManifestEntriesData.write(
+                to: arguments.buildProxyManifestEntriesOutputPath,
+                options: .atomic
+            )
+        }
 
         // Wait for all of the writes to complete
         try await writeTargetsTask.value
         try await writeBuildFileSubIdentifiersTask.value
+        try await writeBuildProxyManifestEntriesTask.value
     }
 }
