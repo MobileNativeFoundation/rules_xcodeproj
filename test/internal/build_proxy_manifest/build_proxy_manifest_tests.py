@@ -5,18 +5,26 @@ from xcodeproj.internal import build_proxy_manifest_lib
 
 
 def _entry(configuration="Debug", arch="arm64"):
+    target_id = f"@@//app:app {configuration}-{arch}"
     return {
         "action": "build",
         "bazelLabel": "@@//app:app",
         "configuration": configuration,
-        "outputGroup": f"bp @@//app:app {configuration}-{arch}",
+        "indexOutputGroups": [f"bc {target_id}", f"bi {target_id}"],
+        "outputGroup": f"bp {target_id}",
+        "previewOutputGroups": [
+            f"bc {target_id}",
+            f"bp {target_id}",
+            f"bl {target_id}",
+        ],
         "product": {
             "basename": "App.app",
+            "materialization": "copy_tree",
             "name": "App",
             "path": "bazel-out/App.app",
             "type": "com.apple.product-type.application",
         },
-        "targetID": f"@@//app:app {configuration}-{arch}",
+        "targetID": target_id,
         "variant": {
             "arch": arch,
             "minimumOSVersion": "18.0",
@@ -39,17 +47,22 @@ class BuildProxyManifestTests(unittest.TestCase):
             [("a", 1, release), ("b", 1, debug)],
             bazel_path="/usr/local/bin/bazel",
             generator_label="@@//app:project",
+            project_container="App.xcodeproj",
         )
         reverse = build_proxy_manifest_lib.assemble(
             [("b", 1, debug), ("a", 1, release)],
             bazel_path="/usr/local/bin/bazel",
             generator_label="@@//app:project",
+            project_container="App.xcodeproj",
         )
 
         self.assertEqual(forward, reverse)
         manifest = json.loads(forward)
-        self.assertEqual(manifest["schemaVersion"], 1)
-        self.assertEqual(manifest["capabilities"], {"actions": ["build"]})
+        self.assertEqual(manifest["schemaVersion"], 2)
+        self.assertEqual(
+            manifest["capabilities"],
+            {"actions": ["build", "clean", "indexbuild", "preview"]},
+        )
         self.assertEqual(
             manifest["ignoredXcodeTargetGUIDs"],
             ["FF0100000000000000000001"],
@@ -57,10 +70,17 @@ class BuildProxyManifestTests(unittest.TestCase):
         self.assertEqual(
             manifest["invocation"],
             {
+                "adapterPath": "rules_xcodeproj/bazel/generate_bazel_dependencies.sh",
                 "bazelPath": "/usr/local/bin/bazel",
                 "bazelrcPath": "rules_xcodeproj/bazel/xcodeproj.bazelrc",
+                "environmentKeys": build_proxy_manifest_lib.INVOCATION_ENVIRONMENT_KEYS,
                 "generatorLabel": "@@//app:project",
+                "receiptSchemaVersion": 1,
             },
+        )
+        self.assertEqual(
+            manifest["project"],
+            {"containerName": "App.xcodeproj", "identity": "@@//app:project"},
         )
         self.assertEqual(
             [entry["configuration"] for entry in manifest["targets"]],
@@ -79,6 +99,7 @@ class BuildProxyManifestTests(unittest.TestCase):
                 [("fragment", 1, _line(entry))],
                 bazel_path="bazel",
                 generator_label="@@//app:project",
+                project_container="App.xcodeproj",
             )
 
     def test_unsupported_action_is_rejected(self):
@@ -93,6 +114,7 @@ class BuildProxyManifestTests(unittest.TestCase):
                 [("fragment", 1, _line(entry))],
                 bazel_path="bazel",
                 generator_label="@@//app:project",
+                project_container="App.xcodeproj",
             )
 
     def test_duplicate_mapping_is_rejected(self):
@@ -106,6 +128,7 @@ class BuildProxyManifestTests(unittest.TestCase):
                 [("fragment", 1, entry), ("fragment", 2, entry)],
                 bazel_path="bazel",
                 generator_label="@@//app:project",
+                project_container="App.xcodeproj",
             )
 
     def test_missing_generator_label_is_rejected(self):
@@ -117,6 +140,7 @@ class BuildProxyManifestTests(unittest.TestCase):
                 [],
                 bazel_path="bazel",
                 generator_label="",
+                project_container="App.xcodeproj",
             )
 
     def test_missing_bazel_path_is_rejected(self):
@@ -128,6 +152,34 @@ class BuildProxyManifestTests(unittest.TestCase):
                 [],
                 bazel_path="",
                 generator_label="@@//app:project",
+                project_container="App.xcodeproj",
+            )
+
+    def test_product_path_traversal_is_rejected(self):
+        entry = _entry()
+        entry["product"]["path"] = "bazel-out/../foreign/App.app"
+
+        with self.assertRaisesRegex(
+            build_proxy_manifest_lib.ManifestError,
+            "product path must not contain traversal",
+        ):
+            build_proxy_manifest_lib.assemble(
+                [("fragment", 1, _line(entry))],
+                bazel_path="bazel",
+                generator_label="@@//app:project",
+                project_container="App.xcodeproj",
+            )
+
+    def test_project_container_must_be_a_xcodeproj_basename(self):
+        with self.assertRaisesRegex(
+            build_proxy_manifest_lib.ManifestError,
+            "project container must be a basename",
+        ):
+            build_proxy_manifest_lib.assemble(
+                [],
+                bazel_path="bazel",
+                generator_label="@@//app:project",
+                project_container="../App.xcodeproj",
             )
 
 

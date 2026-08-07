@@ -7,8 +7,9 @@ def write_build_proxy_manifest(
         entries_files,
         generator_label,
         name,
+        project_container,
         tool):
-    """Assembles deterministic shard entries into the v1 proxy manifest.
+    """Assembles deterministic shard entries into the v2 proxy manifest.
 
     Args:
         actions: `ctx.actions`.
@@ -16,6 +17,7 @@ def write_build_proxy_manifest(
         entries_files: JSON Lines manifest fragments from target shards.
         generator_label: The `xcodeproj` generator label the proxy must build.
         name: The generator target name.
+        project_container: Basename of the generated `.xcodeproj` bundle.
         tool: The executable that validates and assembles the manifest.
 
     Returns:
@@ -29,6 +31,7 @@ def write_build_proxy_manifest(
     args.add(output)
     args.add(str(generator_label))
     args.add(bazel_path)
+    args.add(project_container)
     args.add_all(entries_files)
 
     actions.run(
