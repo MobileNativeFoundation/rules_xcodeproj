@@ -160,6 +160,14 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
     "--build_event_json_file=$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
   )
 fi
+# The build service gives every operation its own private path. Keep execution metadata attached
+# to the build itself; the follow-up aquery is configuration evidence and must not replace it.
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH:-}" ]]; then
+  build_pre_config_flags+=(
+    "--execution_log_json_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"
+    "--noexecution_log_sort"
+  )
+fi
 
 apply_sanitizers=1
 if [ "$ACTION" == "indexbuild" ]; then
@@ -229,6 +237,11 @@ readonly build_pre_config_flags
 # shellcheck disable=SC1091
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
+# Bazel has successfully returned; make its command/cache metadata private before parsing it.
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH:-}" ]]; then
+  chmod 600 "$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"
+fi
+
 # A successful Bazel build can execute zero product actions when every output is already current.
 # BEP remains the execution source of truth; this private aquery snapshot is bounded to the exact
 # target labels requested by the selected build service and lets it distinguish configured product
@@ -236,7 +249,12 @@ source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   action_graph_pre_config_flags=()
   for option in "${build_pre_config_flags[@]}"; do
-    if [[ "$option" != --build_event_publish_all_actions && "$option" != --build_event_json_file=* ]]; then
+    if [[
+      "$option" != --build_event_publish_all_actions &&
+      "$option" != --build_event_json_file=* &&
+      "$option" != --execution_log_json_file=* &&
+      "$option" != --noexecution_log_sort
+    ]]; then
       action_graph_pre_config_flags+=("$option")
     fi
   done
@@ -257,7 +275,9 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
     "--config=$config" \
     --color=no \
     --output=jsonproto \
-    --noinclude_commandline \
+    --include_commandline \
+    --noinclude_param_files \
+    --noinclude_file_write_contents \
     --include_artifacts \
     --consistent_labels \
     "--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH" \

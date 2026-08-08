@@ -186,7 +186,11 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT:-}" ]]; then
     receipt_args+=("--bazelrc=${bazelrc#--bazelrc=}")
   done
   for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
-    if [[ "$option" != --build_event_json_file=* ]]; then
+    if [[
+      "$option" != --build_event_json_file=* &&
+      "$option" != --execution_log_json_file=* &&
+      "$option" != --noexecution_log_sort
+    ]]; then
       receipt_args+=("--command-option=$option")
     fi
   done
