@@ -13,6 +13,13 @@ _TEST_FILES = [
     "write_build_proxy_invocation_receipt_tests.py",
 ]
 
+filegroup(
+    name = "actions_bzl_test_data",
+    testonly = True,
+    srcs = ["actions.bzl"],
+    visibility = ["//test/internal/build_proxy_launcher:__pkg__"],
+)
+
 py_library(
     name = "write_build_proxy_invocation_receipt_lib",
     srcs = ["write_build_proxy_invocation_receipt.py"],

@@ -31,6 +31,8 @@ launcher_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/build
 readonly launcher_source
 adapter_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/generate_bazel_dependencies.sh")"
 readonly adapter_source
+adapter_expansion_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/bazel_integration_files/actions.bzl")"
+readonly adapter_expansion_source
 bazel_build_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/bazel_build.sh")"
 readonly bazel_build_source
 configured_runner="$(rlocation "$TEST_WORKSPACE/test/internal/build_proxy_launcher/configured_runner-runner.sh")"
@@ -49,6 +51,11 @@ readonly capture="$test_root/capture"
 project_identity_flag="$(grep -F -- '--build_proxy_project_identity ' "$configured_runner")"
 readonly project_identity_flag
 [[ "$project_identity_flag" == *'//generator/test/internal/build_proxy_launcher/configured_runner:configured_runner' ]]
+
+# The installed adapter must contain the configured generator label, never its template token.
+# Keep this guard next to the template assertion below so adding a placeholder requires wiring its
+# Starlark expansion in the same review.
+[[ "$(grep -Fc -- '"%generator_label%": str(generator_label)' "$adapter_expansion_source")" == 1 ]]
 
 proxy_bep_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-/,/^fi$/p' "$adapter_source")"
 readonly proxy_bep_block

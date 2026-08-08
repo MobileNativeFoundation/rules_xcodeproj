@@ -66,6 +66,7 @@ def write_generate_bazel_dependencies_script(
         output = output,
         is_executable = True,
         substitutions = {
+            "%generator_label%": str(generator_label),
             "%swiftcopt%": str(Label("@build_bazel_rules_swift//swift:copt")),
         },
     )
