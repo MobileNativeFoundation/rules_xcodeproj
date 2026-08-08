@@ -262,16 +262,20 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   if ((${#labels[@]} > 1)); then
     action_graph_query="deps(set(${labels[*]}))"
   fi
-  action_graph_toolchain_flags=()
-  if [[ -n "${toolchain:-}" ]]; then
-    action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")
+  # Collect optional arrays before expansion. macOS Bash 3.2 treats "${empty[@]}" as unbound
+  # under `set -u`, even when the array was explicitly initialized.
+  action_graph_flags=("${base_pre_config_flags[@]}")
+  if ((${#action_graph_pre_config_flags[@]})); then
+    action_graph_flags+=("${action_graph_pre_config_flags[@]}")
   fi
+  if [[ -n "${toolchain:-}" ]]; then
+    action_graph_flags+=("--action_env=TOOLCHAINS=$toolchain")
+  fi
+  readonly action_graph_flags
   # Both arrays are assigned by the generated `bazel_build.sh` sourced above.
   # shellcheck disable=SC2154
   "${bazel_cmd[@]}" aquery \
-    "${base_pre_config_flags[@]}" \
-    "${action_graph_pre_config_flags[@]}" \
-    "${action_graph_toolchain_flags[@]}" \
+    "${action_graph_flags[@]}" \
     "--config=$config" \
     --color=no \
     --output=jsonproto \

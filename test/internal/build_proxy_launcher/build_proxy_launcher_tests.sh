@@ -163,7 +163,7 @@ for expected_action_graph_flag in \
   'aquery' \
   'action_graph_query="deps(${labels[0]})"' \
   'action_graph_query="deps(set(${labels[*]}))"' \
-  'action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
+  'action_graph_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
   '"--config=$config"' \
   '--color=no' \
   '--output=jsonproto' \
@@ -183,6 +183,25 @@ done
 [[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"' <<< "$proxy_action_graph_block")" == 1 ]]
+
+proxy_action_graph_flags_block="$(sed -n '/# Collect optional arrays before expansion/,/^  readonly action_graph_flags$/p' "$adapter_source")"
+readonly proxy_action_graph_flags_block
+(
+  set -u
+  base_pre_config_flags=(--base-flag)
+  action_graph_pre_config_flags=()
+  toolchain=
+  eval "$proxy_action_graph_flags_block"
+  [[ "${action_graph_flags[*]}" == "--base-flag" ]]
+)
+(
+  set -u
+  base_pre_config_flags=(--base-flag)
+  action_graph_pre_config_flags=(--configured-flag)
+  toolchain=com.example.toolchain
+  eval "$proxy_action_graph_flags_block"
+  [[ "${action_graph_flags[*]}" == "--base-flag --configured-flag --action_env=TOOLCHAINS=com.example.toolchain" ]]
+)
 
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then
