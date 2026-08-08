@@ -243,9 +243,10 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH:-}" ]]; then
 fi
 
 # A successful Bazel build can execute zero product actions when every output is already current.
-# BEP remains the execution source of truth; this private aquery snapshot is bounded to the exact
-# target labels requested by the selected build service and lets it distinguish configured product
-# prerequisites that were up-to-date from actions that actually executed.
+# BEP remains the execution source of truth. Query the same generated target and exact output groups
+# as the successful build so split-transition products keep the configuration identity recorded in
+# the project manifest. Querying the user label directly can select only its top-level configuration
+# in a fresh output base and omit the requested transitioned product.
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   action_graph_pre_config_flags=()
   for option in "${build_pre_config_flags[@]}"; do
@@ -258,10 +259,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
       action_graph_pre_config_flags+=("$option")
     fi
   done
-  action_graph_query="deps(${labels[0]})"
-  if ((${#labels[@]} > 1)); then
-    action_graph_query="deps(set(${labels[*]}))"
-  fi
+  action_graph_query="deps(%generator_label%)"
   # Collect optional arrays before expansion. macOS Bash 3.2 treats "${empty[@]}" as unbound
   # under `set -u`, even when the array was explicitly initialized.
   action_graph_flags=("${base_pre_config_flags[@]}")
@@ -277,6 +275,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   "${bazel_cmd[@]}" aquery \
     "${action_graph_flags[@]}" \
     "--config=$config" \
+    "$output_groups_flag" \
     --color=no \
     --output=jsonproto \
     --include_commandline \

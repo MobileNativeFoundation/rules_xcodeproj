@@ -161,10 +161,10 @@ readonly proxy_action_graph_block
 # shellcheck disable=SC2016
 for expected_action_graph_flag in \
   'aquery' \
-  'action_graph_query="deps(${labels[0]})"' \
-  'action_graph_query="deps(set(${labels[*]}))"' \
+  'action_graph_query="deps(%generator_label%)"' \
   'action_graph_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
   '"--config=$config"' \
+  '"$output_groups_flag"' \
   '--color=no' \
   '--output=jsonproto' \
   '--include_commandline' \
@@ -175,6 +175,10 @@ for expected_action_graph_flag in \
   '--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH'; do
   [[ "$(grep -Fc -- "$expected_action_graph_flag" <<< "$proxy_action_graph_block")" == 1 ]]
 done
+# The follow-up aquery must not re-resolve user labels in a potentially different top-level
+# configuration from the generated output-group target that the successful build used.
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- 'action_graph_query="deps(${labels[0]})"' <<< "$proxy_action_graph_block")" == 0 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --build_event_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
