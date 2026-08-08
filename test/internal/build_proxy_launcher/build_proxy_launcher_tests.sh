@@ -29,6 +29,8 @@ installer="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/install_bui
 readonly installer
 launcher_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/build_proxy_launcher.sh")"
 readonly launcher_source
+adapter_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/generate_bazel_dependencies.sh")"
+readonly adapter_source
 configured_runner="$(rlocation "$TEST_WORKSPACE/test/internal/build_proxy_launcher/configured_runner-runner.sh")"
 readonly configured_runner
 test_root="$(mktemp -d "$TEST_TMPDIR/build-proxy-launcher.XXXXXX")"
@@ -45,6 +47,13 @@ readonly capture="$test_root/capture"
 project_identity_flag="$(grep -F -- '--build_proxy_project_identity ' "$configured_runner")"
 readonly project_identity_flag
 [[ "$project_identity_flag" == *'//generator/test/internal/build_proxy_launcher/configured_runner:configured_runner' ]]
+
+proxy_bep_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-/,/^fi$/p' "$adapter_source")"
+readonly proxy_bep_block
+[[ "$(grep -Fc -- '--build_event_publish_all_actions' <<< "$proxy_bep_block")" == 1 ]]
+expected_bep_flag="--build_event_json_file=\$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
+readonly expected_bep_flag
+[[ "$(grep -Fc -- "$expected_bep_flag" <<< "$proxy_bep_block")" == 1 ]]
 
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then

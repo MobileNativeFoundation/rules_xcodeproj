@@ -156,6 +156,7 @@ build_pre_config_flags=(
 )
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
   build_pre_config_flags+=(
+    "--build_event_publish_all_actions"
     "--build_event_json_file=$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
   )
 fi
