@@ -164,8 +164,7 @@ fi
 # to the build itself; the follow-up aquery is configuration evidence and must not replace it.
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH:-}" ]]; then
   build_pre_config_flags+=(
-    "--execution_log_json_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"
-    "--noexecution_log_sort"
+    "--execution_log_compact_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"
   )
 fi
 
@@ -249,23 +248,20 @@ fi
 # in a fresh output base and omit the requested transitioned product.
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   action_graph_pre_config_flags=()
-  for option in "${build_pre_config_flags[@]}"; do
+  for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
     if [[
       "$option" != --build_event_publish_all_actions &&
       "$option" != --build_event_json_file=* &&
+      "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
+      "$option" != --execution_log_binary_file=* &&
       "$option" != --noexecution_log_sort
     ]]; then
       action_graph_pre_config_flags+=("$option")
     fi
   done
   action_graph_query="deps(%generator_label%)"
-  # Collect optional arrays before expansion. macOS Bash 3.2 treats "${empty[@]}" as unbound
-  # under `set -u`, even when the array was explicitly initialized.
-  action_graph_flags=("${base_pre_config_flags[@]}")
-  if ((${#action_graph_pre_config_flags[@]})); then
-    action_graph_flags+=("${action_graph_pre_config_flags[@]}")
-  fi
+  action_graph_flags=("${action_graph_pre_config_flags[@]}")
   if [[ -n "${toolchain:-}" ]]; then
     action_graph_flags+=("--action_env=TOOLCHAINS=$toolchain")
   fi
