@@ -88,15 +88,22 @@ done
 
 readonly build_proxy_bazel_real="${BAZEL_REAL:-}"
 source "$BAZEL_INTEGRATION_DIR/bazel_env.sh"
-if [[
-  -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" &&
-  -n "$build_proxy_bazel_real"
-]]; then
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" ]]; then
   build_proxy_envs=()
   for item in "${envs[@]}"; do
-    [[ "$item" != BAZEL_REAL=* ]] && build_proxy_envs+=("$item")
+    [[ "$item" != BUILD_WORKSPACE_DIRECTORY=* ]] || continue
+    if [[ -n "$build_proxy_bazel_real" && "$item" == BAZEL_REAL=* ]]; then
+      continue
+    fi
+    build_proxy_envs+=("$item")
   done
-  envs=("${build_proxy_envs[@]}" "BAZEL_REAL=$build_proxy_bazel_real")
+  envs=("${build_proxy_envs[@]}")
+  if [[ -n "$build_proxy_bazel_real" ]]; then
+    envs+=("BAZEL_REAL=$build_proxy_bazel_real")
+  fi
+  # Workspace wrappers use this standard Bazel marker to distinguish an Xcode inner invocation
+  # from a developer asking the wrapper to regenerate its outer rules release.
+  envs+=("BUILD_WORKSPACE_DIRECTORY=$PWD")
 fi
 
 bazel_cmd=(

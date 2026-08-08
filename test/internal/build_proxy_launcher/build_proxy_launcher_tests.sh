@@ -106,6 +106,35 @@ eval "$proxy_receipt_command_options_block"
 [[ "${receipt_args[0]}" == "--command-option=--base-build-flag" ]]
 [[ "${receipt_args[1]}" == "--command-option=--kept-build-flag" ]]
 
+# A proxied adapter is already the inner Xcode invocation. Preserve the generated hermetic Bazel
+# executable (or an explicitly inherited one), and tell workspace wrappers not to regenerate their
+# outer rules release inside Xcode's restricted PATH.
+proxy_bazel_environment_block="$(sed -n '/readonly build_proxy_bazel_real=/,/^fi$/p' "$bazel_build_source")"
+readonly proxy_bazel_environment_block
+readonly synthetic_integration="$test_root/synthetic-integration"
+mkdir -p "$synthetic_integration"
+cat > "$synthetic_integration/bazel_env.sh" <<'EOF'
+envs=(LANG=C BAZEL_REAL=/generated/bazel)
+EOF
+BAZEL_INTEGRATION_DIR="$synthetic_integration"
+SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR="$test_root/request"
+(
+  unset BAZEL_REAL
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/generated/bazel BUILD_WORKSPACE_DIRECTORY=$PWD" ]]
+)
+(
+  BAZEL_REAL=/inherited/bazel
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/inherited/bazel BUILD_WORKSPACE_DIRECTORY=$PWD" ]]
+)
+(
+  unset BAZEL_REAL SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/generated/bazel" ]]
+)
+unset SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR
+
 # The build must finish before the adapter makes the exact expected execution-log path private.
 proxy_execution_log_permissions_block="$(sed -n '/# Bazel has successfully returned/,/^fi$/p' "$adapter_source")"
 readonly proxy_execution_log_permissions_block
