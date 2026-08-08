@@ -10,10 +10,10 @@ py_library(
 py_binary(
     name = "build_proxy_manifest",
     srcs = ["build_proxy_manifest.py"],
-    deps = [":build_proxy_manifest_lib"],
     # The xcodeproj rule is instantiated from a generated extension repository,
     # so its implicit executable tool must be visible across repository bounds.
     visibility = ["//visibility:public"],
+    deps = [":build_proxy_manifest_lib"],
 )
 
 bzl_library(
