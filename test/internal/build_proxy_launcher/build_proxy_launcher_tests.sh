@@ -66,10 +66,11 @@ readonly expected_bep_flag
 
 proxy_execution_log_flags_block="$(sed -n '/# The build service gives every operation/,/^fi$/p' "$adapter_source")"
 readonly proxy_execution_log_flags_block
-# This is a literal source fragment whose dollar expression must not expand in this test shell.
+# These are literal source fragments whose dollar expressions must not expand in this test shell.
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '--execution_log_compact_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH' <<< "$proxy_execution_log_flags_block")" == 1 ]]
-[[ "$(grep -Fc -- '--execution_log_json_file=' <<< "$proxy_execution_log_flags_block")" == 0 ]]
+[[ "$(grep -Fc -- '"--execution_log_binary_file="' <<< "$proxy_execution_log_flags_block")" == 1 ]]
+[[ "$(grep -Fc -- '"--execution_log_json_file="' <<< "$proxy_execution_log_flags_block")" == 1 ]]
 [[ "$(grep -Fc -- '--noexecution_log_sort' <<< "$proxy_execution_log_flags_block")" == 0 ]]
 
 # With no proxy path, the adapter must pass exactly the pre-existing build flags to Bazel.
@@ -82,15 +83,17 @@ eval "$proxy_execution_log_flags_block"
 [[ "${build_pre_config_flags[0]}" == "--existing-build-flag" ]]
 [[ "${build_pre_config_flags[1]}" == "--define=ordinary=value with spaces" ]]
 
-# With a proxy path, the compact execution-log flag is appended to the actual build flags verbatim.
+# With a proxy path, conflicting formats are cleared and the private compact path wins verbatim.
 build_pre_config_flags=(--existing-build-flag)
 readonly expected_execution_log_path="$test_root/execution log.compact"
 SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH="$expected_execution_log_path"
 export SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
 eval "$proxy_execution_log_flags_block"
-[[ "${#build_pre_config_flags[@]}" == 2 ]]
+[[ "${#build_pre_config_flags[@]}" == 4 ]]
 [[ "${build_pre_config_flags[0]}" == "--existing-build-flag" ]]
-[[ "${build_pre_config_flags[1]}" == "--execution_log_compact_file=$expected_execution_log_path" ]]
+[[ "${build_pre_config_flags[1]}" == "--execution_log_binary_file=" ]]
+[[ "${build_pre_config_flags[2]}" == "--execution_log_compact_file=$expected_execution_log_path" ]]
+[[ "${build_pre_config_flags[3]}" == "--execution_log_json_file=" ]]
 unset SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
 
 # Execution-log paths and sorting are proxy-owned evidence plumbing, not invocation policy. Keep
@@ -204,6 +207,15 @@ done
 [[ "$(grep -Fc -- '"$option" != --execution_log_binary_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_action_graph_block")" == 1 ]]
+# Command-line clears come after the named config, so execution-log settings inherited directly
+# from common/build/config bazelrc sections cannot leak into the metadata-only aquery.
+for cleared_execution_log_flag in \
+  '--execution_log_binary_file=' \
+  '--execution_log_compact_file=' \
+  '--execution_log_json_file='; do
+  expected_clear_line="    $cleared_execution_log_flag \\"
+  [[ "$(grep -Fxc -- "$expected_clear_line" <<< "$proxy_action_graph_block")" == 1 ]]
+done
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"' <<< "$proxy_action_graph_block")" == 1 ]]
 

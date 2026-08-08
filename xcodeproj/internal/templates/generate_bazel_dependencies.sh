@@ -164,7 +164,9 @@ fi
 # to the build itself; the follow-up aquery is configuration evidence and must not replace it.
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH:-}" ]]; then
   build_pre_config_flags+=(
+    "--execution_log_binary_file="
     "--execution_log_compact_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"
+    "--execution_log_json_file="
   )
 fi
 
@@ -271,6 +273,9 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
   "${bazel_cmd[@]}" aquery \
     "${action_graph_flags[@]}" \
     "--config=$config" \
+    --execution_log_binary_file= \
+    --execution_log_compact_file= \
+    --execution_log_json_file= \
     "$output_groups_flag" \
     --color=no \
     --output=jsonproto \
