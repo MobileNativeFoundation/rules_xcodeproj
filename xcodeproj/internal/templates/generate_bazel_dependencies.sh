@@ -226,7 +226,44 @@ fi
 readonly build_pre_config_flags
 
 # `bazel_build.sh` sets `output_path`
+# shellcheck disable=SC1091
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
+
+# A successful Bazel build can execute zero product actions when every output is already current.
+# BEP remains the execution source of truth; this private aquery snapshot is bounded to the exact
+# target labels requested by the selected build service and lets it distinguish configured product
+# prerequisites that were up-to-date from actions that actually executed.
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
+  action_graph_pre_config_flags=()
+  for option in "${build_pre_config_flags[@]}"; do
+    if [[ "$option" != --build_event_publish_all_actions && "$option" != --build_event_json_file=* ]]; then
+      action_graph_pre_config_flags+=("$option")
+    fi
+  done
+  action_graph_query="deps(${labels[0]})"
+  if ((${#labels[@]} > 1)); then
+    action_graph_query="deps(set(${labels[*]}))"
+  fi
+  action_graph_toolchain_flags=()
+  if [[ -n "${toolchain:-}" ]]; then
+    action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")
+  fi
+  # Both arrays are assigned by the generated `bazel_build.sh` sourced above.
+  # shellcheck disable=SC2154
+  "${bazel_cmd[@]}" aquery \
+    "${base_pre_config_flags[@]}" \
+    "${action_graph_pre_config_flags[@]}" \
+    "${action_graph_toolchain_flags[@]}" \
+    "--config=$config" \
+    --color=no \
+    --output=jsonproto \
+    --noinclude_commandline \
+    --include_artifacts \
+    --consistent_labels \
+    "--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH" \
+    "$action_graph_query"
+  chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"
+fi
 
 # Async actions
 #

@@ -55,6 +55,29 @@ expected_bep_flag="--build_event_json_file=\$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
 readonly expected_bep_flag
 [[ "$(grep -Fc -- "$expected_bep_flag" <<< "$proxy_bep_block")" == 1 ]]
 
+proxy_action_graph_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-/,/^fi$/p' "$adapter_source")"
+readonly proxy_action_graph_block
+# These are literal source fragments whose dollar expressions must not expand in this test shell.
+# shellcheck disable=SC2016
+for expected_action_graph_flag in \
+  'aquery' \
+  'action_graph_query="deps(${labels[0]})"' \
+  'action_graph_query="deps(set(${labels[*]}))"' \
+  'action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
+  '"--config=$config"' \
+  '--color=no' \
+  '--output=jsonproto' \
+  '--noinclude_commandline' \
+  '--include_artifacts' \
+  '--consistent_labels' \
+  '--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH'; do
+  [[ "$(grep -Fc -- "$expected_action_graph_flag" <<< "$proxy_action_graph_block")" == 1 ]]
+done
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --build_event_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"' <<< "$proxy_action_graph_block")" == 1 ]]
+
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then
     sha256sum -- "$1" | awk '{print $1}'
