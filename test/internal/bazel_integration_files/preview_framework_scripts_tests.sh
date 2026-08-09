@@ -117,8 +117,8 @@ run_generator_mode unset UNSET UNSET bp _dbg_build
 run_generator_mode ordinary NO NO bp _dbg_build
 run_generator_mode coverage NO NO bp dbg_coverage YES
 run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
-run_generator_mode xojit NO YES bf,bp,bl dbg_swiftuipreviews
-run_generator_mode xojit-coverage NO YES bf,bp,bl dbg_swiftuipreviews YES
+run_generator_mode xojit NO YES bf,bl dbg_swiftuipreviews
+run_generator_mode xojit-coverage NO YES bf,bl dbg_swiftuipreviews YES
 run_generator_mode both YES YES bc,bf,bp,bl dbg_swiftuipreviews
 
 readonly fake_integration_dir="$test_root/copy-integration"
