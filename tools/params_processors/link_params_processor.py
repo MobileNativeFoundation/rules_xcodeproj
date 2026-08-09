@@ -28,6 +28,65 @@ _LD_SKIP_OPTS = {
     "OSO_PREFIX_MAP_PWD": 1,
 }
 
+_WL_PATH_OPTS = {
+    "-add_ast_path",
+    "-alias_list",
+    "-assert_weak_library",
+    "-bundle_loader",
+    "-delay_library",
+    "-dirty_data_list",
+    "-dtrace",
+    "-exported_symbols_list",
+    "-filelist",
+    "-force_load",
+    "-interposable_list",
+    "-load_hidden",
+    "-lto_library",
+    "-merge_library",
+    "-needed_library",
+    "-non_global_symbols_no_strip_list",
+    "-non_global_symbols_strip_list",
+    "-order_file",
+    "-reexport_library",
+    "-reexported_symbols_list",
+    "-unexported_symbols_list",
+    "-upward_library",
+    "-weak_library",
+}
+
+_WL_POSITIONAL_PATH_OPTS = {
+    "-filelist": (1, 2),
+    "-sectcreate": (3,),
+    "-sectorder": (3,),
+}
+
+_SPLIT_PATH_OPTS = _WL_PATH_OPTS | {
+    "-F",
+    "-L",
+    "-iframework",
+    "-rpath",
+}
+
+_SPLIT_NON_PATH_OPTS = {
+    "-allowable_client",
+    "-compatibility_version",
+    "-current_version",
+    "-dylib_compatibility_version",
+    "-dylib_current_version",
+    "-framework",
+    "-install_name",
+    "-sub_umbrella",
+    "-umbrella",
+    "-undefined",
+    "-weak_framework",
+}
+
+_DIRECT_INPUT_SUFFIXES = (
+    ".a",
+    ".dylib",
+    ".tbd",
+)
+
 
 def _parse_args(args_files: List[str]) -> List[str]:
     raw_args = []
@@ -78,6 +137,56 @@ def _quote_if_needed(opt: str) -> str:
     return opt
 
 
+def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
+    """Makes a relative linker input readable by Xcode's Preview analyzer.
+
+    Relative inputs are relative to the Bazel execution root, which
+    `-working-directory` covers for the real link. The Preview analyzer
+    re-parses the rendered invocation without honoring that working directory,
+    so path-like inputs must carry their execution-root anchor explicitly.
+
+    The anchored form stays unquoted intentionally. Xcode's analyzer reads the
+    build-setting expression verbatim and does not strip shell-style quotes.
+    """
+    def _anchor_path(path: str, *, allow_bare: bool = False) -> str:
+        if (not path.startswith(("-", "@", "/", "'", "$")) and
+            (allow_bare or "/" in path or path.endswith(_DIRECT_INPUT_SUFFIXES))):
+            return "$(PROJECT_DIR)/" + path
+        return path
+
+    anchored = _anchor_path(opt, allow_bare=path_context)
+    if anchored != opt:
+        return anchored
+
+    for prefix in ("-F", "-L"):
+        if opt.startswith(prefix) and len(opt) > len(prefix):
+            path = opt[len(prefix):]
+            anchored_path = _anchor_path(path, allow_bare=True)
+            if anchored_path != path:
+                return prefix + anchored_path
+
+    if opt.startswith("-Wl,"):
+        values = opt.split(",")
+        for index, value in enumerate(values[:-1]):
+            if value in _WL_PATH_OPTS:
+                values[index + 1] = _anchor_path(
+                    values[index + 1],
+                    allow_bare=True,
+                )
+            for offset in _WL_POSITIONAL_PATH_OPTS.get(value, ()):
+                path_index = index + offset
+                if path_index < len(values):
+                    values[path_index] = _anchor_path(
+                        values[path_index],
+                        allow_bare=True,
+                    )
+        anchored = ",".join(values)
+        if anchored != opt:
+            return anchored
+
+    return _quote_if_needed(opt)
+
+
 def _process_linkopts(
         linkopts: List[str],
         is_framework: bool,
@@ -88,7 +197,7 @@ def _process_linkopts(
             paths = fp.read().splitlines()
 
         return [
-            _quote_if_needed(path)
+            _anchor_to_execution_root(path)
             for path in paths
             if not path in generated_product_paths and not path.endswith(".o")
         ]
@@ -112,16 +221,12 @@ def _process_linkopts(
                 raise ValueError("Malformed -object_path_lto linker group")
 
     processed_linkopts = []
-    def _quote_and_append_processed_linkopt(opt):
-        processed_linkopts.append(_quote_if_needed(opt))
-
     last_opt = None
-    def _process_linkopt(opt):
+    def _process_linkopt(opt, index):
         if opt == "-filelist":
             return
         if last_opt == "-filelist":
-            # Not calling `_quote_and_append_processed_linkopt`, because
-            # `_process_filelist` applies quoting if needed
+            # `_process_filelist` anchors and quotes each entry as needed.
             processed_linkopts.extend(_process_filelist(opt))
             return
 
@@ -165,7 +270,22 @@ def _process_linkopts(
         # Use Xcode set `SDKROOT`
         opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
-        _quote_and_append_processed_linkopt(opt)
+        previous_option = None
+        previous_index = index - 1
+        if previous_index >= 0 and linkopts[previous_index] == "-Xlinker":
+            previous_index -= 1
+        if (previous_index >= 0 and
+            linkopts[previous_index].startswith("-") and
+            linkopts[previous_index] != "-Xlinker"):
+            previous_option = linkopts[previous_index]
+
+        if previous_option in _SPLIT_NON_PATH_OPTS:
+            processed_linkopts.append(_quote_if_needed(opt))
+        else:
+            processed_linkopts.append(_anchor_to_execution_root(
+                opt,
+                path_context=previous_option in _SPLIT_PATH_OPTS,
+            ))
 
     skip_next = 0
     for index, linkopt in enumerate(linkopts):
@@ -192,7 +312,7 @@ def _process_linkopts(
             skip_next -= 1
             continue
 
-        _process_linkopt(linkopt)
+        _process_linkopt(linkopt, index)
         last_opt = linkopt
 
     return processed_linkopts

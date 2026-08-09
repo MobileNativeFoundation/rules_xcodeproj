@@ -129,6 +129,23 @@ _FLAGS = struct(
     xcode_configurations = "--xcode-configurations",
 )
 
+def _top_level_target_attributes_args(*, xcode_target, unit_test_host):
+    # Preview link params can also belong to a generated static library target,
+    # which has no top-level product path.
+    if (not xcode_target.outputs.product_path and
+        not xcode_target.link_params):
+        return []
+
+    return [
+        xcode_target.id,
+        xcode_target.bundle_id or EMPTY_STRING,
+        xcode_target.outputs.product_path or EMPTY_STRING,
+        xcode_target.link_params or EMPTY_STRING,
+        xcode_target.product.executable_name or EMPTY_STRING,
+        xcode_target.compile_target_ids,
+        unit_test_host,
+    ]
+
 def _write_consolidation_map_targets(
         *,
         actions,
@@ -316,23 +333,12 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
-            # `outputs.product_path` is only set for top-level targets
-            if xcode_target.outputs.product_path:
-                top_level_targets_args.add(xcode_target.id)
-                top_level_targets_args.add(
-                    xcode_target.bundle_id or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.outputs.product_path or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.link_params or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.product.executable_name or EMPTY_STRING,
-                )
-                top_level_targets_args.add(xcode_target.compile_target_ids)
-                top_level_targets_args.add(unit_test_host)
+            top_level_targets_args.add_all(
+                _top_level_target_attributes_args(
+                    xcode_target = xcode_target,
+                    unit_test_host = unit_test_host,
+                ),
+            )
 
     actions.write(target_arguments_file, targets_args)
     actions.write(top_level_target_attributes_file, top_level_targets_args)
@@ -1458,6 +1464,7 @@ cat "$@" > "{output}"
     return output
 
 pbxproj_partials = struct(
+    top_level_target_attributes_args = _top_level_target_attributes_args,
     write_files_and_groups = _write_files_and_groups,
     write_generated_directories_filelist = (
         _write_generated_directories_filelist

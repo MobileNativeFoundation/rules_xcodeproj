@@ -109,12 +109,14 @@ if [[ "$ACTION" != indexbuild ]]; then
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
     cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
+    product_is_bundle=NO
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
-      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
+      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
     else
       # Product is a bundle
+      product_is_bundle=YES
       "$rsync" \
         --copy-links \
         --recursive \
@@ -162,17 +164,20 @@ if [[ "$ACTION" != indexbuild ]]; then
         find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
       fi
 
-      # Legacy Xcode Previews use the nested directory included in their
-      # generated loader rpath. Shared XOJIT Previews reuse the ordinary
-      # product, whose runtime search includes direct `$TARGET_BUILD_DIR`
-      # siblings instead.
-      if [[ -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-        if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+    fi
+
+    # Legacy Xcode Previews use the nested directory included in a bundle's
+    # generated loader rpath. Shared XOJIT Previews reuse the ordinary product,
+    # whose runtime search includes direct `$TARGET_BUILD_DIR` siblings. Static
+    # library products are files, so they only support the XOJIT destination.
+    if [[ -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+      if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+        if [[ "$product_is_bundle" == YES ]]; then
           stage_preview_frameworks \
             "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
-        elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
-          stage_preview_frameworks "$TARGET_BUILD_DIR"
         fi
+      elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
+        stage_preview_frameworks "$TARGET_BUILD_DIR"
       fi
     fi
   fi

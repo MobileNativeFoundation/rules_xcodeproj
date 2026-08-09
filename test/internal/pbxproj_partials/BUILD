@@ -1,5 +1,9 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load(
+    ":top_level_target_attributes_args_tests.bzl",
+    "top_level_target_attributes_args_test_suite",
+)
+load(
     ":write_files_and_groups_tests.bzl",
     "write_files_and_groups_test_suite",
 )
@@ -29,6 +33,10 @@ write_pbxtargetdependencies_test_suite(name = "write_pbxtargetdependencies")
 write_swift_debug_settings_test_suite(name = "write_swift_debug_settings")
 
 write_target_build_settings_test_suite(name = "write_target_build_settings")
+
+top_level_target_attributes_args_test_suite(
+    name = "top_level_target_attributes_args",
+)
 
 test_suite(name = "pbxproj_partials")
 

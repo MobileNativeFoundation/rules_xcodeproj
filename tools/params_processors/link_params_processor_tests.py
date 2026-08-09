@@ -10,6 +10,131 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_anchor_to_execution_root_only_rewrites_relative_paths(self):
+        for value, expected in [
+            (
+                "external/swiftpkg/libDependency.a",
+                "$(PROJECT_DIR)/external/swiftpkg/libDependency.a",
+            ),
+            ("libDependency.a", "$(PROJECT_DIR)/libDependency.a"),
+            (
+                "-Fexternal/swiftpkg/Dependency.framework",
+                "-F$(PROJECT_DIR)/external/swiftpkg/Dependency.framework",
+            ),
+            ("-FFrameworks", "-F$(PROJECT_DIR)/Frameworks"),
+            (
+                "-Lexternal/swiftpkg/lib",
+                "-L$(PROJECT_DIR)/external/swiftpkg/lib",
+            ),
+            ("-Llib", "-L$(PROJECT_DIR)/lib"),
+            (
+                "-Wl,-add_ast_path,bazel-out/Dependency.swiftmodule",
+                "-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/Dependency.swiftmodule",
+            ),
+            (
+                "-Wl,-force_load,external/swiftpkg/libDependency.a",
+                "-Wl,-force_load,$(PROJECT_DIR)/external/swiftpkg/libDependency.a",
+            ),
+            (
+                "-Wl,-force_load,libDependency.a",
+                "-Wl,-force_load,$(PROJECT_DIR)/libDependency.a",
+            ),
+            (
+                "-Wl,-order_file,external/swiftpkg/order.txt",
+                "-Wl,-order_file,$(PROJECT_DIR)/external/swiftpkg/order.txt",
+            ),
+            (
+                "-Wl,-filelist,external/swiftpkg/objects.list",
+                "-Wl,-filelist,$(PROJECT_DIR)/external/swiftpkg/objects.list",
+            ),
+            (
+                "-Wl,-filelist,objects.list,external/swiftpkg",
+                "-Wl,-filelist,$(PROJECT_DIR)/objects.list,"
+                "$(PROJECT_DIR)/external/swiftpkg",
+            ),
+            (
+                "-Wl,-exported_symbols_list,external/swiftpkg/exports.txt",
+                "-Wl,-exported_symbols_list,$(PROJECT_DIR)/external/swiftpkg/"
+                "exports.txt",
+            ),
+            (
+                "-Wl,-sectcreate,__DATA,__blob,external/blob.bin",
+                "-Wl,-sectcreate,__DATA,__blob,$(PROJECT_DIR)/external/blob.bin",
+            ),
+            (
+                "-Wl,-load_hidden,libDependency.a",
+                "-Wl,-load_hidden,$(PROJECT_DIR)/libDependency.a",
+            ),
+            ("/absolute/libDependency.a", "/absolute/libDependency.a"),
+            ("@response.params", "@response.params"),
+            ("-F/absolute/Frameworks", "-F/absolute/Frameworks"),
+            ("-L$(PROJECT_DIR)/external/lib", "'-L$(PROJECT_DIR)/external/lib'"),
+            (
+                "-Wl,-rpath,@loader_path/Frameworks",
+                "-Wl,-rpath,@loader_path/Frameworks",
+            ),
+            ("-Wl,-install_name,relative/Foo", "-Wl,-install_name,relative/Foo"),
+            (
+                "$(SDKROOT)/System/Library/Frameworks",
+                "'$(SDKROOT)/System/Library/Frameworks'",
+            ),
+            ("-framework", "-framework"),
+            ("Lottie", "Lottie"),
+        ]:
+            with self.subTest(value=value):
+                self.assertEqual(
+                    link_params_processor._anchor_to_execution_root(value),
+                    expected,
+                )
+
+    def test_process_linkopts_anchors_force_loaded_external_archive(self):
+        self.assertEqual(
+            link_params_processor._process_linkopts(
+                linkopts=[
+                    "-force_load",
+                    "external/swiftpkg/libDependency.a",
+                    "-framework",
+                    "Lottie",
+                ],
+                is_framework=True,
+                generated_product_paths=[],
+            ),
+            [
+                "-force_load",
+                "$(PROJECT_DIR)/external/swiftpkg/libDependency.a",
+                "-framework",
+                "Lottie",
+            ],
+        )
+
+    def test_process_linkopts_preserves_split_relative_install_name(self):
+        self.assertEqual(
+            link_params_processor._process_linkopts(
+                linkopts=[
+                    "-Xlinker",
+                    "-install_name",
+                    "-Xlinker",
+                    "relative/Foo",
+                    "-Xlinker",
+                    "-force_load",
+                    "-Xlinker",
+                    "libDependency.a",
+                ],
+                is_framework=True,
+                generated_product_paths=[],
+            ),
+            [
+                "-Xlinker",
+                "-install_name",
+                "-Xlinker",
+                "relative/Foo",
+                "-Xlinker",
+                "-force_load",
+                "-Xlinker",
+                "$(PROJECT_DIR)/libDependency.a",
+            ],
+        )
+
     def test_exact_t5_multichunk_fixture_produces_41_line_golden(self):
         testdata = pathlib.Path(__file__).with_name("testdata")
         linkopts = link_params_processor._parse_args([

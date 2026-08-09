@@ -36,6 +36,7 @@ run_generator_mode() {
   local enable_xojit_previews="$3"
   local expected_groups="$4"
   local expected_config="$5"
+  local clang_coverage_mapping="${6:-UNSET}"
   local case_dir="$test_root/generator-$name"
   local integration_dir="$case_dir/integration"
   local expected_output_groups
@@ -74,8 +75,14 @@ EOF
   if [[ "$enable_xojit_previews" != UNSET ]]; then
     preview_environment+=("ENABLE_XOJIT_PREVIEWS=$enable_xojit_previews")
   fi
+  if [[ "$clang_coverage_mapping" != UNSET ]]; then
+    preview_environment+=("CLANG_COVERAGE_MAPPING=$clang_coverage_mapping")
+  fi
 
-  env -u ENABLE_PREVIEWS -u ENABLE_XOJIT_PREVIEWS \
+  env \
+    -u CLANG_COVERAGE_MAPPING \
+    -u ENABLE_PREVIEWS \
+    -u ENABLE_XOJIT_PREVIEWS \
     "${preview_environment[@]}" \
     ACTION=build \
     BAZEL_CONFIG=dbg \
@@ -108,8 +115,10 @@ EOF
 
 run_generator_mode unset UNSET UNSET bp _dbg_build
 run_generator_mode ordinary NO NO bp _dbg_build
+run_generator_mode coverage NO NO bp dbg_coverage YES
 run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
-run_generator_mode xojit NO YES bf,bp,bl _dbg_build
+run_generator_mode xojit NO YES bf,bp,bl dbg_swiftuipreviews
+run_generator_mode xojit-coverage NO YES bf,bp,bl dbg_swiftuipreviews YES
 run_generator_mode both YES YES bc,bf,bp,bl dbg_swiftuipreviews
 
 readonly fake_integration_dir="$test_root/copy-integration"
@@ -120,6 +129,25 @@ exit 0
 EOF
 chmod +x "$fake_integration_dir/rsync"
 
+readonly binary_case="$test_root/copy-binary"
+readonly binary_source_dir="$binary_case/product parent"
+readonly binary_source="$binary_source_dir/libProduct.library.a"
+readonly binary_destination_dir="$binary_case/build products"
+mkdir -p "$binary_source_dir" "$binary_destination_dir"
+printf 'archive' > "$binary_source"
+env \
+  ACTION=build \
+  BAZEL_INTEGRATION_DIR="$fake_integration_dir" \
+  BAZEL_OUTPUTS_PRODUCT="$binary_source" \
+  BAZEL_OUTPUTS_PRODUCT_BASENAME=libProduct.library.a \
+  FULL_PRODUCT_NAME=libProduct.library.a \
+  PRODUCT_NAME=Product.library \
+  TARGET_BUILD_DIR="$binary_destination_dir" \
+  bash "$copy_outputs_script" _ ""
+assert_link "$binary_destination_dir/libProduct.library.a" "$binary_source"
+[[ ! -e "$binary_destination_dir/Product.library" ]] || \
+  fail "binary product was staged under PRODUCT_NAME instead of FULL_PRODUCT_NAME"
+
 make_framework() {
   local framework="$1"
   local executable_name="${framework##*/}"
@@ -128,6 +156,31 @@ make_framework() {
   printf 'binary' > "$framework/$executable_name"
   printf 'plist' > "$framework/Info.plist"
   printf 'resource' > "$framework/Resources/value.txt"
+}
+
+run_binary_copy_mode() {
+  local case_dir="$1"
+  local enable_previews="$2"
+  local enable_xojit_previews="$3"
+  local preview_framework_paths="$4"
+  local source_dir="$case_dir/product parent"
+  local source="$source_dir/libStatic.a"
+
+  mkdir -p "$source_dir" "$case_dir/build products"
+  printf 'archive' > "$source"
+  env \
+    ACTION=build \
+    BAZEL_INTEGRATION_DIR="$fake_integration_dir" \
+    BAZEL_OUTPUTS_PRODUCT="$source" \
+    BAZEL_OUTPUTS_PRODUCT_BASENAME=libStatic.a \
+    ENABLE_PREVIEWS="$enable_previews" \
+    ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+    FULL_PRODUCT_NAME=libStatic.a \
+    PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
+    PRODUCT_NAME=Static \
+    TARGET_BUILD_DIR="$case_dir/build products" \
+    WRAPPER_NAME=libStatic.a \
+    bash "$copy_outputs_script" _ ""
 }
 
 run_copy_mode() {
@@ -158,6 +211,29 @@ make_framework "$first_framework"
 make_framework "$second_framework"
 readonly preview_paths="\"$first_framework\" \"$second_framework\""
 
+readonly binary_ordinary_case="$test_root/copy-binary-ordinary"
+run_binary_copy_mode "$binary_ordinary_case" NO NO "$preview_paths"
+assert_link \
+  "$binary_ordinary_case/build products/libStatic.a" \
+  "$binary_ordinary_case/product parent/libStatic.a"
+[[ ! -e "$binary_ordinary_case/build products/First Framework.framework" ]] || \
+  fail "ordinary binary build staged a Preview framework"
+readonly binary_legacy_case="$test_root/copy-binary-legacy"
+run_binary_copy_mode "$binary_legacy_case" YES NO "$preview_paths"
+[[ ! -e "$binary_legacy_case/build products/First Framework.framework" ]] || \
+  fail "legacy binary build staged a direct Preview framework"
+[[ ! -e "$binary_legacy_case/build products/libStatic.a/SwiftUIPreviewsFrameworks" ]] || \
+  fail "legacy binary build staged a nested Preview framework"
+readonly binary_xojit_case="$test_root/copy-binary-xojit"
+run_binary_copy_mode "$binary_xojit_case" NO YES "$preview_paths"
+assert_link \
+  "$binary_xojit_case/build products/First Framework.framework" \
+  "$first_framework"
+assert_link \
+  "$binary_xojit_case/build products/Second.framework" \
+  "$second_framework"
+[[ -f "$binary_xojit_case/build products/First Framework.framework/Resources/value.txt" ]] || \
+  fail "XOJIT binary framework symlink is incomplete"
 readonly ordinary_case="$test_root/copy-ordinary"
 run_copy_mode "$ordinary_case" NO NO "$preview_paths"
 [[ ! -e "$ordinary_case/build products/First Framework.framework" ]] || \

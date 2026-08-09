@@ -162,7 +162,7 @@ Here is an example output:
 				PRODUCT_NAME = pbxtargetdependencies_tests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = singlefile;
 				TARGET_NAME = pbxtargetdependencies_tests;
 			};
 			name = Release;
@@ -255,7 +255,7 @@ Here is an example output:
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_COMPILATION_MODE = singlefile;
 				TARGET_NAME = XCTestDynamicOverlay;
 			};
 			name = Release;

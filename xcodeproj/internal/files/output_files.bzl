@@ -131,6 +131,7 @@ def _collect_output_files(
         name,
         output_group_info,
         preview_framework_files = [],
+        preview_link_input_files = [],
         product = None,
         should_produce_dto = True,
         swift_info,
@@ -158,6 +159,8 @@ def _collect_output_files(
             `None`.
         preview_framework_files: A `list` of framework `File`s that should be
             materialized for Xcode Previews.
+        preview_link_input_files: A `list` of linker input `File`s that should
+            be materialized for Xcode Previews.
         product: A value from `process_product`.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
             collected values. This will only be `True` if the generator can use
@@ -237,7 +240,7 @@ def _collect_output_files(
         ],
     )
     transitive_link_params = memory_efficient_depset(
-        [link_params] if link_params else None,
+        ([link_params] if link_params else []) + list(preview_link_input_files),
         transitive = [
             info.outputs._transitive_link_params
             for info in transitive_infos
@@ -309,8 +312,11 @@ def _collect_mixed_language_output_files(
         id,
         indexstore_overrides,
         mixed_target_infos,
+        link_params = None,
         name,
         output_group_info,
+        preview_framework_files = [],
+        preview_link_input_files = [],
         product = None,
         swift_info,
         transitive_infos):
@@ -328,9 +334,15 @@ def _collect_mixed_language_output_files(
             targets.
         mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
             Clang and Swift targets.
+        link_params: A link params `File`, or `None`, that should be generated
+            for Xcode Previews.
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_framework_files: A `list` of framework `File`s that should be
+            materialized for Xcode Previews.
+        preview_link_input_files: A `list` of linker input `File`s that should
+            be materialized for Xcode Previews.
         product: A value from `process_product`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -387,8 +399,13 @@ def _collect_mixed_language_output_files(
     # Only top-level targets will have `Info.plist` files
     transitive_infoplists = EMPTY_DEPSET
 
-    # Only top-level targets will have link params
-    transitive_link_params = EMPTY_DEPSET
+    transitive_link_params = memory_efficient_depset(
+        ([link_params] if link_params else []) + list(preview_link_input_files),
+        transitive = [
+            info.outputs._transitive_link_params
+            for info in transitive_infos
+        ],
+    )
 
     products_output_group_name = "bp {}".format(id)
 
@@ -412,6 +429,7 @@ def _collect_mixed_language_output_files(
 
     direct_group_list = [
         ("bc {}".format(id), transitive_compile_params),
+        ("bf {}".format(id), memory_efficient_depset(preview_framework_files)),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]

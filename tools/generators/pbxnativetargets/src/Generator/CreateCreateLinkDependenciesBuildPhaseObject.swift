@@ -55,7 +55,9 @@ if [[ "${ENABLE_PREVIEWS:-}" == "YES" || \
       "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
 \#(action)
 else
-  touch "$SCRIPT_OUTPUT_FILE_0"
+  # A prior Preview build may have populated this response file. Truncate it
+  # so ordinary linker and Libtool tasks cannot consume stale Preview inputs.
+  : > "$SCRIPT_OUTPUT_FILE_0"
 fi
 
 """#,

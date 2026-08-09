@@ -15,6 +15,57 @@ esac
 readonly sibling_ld="$sibling_dir/ld"
 readonly -a original_args=("$@")
 
+is_profile_runtime_query() {
+  local arg
+  local index
+  local apple_link_rtlib_count=0
+  local profile_generate_count=0
+  local query_option_count=0
+  local reproducible_count=0
+  local sysroot_option_count=0
+
+  for ((index = 0; index < ${#original_args[@]}; index++)); do
+    arg="${original_args[index]}"
+    case "$arg" in
+      -###)
+        query_option_count=$((query_option_count + 1))
+        ;;
+      -Xlinker)
+        index=$((index + 1))
+        if ((index >= ${#original_args[@]})) || \
+           [[ "${original_args[index]}" != "-reproducible" ]]; then
+          return 1
+        fi
+        reproducible_count=$((reproducible_count + 1))
+        ;;
+      -isysroot)
+        index=$((index + 1))
+        if ((index >= ${#original_args[@]})) || \
+           [[ -z "${original_args[index]}" ]] || \
+           [[ "${original_args[index]}" == -* ]]; then
+          return 1
+        fi
+        sysroot_option_count=$((sysroot_option_count + 1))
+        ;;
+      -fprofile-instr-generate)
+        profile_generate_count=$((profile_generate_count + 1))
+        ;;
+      -fapple-link-rtlib)
+        apple_link_rtlib_count=$((apple_link_rtlib_count + 1))
+        ;;
+      *)
+        return 1
+        ;;
+    esac
+  done
+
+  ((query_option_count == 1 && \
+    reproducible_count == 1 && \
+    sysroot_option_count == 1 && \
+    profile_generate_count == 1 && \
+    apple_link_rtlib_count == 1))
+}
+
 query_count=0
 output_count=0
 output_value=
@@ -71,10 +122,20 @@ if [[ "$forwarding_mode" == "query" && "$query_count" != "1" ]]; then
   fail "query invocation must contain exactly one -### option (found $query_count)"
 fi
 
+profile_runtime_query=0
+if [[ "$forwarding_mode" == "query" ]] && \
+   ((output_count == 0)) && \
+   is_profile_runtime_query; then
+  # Xcode asks clang which profile and Apple runtime libraries need to be
+  # added to a libtool invocation. This is a dry-run driver query, so clang
+  # supplies its implicit `a.out` output and Xcode does not pass `-o`.
+  profile_runtime_query=1
+fi
+
 if ((output_parse_error != 0)); then
   fail "forwarding invocation has a missing -o value"
 fi
-if ((output_count != 1)); then
+if ((output_count != 1 && profile_runtime_query == 0)); then
   fail "forwarding invocation must contain exactly one -o value (found $output_count)"
 fi
 
@@ -179,10 +240,12 @@ for ((index = 0; index < ${#original_args[@]}; index++)); do
   index=$value_index
 done
 
-if ((working_directory_count != 1)); then
+if ((working_directory_count != 1 && profile_runtime_query == 0)); then
   fail "forwarding invocation must contain exactly one -working-directory value (found $working_directory_count)"
 fi
-validate_working_directory "$working_directory_value"
+if ((working_directory_count == 1)); then
+  validate_working_directory "$working_directory_value"
+fi
 
 validate_response() {
   local response_path="$1"
@@ -202,6 +265,7 @@ validate_response() {
   for ((index = 0; index < ${#response_args[@]}; index++)); do
     line="${response_args[index]}"
     case "$line" in
+      @rpath/*|@loader_path/*|@executable_path/*) ;;
       @*) fail "nested response reference is unsupported: $response_path" ;;
       LINKED_BINARY=*)
         fail "response contains a bare LINKED_BINARY record: $response_path"
@@ -226,6 +290,7 @@ validate_response() {
 
 for arg in "${original_args[@]}"; do
   case "$arg" in
+    @rpath/*|@loader_path/*|@executable_path/*) ;;
     @*) validate_response "${arg#@}" ;;
   esac
 done

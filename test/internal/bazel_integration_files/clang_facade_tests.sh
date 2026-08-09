@@ -58,6 +58,10 @@ cat > "$valid_response" <<'EOF'
 2
 -framework
 SwiftUI
+-Xlinker
+-install_name
+-Xlinker
+@rpath/PreviewHost.debug.dylib
 EOF
 
 run_capture() {
@@ -111,6 +115,29 @@ cmp "$test_root/query.expected.nul" "$record_dir/query.argv.nul"
 [[ "$(<"$test_root/query.stderr")" == "fake-clang-stderr" ]]
 require_absent "$query_output"
 
+# Xcode runs this `-###` probe to discover the profile and Apple runtime
+# libraries that it must add to a libtool invocation. Clang supplies its
+# implicit `a.out` output, so the query intentionally has no `-o` or
+# `-working-directory` argument.
+readonly -a profile_runtime_query_args=(
+  -Xlinker -reproducible
+  -isysroot "$sdk"
+  -fprofile-instr-generate
+  -fapple-link-rtlib
+  -###
+)
+run_capture profile-runtime-query \
+  "$facade" "${profile_runtime_query_args[@]}"
+assert_status 73 "$(<"$test_root/profile-runtime-query.status")" \
+  "profile runtime query route"
+printf '%s\0' "${profile_runtime_query_args[@]}" > \
+  "$test_root/profile-runtime-query.expected.nul"
+cmp \
+  "$test_root/profile-runtime-query.expected.nul" \
+  "$record_dir/profile-runtime-query.argv.nul"
+[[ "$(<"$test_root/profile-runtime-query.stdout")" == "fake-clang-stdout" ]]
+[[ "$(<"$test_root/profile-runtime-query.stderr")" == "fake-clang-stderr" ]]
+
 if [[ "$execroot" == /private/* ]]; then
   alias_execroot="${execroot#/private}"
 else
@@ -142,6 +169,7 @@ for suffix in preview-thunk debug; do
     -isysroot "$sdk"
     -working-directory "$execroot"
     "@$valid_response"
+    -Xlinker "@rpath/route.$suffix.dylib"
     -o "$preview_output"
   )
   run_capture "preview-$suffix" "$facade" "${preview_args[@]}"
@@ -192,6 +220,13 @@ run_negative() {
 
 run_negative missing-output \
   -isysroot "$sdk" -working-directory "$execroot" "@$valid_response" -###
+run_negative incomplete-profile-runtime-query \
+  -Xlinker -reproducible -isysroot "$sdk" \
+  -fprofile-instr-generate -###
+run_negative extended-profile-runtime-query \
+  -target arm64-apple-ios15.0-simulator \
+  -Xlinker -reproducible -isysroot "$sdk" \
+  -fprofile-instr-generate -fapple-link-rtlib -###
 run_negative conflicting-output \
   -isysroot "$sdk" \
   -o "$test_root/conflict.preview-thunk.dylib" \

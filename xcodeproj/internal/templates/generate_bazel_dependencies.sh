@@ -123,7 +123,10 @@ if [ "$ACTION" == "indexbuild" ]; then
 
   # Index Build doesn't need sanitizers
   apply_sanitizers=0
-elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
+elif [[
+  "${ENABLE_PREVIEWS:-}" == "YES" ||
+  "${ENABLE_XOJIT_PREVIEWS:-}" == "YES"
+]]; then
   readonly config="${BAZEL_CONFIG}_swiftuipreviews"
 elif [ "${CLANG_COVERAGE_MAPPING:-}" == YES ] && [ "${BAZEL_SUPPRESS_COVERAGE_BUILD:-}" != YES ]; then
   # Code coverage build

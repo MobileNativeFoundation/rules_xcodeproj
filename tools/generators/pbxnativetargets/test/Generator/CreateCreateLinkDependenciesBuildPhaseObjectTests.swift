@@ -4,6 +4,8 @@ import XCTest
 @testable import pbxnativetargets
 @testable import PBXProj
 
+// Serialized PBX shell scripts are intentionally represented as one line.
+// swiftlint:disable line_length
 class CreateCreateLinkDependenciesBuildPhaseObjectTests: XCTestCase {
     func test_base() {
         // Arrange
@@ -34,7 +36,7 @@ A_SHARD00A_HASH000000000005 /* Create Link Dependencies */
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" || \\\n      \"${ENABLE_XOJIT_PREVIEWS:-}\" == \"YES\" ]]; then\nreadonly link_params_tmp=\"$(mktemp \"$SCRIPT_OUTPUT_FILE_0.tmp.XXXXXX\")\"\ntrap 'rm -f \"$link_params_tmp\"' EXIT\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$link_params_tmp\"\nchmod 0644 \"$link_params_tmp\"\nmv -f \"$link_params_tmp\" \"$SCRIPT_OUTPUT_FILE_0\"\ntrap - EXIT\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" || \\\n      \"${ENABLE_XOJIT_PREVIEWS:-}\" == \"YES\" ]]; then\nreadonly link_params_tmp=\"$(mktemp \"$SCRIPT_OUTPUT_FILE_0.tmp.XXXXXX\")\"\ntrap 'rm -f \"$link_params_tmp\"' EXIT\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$link_params_tmp\"\nchmod 0644 \"$link_params_tmp\"\nmv -f \"$link_params_tmp\" \"$SCRIPT_OUTPUT_FILE_0\"\ntrap - EXIT\nelse\n  # A prior Preview build may have populated this response file. Truncate it\n  # so ordinary linker and Libtool tasks cannot consume stale Preview inputs.\n  : > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		}
 """#
@@ -83,7 +85,7 @@ A_SHARD00A_HASH000000000005 /* Create Link Dependencies */
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" || \\\n      \"${ENABLE_XOJIT_PREVIEWS:-}\" == \"YES\" ]]; then\nreadonly link_params_tmp=\"$(mktemp \"$SCRIPT_OUTPUT_FILE_0.tmp.XXXXXX\")\"\ntrap 'rm -f \"$link_params_tmp\"' EXIT\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$link_params_tmp\"\nchmod 0644 \"$link_params_tmp\"\nmv -f \"$link_params_tmp\" \"$SCRIPT_OUTPUT_FILE_0\"\ntrap - EXIT\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" || \\\n      \"${ENABLE_XOJIT_PREVIEWS:-}\" == \"YES\" ]]; then\nreadonly link_params_tmp=\"$(mktemp \"$SCRIPT_OUTPUT_FILE_0.tmp.XXXXXX\")\"\ntrap 'rm -f \"$link_params_tmp\"' EXIT\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$link_params_tmp\"\nchmod 0644 \"$link_params_tmp\"\nmv -f \"$link_params_tmp\" \"$SCRIPT_OUTPUT_FILE_0\"\ntrap - EXIT\nelse\n  # A prior Preview build may have populated this response file. Truncate it\n  # so ordinary linker and Libtool tasks cannot consume stale Preview inputs.\n  : > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		}
 """#
@@ -102,3 +104,5 @@ A_SHARD00A_HASH000000000005 /* Create Link Dependencies */
         XCTAssertNoDifference(object, expectedObject)
     }
 }
+
+// swiftlint:enable line_length
