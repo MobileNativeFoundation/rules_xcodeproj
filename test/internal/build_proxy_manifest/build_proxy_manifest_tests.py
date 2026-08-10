@@ -1,6 +1,9 @@
 import json
+import tempfile
 import unittest
+from pathlib import Path
 
+from xcodeproj.internal import build_proxy_manifest
 from xcodeproj.internal import build_proxy_manifest_lib
 
 
@@ -39,6 +42,31 @@ def _line(entry):
 
 
 class BuildProxyManifestTests(unittest.TestCase):
+    def test_cli_accepts_environment_options_before_manifest_fragments(self):
+        with tempfile.TemporaryDirectory() as temp_directory:
+            root = Path(temp_directory)
+            output = root / "manifest.json"
+            fragment = root / "fragment.jsonl"
+            fragment.write_text(_line(_entry()) + "\n")
+
+            build_proxy_manifest.main(
+                [
+                    str(output),
+                    "@@//app:project",
+                    "/usr/local/bin/bazel",
+                    "App.xcodeproj",
+                    "--bazel-environment-key=CUSTOM_ENV",
+                    str(fragment),
+                ]
+            )
+
+            manifest = json.loads(output.read_text())
+            self.assertEqual(
+                manifest["invocation"]["bazelEnvironmentKeys"],
+                ["CUSTOM_ENV"],
+            )
+            self.assertEqual(len(manifest["targets"]), 1)
+
     def test_assemble_is_versioned_and_byte_deterministic(self):
         debug = _line(_entry())
         release = _line(_entry(configuration="Release"))
