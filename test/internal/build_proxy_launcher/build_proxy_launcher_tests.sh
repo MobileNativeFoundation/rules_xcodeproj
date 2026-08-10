@@ -63,6 +63,7 @@ readonly proxy_bep_block
 expected_bep_flag="--build_event_json_file=\$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
 readonly expected_bep_flag
 [[ "$(grep -Fc -- "$expected_bep_flag" <<< "$proxy_bep_block")" == 1 ]]
+[[ "$(grep -Fc -- '--build_event_max_named_set_of_file_entries=256' <<< "$proxy_bep_block")" == 1 ]]
 
 proxy_execution_log_flags_block="$(sed -n '/# The build service gives every operation/,/^fi$/p' "$adapter_source")"
 readonly proxy_execution_log_flags_block
@@ -108,6 +109,8 @@ readonly proxy_receipt_command_options_block
 [[ "$(grep -Fc -- '"$option" != --execution_log_binary_file=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --build_event_max_named_set_of_file_entries=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
 # The extracted source fragment consumes this array through `eval` below.
 # shellcheck disable=SC2034
 base_pre_config_flags=(--base-build-flag)
@@ -116,6 +119,7 @@ build_pre_config_flags=(
   "--execution_log_json_file=$expected_execution_log_path"
   "--execution_log_binary_file=$expected_execution_log_path"
   --noexecution_log_sort
+  --build_event_max_named_set_of_file_entries=256
   --kept-build-flag
 )
 receipt_args=()
@@ -199,6 +203,8 @@ done
 [[ "$(grep -Fc -- 'action_graph_query="deps(${labels[0]})"' <<< "$proxy_action_graph_block")" == 0 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --build_event_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --build_event_max_named_set_of_file_entries=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --execution_log_compact_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
