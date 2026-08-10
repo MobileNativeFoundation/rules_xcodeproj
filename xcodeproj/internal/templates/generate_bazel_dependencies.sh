@@ -159,6 +159,10 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
     "--build_event_publish_all_actions"
     "--build_event_json_file=$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
     "--build_event_max_named_set_of_file_entries=256"
+    # Bazel's default non-curses cadence waits 10 seconds before reporting a running action. The
+    # proxy consumes this BEP status as a presentation hint only; completion/cache truth still
+    # comes from ActionExecuted and the execution log.
+    "--progress_report_interval=1"
   )
 fi
 # The build service gives every operation its own private path. Keep execution metadata attached
@@ -256,6 +260,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
       "$option" != --build_event_publish_all_actions &&
       "$option" != --build_event_json_file=* &&
       "$option" != --build_event_max_named_set_of_file_entries=* &&
+      "$option" != --progress_report_interval=* &&
       "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
       "$option" != --execution_log_binary_file=* &&
