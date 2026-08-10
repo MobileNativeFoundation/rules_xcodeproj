@@ -163,9 +163,13 @@ def assemble(
         raise ManifestError("generator label must not be empty")
     if not bazel_path:
         raise ManifestError("Bazel path must not be empty")
-    if not project_container or Path(project_container).name != project_container:
-        raise ManifestError("project container must be a basename")
-    if not project_container.endswith(".xcodeproj"):
+    project_container_path = Path(project_container)
+    if not project_container or project_container_path.is_absolute():
+        raise ManifestError("project container must be a relative path")
+    if ".." in project_container_path.parts:
+        raise ManifestError("project container must not contain traversal")
+    project_container_name = project_container_path.name
+    if not project_container_name.endswith(".xcodeproj"):
         raise ManifestError("project container must end in .xcodeproj")
 
     entries = []
@@ -203,7 +207,7 @@ def assemble(
             "receiptSchemaVersion": RECEIPT_SCHEMA_VERSION,
         },
         "project": {
-            "containerName": project_container,
+            "containerName": project_container_name,
             "identity": generator_label,
         },
         "schemaVersion": SCHEMA_VERSION,

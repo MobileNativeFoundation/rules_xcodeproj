@@ -17,7 +17,8 @@ def write_build_proxy_manifest(
         entries_files: JSON Lines manifest fragments from target shards.
         generator_label: The `xcodeproj` generator label the proxy must build.
         name: The generator target name.
-        project_container: Basename of the generated `.xcodeproj` bundle.
+        project_container: Workspace-relative path of the generated
+            `.xcodeproj` bundle. The manifest records its basename.
         tool: The executable that validates and assembles the manifest.
 
     Returns:
