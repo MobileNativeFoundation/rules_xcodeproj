@@ -13,12 +13,14 @@ def main() -> None:
     parser.add_argument("generator_label")
     parser.add_argument("bazel_path")
     parser.add_argument("project_container")
+    parser.add_argument("--bazel-environment-key", action="append", default=[])
     parser.add_argument("fragments", nargs="*", type=Path)
     args = parser.parse_args()
     build_proxy_manifest_lib.write(
         args.output,
         args.fragments,
         bazel_path=args.bazel_path,
+        bazel_environment_keys=args.bazel_environment_key,
         generator_label=args.generator_label,
         project_container=args.project_container,
     )
