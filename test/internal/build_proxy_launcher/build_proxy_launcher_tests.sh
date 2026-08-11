@@ -132,6 +132,12 @@ readonly proxy_receipt_command_options_block
 [[ "$(grep -Fc -- '"$option" != --build_event_max_named_set_of_file_entries=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --progress_report_interval=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --build_event_publish_all_actions' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --profile=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --generate_json_trace_profile=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
 # The extracted source fragment consumes this array through `eval` below.
 # shellcheck disable=SC2034
 base_pre_config_flags=(--base-build-flag)
@@ -142,6 +148,10 @@ build_pre_config_flags=(
   --noexecution_log_sort
   --build_event_max_named_set_of_file_entries=256
   --progress_report_interval=1
+  --build_event_publish_all_actions
+  "--profile=$test_root/user-profile.json.gz"
+  --generate_json_trace_profile=true
+  --nogenerate_json_trace_profile
   --kept-build-flag
 )
 receipt_args=()
@@ -156,6 +166,45 @@ proxy_action_start_flags_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_ACTION_STARTS_
 readonly proxy_action_start_flags_block
 [[ "$(grep -Fc -- 'build_log_cmd+=(--subcommands=pretty_print)' <<< "$proxy_action_start_flags_block")" == 1 ]]
 [[ "$(grep -Fc -- 'receipt_args+=' <<< "$proxy_action_start_flags_block")" == 0 ]]
+
+# The profile is proxy-owned, comes after the named config, and keeps the exact operation-scoped
+# path out of the publishable invocation receipt.
+proxy_profile_flags_block="$(sed -n '/^if \[\[ -n "${SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH:-}" \]\]; then$/,/^fi$/p' "$bazel_build_source")"
+readonly proxy_profile_flags_block
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '--profile=$SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH' <<< "$proxy_profile_flags_block")" == 1 ]]
+build_log_cmd=(--existing-build-flag)
+unset SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH
+eval "$proxy_profile_flags_block"
+[[ "${build_log_cmd[*]}" == "--existing-build-flag" ]]
+readonly expected_profile_path="$test_root/bazel profile.json.gz"
+build_log_cmd=(--existing-build-flag)
+SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH="$expected_profile_path"
+export SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH
+eval "$proxy_profile_flags_block"
+[[ "${build_log_cmd[0]}" == "--existing-build-flag" ]]
+[[ "${build_log_cmd[1]}" == "--profile=$expected_profile_path" ]]
+
+# The profile is secured for successful, failed, and interrupted builds. A missing profile is valid
+# when Bazel terminates before creating it; a linked or non-regular result fails closed.
+proxy_profile_permissions_block="$(sed -n '/^secure_build_proxy_profile() {$/,/^}$/p' "$bazel_build_source")"
+readonly proxy_profile_permissions_block
+eval "$proxy_profile_permissions_block"
+printf 'private Bazel trace\n' > "$expected_profile_path"
+chmod 666 "$expected_profile_path"
+secure_build_proxy_profile
+# shellcheck disable=SC2012
+[[ "$(LC_ALL=C ls -l "$expected_profile_path" | cut -c 1-10)" == "-rw-------" ]]
+rm "$expected_profile_path"
+secure_build_proxy_profile
+printf 'outside\n' > "$test_root/outside-profile"
+ln -s "$test_root/outside-profile" "$expected_profile_path"
+if secure_build_proxy_profile 2> /dev/null; then
+  echo >&2 "Expected linked Bazel profile to fail closed"
+  exit 1
+fi
+rm "$expected_profile_path"
+unset SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH
 
 # A proxied adapter is already the inner Xcode invocation. Preserve the generated hermetic Bazel
 # executable (or an explicitly inherited one), and tell workspace wrappers not to regenerate their
@@ -244,9 +293,15 @@ done
 [[ "$(grep -Fc -- '"$option" != --execution_log_binary_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --profile=*' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --generate_json_trace_profile=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # The metadata-only aquery comes after the build and must not inherit command-printing from a
 # common/build/config bazelrc or duplicate action-start events.
 [[ "$(grep -Fxc -- '    --subcommands=false \' <<< "$proxy_action_graph_block")" == 1 ]]
+[[ "$(grep -Fxc -- '    --profile= \' <<< "$proxy_action_graph_block")" == 1 ]]
+[[ "$(grep -Fxc -- '    --generate_json_trace_profile=false \' <<< "$proxy_action_graph_block")" == 1 ]]
 # Command-line clears come after the named config, so execution-log settings inherited directly
 # from common/build/config bazelrc sections cannot leak into the metadata-only aquery.
 for cleared_execution_log_flag in \
@@ -267,6 +322,9 @@ base_pre_config_flags=(
   "--execution_log_binary_file=$expected_execution_log_path"
   --noexecution_log_sort
   --progress_report_interval=1
+  "--profile=$test_root/user-profile.json.gz"
+  --generate_json_trace_profile=true
+  --nogenerate_json_trace_profile
   --kept-base-action-graph-flag
 )
 build_pre_config_flags=(
@@ -275,6 +333,8 @@ build_pre_config_flags=(
   "--execution_log_binary_file=$expected_execution_log_path"
   --noexecution_log_sort
   --progress_report_interval=1
+  "--profile=$test_root/user-profile.json.gz"
+  --generate_json_trace_profile=false
   --kept-action-graph-flag
 )
 eval "$proxy_action_graph_filter_block"
