@@ -241,6 +241,13 @@ build_log_cmd=(
   --config="$config"
   --color=yes
 )
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_STARTS_PATH:-}" ]]; then
+  # Bazel's structured build-event protocol reports actions only after they complete. In proxy
+  # mode, request its execution-start header as a private input to process_bazel_build_log.py.
+  # The processor suppresses the following environment/command block and publishes only a
+  # bounded, allowlisted JSON record to the per-operation path.
+  build_log_cmd+=(--subcommands=pretty_print)
+fi
 if [[ -n "${toolchain:-}" ]]; then
   build_log_cmd+=("--action_env=TOOLCHAINS=$toolchain")
 fi

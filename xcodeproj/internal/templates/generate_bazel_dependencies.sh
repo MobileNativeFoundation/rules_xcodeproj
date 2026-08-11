@@ -283,6 +283,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
     --execution_log_binary_file= \
     --execution_log_compact_file= \
     --execution_log_json_file= \
+    --subcommands=false \
     "$output_groups_flag" \
     --color=no \
     --output=jsonproto \
