@@ -204,12 +204,77 @@ run_copy_mode() {
     bash "$copy_outputs_script" _ ""
 }
 
+run_missing_product_copy_mode() {
+  local case_dir="$1"
+  local enable_previews="$2"
+  local enable_xojit_previews="$3"
+  local preview_framework_paths="$4"
+
+  mkdir -p "$case_dir/build products"
+  env \
+    ACTION=build \
+    BAZEL_INTEGRATION_DIR="$fake_integration_dir" \
+    BAZEL_OUTPUTS_PRODUCT="$case_dir/missing parent/Product.framework" \
+    BAZEL_OUTPUTS_PRODUCT_BASENAME=Product.framework \
+    ENABLE_PREVIEWS="$enable_previews" \
+    ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+    FULL_PRODUCT_NAME=Product.framework \
+    PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
+    PRODUCT_NAME=Product \
+    TARGET_BUILD_DIR="$case_dir/build products" \
+    WRAPPER_NAME=Product.framework \
+    bash "$copy_outputs_script" _ ""
+}
+
 readonly framework_root="$test_root/framework sources"
 readonly first_framework="$framework_root/First Framework.framework"
 readonly second_framework="$framework_root/Second.framework"
 make_framework "$first_framework"
 make_framework "$second_framework"
 readonly preview_paths="\"$first_framework\" \"$second_framework\""
+
+readonly missing_ordinary_product_case="$test_root/copy-missing-ordinary-product"
+if run_missing_product_copy_mode \
+  "$missing_ordinary_product_case" \
+  NO \
+  NO \
+  "$preview_paths" \
+  >"$test_root/missing-ordinary-product.stdout" \
+  2>"$test_root/missing-ordinary-product.stderr"; then
+  fail "ordinary build accepted a missing Bazel output product"
+fi
+grep -q "Bazel output product is not materialized" \
+  "$test_root/missing-ordinary-product.stderr" || \
+  fail "missing ordinary product diagnostic was not emitted"
+
+readonly missing_legacy_product_case="$test_root/copy-missing-legacy-product"
+if run_missing_product_copy_mode \
+  "$missing_legacy_product_case" \
+  YES \
+  NO \
+  "$preview_paths" \
+  >"$test_root/missing-legacy-product.stdout" \
+  2>"$test_root/missing-legacy-product.stderr"; then
+  fail "legacy Preview build accepted a missing Bazel output product"
+fi
+grep -q "Bazel output product is not materialized" \
+  "$test_root/missing-legacy-product.stderr" || \
+  fail "missing legacy Preview product diagnostic was not emitted"
+
+readonly missing_xojit_product_case="$test_root/copy-missing-xojit-product"
+run_missing_product_copy_mode \
+  "$missing_xojit_product_case" \
+  NO \
+  YES \
+  "$preview_paths"
+assert_link \
+  "$missing_xojit_product_case/build products/First Framework.framework" \
+  "$first_framework"
+assert_link \
+  "$missing_xojit_product_case/build products/Second.framework" \
+  "$second_framework"
+[[ ! -e "$missing_xojit_product_case/build products/Product.framework" ]] || \
+  fail "XOJIT copied a product that Xcode owns"
 
 readonly binary_ordinary_case="$test_root/copy-binary-ordinary"
 run_binary_copy_mode "$binary_ordinary_case" NO NO "$preview_paths"
@@ -234,6 +299,8 @@ assert_link \
   "$second_framework"
 [[ -f "$binary_xojit_case/build products/First Framework.framework/Resources/value.txt" ]] || \
   fail "XOJIT binary framework symlink is incomplete"
+[[ ! -e "$binary_xojit_case/build products/libStatic.a" ]] || \
+  fail "XOJIT copied a stale Bazel binary product"
 readonly ordinary_case="$test_root/copy-ordinary"
 run_copy_mode "$ordinary_case" NO NO "$preview_paths"
 [[ ! -e "$ordinary_case/build products/First Framework.framework" ]] || \
@@ -255,6 +322,8 @@ assert_link "$xojit_case/build products/First Framework.framework" "$first_frame
 assert_link "$xojit_case/build products/Second.framework" "$second_framework"
 [[ -f "$xojit_case/build products/First Framework.framework/Resources/value.txt" ]] || \
   fail "XOJIT framework symlink is incomplete"
+[[ ! -e "$xojit_case/build products/Product.framework" ]] || \
+  fail "XOJIT copied a stale Bazel bundle product"
 run_copy_mode "$xojit_case" NO YES "$preview_paths"
 
 readonly concurrent_case="$test_root/copy-xojit-concurrent"

@@ -105,11 +105,26 @@ stage_preview_frameworks() {
 }
 
 if [[ "$ACTION" != indexbuild ]]; then
+  product_is_bundle=NO
+
+  if [[ "${ENABLE_PREVIEWS:-}" != "YES" && \
+        "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
+    # XOJIT builds the selected target product with Xcode, so the Bazel product
+    # output group is intentionally absent. Ignore a stale product from an
+    # earlier ordinary build; Preview frameworks still need to be staged below.
+    BAZEL_OUTPUTS_PRODUCT=
+  elif [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} && \
+          ! -e "$BAZEL_OUTPUTS_PRODUCT" && \
+          ! -L "$BAZEL_OUTPUTS_PRODUCT" ]]; then
+    echo >&2 \
+      "error: Bazel output product is not materialized: $BAZEL_OUTPUTS_PRODUCT"
+    exit 1
+  fi
+
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
     cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
 
-    product_is_bundle=NO
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
@@ -166,19 +181,20 @@ if [[ "$ACTION" != indexbuild ]]; then
 
     fi
 
-    # Legacy Xcode Previews use the nested directory included in a bundle's
-    # generated loader rpath. Shared XOJIT Previews reuse the ordinary product,
-    # whose runtime search includes direct `$TARGET_BUILD_DIR` siblings. Static
-    # library products are files, so they only support the XOJIT destination.
-    if [[ -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-      if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-        if [[ "$product_is_bundle" == YES ]]; then
-          stage_preview_frameworks \
-            "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
-        fi
-      elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
-        stage_preview_frameworks "$TARGET_BUILD_DIR"
+  fi
+
+  # Legacy Xcode Previews use the nested directory included in a bundle's
+  # generated loader rpath. Shared XOJIT Previews reuse the ordinary product,
+  # whose runtime search includes direct `$TARGET_BUILD_DIR` siblings. Static
+  # library products are files, so they only support the XOJIT destination.
+  if [[ -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+    if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+      if [[ "$product_is_bundle" == YES ]]; then
+        stage_preview_frameworks \
+          "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
       fi
+    elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
+      stage_preview_frameworks "$TARGET_BUILD_DIR"
     fi
   fi
 fi
