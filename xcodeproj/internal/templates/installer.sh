@@ -96,7 +96,7 @@ else
   is_macos=0
 fi
 
-python3 "$src_copy_tool" \
+"$src_copy_tool" \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"
 
