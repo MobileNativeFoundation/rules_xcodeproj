@@ -11,6 +11,8 @@
 # be used to copy files without consuming additional disk space.
 #
 
+from __future__ import annotations
+
 import argparse
 import errno
 import fnmatch
@@ -18,28 +20,55 @@ import os
 import shutil
 import sys
 from ctypes import CDLL, c_char_p, c_int, get_errno
+from typing import Callable, List, Optional, Sequence, Tuple
 
-_CLONEFILE = None
-_USE_CLONEFILE = sys.platform == "darwin"
-def _load_clonefile():
-  global _CLONEFILE
-  if _CLONEFILE:
+# A compiled exclude rule: the '/'-separated segments to match against, and
+# whether the rule matches everything underneath those segments.
+ExcludeRule = Tuple[List[str], bool]
+
+# `clonefile(src, dest, flags) -> 0 on success`
+CloneFile = Callable[[bytes, bytes, int], int]
+
+
+class CopyToolError(Exception):
+    """Base class for errors raised by this tool."""
+
+
+class CloneFileError(CopyToolError):
+    """Raised when the `clonefile` system call fails unrecoverably."""
+
+
+class ExcludePatternError(CopyToolError):
+    """Raised for an exclude pattern this tool doesn't support."""
+
+
+_CLONEFILE: Optional[CloneFile] = None
+_USE_CLONEFILE: bool = sys.platform == "darwin"
+def _load_clonefile() -> CloneFile:
+    global _CLONEFILE
+    if _CLONEFILE:
+        return _CLONEFILE
+
+    system = CDLL("/usr/lib/libSystem.dylib", use_errno=True)
+    _CLONEFILE = system.clonefile
+    _CLONEFILE.argtypes = [c_char_p, c_char_p, c_int]  # src, dest, flags
+    _CLONEFILE.restype = c_int  # 0 on success
     return _CLONEFILE
 
-  system = CDLL('/usr/lib/libSystem.dylib', use_errno=True)
-  _CLONEFILE = system.clonefile
-  _CLONEFILE.argtypes = [c_char_p, c_char_p, c_int] # src, dest, flags
-  _CLONEFILE.restype = c_int  # 0 on success
-  return _CLONEFILE
+
+def _remove(path: str) -> None:
+    # Remove `path`, recursing into it if it's a real directory. Symlinks to
+    # directories are unlinked instead of being followed.
+    if os.path.isdir(path) and not os.path.islink(path):
+        shutil.rmtree(path)
+    else:
+        os.remove(path)
 
 
-def _copy_file(src, dest):
+def _copy_file(src: str, dest: str) -> None:
     # clonefile does not overwrite dest if it already exists.
     if os.path.lexists(dest):
-        if os.path.isdir(dest) and not os.path.islink(dest):
-            shutil.rmtree(dest)
-        else:
-            os.remove(dest)
+        _remove(dest)
 
     global _USE_CLONEFILE
     if _USE_CLONEFILE:
@@ -50,31 +79,40 @@ def _copy_file(src, dest):
             # Recover fom `EXDEV` (cross-device) and `ENOTSUP` (destination
             # filesystem doesn't support cloning) by disabling clonefile and
             # falling back to copy2.
-            if get_errno() in (errno.EXDEV, errno.ENOTSUP):
+            err = get_errno()
+            if err in (errno.EXDEV, errno.ENOTSUP):
                 _USE_CLONEFILE = False
                 shutil.copy2(src, dest)
             else:
-                raise Exception(f"failed to clonefile {src} to {dest}")
+                raise CloneFileError(
+                    f"failed to clonefile {src} to {dest}: "
+                    f"{os.strerror(err)} (errno {err})"
+                )
     else:
         shutil.copy2(src, dest)
 
 
-def _chmod(path):
+def _chmod(path: str) -> None:
     # Add user writable flag
     mode = os.stat(path).st_mode | 0o200
     os.chmod(path, mode)
 
 
 class _Syncer:
-    def __init__(self, delete, exclude_from, print_copied):
+    def __init__(
+            self,
+            delete: bool,
+            exclude_from: Optional[str],
+            print_copied: bool) -> None:
         self.delete = delete
         self.print_copied = print_copied
-        self._exclude_rules = [
-            self._compile_pattern(p) for p in self._read_exclude_patterns(exclude_from)
+        self._exclude_rules: List[ExcludeRule] = [
+            self._compile_pattern(p)
+            for p in self._read_exclude_patterns(exclude_from)
         ]
 
     @staticmethod
-    def _read_exclude_patterns(path):
+    def _read_exclude_patterns(path: Optional[str]) -> List[str]:
         # Break exclude file into a list of non-empty lines.
         if not path:
             return []
@@ -82,33 +120,34 @@ class _Syncer:
             return [line.strip("\n") for line in f if line.strip("\n")]
 
     @staticmethod
-    def _compile_pattern(pattern):
+    def _compile_pattern(pattern: str) -> ExcludeRule:
         # Convert an rsync exclude path into a list of path segments to
         # match against, and a boolean indicating if the pattern should
         # match recursively or not.
         #
         # Non-anchored patterns (not starting with a leading '/') and
         # cross-directory wildcards within paths (/Base/**/child)
-        # aren't supported and will raise an exception.
+        # aren't supported and will raise an `ExcludePatternError`.
         if not pattern.startswith("/"):
-            raise ValueError(
+            raise ExcludePatternError(
                 f"Exclude pattern {pattern!r} does not start with '/'. "
                 "This tool only supports rsync's anchored pattern form "
-                " with a leading '/'"
+                "with a leading '/'"
             )
         pattern = pattern.strip("/")
 
-        if pattern.endswith("/***"):
+        recursive = pattern.endswith("/***")
+        if recursive:
             # A trailing "/***" is rsync's shorthand for "this directory and
             # everything under it. Capture the base path and set 'recursive'
             # to 'True'.
-            base_segments, recursive = pattern[: -len("/***")].split("/"), True
+            base_segments = pattern[: -len("/***")].split("/")
         else:
-            base_segments, recursive = pattern.split("/"), False
+            base_segments = pattern.split("/")
 
         # Cross-directory wildcards are not supported outside of '***' above.
         if any("**" in segment for segment in base_segments):
-            raise ValueError(
+            raise ExcludePatternError(
                 f"Exclude pattern {pattern!r} contains '**' outside of a "
                 "trailing '/***'. This tool doesn't implement rsync's "
                 "cross-directory '**' wildcard."
@@ -116,7 +155,7 @@ class _Syncer:
 
         return base_segments, recursive
 
-    def _matches_exclude(self, rel_path):
+    def _matches_exclude(self, rel_path: str) -> bool:
         segments = rel_path.split("/")
 
         for base_segments, recursive in self._exclude_rules:
@@ -135,13 +174,16 @@ class _Syncer:
                     continue
                 to_compare = segments
 
-            if all(fnmatch.fnmatchcase(s, p) for s, p in zip(to_compare, base_segments)):
+            if all(
+                fnmatch.fnmatchcase(s, p)
+                for s, p in zip(to_compare, base_segments)
+            ):
                 return True
 
         # None of the rules matched.
         return False
 
-    def sync_tree(self, src_dir, dest_dir, rel_prefix):
+    def sync_tree(self, src_dir: str, dest_dir: str, rel_prefix: str) -> None:
         # Walks `src_dir` and `dest_dir` together, one directory level at
         # a time, to copy the content of src_dir into dest_dir. If `delete`
         # is set files only in `dest_dir` will be deleted unless they match
@@ -166,11 +208,7 @@ class _Syncer:
                 if self._matches_exclude(rel_path):
                     continue
 
-                dest_path = os.path.join(dest_dir, name)
-                if os.path.isdir(dest_path) and not os.path.islink(dest_path):
-                    shutil.rmtree(dest_path)
-                else:
-                    os.remove(dest_path)
+                _remove(os.path.join(dest_dir, name))
 
         for name in src_names:
             src_path = os.path.join(src_dir, name)
@@ -191,23 +229,30 @@ class _Syncer:
         _chmod(dest_dir)
 
 
-def main():
+def _parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--delete", action="store_true")
     parser.add_argument("--exclude-from", default=None)
     parser.add_argument("--print", action="store_true", dest="print_copied")
     parser.add_argument("srcs", nargs="+")
     parser.add_argument("dest")
-    args = parser.parse_args()
+    return parser.parse_args(argv)
+
+
+def main(argv: Optional[Sequence[str]] = None) -> None:
+    args = _parse_args(argv)
 
     syncer = _Syncer(args.delete, args.exclude_from, args.print_copied)
 
-    for src in args.srcs:
+    srcs: List[str] = args.srcs
+    for src in srcs:
         flatten = src.endswith("/")
         src = src.rstrip("/")
 
         rel_prefix = "" if flatten else os.path.basename(src)
-        dest_root = os.path.join(args.dest, rel_prefix) if rel_prefix else args.dest
+        dest_root = (
+            os.path.join(args.dest, rel_prefix) if rel_prefix else args.dest
+        )
 
         syncer.sync_tree(src, dest_root, rel_prefix)
 

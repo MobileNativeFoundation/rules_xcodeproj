@@ -289,6 +289,7 @@ def _write_installer(
 
     runfiles = bazel_integration_files + [
         contents_xcworkspacedata,
+        copy_tool,
         generated_directories_filelist,
         generated_xcfilelist,
         project_pbxproj,
@@ -743,7 +744,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         bazel_integration_files = bazel_integration_files,
         config = config,
         contents_xcworkspacedata = ctx.file._contents_xcworkspacedata,
-        copy_tool = ctx.file._copy_tool,
+        copy_tool = ctx.executable._copy_tool,
         generated_directories_filelist = generated_directories_filelist,
         generated_xcfilelist = generated_xcfilelist,
         install_path = install_path,
@@ -769,7 +770,11 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
             files = depset(
                 transitive = [inputs.important_generated],
             ),
-            runfiles = ctx.runfiles(files = runfiles),
+            runfiles = ctx.runfiles(files = runfiles).merge(
+                # `copy_tool` is a `py_binary`, so it needs its own runfiles
+                # (sources and interpreter) to be launchable by the installer.
+                ctx.attr._copy_tool[DefaultInfo].default_runfiles,
+            ),
         ),
         OutputGroupInfo(
             all_targets = output_groups_fields["all_b"],
@@ -853,9 +858,11 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
             ),
         ),
         "_copy_tool": attr.label(
-            allow_single_file = True,
             cfg = "exec",
-            default = Label("//xcodeproj/internal/bazel_integration_files:copy_tool.py"),
+            default = Label(
+                "//xcodeproj/internal/bazel_integration_files:copy_tool",
+            ),
+            executable = True,
         ),
         "_extension_point_identifiers_parser": attr.label(
             cfg = "exec",

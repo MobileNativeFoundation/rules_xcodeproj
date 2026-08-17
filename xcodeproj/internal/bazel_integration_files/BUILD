@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
+
 _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",
@@ -16,6 +18,7 @@ filegroup(
         ["**/*"],
         exclude = _BASE_FILES + [
             "**/*.bzl",
+            "**/*_tests.py",
             "BUILD",
         ],
     ),
@@ -23,9 +26,30 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
-exports_files(
-    ["copy_tool.py"],
+py_library(
+    name = "copy_tool_library",
+    srcs = ["copy_tool.py"],
+    srcs_version = "PY3",
+    visibility = ["//visibility:private"],
+)
+
+py_binary(
+    name = "copy_tool",
+    srcs = ["copy_tool.py"],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    # This is made public for internal use only
     visibility = ["//visibility:public"],
+    deps = [":copy_tool_library"],
+)
+
+py_test(
+    name = "copy_tool_tests",
+    srcs = ["copy_tool_tests.py"],
+    deps = [
+        ":copy_tool_library",
+        "//:py_init_shim",
+    ],
 )
 
 genrule(
