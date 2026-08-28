@@ -70,7 +70,7 @@ fi
 readonly src_generated_xcfilelist="$PWD/%generated_xcfilelist%"
 readonly src_generated_directories_filelist="$PWD/%generated_directories_filelist%"
 readonly src_project_pbxproj="$PWD/%project_pbxproj%"
-readonly src_rsync="$PWD/%rsync%"
+readonly src_copy_tool="$PWD/%copy_tool%"
 readonly src_xcschememanagement="$PWD/%xcschememanagement%"
 readonly src_xcschemes="$PWD/%xcschemes%/"
 readonly src_xcworkspacedata="$PWD/%contents_xcworkspacedata%"
@@ -92,21 +92,16 @@ mkdir -p "$dest_xcschemes"
 
 if [[ $(uname) == "Darwin" ]]; then
   is_macos=1
-  readonly rsync="$src_rsync"
 else
   is_macos=0
-  readonly rsync="$(command -v rsync || true)"
-  [[ -n "$rsync" ]] || fail \
-    "Failed to locate host rsync." \
-    "rules_xcodeproj's bundled rsync is only supported on macOS project generation."
 fi
 
-"$rsync" \
-  --archive \
-  --perms \
-  --chmod=u+w,F-x \
+"$src_copy_tool" \
   --delete \
   "$src_xcschemes" "$dest_xcschemes/"
+
+# Remove executable bits from .xcscheme files
+find "$dest_xcschemes/" -type f -print0 | xargs -0 chmod -x
 
 # Resolve the copy command (can't use `cp -c` if the files are on different
 # filesystems, or on Linux)
@@ -132,7 +127,6 @@ rm -rf "$dest/rules_xcodeproj/bazel"/*
 $cp_cmd "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 $cp_cmd "$bazel_env" "$dest/rules_xcodeproj/bazel/bazel_env.sh"
 $cp_cmd "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
-chmod u+rx "$dest/rules_xcodeproj/bazel/rsync"
 
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   $cp_cmd "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
@@ -150,10 +144,10 @@ chmod u+w "$dest_generated_xcfilelist"
 
 # - Keep only scripts as runnable
 find "$dest/rules_xcodeproj/bazel" \
-  -type f \( -name "*.sh" -o -name "*.py" -o -name "ld" -o -name "libtool" -o -name "rsync" \) \
+  -type f \( -name "*.sh" -o -name "*.py" -o -name "ld" -o -name "libtool" \) \
   -print0 | xargs -0 chmod u+x
 find "$dest/rules_xcodeproj/bazel" \
-  -type f ! \( -name "swiftc" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "rsync" -o -name "*.sh" -o -name "*.py" \) \
+  -type f ! \( -name "swiftc" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "*.sh" -o -name "*.py" \) \
   -print0 | xargs -0 chmod -x
 
 # Copy over `project.xcworkspace/contents.xcworkspacedata` if needed
