@@ -1,11 +1,9 @@
 import CustomDump
 import PBXProj
 import XCTest
-
 @testable import files_and_groups
 
 final class CalculatePathTreeTests: XCTestCase {
-
     // MARK: - empty
 
     func test_empty() {
@@ -20,6 +18,58 @@ final class CalculatePathTreeTests: XCTestCase {
 
         let pathTree = Generator
             .calculatePathTree(paths: paths, generatedPaths: generatedPaths)
+
+        // Assert
+
+        XCTAssertNoDifference(pathTree, expectedPathTree)
+    }
+
+    func test_buildableFolders() {
+        // Arrange
+
+        let paths: [BazelPath] = [
+            "Modules/Feature/OfferFeature/BUILD",
+            "Modules/Feature/OfferFeature/Sources/Module.swift",
+            "Modules/Feature/OfferFeature/Tests/OfferFeatureTests.swift",
+        ]
+        let generatedPaths: [GeneratedPath] = []
+        let buildableFolders: [BazelPath] = [
+            "Modules/Feature/OfferFeature/Sources",
+            "Modules/Feature/OfferFeature/Tests",
+        ]
+
+        let expectedPathTree: [PathTreeNode] = [
+            .group(
+                name: "Modules",
+                children: [
+                    .group(
+                        name: "Feature",
+                        children: [
+                            .group(
+                                name: "OfferFeature",
+                                children: [
+                                    .file("BUILD"),
+                                    .buildableFolder(
+                                        "Modules/Feature/OfferFeature/Sources"
+                                    ),
+                                    .buildableFolder(
+                                        "Modules/Feature/OfferFeature/Tests"
+                                    ),
+                                ]
+                            ),
+                        ]
+                    ),
+                ]
+            ),
+        ]
+
+        // Act
+
+        let pathTree = Generator.calculatePathTree(
+            paths: paths.filter { !$0.isContained(in: buildableFolders) },
+            generatedPaths: generatedPaths,
+            buildableFolders: buildableFolders
+        )
 
         // Assert
 
@@ -60,7 +110,7 @@ final class CalculatePathTreeTests: XCTestCase {
                     .group(
                         name: "gen",
                         children: [
-                            .file("folder")
+                            .file("folder"),
                         ]
                     ),
                 ]

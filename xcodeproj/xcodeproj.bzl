@@ -31,6 +31,7 @@ def xcodeproj(
             "LANG": "en_US.UTF-8",
             "PATH": "/bin:/usr/bin",
         },
+        buildable_folders = {},
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
@@ -81,7 +82,7 @@ def xcodeproj(
     )
     ```
 
-    Args:
+        Args:
         name: A unique name for this target.
         associated_extra_files: Optional. A `dict` of files to be added to the
             project.
@@ -90,6 +91,9 @@ def xcodeproj(
             files should be associated with, and the value is a `list` of
             `File`s. These files won't be added to the project if the target is
             unfocused.
+        buildable_folders: Optional. A `dict` mapping target labels to
+            workspace-relative folder paths that should be represented as Xcode
+            buildable folders (PBXFileSystemSynchronizedRootGroup).
         bazel_env: Optional. A `dict` of environment variables to set when
             invoking `bazel_path`.
 
@@ -466,6 +470,11 @@ configuration alphabetically ("{default}").
         for f, labels in owned_extra_files.items()
     }
 
+    buildable_folders = {
+        bazel_labels.normalize_string(label): sorted(folders)
+        for label, folders in buildable_folders.items()
+    }
+
     unowned_extra_files = [
         bazel_labels.normalize_string(f)
         for f in extra_files
@@ -552,6 +561,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
         minimum_xcode_version = minimum_xcode_version,
+        buildable_folders = buildable_folders,
         owned_extra_files = owned_extra_files,
         post_build = post_build,
         pre_build = pre_build,

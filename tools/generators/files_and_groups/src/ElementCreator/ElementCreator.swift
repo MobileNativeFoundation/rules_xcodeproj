@@ -16,15 +16,15 @@ struct ElementCreator {
             arguments.executionRootFile
         )
 
-        let createRootElements = environment.createCreateRootElements(
+        let createRootElements = try environment.createCreateRootElements(
             executionRoot: executionRoot,
-            externalDir: try environment.externalDir(
+            externalDir: environment.externalDir(
                 executionRoot: executionRoot
             ),
             includeCompileStub: compileStubNeeded,
             installPath: arguments.installPath,
             selectedModelVersions:
-                try environment.readSelectedModelVersionsFile(
+                environment.readSelectedModelVersionsFile(
                     arguments.selectedModelVersionsFile
                 ),
             workspace: arguments.workspace

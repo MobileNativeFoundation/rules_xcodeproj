@@ -313,6 +313,7 @@ def _write_project_contents(
         install_path,
         minimum_xcode_version,
         name,
+        buildable_folders,
         owned_extra_files,
         pbxnativetargets_generator,
         pbxproj_prefix_generator,
@@ -399,6 +400,7 @@ def _write_project_contents(
         default_xcode_configuration = default_xcode_configuration,
         generator_name = name,
         install_path = install_path,
+        buildable_folders_by_label = buildable_folders,
         tool = pbxnativetargets_generator,
         xcode_target_configurations = xcode_target_configurations,
         xcode_targets = xcode_targets,
@@ -412,6 +414,11 @@ def _write_project_contents(
     ) = pbxproj_partials.write_files_and_groups(
         actions = actions,
         buildfile_subidentifiers_files = buildfile_subidentifiers_files,
+        buildable_folders = [
+            folder
+            for folders in buildable_folders.values()
+            for folder in folders
+        ],
         colorize = colorize,
         compile_stub_needed = compile_stub_needed,
         execution_root_file = execution_root_file,
@@ -653,6 +660,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
             )
         ),
         name = name,
+        buildable_folders = ctx.attr.buildable_folders,
         owned_extra_files = ctx.attr.owned_extra_files,
         pbxnativetargets_generator = (
             ctx.executable._pbxnativetargets_generator
@@ -793,6 +801,7 @@ def _xcodeproj_attrs(
         "import_index_build_indexstores": attr.bool(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
+        "buildable_folders": attr.string_list_dict(),
         "owned_extra_files": attr.label_keyed_string_dict(allow_files = True),
         "post_build": attr.string(mandatory = True),
         "pre_build": attr.string(mandatory = True),
