@@ -147,32 +147,13 @@ fi
 # Runtime Sanitizers
 if [[ $apply_sanitizers -eq 1 ]]; then
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=(
-      --copt=-fno-omit-frame-pointer
-      --copt=-fno-sanitize-recover=all
-      --copt=-fsanitize=address
-      --linkopt=-fsanitize=address
-      --%swiftcopt%=-sanitize=address
-      --copt=-Wno-macro-redefined
-      --copt=-D_FORTIFY_SOURCE=0
-    )
+    build_pre_config_flags+=(--features=asan --host_features=-asan)
   fi
   if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=(
-      --copt=-fno-omit-frame-pointer
-      --copt=-fno-sanitize-recover=all
-      --copt=-fsanitize=thread
-      --linkopt=-fsanitize=thread
-      --%swiftcopt%=-sanitize=thread
-      )
+    build_pre_config_flags+=(--features=tsan --host_features=-tsan)
   fi
   if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=(
-      --copt=-fno-omit-frame-pointer
-      --copt=-fno-sanitize-recover=all
-      --copt=-fsanitize=undefined
-      --linkopt=-fsanitize=undefined
-    )
+    build_pre_config_flags+=(--features=ubsan --host_features=-ubsan)
   fi
 fi
 readonly build_pre_config_flags
