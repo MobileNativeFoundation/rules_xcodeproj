@@ -29,9 +29,14 @@ echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
-# Workspace-relative paths with leading slash (e.g., /Projects/...)
-# These appear in debug symbols and need to be mapped to the workspace root
-echo "settings append target.source-map \"/\" \"$execution_root/\""
+# Workspace-relative paths with a leading slash (e.g. `/Projects/...`) appear
+# in some debug symbols. Map only prefixes that exist at the workspace root so
+# genuine absolute paths such as `/Users/...` keep their original meaning.
+for workspace_directory in "$execution_root"/*/; do
+  [[ -d "$workspace_directory" ]] || continue
+  workspace_prefix="${workspace_directory#"$execution_root"}"
+  echo "settings append target.source-map \"$workspace_prefix\" \"$workspace_directory\""
+done
 
 if [[ "${BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE:-}" == "YES" ]]; then
   readonly output_base="${execution_root%/*/*}"
