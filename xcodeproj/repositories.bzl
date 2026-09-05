@@ -228,9 +228,12 @@ swift_library(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "1ebde9c9403d5befb6956556e26f9308000722f7da9e87fed2e770d3918d647c",
-        strip_prefix = "swift-issue-reporting-0.2.1",
-        url = "https://github.com/pointfreeco/swift-issue-reporting/archive/refs/tags/0.2.1.tar.gz",
+        # Pin the commit behind 0.2.1. GitHub's generated tag archive changed
+        # bytes after publication, while this archive reconstructs the pinned
+        # commit's exact Git tree (fc85be0f48178a0f30868f13eba9928fb811c7d4).
+        sha256 = "fc2649c61bf3833f8e4fbf935ccd4f3e8ea6c8c7ffc793e0cac991dac03630e6",
+        strip_prefix = "swift-issue-reporting-50a70a9d3583fe228ce672e8923010c8df2deddd",
+        url = "https://github.com/pointfreeco/swift-issue-reporting/archive/50a70a9d3583fe228ce672e8923010c8df2deddd.tar.gz",
     )
 
     http_archive(

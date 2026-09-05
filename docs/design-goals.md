@@ -198,6 +198,35 @@ reasons:
   projects generated with rules_xcodeproj, the proxy might be tied to a specific
   version of Xcode and not work with other versions.
 
+The supported rules_xcodeproj integration avoids global environment changes and
+Xcode bundle modifications. A project can explicitly select a hermetic macOS
+proxy executable file with `build_proxy` and pin its bytes with
+`build_proxy_sha256`. The input is not transitioned to Bazel's execution
+platform, so a remote or Linux generator cannot silently substitute a non-macOS
+artifact.
+Project generation installs that verified executable and a per-project launcher
+under `rules_xcodeproj/build_proxy`. The launcher validates the proxy and the
+schema-v2 manifest again, asks the proxy to validate the selected Xcode build,
+and then either:
+
+- launches a fresh Xcode process with `/usr/bin/open -n`, isolating the opt-in
+  from already-running Xcode processes; or
+- runs the `xcodebuild` from that exact Xcode installation.
+
+Normal Xcode launches remain native. Removing `build_proxy` and regenerating
+the project removes the launcher. rules_xcodeproj does not download a proxy,
+choose Bazel actions, or implement build policy in this layer; the versioned
+manifest and standalone proxy own those contracts.
+
+The selected proxy must provide a fail-closed `--resolve-native-service`
+compatibility check. After generation, the explicit entry points are:
+
+```sh
+App.xcodeproj/rules_xcodeproj/build_proxy/launch_with_build_proxy.sh xcode
+App.xcodeproj/rules_xcodeproj/build_proxy/launch_with_build_proxy.sh \
+  xcodebuild -project App.xcodeproj build
+```
+
 For some teams the benefits outweigh these inconveniences, and there will always
 be the “Build with Bazel” fallback mode in case something goes wrong.
 

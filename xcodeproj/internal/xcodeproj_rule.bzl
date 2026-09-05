@@ -259,6 +259,8 @@ def _write_installer(
         *,
         actions,
         bazel_integration_files,
+        build_proxy_installer,
+        build_proxy_launcher,
         config,
         contents_xcworkspacedata,
         generated_directories_filelist,
@@ -282,6 +284,8 @@ def _write_installer(
             "%bazel_integration_files%": shell.array_literal(
                 [f.short_path for f in bazel_integration_files],
             ),
+            "%build_proxy_installer%": build_proxy_installer.short_path,
+            "%build_proxy_launcher%": build_proxy_launcher.short_path,
             "%config%": config,
             "%contents_xcworkspacedata%": contents_xcworkspacedata.short_path,
             "%generated_directories_filelist%": (
@@ -297,6 +301,8 @@ def _write_installer(
     )
 
     runfiles = bazel_integration_files + [
+        build_proxy_installer,
+        build_proxy_launcher,
         contents_xcworkspacedata,
         generated_directories_filelist,
         generated_xcfilelist,
@@ -772,6 +778,8 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
     (installer, runfiles) = _write_installer(
         actions = actions,
         bazel_integration_files = bazel_integration_files,
+        build_proxy_installer = ctx.file._build_proxy_installer,
+        build_proxy_launcher = ctx.file._build_proxy_launcher,
         config = config,
         contents_xcworkspacedata = ctx.file._contents_xcworkspacedata,
         generated_directories_filelist = generated_directories_filelist,
@@ -876,6 +884,14 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
             default = Label(
                 "//xcodeproj/internal/bazel_integration_files",
             ),
+        ),
+        "_build_proxy_installer": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal/templates:install_build_proxy.sh"),
+        ),
+        "_build_proxy_launcher": attr.label(
+            allow_single_file = True,
+            default = Label("//xcodeproj/internal/templates:build_proxy_launcher.sh"),
         ),
         "_build_proxy_manifest_generator": attr.label(
             cfg = "exec",

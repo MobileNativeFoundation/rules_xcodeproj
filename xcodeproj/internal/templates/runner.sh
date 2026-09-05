@@ -29,6 +29,8 @@ installer_flags=(
   --extra_flags_bazelrc "$extra_flags_bazelrc"
 )
 
+%build_proxy_installer_flags%
+
 config="build"
 original_arg_count=$#
 download_intermediates=0
