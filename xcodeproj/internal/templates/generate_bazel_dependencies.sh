@@ -158,6 +158,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
   build_pre_config_flags+=(
     "--build_event_publish_all_actions"
     "--build_event_json_file=$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
+    "--build_event_max_named_set_of_file_entries=256"
   )
 fi
 # The build service gives every operation its own private path. Keep execution metadata attached
@@ -254,6 +255,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
     if [[
       "$option" != --build_event_publish_all_actions &&
       "$option" != --build_event_json_file=* &&
+      "$option" != --build_event_max_named_set_of_file_entries=* &&
       "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
       "$option" != --execution_log_binary_file=* &&

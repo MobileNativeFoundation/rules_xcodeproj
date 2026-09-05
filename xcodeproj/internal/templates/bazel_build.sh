@@ -195,6 +195,7 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT:-}" ]]; then
   for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
     if [[
       "$option" != --build_event_json_file=* &&
+      "$option" != --build_event_max_named_set_of_file_entries=* &&
       "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
       "$option" != --execution_log_binary_file=* &&
