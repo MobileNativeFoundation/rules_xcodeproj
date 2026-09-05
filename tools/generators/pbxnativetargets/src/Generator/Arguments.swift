@@ -23,6 +23,14 @@ be written.
         var buildFileSubIdentifiersOutputPath: URL
 
         @Argument(
+            help: """
+Path to where build proxy manifest JSON Lines entries should be written.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var buildProxyManifestEntriesOutputPath: URL
+
+        @Argument(
             help: "Path to the consolidation map.",
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
