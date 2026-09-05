@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+readonly self_path="${BASH_SOURCE[0]}"
+case "$self_path" in
+  */*) readonly sibling_dir="${self_path%/*}" ;;
+  *) readonly sibling_dir=. ;;
+esac
+
+exec "$sibling_dir/clang" --driver-mode=g++ "$@"

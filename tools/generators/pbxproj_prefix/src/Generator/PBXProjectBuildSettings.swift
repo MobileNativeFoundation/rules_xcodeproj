@@ -112,7 +112,31 @@ extension Generator {
             ),
             .init(
                 key: "LDPLUSPLUS",
+                value: #""$(LDPLUSPLUS__$(ENABLE_PREVIEWS))""#
+            ),
+            .init(
+                key: "LDPLUSPLUS__",
+                value: #""$(LDPLUSPLUS_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "LDPLUSPLUS__NO",
+                value: #""$(LDPLUSPLUS_XOJIT__$(ENABLE_XOJIT_PREVIEWS))""#
+            ),
+            .init(
+                key: "LDPLUSPLUS__YES",
                 value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
+            ),
+            .init(
+                key: "LDPLUSPLUS_XOJIT__",
+                value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
+            ),
+            .init(
+                key: "LDPLUSPLUS_XOJIT__NO",
+                value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
+            ),
+            .init(
+                key: "LDPLUSPLUS_XOJIT__YES",
+                value: #""$(BAZEL_INTEGRATION_DIR)/clang++""#
             ),
             .init(
                 key: "LIBTOOL",

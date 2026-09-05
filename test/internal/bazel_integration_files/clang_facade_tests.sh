@@ -22,6 +22,7 @@ require_absent() {
 
 readonly repo_root="$TEST_SRCDIR/$TEST_WORKSPACE"
 readonly facade="$repo_root/xcodeproj/internal/bazel_integration_files/clang"
+readonly cxx_facade="$repo_root/xcodeproj/internal/bazel_integration_files/clang++"
 readonly sibling_ld="$repo_root/xcodeproj/internal/bazel_integration_files/ld"
 test_root="$(mktemp -d "${TMPDIR:-/tmp}/clang-facade-tests.XXXXXX")"
 readonly test_root
@@ -30,6 +31,8 @@ trap 'rm -rf "$test_root"' EXIT
 [[ "${facade##*/}" == "clang" ]] || fail "facade basename is not clang"
 [[ -x "$facade" ]] || fail "packaged facade is not executable"
 /bin/bash -n "$facade"
+[[ -x "$cxx_facade" ]] || fail "packaged C++ facade is not executable"
+/bin/bash -n "$cxx_facade"
 
 readonly developer_dir="$test_root/Xcode With Spaces.app/Contents/Developer"
 readonly sdk="$developer_dir/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
@@ -95,6 +98,18 @@ cmp "$test_root/ordinary-direct.stderr" "$test_root/ordinary-facade.stderr"
 cmp "$direct_dependency_info" "$facade_dependency_info"
 require_absent "$ordinary_output"
 
+readonly cxx_dependency_info="$test_root/cxx_dependency_info.dat"
+run_capture ordinary-cxx-facade \
+  "$cxx_facade" \
+  -o "$ordinary_output" \
+  -Xlinker -dependency_info -Xlinker "$cxx_dependency_info"
+assert_status 0 "$(<"$test_root/ordinary-cxx-facade.status")" \
+  "C++ facade ordinary route"
+cmp "$test_root/ordinary-direct.stdout" "$test_root/ordinary-cxx-facade.stdout"
+cmp "$test_root/ordinary-direct.stderr" "$test_root/ordinary-cxx-facade.stderr"
+cmp "$direct_dependency_info" "$cxx_dependency_info"
+require_absent "$ordinary_output"
+
 readonly query_output="$test_root/query.framework/query"
 readonly -a query_args=(
   -target arm64-apple-ios15.0-simulator
@@ -113,6 +128,13 @@ printf '%s\0' "${query_args[@]}" > "$test_root/query.expected.nul"
 cmp "$test_root/query.expected.nul" "$record_dir/query.argv.nul"
 [[ "$(<"$test_root/query.stdout")" == "fake-clang-stdout" ]]
 [[ "$(<"$test_root/query.stderr")" == "fake-clang-stderr" ]]
+require_absent "$query_output"
+
+run_capture cxx-query "$cxx_facade" "${query_args[@]}"
+assert_status 73 "$(<"$test_root/cxx-query.status")" "C++ query route"
+printf '%s\0' --driver-mode=g++ "${query_args[@]}" > \
+  "$test_root/cxx-query.expected.nul"
+cmp "$test_root/cxx-query.expected.nul" "$record_dir/cxx-query.argv.nul"
 require_absent "$query_output"
 
 # Xcode runs this `-###` probe to discover the profile and Apple runtime
@@ -137,6 +159,16 @@ cmp \
   "$record_dir/profile-runtime-query.argv.nul"
 [[ "$(<"$test_root/profile-runtime-query.stdout")" == "fake-clang-stdout" ]]
 [[ "$(<"$test_root/profile-runtime-query.stderr")" == "fake-clang-stderr" ]]
+
+run_capture cxx-profile-runtime-query \
+  "$cxx_facade" "${profile_runtime_query_args[@]}"
+assert_status 73 "$(<"$test_root/cxx-profile-runtime-query.status")" \
+  "C++ profile runtime query route"
+printf '%s\0' --driver-mode=g++ "${profile_runtime_query_args[@]}" > \
+  "$test_root/cxx-profile-runtime-query.expected.nul"
+cmp \
+  "$test_root/cxx-profile-runtime-query.expected.nul" \
+  "$record_dir/cxx-profile-runtime-query.argv.nul"
 
 if [[ "$execroot" == /private/* ]]; then
   alias_execroot="${execroot#/private}"
@@ -179,6 +211,16 @@ for suffix in preview-thunk debug; do
   cmp \
     "$test_root/preview-$suffix.expected.nul" \
     "$record_dir/preview-$suffix.argv.nul"
+  require_absent "$preview_output"
+
+  run_capture "cxx-preview-$suffix" "$cxx_facade" "${preview_args[@]}"
+  assert_status 73 "$(<"$test_root/cxx-preview-$suffix.status")" \
+    "C++ $suffix Preview route"
+  printf '%s\0' --driver-mode=g++ "${preview_args[@]}" > \
+    "$test_root/cxx-preview-$suffix.expected.nul"
+  cmp \
+    "$test_root/cxx-preview-$suffix.expected.nul" \
+    "$record_dir/cxx-preview-$suffix.argv.nul"
   require_absent "$preview_output"
 done
 

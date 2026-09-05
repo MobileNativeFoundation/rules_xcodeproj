@@ -150,10 +150,10 @@ chmod u+w "$dest_generated_xcfilelist"
 
 # - Keep only scripts as runnable
 find "$dest/rules_xcodeproj/bazel" \
-  -type f \( -name "*.sh" -o -name "*.py" -o -name "clang" -o -name "ld" -o -name "libtool" -o -name "rsync" \) \
+  -type f \( -name "*.sh" -o -name "*.py" -o -name "clang" -o -name "clang++" -o -name "ld" -o -name "libtool" -o -name "rsync" \) \
   -print0 | xargs -0 chmod u+x
 find "$dest/rules_xcodeproj/bazel" \
-  -type f ! \( -name "swiftc" -o -name "clang" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "rsync" -o -name "*.sh" -o -name "*.py" \) \
+  -type f ! \( -name "swiftc" -o -name "clang" -o -name "clang++" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "rsync" -o -name "*.sh" -o -name "*.py" \) \
   -print0 | xargs -0 chmod -x
 
 # Copy over `project.xcworkspace/contents.xcworkspacedata` if needed

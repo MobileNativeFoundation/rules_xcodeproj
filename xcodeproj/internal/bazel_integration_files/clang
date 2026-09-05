@@ -13,6 +13,13 @@ case "$self_path" in
   *) readonly sibling_dir=. ;;
 esac
 readonly sibling_ld="$sibling_dir/ld"
+# The clang++ entry point shares validation and ordinary-build behavior with
+# this facade, but forwarded Preview links must retain C++ runtime defaults.
+cxx_driver=0
+if [[ "${1:-}" == "--driver-mode=g++" ]]; then
+  cxx_driver=1
+  shift
+fi
 readonly -a original_args=("$@")
 
 is_profile_runtime_query() {
@@ -295,4 +302,7 @@ for arg in "${original_args[@]}"; do
   esac
 done
 
+if ((cxx_driver)); then
+  exec "$real_clang" --driver-mode=g++ "${original_args[@]}"
+fi
 exec "$real_clang" "${original_args[@]}"
