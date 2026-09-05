@@ -170,16 +170,41 @@ class BuildProxyManifestTests(unittest.TestCase):
                 project_container="App.xcodeproj",
             )
 
-    def test_project_container_must_be_a_xcodeproj_basename(self):
+    def test_nested_project_container_records_the_xcodeproj_basename(self):
+        contents = build_proxy_manifest_lib.assemble(
+            [],
+            bazel_path="bazel",
+            generator_label="@@//app:project",
+            project_container="App/App.xcodeproj",
+        )
+
+        self.assertEqual(
+            json.loads(contents)["project"]["containerName"],
+            "App.xcodeproj",
+        )
+
+    def test_project_container_traversal_is_rejected(self):
         with self.assertRaisesRegex(
             build_proxy_manifest_lib.ManifestError,
-            "project container must be a basename",
+            "project container must not contain traversal",
         ):
             build_proxy_manifest_lib.assemble(
                 [],
                 bazel_path="bazel",
                 generator_label="@@//app:project",
                 project_container="../App.xcodeproj",
+            )
+
+    def test_absolute_project_container_is_rejected(self):
+        with self.assertRaisesRegex(
+            build_proxy_manifest_lib.ManifestError,
+            "project container must be a relative path",
+        ):
+            build_proxy_manifest_lib.assemble(
+                [],
+                bazel_path="bazel",
+                generator_label="@@//app:project",
+                project_container="/tmp/App.xcodeproj",
             )
 
 
