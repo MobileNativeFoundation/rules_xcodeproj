@@ -150,6 +150,13 @@ eval "$proxy_receipt_command_options_block"
 [[ "${receipt_args[0]}" == "--command-option=--base-build-flag" ]]
 [[ "${receipt_args[1]}" == "--command-option=--kept-build-flag" ]]
 
+# The action-start signal is proxy-only, comes after the named config so it cannot be disabled by
+# a bazelrc, and remains private orchestration rather than a semantic invocation-receipt option.
+proxy_action_start_flags_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_ACTION_STARTS_PATH:-/,/^fi$/p' "$bazel_build_source")"
+readonly proxy_action_start_flags_block
+[[ "$(grep -Fc -- 'build_log_cmd+=(--subcommands=pretty_print)' <<< "$proxy_action_start_flags_block")" == 1 ]]
+[[ "$(grep -Fc -- 'receipt_args+=' <<< "$proxy_action_start_flags_block")" == 0 ]]
+
 # A proxied adapter is already the inner Xcode invocation. Preserve the generated hermetic Bazel
 # executable (or an explicitly inherited one), and tell workspace wrappers not to regenerate their
 # outer rules release inside Xcode's restricted PATH.
@@ -237,6 +244,9 @@ done
 [[ "$(grep -Fc -- '"$option" != --execution_log_binary_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_action_graph_block")" == 1 ]]
+# The metadata-only aquery comes after the build and must not inherit command-printing from a
+# common/build/config bazelrc or duplicate action-start events.
+[[ "$(grep -Fxc -- '    --subcommands=false \' <<< "$proxy_action_graph_block")" == 1 ]]
 # Command-line clears come after the named config, so execution-log settings inherited directly
 # from common/build/config bazelrc sections cannot leak into the metadata-only aquery.
 for cleared_execution_log_flag in \
