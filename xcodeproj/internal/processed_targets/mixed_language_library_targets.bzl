@@ -139,7 +139,6 @@ def _process_mixed_language_library_target(
     (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
         mergeable_info = mergeable_info,
         mixed_target_infos = mixed_target_infos,
-        transitive_infos = transitive_infos,
     )
 
     actual_package_bin_dir = products.calculate_packge_bin_dir(
