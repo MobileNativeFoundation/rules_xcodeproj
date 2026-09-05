@@ -3,6 +3,7 @@
 def write_build_proxy_manifest(
         *,
         actions,
+        bazel_environment_keys,
         bazel_path,
         entries_files,
         generator_label,
@@ -13,6 +14,7 @@ def write_build_proxy_manifest(
 
     Args:
         actions: `ctx.actions`.
+        bazel_environment_keys: Names supplied by the generated Bazel environment.
         bazel_path: The Bazel executable path recorded for proxy invocation.
         entries_files: JSON Lines manifest fragments from target shards.
         generator_label: The `xcodeproj` generator label the proxy must build.
@@ -33,6 +35,8 @@ def write_build_proxy_manifest(
     args.add(str(generator_label))
     args.add(bazel_path)
     args.add(project_container)
+    for key in bazel_environment_keys:
+        args.add("--bazel-environment-key={}".format(key))
     args.add_all(entries_files)
 
     actions.run(

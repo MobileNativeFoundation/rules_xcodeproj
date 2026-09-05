@@ -1,6 +1,7 @@
 """Deterministically assembles version 2 build-proxy manifest fragments."""
 
 import json
+import re
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
@@ -155,6 +156,7 @@ def assemble(
     fragment_lines: Iterable[tuple[str, int, str]],
     *,
     bazel_path: str,
+    bazel_environment_keys: Sequence[str] = (),
     generator_label: str,
     project_container: str,
 ) -> bytes:
@@ -163,6 +165,25 @@ def assemble(
         raise ManifestError("generator label must not be empty")
     if not bazel_path:
         raise ManifestError("Bazel path must not be empty")
+    normalized_bazel_environment_keys = sorted(set(bazel_environment_keys))
+    for key in normalized_bazel_environment_keys:
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key):
+            raise ManifestError(f"invalid Bazel environment key: {key!r}")
+        normalized_key = key.upper().replace("-", "_")
+        if any(
+            marker in normalized_key
+            for marker in (
+                "TOKEN",
+                "PASSWORD",
+                "SECRET",
+                "CREDENTIAL",
+                "API_KEY",
+                "AUTHORIZATION",
+                "COOKIE",
+                "HEADER",
+            )
+        ):
+            raise ManifestError(f"sensitive Bazel environment key: {key!r}")
     project_container_path = Path(project_container)
     if not project_container or project_container_path.is_absolute():
         raise ManifestError("project container must be a relative path")
@@ -202,6 +223,7 @@ def assemble(
             "adapterPath": ADAPTER_PATH,
             "bazelPath": bazel_path,
             "bazelrcPath": BAZELRC_PATH,
+            "bazelEnvironmentKeys": normalized_bazel_environment_keys,
             "environmentKeys": INVOCATION_ENVIRONMENT_KEYS,
             "generatorLabel": generator_label,
             "receiptSchemaVersion": RECEIPT_SCHEMA_VERSION,
@@ -228,6 +250,7 @@ def assemble_files(
     paths: Sequence[Path],
     *,
     bazel_path: str,
+    bazel_environment_keys: Sequence[str] = (),
     generator_label: str,
     project_container: str,
 ) -> bytes:
@@ -241,6 +264,7 @@ def assemble_files(
     return assemble(
         lines,
         bazel_path=bazel_path,
+        bazel_environment_keys=bazel_environment_keys,
         generator_label=generator_label,
         project_container=project_container,
     )
@@ -251,6 +275,7 @@ def write(
     fragments: Sequence[Path],
     *,
     bazel_path: str,
+    bazel_environment_keys: Sequence[str] = (),
     generator_label: str,
     project_container: str,
 ) -> None:
@@ -258,6 +283,7 @@ def write(
         assemble_files(
             fragments,
             bazel_path=bazel_path,
+            bazel_environment_keys=bazel_environment_keys,
             generator_label=generator_label,
             project_container=project_container,
         )

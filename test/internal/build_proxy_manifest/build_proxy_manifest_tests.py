@@ -1,6 +1,9 @@
 import json
+import tempfile
 import unittest
+from pathlib import Path
 
+from xcodeproj.internal import build_proxy_manifest
 from xcodeproj.internal import build_proxy_manifest_lib
 
 
@@ -39,6 +42,31 @@ def _line(entry):
 
 
 class BuildProxyManifestTests(unittest.TestCase):
+    def test_cli_accepts_environment_options_before_manifest_fragments(self):
+        with tempfile.TemporaryDirectory() as temp_directory:
+            root = Path(temp_directory)
+            output = root / "manifest.json"
+            fragment = root / "fragment.jsonl"
+            fragment.write_text(_line(_entry()) + "\n")
+
+            build_proxy_manifest.main(
+                [
+                    str(output),
+                    "@@//app:project",
+                    "/usr/local/bin/bazel",
+                    "App.xcodeproj",
+                    "--bazel-environment-key=CUSTOM_ENV",
+                    str(fragment),
+                ]
+            )
+
+            manifest = json.loads(output.read_text())
+            self.assertEqual(
+                manifest["invocation"]["bazelEnvironmentKeys"],
+                ["CUSTOM_ENV"],
+            )
+            self.assertEqual(len(manifest["targets"]), 1)
+
     def test_assemble_is_versioned_and_byte_deterministic(self):
         debug = _line(_entry())
         release = _line(_entry(configuration="Release"))
@@ -46,12 +74,14 @@ class BuildProxyManifestTests(unittest.TestCase):
         forward = build_proxy_manifest_lib.assemble(
             [("a", 1, release), ("b", 1, debug)],
             bazel_path="/usr/local/bin/bazel",
+            bazel_environment_keys=["Z_CUSTOM", "CUSTOM_ENV"],
             generator_label="@@//app:project",
             project_container="App.xcodeproj",
         )
         reverse = build_proxy_manifest_lib.assemble(
             [("b", 1, debug), ("a", 1, release)],
             bazel_path="/usr/local/bin/bazel",
+            bazel_environment_keys=["CUSTOM_ENV", "Z_CUSTOM"],
             generator_label="@@//app:project",
             project_container="App.xcodeproj",
         )
@@ -73,6 +103,7 @@ class BuildProxyManifestTests(unittest.TestCase):
                 "adapterPath": "rules_xcodeproj/bazel/generate_bazel_dependencies.sh",
                 "bazelPath": "/usr/local/bin/bazel",
                 "bazelrcPath": "rules_xcodeproj/bazel/xcodeproj.bazelrc",
+                "bazelEnvironmentKeys": ["CUSTOM_ENV", "Z_CUSTOM"],
                 "environmentKeys": build_proxy_manifest_lib.INVOCATION_ENVIRONMENT_KEYS,
                 "generatorLabel": "@@//app:project",
                 "receiptSchemaVersion": 1,
@@ -86,6 +117,19 @@ class BuildProxyManifestTests(unittest.TestCase):
             [entry["configuration"] for entry in manifest["targets"]],
             ["Debug", "Release"],
         )
+
+    def test_sensitive_bazel_environment_key_is_rejected(self):
+        with self.assertRaisesRegex(
+            build_proxy_manifest_lib.ManifestError,
+            "sensitive Bazel environment key",
+        ):
+            build_proxy_manifest_lib.assemble(
+                [],
+                bazel_path="bazel",
+                bazel_environment_keys=["PRIVATE_TOKEN"],
+                generator_label="@@//app:project",
+                project_container="App.xcodeproj",
+            )
 
     def test_missing_required_key_is_rejected(self):
         entry = _entry()

@@ -316,6 +316,7 @@ def _write_installer(
 def _write_project_contents(
         *,
         actions,
+        bazel_environment_keys,
         bazel_path,
         bin_dir_path,
         build_proxy_manifest_generator,
@@ -426,6 +427,7 @@ def _write_project_contents(
 
     build_proxy_manifest = write_build_proxy_manifest(
         actions = actions,
+        bazel_environment_keys = bazel_environment_keys,
         bazel_path = bazel_path,
         entries_files = build_proxy_manifest_entries_files,
         generator_label = generator_label,
@@ -663,6 +665,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         target_ids_list,
     ) = _write_project_contents(
         actions = actions,
+        bazel_environment_keys = sorted(ctx.attr.bazel_env.keys()),
         bazel_path = ctx.attr.bazel_path,
         bin_dir_path = ctx.bin_dir.path,
         build_proxy_manifest_generator = (
