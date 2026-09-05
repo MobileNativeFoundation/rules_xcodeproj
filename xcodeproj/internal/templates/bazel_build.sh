@@ -195,12 +195,17 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT:-}" ]]; then
   for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
     if [[
       "$option" != --build_event_json_file=* &&
+      "$option" != --build_event_publish_all_actions &&
       "$option" != --build_event_max_named_set_of_file_entries=* &&
       "$option" != --progress_report_interval=* &&
       "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
       "$option" != --execution_log_binary_file=* &&
-      "$option" != --noexecution_log_sort
+      "$option" != --noexecution_log_sort &&
+      "$option" != --profile=* &&
+      "$option" != --generate_json_trace_profile=* &&
+      "$option" != --generate_json_trace_profile &&
+      "$option" != --nogenerate_json_trace_profile
     ]]; then
       receipt_args+=("--command-option=$option")
     fi
@@ -248,6 +253,11 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_STARTS_PATH:-}" ]]; then
   # bounded, allowlisted JSON record to the per-operation path.
   build_log_cmd+=(--subcommands=pretty_print)
 fi
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH:-}" ]]; then
+  # Keep the Bazel trace bound to this Xcode operation. This comes after the named config so a
+  # user/common/config bazelrc cannot redirect private profiling data elsewhere.
+  build_log_cmd+=("--profile=$SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH")
+fi
 if [[ -n "${toolchain:-}" ]]; then
   build_log_cmd+=("--action_env=TOOLCHAINS=$toolchain")
 fi
@@ -260,12 +270,26 @@ if [[ -n "${labels:-}" ]]; then
 fi
 readonly build_log_cmd
 
+secure_build_proxy_profile() {
+  local profile_path="${SWIFTBUILD_BAZEL_PROXY_PROFILE_PATH:-}"
+  [[ -n "$profile_path" ]] || return 0
+  if [[ ! -e "$profile_path" && ! -L "$profile_path" ]]; then
+    return 0
+  fi
+  if [[ -L "$profile_path" || ! -f "$profile_path" ]]; then
+    echo "error: Bazel build profile is not a regular file." >&2
+    return 1
+  fi
+  chmod 600 "$profile_path"
+}
+
 if [[ -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" ]]; then
   "${build_log_cmd[@]}" 2>&1 &
   readonly proxy_build_pid=$!
   cancel_proxy_build() {
     kill -TERM "$proxy_build_pid" 2>/dev/null || true
     wait "$proxy_build_pid" 2>/dev/null || true
+    secure_build_proxy_profile
     exit 143
   }
   trap cancel_proxy_build TERM INT
@@ -274,11 +298,19 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" ]]; then
   proxy_build_status=$?
   set -e
   trap - TERM INT
+  secure_build_proxy_profile
   if [[ $proxy_build_status -ne 0 ]]; then
     exit "$proxy_build_status"
   fi
 else
+  set +e
   "${build_log_cmd[@]}" 2>&1
+  proxy_direct_build_status=$?
+  set -e
+  secure_build_proxy_profile
+  if [[ $proxy_direct_build_status -ne 0 ]]; then
+    exit "$proxy_direct_build_status"
+  fi
 fi
 
 # Verify that we actually built what we requested

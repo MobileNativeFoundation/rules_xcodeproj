@@ -264,7 +264,11 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
       "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
       "$option" != --execution_log_binary_file=* &&
-      "$option" != --noexecution_log_sort
+      "$option" != --noexecution_log_sort &&
+      "$option" != --profile=* &&
+      "$option" != --generate_json_trace_profile=* &&
+      "$option" != --generate_json_trace_profile &&
+      "$option" != --nogenerate_json_trace_profile
     ]]; then
       action_graph_pre_config_flags+=("$option")
     fi
@@ -283,6 +287,8 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-}" ]]; then
     --execution_log_binary_file= \
     --execution_log_compact_file= \
     --execution_log_json_file= \
+    --profile= \
+    --generate_json_trace_profile=false \
     --subcommands=false \
     "$output_groups_flag" \
     --color=no \
