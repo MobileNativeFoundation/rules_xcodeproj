@@ -11,6 +11,7 @@ import ToolCommon
 struct BuildProxyManifestEntry: Codable, Equatable {
     struct Product: Codable, Equatable {
         let basename: String
+        let materialization: String
         let name: String
         let path: String?
         let type: String
@@ -25,7 +26,9 @@ struct BuildProxyManifestEntry: Codable, Equatable {
     let action: String
     let bazelLabel: String
     let configuration: String
+    let indexOutputGroups: [String]
     let outputGroup: String
+    let previewOutputGroups: [String]
     let product: Product
     let targetID: String
     let variant: Variant
@@ -56,6 +59,10 @@ Missing target arguments for build proxy manifest target ID \(targetID).
                 let topLevelAttributes = topLevelTargetAttributes[targetID]
                 let product = Product(
                     basename: arguments.productBasename,
+                    materialization: Self.materializationStrategy(
+                        basename: arguments.productBasename,
+                        path: topLevelAttributes?.outputsProductPath
+                    ),
                     name: arguments.productName,
                     path: topLevelAttributes?.outputsProductPath,
                     type: arguments.productType.identifier
@@ -72,7 +79,13 @@ Missing target arguments for build proxy manifest target ID \(targetID).
                             action: "build",
                             bazelLabel: consolidationMapEntry.label.description,
                             configuration: configuration,
+                            indexOutputGroups: ["bc \(targetID.rawValue)", "bi \(targetID.rawValue)"],
                             outputGroup: "bp \(targetID.rawValue)",
+                            previewOutputGroups: [
+                                "bc \(targetID.rawValue)",
+                                "bp \(targetID.rawValue)",
+                                "bl \(targetID.rawValue)",
+                            ],
                             product: product,
                             targetID: targetID.rawValue,
                             variant: variant,
@@ -84,6 +97,15 @@ Missing target arguments for build proxy manifest target ID \(targetID).
         }
 
         return entries.sorted(by: stableLessThan)
+    }
+
+    private static func materializationStrategy(
+        basename: String,
+        path: String?
+    ) -> String {
+        guard path != nil else { return "none" }
+        let treeExtensions = [".app", ".appex", ".bundle", ".framework", ".xctest"]
+        return treeExtensions.contains(where: basename.hasSuffix) ? "copy_tree" : "copy_file"
     }
 
     static func encodeJSONLines(_ entries: [Self]) throws -> Data {

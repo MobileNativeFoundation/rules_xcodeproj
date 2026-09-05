@@ -86,7 +86,18 @@ for var in "${allowed_vars[@]}"; do
   fi
 done
 
+readonly build_proxy_bazel_real="${BAZEL_REAL:-}"
 source "$BAZEL_INTEGRATION_DIR/bazel_env.sh"
+if [[
+  -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" &&
+  -n "$build_proxy_bazel_real"
+]]; then
+  build_proxy_envs=()
+  for item in "${envs[@]}"; do
+    [[ "$item" != BAZEL_REAL=* ]] && build_proxy_envs+=("$item")
+  done
+  envs=("${build_proxy_envs[@]}" "BAZEL_REAL=$build_proxy_bazel_real")
+fi
 
 bazel_cmd=(
   env -i
@@ -157,20 +168,96 @@ fi
 
 # Build
 
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT:-}" ]]; then
+  receipt_args=(
+    "$SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT"
+    --working-directory "$SRCROOT"
+    --command build
+    "--startup-option=--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
+    "--startup-option=--output_base=$output_base"
+    --target "%generator_label%"
+    --mode "action=$ACTION"
+    --mode "config=$config"
+    --mode "coverage=${CLANG_COVERAGE_MAPPING:-NO}"
+    --mode "previews=${ENABLE_PREVIEWS:-NO}"
+    --materialization "contract=manifest-v2"
+  )
+  for bazelrc in "${bazelrcs[@]}"; do
+    receipt_args+=("--bazelrc=${bazelrc#--bazelrc=}")
+  done
+  for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
+    if [[ "$option" != --build_event_json_file=* ]]; then
+      receipt_args+=("--command-option=$option")
+    fi
+  done
+  receipt_args+=("--command-option=--config=$config")
+  receipt_args+=("--command-option=--color=yes")
+  if [[ -n "${toolchain:-}" ]]; then
+    receipt_args+=("--command-option=--action_env=TOOLCHAINS=$toolchain")
+  fi
+  receipt_args+=("--command-option=$output_groups_flag")
+  for label in "${labels[@]:-}"; do
+    [[ -n "$label" ]] && receipt_args+=(--label "$label")
+  done
+  for output_group in "${output_groups[@]}"; do
+    receipt_args+=(--output-group "$output_group")
+  done
+  for target_id in "${target_ids[@]:-}"; do
+    [[ -n "$target_id" ]] && receipt_args+=(--target-id "$target_id")
+  done
+  for item in "${passthrough_env[@]}" "${envs[@]}"; do
+    receipt_args+=(--environment-key "${item%%=*}")
+  done
+  if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
+    receipt_args+=(--bep-path "$SWIFTBUILD_BAZEL_PROXY_BEP_PATH")
+  fi
+  "$BAZEL_INTEGRATION_DIR/write_build_proxy_invocation_receipt.py" \
+    "${receipt_args[@]}"
+fi
+
 echo "Starting Bazel build"
 
-"$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
-  "${bazel_cmd[@]}" \
-  build \
-  "${base_pre_config_flags[@]}" \
-  ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
-  --config="$config" \
-  --color=yes \
-  ${toolchain:+--action_env=TOOLCHAINS="$toolchain"} \
-  "$output_groups_flag" \
-  "%generator_label%" \
-  ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \
-  2>&1
+build_log_cmd=(
+  "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py"
+  "${bazel_cmd[@]}"
+  build
+  "${base_pre_config_flags[@]}"
+  ${build_pre_config_flags:+"${build_pre_config_flags[@]}"}
+  --config="$config"
+  --color=yes
+)
+if [[ -n "${toolchain:-}" ]]; then
+  build_log_cmd+=("--action_env=TOOLCHAINS=$toolchain")
+fi
+build_log_cmd+=(
+  "$output_groups_flag"
+  "%generator_label%"
+)
+if [[ -n "${labels:-}" ]]; then
+  build_log_cmd+=("--build_metadata=PATTERN=${labels[*]}")
+fi
+readonly build_log_cmd
+
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" ]]; then
+  "${build_log_cmd[@]}" 2>&1 &
+  readonly proxy_build_pid=$!
+  cancel_proxy_build() {
+    kill -TERM "$proxy_build_pid" 2>/dev/null || true
+    wait "$proxy_build_pid" 2>/dev/null || true
+    exit 143
+  }
+  trap cancel_proxy_build TERM INT
+  set +e
+  wait "$proxy_build_pid"
+  proxy_build_status=$?
+  set -e
+  trap - TERM INT
+  if [[ $proxy_build_status -ne 0 ]]; then
+    exit "$proxy_build_status"
+  fi
+else
+  "${build_log_cmd[@]}" 2>&1
+fi
 
 # Verify that we actually built what we requested
 

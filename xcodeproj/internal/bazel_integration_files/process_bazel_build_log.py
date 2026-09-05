@@ -2,10 +2,11 @@
 
 import os
 import re
+import signal
 import subprocess
 import sys
-from typing import List
-import signal
+import threading
+from typing import List, Optional
 
 
 STRIP_COLOR_RE = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
@@ -20,19 +21,56 @@ RELATIVE_DIAGNOSTICS_RE = re.compile(
     re.VERBOSE,
 )
 
+
 def _uppercase_first_letter(s: str) -> str:
     return s[:1].upper() + s[1:]
 
+
 def _main(command: List[str]) -> None:
 
+    proxy_mode = bool(os.getenv("SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR"))
+    cancel_grace_seconds = float(
+        os.getenv("SWIFTBUILD_BAZEL_PROXY_CANCEL_GRACE_SECONDS", "5.0")
+    )
+    cancel_grace_seconds = min(max(cancel_grace_seconds, 0.1), 5.0)
+    process: Optional[subprocess.Popen[str]] = None
+    kill_timer: Optional[threading.Timer] = None
+
+    def _signal_process_group(sig: signal.Signals) -> None:
+        if not process:
+            return
+        try:
+            if proxy_mode:
+                # The group can outlive its leader when a nested tool ignores
+                # SIGTERM, so escalation must still address the original PGID
+                # after the wrapper process has exited.
+                os.killpg(process.pid, sig)
+            elif process.poll() is None:
+                process.send_signal(sig)
+        except ProcessLookupError:
+            return
+
+    def _force_kill() -> None:
+        _signal_process_group(signal.SIGKILL)
+
     def _signal_handler(signum, frame):
-        """Print signal information and ignore the signal."""
+        """Forward cancellation to Bazel and bound the shutdown grace period."""
+        nonlocal kill_timer
         signal_name = signal.Signals(signum).name
         print(f"\nReceived signal {signal_name} ({signum})\n", file=sys.stderr)
-        return
+        if not proxy_mode:
+            return
+        _signal_process_group(signal.SIGTERM)
+        if kill_timer is None:
+            kill_timer = threading.Timer(cancel_grace_seconds, _force_kill)
+            kill_timer.daemon = True
+            kill_timer.start()
 
-    # Set up signal handler for SIGINT
+    # Preserve native integration behavior outside proxy mode. Proxy mode also
+    # owns SIGTERM so cancelling the Swift Build operation reaches Bazel.
     signal.signal(signal.SIGINT, _signal_handler)
+    if proxy_mode:
+        signal.signal(signal.SIGTERM, _signal_handler)
 
     srcroot = os.getenv("SRCROOT")
     if not srcroot:
@@ -83,7 +121,11 @@ def _main(command: List[str]) -> None:
         return f"{prefix}/{message}"
 
     process = subprocess.Popen(
-        command, bufsize=1, stderr=subprocess.PIPE, universal_newlines=True
+        command,
+        bufsize=1,
+        stderr=subprocess.PIPE,
+        start_new_session=proxy_mode,
+        universal_newlines=True,
     )
     assert process.stderr
 
@@ -109,6 +151,9 @@ def _main(command: List[str]) -> None:
 
     for line in process.stderr:
         _process_log_line(line)
+
+    if kill_timer is not None:
+        kill_timer.cancel()
 
     # If the Bazel invocation failed and there was no formatted error found,
     # print a nicer error message instead of a cryptic in Xcode:

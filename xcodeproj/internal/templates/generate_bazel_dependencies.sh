@@ -6,7 +6,49 @@ cd "$SRCROOT"
 
 # Calculate Bazel `--output_groups`
 
-if [ "$ACTION" == "indexbuild" ]; then
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR:-}" ]]; then
+  readonly request_dir="$SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR"
+  if [[ ! -d "$request_dir" ]]; then
+    echo "error: Bazel build proxy request directory does not exist." >&2
+    exit 1
+  fi
+
+  labels=()
+  while IFS= read -r value || [[ -n "$value" ]]; do
+    [[ -n "$value" ]] && labels+=("$value")
+  done < "$request_dir/labels"
+
+  target_ids=()
+  while IFS= read -r value || [[ -n "$value" ]]; do
+    [[ -n "$value" ]] && target_ids+=("$value")
+  done < "$request_dir/target_ids"
+
+  output_groups=("target_ids_list")
+  while IFS= read -r value || [[ -n "$value" ]]; do
+    [[ -n "$value" ]] && output_groups+=("$value")
+  done < "$request_dir/output_groups"
+  indexstores_filelists=()
+  if [[ "$ACTION" == "indexbuild" && "${IMPORT_INDEX_BUILD_INDEXSTORES:-NO}" == "YES" ]]; then
+    output_groups+=("index_import")
+    readonly targetid_regex='@{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
+    for target_id in "${target_ids[@]}"; do
+      if [[ "$target_id" =~ $targetid_regex ]]; then
+        repo="${BASH_REMATCH[1]}"
+        if [[ "$repo" == "@" ]]; then
+          repo=""
+        fi
+        package="${BASH_REMATCH[2]}"
+        target="${BASH_REMATCH[3]}"
+        configuration="${BASH_REMATCH[4]}"
+        indexstores_filelists+=(
+          "$configuration/bin/${repo:+"external/$repo/"}$package/$target-bi.filelist"
+        )
+      fi
+    done
+  elif [[ "$ACTION" != "indexbuild" ]]; then
+    output_groups=("index_import" "${output_groups[@]}")
+  fi
+elif [ "$ACTION" == "indexbuild" ]; then
   echo >&2 "error: \`BazelDependencies\` should not run during Index Build." \
 "Please file a bug report here:" \
 "https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md"
@@ -78,7 +120,7 @@ else
   done
   readonly indexstores_filelists
 
-  if [ "${#output_groups[@]}" -eq 1 ]; then
+  if [ "${#labels_and_output_groups[@]}" -eq 0 ]; then
     echo "BazelDependencies invoked without any output groups set." \
       "Exiting early."
     exit
@@ -112,6 +154,11 @@ build_pre_config_flags=(
   # this once Bazel adds support for a Remote Output Service.
   "--remote_download_regex=.*\.indexstore/.*|.*\.(a|cfg|c|C|cc|cl|cpp|cu|cxx|c++|def|h|H|hh|hpp|hxx|h++|hmap|ilc|inc|inl|ipp|tcc|tlh|tli|tpp|m|modulemap|mm|pch|swift|swiftdoc|swiftmodule|swiftsourceinfo|yaml)$"
 )
+if [[ -n "${SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-}" ]]; then
+  build_pre_config_flags+=(
+    "--build_event_json_file=$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
+  )
+fi
 
 apply_sanitizers=1
 if [ "$ACTION" == "indexbuild" ]; then

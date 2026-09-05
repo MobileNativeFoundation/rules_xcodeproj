@@ -424,6 +424,7 @@ def _write_project_contents(
         entries_files = build_proxy_manifest_entries_files,
         generator_label = generator_label,
         name = name,
+        project_container = install_path,
         tool = build_proxy_manifest_generator,
     )
 

@@ -8,9 +8,14 @@ class BuildProxyManifestEntryTests: XCTestCase {
             action: "build",
             bazelLabel: "@@//app:app",
             configuration: "Release",
+            indexOutputGroups: ["bc @@//app:app ios-opt", "bi @@//app:app ios-opt"],
             outputGroup: "bp @@//app:app ios-opt",
+            previewOutputGroups: [
+                "bc @@//app:app ios-opt", "bp @@//app:app ios-opt", "bl @@//app:app ios-opt",
+            ],
             product: .init(
                 basename: "App.app",
+                materialization: "copy_tree",
                 name: "App",
                 path: "bazel-out/App.app",
                 type: "com.apple.product-type.application"
@@ -27,9 +32,14 @@ class BuildProxyManifestEntryTests: XCTestCase {
             action: "build",
             bazelLabel: "@@//app:app",
             configuration: "Debug",
+            indexOutputGroups: ["bc @@//app:app ios-sim-dbg", "bi @@//app:app ios-sim-dbg"],
             outputGroup: "bp @@//app:app ios-sim-dbg",
+            previewOutputGroups: [
+                "bc @@//app:app ios-sim-dbg", "bp @@//app:app ios-sim-dbg", "bl @@//app:app ios-sim-dbg",
+            ],
             product: .init(
                 basename: "App.app",
+                materialization: "copy_tree",
                 name: "App",
                 path: "bazel-out/App.app",
                 type: "com.apple.product-type.application"
@@ -47,10 +57,19 @@ class BuildProxyManifestEntryTests: XCTestCase {
         let reverse = try BuildProxyManifestEntry.encodeJSONLines([second, first])
 
         XCTAssertEqual(forward, reverse)
+        let objects = try forward.split(separator: 0x0A).map { line in
+            try XCTUnwrap(
+                JSONSerialization.jsonObject(with: Data(line)) as? [String: Any]
+            )
+        }
+        XCTAssertEqual(objects.compactMap { $0["configuration"] as? String }, ["Debug", "Release"])
         XCTAssertEqual(
-            String(decoding: forward, as: UTF8.self),
-            #"{"action":"build","bazelLabel":"@@//app:app","configuration":"Debug","outputGroup":"bp @@//app:app ios-sim-dbg","product":{"basename":"App.app","name":"App","path":"bazel-out/App.app","type":"com.apple.product-type.application"},"targetID":"@@//app:app ios-sim-dbg","variant":{"arch":"arm64","minimumOSVersion":"18.0","platform":"iphonesimulator"},"xcodeTargetGUID":"0000AAAAAAAA000000000001"}"# + "\n" +
-                #"{"action":"build","bazelLabel":"@@//app:app","configuration":"Release","outputGroup":"bp @@//app:app ios-opt","product":{"basename":"App.app","name":"App","path":"bazel-out/App.app","type":"com.apple.product-type.application"},"targetID":"@@//app:app ios-opt","variant":{"arch":"arm64","minimumOSVersion":"18.0","platform":"iphoneos"},"xcodeTargetGUID":"0000AAAAAAAA000000000001"}"# + "\n"
+            objects.first?["previewOutputGroups"] as? [String],
+            [
+                "bc @@//app:app ios-sim-dbg",
+                "bp @@//app:app ios-sim-dbg",
+                "bl @@//app:app ios-sim-dbg",
+            ]
         )
     }
 
@@ -59,9 +78,14 @@ class BuildProxyManifestEntryTests: XCTestCase {
             action: "build",
             bazelLabel: "@@//lib",
             configuration: "Debug",
+            indexOutputGroups: ["bc @@//lib macos-dbg", "bi @@//lib macos-dbg"],
             outputGroup: "bp @@//lib macos-dbg",
+            previewOutputGroups: [
+                "bc @@//lib macos-dbg", "bp @@//lib macos-dbg", "bl @@//lib macos-dbg",
+            ],
             product: .init(
                 basename: "libLib.a",
+                materialization: "none",
                 name: "Lib",
                 path: nil,
                 type: "com.apple.product-type.library.static"
