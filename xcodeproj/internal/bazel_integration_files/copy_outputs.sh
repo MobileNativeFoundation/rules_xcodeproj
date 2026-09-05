@@ -106,24 +106,31 @@ stage_preview_frameworks() {
 
 if [[ "$ACTION" != indexbuild ]]; then
   product_is_bundle=NO
+  outputs_product="${BAZEL_OUTPUTS_PRODUCT:-}"
 
   if [[ "${ENABLE_PREVIEWS:-}" != "YES" && \
         "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
     # XOJIT builds the selected target product with Xcode, so the Bazel product
     # output group is intentionally absent. Ignore a stale product from an
     # earlier ordinary build; Preview frameworks still need to be staged below.
-    BAZEL_OUTPUTS_PRODUCT=
-  elif [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} && \
-          ! -e "$BAZEL_OUTPUTS_PRODUCT" && \
-          ! -L "$BAZEL_OUTPUTS_PRODUCT" ]]; then
-    echo >&2 \
-      "error: Bazel output product is not materialized: $BAZEL_OUTPUTS_PRODUCT"
-    exit 1
+    outputs_product=
+  elif [[ -n "$outputs_product" ]]; then
+    # Generated product paths are relative to the selected Bazel execution
+    # root. SRCROOT/bazel-out can point to a different output base.
+    if [[ "$outputs_product" != /* ]]; then
+      outputs_product="$PROJECT_DIR/$outputs_product"
+    fi
+    if [[ ! -e "$outputs_product" ]]; then
+      echo >&2 \
+        "error: Bazel output product is not materialized: $outputs_product"
+      exit 1
+    fi
   fi
+  readonly outputs_product
 
   # Copy product
-  if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
-    cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
+  if [[ -n "$outputs_product" ]]; then
+    cd "${outputs_product%/*}"
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
