@@ -29,6 +29,8 @@ installer="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/install_bui
 readonly installer
 launcher_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/build_proxy_launcher.sh")"
 readonly launcher_source
+adapter_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/generate_bazel_dependencies.sh")"
+readonly adapter_source
 configured_runner="$(rlocation "$TEST_WORKSPACE/test/internal/build_proxy_launcher/configured_runner-runner.sh")"
 readonly configured_runner
 test_root="$(mktemp -d "$TEST_TMPDIR/build-proxy-launcher.XXXXXX")"
@@ -45,6 +47,36 @@ readonly capture="$test_root/capture"
 project_identity_flag="$(grep -F -- '--build_proxy_project_identity ' "$configured_runner")"
 readonly project_identity_flag
 [[ "$project_identity_flag" == *'//generator/test/internal/build_proxy_launcher/configured_runner:configured_runner' ]]
+
+proxy_bep_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-/,/^fi$/p' "$adapter_source")"
+readonly proxy_bep_block
+[[ "$(grep -Fc -- '--build_event_publish_all_actions' <<< "$proxy_bep_block")" == 1 ]]
+expected_bep_flag="--build_event_json_file=\$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
+readonly expected_bep_flag
+[[ "$(grep -Fc -- "$expected_bep_flag" <<< "$proxy_bep_block")" == 1 ]]
+
+proxy_action_graph_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-/,/^fi$/p' "$adapter_source")"
+readonly proxy_action_graph_block
+# These are literal source fragments whose dollar expressions must not expand in this test shell.
+# shellcheck disable=SC2016
+for expected_action_graph_flag in \
+  'aquery' \
+  'action_graph_query="deps(${labels[0]})"' \
+  'action_graph_query="deps(set(${labels[*]}))"' \
+  'action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
+  '"--config=$config"' \
+  '--color=no' \
+  '--output=jsonproto' \
+  '--noinclude_commandline' \
+  '--include_artifacts' \
+  '--consistent_labels' \
+  '--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH'; do
+  [[ "$(grep -Fc -- "$expected_action_graph_flag" <<< "$proxy_action_graph_block")" == 1 ]]
+done
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --build_event_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"' <<< "$proxy_action_graph_block")" == 1 ]]
 
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then

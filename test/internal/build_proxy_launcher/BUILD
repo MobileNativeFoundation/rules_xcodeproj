@@ -44,6 +44,7 @@ sh_test(
     data = [
         ":configured_runner",
         "//xcodeproj/internal/templates:build_proxy_launcher.sh",
+        "//xcodeproj/internal/templates:generate_bazel_dependencies.sh",
         "//xcodeproj/internal/templates:install_build_proxy.sh",
     ],
     deps = ["@bazel_tools//tools/bash/runfiles"],
