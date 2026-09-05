@@ -195,7 +195,9 @@ if [[ -n "${SWIFTBUILD_BAZEL_PROXY_INVOCATION_RECEIPT:-}" ]]; then
   for option in "${base_pre_config_flags[@]}" "${build_pre_config_flags[@]}"; do
     if [[
       "$option" != --build_event_json_file=* &&
+      "$option" != --execution_log_compact_file=* &&
       "$option" != --execution_log_json_file=* &&
+      "$option" != --execution_log_binary_file=* &&
       "$option" != --noexecution_log_sort
     ]]; then
       receipt_args+=("--command-option=$option")
