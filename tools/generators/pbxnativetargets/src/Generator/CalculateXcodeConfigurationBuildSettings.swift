@@ -19,8 +19,8 @@ extension Generator {
             allConditionalFiles: Set<BazelPath>
         ) -> [BuildSetting] {
             return callable(
-                /*platformBuildSettings:*/ platformBuildSettings,
-                /*allConditionalFiles:*/ allConditionalFiles
+                /* platformBuildSettings: */ platformBuildSettings,
+                /* allConditionalFiles: */ allConditionalFiles
             )
         }
     }
@@ -71,7 +71,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                             // Lots of code just to quote and `.pbxProjEscaped`
                             // the paths
                             platformBuildSettings.conditionalFiles
-                                .map { $0.path.quoteIfNeeded }
+                                .map(\.path.quoteIfNeeded)
                                 // TODO: See if we can not sort, or sort earlier
                                 .sorted()
                                 .joined(separator: " ")
@@ -101,7 +101,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         excludedSourceFileNames.append(
             contentsOf: allConditionalFiles
                 .subtracting(conditionalFiles)
-                .map { $0.path.pbxProjEscaped }
+                .map(\.path.pbxProjEscaped)
         )
 
         // Set configuration-wide conditional files
@@ -130,9 +130,13 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         }
 
         let allPlatforms = Set(platformBuildSettings.map(\.platform))
-        let basePlatform = platformBuildSettings.first!.platform
 
-        for (key, platformAndValues) in platformedBuildSettings {
+        for (key, values) in platformedBuildSettings {
+            // Target IDs arrive in configuration-name order, which can put
+            // devices first. Prefer the simulator's literal singlefile mode
+            // for Preview eligibility; keep device modes SDK-conditional.
+            let platformAndValues = key == "SWIFT_COMPILATION_MODE" ?
+                values.sorted { $0.0 < $1.0 } : values
             let isNonInheritableKey = nonInheritableKeys.contains(key)
 
             var remainingPlatforms: Set<Platform>
@@ -154,11 +158,10 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
 
             let baseValue: String?
             if setBaseValue {
-                let (_, firstValue) = remainingPlatformAndValues.popFirst()!
+                let (basePlatform, firstValue) = remainingPlatformAndValues.popFirst()!
                 baseValue = firstValue
 
-                // Set the base value to the first platform, which will be
-                // previously sorted, resulting in the most preferable default
+                // Set the base value to the first platform.
                 buildSettings.append(.init(key: key, value: firstValue))
 
                 remainingPlatforms.remove(basePlatform)

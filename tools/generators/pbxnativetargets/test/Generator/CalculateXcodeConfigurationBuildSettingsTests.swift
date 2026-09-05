@@ -1,7 +1,6 @@
 import CustomDump
 import PBXProj
 import XCTest
-
 @testable import pbxnativetargets
 
 final class CalculateXcodeConfigurationBuildSettingsTests: XCTestCase {
@@ -77,6 +76,67 @@ final class CalculateXcodeConfigurationBuildSettingsTests: XCTestCase {
         XCTAssertNoDifference(
             buildSettings.asDictionary,
             expectedBuildSettings
+        )
+    }
+
+    func test_previewCompilationModeUsesSimulatorBaseInEitherInputOrder() {
+        for (simulator, device) in [
+            (Platform.iOSSimulator, Platform.iOSDevice),
+            (.tvOSSimulator, .tvOSDevice),
+            (.visionOSSimulator, .visionOSDevice),
+            (.watchOSSimulator, .watchOSDevice),
+        ] {
+            let simulatorSettings = compilationSettings(simulator, "singlefile")
+            let deviceSettings = compilationSettings(device, "wholemodule")
+            for settings in [
+                [simulatorSettings, deviceSettings],
+                [deviceSettings, simulatorSettings],
+            ] {
+                let actual = Generator.CalculateXcodeConfigurationBuildSettings
+                    .defaultCallable(
+                        platformBuildSettings: settings,
+                        allConditionalFiles: []
+                    )
+                XCTAssertNoDifference(actual.asDictionary, [
+                    "SWIFT_COMPILATION_MODE": "singlefile",
+                    "SWIFT_COMPILATION_MODE[sdk=\(device.rawValue)*]".quoted:
+                        "wholemodule",
+                ])
+            }
+        }
+    }
+
+    func test_compilationModePreservesSinglePlatformAndInheritedDefaults() {
+        for (platform, mode) in [
+            (Platform.iOSDevice, "wholemodule"),
+            (.macOS, "singlefile"),
+        ] {
+            let actual = Generator.CalculateXcodeConfigurationBuildSettings
+                .defaultCallable(
+                    platformBuildSettings: [compilationSettings(platform, mode)],
+                    allConditionalFiles: []
+                )
+            XCTAssertNoDifference(actual.asDictionary, ["SWIFT_COMPILATION_MODE": mode])
+        }
+
+        let actual = Generator.CalculateXcodeConfigurationBuildSettings
+            .defaultCallable(
+                platformBuildSettings: [
+                    compilationSettings(.iOSSimulator, "singlefile"),
+                    .init(platform: .iOSDevice, conditionalFiles: [], buildSettings: []),
+                ],
+                allConditionalFiles: []
+            )
+        XCTAssertNoDifference(actual.asDictionary, [
+            "SWIFT_COMPILATION_MODE[sdk=iphonesimulator*]".quoted: "singlefile",
+        ])
+    }
+
+    private func compilationSettings(_ platform: Platform, _ mode: String) -> PlatformBuildSettings {
+        return .init(
+            platform: platform,
+            conditionalFiles: [],
+            buildSettings: [.init(key: "SWIFT_COMPILATION_MODE", value: mode)]
         )
     }
 
