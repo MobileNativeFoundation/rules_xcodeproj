@@ -43,6 +43,8 @@ sh_test(
     srcs = ["build_proxy_launcher_tests.sh"],
     data = [
         ":configured_runner",
+        "//xcodeproj/internal/bazel_integration_files:actions_bzl_test_data",
+        "//xcodeproj/internal/templates:bazel_build.sh",
         "//xcodeproj/internal/templates:build_proxy_launcher.sh",
         "//xcodeproj/internal/templates:generate_bazel_dependencies.sh",
         "//xcodeproj/internal/templates:install_build_proxy.sh",

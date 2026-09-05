@@ -31,6 +31,10 @@ launcher_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/build
 readonly launcher_source
 adapter_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/generate_bazel_dependencies.sh")"
 readonly adapter_source
+adapter_expansion_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/bazel_integration_files/actions.bzl")"
+readonly adapter_expansion_source
+bazel_build_source="$(rlocation "$TEST_WORKSPACE/xcodeproj/internal/templates/bazel_build.sh")"
+readonly bazel_build_source
 configured_runner="$(rlocation "$TEST_WORKSPACE/test/internal/build_proxy_launcher/configured_runner-runner.sh")"
 readonly configured_runner
 test_root="$(mktemp -d "$TEST_TMPDIR/build-proxy-launcher.XXXXXX")"
@@ -48,6 +52,11 @@ project_identity_flag="$(grep -F -- '--build_proxy_project_identity ' "$configur
 readonly project_identity_flag
 [[ "$project_identity_flag" == *'//generator/test/internal/build_proxy_launcher/configured_runner:configured_runner' ]]
 
+# The installed adapter must contain the configured generator label, never its template token.
+# Keep this guard next to the template assertion below so adding a placeholder requires wiring its
+# Starlark expansion in the same review.
+[[ "$(grep -Fc -- '"%generator_label%": str(generator_label)' "$adapter_expansion_source")" == 1 ]]
+
 proxy_bep_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_BEP_PATH:-/,/^fi$/p' "$adapter_source")"
 readonly proxy_bep_block
 [[ "$(grep -Fc -- '--build_event_publish_all_actions' <<< "$proxy_bep_block")" == 1 ]]
@@ -55,28 +64,155 @@ expected_bep_flag="--build_event_json_file=\$SWIFTBUILD_BAZEL_PROXY_BEP_PATH"
 readonly expected_bep_flag
 [[ "$(grep -Fc -- "$expected_bep_flag" <<< "$proxy_bep_block")" == 1 ]]
 
+proxy_execution_log_flags_block="$(sed -n '/# The build service gives every operation/,/^fi$/p' "$adapter_source")"
+readonly proxy_execution_log_flags_block
+# These are literal source fragments whose dollar expressions must not expand in this test shell.
+# shellcheck disable=SC2016
+for expected_execution_log_flag in \
+  '--execution_log_json_file=$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH' \
+  '--noexecution_log_sort'; do
+  [[ "$(grep -Fc -- "$expected_execution_log_flag" <<< "$proxy_execution_log_flags_block")" == 1 ]]
+done
+
+# With no proxy path, the adapter must pass exactly the pre-existing build flags to Bazel.
+build_pre_config_flags=(--existing-build-flag)
+unset SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
+eval "$proxy_execution_log_flags_block"
+[[ "${build_pre_config_flags[*]}" == "--existing-build-flag" ]]
+
+# With a proxy path, the two execution-log flags are appended to the actual build flags verbatim.
+readonly expected_execution_log_path="$test_root/execution log.jsonl"
+SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH="$expected_execution_log_path"
+export SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
+eval "$proxy_execution_log_flags_block"
+[[ "${#build_pre_config_flags[@]}" == 3 ]]
+[[ "${build_pre_config_flags[0]}" == "--existing-build-flag" ]]
+[[ "${build_pre_config_flags[1]}" == "--execution_log_json_file=$expected_execution_log_path" ]]
+[[ "${build_pre_config_flags[2]}" == "--noexecution_log_sort" ]]
+unset SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
+
+# Execution-log paths and sorting are proxy-owned evidence plumbing, not invocation policy. Keep
+# the volatile absolute path and its companion option out of the publishable invocation receipt.
+proxy_receipt_command_options_block="$(sed -n '/for option in .*build_pre_config_flags/,/^  done$/p' "$bazel_build_source")"
+readonly proxy_receipt_command_options_block
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --execution_log_json_file=*' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_receipt_command_options_block")" == 1 ]]
+# The extracted source fragment consumes this array through `eval` below.
+# shellcheck disable=SC2034
+base_pre_config_flags=(--base-build-flag)
+build_pre_config_flags=(
+  "--execution_log_json_file=$expected_execution_log_path"
+  --noexecution_log_sort
+  --kept-build-flag
+)
+receipt_args=()
+eval "$proxy_receipt_command_options_block"
+[[ "${#receipt_args[@]}" == 2 ]]
+[[ "${receipt_args[0]}" == "--command-option=--base-build-flag" ]]
+[[ "${receipt_args[1]}" == "--command-option=--kept-build-flag" ]]
+
+# A proxied adapter is already the inner Xcode invocation. Preserve the generated hermetic Bazel
+# executable (or an explicitly inherited one), and tell workspace wrappers not to regenerate their
+# outer rules release inside Xcode's restricted PATH.
+proxy_bazel_environment_block="$(sed -n '/readonly build_proxy_bazel_real=/,/^fi$/p' "$bazel_build_source")"
+readonly proxy_bazel_environment_block
+readonly synthetic_integration="$test_root/synthetic-integration"
+mkdir -p "$synthetic_integration"
+cat > "$synthetic_integration/bazel_env.sh" <<'EOF'
+envs=(LANG=C BAZEL_REAL=/generated/bazel)
+EOF
+BAZEL_INTEGRATION_DIR="$synthetic_integration"
+SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR="$test_root/request"
+(
+  unset BAZEL_REAL
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/generated/bazel BUILD_WORKSPACE_DIRECTORY=$PWD" ]]
+)
+(
+  BAZEL_REAL=/inherited/bazel
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/inherited/bazel BUILD_WORKSPACE_DIRECTORY=$PWD" ]]
+)
+(
+  unset BAZEL_REAL SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR
+  eval "$proxy_bazel_environment_block"
+  [[ "${envs[*]}" == "LANG=C BAZEL_REAL=/generated/bazel" ]]
+)
+unset SWIFTBUILD_BAZEL_PROXY_REQUEST_DIR
+
+# The build must finish before the adapter makes the exact expected execution-log path private.
+proxy_execution_log_permissions_block="$(sed -n '/# Bazel has successfully returned/,/^fi$/p' "$adapter_source")"
+readonly proxy_execution_log_permissions_block
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH"' <<< "$proxy_execution_log_permissions_block")" == 1 ]]
+SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH="$expected_execution_log_path"
+export SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
+printf 'private command metadata\n' > "$expected_execution_log_path"
+chmod 666 "$expected_execution_log_path"
+eval "$proxy_execution_log_permissions_block"
+# This is a generated private file with a controlled name; the permission string is portable.
+# shellcheck disable=SC2012
+[[ "$(LC_ALL=C ls -l "$expected_execution_log_path" | cut -c 1-10)" == "-rw-------" ]]
+rm "$expected_execution_log_path"
+if (eval "$proxy_execution_log_permissions_block") 2> /dev/null; then
+  echo >&2 "Expected missing execution log to fail closed"
+  exit 1
+fi
+unset SWIFTBUILD_BAZEL_PROXY_EXECUTION_LOG_PATH
+
 proxy_action_graph_block="$(sed -n '/SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH:-/,/^fi$/p' "$adapter_source")"
 readonly proxy_action_graph_block
 # These are literal source fragments whose dollar expressions must not expand in this test shell.
 # shellcheck disable=SC2016
 for expected_action_graph_flag in \
   'aquery' \
-  'action_graph_query="deps(${labels[0]})"' \
-  'action_graph_query="deps(set(${labels[*]}))"' \
-  'action_graph_toolchain_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
+  'action_graph_query="deps(%generator_label%)"' \
+  'action_graph_flags+=("--action_env=TOOLCHAINS=$toolchain")' \
   '"--config=$config"' \
+  '"$output_groups_flag"' \
   '--color=no' \
   '--output=jsonproto' \
-  '--noinclude_commandline' \
+  '--include_commandline' \
+  '--noinclude_param_files' \
+  '--noinclude_file_write_contents' \
   '--include_artifacts' \
   '--consistent_labels' \
   '--output_file=$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH'; do
   [[ "$(grep -Fc -- "$expected_action_graph_flag" <<< "$proxy_action_graph_block")" == 1 ]]
 done
+# The follow-up aquery must not re-resolve user labels in a potentially different top-level
+# configuration from the generated output-group target that the successful build used.
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- 'action_graph_query="deps(${labels[0]})"' <<< "$proxy_action_graph_block")" == 0 ]]
 # shellcheck disable=SC2016
 [[ "$(grep -Fc -- '"$option" != --build_event_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
 # shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --execution_log_json_file=*' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
+[[ "$(grep -Fc -- '"$option" != --noexecution_log_sort' <<< "$proxy_action_graph_block")" == 1 ]]
+# shellcheck disable=SC2016
 [[ "$(grep -Fc -- 'chmod 600 "$SWIFTBUILD_BAZEL_PROXY_ACTION_GRAPH_PATH"' <<< "$proxy_action_graph_block")" == 1 ]]
+
+proxy_action_graph_flags_block="$(sed -n '/# Collect optional arrays before expansion/,/^  readonly action_graph_flags$/p' "$adapter_source")"
+readonly proxy_action_graph_flags_block
+(
+  set -u
+  base_pre_config_flags=(--base-flag)
+  action_graph_pre_config_flags=()
+  toolchain=
+  eval "$proxy_action_graph_flags_block"
+  [[ "${action_graph_flags[*]}" == "--base-flag" ]]
+)
+(
+  set -u
+  base_pre_config_flags=(--base-flag)
+  action_graph_pre_config_flags=(--configured-flag)
+  toolchain=com.example.toolchain
+  eval "$proxy_action_graph_flags_block"
+  [[ "${action_graph_flags[*]}" == "--base-flag --configured-flag --action_env=TOOLCHAINS=com.example.toolchain" ]]
+)
 
 sha256_file() {
   if command -v sha256sum > /dev/null 2>&1; then
