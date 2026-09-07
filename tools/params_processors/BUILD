@@ -45,6 +45,7 @@ py_library(
 py_test(
     name = "link_params_processor_tests",
     srcs = ["link_params_processor_tests.py"],
+    data = glob(["testdata/**"]),
     deps = [
         ":link_params_processor_library",
         "//:py_init_shim",

@@ -23,17 +23,121 @@ readonly test_frameworks=(
 
 readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
 
+stage_preview_frameworks() {
+  local destination_dir="$1"
+  local framework_path
+  local parsed_framework_paths
+  local framework_index
+  local seen_framework_index
+  local -a framework_paths
+  local -a framework_names=()
+
+  if ! parsed_framework_paths="$(xargs -n1 <<< "$PREVIEW_FRAMEWORK_PATHS")"; then
+    echo >&2 "error: Unable to parse Preview framework paths"
+    return 1
+  fi
+  if [[ -z "$parsed_framework_paths" ]]; then
+    echo >&2 "error: No Preview framework paths were provided"
+    return 1
+  fi
+  IFS=$'\n' read -r -d '' -a framework_paths < \
+    <(printf '%s\0' "$parsed_framework_paths")
+
+  if [[ ( -e "$destination_dir" || -L "$destination_dir" ) && \
+        ! -d "$destination_dir" ]]; then
+    echo >&2 "error: Preview framework destination is not a directory: $destination_dir"
+    return 1
+  fi
+
+  for framework_path in "${framework_paths[@]}"; do
+    local framework_name="${framework_path##*/}"
+    local destination="$destination_dir/$framework_name"
+
+    if [[ "$framework_name" != *.framework ]]; then
+      echo >&2 "error: Preview framework path does not name a .framework: $framework_path"
+      return 1
+    fi
+    if [[ ! -d "$framework_path" ]]; then
+      echo >&2 "error: Preview framework is not a materialized directory: $framework_path"
+      return 1
+    fi
+
+    for (( seen_framework_index=0; \
+           seen_framework_index<${#framework_names[@]}; \
+           seen_framework_index++ )); do
+      if [[ "${framework_names[seen_framework_index]}" == "$framework_name" ]]; then
+        echo >&2 "error: Multiple Preview frameworks have the same basename: $framework_name"
+        return 1
+      fi
+    done
+    framework_names+=("$framework_name")
+
+    if [[ -L "$destination" ]]; then
+      if [[ "$destination" -ef "$framework_path" ]]; then
+        continue
+      fi
+      echo >&2 "error: Preview framework destination points to a different source: $destination"
+      return 1
+    fi
+    if [[ -e "$destination" ]]; then
+      echo >&2 "error: Preview framework destination already exists and is not a symlink: $destination"
+      return 1
+    fi
+  done
+
+  mkdir -p "$destination_dir"
+  for (( framework_index=0; \
+         framework_index<${#framework_paths[@]}; \
+         framework_index++ )); do
+    local destination="$destination_dir/${framework_names[framework_index]}"
+    if [[ ! -L "$destination" ]]; then
+      if ! ln -s "${framework_paths[framework_index]}" "$destination" \
+        2>/dev/null; then
+        if [[ -L "$destination" && \
+              "$destination" -ef "${framework_paths[framework_index]}" ]]; then
+          continue
+        fi
+        echo >&2 "error: Unable to stage Preview framework: $destination"
+        return 1
+      fi
+    fi
+  done
+}
+
 if [[ "$ACTION" != indexbuild ]]; then
+  product_is_bundle=NO
+  outputs_product="${BAZEL_OUTPUTS_PRODUCT:-}"
+
+  if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == "YES" ]]; then
+    # The Preview configuration builds the selected product with Xcode. Its Bazel
+    # output group is intentionally absent. Ignore a stale product from an
+    # earlier ordinary build; Preview frameworks still need to be staged below.
+    outputs_product=
+  elif [[ -n "$outputs_product" ]]; then
+    # Generated product paths are relative to the selected Bazel execution
+    # root. SRCROOT/bazel-out can point to a different output base.
+    if [[ "$outputs_product" != /* ]]; then
+      outputs_product="$PROJECT_DIR/$outputs_product"
+    fi
+    if [[ ! -e "$outputs_product" ]]; then
+      echo >&2 \
+        "error: Bazel output product is not materialized: $outputs_product"
+      exit 1
+    fi
+  fi
+  readonly outputs_product
+
   # Copy product
-  if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
-    cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
+  if [[ -n "$outputs_product" ]]; then
+    cd "${outputs_product%/*}"
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
-      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
+      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
     else
       # Product is a bundle
+      product_is_bundle=YES
       "$rsync" \
         --copy-links \
         --recursive \
@@ -81,18 +185,20 @@ if [[ "$ACTION" != indexbuild ]]; then
         find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
       fi
 
-      # Xcode Previews has a hard time finding frameworks (`@rpath`) when using
-      # framework schemes, so let's symlink them into
-      # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
-      # `@loader_path/SwiftUIPreviewsFrameworks`)
-      if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
-            -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-        mkdir -p "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
-        cd "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
+    fi
 
-        # shellcheck disable=SC2016
-        xargs -n1 sh -c 'ln -shfF "$1" $(basename "$1")' _ \
-          <<< "$PREVIEW_FRAMEWORK_PATHS"
+  fi
+
+  # Legacy Xcode Previews use the nested directory included in a bundle's
+  # generated loader rpath. Native Preview configurations instead use direct
+  # `$TARGET_BUILD_DIR` siblings, including for static library products.
+  if [[ -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+    if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == "YES" ]]; then
+      stage_preview_frameworks "$TARGET_BUILD_DIR"
+    elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+      if [[ "$product_is_bundle" == YES ]]; then
+        stage_preview_frameworks \
+          "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
       fi
     fi
   fi
