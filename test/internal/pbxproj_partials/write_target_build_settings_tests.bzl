@@ -94,6 +94,10 @@ def _write_target_build_settings_test_impl(ctx):
             for f in ctx.attr.previews_dynamic_frameworks
         ],
         previews_include_path = ctx.attr.previews_include_path,
+        previews_resource_bundles = [
+            mock_actions.mock_file(f)
+            for f in ctx.attr.previews_resource_bundles
+        ],
         provisioning_profile_is_xcode_managed = ctx.attr.provisioning_profile_is_xcode_managed,
         provisioning_profile_name = ctx.attr.provisioning_profile_name,
         separate_index_build_output_base = ctx.attr.separate_index_build_output_base,
@@ -184,6 +188,7 @@ write_target_build_settings_test = unittest.make(
         "infoplist": attr.string(),
         "previews_dynamic_frameworks": attr.string_list(mandatory = True),
         "previews_include_path": attr.string(mandatory = True),
+        "previews_resource_bundles": attr.string_list(mandatory = True),
         "provisioning_profile_is_xcode_managed": attr.bool(mandatory = True),
         "provisioning_profile_name": attr.string(),
         "separate_index_build_output_base": attr.bool(mandatory = True),
@@ -229,6 +234,7 @@ def write_target_build_settings_test_suite(name):
             infoplist = None,
             previews_dynamic_frameworks = [],
             previews_include_path = "",
+            previews_resource_bundles = [],
             provisioning_profile_is_xcode_managed = False,
             provisioning_profile_name = None,
             separate_index_build_output_base = False,
@@ -262,6 +268,7 @@ def write_target_build_settings_test_suite(name):
             infoplist = infoplist,
             previews_dynamic_frameworks = previews_dynamic_frameworks,
             previews_include_path = previews_include_path,
+            previews_resource_bundles = previews_resource_bundles,
             provisioning_profile_is_xcode_managed = provisioning_profile_is_xcode_managed,
             provisioning_profile_name = provisioning_profile_name,
             separate_index_build_output_base = separate_index_build_output_base,
@@ -340,6 +347,8 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -390,6 +399,8 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -438,6 +449,8 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -485,6 +498,8 @@ def write_target_build_settings_test_suite(name):
             # provisioningProfileIsXcodeManaged
             "0",
             # previewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
             "",
             # previewsIncludePath
             "",
@@ -541,6 +556,8 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -596,6 +613,8 @@ def write_target_build_settings_test_suite(name):
             "1",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -649,6 +668,8 @@ def write_target_build_settings_test_suite(name):
             # provisioningProfileIsXcodeManaged
             "0",
             # previewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
             "",
             # previewsIncludePath
             "",
@@ -708,6 +729,8 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -737,6 +760,13 @@ def write_target_build_settings_test_suite(name):
             "external/repo/1.framework",
         ],
         previews_include_path = "bazel-out/swiftmodule/parent",
+        previews_resource_bundles = [
+            "bazel-out/generated.bundle",
+            "/absolute/f.bundle",
+            "../repo/2.bundle",
+            "project/a.bundle",
+            "external/repo/1.bundle",
+        ],
         separate_index_build_output_base = True,
         swift_args = [],
         swift_debug_settings_to_merge = [
@@ -789,6 +819,14 @@ def write_target_build_settings_test_suite(name):
 "$(BAZEL_EXTERNAL)/repo/2.framework" \
 "$(SRCROOT)/project/a.framework" \
 "$(BAZEL_EXTERNAL)/repo/1.framework"\
+""",
+            # previewsResourceBundlePaths
+            """\
+"$(BAZEL_OUT)/generated.bundle" \
+"/absolute/f.bundle" \
+"$(BAZEL_EXTERNAL)/repo/2.bundle" \
+"$(SRCROOT)/project/a.bundle" \
+"$(BAZEL_EXTERNAL)/repo/1.bundle"\
 """,
             # previewsIncludePath
             "bazel-out/swiftmodule/parent",

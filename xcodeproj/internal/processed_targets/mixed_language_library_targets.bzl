@@ -139,6 +139,10 @@ def _process_mixed_language_library_target(
     (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
         mergeable_info = mergeable_info,
         mixed_target_infos = mixed_target_infos,
+        transitive_infos = transitive_infos,
+    )
+    previews_resource_bundles = input_files.preview_resource_bundle_files(
+        provider_inputs,
     )
 
     actual_package_bin_dir = products.calculate_packge_bin_dir(
@@ -189,6 +193,7 @@ def _process_mixed_language_library_target(
         include_self_swift_debug_settings = False,
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_resource_bundles = previews_resource_bundles,
         separate_index_build_output_base = (
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
@@ -227,6 +232,7 @@ def _process_mixed_language_library_target(
         preview_link_input_files = (
             preview_link_params.link_input_files if preview_link_params else []
         ),
+        preview_resource_bundle_files = previews_resource_bundles,
         product = product,
         swift_info = swift_info,
         preview_swift_import_files = args.swift_preview_inputs.files,

@@ -342,6 +342,10 @@ def _process_focused_top_level_target(
         transitive_infos = transitive_infos,
     )
 
+    previews_resource_bundles = input_files.preview_resource_bundle_files(
+        provider_inputs,
+    )
+
     mergeable_info_and_ids = mergeable_infos.calculate(
         avoid_deps = avoid_deps,
         deps_infos = deps_infos,
@@ -473,6 +477,7 @@ def _process_focused_top_level_target(
         infoplist = infoplist,
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_resource_bundles = previews_resource_bundles,
         previews_include_path = (
             mergeable_info.previews_include_path if mergeable_info else EMPTY_STRING
         ),
@@ -548,6 +553,7 @@ def _process_focused_top_level_target(
         preview_link_input_files = (
             linker_inputs._top_level_values.preview_link_input_files
         ),
+        preview_resource_bundle_files = previews_resource_bundles,
         product = product,
         swift_info = swift_info,
         preview_swift_import_files = args.swift_preview_inputs.files,

@@ -3,7 +3,7 @@ import XCTest
 
 final class NativeSwiftOutputTests: XCTestCase {
     func testNativeOutputsDoNotWriteIntoBazelDirectories() async throws {
-        let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "0", "", ""]
+        let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0", "", ""]
         let flags = [
             "-emit-objc-header-path", "bazel-out/config/bin/Custom-Swift.h",
             "-emit-const-values-path", "bazel-out/config/bin/Values.swiftconstvalues",

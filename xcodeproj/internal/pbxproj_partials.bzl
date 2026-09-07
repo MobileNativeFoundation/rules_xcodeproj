@@ -44,6 +44,18 @@ def _dynamic_framework_path(file_and_is_framework):
         return path
     return "$(SRCROOT)/{}".format(path)
 
+def _preview_resource_bundle_path(file):
+    path = file.path
+    if path.startswith("bazel-out/"):
+        return "$(BAZEL_OUT){}".format(path[9:])
+    if path.startswith("external/"):
+        return "$(BAZEL_EXTERNAL){}".format(path[8:])
+    if path.startswith("../"):
+        return "$(BAZEL_EXTERNAL){}".format(path[2:])
+    if path.startswith("/"):
+        return path
+    return "$(SRCROOT)/{}".format(path)
+
 def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
@@ -1120,6 +1132,7 @@ def _write_target_build_settings(
         name,
         previews_dynamic_frameworks = EMPTY_LIST,
         previews_include_path = EMPTY_STRING,
+        previews_resource_bundles = EMPTY_LIST,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         separate_index_build_output_base,
@@ -1157,6 +1170,8 @@ def _write_target_build_settings(
             `False`, the file points to an executable in a dynamic framework.
         previews_include_path: The Swift include path to add when building
             Xcode previews.
+        previews_resource_bundles: A `list` of resource bundle directory
+            `File`s to materialize when building Xcode previews.
         provisioning_profile_is_xcode_managed: A `bool` indicating whether the
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
@@ -1267,6 +1282,16 @@ def _write_target_build_settings(
         previews_dynamic_frameworks,
         format_each = '"%s"',
         map_each = _dynamic_framework_path,
+        omit_if_empty = False,
+        join_with = " ",
+    )
+
+    # previewsResourceBundlePaths
+    args.add_joined(
+        previews_resource_bundles,
+        expand_directories = False,
+        format_each = '"%s"',
+        map_each = _preview_resource_bundle_path,
         omit_if_empty = False,
         join_with = " ",
     )

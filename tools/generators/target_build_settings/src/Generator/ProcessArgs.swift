@@ -103,6 +103,8 @@ extension Generator.ProcessArgs {
         )
         let previewsFrameworkPaths =
             try rawArguments.consumeArg("previews-framework-paths")
+        let previewsResourceBundlePaths =
+            try rawArguments.consumeArg("previews-resource-bundle-paths")
         let previewsIncludePath =
             try rawArguments.consumeArg("previews-include-path")
         let separateIndexBuildOutputBase = try rawArguments.consumeArg(
@@ -126,6 +128,15 @@ extension Generator.ProcessArgs {
         let argsStream = argsStream(from: rawArguments)
 
         var buildSettings: [(key: String, value: String)] = []
+
+        // Resource bundles also belong to C-family and merged bundle targets.
+        // Do not make their transport conditional on a Swift compiler action.
+        if !previewsResourceBundlePaths.isEmpty {
+            buildSettings.append((
+                "PREVIEW_RESOURCE_BUNDLE_PATHS",
+                previewsResourceBundlePaths.pbxProjEscaped
+            ))
+        }
 
         let (
             swiftHasDebugInfo,

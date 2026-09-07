@@ -73,7 +73,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         try manifest.write(to: manifestURL)
         let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
         func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
-            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "0"]
+            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0"]
             let input = envelope + (owned ? [manifestURL.path] : []) + [""] + [swift, clang, ""] + ["swift_worker", "swiftc"] + rawSwift + ["---", "---"]
             let result = try await Generator.Environment.default.processArgs(
                 rawArguments: input[...], generateBuildSettings: true,

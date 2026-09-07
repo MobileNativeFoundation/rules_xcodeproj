@@ -29,7 +29,7 @@ archive, and production actions on a normal Bazel-owned configuration. Archive
 attempts using a Preview configuration are rejected.
 
 In the Preview configuration, Bazel prepares generated sources, local imports,
-link dependencies, and runtime frameworks. Xcode compiles and links the selected
+link dependencies, and runtime bundles. Xcode compiles and links the selected
 target with its real tools. Simulator and macOS Swift WMO targets use Xcode's
 single-file compilation mode there; the original Bazel compilation mode remains
 unchanged. `ENABLE_XOJIT_PREVIEWS` alone does not opt in because Xcode also sets
@@ -41,6 +41,13 @@ The schemes exercise a Swift library with a dependency, a mixed Swift/C/C++/
 Objective-C/Objective-C++ library with generated C, generated Swift with an
 explicit Swift module map, macOS and iOS apps, and a dynamic framework. The
 example uses the toolchain versions pinned in `MODULE.bazel`.
+
+The Swift library, app, and framework graphs also share an
+`apple_resource_bundle`. Preview builds materialize processed bundles next to
+the selected product. Resource copies track their producers and owners, so
+removing a dependency only removes bundles owned by this integration. Conflicting
+same-name producers and unowned destinations fail instead of being overwritten.
+Verify resource lookup in the running Canvas as well as the staged contents.
 
 Command-line build checks can be run without opening the Canvas:
 
