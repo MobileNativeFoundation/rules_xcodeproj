@@ -125,6 +125,16 @@ _merge_cc_compilation_context = (
 
 # API
 
+def _preview_dynamic_library_files(cc_info):
+    if not cc_info:
+        return EMPTY_DEPSET
+    return memory_efficient_depset([
+        library.dynamic_library
+        for input in cc_info.linking_context.linker_inputs.to_list()
+        for library in input.libraries
+        if library.dynamic_library
+    ])
+
 def _collect_compilation_providers(*, cc_info, objc):
     """Collects compilation providers for a non top-level target.
 
@@ -143,16 +153,20 @@ def _collect_compilation_providers(*, cc_info, objc):
     if not _objc_has_linking_info:
         objc = None
 
+    preview_dynamic_library_files = _preview_dynamic_library_files(cc_info)
+
     return (
         struct(
             cc_info = cc_info,
             framework_files = EMPTY_DEPSET,
             objc = objc,
+            preview_dynamic_library_files = preview_dynamic_library_files,
         ),
         struct(
             _cc_info = cc_info,
             _propagated_framework_files = EMPTY_DEPSET,
             _propagated_objc = objc,
+            _propagated_preview_dynamic_library_files = preview_dynamic_library_files,
         ),
     )
 
@@ -209,6 +223,23 @@ def _merge_compilation_providers(
         order = "topological",
     )
 
+    # Preserve exact dynamic artifacts before the framework CcInfo workaround
+    # below. Generated frameworks can expose different solibs through their
+    # target CcInfo and AppleDynamicFrameworkInfo.cc_info. Preview preparation
+    # intersects these files with the real link action; ordinary CcInfo merging
+    # and project-generation action inputs remain unchanged.
+    preview_dynamic_library_files = memory_efficient_depset(
+        transitive = [
+            _preview_dynamic_library_files(cc_info),
+            _preview_dynamic_library_files(
+                getattr(apple_dynamic_framework_info, "cc_info", None),
+            ) if apple_dynamic_framework_info else EMPTY_DEPSET,
+        ] + [
+            getattr(providers, "_propagated_preview_dynamic_library_files", EMPTY_DEPSET)
+            for _, providers in transitive_compilation_providers
+        ],
+    )
+
     if apple_dynamic_framework_info:
         propagated_framework_files = memory_efficient_depset(
             transitive = [
@@ -260,11 +291,15 @@ def _merge_compilation_providers(
             cc_info = merged_cc_info,
             framework_files = framework_files,
             objc = objc,
+            preview_dynamic_library_files = preview_dynamic_library_files,
         ),
         struct(
             _cc_info = merged_cc_info if propagate_providers else None,
             _propagated_framework_files = propagated_framework_files,
             _propagated_objc = propagated_objc if propagate_providers else None,
+            _propagated_preview_dynamic_library_files = (
+                preview_dynamic_library_files if propagate_providers else EMPTY_DEPSET
+            ),
         ),
     )
 
