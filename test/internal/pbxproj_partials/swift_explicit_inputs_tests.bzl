@@ -1,10 +1,13 @@
 """Exact manifest generation inputs and separate native preparation contract."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:mock_actions.bzl", "mock_actions")
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:compiler_args.bzl", "compiler_args")
 
+# buildifier: disable=bzl-visibility
+load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 
 def _swift_explicit_inputs_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -37,13 +40,33 @@ def _swift_explicit_inputs_test_impl(ctx):
     asserts.equals(env, sorted([module.path, module_map.path]), sorted(preview.paths))
     asserts.equals(env, sorted([module.path, module_map.path, header.path, source.path]), sorted([f.path for f in preview.files.to_list()]))
     implicit = compiler_args.swift_preview_inputs(
-        struct(argv = [], inputs = action.inputs, outputs = action.outputs), info,
+        struct(argv = [], inputs = action.inputs, outputs = action.outputs),
+        info,
     )
     asserts.equals(env, (), implicit.manifests)
     asserts.equals(env, preview.files.to_list(), implicit.files.to_list())
+    for generate in [False, True]:
+        actions = mock_actions.create()
+        pbxproj_partials.write_target_build_settings(
+            actions = actions.mock,
+            allow_remote = False,
+            apple_generate_dsym = False,
+            colorize = False,
+            conly_args = [],
+            cxx_args = [],
+            generate_build_settings = generate,
+            generate_swift_debug_settings = True,
+            name = "Control",
+            separate_index_build_output_base = False,
+            swift_args = [],
+            swift_preview_inputs = preview,
+            tool = None,
+        )
+        asserts.equals(env, [manifest] if generate else [], actions.run_args["inputs"].to_list())
     unowned = compiler_args.swift_preview_inputs(struct(argv = action.argv, inputs = depset([pcm]), outputs = action.outputs), info)
     asserts.equals(env, (), unowned.manifests)
     asserts.equals(env, [unowned], depset([unowned]).to_list())
+
     # Implicit-module builds need the same cold local import closure. Only the
     # inexpensive manifest is restricted to the generating action's inventory.
     asserts.equals(env, preview.files.to_list(), unowned.files.to_list())

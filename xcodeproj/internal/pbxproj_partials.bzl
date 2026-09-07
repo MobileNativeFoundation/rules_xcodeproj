@@ -129,6 +129,23 @@ _FLAGS = struct(
     xcode_configurations = "--xcode-configurations",
 )
 
+def _top_level_target_attributes_args(*, xcode_target, unit_test_host):
+    # Preview link params can also belong to a generated static library target,
+    # which has no top-level product path.
+    if (not xcode_target.outputs.product_path and
+        not xcode_target.link_params):
+        return []
+
+    return [
+        xcode_target.id,
+        xcode_target.bundle_id or EMPTY_STRING,
+        xcode_target.outputs.product_path or EMPTY_STRING,
+        xcode_target.link_params or EMPTY_STRING,
+        xcode_target.product.executable_name or EMPTY_STRING,
+        xcode_target.compile_target_ids,
+        unit_test_host,
+    ]
+
 def _write_consolidation_map_targets(
         *,
         actions,
@@ -316,23 +333,12 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
-            # `outputs.product_path` is only set for top-level targets
-            if xcode_target.outputs.product_path:
-                top_level_targets_args.add(xcode_target.id)
-                top_level_targets_args.add(
-                    xcode_target.bundle_id or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.outputs.product_path or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.link_params or EMPTY_STRING,
-                )
-                top_level_targets_args.add(
-                    xcode_target.product.executable_name or EMPTY_STRING,
-                )
-                top_level_targets_args.add(xcode_target.compile_target_ids)
-                top_level_targets_args.add(unit_test_host)
+            top_level_targets_args.add_all(
+                _top_level_target_attributes_args(
+                    xcode_target = xcode_target,
+                    unit_test_host = unit_test_host,
+                ),
+            )
 
     actions.write(target_arguments_file, targets_args)
     actions.write(top_level_target_attributes_file, top_level_targets_args)
@@ -1115,6 +1121,7 @@ def _write_target_build_settings(
         provisioning_profile_name = None,
         separate_index_build_output_base,
         swift_args,
+        swift_preview_inputs = None,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
         tool):
@@ -1155,6 +1162,8 @@ def _write_target_build_settings(
             output base for index builds.
         swift_args: A `list` of `Args` for the `SwiftCompile` action for this
             target.
+        swift_preview_inputs: Optional manifest metadata and native import
+            preparation from `compiler_args.collect`; only manifests are inputs.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
             Swift debug settings from dependencies.
         team_id: The team ID to use for code signing.
@@ -1264,6 +1273,18 @@ def _write_target_build_settings(
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
+
+    # Only cheap manifest metadata is a project-generation dependency. Local
+    # maps, modules and headers belong to bf, never this action's inputs.
+    manifests = swift_preview_inputs.manifests if generate_build_settings and swift_preview_inputs else []
+    args.add_all(manifests, terminate_with = "", omit_if_empty = False)
+    args.add_all(
+        swift_preview_inputs.paths if manifests else [],
+        terminate_with = "",
+        omit_if_empty = False,
+    )
+    if manifests:
+        inputs = depset(manifests, transitive = [inputs] if type(inputs) == "depset" else [depset(inputs)])
 
     c_output_args = actions.args()
 
@@ -1458,6 +1479,7 @@ cat "$@" > "{output}"
     return output
 
 pbxproj_partials = struct(
+    top_level_target_attributes_args = _top_level_target_attributes_args,
     write_files_and_groups = _write_files_and_groups,
     write_generated_directories_filelist = (
         _write_generated_directories_filelist

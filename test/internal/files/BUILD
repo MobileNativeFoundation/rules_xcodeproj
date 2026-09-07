@@ -4,14 +4,32 @@ load(
     "linker_input_files_test_suite",
     "static_library_preview_link_params_test",
 )
+load(
+    ":output_files_tests.bzl",
+    "archive_preview_framework_test",
+    "output_files_test_suite",
+)
+
+output_files_test_suite(name = "output_files")
 
 linker_input_files_test_suite(name = "linker_input_files")
 
-static_library_preview_link_params_test(name = "static_library_preview_link_params")
+static_library_preview_link_params_test(
+    name = "static_library_preview_link_params",
+)
+
+archive_preview_framework_test(
+    name = "archive_preview_framework",
+)
 
 test_suite(
     name = "files",
-    tests = [":linker_input_files", ":static_library_preview_link_params"],
+    tests = [
+        ":archive_preview_framework",
+        ":linker_input_files",
+        ":output_files",
+        ":static_library_preview_link_params",
+    ],
 )
 
 bzl_library(

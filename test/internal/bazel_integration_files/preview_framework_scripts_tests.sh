@@ -126,10 +126,10 @@ grep -q "Preview configurations cannot archive" "$test_root/archive.stderr" || \
 run_generator_mode unset UNSET UNSET bp _dbg_build
 run_generator_mode ordinary NO NO bp _dbg_build
 run_generator_mode coverage NO NO bp dbg_coverage YES
-run_generator_mode legacy YES NO bc,bp,bl dbg_swiftuipreviews
+run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
 run_generator_mode xojit NO YES bc,bf,bl dbg_swiftuipreviews
 run_generator_mode xojit-coverage NO YES bc,bf,bl dbg_swiftuipreviews YES
-run_generator_mode both YES NO bc,bp,bl dbg_swiftuipreviews
+run_generator_mode both YES NO bc,bf,bp,bl dbg_swiftuipreviews
 
 readonly fake_integration_dir="$test_root/copy-integration"
 mkdir -p "$fake_integration_dir"

@@ -2,11 +2,9 @@ import CustomDump
 import PBXProj
 import ToolCommon
 import XCTest
-
 @testable import pbxnativetargets
 
 class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
-
     func test_base() async throws {
         // Arrange
 
@@ -257,7 +255,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
         let expectedBuildSettings = baseBuildSettings.updating([
             "LINK_PARAMS_FILE":
                 "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
-            "OTHER_LDFLAGS":
+            "OTHER_LIBTOOLFLAGS":
                 "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
         ])
 
@@ -265,6 +263,37 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
+                platformVariant: platformVariant
+            )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
+    func test_linkParams_nonStaticLibrary() async throws {
+        // Arrange
+
+        let platformVariant = Target.PlatformVariant.mock(
+            linkParams: "bazel-out/some/link.params"
+        )
+
+        let expectedBuildSettings = baseBuildSettings.updating([
+            "LINK_PARAMS_FILE":
+                "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
+            "OTHER_LDFLAGS":
+                "-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+        ])
+
+        // Act
+
+        let buildSettings =
+            try await calculatePlatformVariantBuildSettingsWithDefaults(
+                originalProductBasename: "libA.dylib",
+                productType: .dynamicLibrary,
                 platformVariant: platformVariant
             )
 
@@ -429,7 +458,7 @@ $(BUILD_DIR)/some/packageBin/dir/a/path/Host.app/Executable_Name
     }
 }
 
-private func calculatePlatformVariantBuildSettingsWithDefaults(
+func calculatePlatformVariantBuildSettingsWithDefaults(
     isBundle: Bool = false,
     originalProductBasename: String = "libA.a",
     productType: PBXProductType = .staticLibrary,
@@ -457,7 +486,7 @@ private let baseBuildSettings = noPlatformBuildSettings.updating([
     "MACOSX_DEPLOYMENT_TARGET": "9.4.1",
 ])
 
-private extension Target.PlatformVariant {
+extension Target.PlatformVariant {
     static func mock(
         xcodeConfigurations: [String] = ["CONFIG"],
         id: TargetID = "A",
@@ -501,7 +530,7 @@ private extension Target.PlatformVariant {
     }
 }
 
-private extension Array where Element == PlatformVariantBuildSetting {
+extension Array where Element == PlatformVariantBuildSetting {
     var asDictionary: [String: String] {
         return Dictionary(uniqueKeysWithValues: map { ($0.key, $0.value) })
     }

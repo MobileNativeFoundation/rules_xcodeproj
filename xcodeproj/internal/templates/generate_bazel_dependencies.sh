@@ -22,7 +22,7 @@ else
     # inputs, runtime frameworks and link dependencies, not its own product.
     readonly output_group_prefixes="bc,bf,bl"
   elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-    readonly output_group_prefixes="bc,bp,bl"
+    readonly output_group_prefixes="bc,bf,bp,bl"
   else
     # Products (i.e. bundles) and index store data
     readonly output_group_prefixes="bp"

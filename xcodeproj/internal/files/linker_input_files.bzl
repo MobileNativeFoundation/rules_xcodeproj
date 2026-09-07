@@ -375,6 +375,7 @@ def _get_static_library_preview_dynamic_frameworks(linker_inputs):
         framework_name = _dynamic_framework_name(file)
         if not framework_name or file in seen_files:
             continue
+
         # Diagnose basename collisions only when staging the selected Preview,
         # not while generating an opt-out project's otherwise valid targets.
         seen_files[file] = None
@@ -421,6 +422,16 @@ def _preview_execution_root_path(file):
     if path.startswith("/"):
         return path
     return "$(PROJECT_DIR)/{}".format(path)
+
+def _quote_preview_link_arg(arg):
+    # Xcode's response parser accepts whole-argument quotes, not shell-style
+    # concatenation. Build setting values can contain spaces after expansion.
+    if not any([
+        character in arg
+        for character in [" ", "\t", "\n", "\r", "'", "\"", "\\", "$("]
+    ]):
+        return arg
+    return "\"{}\"".format(arg.replace("\\", "\\\\").replace("\"", "\\\""))
 
 def _get_static_library_preview_dynamic_libraries(linker_inputs):
     """Returns standalone CcInfo dylibs using their exact linker artifacts."""
@@ -520,7 +531,10 @@ def _create_static_library_preview_link_params(
     )
     actions.write(
         output = params,
-        content = "{}\n".format("\n".join(args)),
+        content = "{}\n".format("\n".join([
+            _quote_preview_link_arg(arg)
+            for arg in args
+        ])),
     )
 
     return struct(

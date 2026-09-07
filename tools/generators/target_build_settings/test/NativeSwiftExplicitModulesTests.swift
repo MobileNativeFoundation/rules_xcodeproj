@@ -65,4 +65,46 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: unknownSystem], preparedPaths: [swift, clang]))
     }
 
+    func testNativeConfigurationSelectsFlagsIndependentlyOfPreviewHints() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let manifestURL = directory.appendingPathComponent("control.swift-explicit-module-map.json")
+        try manifest.write(to: manifestURL)
+        let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
+        func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
+            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "0"]
+            let input = envelope + (owned ? [manifestURL.path] : []) + [""] + [swift, clang, ""] + ["swift_worker", "swiftc"] + rawSwift + ["---", "---"]
+            let result = try await Generator.Environment.default.processArgs(
+                rawArguments: input[...], generateBuildSettings: true,
+                includeSelfSwiftDebugSettings: true, transitiveSwiftDebugSettingPaths: []
+            )
+            return (result.buildSettings, result.clangArgs)
+        }
+        let original = try await process(owned: false)
+        let candidate = try await process(owned: true)
+        XCTAssertEqual(original.1, candidate.1)
+        let settings = Dictionary(uniqueKeysWithValues: candidate.0)
+        XCTAssertEqual(settings["BAZEL_SWIFT_FLAGS__NO"], Dictionary(uniqueKeysWithValues: original.0)["OTHER_SWIFT_FLAGS"])
+        for nativeSetting in ["", "NO", "YES"] {
+        for legacy in ["", "NO", "YES"] {
+            for xojit in ["", "NO", "YES"] {
+                var values = settings.mapValues { $0.hasPrefix("\"") ? String($0.dropFirst().dropLast()) : $0 }
+                values["BAZEL_NATIVE_PREVIEWS"] = nativeSetting
+                values["ENABLE_PREVIEWS"] = legacy
+                values["ENABLE_XOJIT_PREVIEWS"] = xojit
+                var expanded = try XCTUnwrap(values["OTHER_SWIFT_FLAGS"])
+                let regex = try NSRegularExpression(pattern: #"\$\(([^()]*)\)"#)
+                for _ in 0 ..< 10 {
+                    for match in regex.matches(in: expanded, range: NSRange(expanded.startIndex..., in: expanded)).reversed() {
+                        let key = try String(expanded[XCTUnwrap(Range(match.range(at: 1), in: expanded))])
+                        if let value = values[key] { try expanded.replaceSubrange(XCTUnwrap(Range(match.range, in: expanded)), with: value) }
+                    }
+                }
+                let native = nativeSetting == "YES"
+                XCTAssertEqual(expanded.contains("explicit-swift-module-map-file"), !native, "legacy=\(legacy), XOJIT=\(xojit)")
+            }
+        }
+        }
+    }
 }

@@ -22,10 +22,10 @@ extension Generator {
             platformVariant: Target.PlatformVariant
         ) async throws -> [PlatformVariantBuildSetting] {
             return try await callable(
-                /*isBundle:*/ isBundle,
-                /*originalProductBasename:*/ originalProductBasename,
-                /*productType:*/ productType,
-                /*platformVariant:*/ platformVariant
+                /* isBundle: */ isBundle,
+                /* originalProductBasename: */ originalProductBasename,
+                /* productType: */ productType,
+                /* platformVariant: */ platformVariant
             )
         }
     }
@@ -175,12 +175,25 @@ extension Generator.CalculatePlatformVariantBuildSettings {
 """#
                 )
             )
-            buildSettings.append(
-                .init(
-                    key: "OTHER_LDFLAGS",
-                    value: #""@$(DERIVED_FILE_DIR)/link.params""#
+            if productType == .staticLibrary {
+                // Xcode 26 derives a static-library target's Preview link
+                // closure from its Libtool task, not from OTHER_LDFLAGS.
+                // Create Link Dependencies truncates this response file for
+                // ordinary builds, preserving normal archive membership.
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LIBTOOLFLAGS",
+                        value: #""@$(DERIVED_FILE_DIR)/link.params""#
+                    )
                 )
-            )
+            } else {
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LDFLAGS",
+                        value: #""-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params""#
+                    )
+                )
+            }
         }
 
         buildSettings.append(contentsOf: platformVariant.buildSettingsFromFile)

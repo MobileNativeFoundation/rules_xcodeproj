@@ -173,6 +173,32 @@ def _standalone_dynamic_library_preview_closure_test_impl(ctx):
             _paths(preview.link_input_files),
             "materialize the emitted artifact, preferring resolved files and deduplicating in linker order",
         )
+        (_, _, metadata) = output_files.collect(
+            actions = ctx.actions,
+            compile_params_files = [],
+            debug_outputs = None,
+            id = "standalone",
+            link_params = preview.file,
+            name = ctx.label.name,
+            output_group_info = None,
+            preview_link_input_files = preview.link_input_files,
+            swift_info = None,
+            transitive_infos = [],
+        )
+        groups = output_groups.to_output_groups_fields(
+            target_output_groups = output_groups.collect(
+                metadata = metadata,
+                transitive_infos = [],
+            ),
+        )
+        asserts.equals(
+            env,
+            [preview.file.path, resolved.path, fallback.path],
+            _paths(groups["bl standalone"].to_list()),
+            "the Preview output group requests exact standalone producers",
+        )
+        asserts.equals(env, [], groups["bf standalone"].to_list())
+        asserts.false(env, resolved in groups["bp standalone"].to_list())
 
     return unittest.end(env)
 
@@ -375,13 +401,15 @@ static_library_preview_framework_mapping_test = unittest.make(
 
 def _static_library_preview_link_params_test_impl(ctx):
     primary = ctx.actions.declare_file("libSubject.a")
-    dependency = ctx.actions.declare_file("deps/libDependency.a")
+    dependency = ctx.actions.declare_file("deps With Spaces/libDependency.a")
     alwayslink_dependency = ctx.actions.declare_file(
-        "deps/libAlwayslinkDependency.a",
+        "deps With Spaces/libAlwayslinkDependency.a",
     )
-    lottie = ctx.actions.declare_file("Lottie.framework/Lottie")
+    lottie = ctx.actions.declare_file(
+        "Lottie With Spaces.framework/Lottie With Spaces",
+    )
     solib = ctx.actions.declare_file("_solib/libStandalone.dylib")
-    resolved = ctx.actions.declare_file("prebuilt/libStandalone.dylib")
+    resolved = ctx.actions.declare_file("prebuilt With Spaces/libStandalone.dylib")
     fallback = ctx.actions.declare_file("deps/libFallback.dylib")
     unused_dynamic = ctx.actions.declare_file("deps/libStaticAlternative.dylib")
     for file in [
@@ -453,19 +481,43 @@ def _static_library_preview_link_params_test_impl(ctx):
 set -euo pipefail
 
 diff -u <(printf '%s\\n' \\
-  '-F$(TARGET_BUILD_DIR)' \\
+  '"-F$(TARGET_BUILD_DIR)"' \\
   '-framework' \\
-  'Lottie' \\
+  '"Lottie With Spaces"' \\
   '-rpath' \\
-  '$(TARGET_BUILD_DIR)' \\
+  '"$(TARGET_BUILD_DIR)"' \\
   '-ObjC' \\
-  '$(PROJECT_DIR)/'"$2" \\
-  '$(PROJECT_DIR)/'"$3" \\
+  '"$(PROJECT_DIR)/'"$2"'"' \\
+  '"$(PROJECT_DIR)/'"$3"'"' \\
   '-force_load' \\
-  '$(PROJECT_DIR)/'"$4" \\
-  '$(PROJECT_DIR)/'"$5" \\
-  '$(PROJECT_DIR)/'"$6") "$1"
+  '"$(PROJECT_DIR)/'"$4"'"' \\
+  '"$(PROJECT_DIR)/'"$5"'"' \\
+  '"$(PROJECT_DIR)/'"$6"'"') "$1"
 ! grep -Eq '^-ref-framework$|^@rpath/' "$1"
+
+# Expand build settings before tokenizing, including paths whose relative
+# portion has no whitespace. Only controlled fixture arguments reach eval.
+response="$(<"$1")"
+project_dir_setting='$(PROJECT_DIR)'
+target_build_dir_setting='$(TARGET_BUILD_DIR)'
+project_dir='/Execution Root'
+target_build_dir='/Build Products'
+response="${response//$project_dir_setting/$project_dir}"
+response="${response//$target_build_dir_setting/$target_build_dir}"
+eval "parsed=($response)"
+diff -u <(printf '%s\\n' \\
+  '-F/Build Products' \\
+  '-framework' \\
+  'Lottie With Spaces' \\
+  '-rpath' \\
+  '/Build Products' \\
+  '-ObjC' \\
+  '/Execution Root/'"$2" \\
+  '/Execution Root/'"$3" \\
+  '-force_load' \\
+  '/Execution Root/'"$4" \\
+  '/Execution Root/'"$5" \\
+  '/Execution Root/'"$6") <(printf '%s\\n' "${parsed[@]}")
 printf 'verified\\n' > "$7"
 """,
     )

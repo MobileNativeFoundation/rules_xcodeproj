@@ -367,6 +367,7 @@ def _process_focused_top_level_target(
             conly = mergeable_info.conly_args,
             cxx = mergeable_info.cxx_args,
             swift = mergeable_info.swift_args,
+            swift_preview_inputs = mergeable_info.swift_preview_inputs,
         )
 
         if mergeable_info.previews_dynamic_frameworks:
@@ -483,6 +484,7 @@ def _process_focused_top_level_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         team_id = provisioning_profile_props.team_id,
         tool = ctx.executable._target_build_settings_generator,
@@ -539,8 +541,16 @@ def _process_focused_top_level_target(
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_framework_files = [
+            file
+            for file, _ in previews_dynamic_frameworks
+        ],
+        preview_link_input_files = (
+            linker_inputs._top_level_values.preview_link_input_files
+        ),
         product = product,
         swift_info = swift_info,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
@@ -793,6 +803,7 @@ def _process_unfocused_top_level_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
         tool = ctx.executable._target_build_settings_generator,
     )
