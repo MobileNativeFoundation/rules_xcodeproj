@@ -19,8 +19,8 @@ extension Generator {
             allConditionalFiles: Set<BazelPath>
         ) -> [BuildSetting] {
             return callable(
-                /*platformBuildSettings:*/ platformBuildSettings,
-                /*allConditionalFiles:*/ allConditionalFiles
+                /* platformBuildSettings: */ platformBuildSettings,
+                /* allConditionalFiles: */ allConditionalFiles
             )
         }
     }
@@ -71,7 +71,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                             // Lots of code just to quote and `.pbxProjEscaped`
                             // the paths
                             platformBuildSettings.conditionalFiles
-                                .map { $0.path.quoteIfNeeded }
+                                .map(\.path.quoteIfNeeded)
                                 // TODO: See if we can not sort, or sort earlier
                                 .sorted()
                                 .joined(separator: " ")
@@ -101,7 +101,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         excludedSourceFileNames.append(
             contentsOf: allConditionalFiles
                 .subtracting(conditionalFiles)
-                .map { $0.path.pbxProjEscaped }
+                .map(\.path.pbxProjEscaped)
         )
 
         // Set configuration-wide conditional files

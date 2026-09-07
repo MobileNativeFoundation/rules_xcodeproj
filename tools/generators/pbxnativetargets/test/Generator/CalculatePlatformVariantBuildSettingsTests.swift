@@ -305,6 +305,68 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
         )
     }
 
+    func test_linkParams_iOSSimulatorLibrarySearchPath() async throws {
+        // Arrange
+
+        let platformVariant = Target.PlatformVariant.mock(
+            platform: .iOSSimulator,
+            linkParams: "bazel-out/some/link.params"
+        )
+
+        let expectedBuildSettings = noPlatformBuildSettings.updating([
+            "IPHONEOS_DEPLOYMENT_TARGET": "9.4.1",
+            "LIBRARY_SEARCH_PATHS":
+                "$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)".pbxProjEscaped,
+            "LINK_PARAMS_FILE":
+                "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
+            "OTHER_LIBTOOLFLAGS":
+                "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+        ])
+
+        // Act
+
+        let buildSettings =
+            try await calculatePlatformVariantBuildSettingsWithDefaults(
+                platformVariant: platformVariant
+            )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
+    func test_librarySearchPathExcludedFromOtherLinkModes() async throws {
+        for platformVariant in [
+            Target.PlatformVariant.mock(
+                platform: .iOSDevice,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .tvOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .visionOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .watchOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(platform: .iOSSimulator),
+        ] {
+            let buildSettings =
+                try await calculatePlatformVariantBuildSettingsWithDefaults(
+                    platformVariant: platformVariant
+                )
+
+            XCTAssertNil(buildSettings.asDictionary["LIBRARY_SEARCH_PATHS"])
+        }
+    }
+
     func test_packageBinDir() async throws {
         // Arrange
 

@@ -682,7 +682,8 @@ def _write_pbxproj_prefix(
         target_ids_list,
         tool,
         workspace_directory,
-        xcode_configurations):
+        xcode_configurations,
+        preview_xcode_configurations = []):
     """Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
 
     Args:
@@ -719,6 +720,7 @@ def _write_pbxproj_prefix(
         workspace_directory: The absolute path to the Bazel workspace
             directory.
         xcode_configurations: A sorted sequence of Xcode configuration names.
+        preview_xcode_configurations: Configurations using native Preview tools.
 
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
@@ -790,6 +792,7 @@ def _write_pbxproj_prefix(
 
     # xcodeConfigurations
     args.add_all(_FLAGS.xcode_configurations, xcode_configurations)
+    args.add_all("--preview-xcode-configurations", preview_xcode_configurations)
 
     # preBuildScript
     if pre_build_script:

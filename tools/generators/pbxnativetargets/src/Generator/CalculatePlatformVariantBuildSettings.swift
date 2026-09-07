@@ -165,6 +165,16 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let linkParams = platformVariant.linkParams {
+            if platformVariant.platform == .iOSSimulator {
+                buildSettings.append(
+                    .init(
+                        key: "LIBRARY_SEARCH_PATHS",
+                        value:
+                            #""$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)""#
+                    )
+                )
+            }
+
             // Drop the `bazel-out` prefix since we use the env var for this
             // portion of the path
             buildSettings.append(
@@ -196,7 +206,21 @@ extension Generator.CalculatePlatformVariantBuildSettings {
             }
         }
 
-        buildSettings.append(contentsOf: platformVariant.buildSettingsFromFile)
+        buildSettings.append(
+            contentsOf: platformVariant.buildSettingsFromFile.map { buildSetting in
+                guard platformVariant.platform.supportsXcodePreviews,
+                      buildSetting.key == "SWIFT_COMPILATION_MODE",
+                      buildSetting.value == "wholemodule"
+                else {
+                    return buildSetting
+                }
+
+                // Unlike ENABLE_XOJIT_PREVIEWS, this configuration-scoped value
+                // is fixed before Preview eligibility checks. Ordinary builds
+                // retain WMO; only an opted-in Preview configuration is incremental.
+                return .init(key: buildSetting.key, value: #""$(BAZEL_SWIFT_COMPILATION_MODE)""#)
+            }
+        )
 
         return buildSettings
     }
@@ -225,6 +249,24 @@ private extension Platform.OS {
         case .tvOS: return "appletvos"
         case .visionOS: return "xros"
         case .watchOS: return "watchos"
+        }
+    }
+}
+
+private extension Platform {
+    var supportsXcodePreviews: Bool {
+        switch self {
+        case .macOS,
+                .iOSSimulator,
+                .tvOSSimulator,
+                .visionOSSimulator,
+                .watchOSSimulator:
+            return true
+        case .iOSDevice,
+                .tvOSDevice,
+                .visionOSDevice,
+                .watchOSDevice:
+            return false
         }
     }
 }
