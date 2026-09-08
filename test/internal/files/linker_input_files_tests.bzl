@@ -1,6 +1,8 @@
 """Tests for static-library Xcode Preview linker inputs."""
 
+load("@bazel_skylib//lib:partial.bzl", "partial")
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("@rules_cc//cc:find_cc_toolchain.bzl", "find_cc_toolchain", "use_cc_toolchain")
 load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
 load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 
@@ -669,31 +671,61 @@ def _test_cc_info(ctx, libraries):
         ),
     )
 
+_PreviewLibrariesInfo = provider(
+    doc = "Real LibraryToLink fixtures for CcInfo propagation tests.",
+    fields = {"libraries": "LibraryToLink objects keyed by fixture name."},
+)
+
+def _preview_libraries_impl(ctx):
+    cc_toolchain = find_cc_toolchain(ctx)
+    feature_configuration = cc_common.configure_features(
+        ctx = ctx,
+        cc_toolchain = cc_toolchain,
+    )
+    libraries = {}
+    for name, path in {
+        "archive": "libFrameworkImplementation.a",
+        "framework": "Generated.framework/Generated",
+        "imported": "Imported.framework/Imported",
+        "lipobin": "Generated_lipobin.dylib",
+        "unused": "Unused.framework/Unused",
+    }.items():
+        file = ctx.actions.declare_file(ctx.label.name + "/" + path)
+        ctx.actions.write(file, "test\n")
+        libraries[name] = cc_common.create_library_to_link(
+            actions = ctx.actions,
+            cc_toolchain = cc_toolchain,
+            feature_configuration = feature_configuration,
+            **({"static_library": file} if name == "archive" else {"dynamic_library": file})
+        )
+    return [_PreviewLibrariesInfo(libraries = libraries)]
+
+_preview_libraries = rule(
+    implementation = _preview_libraries_impl,
+    fragments = ["cpp"],
+    toolchains = use_cc_toolchain(),
+)
+
 def _framework_preview_dynamic_propagation_test_impl(ctx):
     env = unittest.begin(ctx)
-    framework = ctx.actions.declare_file("_solib/Generated.framework/Generated")
-    lipobin = ctx.actions.declare_file("_solib/Generated_lipobin.dylib")
-    imported = ctx.actions.declare_file("_solib/Imported.framework/Imported")
-    unused = ctx.actions.declare_file("_solib/Unused.framework/Unused")
-    resolved = ctx.actions.declare_file("Generated.framework/Generated")
-    resolved_lipobin = ctx.actions.declare_file("Generated_lipobin.dylib")
-    archive = ctx.actions.declare_file("libFrameworkImplementation.a")
+    libraries = ctx.attr.libraries[_PreviewLibrariesInfo].libraries
+    framework = libraries["framework"].dynamic_library
+    lipobin = libraries["lipobin"].dynamic_library
+    imported = libraries["imported"].dynamic_library
+    unused = libraries["unused"].dynamic_library
+    resolved = libraries["framework"].resolved_symlink_dynamic_library
+    resolved_lipobin = libraries["lipobin"].resolved_symlink_dynamic_library
+    archive = libraries["archive"].static_library
+    for name in ["framework", "lipobin", "imported", "unused"]:
+        library = libraries[name]
+        asserts.true(env, library.resolved_symlink_dynamic_library != None)
+        asserts.true(env, library.dynamic_library != library.resolved_symlink_dynamic_library)
     selected = ctx.actions.declare_file("Selected.app/Selected")
     objects = ctx.actions.declare_file("FrameworkConsumer-linker.objlist")
-    for file in [
-        framework,
-        lipobin,
-        imported,
-        unused,
-        resolved,
-        resolved_lipobin,
-        archive,
-        selected,
-        objects,
-    ]:
+    for file in [selected, objects]:
         ctx.actions.write(file, "test\n")
 
-    imported_cc = _test_cc_info(ctx, [_dynamic_library(dynamic = imported)])
+    imported_cc = _test_cc_info(ctx, [libraries["imported"]])
     (imported_target, imported_provider) = compilation_providers.collect(
         cc_info = imported_cc,
         objc = None,
@@ -708,15 +740,15 @@ def _framework_preview_dynamic_propagation_test_impl(ctx):
         # Generated frameworks expose different LibraryToLink files in their
         # target CcInfo and AppleDynamicFrameworkInfo.cc_info.
         cc_info = _test_cc_info(ctx, [
-            _dynamic_library(dynamic = framework, resolved = resolved),
-            _static_library(static = archive),
+            libraries["framework"],
+            libraries["archive"],
         ]),
         apple_dynamic_framework_info = struct(
             cc_info = _test_cc_info(ctx, [
-                _dynamic_library(dynamic = lipobin, resolved = resolved_lipobin),
-                _dynamic_library(dynamic = imported),
-                _dynamic_library(dynamic = unused),
-                _static_library(static = archive),
+                libraries["lipobin"],
+                libraries["imported"],
+                libraries["unused"],
+                libraries["archive"],
             ]),
             framework_files = depset([resolved]),
             objc = None,
@@ -810,13 +842,18 @@ def _framework_preview_dynamic_propagation_test_impl(ctx):
 
 framework_preview_dynamic_propagation_test = unittest.make(
     _framework_preview_dynamic_propagation_test_impl,
+    attrs = {
+        "libraries": attr.label(mandatory = True, providers = [_PreviewLibrariesInfo]),
+    },
 )
 
 def linker_input_files_test_suite(name):
+    libraries = name + "_framework_libraries"
+    _preview_libraries(name = libraries, testonly = True)
     return unittest.suite(
         name,
         dynamic_only_static_library_preview_closure_test,
-        framework_preview_dynamic_propagation_test,
+        partial.make(framework_preview_dynamic_propagation_test, libraries = ":" + libraries),
         merged_static_library_preview_libraries_test,
         source_static_library_preview_libraries_test,
         standalone_dynamic_library_preview_closure_test,
