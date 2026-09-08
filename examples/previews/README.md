@@ -45,6 +45,13 @@ single-file compilation mode there; the original Bazel compilation mode remains
 unchanged. `ENABLE_XOJIT_PREVIEWS` alone does not opt in because Xcode also sets
 it during ordinary builds.
 
+Owned explicit-module graphs can use the selected Xcode SDK and prepared local
+Swift modules and textual Clang maps. The same import normalization is used for
+SourceKit indexing, without changing ordinary Bazel build flags or index
+compiler stubs. Unsupported or unowned graphs retain their original flags;
+this does not provide universal explicit-module compatibility or globally
+disable Xcode explicit modules.
+
 ## Example coverage
 
 The schemes exercise a Swift library with a dependency, a mixed Swift/C/C++/
@@ -77,3 +84,13 @@ creation, a literal edit, a structural edit, and a dependency edit with the
 specific Xcode/runtime combination before relying on this workflow. Custom
 toolchains, device-only destinations, and extension hosting need their own
 validation; they are not covered by this example.
+
+## Canvas session troubleshooting
+
+If changing from an app scheme to a library scheme reports `unableToFindTarget`,
+first check the scheme/source pairing above. A stale target graph also reproduced
+in a stock native Xcode 26.5 project: closing and reopening only that project,
+then resuming its Canvas, restored rendering without a preceding normal build.
+This session failure is separate from compiler, linker, or missing-resource
+errors; preserve those diagnostics rather than treating every failure as stale
+Canvas state.
