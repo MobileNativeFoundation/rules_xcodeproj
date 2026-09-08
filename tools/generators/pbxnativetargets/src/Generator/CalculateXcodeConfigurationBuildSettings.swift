@@ -130,14 +130,12 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         }
 
         let allPlatforms = Set(platformBuildSettings.map(\.platform))
+        let basePlatform = platformBuildSettings.first!.platform
 
-        for (key, values) in platformedBuildSettings {
-            // Target IDs arrive in configuration-name order, which can put
-            // devices first. Prefer the simulator's literal singlefile mode
-            // for Preview eligibility; keep device modes SDK-conditional.
-            let platformAndValues = key == "SWIFT_COMPILATION_MODE" ?
-                values.sorted { $0.0 < $1.0 } : values
+        for (key, platformAndValues) in platformedBuildSettings {
             let isNonInheritableKey = nonInheritableKeys.contains(key)
+            let preservePlatformValues = key == "BAZEL_TARGET_ID" ||
+                key == "BAZEL_COMPILE_TARGET_IDS"
 
             var remainingPlatforms: Set<Platform>
             let setBaseValue: Bool
@@ -158,10 +156,11 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
 
             let baseValue: String?
             if setBaseValue {
-                let (basePlatform, firstValue) = remainingPlatformAndValues.popFirst()!
+                let (_, firstValue) = remainingPlatformAndValues.popFirst()!
                 baseValue = firstValue
 
-                // Set the base value to the first platform.
+                // Set the base value to the first platform, which will be
+                // previously sorted, resulting in the most preferable default
                 buildSettings.append(.init(key: key, value: firstValue))
 
                 remainingPlatforms.remove(basePlatform)
@@ -174,10 +173,17 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                 remainingPlatforms.removeAll()
             }
 
+            // PIF consumers try explicit SDK IDs before similar-platform
+            // fallbacks. Keep every supported platform's ID, including the
+            // base platform and values shared by multiple platforms.
+            if preservePlatformValues {
+                remainingPlatformAndValues = ArraySlice(platformAndValues)
+            }
+
             for (platform, value) in remainingPlatformAndValues {
                 remainingPlatforms.remove(platform)
 
-                guard value != baseValue else {
+                guard preservePlatformValues || value != baseValue else {
                     // Don't set redundant settings
                     continue
                 }

@@ -2,11 +2,11 @@
 -objc_abi_version
 -Xlinker
 2
-$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/_solib_ios_sim_arm64/_U_A_A+non_Umodule_Udeps+com_Ugithub_Ukrzyzanowskim_Ucryptoswift_S_S_CCryptoSwift___UCryptoSwift.xcframework_Sios-arm64_Ui386_Ux86_U64-simulator_SCryptoSwift.framework/CryptoSwift
-$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/_solib_ios_sim_arm64/_U_S_SLib_CLibFramework.iOS___ULib/LibFramework.iOS_lipobin.dylib
--Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/MixedLib/MixedLib.swiftmodule
+'$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/_solib_ios_sim_arm64/_U_A_A+non_Umodule_Udeps+com_Ugithub_Ukrzyzanowskim_Ucryptoswift_S_S_CCryptoSwift___UCryptoSwift.xcframework_Sios-arm64_Ui386_Ux86_U64-simulator_SCryptoSwift.framework/CryptoSwift'
+'$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/_solib_ios_sim_arm64/_U_S_SLib_CLibFramework.iOS___ULib/LibFramework.iOS_lipobin.dylib'
+'-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/MixedLib/MixedLib.swiftmodule'
 -ObjC
--Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/Lib/Lib.swiftmodule
+'-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/Lib/Lib.swiftmodule'
 -ObjC
 '-F/Applications/Xcode-26.5.0.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks'
 '-F/Applications/Xcode-26.5.0.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks'
@@ -18,7 +18,7 @@ $(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13
 -Wl,-rpath,/var/db/xcode_select_link/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/iphonesimulator
 '-Wl,-rpath,/Applications/Xcode-26.5.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/iphonesimulator'
 '-L/Applications/Xcode-26.5.0.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib'
--Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/UI/UI.swiftmodule
+'-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/ios_sim_arm64-dbg-ios-sim_arm64-min15.0-ST-3523d915ac13/bin/UI/UI.swiftmodule'
 -ObjC
 -lc++
 -g

@@ -28,7 +28,7 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* Fixed Xcode Previews on Xcode 26.5 for targets with link parameters and dynamic framework dependencies: [#3201](https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3201)
+* TBD
 
 ### Ruleset Development Changes
 
@@ -48,7 +48,7 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* TBD
+* Added opt-in `preview_xcode_configurations` for native Xcode Preview compilation while keeping ordinary configurations Bazel-owned. See [the Preview example](examples/previews/README.md) for setup and validation scope.
 
 ### Adjusted
 

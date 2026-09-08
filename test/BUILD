@@ -11,6 +11,7 @@ test_suite(
         "//test/internal/info_plists",
         "//test/internal/pbxproj_partials",
         "//test/internal/platforms",
+        "//test/internal/preview_resource_bundles",
         "//test/internal/target",
         "//test/internal/target_id",
         "//test/internal/targets",

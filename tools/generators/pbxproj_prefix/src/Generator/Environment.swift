@@ -36,15 +36,16 @@ extension Generator {
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ legacyIndexImport: String,
+            _ nativePreviews: Bool,
             _ projectDir: String,
             _ resolvedRepositories: String,
             _ separateIndexBuildOutputBase: Bool,
             _ suppressCoverageBuild: Bool,
-            _ workspace: String,
+            _ workspace: String
         ) -> String
 
         let pbxProjectPrefixPartial: (
-            _ buildSettings: String,
+            _ buildSettings: [String: String],
             _ compatibilityVersion: String,
             _ defaultXcodeConfiguration: String,
             _ developmentRegion: String,

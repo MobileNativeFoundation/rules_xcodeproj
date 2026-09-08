@@ -1,0 +1,3 @@
+import %workspace%/../../shared.bazelrc
+build --compilation_mode=dbg
+try-import %workspace%/override.bazelrc

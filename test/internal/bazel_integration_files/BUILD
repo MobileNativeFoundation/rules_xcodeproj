@@ -1,15 +1,20 @@
+load("@rules_python//python:defs.bzl", "py_test")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
-sh_test(
-    name = "clang_facade",
-    srcs = ["clang_facade_tests.sh"],
-    data = ["//xcodeproj/internal/bazel_integration_files"],
+py_test(
+    name = "calculate_output_groups",
+    srcs = ["calculate_output_groups_tests.py"],
+    data = ["//xcodeproj/internal/bazel_integration_files:calculate_output_groups.py"],
+    main = "calculate_output_groups_tests.py",
 )
 
 sh_test(
     name = "libtool_facade",
     srcs = ["libtool_facade_tests.sh"],
-    data = ["//xcodeproj/internal/bazel_integration_files"],
+    data = [
+        "//xcodeproj/internal/bazel_integration_files",
+        "//xcodeproj/internal/templates:installer.sh",
+    ],
 )
 
 sh_test(
@@ -24,7 +29,7 @@ sh_test(
 test_suite(
     name = "bazel_integration_files",
     tests = [
-        ":clang_facade",
+        ":calculate_output_groups",
         ":libtool_facade",
         ":preview_framework_scripts",
     ],

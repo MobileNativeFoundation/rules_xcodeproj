@@ -89,6 +89,13 @@ _DIRECT_INPUT_SUFFIXES = (
 
 
 def _parse_args(args_files: List[str]) -> List[str]:
+    def _is_redirect(arg: str) -> bool:
+        # dyld paths are linker values, not response files.
+        return arg.startswith("@") and not any(
+            arg == prefix or arg.startswith(prefix + "/")
+            for prefix in ("@rpath", "@loader_path", "@executable_path")
+        )
+
     raw_args = []
     for args_path in args_files:
         # Each argument is a path to a file containing the actual arguments
@@ -106,14 +113,13 @@ def _parse_args(args_files: List[str]) -> List[str]:
             redirected_args = fp.read().splitlines()
         if not redirected_args:
             raise ValueError("Link arguments contain an empty redirect")
-        if any(redirected_arg.startswith("@")
-               for redirected_arg in redirected_args):
+        if any(_is_redirect(arg) for arg in redirected_args):
             raise ValueError("Nested link argument redirects are unsupported")
         return redirected_args
 
     # Some actions put their complete tool-plus-arguments list behind one
     # redirect. Expand that first-level redirect before dropping the tool.
-    if raw_args[0].startswith("@"):
+    if _is_redirect(raw_args[0]):
         raw_args = _expand_redirect(raw_args[0]) + raw_args[1:]
 
     tool = raw_args[0]
@@ -124,7 +130,7 @@ def _parse_args(args_files: List[str]) -> List[str]:
     # with real arguments and must not lose their first value.
     args = []
     for arg in raw_args[1:]:
-        if arg.startswith("@"):
+        if _is_redirect(arg):
             args.extend(_expand_redirect(arg))
         else:
             args.append(arg)
@@ -145,8 +151,10 @@ def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
     re-parses the rendered invocation without honoring that working directory,
     so path-like inputs must carry their execution-root anchor explicitly.
 
-    The anchored form stays unquoted intentionally. Xcode's analyzer reads the
-    build-setting expression verbatim and does not strip shell-style quotes.
+    This response is consumed by Clang, including the Preview analyzer's
+    request for an expanded ld invocation. Quote the entire anchored argument:
+    the build-setting expansion can itself contain spaces. Clang removes the
+    response-file quoting before emitting the absolute paths for the analyzer.
     """
     def _anchor_path(path: str, *, allow_bare: bool = False) -> str:
         if (not path.startswith(("-", "@", "/", "'", "$")) and
@@ -156,14 +164,14 @@ def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
 
     anchored = _anchor_path(opt, allow_bare=path_context)
     if anchored != opt:
-        return anchored
+        return _quote_if_needed(anchored)
 
     for prefix in ("-F", "-L"):
         if opt.startswith(prefix) and len(opt) > len(prefix):
             path = opt[len(prefix):]
             anchored_path = _anchor_path(path, allow_bare=True)
             if anchored_path != path:
-                return prefix + anchored_path
+                return _quote_if_needed(prefix + anchored_path)
 
     if opt.startswith("-Wl,"):
         values = opt.split(",")
@@ -182,7 +190,7 @@ def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
                     )
         anchored = ",".join(values)
         if anchored != opt:
-            return anchored
+            return _quote_if_needed(anchored)
 
     return _quote_if_needed(opt)
 
@@ -241,7 +249,10 @@ def _process_linkopts(
             return
 
         # Xcode sets entitlements
-        if opt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
+        if opt.startswith((
+            "-Wl,-sectcreate,__TEXT,__entitlements,",
+            "-Wl,-sectcreate,__TEXT,__ents_der,",
+        )):
             return
 
         # Xcode sets Info.plist

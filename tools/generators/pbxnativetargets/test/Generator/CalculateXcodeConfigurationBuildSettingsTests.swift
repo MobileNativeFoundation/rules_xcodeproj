@@ -79,7 +79,7 @@ final class CalculateXcodeConfigurationBuildSettingsTests: XCTestCase {
         )
     }
 
-    func test_previewCompilationModeUsesSimulatorBaseInEitherInputOrder() {
+    func test_compilationModePreservesSDKValuesInEitherInputOrder() {
         for (simulator, device) in [
             (Platform.iOSSimulator, Platform.iOSDevice),
             (.tvOSSimulator, .tvOSDevice),
@@ -97,11 +97,19 @@ final class CalculateXcodeConfigurationBuildSettingsTests: XCTestCase {
                         platformBuildSettings: settings,
                         allConditionalFiles: []
                     )
-                XCTAssertNoDifference(actual.asDictionary, [
-                    "SWIFT_COMPILATION_MODE": "singlefile",
-                    "SWIFT_COMPILATION_MODE[sdk=\(device.rawValue)*]".quoted:
-                        "wholemodule",
-                ])
+                let values = actual.asDictionary
+                for (platform, expected) in [
+                    (simulator, "singlefile"),
+                    (device, "wholemodule"),
+                ] {
+                    let conditionalKey =
+                        "SWIFT_COMPILATION_MODE[sdk=\(platform.rawValue)*]".quoted
+                    XCTAssertEqual(
+                        values[conditionalKey] ?? values["SWIFT_COMPILATION_MODE"],
+                        expected,
+                        "platform: \(platform), order: \(settings.map(\.platform))"
+                    )
+                }
             }
         }
     }

@@ -44,6 +44,18 @@ def _dynamic_framework_path(file_and_is_framework):
         return path
     return "$(SRCROOT)/{}".format(path)
 
+def _preview_resource_bundle_path(file):
+    path = file.path
+    if path.startswith("bazel-out/"):
+        return "$(BAZEL_OUT){}".format(path[9:])
+    if path.startswith("external/"):
+        return "$(BAZEL_EXTERNAL){}".format(path[8:])
+    if path.startswith("../"):
+        return "$(BAZEL_EXTERNAL){}".format(path[2:])
+    if path.startswith("/"):
+        return path
+    return "$(SRCROOT)/{}".format(path)
+
 def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
@@ -682,7 +694,8 @@ def _write_pbxproj_prefix(
         target_ids_list,
         tool,
         workspace_directory,
-        xcode_configurations):
+        xcode_configurations,
+        preview_xcode_configurations = []):
     """Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
 
     Args:
@@ -719,6 +732,7 @@ def _write_pbxproj_prefix(
         workspace_directory: The absolute path to the Bazel workspace
             directory.
         xcode_configurations: A sorted sequence of Xcode configuration names.
+        preview_xcode_configurations: Configurations using native Preview tools.
 
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
@@ -790,6 +804,7 @@ def _write_pbxproj_prefix(
 
     # xcodeConfigurations
     args.add_all(_FLAGS.xcode_configurations, xcode_configurations)
+    args.add_all("--preview-xcode-configurations", preview_xcode_configurations)
 
     # preBuildScript
     if pre_build_script:
@@ -1117,10 +1132,12 @@ def _write_target_build_settings(
         name,
         previews_dynamic_frameworks = EMPTY_LIST,
         previews_include_path = EMPTY_STRING,
+        previews_resource_bundles = EMPTY_LIST,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         separate_index_build_output_base,
         swift_args,
+        swift_preview_inputs = None,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
         tool):
@@ -1153,6 +1170,8 @@ def _write_target_build_settings(
             `False`, the file points to an executable in a dynamic framework.
         previews_include_path: The Swift include path to add when building
             Xcode previews.
+        previews_resource_bundles: A `list` of resource bundle directory
+            `File`s to materialize when building Xcode previews.
         provisioning_profile_is_xcode_managed: A `bool` indicating whether the
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
@@ -1161,6 +1180,8 @@ def _write_target_build_settings(
             output base for index builds.
         swift_args: A `list` of `Args` for the `SwiftCompile` action for this
             target.
+        swift_preview_inputs: Optional manifest metadata and native import
+            preparation from `compiler_args.collect`; only manifests are inputs.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
             Swift debug settings from dependencies.
         team_id: The team ID to use for code signing.
@@ -1265,11 +1286,33 @@ def _write_target_build_settings(
         join_with = " ",
     )
 
+    # previewsResourceBundlePaths
+    args.add_joined(
+        previews_resource_bundles,
+        expand_directories = False,
+        format_each = '"%s"',
+        map_each = _preview_resource_bundle_path,
+        omit_if_empty = False,
+        join_with = " ",
+    )
+
     # previewsIncludePath
     args.add(previews_include_path)
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
+
+    # Only cheap manifest metadata is a project-generation dependency. Local
+    # maps, modules and headers belong to bf, never this action's inputs.
+    manifests = swift_preview_inputs.manifests if generate_build_settings and swift_preview_inputs else []
+    args.add_all(manifests, terminate_with = "", omit_if_empty = False)
+    args.add_all(
+        swift_preview_inputs.paths if manifests else [],
+        terminate_with = "",
+        omit_if_empty = False,
+    )
+    if manifests:
+        inputs = depset(manifests, transitive = [inputs] if type(inputs) == "depset" else [depset(inputs)])
 
     c_output_args = actions.args()
 

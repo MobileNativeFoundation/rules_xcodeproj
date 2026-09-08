@@ -8,6 +8,7 @@ load(
     ":output_files_tests.bzl",
     "archive_preview_framework_test",
     "output_files_test_suite",
+    "preview_resource_bundle_materialization_test",
 )
 
 output_files_test_suite(name = "output_files")
@@ -22,12 +23,17 @@ archive_preview_framework_test(
     name = "archive_preview_framework",
 )
 
+preview_resource_bundle_materialization_test(
+    name = "preview_resource_bundle_materialization",
+)
+
 test_suite(
     name = "files",
     tests = [
         ":archive_preview_framework",
         ":linker_input_files",
         ":output_files",
+        ":preview_resource_bundle_materialization",
         ":static_library_preview_link_params",
     ],
 )

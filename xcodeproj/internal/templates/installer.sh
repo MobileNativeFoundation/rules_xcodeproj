@@ -134,6 +134,11 @@ $cp_cmd "$bazel_env" "$dest/rules_xcodeproj/bazel/bazel_env.sh"
 $cp_cmd "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 chmod u+rx "$dest/rules_xcodeproj/bazel/rsync"
 
+# Keep the canonical basename for Xcode's Preview command parser while the
+# entry-point path carries the mode to native tasks without build-setting env.
+mkdir -p "$dest/rules_xcodeproj/bazel/xojit"
+ln -s ../libtool "$dest/rules_xcodeproj/bazel/xojit/libtool"
+
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   $cp_cmd "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 else
@@ -150,10 +155,10 @@ chmod u+w "$dest_generated_xcfilelist"
 
 # - Keep only scripts as runnable
 find "$dest/rules_xcodeproj/bazel" \
-  -type f \( -name "*.sh" -o -name "*.py" -o -name "clang" -o -name "clang++" -o -name "ld" -o -name "libtool" -o -name "rsync" \) \
+  -type f \( -name "*.sh" -o -name "*.py" -o -name "ld" -o -name "libtool" -o -name "rsync" \) \
   -print0 | xargs -0 chmod u+x
 find "$dest/rules_xcodeproj/bazel" \
-  -type f ! \( -name "swiftc" -o -name "clang" -o -name "clang++" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "rsync" -o -name "*.sh" -o -name "*.py" \) \
+  -type f ! \( -name "swiftc" -o -name "ld" -o -name "libtool" -o -name "import_indexstores" -o -name "rsync" -o -name "*.sh" -o -name "*.py" \) \
   -print0 | xargs -0 chmod -x
 
 # Copy over `project.xcworkspace/contents.xcworkspacedata` if needed

@@ -215,12 +215,10 @@ extension Generator.CalculatePlatformVariantBuildSettings {
                     return buildSetting
                 }
 
-                // Xcode validates Preview eligibility before applying the
-                // `ENABLE_XOJIT_PREVIEWS` build-setting override. Simulator
-                // and macOS variants therefore need a literal incremental mode
-                // in the generated project. Bazel compile actions still retain
-                // their original WMO flags.
-                return .init(key: buildSetting.key, value: "singlefile")
+                // Unlike ENABLE_XOJIT_PREVIEWS, this configuration-scoped value
+                // is fixed before Preview eligibility checks. Ordinary builds
+                // retain WMO; only an opted-in Preview configuration is incremental.
+                return .init(key: buildSetting.key, value: #""$(BAZEL_SWIFT_COMPILATION_MODE)""#)
             }
         )
 

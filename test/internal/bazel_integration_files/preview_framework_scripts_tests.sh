@@ -28,12 +28,13 @@ readonly copy_outputs_script="$repo_root/xcodeproj/internal/bazel_integration_fi
 readonly generator_template="$repo_root/xcodeproj/internal/templates/generate_bazel_dependencies.sh"
 test_root="$(mktemp -d "${TMPDIR:-/tmp}/preview-framework-tests.XXXXXX")"
 readonly test_root
+export DERIVED_FILE_DIR="$test_root/default-derived"
 trap 'rm -rf "$test_root"' EXIT
 
 run_generator_mode() {
   local name="$1"
   local enable_previews="$2"
-  local enable_xojit_previews="$3"
+  local native_previews="$3"
   local expected_groups="$4"
   local expected_config="$5"
   local clang_coverage_mapping="${6:-UNSET}"
@@ -72,8 +73,8 @@ EOF
   if [[ "$enable_previews" != UNSET ]]; then
     preview_environment+=("ENABLE_PREVIEWS=$enable_previews")
   fi
-  if [[ "$enable_xojit_previews" != UNSET ]]; then
-    preview_environment+=("ENABLE_XOJIT_PREVIEWS=$enable_xojit_previews")
+  if [[ "$native_previews" != UNSET ]]; then
+    preview_environment+=("BAZEL_NATIVE_PREVIEWS=$native_previews")
   fi
   if [[ "$clang_coverage_mapping" != UNSET ]]; then
     preview_environment+=("CLANG_COVERAGE_MAPPING=$clang_coverage_mapping")
@@ -82,7 +83,8 @@ EOF
   env \
     -u CLANG_COVERAGE_MAPPING \
     -u ENABLE_PREVIEWS \
-    -u ENABLE_XOJIT_PREVIEWS \
+    -u BAZEL_NATIVE_PREVIEWS \
+    ENABLE_XOJIT_PREVIEWS=YES \
     "${preview_environment[@]}" \
     ACTION=build \
     BAZEL_CONFIG=dbg \
@@ -113,13 +115,22 @@ EOF
     "$name output groups passed to bazel_build.sh"
 }
 
+# Xcode also sets ENABLE_XOJIT_PREVIEWS for ordinary Debug builds. All rows
+# below deliberately export it; only the explicit configuration opts in.
+if env ACTION=install BAZEL_NATIVE_PREVIEWS=YES bash "$generator_template" \
+  >"$test_root/archive.stdout" 2>"$test_root/archive.stderr"; then
+  fail "Preview configuration allowed an archive"
+fi
+grep -q "Preview configurations cannot archive" "$test_root/archive.stderr" || \
+  fail "missing Preview archive diagnostic"
+
 run_generator_mode unset UNSET UNSET bp _dbg_build
 run_generator_mode ordinary NO NO bp _dbg_build
 run_generator_mode coverage NO NO bp dbg_coverage YES
 run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
-run_generator_mode xojit NO YES bf,bl dbg_swiftuipreviews
-run_generator_mode xojit-coverage NO YES bf,bl dbg_swiftuipreviews YES
-run_generator_mode both YES YES bc,bf,bp,bl dbg_swiftuipreviews
+run_generator_mode xojit NO YES bc,bf,bl,br dbg_swiftuipreviews
+run_generator_mode xojit-coverage NO YES bc,bf,bl,br dbg_swiftuipreviews YES
+run_generator_mode both YES NO bc,bf,bp,bl dbg_swiftuipreviews
 
 readonly fake_integration_dir="$test_root/copy-integration"
 mkdir -p "$fake_integration_dir"
@@ -151,7 +162,7 @@ assert_link "$binary_destination_dir/libProduct.library.a" "$binary_source"
 run_relative_product_copy_mode() {
   local case_dir="$1"
   local enable_previews="$2"
-  local enable_xojit_previews="$3"
+  local native_previews="$3"
   local product_state="$4"
   local product_basename="${5:-libProduct.library.a}"
   local project_dir="$case_dir/project dir"
@@ -190,7 +201,8 @@ run_relative_product_copy_mode() {
       BAZEL_OUTPUTS_PRODUCT="$relative_product" \
       BAZEL_OUTPUTS_PRODUCT_BASENAME="$product_basename" \
       ENABLE_PREVIEWS="$enable_previews" \
-      ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+      ENABLE_XOJIT_PREVIEWS=YES \
+      BAZEL_NATIVE_PREVIEWS="$native_previews" \
       FULL_PRODUCT_NAME="$product_basename" \
       PRODUCT_NAME=Product.library \
       PROJECT_DIR="$project_dir" \
@@ -202,19 +214,19 @@ run_relative_product_copy_mode() {
 
 for mode in ordinary legacy both; do
   enable_previews=NO
-  enable_xojit_previews=NO
+  native_previews=NO
   if [[ "$mode" != ordinary ]]; then enable_previews=YES; fi
-  if [[ "$mode" == both ]]; then enable_xojit_previews=YES; fi
+  # Even legacy + shared-XOJIT does not opt into native configuration ownership.
   relative_case="$test_root/copy-relative-$mode-present"
   run_relative_product_copy_mode \
-    "$relative_case" "$enable_previews" "$enable_xojit_previews" PRESENT
+    "$relative_case" "$enable_previews" "$native_previews" PRESENT
   assert_link \
     "$relative_case/build products/libProduct.library.a" \
     "$relative_case/project dir/bazel-out/bin/App/libProduct.library.a"
 
   relative_app_case="$test_root/copy-relative-app-$mode-present"
   run_relative_product_copy_mode \
-    "$relative_app_case" "$enable_previews" "$enable_xojit_previews" PRESENT App.app
+    "$relative_app_case" "$enable_previews" "$native_previews" PRESENT App.app
   assert_equals "selected app" \
     "$(cat "$relative_app_case/build products/App.app/Info.plist")" \
     "$mode top-level app came from PROJECT_DIR"
@@ -223,7 +235,7 @@ for mode in ordinary legacy both; do
     for product_basename in libProduct.library.a App.app; do
       relative_case="$test_root/copy-relative-$mode-$product_state-$product_basename"
       if run_relative_product_copy_mode \
-        "$relative_case" "$enable_previews" "$enable_xojit_previews" \
+        "$relative_case" "$enable_previews" "$native_previews" \
         "$product_state" "$product_basename" \
         >"$test_root/relative.stdout" 2>"$test_root/relative.stderr"; then
         fail "$mode accepted a $product_state PROJECT_DIR product"
@@ -250,7 +262,7 @@ make_framework() {
 run_binary_copy_mode() {
   local case_dir="$1"
   local enable_previews="$2"
-  local enable_xojit_previews="$3"
+  local native_previews="$3"
   local preview_framework_paths="$4"
   local source_dir="$case_dir/product parent"
   local source="$source_dir/libStatic.a"
@@ -263,7 +275,7 @@ run_binary_copy_mode() {
     BAZEL_OUTPUTS_PRODUCT="$source" \
     BAZEL_OUTPUTS_PRODUCT_BASENAME=libStatic.a \
     ENABLE_PREVIEWS="$enable_previews" \
-    ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+    BAZEL_NATIVE_PREVIEWS="$native_previews" \
     FULL_PRODUCT_NAME=libStatic.a \
     PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
     PRODUCT_NAME=Static \
@@ -275,7 +287,7 @@ run_binary_copy_mode() {
 run_copy_mode() {
   local case_dir="$1"
   local enable_previews="$2"
-  local enable_xojit_previews="$3"
+  local native_previews="$3"
   local preview_framework_paths="$4"
 
   mkdir -p "$case_dir/product parent/Product.framework"
@@ -285,7 +297,7 @@ run_copy_mode() {
     BAZEL_OUTPUTS_PRODUCT="$case_dir/product parent/Product.framework" \
     BAZEL_OUTPUTS_PRODUCT_BASENAME=Product.framework \
     ENABLE_PREVIEWS="$enable_previews" \
-    ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+    BAZEL_NATIVE_PREVIEWS="$native_previews" \
     PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
     PRODUCT_NAME=Product \
     TARGET_BUILD_DIR="$case_dir/build products" \
@@ -296,7 +308,7 @@ run_copy_mode() {
 run_missing_product_copy_mode() {
   local case_dir="$1"
   local enable_previews="$2"
-  local enable_xojit_previews="$3"
+  local native_previews="$3"
   local preview_framework_paths="$4"
 
   mkdir -p "$case_dir/build products"
@@ -306,7 +318,7 @@ run_missing_product_copy_mode() {
     BAZEL_OUTPUTS_PRODUCT="$case_dir/missing parent/Product.framework" \
     BAZEL_OUTPUTS_PRODUCT_BASENAME=Product.framework \
     ENABLE_PREVIEWS="$enable_previews" \
-    ENABLE_XOJIT_PREVIEWS="$enable_xojit_previews" \
+    BAZEL_NATIVE_PREVIEWS="$native_previews" \
     FULL_PRODUCT_NAME=Product.framework \
     PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
     PRODUCT_NAME=Product \
@@ -415,6 +427,39 @@ assert_link "$xojit_case/build products/Second.framework" "$second_framework"
   fail "XOJIT copied a stale Bazel bundle product"
 run_copy_mode "$xojit_case" NO YES "$preview_paths"
 
+# macOS imports expose a root executable symlink but load Versions/A at runtime.
+# Staging the whole framework must preserve both paths and its resources.
+readonly versioned_framework="$framework_root/Versioned.framework"
+mkdir -p "$versioned_framework/Versions/A/Resources"
+printf 'versioned binary' > "$versioned_framework/Versions/A/Versioned"
+printf 'versioned plist' > "$versioned_framework/Versions/A/Resources/Info.plist"
+ln -s A "$versioned_framework/Versions/Current"
+ln -s Versions/Current/Versioned "$versioned_framework/Versioned"
+ln -s Versions/Current/Resources "$versioned_framework/Resources"
+readonly app_versioned_case="$test_root/copy-app-versioned-xojit"
+env \
+  ACTION=build \
+  BAZEL_INTEGRATION_DIR="$fake_integration_dir" \
+  BAZEL_OUTPUTS_PRODUCT="$app_versioned_case/missing/App.app" \
+  BAZEL_OUTPUTS_PRODUCT_BASENAME=App.app \
+  ENABLE_PREVIEWS=NO \
+  BAZEL_NATIVE_PREVIEWS=YES \
+  PREVIEW_FRAMEWORK_PATHS="\"$versioned_framework\"" \
+  PRODUCT_NAME=App \
+  TARGET_BUILD_DIR="$app_versioned_case/build products" \
+  WRAPPER_NAME=App.app \
+  bash "$copy_outputs_script" _ ""
+readonly staged_versioned="$app_versioned_case/build products/Versioned.framework"
+assert_link "$staged_versioned" "$versioned_framework"
+[[ "$staged_versioned/Versioned" -ef "$staged_versioned/Versions/A/Versioned" ]] || \
+  fail "versioned framework executable does not resolve through its root symlink"
+assert_equals "versioned binary" "$(cat "$staged_versioned/Versions/A/Versioned")" \
+  "versioned framework runtime executable"
+assert_equals "versioned plist" "$(cat "$staged_versioned/Resources/Info.plist")" \
+  "versioned framework metadata"
+[[ ! -e "$app_versioned_case/build products/App.app" ]] || \
+  fail "versioned framework staging copied the Bazel app product"
+
 readonly concurrent_case="$test_root/copy-xojit-concurrent"
 concurrent_pids=()
 for concurrent_index in {1..8}; do
@@ -434,7 +479,7 @@ assert_link \
   "$second_framework"
 
 readonly both_case="$test_root/copy-both"
-run_copy_mode "$both_case" YES YES "$preview_paths"
+run_copy_mode "$both_case" YES NO "$preview_paths"
 assert_link \
   "$both_case/build products/Product.framework/SwiftUIPreviewsFrameworks/First Framework.framework" \
   "$first_framework"
@@ -519,3 +564,164 @@ grep -q "points to a different source" "$test_root/preexisting.stderr" || \
 [[ ! -e "$preexisting_case/build products/First Framework.framework" ]] || \
   fail "framework was staged before a later preexisting conflict failed"
 assert_link "$preexisting_destination" "$first_framework"
+
+run_resource_copy_mode() {
+  local case_dir="$1" owner="$2" paths="$3"
+  env \
+    ACTION="${6:-build}" \
+    BAZEL_INTEGRATION_DIR="${7:-$repo_root/xcodeproj/internal/bazel_integration_files}" \
+    BAZEL_OUTPUTS_PRODUCT= \
+    BAZEL_NATIVE_PREVIEWS="${4:-YES}" \
+    ENABLE_PREVIEWS="${5:-NO}" \
+    ENABLE_XOJIT_PREVIEWS=YES \
+    DERIVED_FILE_DIR="$case_dir/Derived/$owner" \
+    PREVIEW_FRAMEWORK_PATHS= \
+    PREVIEW_RESOURCE_BUNDLE_PATHS="$paths" \
+    TARGET_BUILD_DIR="$case_dir/build products/Features/Example" \
+    UNLOCALIZED_RESOURCES_FOLDER_PATH="${8:-}" \
+    WRAPPER_EXTENSION="${9:-}" \
+    bash "$copy_outputs_script" _ ""
+}
+
+readonly resource_case="$test_root/resource-copy"
+readonly resource_a="$resource_case/sources/First Resources.bundle"
+readonly resource_b="$resource_case/sources/Second.bundle"
+readonly resource_destination="$resource_case/build products/Features/Example"
+mkdir -p "$resource_a/en.lproj" "$resource_a/Model.momd" "$resource_b/Nested.bundle"
+printf 'plist' > "$resource_a/Info.plist"
+printf 'localized-content' > "$resource_a/en.lproj/Localizable.strings"
+printf 'compiled-model' > "$resource_a/Model.momd/contents"
+printf 'compiled-assets' > "$resource_a/Assets.car"
+printf 'plist' > "$resource_b/Info.plist"
+printf 'nested-plist' > "$resource_b/Nested.bundle/Info.plist"
+printf 'nested-content' > "$resource_b/Nested.bundle/value.txt"
+touch -t 202001020304.05 "$resource_a/Assets.car"
+readonly resource_paths="\"$resource_a\" \"$resource_b\""
+
+# App-owned Previews load resources from Bundle.main, not product siblings.
+for app_resources in "Mac App.app/Contents/Resources" "IOS App.app"; do
+  app_case="$test_root/app-resources/$app_resources"
+  app_destination="$app_case/build products/Features/Example/$app_resources"
+  run_resource_copy_mode "$app_case" App "$resource_paths" NO YES build "" "$app_resources" app
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO indexbuild "" "$app_resources" app
+  [[ ! -e "$app_destination" ]] || fail "non-native app resources were copied"
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO build "" "$app_resources" app
+  diff -r "$resource_a" "$app_destination/First Resources.bundle"
+  diff -r "$resource_b" "$app_destination/Second.bundle"
+  mkdir "$app_destination/Unknown.bundle"
+  run_resource_copy_mode "$app_case" App "" YES NO build "" "$app_resources" app
+  [[ ! -e "$app_destination/First Resources.bundle" ]] || fail "stale app resources survived"
+  [[ -d "$app_destination/Unknown.bundle" ]] || fail "unknown app resources were removed"
+done
+
+# Neither legacy/XOJIT flags nor indexing opt into native resource ownership.
+run_resource_copy_mode "$resource_case" A "$resource_paths" NO NO
+run_resource_copy_mode "$resource_case" A "$resource_paths" NO YES
+run_resource_copy_mode "$resource_case" A "$resource_paths" YES NO indexbuild
+[[ ! -e "$resource_destination" ]] || fail "non-native resource build mutated destination"
+
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+diff -r "$resource_b" "$resource_destination/Second.bundle"
+[[ ! -e "$resource_destination/Features" ]] || fail "resource package path was duplicated"
+resource_mtime="$(stat -f %m "$resource_destination/First Resources.bundle/Assets.car")"
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+assert_equals "$resource_mtime" \
+  "$(stat -f %m "$resource_destination/First Resources.bundle/Assets.car")" \
+  "unchanged resource timestamp"
+printf 'stale-content' > "$resource_destination/First Resources.bundle/stale.txt"
+mv "$resource_b/Nested.bundle/value.txt" "$resource_case/removed.txt"
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+[[ ! -e "$resource_destination/First Resources.bundle/stale.txt" ]] || fail "stale bundle content survived"
+[[ ! -e "$resource_destination/Second.bundle/Nested.bundle/value.txt" ]] || fail "removed nested resource survived"
+
+# Unknown neighbors survive [A,B] -> [A] -> [].
+mkdir "$resource_destination/Unknown.bundle"
+printf 'unknown' > "$resource_destination/Unknown.bundle/value"
+run_resource_copy_mode "$resource_case" A "\"$resource_a\""
+[[ ! -e "$resource_destination/Second.bundle" ]] || fail "owned removed bundle survived"
+[[ -f "$resource_destination/First Resources.bundle/Info.plist" ]] || fail "retained bundle disappeared"
+run_resource_copy_mode "$resource_case" A ""
+[[ ! -e "$resource_destination/First Resources.bundle" ]] || fail "empty closure retained owned bundle"
+[[ "$(cat "$resource_destination/Unknown.bundle/value")" == unknown ]] || fail "unknown neighbor changed"
+
+# Two target phases in the same package can share one exact source.
+run_resource_copy_mode "$resource_case" Library "\"$resource_a\""
+run_resource_copy_mode "$resource_case" App "\"$resource_a\""
+run_resource_copy_mode "$resource_case" Library ""
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+run_resource_copy_mode "$resource_case" App ""
+[[ ! -e "$resource_destination/First Resources.bundle" ]] || fail "last owner failed to remove stale copy"
+
+run_resource_copy_mode "$resource_case" Library "\"$resource_a\""
+readonly different_source="$resource_case/other/First Resources.bundle"
+mkdir -p "$different_source"
+printf 'other-plist' > "$different_source/Info.plist"
+if run_resource_copy_mode "$resource_case" App "\"$different_source\"" \
+  > "$resource_case/different.out" 2> "$resource_case/different.err"; then
+  fail "same basename from a different source was accepted"
+fi
+grep -q 'different source' "$resource_case/different.err" || fail "different source was not diagnosed"
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+run_resource_copy_mode "$resource_case" Library ""
+
+# Existing directories, files and links are not adopted, even if the contents match.
+for destination_kind in directory file symlink; do
+  unknown_case="$test_root/unknown-resource-$destination_kind"
+  unknown_destination="$unknown_case/build products/Features/Example"
+  mkdir -p "$unknown_destination"
+  case "$destination_kind" in
+    directory) cp -R "$resource_a" "$unknown_destination" ;;
+    file) printf 'user-file' > "$unknown_destination/First Resources.bundle" ;;
+    symlink) ln -s "$resource_a" "$unknown_destination/First Resources.bundle" ;;
+  esac
+  if run_resource_copy_mode "$unknown_case" A "\"$resource_a\"" \
+    > "$unknown_case/failure.out" 2> "$unknown_case/failure.err"; then
+    fail "unowned $destination_kind was adopted"
+  fi
+  grep -q 'not owned' "$unknown_case/failure.err" || fail "unknown destination was not diagnosed"
+  case "$destination_kind" in
+    directory) diff -r "$resource_a" "$unknown_destination/First Resources.bundle" ;;
+    file) [[ "$(cat "$unknown_destination/First Resources.bundle")" == user-file ]] || fail "unknown file changed" ;;
+    symlink) assert_link "$unknown_destination/First Resources.bundle" "$resource_a" ;;
+  esac
+done
+
+# External replacement invalidates our directory identity, including cleanup.
+run_resource_copy_mode "$resource_case" A "\"$resource_a\""
+mv "$resource_destination/First Resources.bundle" "$resource_case/original-copy.bundle"
+mkdir "$resource_destination/First Resources.bundle"
+printf 'replacement' > "$resource_destination/First Resources.bundle/value"
+run_resource_copy_mode "$resource_case" A ""
+[[ "$(cat "$resource_destination/First Resources.bundle/value")" == replacement ]] || fail "replaced stale destination was removed"
+
+# Validate all inputs before touching any of them.
+readonly invalid_case="$test_root/invalid-resources"
+readonly invalid_source="$invalid_case/sources/Missing.bundle"
+mkdir -p "$invalid_source"
+if run_resource_copy_mode "$invalid_case" A "\"$resource_a\" \"$invalid_source\"" \
+  > "$invalid_case/failure.out" 2> "$invalid_case/failure.err"; then
+  fail "bundle without Info.plist was accepted"
+fi
+[[ ! -e "$invalid_case/build products/Features/Example/First Resources.bundle" ]] || fail "invalid closure partially copied"
+if run_resource_copy_mode "$invalid_case" A "\"$resource_a\" \"$resource_a\"" \
+  > "$invalid_case/duplicate.out" 2> "$invalid_case/duplicate.err"; then
+  fail "duplicate resource basename was accepted"
+fi
+[[ ! -e "$invalid_case/build products/Features/Example/First Resources.bundle" ]] || fail "duplicate closure partially copied"
+
+# A failed copy is recorded before rsync, and a later build can finish it.
+readonly partial_case="$test_root/partial-resources"
+readonly failing_integration="$partial_case/integration"
+mkdir -p "$failing_integration"
+printf '#!/bin/bash\nexit 42\n' > "$failing_integration/rsync"
+chmod +x "$failing_integration/rsync"
+if run_resource_copy_mode "$partial_case" A "\"$resource_a\"" YES NO build "$failing_integration" \
+  > "$partial_case/failure.out" 2> "$partial_case/failure.err"; then
+  fail "rsync failure was swallowed"
+fi
+[[ -f "$partial_case/build products/Features/Example/.rules_xcodeproj_preview_resource_bundles" ]] || fail "partial copy ownership was lost"
+run_resource_copy_mode "$partial_case" A "\"$resource_a\""
+diff -r "$resource_a" "$partial_case/build products/Features/Example/First Resources.bundle"
+run_resource_copy_mode "$partial_case" A ""
+[[ ! -e "$partial_case/build products/Features/Example/First Resources.bundle" ]] || fail "recovered copy was not cleaned"

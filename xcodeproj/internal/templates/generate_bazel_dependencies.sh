@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == YES && "$ACTION" == install ]]; then
+  echo >&2 "error: Preview configurations cannot archive. Select a Bazel-owned configuration."
+  exit 1
+fi
+
 cd "$SRCROOT"
 
 # Calculate Bazel `--output_groups`
@@ -12,14 +17,12 @@ if [ "$ACTION" == "indexbuild" ]; then
 "https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md"
   exit 1
 else
-  if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-    # Compile params, Preview frameworks, products (i.e. bundles) and index
-    # store data, and link params
+  if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == "YES" ]]; then
+    # Native Xcode compiles the selected target. Bazel prepares its compilation
+    # inputs, runtime frameworks and link dependencies, not its own product.
+    readonly output_group_prefixes="bc,bf,bl,br"
+  elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
     readonly output_group_prefixes="bc,bf,bp,bl"
-  elif [[ "${ENABLE_XOJIT_PREVIEWS:-}" == "YES" ]]; then
-    # Shared XOJIT Previews compile the selected target with Xcode. Bazel only
-    # needs to materialize its runtime frameworks and link inputs.
-    readonly output_group_prefixes="bf,bl"
   else
     # Products (i.e. bundles) and index store data
     readonly output_group_prefixes="bp"
@@ -125,7 +128,7 @@ if [ "$ACTION" == "indexbuild" ]; then
   apply_sanitizers=0
 elif [[
   "${ENABLE_PREVIEWS:-}" == "YES" ||
-  "${ENABLE_XOJIT_PREVIEWS:-}" == "YES"
+  "${BAZEL_NATIVE_PREVIEWS:-}" == "YES"
 ]]; then
   readonly config="${BAZEL_CONFIG}_swiftuipreviews"
 elif [ "${CLANG_COVERAGE_MAPPING:-}" == YES ] && [ "${BAZEL_SUPPRESS_COVERAGE_BUILD:-}" != YES ]; then

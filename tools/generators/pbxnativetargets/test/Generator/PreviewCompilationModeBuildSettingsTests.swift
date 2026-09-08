@@ -4,7 +4,7 @@ import XCTest
 @testable import PBXProj
 
 class PreviewCompilationModeBuildSettingsTests: XCTestCase {
-    func test_previewPlatformsUseSingleFileCompilationForWMO() async throws {
+    func test_previewPlatformsUseConfigurationScopedCompilationForWMO() async throws {
         for platform in [
             Platform.macOS,
             .iOSSimulator,
@@ -28,7 +28,7 @@ class PreviewCompilationModeBuildSettingsTests: XCTestCase {
 
             XCTAssertEqual(
                 buildSettings.asDictionary["SWIFT_COMPILATION_MODE"],
-                "singlefile",
+                #""$(BAZEL_SWIFT_COMPILATION_MODE)""#,
                 "platform: \(platform)"
             )
             XCTAssertEqual(
