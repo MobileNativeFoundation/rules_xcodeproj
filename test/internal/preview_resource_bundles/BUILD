@@ -1,5 +1,5 @@
-load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_bundle")
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application", "macos_dynamic_framework")
+load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_bundle")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load(
     ":dual_aspect_tests.bzl",

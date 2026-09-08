@@ -10,7 +10,6 @@ load(
 )
 load("@rules_cc//cc:find_cc_toolchain.bzl", "use_cc_toolchain")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
-load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load(
     "//xcodeproj/internal:preview_resource_bundles.bzl",
     "XcodeProjPreviewResourceInfo",
@@ -19,6 +18,7 @@ load(
     "//xcodeproj/internal:xcodeproj_aspect.bzl",
     "xcodeproj_aspect",
 )
+load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 
 _GENERATOR_NAME = "dual_aspect_test"
 
@@ -235,7 +235,10 @@ multiple_generators_resource_bundle_test = rule(
     test = True,
 )
 
-_ResourceSelectionInfo = provider(fields = ["files"])
+_ResourceSelectionInfo = provider(
+    doc = "Tracks resource producers selected while traversing the test graph.",
+    fields = {"files": "The selected transitive resource bundle files."},
+)
 
 def _shared_resource_selection_impl(target, ctx):
     selected = input_files.preview_resource_bundle_files(target[XcodeProjInfo].inputs)

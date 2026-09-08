@@ -3,10 +3,10 @@
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal/files:input_files.bzl", "input_files")
+load("//xcodeproj/internal:products.bzl", "products")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:products.bzl", "products")
+load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 
 # buildifier: disable=bzl-visibility
 load(
