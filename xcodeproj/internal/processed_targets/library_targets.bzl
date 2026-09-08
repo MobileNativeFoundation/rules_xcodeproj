@@ -80,6 +80,31 @@ def _process_library_target(
 
     platform = platforms.collect(ctx = ctx)
 
+    preview_link_params = None
+    if generate_target and swift_info:
+        preview_link_params = (
+            linker_input_files.create_static_library_preview_link_params(
+                actions = ctx.actions,
+                linker_inputs = linker_inputs,
+                name = label.name,
+            )
+        )
+
+    if preview_link_params:
+        previews_dynamic_frameworks = (
+            linker_input_files.map_static_library_preview_dynamic_frameworks(
+                dynamic_frameworks = preview_link_params.dynamic_frameworks,
+                framework_product_mappings = depset(
+                    transitive = [
+                        info.framework_product_mappings
+                        for info in transitive_infos
+                    ],
+                ).to_list(),
+            )
+        )
+    else:
+        previews_dynamic_frameworks = []
+
     actions = ctx.actions
 
     # Value taken from `PRODUCT_TYPE_ENCODED` in `product.bzl`, for
@@ -106,6 +131,9 @@ def _process_library_target(
             target[SwiftProtoInfo] if SwiftProtoInfo in target else None
         ),
         transitive_infos = transitive_infos,
+    )
+    previews_resource_bundles = input_files.preview_resource_bundle_files(
+        provider_inputs,
     )
 
     package_bin_dir = products.calculate_packge_bin_dir(
@@ -136,10 +164,13 @@ def _process_library_target(
         generate_build_settings = generate_target,
         generate_swift_debug_settings = bool(args.swift),
         name = label.name,
+        previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_resource_bundles = previews_resource_bundles,
         separate_index_build_output_base = (
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         tool = ctx.executable._target_build_settings_generator,
     )
 
@@ -165,12 +196,24 @@ def _process_library_target(
         compile_params_files = params_files,
         debug_outputs = debug_outputs,
         id = id,
+        link_params = (
+            preview_link_params.file if preview_link_params else None
+        ),
         name = label.name,
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_framework_files = [
+            file
+            for file, _ in previews_dynamic_frameworks
+        ],
+        preview_link_input_files = (
+            preview_link_params.link_input_files if preview_link_params else []
+        ),
+        preview_resource_bundle_files = previews_resource_bundles,
         product = product,
         swift_info = swift_info,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
@@ -220,6 +263,9 @@ def _process_library_target(
             inputs = target_inputs.xcode_inputs,
             is_top_level = False,
             label = label,
+            link_params = (
+                preview_link_params.file if preview_link_params else None
+            ),
             module_name = module_name,
             module_name_attribute = module_name_attribute,
             outputs = target_outputs,

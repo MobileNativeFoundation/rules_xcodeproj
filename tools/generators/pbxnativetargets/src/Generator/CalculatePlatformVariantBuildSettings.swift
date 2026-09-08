@@ -22,10 +22,10 @@ extension Generator {
             platformVariant: Target.PlatformVariant
         ) async throws -> [PlatformVariantBuildSetting] {
             return try await callable(
-                /*isBundle:*/ isBundle,
-                /*originalProductBasename:*/ originalProductBasename,
-                /*productType:*/ productType,
-                /*platformVariant:*/ platformVariant
+                /* isBundle: */ isBundle,
+                /* originalProductBasename: */ originalProductBasename,
+                /* productType: */ productType,
+                /* platformVariant: */ platformVariant
             )
         }
     }
@@ -165,6 +165,16 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let linkParams = platformVariant.linkParams {
+            if platformVariant.platform == .iOSSimulator {
+                buildSettings.append(
+                    .init(
+                        key: "LIBRARY_SEARCH_PATHS",
+                        value:
+                            #""$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)""#
+                    )
+                )
+            }
+
             // Drop the `bazel-out` prefix since we use the env var for this
             // portion of the path
             buildSettings.append(
@@ -175,15 +185,42 @@ extension Generator.CalculatePlatformVariantBuildSettings {
 """#
                 )
             )
-            buildSettings.append(
-                .init(
-                    key: "OTHER_LDFLAGS",
-                    value: #""@$(DERIVED_FILE_DIR)/link.params""#
+            if productType == .staticLibrary {
+                // Xcode 26 derives a static-library target's Preview link
+                // closure from its Libtool task, not from OTHER_LDFLAGS.
+                // Create Link Dependencies truncates this response file for
+                // ordinary builds, preserving normal archive membership.
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LIBTOOLFLAGS",
+                        value: #""@$(DERIVED_FILE_DIR)/link.params""#
+                    )
                 )
-            )
+            } else {
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LDFLAGS",
+                        value: #""-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params""#
+                    )
+                )
+            }
         }
 
-        buildSettings.append(contentsOf: platformVariant.buildSettingsFromFile)
+        buildSettings.append(
+            contentsOf: platformVariant.buildSettingsFromFile.map { buildSetting in
+                guard platformVariant.platform.supportsXcodePreviews,
+                      buildSetting.key == "SWIFT_COMPILATION_MODE",
+                      buildSetting.value == "wholemodule"
+                else {
+                    return buildSetting
+                }
+
+                // Unlike ENABLE_XOJIT_PREVIEWS, this configuration-scoped value
+                // is fixed before Preview eligibility checks. Ordinary builds
+                // retain WMO; only an opted-in Preview configuration is incremental.
+                return .init(key: buildSetting.key, value: #""$(BAZEL_SWIFT_COMPILATION_MODE)""#)
+            }
+        )
 
         return buildSettings
     }
@@ -212,6 +249,24 @@ private extension Platform.OS {
         case .tvOS: return "appletvos"
         case .visionOS: return "xros"
         case .watchOS: return "watchos"
+        }
+    }
+}
+
+private extension Platform {
+    var supportsXcodePreviews: Bool {
+        switch self {
+        case .macOS,
+                .iOSSimulator,
+                .tvOSSimulator,
+                .visionOSSimulator,
+                .watchOSSimulator:
+            return true
+        case .iOSDevice,
+                .tvOSDevice,
+                .visionOSDevice,
+                .watchOSDevice:
+            return false
         }
     }
 }

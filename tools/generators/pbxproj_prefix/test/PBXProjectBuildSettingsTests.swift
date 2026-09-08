@@ -2,7 +2,6 @@ import CustomDump
 import PBXProj
 import ToolCommon
 import XCTest
-
 @testable import pbxproj_prefix
 
 class PBXProjectBuildSettingsTests: XCTestCase {
@@ -27,8 +26,10 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
+				BAZEL_NATIVE_PREVIEWS = NO;
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_SWIFT_COMPILATION_MODE = wholemodule;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
@@ -65,6 +66,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
+				PREVIEW_SDK_LIBRARY_SEARCH_PATH = "";
 				PROJECT_DIR = "/some/project dir";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
@@ -122,9 +124,11 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
+				BAZEL_NATIVE_PREVIEWS = NO;
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_SUPPRESS_COVERAGE_BUILD = YES;
+				BAZEL_SWIFT_COMPILATION_MODE = wholemodule;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
@@ -161,6 +165,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
+				PREVIEW_SDK_LIBRARY_SEARCH_PATH = "";
 				PROJECT_DIR = "/some/project dir";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
@@ -216,9 +221,11 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit";
+				BAZEL_NATIVE_PREVIEWS = NO;
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_SEPARATE_INDEXBUILD_OUTPUT_BASE = YES;
+				BAZEL_SWIFT_COMPILATION_MODE = wholemodule;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
@@ -255,6 +262,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LEGACY_INDEX_IMPORT = "$(BAZEL_EXTERNAL)/legacy-index-import";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool";
 				ONLY_ACTIVE_ARCH = YES;
+				PREVIEW_SDK_LIBRARY_SEARCH_PATH = "";
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;

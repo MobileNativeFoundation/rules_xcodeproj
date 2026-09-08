@@ -38,15 +38,15 @@ extension Generator {
             swiftIncludes: OrderedSet<String>
         ) {
             try await callable(
-                /*rawArguments:*/ rawArguments,
-                /*generateBuildSettings:*/ generateBuildSettings,
-                /*includeSelfSwiftDebugSettings:*/
+                /* rawArguments: */ rawArguments,
+                /* generateBuildSettings: */ generateBuildSettings,
+                /* includeSelfSwiftDebugSettings: */
                     includeSelfSwiftDebugSettings,
-                /*transitiveSwiftDebugSettingPaths:*/
+                /* transitiveSwiftDebugSettingPaths: */
                     transitiveSwiftDebugSettingPaths,
-                /*processCArgs:*/ processCArgs,
-                /*processCxxArgs:*/ processCxxArgs,
-                /*processSwiftArgs:*/ processSwiftArgs
+                /* processCArgs: */ processCArgs,
+                /* processCxxArgs: */ processCxxArgs,
+                /* processSwiftArgs: */ processSwiftArgs
             )
         }
     }
@@ -103,16 +103,40 @@ extension Generator.ProcessArgs {
         )
         let previewsFrameworkPaths =
             try rawArguments.consumeArg("previews-framework-paths")
+        let previewsResourceBundlePaths =
+            try rawArguments.consumeArg("previews-resource-bundle-paths")
         let previewsIncludePath =
             try rawArguments.consumeArg("previews-include-path")
         let separateIndexBuildOutputBase = try rawArguments.consumeArg(
             "separate-index-build-output-base",
             as: Bool.self
         )
+        let manifestPaths = try rawArguments.consumeArgs("swift-explicit-manifests")
+        let previewImportPaths = try rawArguments.consumeArgs("preview-swift-import-paths")
+        var manifests: [String: Data] = [:]
+        if generateBuildSettings {
+            for path in manifestPaths {
+                // Only these exact declared metadata Files are generation inputs.
+                // A failed read leaves the original compiler flags intact.
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                    manifests[path] = data
+                }
+            }
+            if manifests.count != manifestPaths.count { manifests = [:] }
+        }
 
         let argsStream = argsStream(from: rawArguments)
 
         var buildSettings: [(key: String, value: String)] = []
+
+        // Resource bundles also belong to C-family and merged bundle targets.
+        // Do not make their transport conditional on a Swift compiler action.
+        if !previewsResourceBundlePaths.isEmpty {
+            buildSettings.append((
+                "PREVIEW_RESOURCE_BUNDLE_PATHS",
+                previewsResourceBundlePaths.pbxProjEscaped
+            ))
+        }
 
         let (
             swiftHasDebugInfo,
@@ -126,7 +150,9 @@ extension Generator.ProcessArgs {
             previewsFrameworkPaths: previewsFrameworkPaths,
             previewsIncludePath: previewsIncludePath,
             separateIndexBuildOutputBase: separateIndexBuildOutputBase,
-            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths
+            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths,
+            nativeSwiftManifests: manifests,
+            previewSwiftImportPaths: Set(previewImportPaths)
         )
 
         guard generateBuildSettings else {
@@ -234,7 +260,7 @@ private func argsStream(
                         // Change params files from `shell` to `multiline`
                         // format
                         // https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
-                        if line.hasPrefix("'") && line.hasSuffix("'") {
+                        if line.hasPrefix("'"), line.hasSuffix("'") {
                             let startIndex = line
                                 .index(line.startIndex, offsetBy: 1)
                             let endIndex = line.index(before: line.endIndex)

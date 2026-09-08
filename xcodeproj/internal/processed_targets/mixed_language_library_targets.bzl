@@ -111,9 +111,39 @@ def _process_mixed_language_library_target(
         merged_target_ids = None
         mergeable_info = None
 
+    preview_link_params = None
+    if generate_target and mergeable_info_and_ids and swift_info:
+        preview_link_params = (
+            linker_input_files.create_static_library_preview_link_params(
+                actions = actions,
+                linker_inputs = linker_inputs,
+                name = label.name,
+                product_files = mergeable_info.product_files,
+            )
+        )
+
+    if preview_link_params:
+        previews_dynamic_frameworks = (
+            linker_input_files.map_static_library_preview_dynamic_frameworks(
+                dynamic_frameworks = preview_link_params.dynamic_frameworks,
+                framework_product_mappings = depset(
+                    transitive = [
+                        info.framework_product_mappings
+                        for info in transitive_infos
+                    ],
+                ).to_list(),
+            )
+        )
+    else:
+        previews_dynamic_frameworks = []
+
     (xcode_inputs, provider_inputs) = input_files.collect_mixed_language(
         mergeable_info = mergeable_info,
         mixed_target_infos = mixed_target_infos,
+        transitive_infos = transitive_infos,
+    )
+    previews_resource_bundles = input_files.preview_resource_bundle_files(
+        provider_inputs,
     )
 
     actual_package_bin_dir = products.calculate_packge_bin_dir(
@@ -127,6 +157,7 @@ def _process_mixed_language_library_target(
             conly = mergeable_info.conly_args,
             cxx = mergeable_info.cxx_args,
             swift = mergeable_info.swift_args,
+            swift_preview_inputs = mergeable_info.swift_preview_inputs,
         )
 
         indexstore_override_path = actual_package_bin_dir + "/" + label.name
@@ -140,6 +171,7 @@ def _process_mixed_language_library_target(
             conly = [],
             cxx = [],
             swift = [],
+            swift_preview_inputs = struct(manifests = [], files = depset(), paths = []),
         )
         indexstore_overrides = []
 
@@ -161,10 +193,13 @@ def _process_mixed_language_library_target(
         generate_swift_debug_settings = False,
         include_self_swift_debug_settings = False,
         name = label.name,
+        previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_resource_bundles = previews_resource_bundles,
         separate_index_build_output_base = (
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         tool = ctx.executable._target_build_settings_generator,
     )
 
@@ -183,13 +218,25 @@ def _process_mixed_language_library_target(
         debug_outputs = debug_outputs,
         id = id,
         indexstore_overrides = indexstore_overrides,
+        link_params = (
+            preview_link_params.file if preview_link_params else None
+        ),
         mixed_target_infos = mixed_target_infos,
         name = label.name,
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_framework_files = [
+            file
+            for file, _ in previews_dynamic_frameworks
+        ],
+        preview_link_input_files = (
+            preview_link_params.link_input_files if preview_link_params else []
+        ),
+        preview_resource_bundle_files = previews_resource_bundles,
         product = product,
         swift_info = swift_info,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
@@ -222,6 +269,9 @@ def _process_mixed_language_library_target(
             inputs = xcode_inputs,
             is_top_level = False,
             label = label,
+            link_params = (
+                preview_link_params.file if preview_link_params else None
+            ),
             module_name = module_name,
             module_name_attribute = module_name_attribute,
             outputs = target_outputs,
