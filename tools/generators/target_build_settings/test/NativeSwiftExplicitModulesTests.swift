@@ -72,6 +72,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         let manifestURL = directory.appendingPathComponent("control.swift-explicit-module-map.json")
         try manifest.write(to: manifestURL)
         let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
+            + ["-emit-const-values-path", "bazel-out/config/bin/values.json"]
         func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
             let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0"]
             let input = envelope + (owned ? [manifestURL.path] : []) + [""] + [swift, clang, ""] + ["swift_worker", "swiftc"] + rawSwift + ["---", "---"]
@@ -85,26 +86,43 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         let candidate = try await process(owned: true)
         XCTAssertEqual(original.1, candidate.1)
         let settings = Dictionary(uniqueKeysWithValues: candidate.0)
-        XCTAssertEqual(settings["BAZEL_SWIFT_FLAGS__NO"], Dictionary(uniqueKeysWithValues: original.0)["OTHER_SWIFT_FLAGS"])
+        let originalSettings = Dictionary(uniqueKeysWithValues: original.0)
+        XCTAssertNil(originalSettings["BAZEL_INDEX_SWIFT_FLAGS__YES"])
+        XCTAssertEqual(settings["BAZEL_INDEX_SWIFT_FLAGS__NO"], originalSettings["BAZEL_SWIFT_FLAGS__NO"])
+        XCTAssertEqual(settings["BAZEL_INDEX_SWIFT_FLAGS__"], settings["BAZEL_INDEX_SWIFT_FLAGS__NO"])
+        XCTAssertTrue(try XCTUnwrap(settings["BAZEL_INDEX_SWIFT_FLAGS__YES"]).contains("-emit-const-values-path"))
+        XCTAssertFalse(try XCTUnwrap(settings["BAZEL_SWIFT_FLAGS__YES"]).contains("-emit-const-values-path"))
         for nativeSetting in ["", "NO", "YES"] {
-        for legacy in ["", "NO", "YES"] {
-            for xojit in ["", "NO", "YES"] {
-                var values = settings.mapValues { $0.hasPrefix("\"") ? String($0.dropFirst().dropLast()) : $0 }
-                values["BAZEL_NATIVE_PREVIEWS"] = nativeSetting
-                values["ENABLE_PREVIEWS"] = legacy
-                values["ENABLE_XOJIT_PREVIEWS"] = xojit
-                var expanded = try XCTUnwrap(values["OTHER_SWIFT_FLAGS"])
-                let regex = try NSRegularExpression(pattern: #"\$\(([^()]*)\)"#)
-                for _ in 0 ..< 10 {
-                    for match in regex.matches(in: expanded, range: NSRange(expanded.startIndex..., in: expanded)).reversed() {
-                        let key = try String(expanded[XCTUnwrap(Range(match.range(at: 1), in: expanded))])
-                        if let value = values[key] { try expanded.replaceSubrange(XCTUnwrap(Range(match.range, in: expanded)), with: value) }
+            for indexArena in ["", "NO", "YES"] {
+                for legacy in ["", "NO", "YES"] {
+                    for xojit in ["", "NO", "YES"] {
+                        var values = settings.mapValues { $0.hasPrefix("\"") ? String($0.dropFirst().dropLast()) : $0 }
+                        values["BAZEL_NATIVE_PREVIEWS"] = nativeSetting
+                        values["INDEX_ENABLE_BUILD_ARENA"] = indexArena
+                        values["ENABLE_PREVIEWS"] = legacy
+                        values["ENABLE_XOJIT_PREVIEWS"] = xojit
+                        var expanded = try XCTUnwrap(values["OTHER_SWIFT_FLAGS"])
+                        let regex = try NSRegularExpression(pattern: #"\$\(([^()]*)\)"#)
+                        for _ in 0 ..< 10 {
+                            for match in regex.matches(in: expanded, range: NSRange(expanded.startIndex..., in: expanded)).reversed() {
+                                let key = try String(expanded[XCTUnwrap(Range(match.range(at: 1), in: expanded))])
+                                if let value = values[key] { try expanded.replaceSubrange(XCTUnwrap(Range(match.range, in: expanded)), with: value) }
+                            }
+                        }
+                        let nativeImports = nativeSetting == "YES" || indexArena == "YES"
+                        XCTAssertEqual(expanded.contains("explicit-swift-module-map-file"), !nativeImports, "native=\(nativeSetting), index=\(indexArena), legacy=\(legacy), XOJIT=\(xojit)")
+                        XCTAssertEqual(expanded.contains("-emit-const-values-path"), nativeSetting != "YES")
+                        XCTAssertEqual(expanded.contains("bazel-out/config/bin/values.json"), nativeSetting != "YES")
+                        if nativeImports {
+                            XCTAssertTrue(expanded.contains("-I '$(BAZEL_OUT)/config/bin/Directory With Spaces'"))
+                            XCTAssertTrue(expanded.contains("-Xcc -fmodule-map-file=$(BAZEL_OUT)/config/bin/local/module.modulemap"))
+                        } else {
+                            let raw = try XCTUnwrap(originalSettings["BAZEL_SWIFT_FLAGS__NO"])
+                            XCTAssertEqual(expanded, raw.hasPrefix("\"") ? String(raw.dropFirst().dropLast()) : raw)
+                        }
                     }
                 }
-                let native = nativeSetting == "YES"
-                XCTAssertEqual(expanded.contains("explicit-swift-module-map-file"), !native, "legacy=\(legacy), XOJIT=\(xojit)")
             }
-        }
         }
     }
 }

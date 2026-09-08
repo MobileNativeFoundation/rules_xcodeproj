@@ -362,11 +362,26 @@ extension Generator.ProcessSwiftArgs {
             nativeInputArgs, manifests: nativeSwiftManifests,
             preparedPaths: previewSwiftImportPaths
         ) ?? nativeInputArgs
-        if nativeArgs != args {
+        var bazelFlags = originalFlags
+        if let indexArgs = NativeSwiftExplicitModules.normalize(
+            args, manifests: nativeSwiftManifests,
+            preparedPaths: previewSwiftImportPaths
+        ), indexArgs != args {
+            // SourceKit does not run through Bazel's worker, so its SDK aliases
+            // and relative manifest paths are not a usable indexing contract.
+            // Change import discovery only; keep index stubs and output flags.
+            bazelFlags = "$(BAZEL_INDEX_SWIFT_FLAGS__$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped
+            buildSettings += [
+                ("BAZEL_INDEX_SWIFT_FLAGS__", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__NO", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__YES", indexArgs.joined(separator: " ").pbxProjEscaped),
+            ]
+        }
+        if nativeArgs != args || bazelFlags != originalFlags {
             buildSettings += [
                 ("OTHER_SWIFT_FLAGS", "$(BAZEL_SWIFT_FLAGS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
-                ("BAZEL_SWIFT_FLAGS__", originalFlags),
-                ("BAZEL_SWIFT_FLAGS__NO", originalFlags),
+                ("BAZEL_SWIFT_FLAGS__", bazelFlags),
+                ("BAZEL_SWIFT_FLAGS__NO", bazelFlags),
                 ("BAZEL_SWIFT_FLAGS__YES", nativeArgs.joined(separator: " ").pbxProjEscaped),
             ]
         } else {
