@@ -13,3 +13,10 @@ struct PreviewApp: App {
         }
     }
 }
+
+#Preview {
+    VStack {
+        PreviewView()
+        MixedPreviewView()
+    }
+}

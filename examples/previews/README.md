@@ -9,9 +9,19 @@ bazel run //:xcodeproj
 open Previews.xcodeproj
 ```
 
-Choose a `Previews` scheme and open `PreviewView.swift` or `Mixed.swift` in the
-Canvas. For a library scheme, the top-level anchor supplies the platform and
-dependency graph without making the app the selected compilation target.
+Choose the source owned by the selected scheme:
+
+| Scheme | Preview source |
+| --- | --- |
+| Views Previews, Framework Previews | `PreviewView.swift` |
+| Mixed Previews | `Mixed.swift` |
+| Mac Previews, iOS Previews | `PreviewApp.swift` |
+| Explicit Previews | `GeneratedPreviewView.swift` under Bazel Generated |
+
+For a library scheme, the top-level anchor supplies the platform and dependency
+graph without making the app the selected compilation target. App schemes build
+their library dependencies with Bazel; use the app-owned Preview source rather
+than a dependency's source with an app-only scheme.
 
 ## Opt in
 
