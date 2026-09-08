@@ -53,8 +53,10 @@ explicit Swift module map, macOS and iOS apps, and a dynamic framework. The
 example uses the toolchain versions pinned in `MODULE.bazel`.
 
 The Swift library, app, and framework graphs also share an
-`apple_resource_bundle`. Preview builds materialize processed bundles next to
-the selected product. Resource copies track their producers and owners, so
+`apple_resource_bundle`. App-owned Previews copy these bundles into the app's
+resource directory for `Bundle.main` lookup; library Previews stage them next to
+the selected product. `PreviewApp.swift` displays the bundled message to exercise
+actual runtime lookup. Resource copies track their producers and owners, so
 removing a dependency only removes bundles owned by this integration. Conflicting
 same-name producers and unowned destinations fail instead of being overwritten.
 Verify resource lookup in the running Canvas as well as the staged contents.

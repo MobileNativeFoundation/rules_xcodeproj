@@ -578,6 +578,8 @@ run_resource_copy_mode() {
     PREVIEW_FRAMEWORK_PATHS= \
     PREVIEW_RESOURCE_BUNDLE_PATHS="$paths" \
     TARGET_BUILD_DIR="$case_dir/build products/Features/Example" \
+    UNLOCALIZED_RESOURCES_FOLDER_PATH="${8:-}" \
+    WRAPPER_EXTENSION="${9:-}" \
     bash "$copy_outputs_script" _ ""
 }
 
@@ -595,6 +597,22 @@ printf 'nested-plist' > "$resource_b/Nested.bundle/Info.plist"
 printf 'nested-content' > "$resource_b/Nested.bundle/value.txt"
 touch -t 202001020304.05 "$resource_a/Assets.car"
 readonly resource_paths="\"$resource_a\" \"$resource_b\""
+
+# App-owned Previews load resources from Bundle.main, not product siblings.
+for app_resources in "Mac App.app/Contents/Resources" "IOS App.app"; do
+  app_case="$test_root/app-resources/$app_resources"
+  app_destination="$app_case/build products/Features/Example/$app_resources"
+  run_resource_copy_mode "$app_case" App "$resource_paths" NO YES build "" "$app_resources" app
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO indexbuild "" "$app_resources" app
+  [[ ! -e "$app_destination" ]] || fail "non-native app resources were copied"
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO build "" "$app_resources" app
+  diff -r "$resource_a" "$app_destination/First Resources.bundle"
+  diff -r "$resource_b" "$app_destination/Second.bundle"
+  mkdir "$app_destination/Unknown.bundle"
+  run_resource_copy_mode "$app_case" App "" YES NO build "" "$app_resources" app
+  [[ ! -e "$app_destination/First Resources.bundle" ]] || fail "stale app resources survived"
+  [[ -d "$app_destination/Unknown.bundle" ]] || fail "unknown app resources were removed"
+done
 
 # Neither legacy/XOJIT flags nor indexing opt into native resource ownership.
 run_resource_copy_mode "$resource_case" A "$resource_paths" NO NO

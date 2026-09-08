@@ -378,8 +378,13 @@ if [[ "$ACTION" != indexbuild ]]; then
 fi
 
 if [[ "$ACTION" != indexbuild && "${BAZEL_NATIVE_PREVIEWS:-}" == YES ]]; then
+  resource_destination="$TARGET_BUILD_DIR"
+  if [[ "${WRAPPER_EXTENSION:-}" == app ]]; then
+    # App-owned Previews use Bundle.main. Libraries use product siblings.
+    resource_destination+="/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
+  fi
   # Run for an empty closure too, so only this target's owned stale copies go.
-  stage_preview_resource_bundles "$TARGET_BUILD_DIR"
+  stage_preview_resource_bundles "$resource_destination"
 fi
 
 # TODO: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/402
