@@ -118,6 +118,7 @@ def _process_mixed_language_library_target(
                 actions = actions,
                 linker_inputs = linker_inputs,
                 name = label.name,
+                product_files = mergeable_info.product_files,
             )
         )
 

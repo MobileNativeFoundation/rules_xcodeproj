@@ -289,8 +289,12 @@ def _get_transitive_static_libraries_for_bwx(linker_inputs):
         cc_linker_inputs = linker_inputs._cc_linker_inputs,
     )
 
-def _get_static_library_preview_libraries(linker_inputs):
+def _get_static_library_preview_libraries(
+        linker_inputs,
+        *,
+        product_files = EMPTY_TUPLE):
     primary_static_library = linker_inputs._primary_static_library
+    native_products = {file: None for file in product_files}
     seen = {}
     libraries = []
     for library in _collect_libraries(
@@ -303,7 +307,8 @@ def _get_static_library_preview_libraries(linker_inputs):
         # immediately below.
         include_source_libraries = True,
     ):
-        if library == primary_static_library or library in seen:
+        if (library == primary_static_library or
+            library in native_products or library in seen):
             continue
         seen[library] = None
         libraries.append(library)
@@ -459,7 +464,8 @@ def _create_static_library_preview_link_params(
         *,
         actions,
         name,
-        linker_inputs):
+        linker_inputs,
+        product_files = EMPTY_TUPLE):
     """Creates Libtool inputs for a static library's Xcode Preview closure.
 
     Xcode 26 derives Preview static library inputs from the target's Libtool
@@ -479,13 +485,19 @@ def _create_static_library_preview_link_params(
         actions: The `ctx.actions` object.
         linker_inputs: A value returned by `linker_input_files.collect`.
         name: The target name, used to name the generated params file.
+        product_files: Products whose sources are merged into this native
+            target. Exclude all of them, not only the primary archive, to avoid
+            loading Bazel's copy of the same definitions into the Preview JIT.
 
     Returns:
         A `struct` with `dynamic_frameworks`, `file`, `libraries`, and
         `link_input_files` fields, or `None` if the target has no transitive
         link inputs besides its own product.
     """
-    libraries = _get_static_library_preview_libraries(linker_inputs)
+    libraries = _get_static_library_preview_libraries(
+        linker_inputs,
+        product_files = product_files,
+    )
     force_load_libraries = _get_static_library_preview_force_load_libraries(
         libraries = libraries,
         linker_inputs = linker_inputs,

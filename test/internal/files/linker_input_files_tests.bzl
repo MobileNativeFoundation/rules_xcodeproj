@@ -129,6 +129,48 @@ def _dynamic_library(*, dynamic, resolved = None, static = None, pic = None):
         static_library = static,
     )
 
+def _merged_static_library_preview_libraries_test_impl(ctx):
+    env = unittest.begin(ctx)
+    clang = ctx.actions.declare_file("libMixed_clang.a")
+    swift = ctx.actions.declare_file("libMixed_swift.a")
+    dependency = ctx.actions.declare_file("dependency/libMixed_swift.a")
+    for file in [clang, swift, dependency]:
+        ctx.actions.write(file, "test\n")
+
+    inputs = struct(
+        _cc_linker_inputs = (struct(libraries = [
+            _static_library(static = clang),
+            _static_library(static = swift, alwayslink = True),
+            _static_library(static = dependency),
+            _static_library(static = dependency),
+        ]),),
+        _compilation_providers = struct(cc_info = True, framework_files = depset(), objc = None),
+        _objc_libraries = (),
+        _primary_static_library = clang,
+    )
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = ctx.actions,
+        linker_inputs = inputs,
+        name = "Merged",
+        product_files = (clang, swift),
+    )
+    asserts.equals(env, [dependency], list(preview.libraries))
+    asserts.equals(env, [dependency], list(preview.link_input_files))
+    asserts.equals(
+        env,
+        [swift, dependency],
+        linker_input_files.get_static_library_preview_libraries(
+            inputs,
+            product_files = (clang,),
+        ),
+        "Retain an unmerged Swift dependency; filter by exact File, not basename",
+    )
+    return unittest.end(env)
+
+merged_static_library_preview_libraries_test = unittest.make(
+    _merged_static_library_preview_libraries_test_impl,
+)
+
 def _standalone_dynamic_library_preview_closure_test_impl(ctx):
     env = unittest.begin(ctx)
 
@@ -775,6 +817,7 @@ def linker_input_files_test_suite(name):
         name,
         dynamic_only_static_library_preview_closure_test,
         framework_preview_dynamic_propagation_test,
+        merged_static_library_preview_libraries_test,
         source_static_library_preview_libraries_test,
         standalone_dynamic_library_preview_closure_test,
         static_library_preview_dynamic_frameworks_test,
