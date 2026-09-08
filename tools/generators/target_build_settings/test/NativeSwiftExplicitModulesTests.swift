@@ -75,7 +75,11 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
             + ["-emit-const-values-path", "bazel-out/config/bin/values.json"]
         func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
             let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0"]
-            let input = envelope + (owned ? [manifestURL.path] : []) + [""] + [swift, clang, ""] + ["swift_worker", "swiftc"] + rawSwift + ["---", "---"]
+            var input = envelope
+            if owned { input.append(manifestURL.path) }
+            input.append(contentsOf: ["", swift, clang, "", "swift_worker", "swiftc"])
+            input.append(contentsOf: rawSwift)
+            input.append(contentsOf: ["---", "---"])
             let result = try await Generator.Environment.default.processArgs(
                 rawArguments: input[...], generateBuildSettings: true,
                 includeSelfSwiftDebugSettings: true, transitiveSwiftDebugSettingPaths: []
