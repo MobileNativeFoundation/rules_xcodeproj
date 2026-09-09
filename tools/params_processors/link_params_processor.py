@@ -87,6 +87,64 @@ _DIRECT_INPUT_SUFFIXES = (
     ".tbd",
 )
 
+_LIBRARY_INPUT_OPTS = {
+    "-force_load",
+    "-load_hidden",
+    "-merge_library",
+    "-needed_library",
+    "-reexport_library",
+    "-upward_library",
+    "-weak_library",
+}
+
+
+def _remove_generated_inputs(linkopts, generated_product_paths):
+    """Removes exact native products together with their linker option group."""
+    result = []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if opt.startswith("-Wl,"):
+            values = _remove_generated_inputs(
+                opt[4:].split(","), generated_product_paths,
+            )
+            if values:
+                result.append("-Wl," + ",".join(values))
+            index += 1
+            continue
+
+        # Read a driver-forwarded linker token without leaving its -Xlinker
+        # behind when the token or its complete library binding is removed.
+        option_index = index + (opt == "-Xlinker")
+        if option_index >= len(linkopts):
+            result.append(opt)
+            break
+        option = linkopts[option_index]
+        end = option_index + 1
+        if option in _WL_POSITIONAL_PATH_OPTS and option != "-filelist":
+            # Section arguments are metadata/content, not positional libraries.
+            for _ in range(max(_WL_POSITIONAL_PATH_OPTS[option])):
+                if end < len(linkopts) and linkopts[end] == "-Xlinker":
+                    end += 1
+                end = min(end + 1, len(linkopts))
+        elif option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS:
+            value_index = end
+            if value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
+                value_index += 1
+            if value_index < len(linkopts):
+                end = value_index + 1
+                if (option in _LIBRARY_INPUT_OPTS and
+                    linkopts[value_index] in generated_product_paths):
+                    index = end
+                    continue
+        elif option in generated_product_paths:
+            index = end
+            continue
+
+        result.extend(linkopts[index:end])
+        index = end
+    return result
+
 
 def _parse_args(args_files: List[str]) -> List[str]:
     def _is_redirect(arg: str) -> bool:
@@ -200,6 +258,13 @@ def _process_linkopts(
         is_framework: bool,
         generated_product_paths: List[str]
     ) -> List[str]:
+    # Bazel may serialize an argument with whole-argument shell quotes.
+    linkopts = [
+        opt[1:-1] if opt.startswith("'") and opt.endswith("'") else opt
+        for opt in linkopts
+    ]
+    linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
+
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
             paths = fp.read().splitlines()
@@ -236,16 +301,6 @@ def _process_linkopts(
         if last_opt == "-filelist":
             # `_process_filelist` anchors and quotes each entry as needed.
             processed_linkopts.extend(_process_filelist(opt))
-            return
-
-        opt_generated_path_matches = [
-            path
-            for path in generated_product_paths
-            if opt.endswith(path)
-        ]
-        if opt_generated_path_matches:
-            if last_opt == "-force_load":
-                processed_linkopts.pop()
             return
 
         # Xcode sets entitlements
@@ -312,11 +367,6 @@ def _process_linkopts(
             linkopts[index + 1] == "-object_path_lto"):
             skip_next = 3
             continue
-
-        # Change "link.params" from `shell` to `multiline` format
-        # https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
-        if linkopt.startswith("'") and linkopt.endswith("'"):
-            linkopt = linkopt[1:-1]
 
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:

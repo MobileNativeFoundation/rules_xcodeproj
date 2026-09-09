@@ -11,6 +11,80 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_selected_library_option_groups_are_removed_atomically(self):
+        selected = "bazel-out/bin/libSelected.a"
+        dependency = "external/dependency/libDependency.a"
+        for option in (
+            "-force_load", "-reexport_library", "-weak_library",
+            "-needed_library", "-upward_library", "-load_hidden",
+        ):
+            for spelling in ("plain", "forwarded", "comma"):
+                def group(path):
+                    if spelling == "plain":
+                        return [option, path]
+                    if spelling == "forwarded":
+                        return ["-Xlinker", option, "-Xlinker", path]
+                    return ["-Wl," + option + "," + path]
+
+                with self.subTest(option=option, spelling=spelling):
+                    retained = group(dependency) + ["-framework", "SwiftUI"]
+                    self.assertEqual(
+                        link_params_processor._process_linkopts(
+                            group(selected) + retained, False, [selected],
+                        ),
+                        link_params_processor._process_linkopts(
+                            retained, False, [],
+                        ),
+                    )
+
+    def test_selected_forwarded_input_does_not_leave_xlinker(self):
+        selected = "bazel-out/bin/libSelected.a"
+        self.assertEqual(
+            link_params_processor._process_linkopts(
+                ["-Xlinker", selected, "-framework", "SwiftUI"],
+                False, [selected],
+            ),
+            ["-framework", "SwiftUI"],
+        )
+
+    def test_comma_group_keeps_options_around_selected_library(self):
+        selected = "bazel-out/bin/libSelected.a"
+        self.assertEqual(
+            link_params_processor._process_linkopts(
+                ["-Wl,-dead_strip,-force_load," + selected + ",-no_deduplicate"],
+                False, [selected],
+            ),
+            ["-Wl,-dead_strip,-no_deduplicate"],
+        )
+
+    def test_selected_product_matching_is_exact(self):
+        for selected in ("bazel-out/bin/libSelected.a", "/absolute/libSelected.a"):
+            inputs = ["external/prefix/" + selected, selected + ".other.a"]
+            with self.subTest(selected=selected):
+                self.assertEqual(
+                    link_params_processor._process_linkopts(
+                        [selected, "'" + selected + "'"] + inputs,
+                        False, [selected],
+                    ),
+                    link_params_processor._process_linkopts(inputs, False, []),
+                )
+
+    def test_matching_non_library_values_are_not_removed(self):
+        selected = "bazel-out/bin/libSelected.a"
+        for linkopts in (
+            ["-install_name", selected],
+            ["-Xlinker", "-install_name", "-Xlinker", selected],
+            ["-Wl,-install_name," + selected],
+            ["-Wl,-sectcreate,__DATA,__blob," + selected],
+            ["-Xlinker", "-sectcreate", "-Xlinker", "__DATA",
+             "-Xlinker", "__blob", "-Xlinker", selected],
+        ):
+            with self.subTest(linkopts=linkopts):
+                self.assertEqual(
+                    link_params_processor._process_linkopts(linkopts, False, [selected]),
+                    link_params_processor._process_linkopts(linkopts, False, []),
+                )
+
     def test_anchor_to_execution_root_only_rewrites_relative_paths(self):
         for value, expected in [
             (
