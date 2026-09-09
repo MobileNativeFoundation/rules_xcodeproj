@@ -20,6 +20,11 @@ static_library_preview_link_params_test(
     name = "static_library_preview_link_params",
 )
 
+static_library_preview_link_params_test(
+    name = "static_library_preview_link_params_processed",
+    process_link_flags = True,
+)
+
 static_library_preview_declared_flags_test(
     name = "static_library_preview_declared_flags",
 )
@@ -41,6 +46,7 @@ test_suite(
         ":preview_resource_bundle_materialization",
         ":static_library_preview_declared_flags",
         ":static_library_preview_link_params",
+        ":static_library_preview_link_params_processed",
     ],
 )
 

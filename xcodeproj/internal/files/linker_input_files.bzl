@@ -424,8 +424,16 @@ def _map_static_library_preview_dynamic_frameworks(
 
 def _preview_execution_root_path(file):
     path = file.path
-    if path.startswith("/"):
+    if path.startswith("/") or path.startswith("$"):
         return path
+
+    # Index builds can replant execution-root source symlinks while Xcode's
+    # Preview analyzer is still loading them. Anchor workspace source archives
+    # before either writing the response or forwarding it to the processor.
+    if (file.is_source and file.extension == "a" and
+        not path.startswith("external/") and
+        not any([part in [".", ".."] for part in path.split("/")])):
+        return "$(SRCROOT)/{}".format(path)
     return "$(PROJECT_DIR)/{}".format(path)
 
 def _quote_preview_link_arg(arg):

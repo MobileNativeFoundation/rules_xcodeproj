@@ -122,6 +122,63 @@ source_static_library_preview_libraries_test = unittest.make(
     },
 )
 
+def _static_library_preview_path_boundaries_test_impl(ctx):
+    env = unittest.begin(ctx)
+
+    # Reduced File-shaped boundaries complement the real source/generated
+    # artifacts consumed by static_library_preview_link_params_test.
+    cases = [
+        ("vendor/libSource.a", True, "$(SRCROOT)/vendor/libSource.a"),
+        ("bazel-out/config/bin/libGenerated.a", False, "$(PROJECT_DIR)/bazel-out/config/bin/libGenerated.a"),
+        ("external/repo/libSource.a", True, "$(PROJECT_DIR)/external/repo/libSource.a"),
+        ("../repo/libSource.a", True, "$(PROJECT_DIR)/../repo/libSource.a"),
+        ("vendor/../libSource.a", True, "$(PROJECT_DIR)/vendor/../libSource.a"),
+        ("/absolute/libSource.a", True, "/absolute/libSource.a"),
+        ("$(BAZEL_EXTERNAL)/repo/libSource.a", True, "$(BAZEL_EXTERNAL)/repo/libSource.a"),
+        ("vendor/libStandalone.dylib", True, "$(PROJECT_DIR)/vendor/libStandalone.dylib"),
+    ]
+    files = [struct(
+        path = path,
+        is_source = is_source,
+        extension = path.rsplit(".", 1)[-1],
+        owner = ctx.label,
+        basename = path.rsplit("/", 1)[-1],
+        dirname = path.rsplit("/", 1)[0],
+    ) for path, is_source, _ in cases]
+    selected = ctx.actions.declare_file("PathBoundaries/Selected.a")
+    ctx.actions.write(selected, "unused selected archive\n")
+    writes = {}
+
+    def write(*, output, content):
+        writes[output.path] = content
+        ctx.actions.write(output, content)
+
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = struct(declare_file = ctx.actions.declare_file, write = write),
+        name = "PathBoundaries",
+        linker_inputs = struct(
+            _cc_linker_inputs = (struct(libraries = (
+                [_static_library(static = selected)] +
+                [_static_library(static = file, alwayslink = file == files[0]) for file in files[:-1]] +
+                [_dynamic_library(dynamic = files[-1])]
+            )),),
+            _compilation_providers = struct(cc_info = True, framework_files = depset(), objc = None),
+            _objc_libraries = (),
+            _primary_static_library = selected,
+        ),
+    )
+    expected = ["-ObjC", "-force_load"] + [
+        '"' + path + '"' if "$(" in path else path
+        for _, _, path in cases
+    ]
+    asserts.equals(env, "\n".join(expected) + "\n", writes[preview.file.path])
+    asserts.equals(env, files, list(preview.link_input_files), "Path anchoring does not change preparation ownership or retain the selected archive")
+    return unittest.end(env)
+
+static_library_preview_path_boundaries_test = unittest.make(
+    _static_library_preview_path_boundaries_test_impl,
+)
+
 def _dynamic_library(*, dynamic, resolved = None, static = None, pic = None):
     return struct(
         alwayslink = False,
@@ -494,7 +551,7 @@ def _static_library_preview_link_params_test_impl(ctx):
                             dynamic = unused_dynamic,
                             pic = alwayslink_dependency,
                         ),
-                    ]),
+                    ], user_link_flags = ["-Wl,-add_ast_path,Selected.swiftmodule"] if ctx.attr.process_link_flags else []),
                 ),
                 _compilation_providers = struct(
                     cc_info = True,
@@ -504,11 +561,12 @@ def _static_library_preview_link_params_test_impl(ctx):
                 _objc_libraries = (),
                 _primary_static_library = primary,
             ),
-            name = "Subject",
+            name = ctx.label.name,
+            tool = ctx.executable._link_params_processor,
         )
     )
 
-    verified = ctx.actions.declare_file("preview_link_params.verified")
+    verified = ctx.actions.declare_file(ctx.label.name + ".verified")
     ctx.actions.run_shell(
         inputs = [preview_link_params.file],
         outputs = [verified],
@@ -532,7 +590,7 @@ diff -u <(printf '%s\\n' \\
   '"$(TARGET_BUILD_DIR)"' \\
   '-ObjC' \\
   '"$(PROJECT_DIR)/'"$2"'"' \\
-  '"$(PROJECT_DIR)/'"$3"'"' \\
+  '"$(SRCROOT)/'"$3"'"' \\
   '-force_load' \\
   '"$(PROJECT_DIR)/'"$4"'"' \\
   '"$(PROJECT_DIR)/'"$5"'"' \\
@@ -543,10 +601,13 @@ diff -u <(printf '%s\\n' \\
 # portion has no whitespace. Only controlled fixture arguments reach eval.
 response="$(<"$1")"
 project_dir_setting='$(PROJECT_DIR)'
+srcroot_setting='$(SRCROOT)'
 target_build_dir_setting='$(TARGET_BUILD_DIR)'
 project_dir='/Execution Root'
+srcroot='/Workspace Root'
 target_build_dir='/Build Products'
 response="${response//$project_dir_setting/$project_dir}"
+response="${response//$srcroot_setting/$srcroot}"
 response="${response//$target_build_dir_setting/$target_build_dir}"
 eval "parsed=($response)"
 diff -u <(printf '%s\\n' \\
@@ -557,7 +618,7 @@ diff -u <(printf '%s\\n' \\
   '/Build Products' \\
   '-ObjC' \\
   '/Execution Root/'"$2" \\
-  '/Execution Root/'"$3" \\
+  '/Workspace Root/'"$3" \\
   '-force_load' \\
   '/Execution Root/'"$4" \\
   '/Execution Root/'"$5" \\
@@ -566,7 +627,7 @@ printf 'verified\\n' > "$7"
 """,
     )
 
-    executable = ctx.actions.declare_file("preview_link_params_test.sh")
+    executable = ctx.actions.declare_file(ctx.label.name + ".sh")
     ctx.actions.write(
         executable,
         content = """\
@@ -585,12 +646,16 @@ readonly marker="$TEST_SRCDIR/$TEST_WORKSPACE/{marker}"
 
 static_library_preview_link_params_test = rule(
     attrs = {
+        # A real Swift toolchain flag routes the same provider inputs through
+        # ProcessLinkParams instead of the no-user-flags direct writer.
+        "process_link_flags": attr.bool(),
         "source_dependency": attr.label(
             allow_single_file = [".a"],
             default = Label(
                 "//test/internal/files:testdata/libSourceDependency.a",
             ),
         ),
+        "_link_params_processor": attr.label(default = "//tools/params_processors:link_params_processor", executable = True, cfg = "exec"),
     },
     implementation = _static_library_preview_link_params_test_impl,
     test = True,
@@ -1084,6 +1149,7 @@ def linker_input_files_test_suite(name):
         partial.make(framework_preview_dynamic_propagation_test, libraries = ":" + libraries),
         merged_static_library_preview_libraries_test,
         source_static_library_preview_libraries_test,
+        static_library_preview_path_boundaries_test,
         standalone_dynamic_library_preview_closure_test,
         static_library_preview_dynamic_frameworks_test,
         static_library_preview_framework_mapping_test,
