@@ -481,9 +481,11 @@ def _process_linkopts(
 
         previous_option = None
         previous_index = index - 1
-        if previous_index >= 0 and linkopts[previous_index] == "-Xlinker":
+        if (not is_static_library and previous_index >= 0 and
+            linkopts[previous_index] == "-Xlinker"):
             previous_index -= 1
         if (previous_index >= 0 and
+            previous_index not in static_operands and
             linkopts[previous_index].startswith("-") and
             linkopts[previous_index] != "-Xlinker"):
             previous_option = linkopts[previous_index]

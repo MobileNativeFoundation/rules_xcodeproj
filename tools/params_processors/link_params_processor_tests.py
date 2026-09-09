@@ -100,6 +100,28 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 "-u", "_retained", "@$(PROJECT_DIR)/missing.rsp",
             ])
 
+    def test_static_symbol_operand_does_not_bind_the_following_archive(self):
+        for symbol in ("-Xlinker", "-L", "-u", "-force_load"):
+            values = ["-u", symbol, "deps/libOther.a", "bazel-out/libGenerated.a", "external/dep/libExternal.a"]
+            for spelling in ("direct", "forwarded", "comma"):
+                flags = values if spelling == "direct" else (
+                    [value for token in values for value in ("-Xlinker", token)]
+                    if spelling == "forwarded" else ["-Wl," + ",".join(values)]
+                )
+                with self.subTest(symbol=symbol, spelling=spelling):
+                    remaining, policy = link_params_processor._split_static_runtime_policy(
+                        flags + ["-fprofile-generate"],
+                    )
+                    self.assertEqual(policy, ["-fprofile-generate"])
+                    processed = link_params_processor._process_linkopts(
+                        remaining, False, [], is_static_library=True,
+                    )
+                    self.assertEqual(shlex.split("\n".join(processed)), [
+                        "-u", symbol, "$(SRCROOT)/deps/libOther.a",
+                        "$(PROJECT_DIR)/bazel-out/libGenerated.a",
+                        "$(PROJECT_DIR)/external/dep/libExternal.a",
+                    ])
+
     def test_nonstatic_processing_does_not_create_runtime_sidecar(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)
