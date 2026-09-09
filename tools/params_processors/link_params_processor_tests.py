@@ -89,61 +89,61 @@ class LinkParamsProcessorTest(unittest.TestCase):
         for value, expected in [
             (
                 "external/swiftpkg/libDependency.a",
-                "'$(PROJECT_DIR)/external/swiftpkg/libDependency.a'",
+                '"$(PROJECT_DIR)/external/swiftpkg/libDependency.a"',
             ),
-            ("libDependency.a", "'$(PROJECT_DIR)/libDependency.a'"),
+            ("libDependency.a", '"$(PROJECT_DIR)/libDependency.a"'),
             (
                 "-Fexternal/swiftpkg/Dependency.framework",
-                "'-F$(PROJECT_DIR)/external/swiftpkg/Dependency.framework'",
+                '"-F$(PROJECT_DIR)/external/swiftpkg/Dependency.framework"',
             ),
-            ("-FFrameworks", "'-F$(PROJECT_DIR)/Frameworks'"),
+            ("-FFrameworks", '"-F$(PROJECT_DIR)/Frameworks"'),
             (
                 "-Lexternal/swiftpkg/lib",
-                "'-L$(PROJECT_DIR)/external/swiftpkg/lib'",
+                '"-L$(PROJECT_DIR)/external/swiftpkg/lib"',
             ),
-            ("-Llib", "'-L$(PROJECT_DIR)/lib'"),
+            ("-Llib", '"-L$(PROJECT_DIR)/lib"'),
             (
                 "-Wl,-add_ast_path,bazel-out/Dependency.swiftmodule",
-                "'-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/Dependency.swiftmodule'",
+                '"-Wl,-add_ast_path,$(PROJECT_DIR)/bazel-out/Dependency.swiftmodule"',
             ),
             (
                 "-Wl,-force_load,external/swiftpkg/libDependency.a",
-                "'-Wl,-force_load,$(PROJECT_DIR)/external/swiftpkg/libDependency.a'",
+                '"-Wl,-force_load,$(PROJECT_DIR)/external/swiftpkg/libDependency.a"',
             ),
             (
                 "-Wl,-force_load,libDependency.a",
-                "'-Wl,-force_load,$(PROJECT_DIR)/libDependency.a'",
+                '"-Wl,-force_load,$(PROJECT_DIR)/libDependency.a"',
             ),
             (
                 "-Wl,-order_file,external/swiftpkg/order.txt",
-                "'-Wl,-order_file,$(PROJECT_DIR)/external/swiftpkg/order.txt'",
+                '"-Wl,-order_file,$(PROJECT_DIR)/external/swiftpkg/order.txt"',
             ),
             (
                 "-Wl,-filelist,external/swiftpkg/objects.list",
-                "'-Wl,-filelist,$(PROJECT_DIR)/external/swiftpkg/objects.list'",
+                '"-Wl,-filelist,$(PROJECT_DIR)/external/swiftpkg/objects.list"',
             ),
             (
                 "-Wl,-filelist,objects.list,external/swiftpkg",
-                "'-Wl,-filelist,$(PROJECT_DIR)/objects.list,"
-                "$(PROJECT_DIR)/external/swiftpkg'",
+                '"-Wl,-filelist,$(PROJECT_DIR)/objects.list,'
+                '$(PROJECT_DIR)/external/swiftpkg"',
             ),
             (
                 "-Wl,-exported_symbols_list,external/swiftpkg/exports.txt",
-                "'-Wl,-exported_symbols_list,$(PROJECT_DIR)/external/swiftpkg/"
-                "exports.txt'",
+                '"-Wl,-exported_symbols_list,$(PROJECT_DIR)/external/swiftpkg/'
+                'exports.txt"',
             ),
             (
                 "-Wl,-sectcreate,__DATA,__blob,external/blob.bin",
-                "'-Wl,-sectcreate,__DATA,__blob,$(PROJECT_DIR)/external/blob.bin'",
+                '"-Wl,-sectcreate,__DATA,__blob,$(PROJECT_DIR)/external/blob.bin"',
             ),
             (
                 "-Wl,-load_hidden,libDependency.a",
-                "'-Wl,-load_hidden,$(PROJECT_DIR)/libDependency.a'",
+                '"-Wl,-load_hidden,$(PROJECT_DIR)/libDependency.a"',
             ),
             ("/absolute/libDependency.a", "/absolute/libDependency.a"),
             ("@response.params", "@response.params"),
             ("-F/absolute/Frameworks", "-F/absolute/Frameworks"),
-            ("-L$(PROJECT_DIR)/external/lib", "'-L$(PROJECT_DIR)/external/lib'"),
+            ("-L$(PROJECT_DIR)/external/lib", '"-L$(PROJECT_DIR)/external/lib"'),
             (
                 "-Wl,-rpath,@loader_path/Frameworks",
                 "-Wl,-rpath,@loader_path/Frameworks",
@@ -151,7 +151,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
             ("-Wl,-install_name,relative/Foo", "-Wl,-install_name,relative/Foo"),
             (
                 "$(SDKROOT)/System/Library/Frameworks",
-                "'$(SDKROOT)/System/Library/Frameworks'",
+                '"$(SDKROOT)/System/Library/Frameworks"',
             ),
             ("-framework", "-framework"),
             ("Lottie", "Lottie"),
@@ -174,7 +174,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 is_framework=False,
                 generated_product_paths=[],
             ),
-            ["'-Wl,-sectcreate,__DATA,__blob,$(PROJECT_DIR)/external/blob.bin'", "-ObjC"],
+            ['"-Wl,-sectcreate,__DATA,__blob,$(PROJECT_DIR)/external/blob.bin"', "-ObjC"],
         )
 
     def test_process_linkopts_anchors_force_loaded_external_archive(self):
@@ -191,7 +191,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
             ),
             [
                 "-force_load",
-                "'$(PROJECT_DIR)/external/swiftpkg/libDependency.a'",
+                '"$(PROJECT_DIR)/external/swiftpkg/libDependency.a"',
                 "-framework",
                 "Lottie",
             ],
@@ -221,7 +221,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 "-Xlinker",
                 "-force_load",
                 "-Xlinker",
-                "'$(PROJECT_DIR)/libDependency.a'",
+                '"$(PROJECT_DIR)/libDependency.a"',
             ],
         )
 
@@ -283,7 +283,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 is_framework=False,
                 generated_product_paths=[],
             ),
-            ["'/absolute/With Spaces/lib.a'", "'-Wl,-rpath,@loader_path/With Spaces'"],
+            ['"/absolute/With Spaces/lib.a"', '"-Wl,-rpath,@loader_path/With Spaces"'],
         )
 
     def test_anchored_response_arguments_preserve_spaces_after_expansion(self):
@@ -334,6 +334,33 @@ class LinkParamsProcessorTest(unittest.TestCase):
             self.assertEqual(shlex.split(response), [
                 "/execution root/external/my dependency/libDependency.a",
             ])
+
+    def test_response_quoting_preserves_special_characters(self):
+        for project_dir in ("/execution root", "/Author's root"):
+            for path in (
+                "external/Author's Library/libDependency.a",
+                'external/Double "quotes"/libDependency.a',
+                "external/back\\slash/libDependency.a",
+                "external/tab\tdirectory/libDependency.a",
+            ):
+                with self.subTest(project_dir=project_dir, path=path):
+                    response = "\n".join(
+                        link_params_processor._process_linkopts([path], False, []),
+                    ).replace("$(PROJECT_DIR)", project_dir)
+                    self.assertEqual(shlex.split(response), [project_dir + "/" + path])
+
+    def test_bazel_shell_quoted_inputs_are_decoded_before_processing(self):
+        selected = "bazel-out/Author's Target/libSelected.a"
+        dependency = 'external/Author\'s "Library"/libDependency.a'
+        processed = link_params_processor._process_linkopts(
+            ["-Xlinker", "-force_load", "-Xlinker", shlex.quote(selected),
+             shlex.quote(dependency)],
+            False, [selected],
+        )
+        self.assertEqual(
+            shlex.split("\n".join(processed)),
+            ["$(PROJECT_DIR)/" + dependency],
+        )
 
     def test_xcode_owned_entitlements_do_not_retain_bazel_artifacts(self):
         self.assertEqual(

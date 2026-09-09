@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import shlex
 import sys
 from typing import List
 
@@ -196,8 +197,11 @@ def _parse_args(args_files: List[str]) -> List[str]:
     return args
 
 def _quote_if_needed(opt: str) -> str:
-    if " " in opt or ("$(" in opt and ")" in opt):
-        return f"'{opt}'"
+    # This is a Clang response file, not a shell command. Quote the whole
+    # argument and escape response syntax. Double quotes also allow apostrophes
+    # introduced later by expansion of PROJECT_DIR or another build setting.
+    if any(character in opt for character in " \t\n\r'\"\\") or "$(" in opt:
+        return '"' + opt.replace("\\", "\\\\").replace('"', '\\"') + '"'
     return opt
 
 
@@ -260,7 +264,7 @@ def _process_linkopts(
     ) -> List[str]:
     # Bazel may serialize an argument with whole-argument shell quotes.
     linkopts = [
-        opt[1:-1] if opt.startswith("'") and opt.endswith("'") else opt
+        shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
         for opt in linkopts
     ]
     linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
