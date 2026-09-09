@@ -41,6 +41,27 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: manifest], preparedPaths: [swift]))
     }
 
+    func testOwnedTextualClangMapWithoutPrecompiledModule() {
+        // rules_swift 3.5 emits textual Clang entries without a PCM path.
+        let data = Data("""
+        [
+          {"moduleName":"LocalSwift","modulePath":"\(swift)"},
+          {"moduleName":"LocalClang","isFramework":false,"clangModuleMapPath":"\(clang)"}
+        ]
+        """.utf8)
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift, clang]), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-I", "'$(BAZEL_OUT)/config/bin/Directory With Spaces'", "-Xcc",
+            "-fmodule-map-file=$(BAZEL_OUT)/config/bin/local/module.modulemap",
+        ])
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift]))
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args + ["-Xcc", "-fmodule-file=LocalClang=unknown.pcm"], manifests: [map: data], preparedPaths: [swift, clang]))
+        let ambiguous = Data("""
+        [{"moduleName":"LocalSwift","modulePath":"\(swift)","clangModuleMapPath":"\(clang)"}]
+        """.utf8)
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: ambiguous], preparedPaths: [swift, clang]))
+    }
+
     func testMalformedAndUnownedManifestsRetainOriginal() {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: Data("[".utf8)], preparedPaths: [swift, clang]))
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: ["other.json": manifest], preparedPaths: [swift, clang]))

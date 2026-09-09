@@ -34,7 +34,8 @@ enum NativeSwiftExplicitModules {
             for module in modules {
                 guard !module.moduleName.isEmpty,
                       module.isBridgingHeaderDependency != true,
-                      (module.modulePath != nil) != (module.clangModulePath != nil)
+                      (module.modulePath != nil) !=
+                        (module.clangModulePath != nil || module.clangModuleMapPath != nil)
                 else { return nil }
                 if let pcm = module.clangModulePath {
                     for value in [pcm, pcm.buildSettingPath()] {
