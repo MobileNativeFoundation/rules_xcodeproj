@@ -126,10 +126,11 @@ if [ "$ACTION" == "indexbuild" ]; then
 
   # Index Build doesn't need sanitizers
   apply_sanitizers=0
-elif [[
-  "${ENABLE_PREVIEWS:-}" == "YES" ||
-  "${BAZEL_NATIVE_PREVIEWS:-}" == "YES"
-]]; then
+elif [[ "${BAZEL_NATIVE_PREVIEWS:-}" == "YES" ]]; then
+  # Xcode compiles the native target. Legacy Preview swiftc flags are invalid
+  # for Bazel's direct-frontend actions that compile dependency interfaces.
+  readonly config="_${BAZEL_CONFIG}_build"
+elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
   readonly config="${BAZEL_CONFIG}_swiftuipreviews"
 elif [ "${CLANG_COVERAGE_MAPPING:-}" == YES ] && [ "${BAZEL_SUPPRESS_COVERAGE_BUILD:-}" != YES ]; then
   # Code coverage build
