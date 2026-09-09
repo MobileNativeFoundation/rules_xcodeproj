@@ -74,6 +74,68 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: framework], preparedPaths: [swift, clang]))
     }
 
+    func testOwnedNamedAndUnnamedPCMBindingsAreRemoved() throws {
+        let expected = try XCTUnwrap(NativeSwiftExplicitModules.normalize(
+            args, manifests: [map: manifest], preparedPaths: [swift, clang]
+        ))
+        for path in ["bazel-out/local.pcm", "$(BAZEL_OUT)/local.pcm"] {
+            for binding in ["-fmodule-file=LocalClang=\(path)", "-fmodule-file=\(path)"] {
+                XCTAssertEqual(NativeSwiftExplicitModules.normalize(
+                    args + ["-Xcc", binding], manifests: [map: manifest], preparedPaths: [swift, clang]
+                ), expected, binding)
+            }
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(
+                args + ["-Xcc", "-fmodule-file=Other=\(path)"],
+                manifests: [map: manifest], preparedPaths: [swift, clang]
+            ), path)
+        }
+    }
+
+    func testBridgingDependencyMarkerRetainsOriginal() throws {
+        let expected = try XCTUnwrap(NativeSwiftExplicitModules.normalize(
+            args, manifests: [map: manifest], preparedPaths: [swift, clang]
+        ))
+        for marker in [false, true] {
+            let data = Data(String(decoding: manifest, as: UTF8.self).replacingOccurrences(
+                of: "\"moduleName\":\"LocalClang\"",
+                with: "\"moduleName\":\"LocalClang\",\"isBridgingHeaderDependency\":\(marker)"
+            ).utf8)
+            let result = NativeSwiftExplicitModules.normalize(
+                args, manifests: [map: data], preparedPaths: [swift, clang]
+            )
+            if marker {
+                XCTAssertNil(result)
+            } else {
+                XCTAssertEqual(result, expected)
+            }
+        }
+    }
+
+    func testOwnedSDKAliasesRestoreNativeSystemDiscovery() {
+        for root in [
+            "__BAZEL_XCODE_SDKROOT__",
+            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+            "__BAZEL_XCODE_DEVELOPER_DIR__/Toolchains/XcodeDefault.xctoolchain",
+            "__bazel_developer_dir_26_5_0_17F42/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+            "__bazel_developer_dir_26_6_0_17F113/Toolchains/XcodeDefault.xctoolchain",
+        ] {
+            let systemMap = root + "/usr/include/module.modulemap"
+            let data = Data("""
+            [
+              {"moduleName":"Foundation","isSystem":true,"modulePath":"\(root)/usr/lib/swift/Foundation.swiftmodule"},
+              {"moduleName":"Darwin","isSystem":true,"clangModulePath":"bazel-out/darwin.pcm","clangModuleMapPath":"\(systemMap)"}
+            ]
+            """.utf8)
+            let forwarded = args + [
+                "-Xcc", "-fmodule-file=Darwin=bazel-out/darwin.pcm",
+                "-Xcc", ("-fmodule-map-file=" + systemMap.buildSettingPath()).quoteIfNeeded(),
+            ]
+            XCTAssertEqual(NativeSwiftExplicitModules.normalize(
+                forwarded, manifests: [map: data], preparedPaths: []
+            ), ["-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module"], root)
+        }
+    }
+
     func testIncompleteForwardedOptionRetainsOriginal() {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(Array(args.dropLast()), manifests: [map: manifest], preparedPaths: [swift, clang]))
     }
