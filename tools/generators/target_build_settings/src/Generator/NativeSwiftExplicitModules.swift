@@ -51,22 +51,36 @@ enum NativeSwiftExplicitModules {
                     }
                     continue
                 }
-                guard module.isFramework != true else { return nil }
                 if let path = module.modulePath {
                     guard preparedPaths.contains(path), path.hasSuffix(".swiftmodule"),
-                          (path as NSString).lastPathComponent == module.moduleName + ".swiftmodule",
-                          !path.contains(".framework/"), !path.contains(".xcframework/"),
-                          !path.contains(".swiftmodule/")
+                          let directory = swiftSearchDirectory(path, moduleName: module.moduleName)
                     else { return nil }
-                    let directory = (path as NSString).deletingLastPathComponent
-                    let arg = directory.buildSettingPath().quoteIfNeeded()
-                    if seenLocalArgs.insert("-I" + arg).inserted {
-                        localArgs += ["-I", arg]
+                    let option: String
+                    let searchPath: String
+                    if path.contains(".framework/") {
+                        guard let framework = frameworkSearchDirectory(directory, moduleName: module.moduleName) else { return nil }
+                        option = "-F"
+                        searchPath = framework
+                    } else {
+                        guard module.isFramework != true, !path.contains(".xcframework/") else { return nil }
+                        option = "-I"
+                        searchPath = directory
+                    }
+                    let arg = searchPath.buildSettingPath().quoteIfNeeded()
+                    if seenLocalArgs.insert(option + arg).inserted {
+                        localArgs += [option, arg]
                     }
                 } else if let map = module.clangModuleMapPath {
-                    guard preparedPaths.contains(map), !map.contains(".framework/"),
-                          !map.contains(".xcframework/")
-                    else { return nil }
+                    guard preparedPaths.contains(map) else { return nil }
+                    if map.contains(".framework/") {
+                        guard (map as NSString).lastPathComponent == "module.modulemap",
+                              let directory = frameworkSearchDirectory((map as NSString).deletingLastPathComponent, moduleName: module.moduleName)
+                        else { return nil }
+                        let arg = directory.buildSettingPath().quoteIfNeeded()
+                        if seenLocalArgs.insert("-F" + arg).inserted { localArgs += ["-F", arg] }
+                    } else {
+                        guard module.isFramework != true, !map.contains(".xcframework/") else { return nil }
+                    }
                     let arg = ("-fmodule-map-file=" + map.buildSettingPath()).quoteIfNeeded()
                     localMaps.insert(arg)
                     if seenLocalArgs.insert(arg).inserted { localArgs += ["-Xcc", arg] }
@@ -123,6 +137,25 @@ enum NativeSwiftExplicitModules {
         }
         guard usedMaps == ownedMaps else { return nil }
         return result + localArgs
+    }
+
+    private static func swiftSearchDirectory(_ path: String, moduleName: String) -> String? {
+        let directory = (path as NSString).deletingLastPathComponent
+        if (path as NSString).lastPathComponent == moduleName + ".swiftmodule" {
+            return directory.isEmpty ? "." : directory
+        }
+        // Binary imports select an architecture file inside Module.swiftmodule.
+        guard (directory as NSString).lastPathComponent == moduleName + ".swiftmodule" else { return nil }
+        let parent = (directory as NSString).deletingLastPathComponent
+        return parent.isEmpty ? "." : parent
+    }
+
+    private static func frameworkSearchDirectory(_ modules: String, moduleName: String) -> String? {
+        guard (modules as NSString).lastPathComponent == "Modules" else { return nil }
+        let framework = (modules as NSString).deletingLastPathComponent
+        guard (framework as NSString).lastPathComponent == moduleName + ".framework" else { return nil }
+        let directory = (framework as NSString).deletingLastPathComponent
+        return directory.isEmpty ? "." : directory
     }
 
     private static func isOwnedSDKPath(_ path: String) -> Bool {

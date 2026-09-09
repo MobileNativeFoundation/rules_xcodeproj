@@ -57,6 +57,48 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(Array(args.dropLast()), manifests: [map: manifest], preparedPaths: [swift, clang]))
     }
 
+    func testOwnedBinaryFrameworkAndArchitectureDirectoryImports() {
+        let framework = "BinaryKit.framework/Modules/module.modulemap"
+        let binary = "BinaryKit.framework/Modules/BinaryKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+        let xcframework = "Vendor/ArchiveKit.xcframework/ios-arm64-simulator/ArchiveKit.framework/Modules/module.modulemap"
+        let directory = "Imports/DirectoryKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
+        let data = Data("""
+        [
+          {"moduleName":"BinaryKit","isFramework":false,"clangModulePath":"bazel-out/binary.pcm","clangModuleMapPath":"\(framework)"},
+          {"moduleName":"BinaryKit","modulePath":"\(binary)"},
+          {"moduleName":"ArchiveKit","isFramework":false,"clangModulePath":"bazel-out/archive.pcm","clangModuleMapPath":"\(xcframework)"},
+          {"moduleName":"DirectoryKit","modulePath":"\(directory)"}
+        ]
+        """.utf8)
+        let result = NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [framework, binary, xcframework, directory])
+        XCTAssertEqual(result, [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-F", "$(PROJECT_DIR)", "-Xcc", "-fmodule-map-file=$(SRCROOT)/BinaryKit.framework/Modules/module.modulemap",
+            "-F", "$(SRCROOT)/Vendor/ArchiveKit.xcframework/ios-arm64-simulator",
+            "-Xcc", "-fmodule-map-file=$(SRCROOT)/Vendor/ArchiveKit.xcframework/ios-arm64-simulator/ArchiveKit.framework/Modules/module.modulemap",
+            "-I", "$(SRCROOT)/Imports",
+        ])
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [framework, xcframework, directory]))
+    }
+
+    func testUnfamiliarBinaryLayoutsRetainOriginal() {
+        for path in ["Other.swiftmodule/arm64.swiftmodule", "Kit.framework/Other/Kit.swiftmodule/arm64.swiftmodule", "Kit.xcframework/Kit.swiftmodule/arm64.swiftmodule"] {
+            let data = Data("[{\"moduleName\":\"Kit\",\"modulePath\":\"\(path)\"}]".utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [path]), path)
+        }
+    }
+
+    func testUnsupportedForwardingAndCustomSDKPathsRetainOriginal() {
+        for extra in [["-Xcc=-fmodule-file=Unknown=unknown.pcm"], ["-Xfrontend=-disable-implicit-swift-modules"], ["-explicit-swift-module-map-file", "unknown.json"]] {
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args + extra, manifests: [map: manifest], preparedPaths: [swift, clang]))
+        }
+        let text = String(decoding: manifest, as: UTF8.self)
+        for sdk in ["/Custom/SDK", "external/vendor-sdk", "__BAZEL_XCODE_SDKROOT__/../Other.sdk"] {
+            let data = Data(text.replacingOccurrences(of: "__bazel_developer_dir_26_6_0_17F113", with: sdk).utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift, clang]))
+        }
+    }
+
     func testRenamedModuleAndUnknownSystemOwnershipRetainOriginal() {
         let text = String(decoding: manifest, as: UTF8.self)
         let renamed = Data(text.replacingOccurrences(of: "\"moduleName\":\"LocalSwift\"", with: "\"moduleName\":\"Renamed\"").utf8)
