@@ -102,6 +102,60 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [framework, xcframework, directory]))
     }
 
+    func testOwnedPrivateFrameworkMapUsesItsPublicFrameworkDirectory() {
+        let publicMap = "Vendor/PrivateKit.framework/Modules/module.modulemap"
+        let privateMap = "Vendor/PrivateKit.framework/Modules/module.private.modulemap"
+        let data = Data("""
+        [
+          {"moduleName":"PrivateKit","isFramework":true,"clangModulePath":"bazel-out/public.pcm","clangModuleMapPath":"\(publicMap)"},
+          {"moduleName":"PrivateKit_Private","isFramework":true,"clangModulePath":"bazel-out/private.pcm","clangModuleMapPath":"\(privateMap)"}
+        ]
+        """.utf8)
+        let forwarded = args + [
+            "-Xcc", "-fmodule-file=PrivateKit_Private=bazel-out/private.pcm",
+        ]
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(forwarded, manifests: [map: data], preparedPaths: [publicMap, privateMap]), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-F", "$(SRCROOT)/Vendor",
+            "-Xcc", "-fmodule-map-file=$(SRCROOT)/Vendor/PrivateKit.framework/Modules/module.modulemap",
+            "-Xcc", "-fmodule-map-file=$(SRCROOT)/Vendor/PrivateKit.framework/Modules/module.private.modulemap",
+        ])
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [publicMap]))
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [privateMap]))
+    }
+
+    func testMismatchedPrivateFrameworkMapNamesAndLayoutsRetainOriginal() {
+        for (module, path) in [
+            ("_Private", ".framework/Modules/module.private.modulemap"),
+            ("PrivateKit", "PrivateKit.framework/Modules/module.private.modulemap"),
+            ("Other_Private", "PrivateKit.framework/Modules/module.private.modulemap"),
+            ("PrivateKit_Private_Private", "PrivateKit.framework/Modules/module.private.modulemap"),
+            ("PrivateKit_Private", "PrivateKit.framework/Modules/module.modulemap"),
+            ("PrivateKit_Private", "PrivateKit.framework/Modules/private.modulemap"),
+            ("PrivateKit_Private", "PrivateKit.framework/Other/module.private.modulemap"),
+            ("PrivateKit_Private", "PrivateKit.xcframework/Modules/module.private.modulemap"),
+        ] {
+            let data = Data("""
+            [{"moduleName":"\(module)","isFramework":true,"clangModuleMapPath":"\(path)"}]
+            """.utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [path]), path)
+        }
+    }
+
+    func testPrivateSuffixDoesNotRenameOrdinarySwiftFrameworkModules() {
+        let path = "Vendor/Kit_Private.framework/Modules/Kit_Private.swiftmodule/arm64.swiftmodule"
+        let data = Data("""
+        [{"moduleName":"Kit_Private","isFramework":true,"modulePath":"\(path)"}]
+        """.utf8)
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [path]), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-F", "$(SRCROOT)/Vendor",
+        ])
+        let other = path.replacingOccurrences(of: "Kit_Private.framework", with: "Kit.framework")
+        let renamed = Data(String(decoding: data, as: UTF8.self).replacingOccurrences(of: path, with: other).utf8)
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: renamed], preparedPaths: [other]))
+    }
+
     func testUnfamiliarBinaryLayoutsRetainOriginal() {
         for path in ["Other.swiftmodule/arm64.swiftmodule", "Kit.framework/Other/Kit.swiftmodule/arm64.swiftmodule", "Kit.xcframework/Kit.swiftmodule/arm64.swiftmodule"] {
             let data = Data("[{\"moduleName\":\"Kit\",\"modulePath\":\"\(path)\"}]".utf8)

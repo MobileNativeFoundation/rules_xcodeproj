@@ -81,8 +81,20 @@ enum NativeSwiftExplicitModules {
                 } else if let map = module.clangModuleMapPath {
                     guard preparedPaths.contains(map) else { return nil }
                     if map.contains(".framework/") {
-                        guard (map as NSString).lastPathComponent == "module.modulemap",
-                              let directory = frameworkSearchDirectory((map as NSString).deletingLastPathComponent, moduleName: module.moduleName)
+                        let frameworkModuleName: String
+                        switch (map as NSString).lastPathComponent {
+                        case "module.modulemap":
+                            frameworkModuleName = module.moduleName
+                        case "module.private.modulemap":
+                            // rules_apple names this Clang module after the
+                            // public framework, with an exact _Private suffix.
+                            guard module.moduleName.hasSuffix("_Private") else { return nil }
+                            frameworkModuleName = String(module.moduleName.dropLast("_Private".count))
+                            guard !frameworkModuleName.isEmpty else { return nil }
+                        default:
+                            return nil
+                        }
+                        guard let directory = frameworkSearchDirectory((map as NSString).deletingLastPathComponent, moduleName: frameworkModuleName)
                         else { return nil }
                         let arg = directory.buildSettingPath().quoteIfNeeded()
                         if seenLocalArgs.insert("-F" + arg).inserted { localArgs += ["-F", arg] }
