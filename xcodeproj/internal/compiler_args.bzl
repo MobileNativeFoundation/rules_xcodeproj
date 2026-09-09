@@ -55,7 +55,7 @@ def _swift_preview_inputs(action, swift_info):
                     if type(file) == "File":
                         dependency_paths[file.path] = None
         for module in swift_info.transitive_modules.to_list():
-            if getattr(module, "is_system", False) or getattr(module, "is_framework", False):
+            if getattr(module, "is_system", False):
                 continue
             swift = getattr(module, "swift", None)
             swiftmodule = getattr(swift, "swiftmodule", None) if swift else None

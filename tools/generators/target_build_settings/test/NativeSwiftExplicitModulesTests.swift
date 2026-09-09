@@ -88,6 +88,27 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         }
     }
 
+    func testOwnedCompiledFrameworkInterfaceUsesFlatSearchPath() {
+        let binary = "bazel-out/config/bin/binary_outs/BinaryKit.swiftmodule"
+        let framework = "BinaryKit.framework/Modules/module.modulemap"
+        let data = Data("""
+        [
+          {"moduleName":"BinaryKit","isFramework":true,"modulePath":"\(binary)"},
+          {"moduleName":"BinaryKit","isFramework":true,"clangModulePath":"bazel-out/binary.pcm","clangModuleMapPath":"\(framework)"}
+        ]
+        """.utf8)
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [binary, framework]), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-I", "$(BAZEL_OUT)/config/bin/binary_outs",
+            "-F", "$(PROJECT_DIR)", "-Xcc", "-fmodule-map-file=$(SRCROOT)/BinaryKit.framework/Modules/module.modulemap",
+        ])
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [framework]))
+        for unsupported in ["Imports/BinaryKit.swiftmodule", "bazel-out/config/BinaryKit.swiftmodule/arm64.swiftmodule"] {
+            let other = Data(String(decoding: data, as: UTF8.self).replacingOccurrences(of: binary, with: unsupported).utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: other], preparedPaths: [unsupported, framework]))
+        }
+    }
+
     func testUnsupportedForwardingAndCustomSDKPathsRetainOriginal() {
         for extra in [["-Xcc=-fmodule-file=Unknown=unknown.pcm"], ["-Xfrontend=-disable-implicit-swift-modules"], ["-explicit-swift-module-map-file", "unknown.json"]] {
             XCTAssertNil(NativeSwiftExplicitModules.normalize(args + extra, manifests: [map: manifest], preparedPaths: [swift, clang]))

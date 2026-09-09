@@ -62,7 +62,14 @@ enum NativeSwiftExplicitModules {
                         option = "-F"
                         searchPath = framework
                     } else {
-                        guard module.isFramework != true, !path.contains(".xcframework/") else { return nil }
+                        guard !path.contains(".xcframework/") else { return nil }
+                        // rules_apple compiles framework interfaces into a flat
+                        // generated module outside the original bundle.
+                        if module.isFramework == true {
+                            guard path.hasPrefix("bazel-out/"),
+                                  (path as NSString).lastPathComponent == module.moduleName + ".swiftmodule"
+                            else { return nil }
+                        }
                         option = "-I"
                         searchPath = directory
                     }

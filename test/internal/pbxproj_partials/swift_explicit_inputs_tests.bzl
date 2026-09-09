@@ -45,6 +45,25 @@ def _swift_explicit_inputs_test_impl(ctx):
     )
     asserts.equals(env, (), implicit.manifests)
     asserts.equals(env, preview.files.to_list(), implicit.files.to_list())
+
+    # Modern binary XCFramework imports carry Swift and Clang in one context.
+    # Being a framework does not change exact direct-context ownership.
+    framework = struct(is_framework = True, swift = local_swift.swift, clang = local_clang.clang)
+    framework_info = struct(direct_modules = [selected], transitive_modules = depset([framework, selected]))
+    framework_preview = compiler_args.swift_preview_inputs(action, framework_info)
+    asserts.equals(env, preview.paths, framework_preview.paths)
+    asserts.equals(env, preview.files.to_list(), framework_preview.files.to_list())
+    for dependency in [
+        struct(is_framework = True, swift = struct(swiftmodule = own_module), clang = None),
+        struct(is_framework = True, swift = struct(swiftmodule = pcm), clang = None),
+        struct(is_framework = True, is_system = True, swift = local_swift.swift, clang = local_clang.clang),
+    ]:
+        excluded = compiler_args.swift_preview_inputs(
+            action,
+            struct(direct_modules = [selected], transitive_modules = depset([dependency])),
+        )
+        asserts.equals(env, (), excluded.paths)
+        asserts.equals(env, [source], excluded.files.to_list())
     for generate in [False, True]:
         actions = mock_actions.create()
         pbxproj_partials.write_target_build_settings(
