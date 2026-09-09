@@ -2,6 +2,7 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load(
     ":linker_input_files_tests.bzl",
     "linker_input_files_test_suite",
+    "static_library_preview_declared_flags_test",
     "static_library_preview_link_params_test",
 )
 load(
@@ -19,6 +20,10 @@ static_library_preview_link_params_test(
     name = "static_library_preview_link_params",
 )
 
+static_library_preview_declared_flags_test(
+    name = "static_library_preview_declared_flags",
+)
+
 archive_preview_framework_test(
     name = "archive_preview_framework",
 )
@@ -34,6 +39,7 @@ test_suite(
         ":linker_input_files",
         ":output_files",
         ":preview_resource_bundle_materialization",
+        ":static_library_preview_declared_flags",
         ":static_library_preview_link_params",
     ],
 )

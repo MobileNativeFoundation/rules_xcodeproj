@@ -119,6 +119,7 @@ def _process_mixed_language_library_target(
                 linker_inputs = linker_inputs,
                 name = label.name,
                 product_files = mergeable_info.product_files,
+                tool = ctx.executable._link_params_processor,
             )
         )
 

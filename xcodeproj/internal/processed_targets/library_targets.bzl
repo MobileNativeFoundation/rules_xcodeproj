@@ -87,6 +87,7 @@ def _process_library_target(
                 actions = ctx.actions,
                 linker_inputs = linker_inputs,
                 name = label.name,
+                tool = ctx.executable._link_params_processor,
             )
         )
 
