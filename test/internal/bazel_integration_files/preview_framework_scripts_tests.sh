@@ -300,6 +300,8 @@ run_copy_mode() {
     BAZEL_NATIVE_PREVIEWS="$native_previews" \
     PREVIEW_FRAMEWORK_PATHS="$preview_framework_paths" \
     PRODUCT_NAME=Product \
+    DERIVED_FILE_DIR="${5:-$DERIVED_FILE_DIR}" \
+    PROJECT_DIR="${6:-$case_dir/execroot}" \
     TARGET_BUILD_DIR="$case_dir/build products" \
     WRAPPER_NAME=Product.framework \
     bash "$copy_outputs_script" _ ""
@@ -584,6 +586,202 @@ grep -q "points to a different source" "$test_root/preexisting.stderr" || \
 [[ ! -e "$preexisting_case/build products/First Framework.framework" ]] || \
   fail "framework was staged before a later preexisting conflict failed"
 assert_link "$preexisting_destination" "$first_framework"
+
+# Only a current owner's unchanged symlink may follow a regenerated output base.
+for old_state in present missing; do
+  migration_case="$test_root/framework-migration-$old_state"
+  old_root="$migration_case/old base/execroot/workspace"
+  new_root="$migration_case/new base/execroot/workspace"
+  old_framework="$old_root/bazel-out/config/bin/Dependency.framework"
+  new_framework="$new_root/bazel-out/config/bin/Dependency.framework"
+  owner="$migration_case/Derived/Target"
+  destination="$migration_case/build products/Dependency.framework"
+  make_framework "$old_framework"
+  make_framework "$new_framework"
+  printf 'new binary' > "$new_framework/Dependency"
+  run_copy_mode "$migration_case" NO YES "\"$old_framework\"" "$owner" "$old_root"
+  old_identity="$(stat -f '%d:%i' "$destination")"
+  [[ "$old_identity" != "$(stat -Lf '%d:%i' "$destination")" ]] || fail "framework identity followed its symlink"
+  if [[ "$old_state" == missing ]]; then mv "$old_framework" "$old_root/retained.framework"; fi
+  run_copy_mode "$migration_case" NO YES "\"$new_framework\"" "$owner" "$new_root"
+  assert_link "$destination" "$new_framework"
+  [[ "$(< "$destination/Dependency")" == 'new binary' ]] || fail "framework migration retained old contents"
+  [[ "$old_identity" != "$(stat -f '%d:%i' "$destination")" ]] || fail "framework link was not atomically replaced"
+  receipt="$migration_case/build products/.rules_xcodeproj_preview_frameworks"
+  grep -Fxq "$new_framework" "$receipt" || fail "framework source receipt not updated"
+  new_identity="$(stat -f '%d:%i' "$destination")"
+  run_copy_mode "$migration_case" NO YES "\"$new_framework\"" "$owner" "$new_root"
+  assert_equals "$new_identity" "$(stat -f '%d:%i' "$destination")" "unchanged owned framework link"
+done
+
+# Source aliases can share a referent while only the new output-base path survives.
+for alias_ownership in owned shared unknown native; do
+  alias_case="$test_root/framework-alias-$alias_ownership"
+  destination="$alias_case/build products/Dependency.framework"
+  shared_framework="$alias_case/shared/Dependency.framework"
+  if [[ "$alias_ownership" == native ]]; then shared_framework="$destination"; fi
+  old_framework="$alias_case/old-base/Dependency.framework"
+  new_framework="$alias_case/new-base/Dependency.framework"
+  make_framework "$shared_framework"
+  mkdir -p "${old_framework%/*}" "${new_framework%/*}" "${destination%/*}"
+  ln -s "$shared_framework" "$old_framework"
+  ln -s "$shared_framework" "$new_framework"
+  if [[ "$alias_ownership" == unknown ]]; then ln -s "$old_framework" "$destination"; fi
+  run_copy_mode "$alias_case" NO YES "\"$old_framework\"" "$alias_case/Derived/A"
+  identity="$(stat -f '%d:%i' "$destination")"
+  if [[ "$alias_ownership" == shared ]]; then
+    run_copy_mode "$alias_case" NO YES "\"$old_framework\"" "$alias_case/Derived/B"
+    if run_copy_mode "$alias_case" NO YES "\"$new_framework\"" "$alias_case/Derived/A" \
+      > "$alias_case/failure.out" 2> "$alias_case/failure.err"; then
+      fail "same-referent migration ignored another owner's source claim"
+    fi
+    grep -q 'different source' "$alias_case/failure.err" || fail "shared alias conflict not diagnosed"
+    assert_equals "$old_framework" "$(readlink "$destination")" "shared alias stays on its claimed source"
+    assert_equals "$identity" "$(stat -f '%d:%i' "$destination")" "shared alias identity"
+    continue
+  fi
+  run_copy_mode "$alias_case" NO YES "\"$new_framework\"" "$alias_case/Derived/A"
+  if [[ "$alias_ownership" == owned ]]; then
+    assert_equals "$new_framework" "$(readlink "$destination")" "owned alias follows the new source path"
+    grep -Fxq "$new_framework" "${destination%/*}/.rules_xcodeproj_preview_frameworks" || fail "owned alias receipt kept old source"
+    mv "$old_framework" "$alias_case/retained-old-source"
+    assert_link "$destination" "$new_framework"
+    [[ -f "$destination/Dependency" ]] || fail "owned alias depended on the removed old source"
+  else
+    assert_equals "$identity" "$(stat -f '%d:%i' "$destination")" "unowned same-referent identity"
+    [[ ! -e "${destination%/*}/.rules_xcodeproj_preview_frameworks" ]] || fail "same-referent compatibility adopted $alias_ownership"
+    if [[ "$alias_ownership" == unknown ]]; then
+      assert_equals "$old_framework" "$(readlink "$destination")" "unowned alias remains unchanged"
+    else
+      [[ ! -L "$destination" ]] || fail "native framework directory was replaced"
+    fi
+  fi
+done
+
+readonly framework_shared_case="$test_root/framework-shared-migration"
+run_copy_mode "$framework_shared_case" NO YES "\"$conflicting_one\"" "$framework_shared_case/Derived/A"
+run_copy_mode "$framework_shared_case" NO YES "\"$conflicting_one\"" "$framework_shared_case/Derived/B"
+if run_copy_mode "$framework_shared_case" NO YES "\"$conflicting_two\"" "$framework_shared_case/Derived/A" \
+  > "$framework_shared_case/failure.out" 2> "$framework_shared_case/failure.err"; then
+  fail "framework migration ignored another owner's claim"
+fi
+grep -q 'different source' "$framework_shared_case/failure.err" || fail "framework owner conflict not diagnosed"
+assert_link "$framework_shared_case/build products/Collision.framework" "$conflicting_one"
+mv "$framework_shared_case/build products/Collision.framework" "$framework_shared_case/retained-link"
+if run_copy_mode "$framework_shared_case" NO YES "\"$conflicting_two\"" "$framework_shared_case/Derived/A" \
+  > "$framework_shared_case/missing.out" 2> "$framework_shared_case/missing.err"; then
+  fail "missing framework link discarded another owner's claim"
+fi
+[[ ! -e "$framework_shared_case/build products/Collision.framework" ]] || fail "conflicting missing link was recreated"
+run_copy_mode "$framework_shared_case" NO YES "\"$conflicting_one\"" "$framework_shared_case/Derived/A"
+assert_link "$framework_shared_case/build products/Collision.framework" "$conflicting_one"
+identity="$(stat -f '%d:%i' "$framework_shared_case/build products/Collision.framework")"
+assert_equals 2 "$(grep -Fxc "$identity" "$framework_shared_case/build products/.rules_xcodeproj_preview_frameworks")" \
+  "restored same-source framework owners"
+
+# Unknown equal-source links are accepted unchanged, not silently adopted.
+for destination_kind in unknown-link native-directory replaced-link; do
+  migration_case="$test_root/framework-foreign-$destination_kind"
+  destination="$migration_case/build products/Collision.framework"
+  mkdir -p "${destination%/*}"
+  case "$destination_kind" in
+    unknown-link)
+      ln -s "$conflicting_one" "$destination"
+      run_copy_mode "$migration_case" NO YES "\"$conflicting_one\"" ;;
+    native-directory)
+      make_framework "$destination"
+      run_copy_mode "$migration_case" NO YES "\"$destination\"" ;;
+    replaced-link)
+      run_copy_mode "$migration_case" NO YES "\"$conflicting_one\""
+      mv "$destination" "$migration_case/retained-link"
+      ln -s "$conflicting_one" "$destination" ;;
+  esac
+  identity="$(stat -f '%d:%i' "$destination")"
+  if run_copy_mode "$migration_case" NO YES "\"$conflicting_two\"" \
+    > "$migration_case/failure.out" 2> "$migration_case/failure.err"; then
+    fail "framework migration adopted $destination_kind"
+  fi
+  assert_equals "$identity" "$(stat -f '%d:%i' "$destination")" "foreign framework identity"
+  if [[ "$destination_kind" == native-directory ]]; then
+    [[ ! -L "$destination" && "$(< "$destination/Collision")" == binary ]] || fail "native framework changed"
+  else
+    assert_link "$destination" "$conflicting_one"
+  fi
+done
+
+readonly framework_invalid_migration="$test_root/framework-invalid-migration"
+run_copy_mode "$framework_invalid_migration" NO YES "\"$conflicting_one\""
+if run_copy_mode "$framework_invalid_migration" NO YES "\"$conflicting_two\" \"$framework_invalid_migration/Missing.framework\"" \
+  > "$framework_invalid_migration/failure.out" 2> "$framework_invalid_migration/failure.err"; then
+  fail "invalid framework closure allowed an earlier migration"
+fi
+grep -q 'not a materialized directory' "$framework_invalid_migration/failure.err" || fail "invalid migration source not diagnosed"
+assert_link "$framework_invalid_migration/build products/Collision.framework" "$conflicting_one"
+
+# Legacy still rejects differing sources and does not create native ownership.
+readonly legacy_migration="$test_root/framework-legacy-migration"
+run_copy_mode "$legacy_migration" YES NO "\"$conflicting_one\""
+if run_copy_mode "$legacy_migration" YES NO "\"$conflicting_two\"" \
+  > "$legacy_migration/failure.out" 2> "$legacy_migration/failure.err"; then
+  fail "legacy framework retargeting was enabled"
+fi
+assert_link "$legacy_migration/build products/Product.framework/SwiftUIPreviewsFrameworks/Collision.framework" "$conflicting_one"
+[[ ! -e "$legacy_migration/build products/Product.framework/SwiftUIPreviewsFrameworks/.rules_xcodeproj_preview_frameworks" ]] || \
+  fail "legacy framework staging created a native ownership receipt"
+
+# Ownership metadata is never read or written through a foreign link/directory.
+for invalid_metadata in lock-link lock-directory receipt-link receipt-directory receipt-truncated receipt-unterminated; do
+  metadata_case="$test_root/framework-metadata-$invalid_metadata"
+  metadata_destination="$metadata_case/build products"
+  metadata_path="$metadata_destination/.rules_xcodeproj_preview_frameworks"
+  if [[ "$invalid_metadata" == lock-* ]]; then metadata_path+=.lockfile; fi
+  mkdir -p "$metadata_destination"
+  printf 'unowned metadata' > "$metadata_case/unowned"
+  case "$invalid_metadata" in
+    *-link) ln -s "$metadata_case/unowned" "$metadata_path" ;;
+    *-directory) mkdir "$metadata_path" ;;
+    *-truncated) printf 'First Framework.framework\n' > "$metadata_path" ;;
+    *-unterminated) printf 'First Framework.framework' > "$metadata_path" ;;
+  esac
+  identity="$(stat -f '%d:%i' "$metadata_path")"
+  if run_copy_mode "$metadata_case" NO YES "\"$first_framework\"" \
+    > "$metadata_case/failure.out" 2> "$metadata_case/failure.err"; then
+    fail "invalid framework ownership metadata was accepted: $invalid_metadata"
+  fi
+  grep -q 'Invalid Preview framework ownership' "$metadata_case/failure.err" || fail "invalid framework metadata not diagnosed"
+  assert_equals "$identity" "$(stat -f '%d:%i' "$metadata_path")" "foreign framework metadata identity"
+  [[ "$(< "$metadata_case/unowned")" == 'unowned metadata' ]] || fail "foreign metadata bytes changed"
+  [[ ! -e "$metadata_destination/First Framework.framework" ]] || fail "invalid metadata allowed framework staging"
+done
+
+readonly framework_held_case="$test_root/framework-held-lock"
+readonly framework_held_destination="$framework_held_case/build products"
+mkdir -p "$framework_held_destination"
+(
+  exec 9>> "$framework_held_destination/.rules_xcodeproj_preview_frameworks.lockfile"
+  /usr/bin/python3 -c 'import fcntl; fcntl.flock(9, fcntl.LOCK_EX)'
+  touch "$framework_held_case/ready"
+  for (( attempt=0; attempt<200; attempt++ )); do
+    if [[ -f "$framework_held_case/release" ]]; then exit; fi
+    sleep 0.1
+  done
+) &
+framework_held_pid="$!"
+for (( attempt=0; attempt<100; attempt++ )); do
+  if [[ -f "$framework_held_case/ready" ]]; then break; fi
+  sleep 0.1
+done
+[[ -f "$framework_held_case/ready" ]] || fail "framework lock holder did not start"
+if run_copy_mode "$framework_held_case" NO YES "\"$first_framework\"" \
+  > "$framework_held_case/failure.out" 2> "$framework_held_case/failure.err"; then
+  fail "live framework lock owner was displaced"
+fi
+grep -q 'Unable to acquire Preview framework ownership lock' "$framework_held_case/failure.err" || fail "framework lock timeout not diagnosed"
+[[ ! -e "$framework_held_destination/First Framework.framework" ]] || fail "framework staging bypassed live lock"
+touch "$framework_held_case/release"
+wait "$framework_held_pid"
+run_copy_mode "$framework_held_case" NO YES "\"$first_framework\""
+assert_link "$framework_held_destination/First Framework.framework" "$first_framework"
 
 run_resource_copy_mode() {
   local case_dir="$1" owner="$2" paths="$3"

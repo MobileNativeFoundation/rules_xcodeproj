@@ -23,14 +23,15 @@ readonly test_frameworks=(
 
 readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
 
-stage_preview_frameworks() {
-  local destination_dir="$1"
-  local framework_path
-  local parsed_framework_paths
-  local framework_index
-  local seen_framework_index
-  local -a framework_paths
-  local -a framework_names=()
+stage_preview_frameworks() (
+  local destination_dir="$1" owner="${DERIVED_FILE_DIR:-}"
+  local receipt="$1/.rules_xcodeproj_preview_frameworks"
+  local lock="$receipt.lockfile"
+  local framework_path parsed_framework_paths framework_index seen_framework_index
+  local name identity recorded_owner recorded_source index owner_index
+  local temporary_link_dir="" temporary_receipt="" staging_status=0
+  local -a framework_paths framework_names=()
+  local -a owned_names=() owned_ids=() owned_targets=() owned_sources=()
 
   if ! parsed_framework_paths="$(xargs -n1 <<< "$PREVIEW_FRAMEWORK_PATHS")"; then
     echo >&2 "error: Unable to parse Preview framework paths"
@@ -49,10 +50,9 @@ stage_preview_frameworks() {
     return 1
   fi
 
+  # Validate every source before changing any destination or ownership metadata.
   for framework_path in "${framework_paths[@]}"; do
     local framework_name="${framework_path##*/}"
-    local destination="$destination_dir/$framework_name"
-
     if [[ "$framework_name" != *.framework ]]; then
       echo >&2 "error: Preview framework path does not name a .framework: $framework_path"
       return 1
@@ -61,53 +61,157 @@ stage_preview_frameworks() {
       echo >&2 "error: Preview framework is not a materialized directory: $framework_path"
       return 1
     fi
-
-    for (( seen_framework_index=0; \
-           seen_framework_index<${#framework_names[@]}; \
-           seen_framework_index++ )); do
+    for (( seen_framework_index=0; seen_framework_index<${#framework_names[@]}; seen_framework_index++ )); do
       if [[ "${framework_names[seen_framework_index]}" == "$framework_name" ]]; then
         echo >&2 "error: Multiple Preview frameworks have the same basename: $framework_name"
         return 1
       fi
     done
     framework_names+=("$framework_name")
+  done
 
-    # A focused native framework can already be its consumer's sibling. It is
-    # Xcode's product, not a staging collision; never replace that directory.
-    if [[ "$destination" -ef "$framework_path" ]]; then
-      continue
+  if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == YES ]]; then
+    if [[ "$owner" != /* || "$owner" == *$'\n'* || "$owner" == *$'\r'* ]]; then
+      echo >&2 "error: Invalid Preview framework owner: $owner"
+      return 1
     fi
+    for framework_path in "${framework_paths[@]}"; do
+      if [[ "$framework_path" != /* || "$framework_path" == *$'\n'* || "$framework_path" == *$'\r'* ]]; then
+        echo >&2 "error: Invalid absolute Preview framework source: $framework_path"
+        return 1
+      fi
+    done
+    mkdir -p "$destination_dir"
+    if [[ -L "$lock" || ( -e "$lock" && ! -f "$lock" ) ]]; then
+      echo >&2 "error: Invalid Preview framework ownership lock: $lock"
+      return 1
+    fi
+    exec 9>> "$lock"
+    if ! /usr/bin/python3 -c 'import fcntl, signal; signal.alarm(10); fcntl.flock(9, fcntl.LOCK_EX)'; then
+      echo >&2 "error: Unable to acquire Preview framework ownership lock: $lock"
+      return 1
+    fi
+    if [[ -L "$receipt" || ( -e "$receipt" && ! -f "$receipt" ) ]]; then
+      echo >&2 "error: Invalid Preview framework ownership receipt: $receipt"
+      return 1
+    fi
+    if [[ -f "$receipt" ]]; then
+      while IFS= read -r name || [[ -n "$name" ]]; do
+        if ! IFS= read -r identity || ! IFS= read -r recorded_owner || ! IFS= read -r recorded_source || \
+           [[ "$name" != *.framework || "$name" == */* || ! "$identity" =~ ^[0-9]+:[0-9]+$ || \
+              "$recorded_owner" != /* || "$recorded_source" != /* ]]; then
+          echo >&2 "error: Invalid Preview framework ownership receipt: $receipt"
+          return 1
+        fi
+        owned_names+=("$name")
+        owned_ids+=("$identity")
+        owned_targets+=("$recorded_owner")
+        owned_sources+=("$recorded_source")
+      done < "$receipt"
+    fi
+  fi
+
+  check_preview_framework_destination() {
+    local destination="$1" source="$2" name="${1##*/}"
+    local index identity old_source current_owner=NO other_owner=NO
     if [[ -L "$destination" ]]; then
+      # BSD stat defaults to lstat: identify the link, never its referent.
+      identity="$(stat -f '%d:%i' "$destination")"
+      old_source="$(readlink "$destination")"
+      for (( index=0; index<${#owned_names[@]}; index++ )); do
+        if [[ "${owned_names[index]}" != "$name" ]]; then continue; fi
+        if [[ "${owned_ids[index]}" != "$identity" || "${owned_sources[index]}" != "$old_source" ]]; then
+          echo >&2 "error: Preview framework destination is no longer owned: $destination"
+          return 1
+        fi
+        if [[ "${owned_targets[index]}" == "$owner" ]]; then current_owner=YES; else other_owner=YES; fi
+      done
+      if [[ "$old_source" == "$source" ]]; then return; fi
+      # Unknown links keep same-referent compatibility, but are never adopted.
+      if [[ "$current_owner" == NO && "$other_owner" == NO && "$destination" -ef "$source" ]]; then return; fi
+      if [[ "$current_owner" == YES && "$other_owner" == NO ]]; then return; fi
       echo >&2 "error: Preview framework destination points to a different source: $destination"
       return 1
     fi
+    # A focused native framework can already be its consumer's sibling.
+    # Accept Xcode's directory unchanged; never adopt it.
+    if [[ "$destination" -ef "$source" ]]; then return; fi
     if [[ -e "$destination" ]]; then
       echo >&2 "error: Preview framework destination already exists and is not a symlink: $destination"
       return 1
     fi
-  done
+    # Removing a link does not release another target's recorded source claim.
+    for (( index=0; index<${#owned_names[@]}; index++ )); do
+      if [[ "${owned_names[index]}" == "$name" && "${owned_targets[index]}" != "$owner" && \
+            "${owned_sources[index]}" != "$source" ]]; then
+        echo >&2 "error: Preview framework destination points to a different source: $destination"
+        return 1
+      fi
+    done
+  }
 
+  for (( framework_index=0; framework_index<${#framework_paths[@]}; framework_index++ )); do
+    check_preview_framework_destination "$destination_dir/${framework_names[framework_index]}" "${framework_paths[framework_index]}"
+  done
   mkdir -p "$destination_dir"
-  for (( framework_index=0; \
-         framework_index<${#framework_paths[@]}; \
-         framework_index++ )); do
-    local destination="$destination_dir/${framework_names[framework_index]}"
-    if [[ "$destination" -ef "${framework_paths[framework_index]}" ]]; then
-      continue
-    fi
-    if [[ ! -L "$destination" ]]; then
-      if ! ln -s "${framework_paths[framework_index]}" "$destination" \
-        2>/dev/null; then
-        if [[ -L "$destination" && \
-              "$destination" -ef "${framework_paths[framework_index]}" ]]; then
-          continue
-        fi
+  trap 'staging_status=$?
+    if [[ -n "$temporary_link_dir" ]]; then rm -f "$temporary_link_dir/link"; rmdir "$temporary_link_dir"; fi
+    if [[ -n "$temporary_receipt" ]]; then rm -f "$temporary_receipt"; fi
+    exit "$staging_status"' EXIT
+  for (( framework_index=0; framework_index<${#framework_paths[@]}; framework_index++ )); do
+    name="${framework_names[framework_index]}"
+    framework_path="${framework_paths[framework_index]}"
+    local destination="$destination_dir/$name"
+    if [[ "${BAZEL_NATIVE_PREVIEWS:-}" != YES ]]; then
+      if [[ "$destination" -ef "$framework_path" ]]; then continue; fi
+      if ! ln -s "$framework_path" "$destination" 2>/dev/null; then
+        if [[ -L "$destination" && "$destination" -ef "$framework_path" ]]; then continue; fi
         echo >&2 "error: Unable to stage Preview framework: $destination"
         return 1
       fi
+      continue
     fi
+
+    owner_index="${#owned_names[@]}"
+    local known=NO
+    for (( index=0; index<${#owned_names[@]}; index++ )); do
+      if [[ "${owned_names[index]}" != "$name" ]]; then continue; fi
+      known=YES
+      if [[ "${owned_targets[index]}" == "$owner" ]]; then owner_index="$index"; fi
+    done
+    # Old unreceipted links and genuine native products stay unowned.
+    if [[ "$destination" -ef "$framework_path" && ( ! -L "$destination" || "$known" == NO ) ]]; then continue; fi
+    if [[ -L "$destination" && "$(readlink "$destination")" == "$framework_path" ]]; then
+      if [[ "$owner_index" != "${#owned_names[@]}" ]]; then continue; fi
+    else
+      temporary_link_dir="$(mktemp -d "$destination_dir/.rules_xcodeproj_preview_framework.XXXXXX")"
+      ln -s "$framework_path" "$temporary_link_dir/link"
+      check_preview_framework_destination "$destination" "$framework_path"
+      # Unlike mv, replace cannot accidentally move the link into a directory.
+      /usr/bin/python3 -c 'import os, sys; os.replace(*sys.argv[1:])' "$temporary_link_dir/link" "$destination"
+      rmdir "$temporary_link_dir"
+      temporary_link_dir=""
+    fi
+
+    identity="$(stat -f '%d:%i' "$destination")"
+    for (( index=0; index<${#owned_names[@]}; index++ )); do
+      if [[ "${owned_names[index]}" == "$name" ]]; then owned_ids[index]="$identity"; fi
+    done
+    owned_names[owner_index]="$name"
+    owned_ids[owner_index]="$identity"
+    owned_targets[owner_index]="$owner"
+    owned_sources[owner_index]="$(readlink "$destination")"
+    temporary_receipt="$(mktemp "$receipt.XXXXXX")"
+    {
+      for (( index=0; index<${#owned_names[@]}; index++ )); do
+        printf '%s\n%s\n%s\n%s\n' "${owned_names[index]}" "${owned_ids[index]}" \
+          "${owned_targets[index]}" "${owned_sources[index]}"
+      done
+    } > "$temporary_receipt"
+    mv -f "$temporary_receipt" "$receipt"
+    temporary_receipt=""
   done
-}
+)
 
 stage_preview_resource_bundles() (
   local destination_dir="$1"
