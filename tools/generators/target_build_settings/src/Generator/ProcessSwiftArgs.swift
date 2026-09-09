@@ -238,12 +238,17 @@ extension Generator.ProcessSwiftArgs {
         }
 
         var hasDebugInfo = false
+        var swiftProfile = NativeSwiftProfile(
+            valueArgs: Set(skipSwiftArgs.filter { $0.value > 1 }.map { String($0.key) })
+        )
         var nativeOutputArgIndices: Set<Int> = []
         var nativeHeaderName: String?
         for try await arg in argsStream {
             guard arg != Generator.argsSeparator else {
                 break
             }
+
+            swiftProfile.consume(arg)
 
             if skipNext != 0 {
                 skipNext -= 1
@@ -355,6 +360,7 @@ extension Generator.ProcessSwiftArgs {
         }
 
         let originalFlags = args.joined(separator: " ").pbxProjEscaped
+        buildSettings.append(("BAZEL_PREVIEW_SWIFT_PROFILE", swiftProfile.isRequired ? "YES" : "NO"))
         let nativeInputArgs = args.enumerated()
             .filter { !nativeOutputArgIndices.contains($0.offset) }
             .map(\.element)
