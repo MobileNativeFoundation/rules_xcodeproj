@@ -101,13 +101,71 @@ _LIBRARY_INPUT_OPTS = {
 }
 
 
-def _remove_generated_inputs(linkopts, generated_product_paths):
+_STATIC_OPTION_OPERANDS = {
+    **{option: 1 for option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS},
+    "-sectcreate": 3, "-sectorder": 3, "-sectalign": 3,
+    "-reexport_framework": 1, "-upward_framework": 1, "-needed_framework": 1,
+    "-Xclang": 1, "-mllvm": 1, "-Xassembler": 1,
+    "-o": 1, "-e": 1, "-target": 1, "-arch": 1, "-isysroot": 1,
+    "-objc_abi_version": 1, "-object_path_lto": 1,
+}
+
+
+def _static_option_group_end(linkopts, index, *, driver_wrappers=False):
+    opt = linkopts[index]
+    forwarded = driver_wrappers and opt == "-Xlinker"
+    if forwarded:
+        index += 1
+        if index == len(linkopts):
+            raise ValueError("Malformed -Xlinker linker group")
+        opt = linkopts[index]
+    index += 1
+    for _ in range(_STATIC_OPTION_OPERANDS.get(opt, 0)):
+        if forwarded and index < len(linkopts) and linkopts[index] == "-Xlinker":
+            index += 1
+        if index == len(linkopts):
+            raise ValueError("Malformed " + opt + " option group")
+        index += 1
+    return index
+
+
+def _split_static_runtime_policy(linkopts):
+    """Separates declared driver policy before converting to linker tokens.
+
+    Provider values are raw argv, not shell text. Forwarded linker/compiler
+    values and known option operands are not driver options. Opaque dependency
+    response files remain linker inputs; do not build/read them for this query.
+    """
+    policy_options = {
+        "-fprofile-generate", "-fno-profile-generate",
+        "-fprofile-instr-generate", "-fno-profile-instr-generate",
+        "-nostdlib", "-nodefaultlibs", "-nostartfiles", "-nostdlib++",
+        "-fobjc-link-runtime", "-fno-objc-link-runtime",
+    }
+    policy_prefixes = (
+        "-fprofile-generate=", "-fprofile-instr-generate=", "-rtlib=", "--rtlib=",
+    )
+    remaining, policy = [], []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if opt in policy_options or any(opt.startswith(prefix) for prefix in policy_prefixes):
+            policy.append(opt)
+            index += 1
+            continue
+        start = index
+        index = _static_option_group_end(linkopts, index, driver_wrappers=True)
+        remaining.extend(linkopts[start:index])
+    return remaining, policy
+
+
+def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappers=True):
     """Removes exact native products together with their linker option group."""
     result = []
     index = 0
     while index < len(linkopts):
         opt = linkopts[index]
-        if opt.startswith("-Wl,"):
+        if driver_wrappers and opt.startswith("-Wl,"):
             values = _remove_generated_inputs(
                 opt[4:].split(","), generated_product_paths,
             )
@@ -118,7 +176,7 @@ def _remove_generated_inputs(linkopts, generated_product_paths):
 
         # Read a driver-forwarded linker token without leaving its -Xlinker
         # behind when the token or its complete library binding is removed.
-        option_index = index + (opt == "-Xlinker")
+        option_index = index + (driver_wrappers and opt == "-Xlinker")
         if option_index >= len(linkopts):
             result.append(opt)
             break
@@ -127,12 +185,12 @@ def _remove_generated_inputs(linkopts, generated_product_paths):
         if option in _WL_POSITIONAL_PATH_OPTS and option != "-filelist":
             # Section arguments are metadata/content, not positional libraries.
             for _ in range(max(_WL_POSITIONAL_PATH_OPTS[option])):
-                if end < len(linkopts) and linkopts[end] == "-Xlinker":
+                if driver_wrappers and end < len(linkopts) and linkopts[end] == "-Xlinker":
                     end += 1
                 end = min(end + 1, len(linkopts))
         elif option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS:
             value_index = end
-            if value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
+            if driver_wrappers and value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
                 value_index += 1
             if value_index < len(linkopts):
                 end = value_index + 1
@@ -290,14 +348,18 @@ def _static_library_linkopts(linkopts):
     index = 0
     while index < len(linkopts):
         opt = linkopts[index]
+        end = _static_option_group_end(linkopts, index, driver_wrappers=True)
         if opt == "-Xlinker":
-            if index + 1 == len(linkopts):
-                raise ValueError("Malformed -Xlinker linker group")
             result.append(linkopts[index + 1])
             index += 2
+            while index < end:
+                if linkopts[index] == "-Xlinker":
+                    index += 1
+                result.append(linkopts[index])
+                index += 1
         else:
-            result.extend(opt[4:].split(",") if opt.startswith("-Wl,") else [opt])
-            index += 1
+            result.extend(opt[4:].split(",") if opt.startswith("-Wl,") else linkopts[index:end])
+        index = end
 
     # These describe Bazel's debug outputs, not runtime dependencies. Xcode
     # produces its own equivalents; do not compile the selected target in Bazel
@@ -306,13 +368,13 @@ def _static_library_linkopts(linkopts):
     filtered = []
     index = 0
     while index < len(result):
+        end = _static_option_group_end(result, index)
         if result[index] in debug_options:
             if index + 1 == len(result) or result[index + 1].startswith("-"):
                 raise ValueError("Malformed " + result[index] + " linker group")
-            index += 2
         else:
-            filtered.append(result[index])
-            index += 1
+            filtered.extend(result[index:end])
+        index = end
     return filtered
 
 
@@ -333,7 +395,16 @@ def _process_linkopts(
     if is_static_library:
         linkopts = _static_library_linkopts(linkopts)
         excluded.update("@" + path for path in generated_product_paths)
-    linkopts = _remove_generated_inputs(linkopts, excluded)
+    linkopts = _remove_generated_inputs(
+        linkopts, excluded, driver_wrappers=not is_static_library,
+    )
+    static_operands = set()
+    if is_static_library:
+        index = 0
+        while index < len(linkopts):
+            end = _static_option_group_end(linkopts, index)
+            static_operands.update(range(index + 1, end))
+            index = end
 
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
@@ -346,6 +417,8 @@ def _process_linkopts(
         ]
 
     for index, linkopt in enumerate(linkopts):
+        if index in static_operands:
+            continue
         if linkopt == "-objc_abi_version":
             if (index < 1 or
                 index + 2 >= len(linkopts) or
@@ -432,6 +505,10 @@ def _process_linkopts(
         if skip_next:
             skip_next -= 1
             continue
+        if index in static_operands:
+            _process_linkopt(linkopt, index)
+            last_opt = linkopt
+            continue
 
         # Xcode provides its own LTO object path. Remove the complete Bazel
         # driver group so the leading `-Xlinker` can't become orphaned and
@@ -463,8 +540,11 @@ def _main(
     with open(generated_product_paths_file, encoding = "utf-8") as fp:
         generated_product_paths = json.load(fp)
 
+    linkopts = _parse_args(args_files, expand_response_files=not is_static_library)
+    if is_static_library:
+        linkopts, runtime_policy = _split_static_runtime_policy(linkopts)
     linkopts = _process_linkopts(
-        linkopts = _parse_args(args_files, expand_response_files=not is_static_library),
+        linkopts = linkopts,
         is_framework = is_framework,
         generated_product_paths = generated_product_paths,
         is_static_library = is_static_library,
@@ -473,6 +553,10 @@ def _main(
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
         result = "\n".join(linkopts)
         fp.write(f'{result}\n')
+    if is_static_library:
+        with open(output_path + ".runtime.json", encoding = "utf-8", mode = "w") as fp:
+            json.dump(runtime_policy, fp, separators=(",", ":"))
+            fp.write("\n")
 
 
 if __name__ == "__main__":

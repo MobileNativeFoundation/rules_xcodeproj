@@ -283,6 +283,25 @@ class RuntimeLinkParamsTests(unittest.TestCase):
             self.assertEqual((status, out.getvalue()), (1, ""))
             run.assert_not_called()
 
+    def test_cli_policy_file_preserves_literal_data_and_order(self):
+        policy = ["-fprofile-generate=Author's \\\"profile\\\" dir", "-nodefaultlibs"]
+        path = self.root / "policy data.json"
+        path.write_text(json.dumps(policy))
+        with mock.patch.object(runtime, "runtime_link_args", return_value=[]) as query:
+            self.assertEqual(runtime.main(self.cli("--driver-policy-file", str(path))), 0)
+        self.assertEqual(query.call_args.kwargs["driver_policy"], policy)
+
+    def test_cli_missing_or_malformed_policy_file_does_not_plan(self):
+        path = self.root / "policy.json"
+        for content in (None, "not json", "{}", '["-all_load"]'):
+            if content is not None:
+                path.write_text(content)
+            out, err = io.StringIO(), io.StringIO()
+            with mock.patch.object(runtime.subprocess, "run") as run, contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                status = runtime.main(self.cli("--driver-policy-file", str(path)))
+            self.assertEqual((status, out.getvalue()), (1, ""))
+            run.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

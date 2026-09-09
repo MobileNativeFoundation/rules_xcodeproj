@@ -204,7 +204,8 @@ extension Generator.CreateBuildPhases {
             buildPhases.append(
                 createCreateLinkDependenciesBuildPhaseObject(
                     subIdentifier: identifier.subIdentifier,
-                    hasCompileStub: hasCompileStub
+                    hasCompileStub: hasCompileStub,
+                    isStaticLibrary: productType == .staticLibrary
                 )
             )
         }

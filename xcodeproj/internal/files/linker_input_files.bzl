@@ -584,6 +584,7 @@ def _create_static_library_preview_link_params(
     params = actions.declare_file(
         "{}.rules_xcodeproj.preview.link.params".format(name),
     )
+    runtime_policy = actions.declare_file(params.basename + ".runtime.json", sibling = params)
     if user_link_flags:
         raw_params = actions.declare_file(params.basename + ".raw", sibling = params)
         products = actions.declare_file(params.basename + ".products.json", sibling = params)
@@ -598,11 +599,12 @@ def _create_static_library_preview_link_params(
             # The processor reads only argument metadata. Additional linker
             # artifacts are prepared in bl, not while generating the project.
             inputs = [raw_params, products],
-            outputs = [params],
+            outputs = [params, runtime_policy],
             mnemonic = "ProcessLinkParams",
             progress_message = "Generating %{output}",
         )
     else:
+        actions.write(output = runtime_policy, content = "[]\n")
         actions.write(
             output = params,
             content = "{}\n".format("\n".join([
@@ -611,6 +613,7 @@ def _create_static_library_preview_link_params(
             ])),
         )
 
+    preview_inputs[runtime_policy] = None
     return struct(
         dynamic_frameworks = tuple(dynamic_frameworks),
         file = params,

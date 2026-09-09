@@ -147,13 +147,20 @@ def main(argv=None):
     parser.add_argument("--sdk", required=True)
     parser.add_argument("--target", required=True)
     parser.add_argument("--swift-profile", choices=("YES", "NO"), required=True)
-    parser.add_argument("--driver-policy-json", default="[]")
+    policy_input = parser.add_mutually_exclusive_group()
+    policy_input.add_argument("--driver-policy-json", default="[]")
+    policy_input.add_argument("--driver-policy-file")
     arguments = parser.parse_args(argv)
     try:
+        if arguments.driver_policy_file:
+            with open(arguments.driver_policy_file, encoding="utf-8") as policy_file:
+                policy = json.load(policy_file)
+        else:
+            policy = json.loads(arguments.driver_policy_json)
         values = runtime_link_args(
             arguments.driver, arguments.sdk, arguments.target,
             swift_profile=arguments.swift_profile == "YES",
-            driver_policy=json.loads(arguments.driver_policy_json),
+            driver_policy=policy,
         )
         # Clang/ld response quoting, not shell quoting. Compute everything before
         # writing stdout so a failed plan cannot append a partial runtime list.

@@ -172,7 +172,8 @@ def _static_library_preview_path_boundaries_test_impl(ctx):
         for _, _, path in cases
     ]
     asserts.equals(env, "\n".join(expected) + "\n", writes[preview.file.path])
-    asserts.equals(env, files, list(preview.link_input_files), "Path anchoring does not change preparation ownership or retain the selected archive")
+    asserts.equals(env, _paths(files) + [preview.file.path + ".runtime.json"], _paths(preview.link_input_files), "Path anchoring does not change preparation ownership or retain the selected archive")
+    asserts.equals(env, "[]\n", writes[preview.file.path + ".runtime.json"])
     return unittest.end(env)
 
 static_library_preview_path_boundaries_test = unittest.make(
@@ -214,7 +215,7 @@ def _merged_static_library_preview_libraries_test_impl(ctx):
         product_files = (clang, swift),
     )
     asserts.equals(env, [dependency], list(preview.libraries))
-    asserts.equals(env, [dependency], list(preview.link_input_files))
+    asserts.equals(env, [dependency.path, preview.file.path + ".runtime.json"], _paths(preview.link_input_files))
     asserts.equals(
         env,
         [swift, dependency],
@@ -270,7 +271,7 @@ def _standalone_dynamic_library_preview_closure_test_impl(ctx):
         asserts.equals(env, [], list(preview.dynamic_frameworks))
         asserts.equals(
             env,
-            [resolved.path, fallback.path],
+            [resolved.path, fallback.path, preview.file.path + ".runtime.json"],
             _paths(preview.link_input_files),
             "materialize the emitted artifact, preferring resolved files and deduplicating in linker order",
         )
@@ -294,7 +295,7 @@ def _standalone_dynamic_library_preview_closure_test_impl(ctx):
         )
         asserts.equals(
             env,
-            [preview.file.path, resolved.path, fallback.path],
+            [preview.file.path, resolved.path, fallback.path, preview.file.path + ".runtime.json"],
             _paths(groups["bl standalone"].to_list()),
             "the Preview output group requests exact standalone producers",
         )
@@ -446,7 +447,7 @@ def _dynamic_only_static_library_preview_closure_test_impl(ctx):
     )
     asserts.equals(
         env,
-        [],
+        [preview_link_params.file.path + ".runtime.json"],
         _paths(preview_link_params.link_input_files),
         "dynamic-only closure materializes frameworks through their output group",
     )
@@ -935,7 +936,8 @@ def _static_library_preview_link_flags_test_impl(ctx):
 
             def run(**kwargs):
                 runs.append(kwargs)
-                ctx.actions.write(kwargs["outputs"][0], "transport-only test\n")
+                for output in kwargs["outputs"]:
+                    ctx.actions.write(output, "transport-only test\n")
 
             preview = linker_input_files.create_static_library_preview_link_params(
                 actions = struct(declare_file = ctx.actions.declare_file, write = write, run = run),
@@ -1008,7 +1010,8 @@ def _static_library_preview_link_flag_inputs_test_impl(ctx):
 
     def run(**kwargs):
         runs.append(kwargs)
-        ctx.actions.write(kwargs["outputs"][0], "transport-only test\n")
+        for output in kwargs["outputs"]:
+            ctx.actions.write(output, "transport-only test\n")
 
     preview = linker_input_files.create_static_library_preview_link_params(
         actions = struct(declare_file = ctx.actions.declare_file, write = write, run = run),
@@ -1022,7 +1025,8 @@ def _static_library_preview_link_flag_inputs_test_impl(ctx):
             _primary_static_library = primary,
         ),
     )
-    asserts.equals(env, [archive.static_library, symbols, response, dependency_object], list(preview.link_input_files), "Prepare required declared link files and dependency objects, never selected products/objects/autolink or debug modules")
+    asserts.equals(env, _paths([archive.static_library, symbols, response, dependency_object]) + [preview.file.path + ".runtime.json"], _paths(preview.link_input_files), "Prepare required declared link files and dependency objects, never selected products/objects/autolink or debug modules")
+    asserts.equals(env, [preview.file.path, preview.file.path + ".runtime.json"], _paths(runs[0]["outputs"]), "Runtime policy is a declared paired metadata output")
     asserts.equals(env, _paths([merged, primary, selected_object, selected_autolink]), json.decode(writes[preview.file.path + ".products.json"]), "Processor receives exact exclusion paths, including merged selected products")
     asserts.equals(env, flags, writes[preview.file.path + ".raw"].splitlines()[3:], "Repeated flags, wrappers, quotes and response references survive transport verbatim")
     asserts.equals(env, [preview.file.path + ".raw", preview.file.path + ".products.json"], _paths(runs[0]["inputs"]), "No generated link input becomes a project-generation action input")
@@ -1071,7 +1075,7 @@ def _static_library_preview_declared_flags_test_impl(ctx):
     verified = []
     for use_objc, with_archive, required_only in [(False, False, False), (False, True, False), (True, False, False), (True, True, False), (False, True, True)]:
         name = "DeclaredFlags_{}_{}_{}".format(use_objc, with_archive, required_only)
-        flags = ["-Wl,-u,_preview_registration"]
+        flags = ["-Wl,-u,_preview_registration", "-fprofile-instr-generate", "-nodefaultlibs"]
         selected = None
         additional_inputs = []
         if not required_only:
@@ -1111,11 +1115,14 @@ def _static_library_preview_declared_flags_test_impl(ctx):
             expected_args += ["-exported_symbols_list", '"$(PROJECT_DIR)/{}"'.format(symbols.path), '"@$(PROJECT_DIR)/{}"'.format(response.path), '"$(PROJECT_DIR)/{}"'.format(dependency_object.path)]
         ctx.actions.write(expected, "\n".join(expected_args) + "\n")
         marker = ctx.actions.declare_file(name + ".verified")
+        runtime_policy = preview.link_input_files[-1]
+        expected_policy = ctx.actions.declare_file(name + ".expected.runtime.json")
+        ctx.actions.write(expected_policy, '["-fprofile-instr-generate","-nodefaultlibs"]\n')
         ctx.actions.run_shell(
-            inputs = [preview.file, expected],
+            inputs = [preview.file, runtime_policy, expected, expected_policy],
             outputs = [marker],
-            arguments = [expected.path, preview.file.path, marker.path],
-            command = "diff -u \"$1\" \"$2\" && printf 'verified\\n' > \"$3\"",
+            arguments = [expected.path, preview.file.path, marker.path, expected_policy.path, runtime_policy.path],
+            command = "diff -u \"$1\" \"$2\" && diff -u \"$4\" \"$5\" && printf 'verified\\n' > \"$3\"",
         )
         verified.append(marker)
 

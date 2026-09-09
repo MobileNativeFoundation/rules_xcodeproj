@@ -11,6 +11,107 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_static_runtime_policy_is_ordered_and_separate_from_linker_args(self):
+        flags = [
+            "-fprofile-instr-generate", "-nodefaultlibs", "-fno-profile-generate",
+            "-fprofile-instr-generate", "-fprofile-generate=Author's profile dir",
+            "-rtlib=compiler-rt", "-fobjc-link-runtime", "-all_load",
+        ]
+        remaining, policy = link_params_processor._split_static_runtime_policy(flags)
+        self.assertEqual(policy, flags[:-1])
+        self.assertEqual(remaining, ["-all_load"])
+
+    def test_static_runtime_policy_preserves_namespaces_and_option_values(self):
+        for flags in [
+            ["-u", "-fprofile-generate"],
+            ["-framework", "-nodefaultlibs"],
+            ["-L", "-fprofile-generate"],
+            ["-reexport_framework", "-nostdlib"],
+            ["-sectcreate", "__DATA", "-fprofile-generate", "-nodefaultlibs"],
+            ["-sectalign", "__DATA", "-fprofile-generate", "4000"],
+            ["-Xlinker", "-u", "-Xlinker", "-fobjc-link-runtime"],
+            ["-Xlinker", "-nostdlib"],
+            ["-Wl,-u,-fprofile-generate,-all_load"],
+            ["-Xclang", "-fprofile-instr-generate"],
+            ["-mllvm", "-fprofile-generate"],
+            ["-Xassembler", "-nostdlib"],
+            ["@missing.rsp", "-filelist", "missing.objlist"],
+        ]:
+            with self.subTest(flags=flags):
+                remaining, policy = link_params_processor._split_static_runtime_policy(
+                    flags + ["-fprofile-generate"],
+                )
+                self.assertEqual(remaining, flags)
+                self.assertEqual(policy, ["-fprofile-generate"])
+
+    def test_static_runtime_policy_rejects_malformed_known_groups(self):
+        for flags in (["-u"], ["-Xlinker"], ["-Xlinker", "-force_load"],
+                      ["-sectalign", "__DATA"], ["-Xclang"]):
+            with self.subTest(flags=flags), self.assertRaisesRegex(ValueError, "Malformed"):
+                link_params_processor._split_static_runtime_policy(flags)
+
+    def test_static_driver_carriers_are_literal_unforwarded_operands(self):
+        for flags, expected, policy in [
+            (["-u", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-Xlinker"], ["-fprofile-generate"]),
+            (["-u", "-Wl,-fprofile-generate", "-nodefaultlibs"],
+             ["-u", "-Wl,-fprofile-generate"], ["-nodefaultlibs"]),
+            (["-Xlinker", "-u", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-fprofile-generate"], []),
+            (["-Xlinker", "-u", "-Xlinker", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-Xlinker"], ["-fprofile-generate"]),
+        ]:
+            with self.subTest(flags=flags):
+                remaining, actual_policy = link_params_processor._split_static_runtime_policy(flags)
+                self.assertEqual(actual_policy, policy)
+                self.assertEqual(link_params_processor._process_linkopts(
+                    remaining + ["selected.a"], False, ["selected.a"], is_static_library=True,
+                ), expected)
+
+    def test_static_policy_lookalikes_survive_canonical_skip_rules(self):
+        for spelling in ("direct", "forwarded", "comma"):
+            values = ["-u", "-fobjc-link-runtime", "-u", "-add_ast_path", "-all_load"]
+            flags = values if spelling == "direct" else (
+                [value for token in values for value in ("-Xlinker", token)]
+                if spelling == "forwarded" else ["-Wl," + ",".join(values)]
+            )
+            with self.subTest(spelling=spelling):
+                remaining, policy = link_params_processor._split_static_runtime_policy(flags)
+                self.assertEqual(policy, [])
+                self.assertEqual(link_params_processor._process_linkopts(
+                    remaining, False, [], is_static_library=True,
+                ), values)
+
+    def test_static_runtime_policy_sidecar_is_declared_data_not_shell_text(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            source = root / "raw.params"
+            selected = root / "selected.json"
+            output = root / "preview.params"
+            policy = "-fprofile-generate=Author's \\\"profile\\\" directory"
+            source.write_text("libtool\n" + policy + "\n-u\n_retained\n@missing.rsp\n")
+            selected.write_text("[]")
+            link_params_processor._main(
+                str(output), str(selected), False, [str(source)],
+                is_static_library=True,
+            )
+            self.assertEqual(json.loads(pathlib.Path(str(output) + ".runtime.json").read_text()), [policy])
+            self.assertEqual(shlex.split(output.read_text()), [
+                "-u", "_retained", "@$(PROJECT_DIR)/missing.rsp",
+            ])
+
+    def test_nonstatic_processing_does_not_create_runtime_sidecar(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            source = root / "raw.params"
+            selected = root / "selected.json"
+            output = root / "link.params"
+            source.write_text("clang\n-fprofile-instr-generate\n")
+            selected.write_text("[]")
+            link_params_processor._main(str(output), str(selected), False, [str(source)])
+            self.assertEqual(output.read_text(), "-fprofile-instr-generate\n")
+            self.assertFalse(pathlib.Path(str(output) + ".runtime.json").exists())
+
     def test_source_archive_survives_execution_root_symlink_replanting(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)

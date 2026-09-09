@@ -186,6 +186,20 @@ extension Generator.CalculatePlatformVariantBuildSettings {
                 )
             )
             if productType == .staticLibrary {
+                // Index preparation requests compile/index inputs, not bl.
+                // Reuse the existing input in inactive configurations so the
+                // phase never requires an unprepared runtime-policy sidecar.
+                buildSettings += [
+                    .init(
+                        key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX",
+                        value: (
+                            "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_" +
+                            "$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))"
+                        ).pbxProjEscaped
+                    ),
+                    .init(key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_", value: ".runtime.json"),
+                    .init(key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO", value: ".runtime.json"),
+                ]
                 // Xcode 26 derives a static-library target's Preview link
                 // closure from its Libtool task, not from OTHER_LDFLAGS.
                 // Create Link Dependencies truncates this response file for
