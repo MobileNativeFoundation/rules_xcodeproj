@@ -77,6 +77,7 @@ _SPLIT_NON_PATH_OPTS = {
     "-framework",
     "-install_name",
     "-sub_umbrella",
+    "-u",
     "-umbrella",
     "-undefined",
     "-weak_framework",
@@ -225,7 +226,7 @@ def _anchor_to_execution_root(
     response-file quoting before emitting the absolute paths for the analyzer.
     """
     def _anchor_path(path: str, *, allow_bare: bool = False) -> str:
-        if (not path.startswith(("-", "@", "/", "'", "$")) and
+        if (not path.startswith(("-", "@", "/", "$")) and
             (allow_bare or "/" in path or path.endswith(_DIRECT_INPUT_SUFFIXES))):
             return "$(PROJECT_DIR)/" + path
         return path
@@ -307,11 +308,13 @@ def _process_linkopts(
         generated_product_paths: List[str],
         *, is_static_library: bool = False,
     ) -> List[str]:
-    # Bazel may serialize an argument with whole-argument shell quotes.
-    linkopts = [
-        shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
-        for opt in linkopts
-    ]
+    # Bazel action arguments may have shell quoting. Static provider arguments
+    # are already individual values: their quote characters are literal data.
+    if not is_static_library:
+        linkopts = [
+            shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
+            for opt in linkopts
+        ]
     excluded = set(generated_product_paths)
     if is_static_library:
         linkopts = _static_library_linkopts(linkopts)

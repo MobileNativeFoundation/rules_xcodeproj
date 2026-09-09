@@ -76,6 +76,16 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 ["-Xlinker"], False, [], is_static_library=True,
             )
 
+    def test_static_preview_provider_arguments_are_not_shell_serialized(self):
+        processed = link_params_processor._process_linkopts(
+            ["-force_load", "'literal archive.a'", "-u", "symbol/with.a"],
+            False, [], is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-force_load", "$(PROJECT_DIR)/'literal archive.a'",
+            "-u", "symbol/with.a",
+        ])
+
     def test_selected_library_option_groups_are_removed_atomically(self):
         selected = "bazel-out/bin/libSelected.a"
         dependency = "external/dependency/libDependency.a"
