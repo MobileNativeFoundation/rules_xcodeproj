@@ -211,7 +211,8 @@ def _quote_if_needed(opt: str) -> str:
 
 
 def _anchor_to_execution_root(
-        opt: str, *, path_context: bool = False, response_files: bool = False
+        opt: str, *, path_context: bool = False, response_files: bool = False,
+        source_archive: bool = True,
     ) -> str:
     """Makes a relative linker input readable by Xcode's Preview analyzer.
 
@@ -219,15 +220,26 @@ def _anchor_to_execution_root(
     `-working-directory` covers for the real link. The Preview analyzer
     re-parses the rendered invocation without honoring that working directory,
     so path-like inputs must carry their execution-root anchor explicitly.
+    Workspace source archives instead use SRCROOT so concurrent Bazel builds
+    cannot interrupt their availability by replanting execution-root symlinks.
 
     This response is consumed by Clang, including the Preview analyzer's
     request for an expanded ld invocation. Quote the entire anchored argument:
     the build-setting expansion can itself contain spaces. Clang removes the
     response-file quoting before emitting the absolute paths for the analyzer.
     """
-    def _anchor_path(path: str, *, allow_bare: bool = False) -> str:
+    def _anchor_path(
+            path: str, *, allow_bare: bool = False, archive: bool = source_archive
+        ) -> str:
         if (not path.startswith(("-", "@", "/", "$")) and
             (allow_bare or "/" in path or path.endswith(_DIRECT_INPUT_SUFFIXES))):
+            # Canonical workspace archives are source files, not Bazel outputs.
+            # Index builds can replant their execution-root symlinks while the
+            # Preview analyzer is loading them after native preparation ends.
+            if (archive and path.endswith(".a") and
+                not path.startswith(("bazel-out/", "external/")) and
+                not any(part in (".", "..") for part in path.split("/"))):
+                return "$(SRCROOT)/" + path
             return "$(PROJECT_DIR)/" + path
         return path
 
@@ -235,7 +247,7 @@ def _anchor_to_execution_root(
         opt == prefix or opt.startswith(prefix + "/")
         for prefix in ("@rpath", "@loader_path", "@executable_path")
     ):
-        return _quote_if_needed("@" + _anchor_path(opt[1:], allow_bare=True))
+        return _quote_if_needed("@" + _anchor_path(opt[1:], allow_bare=True, archive=False))
 
     anchored = _anchor_path(opt, allow_bare=path_context)
     if anchored != opt:
@@ -244,7 +256,7 @@ def _anchor_to_execution_root(
     for prefix in ("-F", "-L"):
         if opt.startswith(prefix) and len(opt) > len(prefix):
             path = opt[len(prefix):]
-            anchored_path = _anchor_path(path, allow_bare=True)
+            anchored_path = _anchor_path(path, allow_bare=True, archive=False)
             if anchored_path != path:
                 return _quote_if_needed(prefix + anchored_path)
 
@@ -255,6 +267,7 @@ def _anchor_to_execution_root(
                 values[index + 1] = _anchor_path(
                     values[index + 1],
                     allow_bare=True,
+                    archive=value in _LIBRARY_INPUT_OPTS and value != "-filelist",
                 )
             for offset in _WL_POSITIONAL_PATH_OPTS.get(value, ()):
                 path_index = index + offset
@@ -262,6 +275,7 @@ def _anchor_to_execution_root(
                     values[path_index] = _anchor_path(
                         values[path_index],
                         allow_bare=True,
+                        archive=False,
                     )
         anchored = ",".join(values)
         if anchored != opt:
@@ -409,6 +423,8 @@ def _process_linkopts(
                 path_context=(previous_option in _SPLIT_PATH_OPTS or
                               (is_static_library and opt.endswith(".o"))),
                 response_files=is_static_library,
+                source_archive=(previous_option not in _SPLIT_PATH_OPTS or
+                                previous_option in _LIBRARY_INPUT_OPTS - {"-filelist"}),
             ))
 
     skip_next = 0

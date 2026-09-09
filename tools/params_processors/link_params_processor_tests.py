@@ -11,6 +11,70 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_source_archive_survives_execution_root_symlink_replanting(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            workspace = root / "Author's workspace"
+            execution_root = root / "execution root"
+            workspace.mkdir()
+            execution_root.mkdir()
+            archive = workspace / "libDirectoryKit.a"
+            archive.write_bytes(b"!<arch>\n")
+            link = execution_root / archive.name
+            link.symlink_to(archive)
+            processed = link_params_processor._process_linkopts(
+                ["-force_load", archive.name], False, [],
+                is_static_library=True,
+            )
+            response = "\n".join(processed).replace(
+                "$(PROJECT_DIR)", str(execution_root),
+            ).replace("$(SRCROOT)", str(workspace))
+            linked_archive = pathlib.Path(shlex.split(response)[1])
+            self.assertEqual(linked_archive.read_bytes(), b"!<arch>\n")
+
+            # Bazel replants the source symlink forest during another build.
+            # The Preview analyzer must not depend on that transient symlink.
+            link.unlink()
+            self.assertTrue(linked_archive.is_file())
+            self.assertEqual(linked_archive, archive)
+
+    def test_source_archive_anchor_preserves_generated_and_external_namespaces(self):
+        for path, anchor in [
+            ("libDependency.a", "$(SRCROOT)"),
+            ("Vendor/Author's Library/libDependency.a", "$(SRCROOT)"),
+            ("bazel-out/config/bin/libDependency.a", "$(PROJECT_DIR)"),
+            ("external/dependency/libDependency.a", "$(PROJECT_DIR)"),
+            ("../dependency/libDependency.a", "$(PROJECT_DIR)"),
+            ("./bazel-out/config/bin/libDependency.a", "$(PROJECT_DIR)"),
+            ("Vendor/../bazel-out/libDependency.a", "$(PROJECT_DIR)"),
+            ("Vendor/libDependency.dylib", "$(PROJECT_DIR)"),
+        ]:
+            for static in (False, True):
+                with self.subTest(path=path, static=static):
+                    processed = link_params_processor._process_linkopts(
+                        ["-force_load", path], False, [],
+                        is_static_library=static,
+                    )
+                    self.assertEqual(shlex.split("\n".join(processed)), [
+                        "-force_load", anchor + "/" + path,
+                    ])
+
+    def test_archive_suffix_does_not_reanchor_non_library_path_values(self):
+        for flags, expected in [
+            (["-FVendor.a"], ["-F$(PROJECT_DIR)/Vendor.a"]),
+            (["-L", "Vendor.a"], ["-L", "$(PROJECT_DIR)/Vendor.a"]),
+            (["-rpath", "Vendor.a"], ["-rpath", "$(PROJECT_DIR)/Vendor.a"]),
+            (["-Wl,-order_file,ordering.a"], ["-order_file", "$(PROJECT_DIR)/ordering.a"]),
+            (["@autolink.a"], ["@$(PROJECT_DIR)/autolink.a"]),
+            (["-Wl,-filelist,objects.a"], ["-filelist", "$(PROJECT_DIR)/objects.a"]),
+            (["-u", "symbol.a"], ["-u", "symbol.a"]),
+        ]:
+            with self.subTest(flags=flags):
+                processed = link_params_processor._process_linkopts(
+                    flags, False, [], is_static_library=True,
+                )
+                self.assertEqual(shlex.split("\n".join(processed)), expected)
+
     def test_static_preview_canonicalizes_declared_dependency_flags(self):
         flags = [
             "-Wl,-u,_retained,-weak_framework,OptionalKit",
@@ -166,7 +230,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 "external/swiftpkg/libDependency.a",
                 '"$(PROJECT_DIR)/external/swiftpkg/libDependency.a"',
             ),
-            ("libDependency.a", '"$(PROJECT_DIR)/libDependency.a"'),
+            ("libDependency.a", '"$(SRCROOT)/libDependency.a"'),
             (
                 "-Fexternal/swiftpkg/Dependency.framework",
                 '"-F$(PROJECT_DIR)/external/swiftpkg/Dependency.framework"',
@@ -187,7 +251,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
             ),
             (
                 "-Wl,-force_load,libDependency.a",
-                '"-Wl,-force_load,$(PROJECT_DIR)/libDependency.a"',
+                '"-Wl,-force_load,$(SRCROOT)/libDependency.a"',
             ),
             (
                 "-Wl,-order_file,external/swiftpkg/order.txt",
@@ -213,7 +277,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
             ),
             (
                 "-Wl,-load_hidden,libDependency.a",
-                '"-Wl,-load_hidden,$(PROJECT_DIR)/libDependency.a"',
+                '"-Wl,-load_hidden,$(SRCROOT)/libDependency.a"',
             ),
             ("/absolute/libDependency.a", "/absolute/libDependency.a"),
             ("@response.params", "@response.params"),
@@ -296,7 +360,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
                 "-Xlinker",
                 "-force_load",
                 "-Xlinker",
-                '"$(PROJECT_DIR)/libDependency.a"',
+                '"$(SRCROOT)/libDependency.a"',
             ],
         )
 
