@@ -20,6 +20,17 @@ def _swift_preview_inputs(action, swift_info):
 
     import_files = []
     import_paths = []
+
+    # A generated bridging header is an input to the native compile, even when
+    # it is not part of a Clang module's public header inventory.
+    for i in range(len(argv) - 1):
+        if argv[i] == "-import-objc-header":
+            path = argv[i + 1]
+            if path == "-Xfrontend" and i + 2 < len(argv):
+                path = argv[i + 2]
+            file = inputs.get(path)
+            if file and not file.is_source and file.path not in outputs:
+                import_files.append(file)
     if swift_info:
         # The direct context is the exact compile inventory; propagated
         # providers can also contain re-exports and the selected module itself.

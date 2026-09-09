@@ -78,6 +78,21 @@ def _swift_explicit_inputs_test_impl(ctx):
     asserts.equals(env, sorted([source.path, header.path]), sorted([f.path for f in cc_inputs.to_list()]))
     asserts.false(env, own_module in cc_inputs.to_list())
     asserts.false(env, pcm in cc_inputs.to_list())
+
+    # Bridging headers may be generated swiftc_inputs, without a Clang module.
+    for flags in [["-import-objc-header", header.path], ["-Xfrontend", "-import-objc-header", "-Xfrontend", header.path]]:
+        bridging = compiler_args.swift_preview_inputs(
+            struct(argv = flags, inputs = depset([header, own_module, pcm]), outputs = depset([own_module])),
+            None,
+        )
+        asserts.equals(env, [header], bridging.files.to_list())
+        asserts.equals(env, (), bridging.paths)
+    for path in ["unowned.h", own_module.path]:
+        bridging = compiler_args.swift_preview_inputs(
+            struct(argv = ["-import-objc-header", path], inputs = depset([own_module]), outputs = depset([own_module])),
+            None,
+        )
+        asserts.equals(env, [], bridging.files.to_list())
     return unittest.end(env)
 
 swift_explicit_inputs_test = unittest.make(_swift_explicit_inputs_test_impl)
