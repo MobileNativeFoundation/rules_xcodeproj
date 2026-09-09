@@ -31,6 +31,14 @@ def _swift_preview_inputs(action, swift_info):
             file = inputs.get(path)
             if file and not file.is_source and file.path not in outputs:
                 import_files.append(file)
+
+    # Native compilation retains macro flags without compiling the selected
+    # Bazel target, so its executable plugins must be prepared independently.
+    for i in range(len(argv) - 3):
+        if argv[i:i + 3] == ["-Xfrontend", "-load-plugin-executable", "-Xfrontend"]:
+            plugin = inputs.get(argv[i + 3].rpartition("#")[0])
+            if plugin and plugin.path not in outputs:
+                import_files.append(plugin)
     if swift_info:
         # The direct context is the exact compile inventory; propagated
         # providers can also contain re-exports and the selected module itself.
