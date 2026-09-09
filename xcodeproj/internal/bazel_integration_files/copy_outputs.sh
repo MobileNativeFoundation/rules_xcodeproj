@@ -201,7 +201,8 @@ stage_preview_resource_bundles() (
     for (( index=0; index<${#owned_names[@]}; index++ )); do
       if [[ "${owned_names[index]}" != "$name" ]]; then continue; fi
       identity="${owned_ids[index]}"
-      if [[ "${owned_sources[index]}" != "$source" ]]; then
+      if [[ "${owned_sources[index]}" != "$source" && \
+            "${owned_targets[index]}" != "$owner" ]]; then
         echo >&2 "error: Preview resource bundle destination belongs to a different source: $destination"
         return 1
       fi
@@ -240,24 +241,31 @@ stage_preview_resource_bundles() (
       mkdir "$destination"
     fi
     identity="$(stat -f '%d:%i' "$destination")"
-    local owner_index="${#owned_names[@]}"
+    local owner_index="${#owned_names[@]}" source_changed=""
     for (( other=0; other<${#owned_names[@]}; other++ )); do
       if [[ "${owned_names[other]}" != "$name" ]]; then continue; fi
+      if [[ "${owned_sources[other]}" != "$source" ]]; then source_changed=YES; fi
       owned_ids[other]="$identity"
       if [[ "${owned_targets[other]}" == "$owner" ]]; then owner_index="$other"; fi
     done
     owned_names[owner_index]="$name"
     owned_ids[owner_index]="$identity"
     owned_targets[owner_index]="$owner"
+    # `/` cannot be a requested .bundle source. Persist it while migrating so
+    # either retry or rollback forces copying after a partial transfer failure.
+    # Only successful copying below advances the receipt to the requested source.
     owned_sources[owner_index]="$source"
+    if [[ -n "$source_changed" ]]; then owned_sources[owner_index]=/; fi
     # Record ownership before copying, so partial copies remain recoverable.
     write_preview_resource_receipt
     "$rsync" --copy-links --recursive --times --delete --perms --chmod=u+w \
+      ${source_changed:+--ignore-times} \
       --out-format="%n%L" "$source/" "$destination/"
     if [[ ! -f "$destination/Info.plist" ]]; then
       echo >&2 "error: Preview resource bundle was not copied completely: $destination"
       return 1
     fi
+    owned_sources[owner_index]="$source"
   done
 
   for (( index=0; index<${#owned_names[@]}; index++ )); do

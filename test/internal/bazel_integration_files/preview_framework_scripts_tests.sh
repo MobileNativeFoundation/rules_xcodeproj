@@ -595,6 +595,7 @@ run_resource_copy_mode() {
     ENABLE_PREVIEWS="${5:-NO}" \
     ENABLE_XOJIT_PREVIEWS=YES \
     DERIVED_FILE_DIR="$case_dir/Derived/$owner" \
+    PROJECT_DIR="${10:-$case_dir/execroot}" \
     PREVIEW_FRAMEWORK_PATHS= \
     PREVIEW_RESOURCE_BUNDLE_PATHS="$paths" \
     TARGET_BUILD_DIR="$case_dir/build products/Features/Example" \
@@ -684,6 +685,127 @@ fi
 grep -q 'different source' "$resource_case/different.err" || fail "different source was not diagnosed"
 diff -r "$resource_a" "$resource_destination/First Resources.bundle"
 run_resource_copy_mode "$resource_case" Library ""
+
+# Regenerating the same project against a new output base keeps target ownership.
+for old_state in present missing; do
+  migration_case="$test_root/resource-migration-$old_state"
+  old_root="$migration_case/old base/execroot/workspace"
+  new_root="$migration_case/new base/execroot/workspace"
+  old_bundle="$old_root/bazel-out/config/bin/Resources.bundle"
+  new_bundle="$new_root/bazel-out/config/bin/Resources.bundle"
+  destination="$migration_case/build products/Features/Example/Resources.bundle"
+  mkdir -p "$old_bundle" "$new_bundle"
+  printf 'old plist' > "$old_bundle/Info.plist"
+  printf 'old only' > "$old_bundle/removed.txt"
+  printf 'new plist' > "$new_bundle/Info.plist"
+  touch -t 202001020304.05 "$old_bundle/Info.plist" "$new_bundle/Info.plist"
+  run_resource_copy_mode "$migration_case" A "\"$old_bundle\"" YES NO build "" "" "" "$old_root"
+  old_identity="$(stat -f '%d:%i' "$destination")"
+  mkdir "${destination%/*}/Unknown.bundle"
+  printf 'unknown' > "${destination%/*}/Unknown.bundle/value"
+  if [[ "$old_state" == missing ]]; then mv "$old_bundle" "$old_root/retained.bundle"; fi
+  run_resource_copy_mode "$migration_case" A "\"$new_bundle\"" YES NO build "" "" "" "$new_root"
+  diff -r "$new_bundle" "$destination"
+  [[ "$(< "${destination%/*}/Unknown.bundle/value")" == unknown ]] || fail "resource migration changed unknown neighbor"
+  assert_equals "$old_identity" "$(stat -f '%d:%i' "$destination")" "owned resource migration identity"
+  grep -Fxq "$new_bundle" "${destination%/*}/.rules_xcodeproj_preview_resource_bundles" || \
+    fail "resource migration did not update its source receipt"
+  warm_identity="$(stat -f '%d:%i:%m' "$destination/Info.plist")"
+  run_resource_copy_mode "$migration_case" A "\"$new_bundle\"" YES NO build "" "" "" "$new_root"
+  assert_equals "$warm_identity" "$(stat -f '%d:%i:%m' "$destination/Info.plist")" "unchanged resource file after migration"
+
+  # A second owner's claim prevents one target from silently redirecting it.
+  run_resource_copy_mode "$migration_case" B "\"$new_bundle\""
+  mkdir -p "$old_bundle"
+  printf 'different source' > "$old_bundle/Info.plist"
+  if run_resource_copy_mode "$migration_case" A "\"$old_bundle\"" \
+    > "$migration_case/shared.out" 2> "$migration_case/shared.err"; then
+    fail "resource migration ignored another owner's claim"
+  fi
+  grep -q 'different source' "$migration_case/shared.err" || fail "resource owner conflict not diagnosed"
+  diff -r "$new_bundle" "$destination"
+done
+
+# A failed migration may already have copied equal-size/equal-mtime new bytes.
+# Both retrying the new source and rolling back must recopy, without granting
+# another owner or an externally replaced destination permission to recover.
+for recovery in old new other-owner replaced; do
+  retry_case="$test_root/resource-migration-recovery-$recovery"
+  retry_old="$retry_case/old/Resources.bundle"
+  retry_new="$retry_case/new/Resources.bundle"
+  retry_destination="$retry_case/build products/Features/Example/Resources.bundle"
+  retry_integration="$retry_case/failing-integration"
+  retry_receipt="${retry_destination%/*}/.rules_xcodeproj_preview_resource_bundles"
+  mkdir -p "$retry_old" "$retry_new" "$retry_integration"
+  printf 'old plist' > "$retry_old/Info.plist"
+  printf 'new plist' > "$retry_new/Info.plist"
+  touch -t 202001020304.05 "$retry_old/Info.plist" "$retry_new/Info.plist"
+  ln -s "$repo_root/xcodeproj/internal/bazel_integration_files/rsync" "$retry_integration/real-rsync"
+  # Real transfer followed by a simulated later failure, not a no-op mock.
+  # shellcheck disable=SC2016
+  printf '#!/bin/bash\nset -e\n"${0%%/*}/real-rsync" "$@"\nexit 23\n' > "$retry_integration/rsync"
+  chmod +x "$retry_integration/rsync"
+  run_resource_copy_mode "$retry_case" A "\"$retry_old\""
+  if run_resource_copy_mode "$retry_case" A "\"$retry_new\"" YES NO build "$retry_integration" \
+    > "$retry_case/failure.out" 2> "$retry_case/failure.err"; then
+    fail "failed migration unexpectedly succeeded"
+  else
+    assert_equals 23 "$?" "simulated later migration failure"
+  fi
+  assert_equals 'new plist' "$(< "$retry_destination/Info.plist")" "failed migration actually copied new bytes"
+  pending_source="$(sed -n '4p' "$retry_receipt")"
+  if [[ "$recovery" == old || "$recovery" == new ]]; then
+    retry_source="$retry_case/$recovery/Resources.bundle"
+    run_resource_copy_mode "$retry_case" A "\"$retry_source\""
+    diff -r "$retry_source" "$retry_destination"
+    grep -Fxq "$retry_source" "$retry_receipt" || fail "successful recovery did not advance the source claim"
+    warm_identity="$(stat -f '%d:%i:%m' "$retry_destination/Info.plist")"
+    run_resource_copy_mode "$retry_case" A "\"$retry_source\""
+    assert_equals "$warm_identity" "$(stat -f '%d:%i:%m' "$retry_destination/Info.plist")" "unchanged resource after recovery"
+  else
+    recovery_owner=B
+    if [[ "$recovery" == replaced ]]; then
+      recovery_owner=A
+      mv "$retry_destination" "$retry_case/retained.bundle"
+      mkdir "$retry_destination"
+      printf 'foreign plist' > "$retry_destination/Info.plist"
+    fi
+    identity="$(stat -f '%d:%i' "$retry_destination")"
+    contents="$(< "$retry_destination/Info.plist")"
+    if run_resource_copy_mode "$retry_case" "$recovery_owner" "\"$retry_old\"" \
+      > "$retry_case/recovery.out" 2> "$retry_case/recovery.err"; then
+      fail "pending migration accepted $recovery recovery"
+    fi
+    assert_equals "$identity" "$(stat -f '%d:%i' "$retry_destination")" "rejected recovery destination identity"
+    assert_equals "$contents" "$(< "$retry_destination/Info.plist")" "rejected recovery destination bytes"
+    assert_equals / "$(sed -n '4p' "$retry_receipt")" "rejected recovery keeps pending source"
+  fi
+  assert_equals / "$pending_source" "failed migration pending source"
+done
+
+# A valid migration cannot change the destination before a later invalid input.
+readonly invalid_migration_case="$test_root/resource-invalid-migration"
+run_resource_copy_mode "$invalid_migration_case" A "\"$resource_a\""
+if run_resource_copy_mode "$invalid_migration_case" A "\"$different_source\" \"$invalid_migration_case/Missing.bundle\"" \
+  > "$invalid_migration_case/failure.out" 2> "$invalid_migration_case/failure.err"; then
+  fail "invalid resource closure allowed an earlier source migration"
+fi
+grep -q 'not materialized' "$invalid_migration_case/failure.err" || fail "invalid migration input not diagnosed"
+diff -r "$resource_a" "$invalid_migration_case/build products/Features/Example/First Resources.bundle"
+
+# Replacing an owned directory invalidates permission to migrate it.
+readonly replaced_migration_case="$test_root/resource-replaced-migration"
+readonly replaced_migration_destination="$replaced_migration_case/build products/Features/Example/First Resources.bundle"
+run_resource_copy_mode "$replaced_migration_case" A "\"$resource_a\""
+mv "$replaced_migration_destination" "$replaced_migration_case/retained.bundle"
+mkdir "$replaced_migration_destination"
+printf 'replacement' > "$replaced_migration_destination/value"
+if run_resource_copy_mode "$replaced_migration_case" A "\"$different_source\"" \
+  > "$replaced_migration_case/failure.out" 2> "$replaced_migration_case/failure.err"; then
+  fail "resource migration adopted an externally replaced directory"
+fi
+grep -q 'not owned' "$replaced_migration_case/failure.err" || fail "resource replacement not diagnosed"
+[[ "$(< "$replaced_migration_destination/value")" == replacement ]] || fail "resource replacement changed"
 
 # Existing directories, files and links are not adopted, even if the contents match.
 for destination_kind in directory file symlink; do
