@@ -725,3 +725,107 @@ run_resource_copy_mode "$partial_case" A "\"$resource_a\""
 diff -r "$resource_a" "$partial_case/build products/Features/Example/First Resources.bundle"
 run_resource_copy_mode "$partial_case" A ""
 [[ ! -e "$partial_case/build products/Features/Example/First Resources.bundle" ]] || fail "recovered copy was not cleaned"
+
+# Concurrent owners must retain each other's entries and remove the last copy
+# only after every owner has released it.
+readonly concurrent_resources="$test_root/concurrent-resources"
+readonly concurrent_destination="$concurrent_resources/build products/Features/Example"
+resource_pids=()
+for owner_number in 1 2 3 4 5 6 7 8; do
+  run_resource_copy_mode "$concurrent_resources" "Owner$owner_number" "$resource_paths" \
+    > "$test_root/resource-owner-$owner_number.log" 2>&1 &
+  resource_pids+=("$!")
+done
+for resource_pid in "${resource_pids[@]}"; do wait "$resource_pid"; done
+diff -r "$resource_a" "$concurrent_destination/First Resources.bundle"
+for owner_number in 1 2 3 4 5 6 7 8; do
+  grep -Fq "$concurrent_resources/Derived/Owner$owner_number" \
+    "$concurrent_destination/.rules_xcodeproj_preview_resource_bundles" || \
+    fail "concurrent resource owner was lost"
+done
+mkdir "$concurrent_destination/Unowned.bundle"
+resource_pids=()
+for owner_number in 1 2 3 4 5 6 7 8; do
+  run_resource_copy_mode "$concurrent_resources" "Owner$owner_number" "" \
+    > "$test_root/resource-release-$owner_number.log" 2>&1 &
+  resource_pids+=("$!")
+done
+for resource_pid in "${resource_pids[@]}"; do wait "$resource_pid"; done
+[[ ! -e "$concurrent_destination/First Resources.bundle" ]] || fail "last concurrent owner retained stale copy"
+[[ -d "$concurrent_destination/Unowned.bundle" ]] || fail "concurrent cleanup removed an unowned bundle"
+
+# Kill only the task-created copying subshell through its mock rsync child.
+# An untrappable exit must not leave a permanent lock blocking later builds.
+readonly killed_case="$test_root/killed-resource-writer"
+readonly killed_integration="$killed_case/integration"
+mkdir -p "$killed_integration"
+# Expanded by the mock child, not by this test process.
+# shellcheck disable=SC2016
+printf '#!/bin/bash\nkill -KILL "$PPID"\n' > "$killed_integration/rsync"
+chmod +x "$killed_integration/rsync"
+if run_resource_copy_mode "$killed_case" A "\"$resource_a\"" YES NO build "$killed_integration" \
+  > "$killed_case/failure.out" 2> "$killed_case/failure.err"; then
+  fail "killed resource writer unexpectedly succeeded"
+fi
+run_resource_copy_mode "$killed_case" A "\"$resource_a\"" \
+  > "$killed_case/retry.out" 2> "$killed_case/retry.err" || \
+  fail "terminated resource writer left an unrecoverable ownership lock"
+diff -r "$resource_a" "$killed_case/build products/Features/Example/First Resources.bundle"
+
+# A live owner is never displaced, and waiting for it remains bounded.
+readonly held_case="$test_root/held-resource-lock"
+readonly held_destination="$held_case/build products/Features/Example"
+mkdir -p "$held_destination"
+(
+  exec 9>> "$held_destination/.rules_xcodeproj_preview_resource_bundles.lockfile"
+  /usr/bin/python3 -c 'import fcntl; fcntl.flock(9, fcntl.LOCK_EX)'
+  touch "$held_case/ready"
+  for (( attempt=0; attempt<200; attempt++ )); do
+    if [[ -f "$held_case/release" ]]; then exit; fi
+    sleep 0.1
+  done
+) &
+held_pid="$!"
+for (( attempt=0; attempt<100; attempt++ )); do
+  if [[ -f "$held_case/ready" ]]; then break; fi
+  sleep 0.1
+done
+[[ -f "$held_case/ready" ]] || fail "resource lock holder did not start"
+if run_resource_copy_mode "$held_case" A "\"$resource_a\"" \
+  > "$held_case/failure.out" 2> "$held_case/failure.err"; then
+  fail "live resource lock owner was displaced"
+fi
+grep -q 'Unable to acquire Preview resource bundle ownership lock' "$held_case/failure.err" || \
+  fail "bounded lock wait diagnostic was not emitted"
+[[ ! -e "$held_destination/First Resources.bundle" ]] || fail "resource staging bypassed held lock"
+touch "$held_case/release"
+wait "$held_pid"
+run_resource_copy_mode "$held_case" A "\"$resource_a\""
+diff -r "$resource_a" "$held_destination/First Resources.bundle"
+
+# Never follow or replace a pre-existing non-file lock path.
+for lock_kind in symlink directory; do
+  lock_case="$test_root/invalid-resource-lock-$lock_kind"
+  lock_destination="$lock_case/build products/Features/Example"
+  lock_path="$lock_destination/.rules_xcodeproj_preview_resource_bundles.lockfile"
+  mkdir -p "$lock_destination"
+  if [[ "$lock_kind" == symlink ]]; then
+    printf 'unowned lock target\n' > "$lock_case/unowned"
+    ln -s "$lock_case/unowned" "$lock_path"
+  else
+    mkdir "$lock_path"
+  fi
+  if run_resource_copy_mode "$lock_case" A "\"$resource_a\"" \
+    > "$lock_case/failure.out" 2> "$lock_case/failure.err"; then
+    fail "invalid resource lock was accepted"
+  fi
+  grep -q 'Invalid Preview resource bundle ownership lock' "$lock_case/failure.err" || \
+    fail "invalid resource lock diagnostic was not emitted"
+  [[ ! -e "$lock_destination/First Resources.bundle" ]] || fail "invalid lock allowed resource staging"
+  if [[ "$lock_kind" == symlink ]]; then
+    [[ -L "$lock_path" && "$(< "$lock_case/unowned")" == 'unowned lock target' ]] || \
+      fail "unowned lock symlink or target was changed"
+  else
+    [[ -d "$lock_path" ]] || fail "unowned lock directory was changed"
+  fi
+done

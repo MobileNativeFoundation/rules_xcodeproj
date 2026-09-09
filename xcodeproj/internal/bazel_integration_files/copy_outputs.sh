@@ -108,8 +108,8 @@ stage_preview_resource_bundles() (
   local destination_dir="$1"
   local owner="$DERIVED_FILE_DIR"
   local receipt="$destination_dir/.rules_xcodeproj_preview_resource_bundles"
-  local lock="$receipt.lock"
-  local parsed_paths="" name identity source destination index other attempts=0
+  local lock="$receipt.lockfile"
+  local parsed_paths="" name identity source destination index other
   local -a bundle_paths=() bundle_names=()
   local -a owned_names=() owned_ids=() owned_targets=() owned_sources=()
 
@@ -125,17 +125,18 @@ stage_preview_resource_bundles() (
     return 1
   fi
   mkdir -p "$destination_dir"
-  # Serialize the small shared registry and copies. Never wait indefinitely or
-  # delete a lock left by another process.
-  until mkdir "$lock" 2>/dev/null; do
-    if (( attempts == 100 )); then
-      echo >&2 "error: Timed out waiting for Preview resource bundle ownership lock: $lock"
-      return 1
-    fi
-    attempts=$((attempts + 1))
-    sleep 0.1
-  done
-  trap 'rmdir "$lock"' EXIT
+  # Hold a descriptor lock for this subshell and its copies. The kernel releases
+  # it even after an untrappable exit. Keep the file so all waiters use one inode.
+  if [[ -L "$lock" || ( -e "$lock" && ! -f "$lock" ) ]]; then
+    echo >&2 "error: Invalid Preview resource bundle ownership lock: $lock"
+    return 1
+  fi
+  exec 9>> "$lock"
+  if ! /usr/bin/python3 -c \
+    'import fcntl, signal; signal.alarm(10); fcntl.flock(9, fcntl.LOCK_EX)'; then
+    echo >&2 "error: Unable to acquire Preview resource bundle ownership lock: $lock"
+    return 1
+  fi
   if [[ -L "$receipt" || ( -e "$receipt" && ! -f "$receipt" ) ]]; then
     echo >&2 "error: Invalid Preview resource bundle ownership receipt: $receipt"
     return 1
