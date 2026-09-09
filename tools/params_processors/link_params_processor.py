@@ -89,6 +89,7 @@ _DIRECT_INPUT_SUFFIXES = (
 )
 
 _LIBRARY_INPUT_OPTS = {
+    "-filelist",
     "-force_load",
     "-load_hidden",
     "-merge_library",
@@ -147,7 +148,7 @@ def _remove_generated_inputs(linkopts, generated_product_paths):
     return result
 
 
-def _parse_args(args_files: List[str]) -> List[str]:
+def _parse_args(args_files: List[str], *, expand_response_files: bool = True) -> List[str]:
     def _is_redirect(arg: str) -> bool:
         # dyld paths are linker values, not response files.
         return arg.startswith("@") and not any(
@@ -178,12 +179,15 @@ def _parse_args(args_files: List[str]) -> List[str]:
 
     # Some actions put their complete tool-plus-arguments list behind one
     # redirect. Expand that first-level redirect before dropping the tool.
-    if _is_redirect(raw_args[0]):
+    if expand_response_files and _is_redirect(raw_args[0]):
         raw_args = _expand_redirect(raw_args[0]) + raw_args[1:]
 
     tool = raw_args[0]
     if not tool or tool.startswith("-") or tool.startswith("@"):
         raise ValueError("Link arguments do not contain a tool")
+
+    if not expand_response_files:
+        return raw_args[1:]
 
     # The first argument across all chunks is the tool name. Later chunks start
     # with real arguments and must not lose their first value.
@@ -205,7 +209,9 @@ def _quote_if_needed(opt: str) -> str:
     return opt
 
 
-def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
+def _anchor_to_execution_root(
+        opt: str, *, path_context: bool = False, response_files: bool = False
+    ) -> str:
     """Makes a relative linker input readable by Xcode's Preview analyzer.
 
     Relative inputs are relative to the Bazel execution root, which
@@ -223,6 +229,12 @@ def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
             (allow_bare or "/" in path or path.endswith(_DIRECT_INPUT_SUFFIXES))):
             return "$(PROJECT_DIR)/" + path
         return path
+
+    if response_files and opt.startswith("@") and not any(
+        opt == prefix or opt.startswith(prefix + "/")
+        for prefix in ("@rpath", "@loader_path", "@executable_path")
+    ):
+        return _quote_if_needed("@" + _anchor_path(opt[1:], allow_bare=True))
 
     anchored = _anchor_path(opt, allow_bare=path_context)
     if anchored != opt:
@@ -257,17 +269,54 @@ def _anchor_to_execution_root(opt: str, *, path_context: bool = False) -> str:
     return _quote_if_needed(opt)
 
 
+def _static_library_linkopts(linkopts):
+    """Unwraps driver flags for Xcode's Libtool Preview-info consumer."""
+    result = []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if opt == "-Xlinker":
+            if index + 1 == len(linkopts):
+                raise ValueError("Malformed -Xlinker linker group")
+            result.append(linkopts[index + 1])
+            index += 2
+        else:
+            result.extend(opt[4:].split(",") if opt.startswith("-Wl,") else [opt])
+            index += 1
+
+    # These describe Bazel's debug outputs, not runtime dependencies. Xcode
+    # produces its own equivalents; do not compile the selected target in Bazel
+    # just to populate a Preview metadata response.
+    debug_options = {"-add_ast_path", "-object_path_lto", "-objc_abi_version"}
+    filtered = []
+    index = 0
+    while index < len(result):
+        if result[index] in debug_options:
+            if index + 1 == len(result) or result[index + 1].startswith("-"):
+                raise ValueError("Malformed " + result[index] + " linker group")
+            index += 2
+        else:
+            filtered.append(result[index])
+            index += 1
+    return filtered
+
+
 def _process_linkopts(
         linkopts: List[str],
         is_framework: bool,
-        generated_product_paths: List[str]
+        generated_product_paths: List[str],
+        *, is_static_library: bool = False,
     ) -> List[str]:
     # Bazel may serialize an argument with whole-argument shell quotes.
     linkopts = [
         shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
         for opt in linkopts
     ]
-    linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
+    excluded = set(generated_product_paths)
+    if is_static_library:
+        linkopts = _static_library_linkopts(linkopts)
+        excluded.update("@" + path for path in generated_product_paths)
+    linkopts = _remove_generated_inputs(linkopts, excluded)
 
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
@@ -300,9 +349,9 @@ def _process_linkopts(
     processed_linkopts = []
     last_opt = None
     def _process_linkopt(opt, index):
-        if opt == "-filelist":
+        if not is_static_library and opt == "-filelist":
             return
-        if last_opt == "-filelist":
+        if not is_static_library and last_opt == "-filelist":
             # `_process_filelist` anchors and quotes each entry as needed.
             processed_linkopts.extend(_process_filelist(opt))
             return
@@ -319,7 +368,7 @@ def _process_linkopts(
             return
 
         # Xcode adds object files
-        if opt.endswith(".o"):
+        if not is_static_library and opt.endswith(".o"):
             return
 
         # We don't want the BwB swizzle fix for BwX mode
@@ -354,7 +403,9 @@ def _process_linkopts(
         else:
             processed_linkopts.append(_anchor_to_execution_root(
                 opt,
-                path_context=previous_option in _SPLIT_PATH_OPTS,
+                path_context=(previous_option in _SPLIT_PATH_OPTS or
+                              (is_static_library and opt.endswith(".o"))),
+                response_files=is_static_library,
             ))
 
     skip_next = 0
@@ -387,15 +438,17 @@ def _main(
         output_path: str,
         generated_product_paths_file: str,
         is_framework: bool,
-        args_files: List[str]
+        args_files: List[str],
+        *, is_static_library: bool = False,
     ) -> None:
     with open(generated_product_paths_file, encoding = "utf-8") as fp:
         generated_product_paths = json.load(fp)
 
     linkopts = _process_linkopts(
-        linkopts = _parse_args(args_files),
+        linkopts = _parse_args(args_files, expand_response_files=not is_static_library),
         is_framework = is_framework,
         generated_product_paths = generated_product_paths,
+        is_static_library = is_static_library,
     )
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
@@ -407,7 +460,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 5:
         print(
             f"""
-Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework> \
+Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework|static> \
 <args_files...>\
 """,
             file = sys.stderr,
@@ -419,4 +472,5 @@ Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework> \
         sys.argv[2],
         sys.argv[3] == "1",
         sys.argv[4:],
+        is_static_library = sys.argv[3] == "static",
     )

@@ -11,6 +11,71 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_static_preview_canonicalizes_declared_dependency_flags(self):
+        flags = [
+            "-Wl,-u,_retained,-weak_framework,OptionalKit",
+            "-Xlinker", "-reexport_library", "-Xlinker", "external/lib.dylib",
+            "-Wl,-add_ast_path,bazel-out/Selected.swiftmodule",
+            "-Xlinker", "-add_ast_path", "-Xlinker", "bazel-out/Dependency.swiftmodule",
+            "-L", "external/lib", "-lDependency",
+            "external/dependency.modulewrap.o", "@external/dependency.autolink",
+            "bazel-out/selected.o", "@bazel-out/selected.autolink",
+            "-Wl,-rpath,@loader_path/Frameworks",
+        ]
+        processed = link_params_processor._process_linkopts(
+            flags, False, ["bazel-out/selected.o", "bazel-out/selected.autolink"],
+            is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-u", "_retained", "-weak_framework", "OptionalKit",
+            "-reexport_library", "$(PROJECT_DIR)/external/lib.dylib",
+            "-L", "$(PROJECT_DIR)/external/lib", "-lDependency",
+            "$(PROJECT_DIR)/external/dependency.modulewrap.o",
+            "@$(PROJECT_DIR)/external/dependency.autolink",
+            "-rpath", "@loader_path/Frameworks",
+        ])
+
+    def test_static_preview_does_not_materialize_response_inputs_during_generation(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            params = root / "raw.params"
+            exclusions = root / "selected.json"
+            output = root / "preview.params"
+            params.write_text(
+                "libtool\n@external/missing.autolink\n"
+                "-Wl,-filelist,external/missing.objlist\n",
+                encoding="utf-8",
+            )
+            exclusions.write_text("[]", encoding="utf-8")
+            link_params_processor._main(
+                str(output), str(exclusions), False, [str(params)],
+                is_static_library=True,
+            )
+            self.assertEqual(
+                shlex.split(output.read_text(encoding="utf-8")),
+                ["@$(PROJECT_DIR)/external/missing.autolink",
+                 "-filelist", "$(PROJECT_DIR)/external/missing.objlist"],
+            )
+            # Ordinary top-level processing still requires its response input.
+            with self.assertRaises(FileNotFoundError):
+                link_params_processor._parse_args([str(params)])
+
+    def test_static_preview_removes_owned_driver_metadata(self):
+        processed = link_params_processor._process_linkopts(
+            ["-Wl,-object_path_lto,bazel-out/Selected.lto.o",
+             "-Wl,-objc_abi_version,2", "-ObjC", "external/dependency.o"],
+            False, [], is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-ObjC", "$(PROJECT_DIR)/external/dependency.o",
+        ])
+
+    def test_static_preview_rejects_dangling_driver_forwarding(self):
+        with self.assertRaisesRegex(ValueError, "Malformed -Xlinker"):
+            link_params_processor._process_linkopts(
+                ["-Xlinker"], False, [], is_static_library=True,
+            )
+
     def test_selected_library_option_groups_are_removed_atomically(self):
         selected = "bazel-out/bin/libSelected.a"
         dependency = "external/dependency/libDependency.a"
