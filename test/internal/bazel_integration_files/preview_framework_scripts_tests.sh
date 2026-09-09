@@ -402,6 +402,26 @@ assert_link \
   fail "XOJIT binary framework symlink is incomplete"
 [[ ! -e "$binary_xojit_case/build products/libStatic.a" ]] || \
   fail "XOJIT copied a stale Bazel binary product"
+
+# The generated native source can already occupy its sibling destination.
+# Preserve that exact Xcode product, while staging a different-package product.
+readonly native_owner_case="$test_root/native-framework-owner"
+readonly native_sibling="$native_owner_case/build products/Native.framework"
+readonly native_other="$native_owner_case/other package/Other.framework"
+make_framework "$native_sibling"
+make_framework "$native_other"
+native_identity="$(stat -f '%d:%i' "$native_sibling")"
+readonly native_identity
+for repeat in 1 2; do
+  run_binary_copy_mode "$native_owner_case" NO YES \
+    "\"$native_sibling\" \"$native_other\""
+  [[ ! -L "$native_sibling" ]] || fail "native product was replaced by a symlink"
+  assert_equals "$native_identity" "$(stat -f '%d:%i' "$native_sibling")" \
+    "native product ownership on run $repeat"
+  assert_equals binary "$(cat "$native_sibling/Native")" "native executable"
+  assert_link "$native_owner_case/build products/Other.framework" "$native_other"
+done
+
 readonly ordinary_case="$test_root/copy-ordinary"
 run_copy_mode "$ordinary_case" NO NO "$preview_paths"
 [[ ! -e "$ordinary_case/build products/First Framework.framework" ]] || \

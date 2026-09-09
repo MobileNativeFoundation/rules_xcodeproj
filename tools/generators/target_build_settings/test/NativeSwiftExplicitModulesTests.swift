@@ -158,7 +158,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
             + ["-emit-const-values-path", "bazel-out/config/bin/values.json"]
         func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
-            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0"]
+            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "", "0"]
             var input = envelope
             if owned { input.append(manifestURL.path) }
             input.append(contentsOf: ["", swift, clang, "", "swift_worker", "swiftc"])

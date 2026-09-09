@@ -33,8 +33,46 @@ final class PreviewResourceBuildSettingsTests: XCTestCase {
         XCTAssertNil(settings["OTHER_SWIFT_FLAGS"])
     }
 
+    func test_nativeFrameworkPathsUseXcodeProductsOnlyInNativeMode() async throws {
+        let focused = #""$(BAZEL_OUT)/Focused.framework""#
+        let imported = #""$(SRCROOT)/Imported With Spaces.framework""#
+        let all = focused + " " + imported
+        let native = #""$(BUILD_DIR)/other-package/Focused.framework" "# + imported
+        let settings = try await buildSettings(
+            resourceBundlePaths: "", frameworkPaths: all,
+            nativeFrameworkPaths: native
+        )
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS"], "$(PREVIEW_FRAMEWORK_PATHS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped)
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS__"], all.pbxProjEscaped)
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS__NO"], all.pbxProjEscaped)
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS__YES"], native.pbxProjEscaped)
+    }
+
+    func test_singleFocusedFrameworkKeepsNativeProductPath() async throws {
+        let paths = #""$(BAZEL_OUT)/Focused.framework""#
+        let native = #""$(BUILD_DIR)/other-package/Focused.framework""#
+        let settings = try await buildSettings(
+            resourceBundlePaths: "", frameworkPaths: paths,
+            nativeFrameworkPaths: native
+        )
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS__YES"], native.pbxProjEscaped)
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS__NO"], paths.pbxProjEscaped)
+    }
+
+    func test_unfocusedFrameworksKeepExistingSetting() async throws {
+        let paths = #""$(BAZEL_OUT)/Unfocused.framework""#
+        let settings = try await buildSettings(
+            resourceBundlePaths: "", frameworkPaths: paths,
+            nativeFrameworkPaths: paths
+        )
+        XCTAssertEqual(settings["PREVIEW_FRAMEWORK_PATHS"], paths.pbxProjEscaped)
+        XCTAssertNil(settings["PREVIEW_FRAMEWORK_PATHS__YES"])
+    }
+
     private func buildSettings(
         resourceBundlePaths: String,
+        frameworkPaths: String = "",
+        nativeFrameworkPaths: String = "",
         swiftArguments: [String] = ["swift_worker", "swiftc", "-Onone"]
     ) async throws -> [String: String] {
         let arguments = [
@@ -47,7 +85,8 @@ final class PreviewResourceBuildSettingsTests: XCTestCase {
             "", // provisioning-profile-name
             "", // team-id
             "false", // provisioning-profile-is-xcode-managed
-            "", // previews-framework-paths
+            frameworkPaths,
+            nativeFrameworkPaths,
             resourceBundlePaths,
             "bazel-out/preview-includes",
             "false", // separate-index-build-output-base

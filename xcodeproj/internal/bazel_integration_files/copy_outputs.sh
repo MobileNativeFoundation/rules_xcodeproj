@@ -72,10 +72,12 @@ stage_preview_frameworks() {
     done
     framework_names+=("$framework_name")
 
+    # A focused native framework can already be its consumer's sibling. It is
+    # Xcode's product, not a staging collision; never replace that directory.
+    if [[ "$destination" -ef "$framework_path" ]]; then
+      continue
+    fi
     if [[ -L "$destination" ]]; then
-      if [[ "$destination" -ef "$framework_path" ]]; then
-        continue
-      fi
       echo >&2 "error: Preview framework destination points to a different source: $destination"
       return 1
     fi
@@ -90,6 +92,9 @@ stage_preview_frameworks() {
          framework_index<${#framework_paths[@]}; \
          framework_index++ )); do
     local destination="$destination_dir/${framework_names[framework_index]}"
+    if [[ "$destination" -ef "${framework_paths[framework_index]}" ]]; then
+      continue
+    fi
     if [[ ! -L "$destination" ]]; then
       if ! ln -s "${framework_paths[framework_index]}" "$destination" \
         2>/dev/null; then
