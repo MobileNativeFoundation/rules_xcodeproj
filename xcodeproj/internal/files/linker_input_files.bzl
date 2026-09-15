@@ -424,8 +424,16 @@ def _map_static_library_preview_dynamic_frameworks(
 
 def _preview_execution_root_path(file):
     path = file.path
-    if path.startswith("/"):
+    if path.startswith("/") or path.startswith("$"):
         return path
+
+    # Index builds can replant execution-root source symlinks while Xcode's
+    # Preview analyzer is still loading them. Anchor workspace source archives
+    # before either writing the response or forwarding it to the processor.
+    if (file.is_source and file.extension == "a" and
+        not path.startswith("external/") and
+        not any([part in [".", ".."] for part in path.split("/")])):
+        return "$(SRCROOT)/{}".format(path)
     return "$(PROJECT_DIR)/{}".format(path)
 
 def _quote_preview_link_arg(arg):
@@ -465,7 +473,8 @@ def _create_static_library_preview_link_params(
         actions,
         name,
         linker_inputs,
-        product_files = EMPTY_TUPLE):
+        product_files = EMPTY_TUPLE,
+        tool = None):
     """Creates Libtool inputs for a static library's Xcode Preview closure.
 
     Xcode 26 derives Preview static library inputs from the target's Libtool
@@ -488,6 +497,7 @@ def _create_static_library_preview_link_params(
         product_files: Products whose sources are merged into this native
             target. Exclude all of them, not only the primary archive, to avoid
             loading Bazel's copy of the same definitions into the Preview JIT.
+        tool: The link params processor, required when declared link flags exist.
 
     Returns:
         A `struct` with `dynamic_frameworks`, `file`, `libraries`, and
@@ -509,7 +519,40 @@ def _create_static_library_preview_link_params(
         linker_inputs,
     )
 
-    if not libraries and not dynamic_frameworks and not dynamic_libraries:
+    objc = linker_inputs._compilation_providers.objc
+    if objc:
+        user_link_flags = getattr(objc, "linkopt", EMPTY_DEPSET).to_list()
+        additional_inputs = getattr(objc, "link_inputs", EMPTY_DEPSET).to_list()
+    else:
+        # Keep each LinkerInput's ordered flag sequence, including repeated
+        # options. A depset of individual flags would lose option/value pairs.
+        user_link_flags = [
+            flag
+            for input in linker_inputs._cc_linker_inputs
+            for flag in getattr(input, "user_link_flags", EMPTY_TUPLE)
+        ]
+        additional_inputs = [
+            file
+            for input in linker_inputs._cc_linker_inputs
+            for file in getattr(input, "additional_inputs", EMPTY_TUPLE)
+        ]
+    native_products = list(product_files)
+    if linker_inputs._primary_static_library:
+        native_products.append(linker_inputs._primary_static_library)
+    native_owners = {file.owner: None for file in native_products}
+    excluded_paths = {file.path: None for file in native_products}
+    preview_inputs = {file: None for file in libraries + dynamic_libraries}
+    for file in additional_inputs:
+        # Xcode emits the selected target's objects/autolink information. Do
+        # not make generation or Preview preparation compile its Bazel copy.
+        if (file.owner in native_owners and
+            file.extension in ["o", "autolink", "objlist"]):
+            excluded_paths[file.path] = None
+        elif file.path not in excluded_paths and file.extension != "swiftmodule":
+            preview_inputs[file] = None
+
+    if (not libraries and not dynamic_frameworks and not dynamic_libraries and
+        not user_link_flags):
         return None
 
     args = []
@@ -541,18 +584,40 @@ def _create_static_library_preview_link_params(
     params = actions.declare_file(
         "{}.rules_xcodeproj.preview.link.params".format(name),
     )
-    actions.write(
-        output = params,
-        content = "{}\n".format("\n".join([
-            _quote_preview_link_arg(arg)
-            for arg in args
-        ])),
-    )
+    runtime_policy = actions.declare_file(params.basename + ".runtime.json", sibling = params)
+    if user_link_flags:
+        raw_params = actions.declare_file(params.basename + ".raw", sibling = params)
+        products = actions.declare_file(params.basename + ".products.json", sibling = params)
+        actions.write(
+            output = raw_params,
+            content = "\n".join(["libtool"] + args + user_link_flags) + "\n",
+        )
+        actions.write(output = products, content = json.encode(excluded_paths.keys()))
+        actions.run(
+            executable = tool,
+            arguments = [params.path, products.path, "static", raw_params.path],
+            # The processor reads only argument metadata. Additional linker
+            # artifacts are prepared in bl, not while generating the project.
+            inputs = [raw_params, products],
+            outputs = [params, runtime_policy],
+            mnemonic = "ProcessLinkParams",
+            progress_message = "Generating %{output}",
+        )
+    else:
+        actions.write(output = runtime_policy, content = "[]\n")
+        actions.write(
+            output = params,
+            content = "{}\n".format("\n".join([
+                _quote_preview_link_arg(arg)
+                for arg in args
+            ])),
+        )
 
+    preview_inputs[runtime_policy] = None
     return struct(
         dynamic_frameworks = tuple(dynamic_frameworks),
         file = params,
-        link_input_files = tuple(libraries + dynamic_libraries),
+        link_input_files = tuple(preview_inputs),
         libraries = tuple(libraries),
     )
 

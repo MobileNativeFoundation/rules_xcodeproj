@@ -87,6 +87,7 @@ def _process_library_target(
                 actions = ctx.actions,
                 linker_inputs = linker_inputs,
                 name = label.name,
+                tool = ctx.executable._link_params_processor,
             )
         )
 
@@ -165,6 +166,11 @@ def _process_library_target(
         generate_swift_debug_settings = bool(args.swift),
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_direct_dependencies = direct_dependencies,
+        previews_xcode_targets = depset(transitive = [
+            info.xcode_targets
+            for info in transitive_infos
+        ]),
         previews_resource_bundles = previews_resource_bundles,
         separate_index_build_output_base = (
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value

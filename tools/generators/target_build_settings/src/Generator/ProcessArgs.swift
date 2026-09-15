@@ -103,6 +103,8 @@ extension Generator.ProcessArgs {
         )
         let previewsFrameworkPaths =
             try rawArguments.consumeArg("previews-framework-paths")
+        let nativePreviewsFrameworkPaths =
+            try rawArguments.consumeArg("native-previews-framework-paths")
         let previewsResourceBundlePaths =
             try rawArguments.consumeArg("previews-resource-bundle-paths")
         let previewsIncludePath =
@@ -154,6 +156,16 @@ extension Generator.ProcessArgs {
             nativeSwiftManifests: manifests,
             previewSwiftImportPaths: Set(previewImportPaths)
         )
+
+        if nativePreviewsFrameworkPaths != previewsFrameworkPaths {
+            buildSettings.removeAll { $0.key == "PREVIEW_FRAMEWORK_PATHS" }
+            buildSettings.append(contentsOf: [
+                ("PREVIEW_FRAMEWORK_PATHS", "$(PREVIEW_FRAMEWORK_PATHS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__", previewsFrameworkPaths.pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__NO", previewsFrameworkPaths.pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__YES", nativePreviewsFrameworkPaths.pbxProjEscaped),
+            ])
+        }
 
         guard generateBuildSettings else {
             return ([], clangArgs, frameworkIncludes, swiftIncludes)

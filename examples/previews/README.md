@@ -87,6 +87,13 @@ validation; they are not covered by this example.
 
 ## Canvas session troubleshooting
 
+Edits to sources excluded from a focused project, or to Bazel-managed resources,
+may not trigger a Canvas update. With the matching Preview scheme selected, use
+Product > Build, then refresh the Canvas to prepare and load those changes.
+Refreshing alone can reuse the previous dependency products. This workflow does
+not require an ordinary `Debug` build, and is separate from automatic updates to
+the selected target's Swift source.
+
 If changing from an app scheme to a library scheme reports `unableToFindTarget`,
 first check the scheme/source pairing above. A stale target graph also reproduced
 in a stock native Xcode 26.5 project: closing and reopening only that project,

@@ -279,7 +279,9 @@ def _collect_output_files(
     # does not include linked products, avoiding large binary materialization.
     indexing_depset = memory_efficient_depset(
         [indexstores_filelist],
-        transitive = [transitive_indexstores],
+        # Cached compilation can leave native compiler inputs (for example
+        # executable macros) remote. Make the prepared inputs explicit outputs.
+        transitive = [transitive_indexstores, preview_swift_import_files],
     )
 
     direct_group_list = [

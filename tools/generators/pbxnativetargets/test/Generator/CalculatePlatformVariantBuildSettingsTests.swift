@@ -257,6 +257,10 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
                 "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
             "OTHER_LIBTOOLFLAGS":
                 "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX":
+                "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_": ".runtime.json",
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO": ".runtime.json",
         ])
 
         // Act
@@ -272,6 +276,21 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
             buildSettings.asDictionary,
             expectedBuildSettings
         )
+    }
+
+    func test_runtimePolicyInputOnlyExistsForNativeNonIndexBuilds() async throws {
+        let settings = try await calculatePlatformVariantBuildSettingsWithDefaults(
+            platformVariant: .mock(linkParams: "bazel-out/some/link.params")
+        ).asDictionary
+        for action in ["", "build", "indexbuild", "install"] {
+            for native in ["", "NO", "YES"] {
+                for arena in ["", "NO", "YES"] {
+                    let key = "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_\(action)_\(native)_\(arena)"
+                    let expected = action == "build" && native == "YES" && arena != "YES" ? ".runtime.json" : ""
+                    XCTAssertEqual(settings[key] ?? "", expected, key)
+                }
+            }
+        }
     }
 
     func test_linkParams_nonStaticLibrary() async throws {
@@ -321,6 +340,10 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
                 "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
             "OTHER_LIBTOOLFLAGS":
                 "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX":
+                "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_": ".runtime.json",
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO": ".runtime.json",
         ])
 
         // Act

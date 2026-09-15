@@ -20,6 +20,25 @@ def _swift_preview_inputs(action, swift_info):
 
     import_files = []
     import_paths = []
+
+    # A generated bridging header is an input to the native compile, even when
+    # it is not part of a Clang module's public header inventory.
+    for i in range(len(argv) - 1):
+        if argv[i] == "-import-objc-header":
+            path = argv[i + 1]
+            if path == "-Xfrontend" and i + 2 < len(argv):
+                path = argv[i + 2]
+            file = inputs.get(path)
+            if file and not file.is_source and file.path not in outputs:
+                import_files.append(file)
+
+    # Native compilation retains macro flags without compiling the selected
+    # Bazel target, so its executable plugins must be prepared independently.
+    for i in range(len(argv) - 3):
+        if argv[i:i + 3] == ["-Xfrontend", "-load-plugin-executable", "-Xfrontend"]:
+            plugin = inputs.get(argv[i + 3].rpartition("#")[0])
+            if plugin and plugin.path not in outputs:
+                import_files.append(plugin)
     if swift_info:
         # The direct context is the exact compile inventory; propagated
         # providers can also contain re-exports and the selected module itself.
@@ -36,7 +55,7 @@ def _swift_preview_inputs(action, swift_info):
                     if type(file) == "File":
                         dependency_paths[file.path] = None
         for module in swift_info.transitive_modules.to_list():
-            if getattr(module, "is_system", False) or getattr(module, "is_framework", False):
+            if getattr(module, "is_system", False):
                 continue
             swift = getattr(module, "swift", None)
             swiftmodule = getattr(swift, "swiftmodule", None) if swift else None

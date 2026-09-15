@@ -568,11 +568,14 @@ archive_preview_framework_test = rule(
 
 def _preview_swift_imports_test_impl(ctx):
     env = unittest.begin(ctx)
-    files = [ctx.actions.declare_file(path) for path in ["Local.swiftmodule", "local/module.modulemap", "local/header.h"]]
+    files = [ctx.actions.declare_file(path) for path in ["Local.swiftmodule", "local/module.modulemap", "local/header.h", "macro_plugin"]]
     ctx.actions.run_shell(outputs = files, command = "exit 1")
     fields = _collect_output_groups(ctx, [], preview_swift_import_files = depset(files))
     asserts.equals(env, _paths(depset(files)), _paths(fields["bf target-id"]))
     asserts.equals(env, [], _paths(fields["bc target-id"]))
+    for file in files:
+        asserts.true(env, file.path in _paths(fields["bi target-id"]))
+        asserts.false(env, file.path in _paths(fields["bp target-id"]))
     return unittest.end(env)
 
 preview_swift_imports_test = unittest.make(_preview_swift_imports_test_impl)

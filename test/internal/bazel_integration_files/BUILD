@@ -8,6 +8,13 @@ py_test(
     main = "calculate_output_groups_tests.py",
 )
 
+py_test(
+    name = "preview_runtime_link_params",
+    srcs = ["preview_runtime_link_params_tests.py"],
+    data = ["//xcodeproj/internal/bazel_integration_files:preview_runtime_link_params.py"],
+    main = "preview_runtime_link_params_tests.py",
+)
+
 sh_test(
     name = "libtool_facade",
     srcs = ["libtool_facade_tests.sh"],
@@ -32,5 +39,6 @@ test_suite(
         ":calculate_output_groups",
         ":libtool_facade",
         ":preview_framework_scripts",
+        ":preview_runtime_link_params",
     ],
 )

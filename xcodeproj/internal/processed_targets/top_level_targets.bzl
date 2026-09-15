@@ -477,6 +477,11 @@ def _process_focused_top_level_target(
         infoplist = infoplist,
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_direct_dependencies = direct_dependencies,
+        previews_xcode_targets = depset(transitive = [
+            info.xcode_targets
+            for info in transitive_infos
+        ]),
         previews_resource_bundles = previews_resource_bundles,
         previews_include_path = (
             mergeable_info.previews_include_path if mergeable_info else EMPTY_STRING
