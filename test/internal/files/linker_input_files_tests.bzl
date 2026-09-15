@@ -1078,6 +1078,8 @@ def _static_library_preview_declared_flags_test_impl(ctx):
         flags = ["-Wl,-u,_preview_registration", "-fprofile-instr-generate", "-nodefaultlibs"]
         selected = None
         additional_inputs = []
+        symbols = None
+        response = None
         if not required_only:
             selected = ctx.actions.declare_file(name + ".selected.a")
             selected_object = ctx.actions.declare_file(name + ".selected.o")
