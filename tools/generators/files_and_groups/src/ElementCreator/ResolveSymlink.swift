@@ -58,6 +58,26 @@ extension ElementCreator.ResolveSymlink {
             return nil
         }
 
-        return pathToResolve
+        let destination = URL(fileURLWithPath: pathToResolve)
+        let hasTrailingDotComponent = destination.lastPathComponent == "." ||
+            destination.lastPathComponent == ".."
+        let directoryToCanonicalize = hasTrailingDotComponent
+            ? destination
+            : destination.deletingLastPathComponent()
+        guard let resolvedPath = try? directoryToCanonicalize
+            .appendingPathComponent(".")
+            .resourceValues(forKeys: [.canonicalPathKey])
+            .canonicalPath
+        else {
+            return pathToResolve
+        }
+
+        let resolved = URL(fileURLWithPath: resolvedPath).standardizedFileURL
+        if hasTrailingDotComponent {
+            return resolved.path
+        }
+        return resolved
+            .appendingPathComponent(destination.lastPathComponent)
+            .path
     }
 }
