@@ -492,6 +492,10 @@ $(BUILD_DIR)/some/packageBin/dir$(TARGET_BUILD_SUBPATH)
             "TEST_HOST": #"""
 $(BUILD_DIR)/some/packageBin/dir/a/path/Host.app/Executable_Name
 """#.pbxProjEscaped,
+            "BUNDLE_LOADER": "$(BAZEL_BUNDLE_LOADER__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped,
+            "BAZEL_BUNDLE_LOADER__": #""""#,
+            "BAZEL_BUNDLE_LOADER__NO": #""""#,
+            "BAZEL_BUNDLE_LOADER__YES": "$(TEST_HOST)".pbxProjEscaped,
         ])
 
         // Act

@@ -23,6 +23,24 @@ class LinkParamsProcessorTest(unittest.TestCase):
                     ["-bundle"] + following, False, [], is_static_library=False,
                 ), following)
 
+    def test_xcode_owns_the_test_bundle_loader(self):
+        self.assertEqual(link_params_processor._process_linkopts(
+            ["-bundle_loader", "bazel-out/Host_lipobin", "-Xlinker", "-needed-lXCTestSwiftSupport"],
+            False, [], is_static_library=False,
+        ), ["-Xlinker", "-needed-lXCTestSwiftSupport"])
+
+    def test_native_tests_omit_bazel_source_location_swizzle(self):
+        for suffix in ["a", "lo"]:
+            library = "bazel-out/lib/libswizzle_absolute_xcttestsourcelocation." + suffix
+            for group in [["-Wl,-force_load," + library], ["-force_load", library]]:
+                with self.subTest(group=group):
+                    self.assertEqual(link_params_processor._process_linkopts(
+                        group + ["-lKept"], False, [], is_static_library=False,
+                    ), ["-lKept"])
+        self.assertEqual(link_params_processor._process_linkopts(
+            ["-Wl,-force_load,bazel-out/lib/Other.lo"], False, [], is_static_library=False,
+        ), ['"-Wl,-force_load,$(PROJECT_DIR)/bazel-out/lib/Other.lo"'])
+
     def test_static_runtime_policy_is_ordered_and_separate_from_linker_args(self):
         flags = [
             "-fprofile-instr-generate", "-nodefaultlibs", "-fno-profile-generate",

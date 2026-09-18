@@ -146,6 +146,14 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let testHost = platformVariant.unitTestHost {
+            // Let Xcode select the host's native image, including its debug
+            // dylib. Bazel's bundle_loader points to a different executable.
+            buildSettings += [
+                .init(key: "BUNDLE_LOADER", value: "$(BAZEL_BUNDLE_LOADER__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                .init(key: "BAZEL_BUNDLE_LOADER__", value: #""""#),
+                .init(key: "BAZEL_BUNDLE_LOADER__NO", value: #""""#),
+                .init(key: "BAZEL_BUNDLE_LOADER__YES", value: "$(TEST_HOST)".pbxProjEscaped),
+            ]
             buildSettings.append(
                 .init(
                     key: "TARGET_BUILD_DIR",

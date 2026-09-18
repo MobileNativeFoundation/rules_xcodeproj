@@ -15,6 +15,7 @@ _LD_SKIP_OPTS = {
 
     # Xcode sets these, and no way to unset it
     "-bundle": 1,
+    "-bundle_loader": 2,
     "-dynamiclib": 1,
     "-e": 2,
     "-isysroot": 2,
@@ -462,7 +463,10 @@ def _process_linkopts(
             return
 
         # We don't want the BwB swizzle fix for BwX mode
-        if opt.endswith("/libswizzle_absolute_xcttestsourcelocation.a"):
+        if opt.endswith((
+            "/libswizzle_absolute_xcttestsourcelocation.a",
+            "/libswizzle_absolute_xcttestsourcelocation.lo",
+        )):
             if last_opt == "-force_load":
                 processed_linkopts.pop()
             return
