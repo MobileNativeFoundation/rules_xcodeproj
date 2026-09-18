@@ -11,6 +11,18 @@ from tools.params_processors import link_params_processor
 
 class LinkParamsProcessorTest(unittest.TestCase):
 
+    def test_bundle_flag_does_not_consume_following_linker_option(self):
+        for following in [
+            ["-Xlinker", "-needed-lXCTestSwiftSupport", "-lXCTestSwiftSupport"],
+            ["-framework", "XCTest"],
+            ["-Wl,-needed-lXCTestSwiftSupport"],
+            [],
+        ]:
+            with self.subTest(following=following):
+                self.assertEqual(link_params_processor._process_linkopts(
+                    ["-bundle"] + following, False, [], is_static_library=False,
+                ), following)
+
     def test_static_runtime_policy_is_ordered_and_separate_from_linker_args(self):
         flags = [
             "-fprofile-instr-generate", "-nodefaultlibs", "-fno-profile-generate",
