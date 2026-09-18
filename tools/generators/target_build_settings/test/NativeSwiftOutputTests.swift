@@ -21,6 +21,7 @@ final class NativeSwiftOutputTests: XCTestCase {
             XCTAssertFalse(native.contains("-Xfrontend"))
             XCTAssertTrue(native.contains("-DKEEP"))
             XCTAssertNil(settings["HEADER_SEARCH_PATHS"])
+            XCTAssertNil(settings["USER_HEADER_SEARCH_PATHS"])
         }
     }
 
@@ -49,7 +50,9 @@ final class NativeSwiftOutputTests: XCTestCase {
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER__YES"], "\"Custom-Swift.h\"")
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER__NO"], "\"\"")
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER__"], "\"\"")
-        XCTAssertEqual(settings["HEADER_SEARCH_PATHS"], "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped)
+        for key in ["HEADER_SEARCH_PATHS", "USER_HEADER_SEARCH_PATHS"] {
+            XCTAssertEqual(settings[key], "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS)) $(inherited)".pbxProjEscaped)
+        }
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER_SEARCH_PATHS__YES"], "\"$(DERIVED_SOURCES_DIR)\"".pbxProjEscaped)
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER_SEARCH_PATHS__NO"], "\"\"")
         XCTAssertEqual(settings["BAZEL_SWIFT_HEADER_SEARCH_PATHS__"], "\"\"")

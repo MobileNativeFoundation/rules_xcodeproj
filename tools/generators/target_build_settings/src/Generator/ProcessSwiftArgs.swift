@@ -407,8 +407,10 @@ extension Generator.ProcessSwiftArgs {
                 ("BAZEL_SWIFT_HEADER__NO", #""""#),
                 ("BAZEL_SWIFT_HEADER__YES", nativeHeaderName.pbxProjEscaped),
                 // Default search paths and header maps are disabled. Mixed
-                // targets must find Xcode's header, not a stale Bazel copy.
-                ("HEADER_SEARCH_PATHS", "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                // targets must find Xcode's header before Bazel's -iquote paths,
+                // without discarding inherited search paths in either mode.
+                ("HEADER_SEARCH_PATHS", "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS)) $(inherited)".pbxProjEscaped),
+                ("USER_HEADER_SEARCH_PATHS", "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS)) $(inherited)".pbxProjEscaped),
                 ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__", #""""#),
                 ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__NO", #""""#),
                 ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__YES", "\"$(DERIVED_SOURCES_DIR)\"".pbxProjEscaped),
