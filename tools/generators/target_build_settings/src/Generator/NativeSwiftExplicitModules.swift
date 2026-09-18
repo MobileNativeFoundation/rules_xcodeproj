@@ -34,8 +34,8 @@ enum NativeSwiftExplicitModules {
             for module in modules {
                 guard !module.moduleName.isEmpty,
                       module.isBridgingHeaderDependency != true,
-                      (module.modulePath != nil) !=
-                        (module.clangModulePath != nil || module.clangModuleMapPath != nil)
+                      module.modulePath != nil || module.clangModuleMapPath != nil,
+                      module.clangModulePath == nil || module.clangModuleMapPath != nil
                 else { return nil }
                 if let pcm = module.clangModulePath {
                     for value in [pcm, pcm.buildSettingPath()] {
@@ -45,7 +45,8 @@ enum NativeSwiftExplicitModules {
                 }
                 if module.isSystem == true,
                    let sdkPath = module.modulePath ?? module.clangModuleMapPath,
-                   isOwnedSDKPath(sdkPath)
+                   isOwnedSDKPath(sdkPath),
+                   module.clangModuleMapPath.map(isOwnedSDKPath) ?? true
                 {
                     if let map = module.clangModuleMapPath {
                         systemMaps.insert(("-fmodule-map-file=" + map.buildSettingPath()).quoteIfNeeded())
@@ -57,6 +58,7 @@ enum NativeSwiftExplicitModules {
                 // does not establish a usable path.
                 if module.isSystem == true {
                     guard let path = module.modulePath, path.hasPrefix("bazel-out/"),
+                          module.clangModuleMapPath == nil,
                           (path as NSString).lastPathComponent == module.moduleName + ".swiftmodule"
                     else { return nil }
                 }
@@ -89,7 +91,10 @@ enum NativeSwiftExplicitModules {
                     if seenLocalArgs.insert(option + arg).inserted {
                         localArgs += [option, arg]
                     }
-                } else if let map = module.clangModuleMapPath {
+                }
+                // Mixed-language records carry both a Swift module and a
+                // Clang map. Validate and restore both imports atomically.
+                if let map = module.clangModuleMapPath {
                     guard preparedPaths.contains(map) else { return nil }
                     if map.contains(".framework/") {
                         let frameworkModuleName: String
@@ -115,8 +120,6 @@ enum NativeSwiftExplicitModules {
                     let arg = ("-fmodule-map-file=" + map.buildSettingPath()).quoteIfNeeded()
                     localMaps.insert(arg)
                     if seenLocalArgs.insert(arg).inserted { localArgs += ["-Xcc", arg] }
-                } else {
-                    return nil
                 }
             }
         }

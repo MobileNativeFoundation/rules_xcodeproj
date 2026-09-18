@@ -56,10 +56,51 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         ])
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift]))
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args + ["-Xcc", "-fmodule-file=LocalClang=unknown.pcm"], manifests: [map: data], preparedPaths: [swift, clang]))
-        let ambiguous = Data("""
-        [{"moduleName":"LocalSwift","modulePath":"\(swift)","clangModuleMapPath":"\(clang)"}]
+    }
+
+    func testMixedModuleRequiresBothPreparedSwiftAndClangImports() {
+        // mixed_language_library publishes both imports in a single record.
+        for pcm in ["", ",\"clangModulePath\":\"bazel-out/mixed.pcm\""] {
+            let data = Data("""
+            [{"moduleName":"LocalSwift","modulePath":"\(swift)","clangModuleMapPath":"\(clang)"\(pcm)}]
+            """.utf8)
+            let forwarded = pcm.isEmpty ? args : args + ["-Xcc", "-fmodule-file=LocalSwift=bazel-out/mixed.pcm"]
+            XCTAssertEqual(NativeSwiftExplicitModules.normalize(forwarded, manifests: [map: data], preparedPaths: [swift, clang]), [
+                "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+                "-I", "'$(BAZEL_OUT)/config/bin/Directory With Spaces'", "-Xcc",
+                "-fmodule-map-file=$(BAZEL_OUT)/config/bin/local/module.modulemap",
+            ])
+            for incomplete: Set<String> in [[], [swift], [clang]] {
+                XCTAssertNil(NativeSwiftExplicitModules.normalize(forwarded, manifests: [map: data], preparedPaths: incomplete))
+            }
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(forwarded + ["-Xcc", "-fmodule-file=Unknown=other.pcm"], manifests: [map: data], preparedPaths: [swift, clang]))
+        }
+    }
+
+    func testMixedModuleCannotHideAnIncompleteClangImport() {
+        for fields in [
+            "\"modulePath\":\"\(swift)\",\"clangModulePath\":\"bazel-out/mixed.pcm\"",
+            "\"isSystem\":true,\"modulePath\":\"__BAZEL_XCODE_SDKROOT__/usr/lib/swift/LocalSwift.swiftmodule\",\"clangModuleMapPath\":\"unowned.modulemap\"",
+            "\"isSystem\":true,\"modulePath\":\"\(swift)\",\"clangModuleMapPath\":\"\(clang)\"",
+            "\"isBridgingHeaderDependency\":true,\"modulePath\":\"\(swift)\",\"clangModuleMapPath\":\"\(clang)\"",
+            "\"isFramework\":true,\"modulePath\":\"\(swift)\",\"clangModuleMapPath\":\"\(clang)\"",
+            "\"isSystem\":false",
+        ] {
+            let data = Data("[{\"moduleName\":\"LocalSwift\",\(fields)}]".utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift, clang]), fields)
+        }
+    }
+
+    func testMixedFrameworkPreservesFrameworkDiscovery() {
+        let swift = "Mixed.framework/Modules/Mixed.swiftmodule/arm64.swiftmodule"
+        let clang = "Mixed.framework/Modules/module.modulemap"
+        let data = Data("""
+        [{"moduleName":"Mixed","isFramework":true,"modulePath":"\(swift)","clangModuleMapPath":"\(clang)"}]
         """.utf8)
-        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: ambiguous], preparedPaths: [swift, clang]))
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: [swift, clang]), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+            "-F", "$(PROJECT_DIR)", "-Xcc", "-fmodule-map-file=$(SRCROOT)/Mixed.framework/Modules/module.modulemap",
+        ])
     }
 
     func testMalformedAndUnownedManifestsRetainOriginal() {
@@ -122,7 +163,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
             let systemMap = root + "/usr/include/module.modulemap"
             let data = Data("""
             [
-              {"moduleName":"Foundation","isSystem":true,"modulePath":"\(root)/usr/lib/swift/Foundation.swiftmodule"},
+              {"moduleName":"Foundation","isSystem":true,"modulePath":"\(root)/usr/lib/swift/Foundation.swiftmodule","clangModuleMapPath":"\(systemMap)"},
               {"moduleName":"Darwin","isSystem":true,"clangModulePath":"bazel-out/darwin.pcm","clangModuleMapPath":"\(systemMap)"}
             ]
             """.utf8)
