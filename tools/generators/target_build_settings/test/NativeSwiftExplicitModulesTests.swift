@@ -140,6 +140,34 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         XCTAssertNil(NativeSwiftExplicitModules.normalize(Array(args.dropLast()), manifests: [map: manifest], preparedPaths: [swift, clang]))
     }
 
+    func testGeneratedSystemModulesRequirePreparedFiles() {
+        let generated = "bazel-out/config/bin/external/system_sdk/iPhoneSimulator_Testing_outs/Testing.swiftmodule"
+        let systemMap = "__BAZEL_XCODE_SDKROOT__/usr/include/module.modulemap"
+        let data = Data("""
+        [
+          {"moduleName":"Testing","isSystem":true,"isFramework":true,"modulePath":"\(generated)"},
+          {"moduleName":"Darwin","isSystem":true,"clangModulePath":"bazel-out/darwin.pcm","clangModuleMapPath":"\(systemMap)"}
+        ]
+        """.utf8)
+        XCTAssertEqual(NativeSwiftExplicitModules.normalize(
+            args + ["-Xcc", "-fmodule-file=Darwin=bazel-out/darwin.pcm"],
+            manifests: [map: data], preparedPaths: [generated]
+        ), [
+            "-DKEEP", "-Xfrontend", "-load-plugin-executable", "-Xfrontend", "plugin#Module",
+        ])
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: data], preparedPaths: []))
+        let renamed = Data(String(decoding: data, as: UTF8.self).replacingOccurrences(
+            of: "Testing.swiftmodule", with: "Other.swiftmodule"
+        ).utf8)
+        XCTAssertNil(NativeSwiftExplicitModules.normalize(
+            args, manifests: [map: renamed], preparedPaths: [generated.replacingOccurrences(of: "Testing.swiftmodule", with: "Other.swiftmodule")]
+        ))
+        for unsupported in ["Imports/Testing.swiftmodule", "bazel-out/config/Testing.swiftmodule/arm64.swiftmodule"] {
+            let other = Data(String(decoding: data, as: UTF8.self).replacingOccurrences(of: generated, with: unsupported).utf8)
+            XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: other], preparedPaths: [unsupported]))
+        }
+    }
+
     func testOwnedBinaryFrameworkAndArchitectureDirectoryImports() {
         let framework = "BinaryKit.framework/Modules/module.modulemap"
         let binary = "BinaryKit.framework/Modules/BinaryKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule"
@@ -272,7 +300,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         let manifestURL = directory.appendingPathComponent("control.swift-explicit-module-map.json")
         try manifest.write(to: manifestURL)
         let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
-            + ["-emit-const-values-path", "bazel-out/config/bin/values.json"]
+            + ["-emit-const-values-path", "bazel-out/config/bin/values.json", "-avoid-emit-module-source-info"]
         func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
             let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "", "0"]
             var input = envelope
@@ -316,6 +344,7 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
                         let nativeImports = nativeSetting == "YES" || indexArena == "YES"
                         XCTAssertEqual(expanded.contains("explicit-swift-module-map-file"), !nativeImports, "native=\(nativeSetting), index=\(indexArena), legacy=\(legacy), XOJIT=\(xojit)")
                         XCTAssertEqual(expanded.contains("-emit-const-values-path"), nativeSetting != "YES")
+                        XCTAssertEqual(expanded.contains("-avoid-emit-module-source-info"), nativeSetting != "YES")
                         XCTAssertEqual(expanded.contains("bazel-out/config/bin/values.json"), nativeSetting != "YES")
                         if nativeImports {
                             XCTAssertTrue(expanded.contains("-I '$(BAZEL_OUT)/config/bin/Directory With Spaces'"))

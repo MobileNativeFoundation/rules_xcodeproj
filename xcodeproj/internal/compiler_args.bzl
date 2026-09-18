@@ -40,8 +40,8 @@ def _swift_preview_inputs(action, swift_info):
             if plugin and plugin.path not in outputs:
                 import_files.append(plugin)
     if swift_info:
-        # The direct context is the exact compile inventory; propagated
-        # providers can also contain re-exports and the selected module itself.
+        # The direct context is the exact compile inventory. It also contains
+        # private and toolchain modules absent from the propagated SwiftInfo.
         dependency_paths = {}
         for module in swift_info.direct_modules:
             context = getattr(module, "compilation_context", None)
@@ -51,17 +51,16 @@ def _swift_preview_inputs(action, swift_info):
                     for file in getattr(context, "direct_sources", ())
                     if not file.is_source
                 ])
-                for file in context.module_maps + context.swiftmodules:
+                for file in context.swiftmodules:
+                    if type(file) == "File" and file.path not in outputs:
+                        import_files.append(file)
+                        import_paths.append(file.path)
+                for file in context.module_maps:
                     if type(file) == "File":
                         dependency_paths[file.path] = None
         for module in swift_info.transitive_modules.to_list():
             if getattr(module, "is_system", False):
                 continue
-            swift = getattr(module, "swift", None)
-            swiftmodule = getattr(swift, "swiftmodule", None) if swift else None
-            if type(swiftmodule) == "File" and swiftmodule.path in dependency_paths and swiftmodule.path not in outputs:
-                import_files.append(swiftmodule)
-                import_paths.append(swiftmodule.path)
             clang = getattr(module, "clang", None)
             module_map = getattr(clang, "module_map", None) if clang else None
             context = getattr(clang, "compilation_context", None) if clang else None

@@ -314,6 +314,10 @@ extension Generator.ProcessSwiftArgs {
                 // current arg wasn't filtered out
                 args.append("-Xfrontend")
 
+                if arg == "-avoid-emit-module-source-info" {
+                    nativeOutputArgIndices.formUnion([args.count - 1, args.count])
+                }
+
                 try processSwiftFrontendArg(
                     arg,
                     previousFrontendArg: previousFrontendArg,
@@ -338,7 +342,9 @@ extension Generator.ProcessSwiftArgs {
             // Xcode owns these outputs in the Preview configuration. Keep the
             // original flags for ordinary Bazel-owned builds and debugging.
             let outputFlags = ["-emit-objc-header-path", "-emit-const-values-path"]
-            if outputFlags.contains(arg) ||
+            // Bazel may suppress this undeclared sidecar, but Xcode schedules
+            // a copy of it after native module emission.
+            if arg == "-avoid-emit-module-source-info" || outputFlags.contains(arg) ||
                 previousArg.map({ outputFlags.contains($0) }) == true
             {
                 nativeOutputArgIndices.insert(args.count)

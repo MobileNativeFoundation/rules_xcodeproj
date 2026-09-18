@@ -56,14 +56,31 @@ def _swift_explicit_inputs_test_impl(ctx):
     for dependency in [
         struct(is_framework = True, swift = struct(swiftmodule = own_module), clang = None),
         struct(is_framework = True, swift = struct(swiftmodule = pcm), clang = None),
-        struct(is_framework = True, is_system = True, swift = local_swift.swift, clang = local_clang.clang),
+        struct(is_system = True, swift = struct(swiftmodule = own_module), clang = None),
+        struct(is_system = True, swift = struct(swiftmodule = pcm), clang = None),
+        struct(is_system = True, swift = struct(swiftmodule = "__BAZEL_XCODE_SDKROOT__/usr/lib/swift/Swift.swiftmodule"), clang = None),
     ]:
         excluded = compiler_args.swift_preview_inputs(
             action,
             struct(direct_modules = [selected], transitive_modules = depset([dependency])),
         )
-        asserts.equals(env, (), excluded.paths)
-        asserts.equals(env, [source], excluded.files.to_list())
+        asserts.equals(env, (module.path,), excluded.paths)
+        asserts.equals(env, [source, module], excluded.files.to_list())
+
+    # Private/toolchain Swift modules are not necessarily propagated at all.
+    # rules_swift 4.1's generated system modules must come from the exact direct
+    # compile context, not a differently configured public dependency.
+    direct_only = struct(compilation_context = struct(
+        direct_sources = (),
+        module_maps = (),
+        swiftmodules = (module, own_module, "__BAZEL_XCODE_SDKROOT__/Swift.swiftmodule"),
+    ))
+    direct_preview = compiler_args.swift_preview_inputs(
+        action,
+        struct(direct_modules = [direct_only], transitive_modules = depset()),
+    )
+    asserts.equals(env, (module.path,), direct_preview.paths)
+    asserts.equals(env, [module], direct_preview.files.to_list())
     for generate in [False, True]:
         actions = mock_actions.create()
         pbxproj_partials.write_target_build_settings(

@@ -2,6 +2,27 @@ import XCTest
 @testable import target_build_settings
 
 final class NativeSwiftOutputTests: XCTestCase {
+    func testNativeModuleEmissionKeepsXcodesSourceInfoOutput() async throws {
+        let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "", "0", "", ""]
+        for suppression in [["-avoid-emit-module-source-info"], ["-Xfrontend", "-avoid-emit-module-source-info"]] {
+            let flags = suppression + ["-DKEEP"]
+            let result = try await Generator.Environment.default.processArgs(
+                rawArguments: (envelope + ["swift_worker", "swiftc"] + flags + ["---", "---"])[...],
+                generateBuildSettings: true,
+                includeSelfSwiftDebugSettings: true,
+                transitiveSwiftDebugSettingPaths: []
+            )
+            let settings = Dictionary(uniqueKeysWithValues: result.buildSettings)
+            let ordinary = try XCTUnwrap(settings["BAZEL_SWIFT_FLAGS__NO"])
+            let native = try XCTUnwrap(settings["BAZEL_SWIFT_FLAGS__YES"])
+            XCTAssertTrue(ordinary.contains(suppression.joined(separator: " ")))
+            XCTAssertEqual(settings["BAZEL_SWIFT_FLAGS__"], ordinary)
+            XCTAssertFalse(native.contains("-avoid-emit-module-source-info"))
+            XCTAssertFalse(native.contains("-Xfrontend"))
+            XCTAssertTrue(native.contains("-DKEEP"))
+        }
+    }
+
     func testNativeOutputsDoNotWriteIntoBazelDirectories() async throws {
         let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "", "0", "", ""]
         let flags = [

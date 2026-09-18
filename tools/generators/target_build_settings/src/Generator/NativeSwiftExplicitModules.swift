@@ -43,14 +43,22 @@ enum NativeSwiftExplicitModules {
                         pcmBindings.insert("-fmodule-file=\(value)".quoteIfNeeded())
                     }
                 }
-                if module.isSystem == true {
-                    guard let sdkPath = module.modulePath ?? module.clangModuleMapPath,
-                          isOwnedSDKPath(sdkPath)
-                    else { return nil }
+                if module.isSystem == true,
+                   let sdkPath = module.modulePath ?? module.clangModuleMapPath,
+                   isOwnedSDKPath(sdkPath)
+                {
                     if let map = module.clangModuleMapPath {
                         systemMaps.insert(("-fmodule-map-file=" + map.buildSettingPath()).quoteIfNeeded())
                     }
                     continue
+                }
+                // rules_swift can compile SDK interfaces into generated Files.
+                // These require exact preparation ownership too; isSystem alone
+                // does not establish a usable path.
+                if module.isSystem == true {
+                    guard let path = module.modulePath, path.hasPrefix("bazel-out/"),
+                          (path as NSString).lastPathComponent == module.moduleName + ".swiftmodule"
+                    else { return nil }
                 }
                 if let path = module.modulePath {
                     guard preparedPaths.contains(path), path.hasSuffix(".swiftmodule"),
@@ -74,6 +82,9 @@ enum NativeSwiftExplicitModules {
                         option = "-I"
                         searchPath = directory
                     }
+                    // Rediscover system modules through the selected SDK. A
+                    // flat -I import loses framework identity and autolinking.
+                    if module.isSystem == true { continue }
                     let arg = searchPath.buildSettingPath().quoteIfNeeded()
                     if seenLocalArgs.insert(option + arg).inserted {
                         localArgs += [option, arg]
