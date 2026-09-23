@@ -20,7 +20,7 @@ else
   if [[ "${BAZEL_NATIVE_PREVIEWS:-}" == "YES" ]]; then
     # Native Xcode compiles the selected target. Bazel prepares its compilation
     # inputs, runtime frameworks and link dependencies, not its own product.
-    readonly output_group_prefixes="bc,bf,bl"
+    readonly output_group_prefixes="bc,bf,bl,br"
   elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
     readonly output_group_prefixes="bc,bf,bp,bl"
   else

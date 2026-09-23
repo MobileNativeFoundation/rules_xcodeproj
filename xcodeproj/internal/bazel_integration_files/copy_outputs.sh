@@ -213,6 +213,187 @@ stage_preview_frameworks() (
   done
 )
 
+stage_preview_resource_bundles() (
+  local destination_dir="$1"
+  local owner="$DERIVED_FILE_DIR"
+  local receipt="$destination_dir/.rules_xcodeproj_preview_resource_bundles"
+  local lock="$receipt.lockfile"
+  local parsed_paths="" name identity source destination index other
+  local -a bundle_paths=() bundle_names=()
+  local -a owned_names=() owned_ids=() owned_targets=() owned_sources=()
+
+  if [[ "$destination_dir" != /* || "$destination_dir" == / ]]; then
+    echo >&2 "error: Invalid Preview resource bundle destination: $destination_dir"
+    return 1
+  fi
+  if [[ -z "${PREVIEW_RESOURCE_BUNDLE_PATHS:-}" && ! -e "$receipt" && ! -L "$receipt" ]]; then
+    return
+  fi
+  if [[ ( -e "$destination_dir" || -L "$destination_dir" ) && ! -d "$destination_dir" ]]; then
+    echo >&2 "error: Preview resource bundle destination is not a directory: $destination_dir"
+    return 1
+  fi
+  mkdir -p "$destination_dir"
+  # Hold a descriptor lock for this subshell and its copies. The kernel releases
+  # it even after an untrappable exit. Keep the file so all waiters use one inode.
+  if [[ -L "$lock" || ( -e "$lock" && ! -f "$lock" ) ]]; then
+    echo >&2 "error: Invalid Preview resource bundle ownership lock: $lock"
+    return 1
+  fi
+  exec 9>> "$lock"
+  if ! /usr/bin/python3 -c \
+    'import fcntl, signal; signal.alarm(10); fcntl.flock(9, fcntl.LOCK_EX)'; then
+    echo >&2 "error: Unable to acquire Preview resource bundle ownership lock: $lock"
+    return 1
+  fi
+  if [[ -L "$receipt" || ( -e "$receipt" && ! -f "$receipt" ) ]]; then
+    echo >&2 "error: Invalid Preview resource bundle ownership receipt: $receipt"
+    return 1
+  fi
+  if [[ -f "$receipt" ]]; then
+    while IFS= read -r name; do
+      local recorded_owner recorded_source
+      if ! IFS= read -r identity || ! IFS= read -r recorded_owner || \
+         ! IFS= read -r recorded_source || [[ "$name" != *.bundle || \
+         "$name" == */* || ! "$identity" =~ ^[0-9]+:[0-9]+$ || \
+         "$recorded_owner" != /* || "$recorded_source" != /* ]]; then
+        echo >&2 "error: Invalid Preview resource bundle ownership receipt: $receipt"
+        return 1
+      fi
+      owned_names+=("$name")
+      owned_ids+=("$identity")
+      owned_targets+=("$recorded_owner")
+      owned_sources+=("$recorded_source")
+    done < "$receipt"
+  fi
+
+  if [[ -n "${PREVIEW_RESOURCE_BUNDLE_PATHS:-}" ]]; then
+    if ! parsed_paths="$(xargs -n1 <<< "$PREVIEW_RESOURCE_BUNDLE_PATHS")"; then
+      echo >&2 "error: Unable to parse Preview resource bundle paths"
+      return 1
+    fi
+    if [[ -z "$parsed_paths" ]]; then
+      echo >&2 "error: No Preview resource bundle paths were provided"
+      return 1
+    fi
+    IFS=$'\n' read -r -d '' -a bundle_paths < \
+      <(printf '%s\0' "$parsed_paths")
+  fi
+
+  # Validate the entire request before changing any current or stale bundle.
+  for source in ${bundle_paths[@]+"${bundle_paths[@]}"}; do
+    name="${source##*/}"
+    destination="$destination_dir/$name"
+    if [[ "$source" != /* || "$name" != *.bundle || \
+          "$source" == *$'\n'* || "$source" == *$'\r'* ]]; then
+      echo >&2 "error: Preview resource bundle path does not name an absolute .bundle: $source"
+      return 1
+    fi
+    if [[ ! -d "$source" || ! -f "$source/Info.plist" ]]; then
+      echo >&2 "error: Preview resource bundle is not materialized or is missing Info.plist: $source"
+      return 1
+    fi
+    for name in ${bundle_names[@]+"${bundle_names[@]}"}; do
+      if [[ "$name" == "${source##*/}" ]]; then
+        echo >&2 "error: Multiple Preview resource bundles have the same basename: $name"
+        return 1
+      fi
+    done
+    name="${source##*/}"
+    bundle_names+=("$name")
+    identity=""
+    for (( index=0; index<${#owned_names[@]}; index++ )); do
+      if [[ "${owned_names[index]}" != "$name" ]]; then continue; fi
+      identity="${owned_ids[index]}"
+      if [[ "${owned_sources[index]}" != "$source" && \
+            "${owned_targets[index]}" != "$owner" ]]; then
+        echo >&2 "error: Preview resource bundle destination belongs to a different source: $destination"
+        return 1
+      fi
+    done
+    if [[ -e "$destination" || -L "$destination" ]]; then
+      if [[ -L "$destination" || ! -d "$destination" || -z "$identity" || \
+            "$(stat -f '%d:%i' "$destination")" != "$identity" ]]; then
+        echo >&2 "error: Preview resource bundle destination is not owned: $destination"
+        return 1
+      fi
+      if [[ "$source" -ef "$destination" ]]; then
+        echo >&2 "error: Preview resource bundle source is its destination: $source"
+        return 1
+      fi
+    fi
+  done
+
+  write_preview_resource_receipt() {
+    local temporary_receipt entry
+    temporary_receipt="$(mktemp "$receipt.XXXXXX")"
+    {
+      for (( entry=0; entry<${#owned_names[@]}; entry++ )); do
+        if [[ -z "${owned_names[entry]}" ]]; then continue; fi
+        printf '%s\n%s\n%s\n%s\n' "${owned_names[entry]}" "${owned_ids[entry]}" \
+          "${owned_targets[entry]}" "${owned_sources[entry]}"
+      done
+    } > "$temporary_receipt"
+    mv -f "$temporary_receipt" "$receipt"
+  }
+
+  for (( index=0; index<${#bundle_paths[@]}; index++ )); do
+    name="${bundle_names[index]}"
+    source="${bundle_paths[index]}"
+    destination="$destination_dir/$name"
+    if [[ ! -e "$destination" && ! -L "$destination" ]]; then
+      mkdir "$destination"
+    fi
+    identity="$(stat -f '%d:%i' "$destination")"
+    local owner_index="${#owned_names[@]}" source_changed=""
+    for (( other=0; other<${#owned_names[@]}; other++ )); do
+      if [[ "${owned_names[other]}" != "$name" ]]; then continue; fi
+      if [[ "${owned_sources[other]}" != "$source" ]]; then source_changed=YES; fi
+      owned_ids[other]="$identity"
+      if [[ "${owned_targets[other]}" == "$owner" ]]; then owner_index="$other"; fi
+    done
+    owned_names[owner_index]="$name"
+    owned_ids[owner_index]="$identity"
+    owned_targets[owner_index]="$owner"
+    # `/` cannot be a requested .bundle source. Persist it while migrating so
+    # either retry or rollback forces copying after a partial transfer failure.
+    # Only successful copying below advances the receipt to the requested source.
+    owned_sources[owner_index]="$source"
+    if [[ -n "$source_changed" ]]; then owned_sources[owner_index]=/; fi
+    # Record ownership before copying, so partial copies remain recoverable.
+    write_preview_resource_receipt
+    "$rsync" --copy-links --recursive --times --delete --perms --chmod=u+w \
+      ${source_changed:+--ignore-times} \
+      --out-format="%n%L" "$source/" "$destination/"
+    if [[ ! -f "$destination/Info.plist" ]]; then
+      echo >&2 "error: Preview resource bundle was not copied completely: $destination"
+      return 1
+    fi
+    owned_sources[owner_index]="$source"
+  done
+
+  for (( index=0; index<${#owned_names[@]}; index++ )); do
+    if [[ "${owned_targets[index]}" != "$owner" ]]; then continue; fi
+    name="${owned_names[index]}"
+    local keep=NO
+    for source in ${bundle_names[@]+"${bundle_names[@]}"}; do
+      if [[ "$source" == "$name" ]]; then keep=YES; break; fi
+    done
+    if [[ "$keep" == YES ]]; then continue; fi
+    owned_names[index]=""
+    for (( other=0; other<${#owned_names[@]}; other++ )); do
+      if [[ "${owned_names[other]}" == "$name" ]]; then keep=YES; break; fi
+    done
+    if [[ "$keep" == YES ]]; then continue; fi
+    destination="$destination_dir/$name"
+    # An externally replaced destination is no longer ours. Preserve it.
+    if [[ ! -L "$destination" && -d "$destination" && \
+          "$(stat -f '%d:%i' "$destination")" == "${owned_ids[index]}" ]]; then
+      rm -rf -- "$destination"
+    fi
+  done
+  write_preview_resource_receipt
+)
 
 if [[ "$ACTION" != indexbuild ]]; then
   product_is_bundle=NO
@@ -314,6 +495,15 @@ if [[ "$ACTION" != indexbuild ]]; then
   fi
 fi
 
+if [[ "$ACTION" != indexbuild && "${BAZEL_NATIVE_PREVIEWS:-}" == YES ]]; then
+  resource_destination="$TARGET_BUILD_DIR"
+  if [[ "${WRAPPER_EXTENSION:-}" == app ]]; then
+    # App-owned Previews use Bundle.main. Libraries use product siblings.
+    resource_destination+="/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
+  fi
+  # Run for an empty closure too, so only this target's owned stale copies go.
+  stage_preview_resource_bundles "$resource_destination"
+fi
 
 # TODO: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/402
 # Copy diagnostics, and on a change
