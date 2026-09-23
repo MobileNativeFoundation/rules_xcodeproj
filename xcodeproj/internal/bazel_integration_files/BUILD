@@ -1,5 +1,8 @@
 exports_files(
-    ["preview_runtime_link_params.py"],
+    [
+        "calculate_output_groups.py",
+        "preview_runtime_link_params.py",
+    ],
     visibility = ["//test/internal/bazel_integration_files:__pkg__"],
 )
 

@@ -2,6 +2,13 @@ load("@rules_python//python:defs.bzl", "py_test")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 py_test(
+    name = "calculate_output_groups",
+    srcs = ["calculate_output_groups_tests.py"],
+    data = ["//xcodeproj/internal/bazel_integration_files:calculate_output_groups.py"],
+    main = "calculate_output_groups_tests.py",
+)
+
+py_test(
     name = "preview_runtime_link_params",
     srcs = ["preview_runtime_link_params_tests.py"],
     data = ["//xcodeproj/internal/bazel_integration_files:preview_runtime_link_params.py"],
@@ -20,6 +27,7 @@ sh_test(
 test_suite(
     name = "bazel_integration_files",
     tests = [
+        ":calculate_output_groups",
         ":libtool_facade",
         ":preview_runtime_link_params",
     ],
