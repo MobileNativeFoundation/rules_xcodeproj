@@ -27,12 +27,6 @@ py_test(
     ],
 )
 
-py_library(
-    name = "link_params_processor_library",
-    srcs = ["link_params_processor.py"],
-    srcs_version = "PY3",
-)
-
 py_binary(
     name = "link_params_processor",
     srcs = ["link_params_processor.py"],
@@ -42,9 +36,16 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_library(
+    name = "link_params_processor_library",
+    srcs = ["link_params_processor.py"],
+    srcs_version = "PY3",
+)
+
 py_test(
     name = "link_params_processor_tests",
     srcs = ["link_params_processor_tests.py"],
+    data = glob(["testdata/**"]),
     deps = [
         ":link_params_processor_library",
         "//:py_init_shim",
