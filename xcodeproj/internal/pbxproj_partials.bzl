@@ -44,6 +44,34 @@ def _dynamic_framework_path(file_and_is_framework):
         return path
     return "$(SRCROOT)/{}".format(path)
 
+def _native_preview_framework_paths(xcode_targets, direct_dependencies):
+    targets = {target.id: target for target in xcode_targets.to_list()}
+    pending = direct_dependencies.to_list()
+    visited = {}
+    paths = {}
+
+    # Follow actual PBX dependency edges, not all available focused targets.
+    # A focused static-library intermediary need not schedule its framework.
+    for _ in range(len(targets) + 1):
+        if not pending:
+            break
+        next_pending = []
+        for id in pending:
+            if id in visited:
+                continue
+            visited[id] = None
+            target = targets.get(id)
+            if not target:
+                continue
+            next_pending.extend(target.direct_dependencies.to_list())
+            if target.product.type == "f":
+                paths[target.outputs.product_path] = "$(BUILD_DIR)/{}/{}".format(
+                    target.package_bin_dir,
+                    target.product.basename,
+                )
+        pending = next_pending
+    return paths
+
 def _keys_and_files(pair):
     key, file = pair
     return [key, file.path]
@@ -1110,12 +1138,14 @@ def _write_target_build_settings(
         infoplist = None,
         name,
         previews_dynamic_frameworks = EMPTY_LIST,
+        previews_direct_dependencies = EMPTY_DEPSET,
+        previews_xcode_targets = EMPTY_DEPSET,
         previews_include_path = EMPTY_STRING,
-        swift_preview_inputs = None,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         separate_index_build_output_base,
         swift_args,
+        swift_preview_inputs = None,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
         team_id = None,
         tool):
@@ -1146,9 +1176,11 @@ def _write_target_build_settings(
         previews_dynamic_frameworks: A `list` of `(File, bool)` `tuple`s. If
             the `bool` is `True`, the file points to a dynamic framework. If
             `False`, the file points to an executable in a dynamic framework.
+        previews_direct_dependencies: The target's direct PBX dependency IDs.
         previews_include_path: The Swift include path to add when building
             Xcode previews.
-        swift_preview_inputs: Manifest metadata and prepared native index files.
+        previews_xcode_targets: A `depset` of focused dependency targets whose
+            framework products are owned by Xcode in native Preview builds.
         provisioning_profile_is_xcode_managed: A `bool` indicating whether the
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
@@ -1157,6 +1189,8 @@ def _write_target_build_settings(
             output base for index builds.
         swift_args: A `list` of `Args` for the `SwiftCompile` action for this
             target.
+        swift_preview_inputs: Optional manifest metadata and native import
+            preparation from `compiler_args.collect`; only manifests are inputs.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
             Swift debug settings from dependencies.
         team_id: The team ID to use for code signing.
@@ -1261,14 +1295,31 @@ def _write_target_build_settings(
         join_with = " ",
     )
 
+    # nativePreviewsFrameworkPaths. Focused framework targets own their native
+    # products. Use that product, not a competing Bazel copy; other frameworks
+    # and legacy staging keep their Bazel paths.
+    xcode_framework_paths = _native_preview_framework_paths(
+        previews_xcode_targets,
+        previews_direct_dependencies,
+    ) if previews_dynamic_frameworks else {}
+    args.add(" ".join([
+        '"{}"'.format(
+            xcode_framework_paths.get(
+                file.path if is_framework else file.dirname,
+                _dynamic_framework_path((file, is_framework)),
+            ),
+        )
+        for file, is_framework in previews_dynamic_frameworks
+    ]))
+
     # previewsIncludePath
     args.add(previews_include_path)
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
 
-    # Exact manifest paths are project-generation metadata; prepared import
-    # files are copied through the indexing output group instead.
+    # Only cheap manifest metadata is a project-generation dependency. Local
+    # maps, modules and headers belong to bf, never this action's inputs.
     manifests = swift_preview_inputs.manifests if generate_build_settings and swift_preview_inputs else []
     args.add_all(manifests, terminate_with = "", omit_if_empty = False)
     args.add_all(

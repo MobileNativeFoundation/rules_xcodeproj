@@ -57,7 +57,7 @@ final class NativeSwiftProfileTests: XCTestCase {
     }
 
     private func settings(_ flags: [String]) async throws -> [String: String] {
-        let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "0", "", ""]
+        let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "", "", "0", "", ""]
         let result = try await Generator.Environment.default.processArgs(
             rawArguments: (envelope + ["swift_worker", "swiftc"] + flags + ["---", "---"])[...],
             generateBuildSettings: true,
