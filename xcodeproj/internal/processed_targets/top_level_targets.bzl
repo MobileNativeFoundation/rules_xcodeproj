@@ -367,6 +367,7 @@ def _process_focused_top_level_target(
             conly = mergeable_info.conly_args,
             cxx = mergeable_info.cxx_args,
             swift = mergeable_info.swift_args,
+            swift_preview_inputs = mergeable_info.swift_preview_inputs,
         )
 
         if mergeable_info.previews_dynamic_frameworks:
