@@ -259,6 +259,10 @@ A_SHARD00A_HASH000000000005 /* Create Link Dependencies */
             try "previous response\n".write(to: output, atomically: true, encoding: .utf8)
             let environment = runtimeEnvironment(directory).merging(overrides) { _, value in value }
             XCTAssertNotEqual(try runScript(directory: directory, previewSettings: environment, hasCompileStub: false, isStaticLibrary: true), 0, "Failed validation for \(overrides)")
+            if overrides["FAIL_RUNTIME_QUERY"] == "YES" {
+                // A failure to start Python must not satisfy this control.
+                XCTAssertTrue(FileManager.default.fileExists(atPath: directory.appendingPathComponent("received.json").path))
+            }
             XCTAssertEqual(try String(contentsOf: output), "previous response\n")
             XCTAssertFalse(try FileManager.default.contentsOfDirectory(atPath: directory.path).contains { $0.hasPrefix("link.params.tmp.") })
         }
@@ -309,13 +313,13 @@ A_SHARD00A_HASH000000000005 /* Create Link Dependencies */
 import json, os, sys
 from pathlib import Path
 root = Path(__file__).parent
-if os.environ.get("FAIL_RUNTIME_QUERY") == "YES":
-    sys.exit(1)
 args = sys.argv[1:]
 if not args[args.index("--sdk") + 1] or not args[args.index("--driver") + 1]:
     sys.exit(1)
 policy = json.loads(Path(args[args.index("--driver-policy-file") + 1]).read_text())
 (root / "received.json").write_text(json.dumps({"args": args, "policy": policy}))
+if os.environ.get("FAIL_RUNTIME_QUERY") == "YES":
+    sys.exit(1)
 print('"/selected runtime.a"')
 """#.write(to: directory.appendingPathComponent("preview_runtime_link_params.py"), atomically: true, encoding: .utf8)
         return directory
@@ -328,7 +332,10 @@ print('"/selected runtime.a"')
             "ARCHS": "arm64", "LD": "/selected toolchain/usr/bin/clang", "SDK_DIR": "/selected SDK.sdk",
             "LLVM_TARGET_TRIPLE_VENDOR": "apple", "LLVM_TARGET_TRIPLE_OS_VERSION": "ios16.0", "LLVM_TARGET_TRIPLE_SUFFIX": "-simulator",
             "BAZEL_PREVIEW_SWIFT_PROFILE": "YES", "CURRENT_ARCH": "undefined_arch", "NATIVE_ARCH_ACTUAL": "arm64e",
-            "TOOLCHAIN_DIR": "/misleading metal toolchain", "SDKROOT": "iphonesimulator26.5",
+            // /usr/bin/python3 resolves SDKROOT before starting the helper.
+            // Use an installed SDK, deliberately different from SDK_DIR, so
+            // this fixture also runs on Xcodes without the iOS 26.5 SDK.
+            "TOOLCHAIN_DIR": "/misleading metal toolchain", "SDKROOT": "macosx",
         ]
     }
 
@@ -364,7 +371,6 @@ print('"/selected runtime.a"')
             "SCRIPT_OUTPUT_FILE_1": directory
                 .appendingPathComponent("_CompileStub_.m").path,
         ].merging(previewSettings) { _, value in value }
-        process.standardError = FileHandle.nullDevice
         try process.run()
         process.waitUntilExit()
         return process.terminationStatus
