@@ -38,15 +38,15 @@ extension Generator {
             swiftIncludes: OrderedSet<String>
         ) {
             try await callable(
-                /*rawArguments:*/ rawArguments,
-                /*generateBuildSettings:*/ generateBuildSettings,
-                /*includeSelfSwiftDebugSettings:*/
+                /* rawArguments: */ rawArguments,
+                /* generateBuildSettings: */ generateBuildSettings,
+                /* includeSelfSwiftDebugSettings: */
                     includeSelfSwiftDebugSettings,
-                /*transitiveSwiftDebugSettingPaths:*/
+                /* transitiveSwiftDebugSettingPaths: */
                     transitiveSwiftDebugSettingPaths,
-                /*processCArgs:*/ processCArgs,
-                /*processCxxArgs:*/ processCxxArgs,
-                /*processSwiftArgs:*/ processSwiftArgs
+                /* processCArgs: */ processCArgs,
+                /* processCxxArgs: */ processCxxArgs,
+                /* processSwiftArgs: */ processSwiftArgs
             )
         }
     }
@@ -103,6 +103,8 @@ extension Generator.ProcessArgs {
         )
         let previewsFrameworkPaths =
             try rawArguments.consumeArg("previews-framework-paths")
+        let nativePreviewsFrameworkPaths =
+            try rawArguments.consumeArg("native-previews-framework-paths")
         let previewsIncludePath =
             try rawArguments.consumeArg("previews-include-path")
         let separateIndexBuildOutputBase = try rawArguments.consumeArg(
@@ -114,6 +116,8 @@ extension Generator.ProcessArgs {
         var manifests: [String: Data] = [:]
         if generateBuildSettings {
             for path in manifestPaths {
+                // Only these exact declared metadata Files are generation inputs.
+                // A failed read leaves the original compiler flags intact.
                 if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                     manifests[path] = data
                 }
@@ -141,6 +145,16 @@ extension Generator.ProcessArgs {
             nativeSwiftManifests: manifests,
             previewSwiftImportPaths: Set(previewImportPaths)
         )
+
+        if nativePreviewsFrameworkPaths != previewsFrameworkPaths {
+            buildSettings.removeAll { $0.key == "PREVIEW_FRAMEWORK_PATHS" }
+            buildSettings.append(contentsOf: [
+                ("PREVIEW_FRAMEWORK_PATHS", "$(PREVIEW_FRAMEWORK_PATHS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__", previewsFrameworkPaths.pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__NO", previewsFrameworkPaths.pbxProjEscaped),
+                ("PREVIEW_FRAMEWORK_PATHS__YES", nativePreviewsFrameworkPaths.pbxProjEscaped),
+            ])
+        }
 
         guard generateBuildSettings else {
             return ([], clangArgs, frameworkIncludes, swiftIncludes)
@@ -247,7 +261,7 @@ private func argsStream(
                         // Change params files from `shell` to `multiline`
                         // format
                         // https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
-                        if line.hasPrefix("'") && line.hasSuffix("'") {
+                        if line.hasPrefix("'"), line.hasSuffix("'") {
                             let startIndex = line
                                 .index(line.startIndex, offsetBy: 1)
                             let endIndex = line.index(before: line.endIndex)

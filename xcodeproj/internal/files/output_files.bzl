@@ -128,9 +128,11 @@ def _collect_output_files(
         indexstore_overrides = [],
         infoplist = None,
         link_params = None,
-        preview_swift_import_files = EMPTY_DEPSET,
         name,
         output_group_info,
+        preview_framework_files = [],
+        preview_link_input_files = [],
+        preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         should_produce_dto = True,
         swift_info,
@@ -156,9 +158,13 @@ def _collect_output_files(
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_framework_files: A `list` of framework `File`s that should be
+            materialized for Xcode Previews.
+        preview_link_input_files: A `list` of linker input `File`s that should
+            be materialized for Xcode Previews.
+        preview_swift_import_files: A `depset` of local Swift modules, textual
+            module maps and headers to materialize for native compilation.
         product: A value from `process_product`.
-        preview_swift_import_files: A `depset` of Swift import and plugin files
-            to prepare for Xcode indexing.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
             collected values. This will only be `True` if the generator can use
             the output files (e.g. not Build with Bazel via Proxy).
@@ -237,7 +243,7 @@ def _collect_output_files(
         ],
     )
     transitive_link_params = memory_efficient_depset(
-        [link_params] if link_params else None,
+        ([link_params] if link_params else []) + list(preview_link_input_files),
         transitive = [
             info.outputs._transitive_link_params
             for info in transitive_infos
@@ -270,11 +276,19 @@ def _collect_output_files(
     # does not include linked products, avoiding large binary materialization.
     indexing_depset = memory_efficient_depset(
         [indexstores_filelist],
+        # Cached compilation can leave native compiler inputs (for example
+        # executable macros) remote. Make the prepared inputs explicit outputs.
         transitive = [transitive_indexstores, preview_swift_import_files],
     )
 
     direct_group_list = [
         ("bc {}".format(id), transitive_compile_params),
+        ("bf {}".format(id), memory_efficient_depset(
+            preview_framework_files,
+            # Native Preview bundle targets consume adjusted Info.plists even
+            # when their Bazel products are deliberately not requested.
+            transitive = [transitive_infoplists, preview_swift_import_files],
+        )),
         ("bi {}".format(id), indexing_depset),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
@@ -308,8 +322,11 @@ def _collect_mixed_language_output_files(
         id,
         indexstore_overrides,
         mixed_target_infos,
+        link_params = None,
         name,
         output_group_info,
+        preview_framework_files = [],
+        preview_link_input_files = [],
         preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         swift_info,
@@ -328,12 +345,18 @@ def _collect_mixed_language_output_files(
             targets.
         mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
             Clang and Swift targets.
+        link_params: A link params `File`, or `None`, that should be generated
+            for Xcode Previews.
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_framework_files: A `list` of framework `File`s that should be
+            materialized for Xcode Previews.
+        preview_link_input_files: A `list` of linker input `File`s that should
+            be materialized for Xcode Previews.
+        preview_swift_import_files: A `depset` of local Swift modules, textual
+            module maps and headers to materialize for native compilation.
         product: A value from `process_product`.
-        preview_swift_import_files: A `depset` of Swift import and plugin files
-            to prepare for Xcode indexing.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
@@ -389,8 +412,13 @@ def _collect_mixed_language_output_files(
     # Only top-level targets will have `Info.plist` files
     transitive_infoplists = EMPTY_DEPSET
 
-    # Only top-level targets will have link params
-    transitive_link_params = EMPTY_DEPSET
+    transitive_link_params = memory_efficient_depset(
+        ([link_params] if link_params else []) + list(preview_link_input_files),
+        transitive = [
+            info.outputs._transitive_link_params
+            for info in transitive_infos
+        ],
+    )
 
     products_output_group_name = "bp {}".format(id)
 
@@ -418,6 +446,7 @@ def _collect_mixed_language_output_files(
             [indexstores_filelist],
             transitive = [transitive_indexstores, preview_swift_import_files],
         )),
+        ("bf {}".format(id), memory_efficient_depset(preview_framework_files, transitive = [preview_swift_import_files])),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]
