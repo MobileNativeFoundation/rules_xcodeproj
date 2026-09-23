@@ -15,6 +15,13 @@ load(
     "linker_input_files",
 )
 
+# buildifier: disable=bzl-visibility
+load(
+    "//xcodeproj/internal/files:output_files.bzl",
+    "output_files",
+    "output_groups",
+)
+
 def _paths(files):
     return [file.path for file in files]
 
@@ -115,6 +122,64 @@ source_static_library_preview_libraries_test = unittest.make(
     },
 )
 
+def _static_library_preview_path_boundaries_test_impl(ctx):
+    env = unittest.begin(ctx)
+
+    # Reduced File-shaped boundaries complement the real source/generated
+    # artifacts consumed by static_library_preview_link_params_test.
+    cases = [
+        ("vendor/libSource.a", True, "$(SRCROOT)/vendor/libSource.a"),
+        ("bazel-out/config/bin/libGenerated.a", False, "$(PROJECT_DIR)/bazel-out/config/bin/libGenerated.a"),
+        ("external/repo/libSource.a", True, "$(PROJECT_DIR)/external/repo/libSource.a"),
+        ("../repo/libSource.a", True, "$(PROJECT_DIR)/../repo/libSource.a"),
+        ("vendor/../libSource.a", True, "$(PROJECT_DIR)/vendor/../libSource.a"),
+        ("/absolute/libSource.a", True, "/absolute/libSource.a"),
+        ("$(BAZEL_EXTERNAL)/repo/libSource.a", True, "$(BAZEL_EXTERNAL)/repo/libSource.a"),
+        ("vendor/libStandalone.dylib", True, "$(PROJECT_DIR)/vendor/libStandalone.dylib"),
+    ]
+    files = [struct(
+        path = path,
+        is_source = is_source,
+        extension = path.rsplit(".", 1)[-1],
+        owner = ctx.label,
+        basename = path.rsplit("/", 1)[-1],
+        dirname = path.rsplit("/", 1)[0],
+    ) for path, is_source, _ in cases]
+    selected = ctx.actions.declare_file("PathBoundaries/Selected.a")
+    ctx.actions.write(selected, "unused selected archive\n")
+    writes = {}
+
+    def write(*, output, content):
+        writes[output.path] = content
+        ctx.actions.write(output, content)
+
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = struct(declare_file = ctx.actions.declare_file, write = write),
+        name = "PathBoundaries",
+        linker_inputs = struct(
+            _cc_linker_inputs = (struct(libraries = (
+                [_static_library(static = selected)] +
+                [_static_library(static = file, alwayslink = file == files[0]) for file in files[:-1]] +
+                [_dynamic_library(dynamic = files[-1])]
+            )),),
+            _compilation_providers = struct(cc_info = True, framework_files = depset(), objc = None),
+            _objc_libraries = (),
+            _primary_static_library = selected,
+        ),
+    )
+    expected = ["-ObjC", "-force_load"] + [
+        '"' + path + '"' if "$(" in path else path
+        for _, _, path in cases
+    ]
+    asserts.equals(env, "\n".join(expected) + "\n", writes[preview.file.path])
+    asserts.equals(env, _paths(files) + [preview.file.path + ".runtime.json"], _paths(preview.link_input_files), "Path anchoring does not change preparation ownership or retain the selected archive")
+    asserts.equals(env, "[]\n", writes[preview.file.path + ".runtime.json"])
+    return unittest.end(env)
+
+static_library_preview_path_boundaries_test = unittest.make(
+    _static_library_preview_path_boundaries_test_impl,
+)
+
 def _dynamic_library(*, dynamic, resolved = None, static = None, pic = None):
     return struct(
         alwayslink = False,
@@ -130,7 +195,8 @@ def _merged_static_library_preview_libraries_test_impl(ctx):
     swift = ctx.actions.declare_file("libMixed_swift.a")
     dependency = ctx.actions.declare_file("dependency/libMixed_swift.a")
     for file in [clang, swift, dependency]:
-        ctx.actions.write(file, "test\\n")
+        ctx.actions.write(file, "test\n")
+
     inputs = struct(
         _cc_linker_inputs = (struct(libraries = [
             _static_library(static = clang),
@@ -142,17 +208,104 @@ def _merged_static_library_preview_libraries_test_impl(ctx):
         _objc_libraries = (),
         _primary_static_library = clang,
     )
-    asserts.equals(env, [dependency], linker_input_files.get_static_library_preview_libraries(inputs, product_files = (clang, swift)))
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = ctx.actions,
+        linker_inputs = inputs,
+        name = "Merged",
+        product_files = (clang, swift),
+    )
+    asserts.equals(env, [dependency], list(preview.libraries))
+    asserts.equals(env, [dependency.path, preview.file.path + ".runtime.json"], _paths(preview.link_input_files))
     asserts.equals(
         env,
         [swift, dependency],
-        linker_input_files.get_static_library_preview_libraries(inputs, product_files = (clang,)),
+        linker_input_files.get_static_library_preview_libraries(
+            inputs,
+            product_files = (clang,),
+        ),
         "Retain an unmerged Swift dependency; filter by exact File, not basename",
     )
     return unittest.end(env)
 
 merged_static_library_preview_libraries_test = unittest.make(
     _merged_static_library_preview_libraries_test_impl,
+)
+
+def _standalone_dynamic_library_preview_closure_test_impl(ctx):
+    env = unittest.begin(ctx)
+
+    solib = ctx.actions.declare_file("_solib/libStandalone.dylib")
+    resolved = ctx.actions.declare_file("prebuilt/libStandalone.dylib")
+    fallback = ctx.actions.declare_file("deps/libFallback.dylib")
+    framework_internal = ctx.actions.declare_file(
+        "Sample.framework/libInternal.dylib",
+    )
+    for file in [solib, resolved, fallback, framework_internal]:
+        ctx.actions.write(file, "test\n")
+
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = ctx.actions,
+        linker_inputs = struct(
+            _cc_linker_inputs = (
+                struct(libraries = [
+                    _dynamic_library(dynamic = solib, resolved = resolved),
+                    _dynamic_library(dynamic = solib, resolved = resolved),
+                    _dynamic_library(dynamic = fallback),
+                    _dynamic_library(dynamic = framework_internal),
+                ]),
+            ),
+            _compilation_providers = struct(
+                cc_info = True,
+                framework_files = depset(),
+                objc = None,
+            ),
+            _objc_libraries = (),
+            _primary_static_library = None,
+        ),
+        name = "StandaloneOnly",
+    )
+
+    asserts.true(env, preview != None, "standalone-only closure emits params")
+    if preview:
+        asserts.equals(env, [], list(preview.libraries))
+        asserts.equals(env, [], list(preview.dynamic_frameworks))
+        asserts.equals(
+            env,
+            [resolved.path, fallback.path, preview.file.path + ".runtime.json"],
+            _paths(preview.link_input_files),
+            "materialize the emitted artifact, preferring resolved files and deduplicating in linker order",
+        )
+        (_, _, metadata) = output_files.collect(
+            actions = ctx.actions,
+            compile_params_files = [],
+            debug_outputs = None,
+            id = "standalone",
+            link_params = preview.file,
+            name = ctx.label.name,
+            output_group_info = None,
+            preview_link_input_files = preview.link_input_files,
+            swift_info = None,
+            transitive_infos = [],
+        )
+        groups = output_groups.to_output_groups_fields(
+            target_output_groups = output_groups.collect(
+                metadata = metadata,
+                transitive_infos = [],
+            ),
+        )
+        asserts.equals(
+            env,
+            [preview.file.path, resolved.path, fallback.path, preview.file.path + ".runtime.json"],
+            _paths(groups["bl standalone"].to_list()),
+            "the Preview output group requests exact standalone producers",
+        )
+        asserts.equals(env, [], groups["bf standalone"].to_list())
+        asserts.false(env, resolved in groups["bp standalone"].to_list())
+
+    return unittest.end(env)
+
+standalone_dynamic_library_preview_closure_test = unittest.make(
+    _standalone_dynamic_library_preview_closure_test_impl,
 )
 
 def _static_library_preview_dynamic_frameworks_test_impl(ctx):
@@ -257,6 +410,54 @@ static_library_preview_dynamic_frameworks_test = unittest.make(
     _static_library_preview_dynamic_frameworks_test_impl,
 )
 
+def _dynamic_only_static_library_preview_closure_test_impl(ctx):
+    env = unittest.begin(ctx)
+
+    lottie = ctx.actions.declare_file("Lottie.framework/Lottie")
+    ctx.actions.write(lottie, "test\n")
+    preview_link_params = (
+        linker_input_files.create_static_library_preview_link_params(
+            actions = ctx.actions,
+            linker_inputs = struct(
+                _cc_linker_inputs = (),
+                _compilation_providers = struct(
+                    cc_info = None,
+                    framework_files = depset(),
+                    objc = struct(
+                        dynamic_framework_file = depset([lottie]),
+                    ),
+                ),
+                _objc_libraries = (),
+                _primary_static_library = None,
+            ),
+            name = "DynamicOnly",
+        )
+    )
+
+    asserts.true(
+        env,
+        preview_link_params.file != None,
+        "dynamic-only closure emits canonical framework params",
+    )
+    asserts.equals(
+        env,
+        [],
+        list(preview_link_params.libraries),
+        "dynamic-only closure has no archive inputs",
+    )
+    asserts.equals(
+        env,
+        [preview_link_params.file.path + ".runtime.json"],
+        _paths(preview_link_params.link_input_files),
+        "dynamic-only closure materializes frameworks through their output group",
+    )
+
+    return unittest.end(env)
+
+dynamic_only_static_library_preview_closure_test = unittest.make(
+    _dynamic_only_static_library_preview_closure_test_impl,
+)
+
 def _static_library_preview_framework_mapping_test_impl(ctx):
     env = unittest.begin(ctx)
 
@@ -298,6 +499,167 @@ def _static_library_preview_framework_mapping_test_impl(ctx):
 
 static_library_preview_framework_mapping_test = unittest.make(
     _static_library_preview_framework_mapping_test_impl,
+)
+
+def _static_library_preview_link_params_test_impl(ctx):
+    primary = ctx.actions.declare_file("libSubject.a")
+    dependency = ctx.actions.declare_file("deps With Spaces/libDependency.a")
+    alwayslink_dependency = ctx.actions.declare_file(
+        "deps With Spaces/libAlwayslinkDependency.a",
+    )
+    lottie = ctx.actions.declare_file(
+        "Lottie With Spaces.framework/Lottie With Spaces",
+    )
+    solib = ctx.actions.declare_file("_solib/libStandalone.dylib")
+    resolved = ctx.actions.declare_file("prebuilt With Spaces/libStandalone.dylib")
+    fallback = ctx.actions.declare_file("deps/libFallback.dylib")
+    unused_dynamic = ctx.actions.declare_file("deps/libStaticAlternative.dylib")
+    for file in [
+        primary,
+        dependency,
+        alwayslink_dependency,
+        lottie,
+        solib,
+        resolved,
+        fallback,
+        unused_dynamic,
+    ]:
+        ctx.actions.write(file, "test\n")
+    source_dependency = ctx.file.source_dependency
+
+    preview_link_params = (
+        linker_input_files.create_static_library_preview_link_params(
+            actions = ctx.actions,
+            linker_inputs = struct(
+                _cc_linker_inputs = (
+                    struct(libraries = [
+                        _static_library(static = primary),
+                        _static_library(static = dependency),
+                        _static_library(static = source_dependency),
+                        _static_library(
+                            static = alwayslink_dependency,
+                            alwayslink = True,
+                        ),
+                        _dynamic_library(dynamic = lottie),
+                        _dynamic_library(dynamic = solib, resolved = resolved),
+                        _dynamic_library(dynamic = solib, resolved = resolved),
+                        _dynamic_library(dynamic = fallback),
+                        _dynamic_library(
+                            dynamic = unused_dynamic,
+                            static = dependency,
+                        ),
+                        _dynamic_library(
+                            dynamic = unused_dynamic,
+                            pic = alwayslink_dependency,
+                        ),
+                    ], user_link_flags = ["-Wl,-add_ast_path,Selected.swiftmodule"] if ctx.attr.process_link_flags else []),
+                ),
+                _compilation_providers = struct(
+                    cc_info = True,
+                    framework_files = depset(),
+                    objc = None,
+                ),
+                _objc_libraries = (),
+                _primary_static_library = primary,
+            ),
+            name = ctx.label.name,
+            tool = ctx.executable._link_params_processor,
+        )
+    )
+
+    verified = ctx.actions.declare_file(ctx.label.name + ".verified")
+    ctx.actions.run_shell(
+        inputs = [preview_link_params.file],
+        outputs = [verified],
+        arguments = [
+            preview_link_params.file.path,
+            dependency.path,
+            source_dependency.path,
+            alwayslink_dependency.path,
+            resolved.path,
+            fallback.path,
+            verified.path,
+        ],
+        command = """\
+set -euo pipefail
+
+diff -u <(printf '%s\\n' \\
+  '"-F$(TARGET_BUILD_DIR)"' \\
+  '-framework' \\
+  '"Lottie With Spaces"' \\
+  '-rpath' \\
+  '"$(TARGET_BUILD_DIR)"' \\
+  '-ObjC' \\
+  '"$(PROJECT_DIR)/'"$2"'"' \\
+  '"$(SRCROOT)/'"$3"'"' \\
+  '-force_load' \\
+  '"$(PROJECT_DIR)/'"$4"'"' \\
+  '"$(PROJECT_DIR)/'"$5"'"' \\
+  '"$(PROJECT_DIR)/'"$6"'"') "$1"
+! grep -Eq '^-ref-framework$|^@rpath/' "$1"
+
+# Expand build settings before tokenizing, including paths whose relative
+# portion has no whitespace. Only controlled fixture arguments reach eval.
+response="$(<"$1")"
+project_dir_setting='$(PROJECT_DIR)'
+srcroot_setting='$(SRCROOT)'
+target_build_dir_setting='$(TARGET_BUILD_DIR)'
+project_dir='/Execution Root'
+srcroot='/Workspace Root'
+target_build_dir='/Build Products'
+response="${response//$project_dir_setting/$project_dir}"
+response="${response//$srcroot_setting/$srcroot}"
+response="${response//$target_build_dir_setting/$target_build_dir}"
+eval "parsed=($response)"
+diff -u <(printf '%s\\n' \\
+  '-F/Build Products' \\
+  '-framework' \\
+  'Lottie With Spaces' \\
+  '-rpath' \\
+  '/Build Products' \\
+  '-ObjC' \\
+  '/Execution Root/'"$2" \\
+  '/Workspace Root/'"$3" \\
+  '-force_load' \\
+  '/Execution Root/'"$4" \\
+  '/Execution Root/'"$5" \\
+  '/Execution Root/'"$6") <(printf '%s\\n' "${parsed[@]}")
+printf 'verified\\n' > "$7"
+""",
+    )
+
+    executable = ctx.actions.declare_file(ctx.label.name + ".sh")
+    ctx.actions.write(
+        executable,
+        content = """\
+#!/bin/bash
+set -euo pipefail
+readonly marker="$TEST_SRCDIR/$TEST_WORKSPACE/{marker}"
+[[ "$(cat "$marker")" == "verified" ]]
+""".format(marker = verified.short_path),
+        is_executable = True,
+    )
+
+    return [DefaultInfo(
+        executable = executable,
+        runfiles = ctx.runfiles(files = [verified]),
+    )]
+
+static_library_preview_link_params_test = rule(
+    attrs = {
+        # A real Swift toolchain flag routes the same provider inputs through
+        # ProcessLinkParams instead of the no-user-flags direct writer.
+        "process_link_flags": attr.bool(),
+        "source_dependency": attr.label(
+            allow_single_file = [".a"],
+            default = Label(
+                "//test/internal/files:testdata/libSourceDependency.a",
+            ),
+        ),
+        "_link_params_processor": attr.label(default = "//tools/params_processors:link_params_processor", executable = True, cfg = "exec"),
+    },
+    implementation = _static_library_preview_link_params_test_impl,
+    test = True,
 )
 
 def _top_level_preview_dynamic_inputs_test_impl(ctx):
@@ -558,16 +920,250 @@ framework_preview_dynamic_propagation_test = unittest.make(
     },
 )
 
+def _static_library_preview_link_flags_test_impl(ctx):
+    env = unittest.begin(ctx)
+    library = ctx.attr.libraries[_PreviewLibrariesInfo].libraries["archive"]
+    flags = ["-u", "_preview_registration", "-weak_framework", "Optional Framework", "-reexport_framework", "Transitive", "-Lrelative/lib", "-lCustom"]
+    for use_objc in [False, True]:
+        for with_archive in [False, True]:
+            cc_info = _test_cc_info(ctx, [library] if with_archive else [], flags)
+            writes = {}
+            runs = []
+
+            def write(*, output, content):
+                writes[output.path] = content
+                ctx.actions.write(output, content)
+
+            def run(**kwargs):
+                runs.append(kwargs)
+                for output in kwargs["outputs"]:
+                    ctx.actions.write(output, "transport-only test\n")
+
+            preview = linker_input_files.create_static_library_preview_link_params(
+                actions = struct(declare_file = ctx.actions.declare_file, write = write, run = run),
+                name = "LinkFlags_{}_{}".format(use_objc, with_archive),
+                tool = "link_params_processor",
+                linker_inputs = struct(
+                    _cc_linker_inputs = tuple(cc_info.linking_context.linker_inputs.to_list()) if not use_objc else (),
+                    _compilation_providers = struct(
+                        cc_info = cc_info,
+                        framework_files = depset(),
+                        objc = struct(linkopt = depset(flags), dynamic_framework_file = depset()) if use_objc else None,
+                    ),
+                    _objc_libraries = (library.static_library,) if use_objc and with_archive else (),
+                    _primary_static_library = None,
+                ),
+            )
+            asserts.true(env, preview != None, "A flag-only dependency still needs Preview linker metadata")
+            if preview:
+                expected = ["libtool"] + (["-ObjC", "$(PROJECT_DIR)/{}".format(library.static_library.path)] if with_archive else []) + flags
+                asserts.equals(env, "\n".join(expected) + "\n", writes[preview.file.path + ".raw"], "Declared link flags survive with and without archive dependencies")
+                asserts.equals(env, [], json.decode(writes[preview.file.path + ".products.json"]))
+                asserts.equals(env, [preview.file.path, preview.file.path + ".products.json", "static", preview.file.path + ".raw"], runs[0]["arguments"])
+                asserts.equals(env, [preview.file.path + ".raw", preview.file.path + ".products.json"], _paths(runs[0]["inputs"]), "Generating argument metadata must not build link artifacts")
+    return unittest.end(env)
+
+static_library_preview_link_flags_test = unittest.make(
+    _static_library_preview_link_flags_test_impl,
+    attrs = {"libraries": attr.label(mandatory = True, providers = [_PreviewLibrariesInfo])},
+)
+
+def _static_library_preview_link_flag_inputs_test_impl(ctx):
+    env = unittest.begin(ctx)
+    archive = ctx.attr.libraries[_PreviewLibrariesInfo].libraries["archive"]
+    dependency_object = ctx.attr.libraries[_PreviewLibrariesInfo].object
+    primary = ctx.actions.declare_file("Selected.a")
+    merged = ctx.actions.declare_file("Merged.a")
+    selected_object = ctx.actions.declare_file("Selected.o")
+    selected_autolink = ctx.actions.declare_file("Selected.autolink")
+    debug_module = ctx.actions.declare_file("Selected.swiftmodule")
+    symbols = ctx.actions.declare_file("symbols with 'quotes'.txt")
+    response = ctx.actions.declare_file("dependency.rsp")
+    for file in [primary, merged, selected_object, selected_autolink, debug_module, symbols, response]:
+        ctx.actions.write(file, "fixture\n")
+    additional_inputs = [primary, merged, selected_object, selected_autolink, debug_module, symbols, response, dependency_object]
+    flags = [
+        "-u",
+        "_first",
+        "-u",
+        "_second",
+        "-Wl,-force_load," + primary.path,
+        "-Xlinker",
+        "-force_load",
+        "-Xlinker",
+        merged.path,
+        selected_object.path,
+        "@" + selected_autolink.path,
+        "-Wl,-add_ast_path," + debug_module.path,
+        "-exported_symbols_list",
+        symbols.path,
+        "@" + response.path,
+        dependency_object.path,
+    ]
+    cc_info = _test_cc_info(ctx, [archive], flags, additional_inputs)
+    writes = {}
+    runs = []
+
+    def write(*, output, content):
+        writes[output.path] = content
+        ctx.actions.write(output, content)
+
+    def run(**kwargs):
+        runs.append(kwargs)
+        for output in kwargs["outputs"]:
+            ctx.actions.write(output, "transport-only test\n")
+
+    preview = linker_input_files.create_static_library_preview_link_params(
+        actions = struct(declare_file = ctx.actions.declare_file, write = write, run = run),
+        name = "Nested/FlagInputs",
+        tool = "link_params_processor",
+        product_files = [merged],
+        linker_inputs = struct(
+            _cc_linker_inputs = tuple(cc_info.linking_context.linker_inputs.to_list()),
+            _compilation_providers = struct(cc_info = cc_info, framework_files = depset(), objc = None),
+            _objc_libraries = (),
+            _primary_static_library = primary,
+        ),
+    )
+    asserts.equals(env, _paths([archive.static_library, symbols, response, dependency_object]) + [preview.file.path + ".runtime.json"], _paths(preview.link_input_files), "Prepare required declared link files and dependency objects, never selected products/objects/autolink or debug modules")
+    asserts.equals(env, [preview.file.path, preview.file.path + ".runtime.json"], _paths(runs[0]["outputs"]), "Runtime policy is a declared paired metadata output")
+    asserts.equals(env, _paths([merged, primary, selected_object, selected_autolink]), json.decode(writes[preview.file.path + ".products.json"]), "Processor receives exact exclusion paths, including merged selected products")
+    asserts.equals(env, flags, writes[preview.file.path + ".raw"].splitlines()[3:], "Repeated flags, wrappers, quotes and response references survive transport verbatim")
+    asserts.equals(env, [preview.file.path + ".raw", preview.file.path + ".products.json"], _paths(runs[0]["inputs"]), "No generated link input becomes a project-generation action input")
+    return unittest.end(env)
+
+static_library_preview_link_flag_inputs_test = unittest.make(
+    _static_library_preview_link_flag_inputs_test_impl,
+    attrs = {"libraries": attr.label(mandatory = True, providers = [_PreviewLibrariesInfo])},
+)
+
+def _preview_registration_library_impl(ctx):
+    cc_toolchain = find_cc_toolchain(ctx)
+    features = cc_common.configure_features(ctx = ctx, cc_toolchain = cc_toolchain)
+    source = ctx.actions.declare_file(ctx.label.name + ".c")
+    ctx.actions.write(source, "int preview_registration(void) { return 42; }\n")
+    _, compilation_outputs = cc_common.compile(
+        actions = ctx.actions,
+        name = ctx.label.name,
+        cc_toolchain = cc_toolchain,
+        feature_configuration = features,
+        srcs = [source],
+    )
+    _, linking_outputs = cc_common.create_linking_context_from_compilation_outputs(
+        actions = ctx.actions,
+        name = ctx.label.name,
+        cc_toolchain = cc_toolchain,
+        feature_configuration = features,
+        compilation_outputs = compilation_outputs,
+        disallow_dynamic_library = True,
+    )
+    library = linking_outputs.library_to_link
+    return [
+        DefaultInfo(files = depset([library.static_library])),
+        _PreviewLibrariesInfo(libraries = {"archive": library}, object = compilation_outputs.objects[0]),
+    ]
+
+_preview_registration_library = rule(
+    implementation = _preview_registration_library_impl,
+    fragments = ["cpp"],
+    toolchains = use_cc_toolchain(),
+)
+
+def _static_library_preview_declared_flags_test_impl(ctx):
+    library = ctx.attr.libraries[_PreviewLibrariesInfo].libraries["archive"]
+    dependency_object = ctx.attr.libraries[_PreviewLibrariesInfo].object
+    verified = []
+    for use_objc, with_archive, required_only in [(False, False, False), (False, True, False), (True, False, False), (True, True, False), (False, True, True)]:
+        name = "DeclaredFlags_{}_{}_{}".format(use_objc, with_archive, required_only)
+        flags = ["-Wl,-u,_preview_registration", "-fprofile-instr-generate", "-nodefaultlibs"]
+        selected = None
+        additional_inputs = []
+        symbols = None
+        response = None
+        if not required_only:
+            selected = ctx.actions.declare_file(name + ".selected.a")
+            selected_object = ctx.actions.declare_file(name + ".selected.o")
+            selected_autolink = ctx.actions.declare_file(name + ".selected.autolink")
+            debug_module = ctx.actions.declare_file(name + ".swiftmodule")
+            symbols = ctx.actions.declare_file(name + ".exports with 'quotes'.txt")
+            response = ctx.actions.declare_file(name + ".dependency.rsp")
+            additional_inputs = [selected, selected_object, selected_autolink, debug_module, symbols, response, dependency_object]
+            ctx.actions.run_shell(
+                outputs = additional_inputs[:-1],
+                command = "echo 'Link artifacts must not be built while generating Preview params' >&2; exit 1",
+            )
+            flags += ["-Wl,-weak_framework,Optional Framework", "-Wl,-reexport_framework,Transitive", "-Lrelative/lib", "-lCustom", "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks", "-L__BAZEL_XCODE_DEVELOPER_DIR__/usr/lib"]
+            flags += ["-Wl,-force_load," + selected.path, selected_object.path, "@" + selected_autolink.path, "-Wl,-add_ast_path," + debug_module.path, "-exported_symbols_list", symbols.path, "@" + response.path, dependency_object.path]
+        cc_info = _test_cc_info(ctx, [library] if with_archive else [], flags, additional_inputs)
+        preview = linker_input_files.create_static_library_preview_link_params(
+            actions = ctx.actions,
+            name = name,
+            tool = ctx.executable._link_params_processor,
+            linker_inputs = struct(
+                _cc_linker_inputs = tuple(cc_info.linking_context.linker_inputs.to_list()) if not use_objc else (),
+                _compilation_providers = struct(
+                    cc_info = cc_info,
+                    framework_files = depset(),
+                    objc = struct(linkopt = depset(flags), link_inputs = depset(additional_inputs), dynamic_framework_file = depset()) if use_objc else None,
+                ),
+                _objc_libraries = (library.static_library,) if use_objc and with_archive else (),
+                _primary_static_library = selected,
+            ),
+        )
+        expected = ctx.actions.declare_file(name + ".expected")
+        expected_args = (["-ObjC", '"$(PROJECT_DIR)/{}"'.format(library.static_library.path)] if with_archive else []) + ["-u", "_preview_registration"]
+        if not required_only:
+            expected_args += ["-weak_framework", '"Optional Framework"', "-reexport_framework", "Transitive", '"-L$(PROJECT_DIR)/relative/lib"', "-lCustom", '"-F$(SDKROOT)/System/Library/Frameworks"', '"-L$(DEVELOPER_DIR)/usr/lib"']
+            expected_args += ["-exported_symbols_list", '"$(PROJECT_DIR)/{}"'.format(symbols.path), '"@$(PROJECT_DIR)/{}"'.format(response.path), '"$(PROJECT_DIR)/{}"'.format(dependency_object.path)]
+        ctx.actions.write(expected, "\n".join(expected_args) + "\n")
+        marker = ctx.actions.declare_file(name + ".verified")
+        runtime_policy = preview.link_input_files[-1]
+        expected_policy = ctx.actions.declare_file(name + ".expected.runtime.json")
+        ctx.actions.write(expected_policy, '["-fprofile-instr-generate","-nodefaultlibs"]\n')
+        ctx.actions.run_shell(
+            inputs = [preview.file, runtime_policy, expected, expected_policy],
+            outputs = [marker],
+            arguments = [expected.path, preview.file.path, marker.path, expected_policy.path, runtime_policy.path],
+            command = "diff -u \"$1\" \"$2\" && diff -u \"$4\" \"$5\" && printf 'verified\\n' > \"$3\"",
+        )
+        verified.append(marker)
+
+    executable = ctx.actions.declare_file(ctx.label.name + ".sh")
+    ctx.actions.write(
+        executable,
+        content = "#!/bin/bash\nset -euo pipefail\n" + "\n".join([
+            '[[ "$(cat "$TEST_SRCDIR/$TEST_WORKSPACE/' + file.short_path + '\")" == verified ]]'
+            for file in verified
+        ]) + "\n",
+        is_executable = True,
+    )
+    return [DefaultInfo(executable = executable, runfiles = ctx.runfiles(files = verified))]
+
+static_library_preview_declared_flags_test = rule(
+    implementation = _static_library_preview_declared_flags_test_impl,
+    test = True,
+    attrs = {
+        "libraries": attr.label(default = ":linker_input_files_registration_library", providers = [_PreviewLibrariesInfo]),
+        "_link_params_processor": attr.label(default = "//tools/params_processors:link_params_processor", executable = True, cfg = "exec"),
+    },
+)
+
 def linker_input_files_test_suite(name):
     libraries = name + "_framework_libraries"
     _preview_libraries(name = libraries, testonly = True)
+    _preview_registration_library(name = name + "_registration_library", testonly = True)
     return unittest.suite(
         name,
+        dynamic_only_static_library_preview_closure_test,
+        partial.make(framework_preview_dynamic_propagation_test, libraries = ":" + libraries),
         merged_static_library_preview_libraries_test,
         source_static_library_preview_libraries_test,
+        static_library_preview_path_boundaries_test,
+        standalone_dynamic_library_preview_closure_test,
         static_library_preview_dynamic_frameworks_test,
         static_library_preview_framework_mapping_test,
         static_library_preview_libraries_test,
         top_level_preview_dynamic_inputs_test,
-        partial.make(framework_preview_dynamic_propagation_test, libraries = ":" + libraries),
+        partial.make(static_library_preview_link_flags_test, libraries = ":" + libraries),
+        partial.make(static_library_preview_link_flag_inputs_test, libraries = ":" + libraries),
     )
