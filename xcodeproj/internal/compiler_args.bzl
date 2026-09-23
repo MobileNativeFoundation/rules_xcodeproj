@@ -5,7 +5,7 @@ load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST")
 
 def _swift_preview_inputs(action, swift_info):
-    """Collects the inputs needed to normalize the native Swift index action."""
+    """Collects cheap owned manifests separately from native import preparation."""
     inputs = {file.path: file for file in action.inputs.to_list()}
     outputs = {file.path: None for file in action.outputs.to_list()}
     manifests = []
@@ -40,12 +40,12 @@ def _swift_preview_inputs(action, swift_info):
             if plugin and plugin.path not in outputs:
                 import_files.append(plugin)
     if swift_info:
+        # The direct context is the exact compile inventory. It also contains
+        # private and toolchain modules absent from the propagated SwiftInfo.
         dependency_paths = {}
         for module in swift_info.direct_modules:
             context = getattr(module, "compilation_context", None)
             if context:
-                # The direct context is the exact compile inventory. It also
-                # contains private and toolchain modules absent from SwiftInfo.
                 import_files.extend([
                     file
                     for file in getattr(context, "direct_sources", ())
@@ -118,8 +118,8 @@ def _get_unprocessed_cc_compiler_opts(
     return conly_args, cxx_args
 
 def _cc_preview_inputs(actions, source_paths, compilation_context):
-    # Use the selected Clang target's actual generated sources, not the mixed
-    # wrapper's public headers (which can include its own Swift output).
+    # The selected Clang target's real inputs, not the mixed wrapper's public
+    # headers (which include a symlink to its own Swift compiler output).
     generated_sources = {}
     for action in actions:
         if action.mnemonic not in _CC_COMPILE_ACTIONS:
@@ -156,8 +156,6 @@ def _collect_compiler_args(
             target.
         *   `swift`: A `list` of `Args` for the `SwiftCompile` action for this
             target.
-        *   `swift_preview_inputs`: The explicit modules and files needed by
-            native index compilation.
     """
     swift_args = EMPTY_LIST
     swift_preview_inputs = struct(manifests = (), files = depset(), paths = ())
