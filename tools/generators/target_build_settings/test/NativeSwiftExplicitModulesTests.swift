@@ -333,4 +333,42 @@ final class NativeSwiftExplicitModulesTests: XCTestCase {
         let unknownSystem = Data(text.replacingOccurrences(of: "__bazel_developer_dir_26_6_0_17F113/Platforms/", with: "external/custom-system/").utf8)
         XCTAssertNil(NativeSwiftExplicitModules.normalize(args, manifests: [map: unknownSystem], preparedPaths: [swift, clang]))
     }
+
+    func testIndexArenaSelectsNormalizedFlagsAndOrdinaryFlagsStayExact() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let manifestURL = directory.appendingPathComponent("control.swift-explicit-module-map.json")
+        try manifest.write(to: manifestURL)
+        let rawSwift = args.map { $0 == map.buildSettingPath().quoteIfNeeded() ? manifestURL.path : $0 }
+        func process(owned: Bool) async throws -> ([(key: String, value: String)], [String]) {
+            let envelope = ["", "0", "0", "", "", "", "", "", "0", "", "", "0"]
+            var input = envelope
+            if owned {
+                input.append(contentsOf: [manifestURL.path, "", swift, clang, ""])
+            } else {
+                input.append(contentsOf: ["", ""])
+            }
+            input.append(contentsOf: ["swift_worker", "swiftc"])
+            input.append(contentsOf: rawSwift)
+            input.append(contentsOf: ["---", "---"])
+            let result = try await Generator.Environment.default.processArgs(
+                rawArguments: input[...], generateBuildSettings: true,
+                includeSelfSwiftDebugSettings: true, transitiveSwiftDebugSettingPaths: []
+            )
+            return (result.buildSettings, result.clangArgs)
+        }
+        let original = try await process(owned: false)
+        let candidate = try await process(owned: true)
+        XCTAssertEqual(original.1, candidate.1)
+        let settings = Dictionary(uniqueKeysWithValues: candidate.0)
+        let originalSettings = Dictionary(uniqueKeysWithValues: original.0)
+        XCTAssertNil(originalSettings["BAZEL_INDEX_SWIFT_FLAGS__YES"])
+        XCTAssertEqual(settings["BAZEL_INDEX_SWIFT_FLAGS__NO"], originalSettings["OTHER_SWIFT_FLAGS"])
+        XCTAssertEqual(settings["OTHER_SWIFT_FLAGS"], "$(BAZEL_INDEX_SWIFT_FLAGS__$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped)
+        XCTAssertEqual(settings["BAZEL_INDEX_SWIFT_FLAGS__NO"], settings["BAZEL_INDEX_SWIFT_FLAGS__"])
+        XCTAssertTrue(try XCTUnwrap(settings["BAZEL_INDEX_SWIFT_FLAGS__YES"]).contains("-I '$(BAZEL_OUT)/config/bin/Directory With Spaces'"))
+        XCTAssertFalse(try XCTUnwrap(settings["BAZEL_INDEX_SWIFT_FLAGS__YES"]).contains("explicit-swift-module-map-file"))
+        XCTAssertTrue(try XCTUnwrap(settings["BAZEL_INDEX_SWIFT_FLAGS__NO"]).contains("explicit-swift-module-map-file"))
+    }
 }

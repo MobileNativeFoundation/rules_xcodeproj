@@ -15,6 +15,8 @@ def _swift_plugin_inputs_test_impl(ctx):
     action = struct(argv = argv, inputs = depset([plugin, unrelated]), outputs = depset([own_output]))
     prepared = compiler_args.swift_preview_inputs(action, None)
     asserts.equals(env, [plugin], prepared.files.to_list())
+    asserts.equals(env, (), prepared.paths)
+    asserts.equals(env, (), prepared.manifests)
 
     # Flag-shaped strings do not authorize missing/unrelated inputs, outputs,
     # SDK plugin search directories, or incomplete options.

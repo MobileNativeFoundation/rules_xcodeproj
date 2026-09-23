@@ -5,11 +5,21 @@ load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST")
 
 def _swift_preview_inputs(action, swift_info):
-    """Collects declared imports and generated inputs for native indexing."""
+    """Collects the inputs needed to normalize the native Swift index action."""
     inputs = {file.path: file for file in action.inputs.to_list()}
     outputs = {file.path: None for file in action.outputs.to_list()}
+    manifests = []
     argv = action.argv
+    for i in range(len(argv) - 3):
+        if argv[i:i + 3] != ["-Xfrontend", "-explicit-swift-module-map-file", "-Xfrontend"]:
+            continue
+        file = inputs.get(argv[i + 3])
+        if file and (file.basename.endswith(".swift-explicit-module-map.json") or
+                     file.basename.endswith(".swift-system-explicit-module-map.json")):
+            manifests.append(file)
+
     import_files = []
+    import_paths = []
 
     # A generated bridging header is an input to the native compile, even when
     # it is not part of a Clang module's public header inventory.
@@ -44,6 +54,7 @@ def _swift_preview_inputs(action, swift_info):
                 for file in context.swiftmodules:
                     if type(file) == "File" and file.path not in outputs:
                         import_files.append(file)
+                        import_paths.append(file.path)
                 for file in context.module_maps:
                     if type(file) == "File":
                         dependency_paths[file.path] = None
@@ -60,7 +71,12 @@ def _swift_preview_inputs(action, swift_info):
                 if not any([header.path in outputs for header in headers]):
                     import_files.append(module_map)
                     import_files.extend(headers)
-    return struct(files = depset(import_files))
+                    import_paths.append(module_map.path)
+    return struct(
+        manifests = tuple(manifests),
+        files = depset(import_files),
+        paths = tuple(depset(import_paths).to_list()),
+    )
 
 # Compiler option processing
 
@@ -68,21 +84,6 @@ _CC_COMPILE_ACTIONS = {
     "CppCompile": None,
     "ObjcCompile": None,
 }
-
-def _cc_preview_inputs(actions, source_paths, compilation_context):
-    # Use the selected Clang target's actual generated sources, not the mixed
-    # wrapper's public headers (which can include its own Swift output).
-    generated_sources = {}
-    for action in actions:
-        if action.mnemonic not in _CC_COMPILE_ACTIONS:
-            continue
-        for file in action.inputs.to_list():
-            if not file.is_source and file.path in source_paths:
-                generated_sources[file] = None
-    return depset(
-        generated_sources.keys(),
-        transitive = [compilation_context.headers] if compilation_context else [],
-    )
 
 def _get_unprocessed_cc_compiler_opts(
         *,
@@ -116,6 +117,21 @@ def _get_unprocessed_cc_compiler_opts(
 
     return conly_args, cxx_args
 
+def _cc_preview_inputs(actions, source_paths, compilation_context):
+    # Use the selected Clang target's actual generated sources, not the mixed
+    # wrapper's public headers (which can include its own Swift output).
+    generated_sources = {}
+    for action in actions:
+        if action.mnemonic not in _CC_COMPILE_ACTIONS:
+            continue
+        for file in action.inputs.to_list():
+            if not file.is_source and file.path in source_paths:
+                generated_sources[file] = None
+    return depset(
+        generated_sources.keys(),
+        transitive = [compilation_context.headers] if compilation_context else [],
+    )
+
 # API
 
 def _collect_compiler_args(
@@ -140,11 +156,11 @@ def _collect_compiler_args(
             target.
         *   `swift`: A `list` of `Args` for the `SwiftCompile` action for this
             target.
-        *   `swift_preview_inputs`: The declared inputs to prepare for native
-            index compilation.
+        *   `swift_preview_inputs`: The explicit modules and files needed by
+            native index compilation.
     """
     swift_args = EMPTY_LIST
-    swift_preview_inputs = struct(files = depset())
+    swift_preview_inputs = struct(manifests = (), files = depset(), paths = ())
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             swift_args = action.args
@@ -169,7 +185,11 @@ def _collect_compiler_args(
             source_paths,
             cc_info.compilation_context if cc_info else None,
         )
-        swift_preview_inputs = struct(files = depset(transitive = [swift_preview_inputs.files, cc_inputs]))
+        swift_preview_inputs = struct(
+            manifests = swift_preview_inputs.manifests,
+            files = depset(transitive = [swift_preview_inputs.files, cc_inputs]),
+            paths = swift_preview_inputs.paths,
+        )
 
     return struct(
         conly = conly_args,
