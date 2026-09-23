@@ -28,6 +28,8 @@ The generator accepts the following command-line arguments:
 - Positional `preview-framework-paths`
 - Positional `previews-include-path`
 - Positional `separate-index-build-output-base`
+- List of exact declared Swift explicit-module manifest paths, terminated by an empty argument
+- List of local Swift/module-map paths covered by Preview preparation, terminated by an empty argument
 - The command-line arguments for a Bazel `SwiftCompile`
 action
 - `---` to signify the end of the Swift arguments
@@ -62,6 +64,8 @@ $ target_build_settings \
     '' \
     '' \
     0 \
+    '' \
+    '' \
     -target \
     arm64_32-apple-watchos7.0 \
     -sdk \

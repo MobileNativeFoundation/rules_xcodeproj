@@ -9,6 +9,7 @@ load(
     "memory_efficient_depset",
 )
 
+_APPLICATION_PRODUCT_TYPE = "a"  # com.apple.product-type.application
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 
 _PREVIEWS_ENABLED_PRODUCT_TYPES = {
@@ -147,6 +148,7 @@ def _cc_mergeable_info(*, mergeable_info):
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
             swift_args = EMPTY_LIST,
+            swift_preview_inputs = mergeable_info.args.swift_preview_inputs,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
     )
@@ -191,7 +193,7 @@ def _previews_info(
     else:
         include_path = EMPTY_STRING
 
-    if product_type != _FRAMEWORK_PRODUCT_TYPE:
+    if product_type not in (_APPLICATION_PRODUCT_TYPE, _FRAMEWORK_PRODUCT_TYPE):
         dynamic_frameworks = EMPTY_LIST
 
     return struct(
@@ -247,6 +249,14 @@ def _mixed_language_mergeable_info(
                 ],
             ),
             swift_args = swift.args.swift,
+            swift_preview_inputs = struct(
+                manifests = swift.args.swift_preview_inputs.manifests,
+                files = depset(transitive = [
+                    swift.args.swift_preview_inputs.files,
+                    cc.args.swift_preview_inputs.files,
+                ]),
+                paths = swift.args.swift_preview_inputs.paths,
+            ),
             swift_debug_settings_to_merge = swift.swift_debug_settings,
         ),
     )
@@ -277,6 +287,7 @@ def _swift_mergeable_info(*, dynamic_frameworks, mergeable_info, product_type):
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
             swift_args = mergeable_info.args.swift,
+            swift_preview_inputs = mergeable_info.args.swift_preview_inputs,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
     )
