@@ -124,7 +124,7 @@ def _write_target_build_settings_test_impl(ctx):
 
         asserts.equals(
             env,
-            ctx.attr.expected_args,
+            ctx.attr.expected_args + ["", ""],
             actions.args_objects[0].captured.args,
             "args[0] arguments",
         )

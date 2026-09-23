@@ -140,6 +140,7 @@ def _process_library_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         tool = ctx.executable._target_build_settings_generator,
     )
 

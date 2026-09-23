@@ -141,7 +141,7 @@ def _process_mixed_language_library_target(
             conly = [],
             cxx = [],
             swift = [],
-            swift_preview_inputs = struct(files = depset()),
+            swift_preview_inputs = struct(manifests = [], files = depset(), paths = []),
         )
         indexstore_overrides = []
 
@@ -167,6 +167,7 @@ def _process_mixed_language_library_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         tool = ctx.executable._target_build_settings_generator,
     )
 

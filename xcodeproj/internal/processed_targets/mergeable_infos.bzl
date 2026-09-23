@@ -248,10 +248,14 @@ def _mixed_language_mergeable_info(
                 ],
             ),
             swift_args = swift.args.swift,
-            swift_preview_inputs = struct(files = depset(transitive = [
-                swift.args.swift_preview_inputs.files,
-                cc.args.swift_preview_inputs.files,
-            ])),
+            swift_preview_inputs = struct(
+                manifests = swift.args.swift_preview_inputs.manifests,
+                files = depset(transitive = [
+                    swift.args.swift_preview_inputs.files,
+                    cc.args.swift_preview_inputs.files,
+                ]),
+                paths = swift.args.swift_preview_inputs.paths,
+            ),
             swift_debug_settings_to_merge = swift.swift_debug_settings,
         ),
     )

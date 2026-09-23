@@ -109,6 +109,17 @@ extension Generator.ProcessArgs {
             "separate-index-build-output-base",
             as: Bool.self
         )
+        let manifestPaths = try rawArguments.consumeArgs("swift-explicit-manifests")
+        let previewImportPaths = try rawArguments.consumeArgs("preview-swift-import-paths")
+        var manifests: [String: Data] = [:]
+        if generateBuildSettings {
+            for path in manifestPaths {
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+                    manifests[path] = data
+                }
+            }
+            if manifests.count != manifestPaths.count { manifests = [:] }
+        }
 
         let argsStream = argsStream(from: rawArguments)
 
@@ -126,7 +137,9 @@ extension Generator.ProcessArgs {
             previewsFrameworkPaths: previewsFrameworkPaths,
             previewsIncludePath: previewsIncludePath,
             separateIndexBuildOutputBase: separateIndexBuildOutputBase,
-            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths
+            transitiveSwiftDebugSettingPaths: transitiveSwiftDebugSettingPaths,
+            nativeSwiftManifests: manifests,
+            previewSwiftImportPaths: Set(previewImportPaths)
         )
 
         guard generateBuildSettings else {
