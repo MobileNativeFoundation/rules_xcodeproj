@@ -1,8 +1,14 @@
 """Module containing implementation functions for the `xcodeproj_aspect` \
 aspect."""
 
+load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@build_bazel_apple_support//lib:apple_support.bzl", "apple_support")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
+load(
+    ":preview_resource_bundles.bzl",
+    "preview_resource_bundles",
+)
 load(
     ":provisioning_profiles.bzl",
     "XcodeProjProvisioningProfileInfo",
@@ -58,7 +64,7 @@ def _xcodeproj_aspect_attrs(
         focused_labels,
         generator_name,
         unfocused_labels):
-    return {
+    return dicts.add({
         "_allow_remote_write_target_build_settings": attr.label(
             default = Label(
                 "//xcodeproj:allow_remote_write_target_build_settings",
@@ -88,6 +94,12 @@ def _xcodeproj_aspect_attrs(
             ),
             executable = True,
         ),
+        "_preview_fallback_infoplist": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal/files:preview_resource_bundle_info.plist",
+            ),
+        ),
         "_separate_index_build_output_base": attr.label(
             default = Label("//xcodeproj:separate_index_build_output_base"),
             providers = [BuildSettingInfo],
@@ -106,10 +118,16 @@ def _xcodeproj_aspect_attrs(
                 fragment = "apple",
             ),
         ),
-    }
+    }, apple_support.platform_constraint_attrs(), preview_resource_bundles.aspect_attrs())
 
 def _xcodeproj_aspect_impl(target, ctx):
     providers = []
+    preview_resource_info = None
+
+    if ctx.rule.kind == "apple_resource_bundle":
+        preview_resource_info = preview_resource_bundles.process(ctx)
+        if preview_resource_info:
+            providers.append(preview_resource_info)
 
     if XcodeProjInfo not in target:
         # Only create a `XcodeProjInfo` if the target hasn't already created
@@ -126,6 +144,7 @@ def _xcodeproj_aspect_impl(target, ctx):
             attrs = attrs,
             rule_attr = rule_attr,
             rule_kind = ctx.rule.kind,
+            preview_resource_info = preview_resource_info,
             transitive_infos = _transitive_infos(
                 attrs = attrs,
                 rule_attr = rule_attr,

@@ -9,6 +9,7 @@ load("//xcodeproj/internal:compilation_providers.bzl", "compilation_providers")
 load("//xcodeproj/internal:configuration.bzl", "calculate_configuration")
 load("//xcodeproj/internal:dependencies.bzl", "dependencies")
 load("//xcodeproj/internal:memory_efficiency.bzl", "memory_efficient_depset")
+load("//xcodeproj/internal:platforms.bzl", "platforms")
 load("//xcodeproj/internal:target_id.bzl", "get_id")
 load("//xcodeproj/internal/files:input_files.bzl", "input_files")
 load(
@@ -25,6 +26,7 @@ def _process_unsupported_target(
         attrs,
         automatic_target_info,
         is_focused,
+        preview_resource_info,
         rule_attr,
         transitive_infos):
     """Gathers information about a non-Xcode target.
@@ -38,6 +40,8 @@ def _process_unsupported_target(
         is_focused: Whether an Xcode target should be generated for this target,
             if it's a resource bundle target, or if extra files should be
             included in the project.
+        preview_resource_info: A Preview-only processed resource provider for
+            an `apple_resource_bundle`, or `None`.
         rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of `target`.
@@ -112,6 +116,8 @@ def _process_unsupported_target(
             include_extra_files = is_focused,
             is_resource_bundle = is_resource_bundle,
             label = label,
+            platform = platforms.collect(ctx = ctx) if preview_resource_info else None,
+            preview_resource_info = preview_resource_info,
             rule_attr = rule_attr,
             transitive_infos = transitive_infos,
         ),

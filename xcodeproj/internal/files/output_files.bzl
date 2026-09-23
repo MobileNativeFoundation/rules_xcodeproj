@@ -132,6 +132,7 @@ def _collect_output_files(
         output_group_info,
         preview_framework_files = [],
         preview_link_input_files = [],
+        preview_resource_bundle_files = [],
         preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         should_produce_dto = True,
@@ -162,6 +163,8 @@ def _collect_output_files(
             materialized for Xcode Previews.
         preview_link_input_files: A `list` of linker input `File`s that should
             be materialized for Xcode Previews.
+        preview_resource_bundle_files: A `list` of materialized resource bundle
+            directory `File`s for native Xcode Previews.
         preview_swift_import_files: A `depset` of local Swift modules, textual
             module maps and headers to materialize for native compilation.
         product: A value from `process_product`.
@@ -291,6 +294,7 @@ def _collect_output_files(
         )),
         ("bi {}".format(id), indexing_depset),
         ("bl {}".format(id), transitive_link_params),
+        ("br {}".format(id), memory_efficient_depset(preview_resource_bundle_files)),
         (products_output_group_name, products_depset),
     ]
 
@@ -327,6 +331,7 @@ def _collect_mixed_language_output_files(
         output_group_info,
         preview_framework_files = [],
         preview_link_input_files = [],
+        preview_resource_bundle_files = [],
         preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         swift_info,
@@ -354,6 +359,8 @@ def _collect_mixed_language_output_files(
             materialized for Xcode Previews.
         preview_link_input_files: A `list` of linker input `File`s that should
             be materialized for Xcode Previews.
+        preview_resource_bundle_files: A `list` of materialized resource bundle
+            directory `File`s for native Xcode Previews.
         preview_swift_import_files: A `depset` of local Swift modules, textual
             module maps and headers to materialize for native compilation.
         product: A value from `process_product`.
@@ -448,6 +455,7 @@ def _collect_mixed_language_output_files(
         )),
         ("bf {}".format(id), memory_efficient_depset(preview_framework_files, transitive = [preview_swift_import_files])),
         ("bl {}".format(id), transitive_link_params),
+        ("br {}".format(id), memory_efficient_depset(preview_resource_bundle_files)),
         (products_output_group_name, products_depset),
     ]
 

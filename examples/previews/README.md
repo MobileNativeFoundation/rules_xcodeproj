@@ -59,8 +59,14 @@ Objective-C/Objective-C++ library with generated C, generated Swift with an
 explicit Swift module map, macOS and iOS apps, and a dynamic framework. The
 example uses the toolchain versions pinned in `MODULE.bazel`.
 
-Resource bundles are not supported by this resource-free native Preview example
-yet.
+The Swift library, app, and framework graphs also share an
+`apple_resource_bundle`. App-owned Previews copy these bundles into the app's
+resource directory for `Bundle.main` lookup; library Previews stage them next to
+the selected product. `PreviewApp.swift` displays the bundled message to exercise
+actual runtime lookup. Resource copies track their producers and owners, so
+removing a dependency only removes bundles owned by this integration. Conflicting
+same-name producers and unowned destinations fail instead of being overwritten.
+Verify resource lookup in the running Canvas as well as the staged contents.
 
 Command-line build checks can be run without opening the Canvas:
 
@@ -81,7 +87,7 @@ validation; they are not covered by this example.
 
 ## Canvas session troubleshooting
 
-Edits to sources excluded from a focused project
+Edits to sources excluded from a focused project, or to Bazel-managed resources,
 may not trigger a Canvas update. With the matching Preview scheme selected, use
 Product > Build, then refresh the Canvas to prepare and load those changes.
 Refreshing alone can reuse the previous dependency products. This workflow does
@@ -92,5 +98,6 @@ If changing from an app scheme to a library scheme reports `unableToFindTarget`,
 first check the scheme/source pairing above. A stale target graph also reproduced
 in a stock native Xcode 26.5 project: closing and reopening only that project,
 then resuming its Canvas, restored rendering without a preceding normal build.
-This session failure is separate from compiler or linker errors; preserve those
-diagnostics rather than treating every failure as stale Canvas state.
+This session failure is separate from compiler, linker, or missing-resource
+errors; preserve those diagnostics rather than treating every failure as stale
+Canvas state.
