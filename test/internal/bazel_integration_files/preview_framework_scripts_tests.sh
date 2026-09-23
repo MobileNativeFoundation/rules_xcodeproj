@@ -128,9 +128,9 @@ run_generator_mode unset UNSET UNSET bp _dbg_build
 run_generator_mode ordinary NO NO bp _dbg_build
 run_generator_mode coverage NO NO bp dbg_coverage YES
 run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
-run_generator_mode xojit NO YES bc,bf,bl _dbg_build
-run_generator_mode xojit-coverage NO YES bc,bf,bl _dbg_build YES
-run_generator_mode both YES YES bc,bf,bl _dbg_build
+run_generator_mode xojit NO YES bc,bf,bl,br _dbg_build
+run_generator_mode xojit-coverage NO YES bc,bf,bl,br _dbg_build YES
+run_generator_mode both YES YES bc,bf,bl,br _dbg_build
 
 readonly fake_integration_dir="$test_root/copy-integration"
 mkdir -p "$fake_integration_dir"
@@ -782,3 +782,390 @@ touch "$framework_held_case/release"
 wait "$framework_held_pid"
 run_copy_mode "$framework_held_case" NO YES "\"$first_framework\""
 assert_link "$framework_held_destination/First Framework.framework" "$first_framework"
+
+run_resource_copy_mode() {
+  local case_dir="$1" owner="$2" paths="$3"
+  env \
+    ACTION="${6:-build}" \
+    BAZEL_INTEGRATION_DIR="${7:-$repo_root/xcodeproj/internal/bazel_integration_files}" \
+    BAZEL_OUTPUTS_PRODUCT= \
+    BAZEL_NATIVE_PREVIEWS="${4:-YES}" \
+    ENABLE_PREVIEWS="${5:-NO}" \
+    ENABLE_XOJIT_PREVIEWS=YES \
+    DERIVED_FILE_DIR="$case_dir/Derived/$owner" \
+    PROJECT_DIR="${10:-$case_dir/execroot}" \
+    PREVIEW_FRAMEWORK_PATHS= \
+    PREVIEW_RESOURCE_BUNDLE_PATHS="$paths" \
+    TARGET_BUILD_DIR="$case_dir/build products/Features/Example" \
+    UNLOCALIZED_RESOURCES_FOLDER_PATH="${8:-}" \
+    WRAPPER_EXTENSION="${9:-}" \
+    bash "$copy_outputs_script" _ ""
+}
+
+readonly resource_case="$test_root/resource-copy"
+readonly resource_a="$resource_case/sources/First Resources.bundle"
+readonly resource_b="$resource_case/sources/Second.bundle"
+readonly resource_destination="$resource_case/build products/Features/Example"
+mkdir -p "$resource_a/en.lproj" "$resource_a/Model.momd" "$resource_b/Nested.bundle"
+printf 'plist' > "$resource_a/Info.plist"
+printf 'localized-content' > "$resource_a/en.lproj/Localizable.strings"
+printf 'compiled-model' > "$resource_a/Model.momd/contents"
+printf 'compiled-assets' > "$resource_a/Assets.car"
+printf 'plist' > "$resource_b/Info.plist"
+printf 'nested-plist' > "$resource_b/Nested.bundle/Info.plist"
+printf 'nested-content' > "$resource_b/Nested.bundle/value.txt"
+touch -t 202001020304.05 "$resource_a/Assets.car"
+readonly resource_paths="\"$resource_a\" \"$resource_b\""
+
+# App-owned Previews load resources from Bundle.main, not product siblings.
+for app_resources in "Mac App.app/Contents/Resources" "IOS App.app"; do
+  app_case="$test_root/app-resources/$app_resources"
+  app_destination="$app_case/build products/Features/Example/$app_resources"
+  run_resource_copy_mode "$app_case" App "$resource_paths" NO YES build "" "$app_resources" app
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO indexbuild "" "$app_resources" app
+  [[ ! -e "$app_destination" ]] || fail "non-native app resources were copied"
+  run_resource_copy_mode "$app_case" App "$resource_paths" YES NO build "" "$app_resources" app
+  diff -r "$resource_a" "$app_destination/First Resources.bundle"
+  diff -r "$resource_b" "$app_destination/Second.bundle"
+  mkdir "$app_destination/Unknown.bundle"
+  run_resource_copy_mode "$app_case" App "" YES NO build "" "$app_resources" app
+  [[ ! -e "$app_destination/First Resources.bundle" ]] || fail "stale app resources survived"
+  [[ -d "$app_destination/Unknown.bundle" ]] || fail "unknown app resources were removed"
+done
+
+# Neither legacy/XOJIT flags nor indexing opt into native resource ownership.
+run_resource_copy_mode "$resource_case" A "$resource_paths" NO NO
+run_resource_copy_mode "$resource_case" A "$resource_paths" NO YES
+run_resource_copy_mode "$resource_case" A "$resource_paths" YES NO indexbuild
+[[ ! -e "$resource_destination" ]] || fail "non-native resource build mutated destination"
+
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+diff -r "$resource_b" "$resource_destination/Second.bundle"
+[[ ! -e "$resource_destination/Features" ]] || fail "resource package path was duplicated"
+resource_mtime="$(stat -f %m "$resource_destination/First Resources.bundle/Assets.car")"
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+assert_equals "$resource_mtime" \
+  "$(stat -f %m "$resource_destination/First Resources.bundle/Assets.car")" \
+  "unchanged resource timestamp"
+printf 'stale-content' > "$resource_destination/First Resources.bundle/stale.txt"
+mv "$resource_b/Nested.bundle/value.txt" "$resource_case/removed.txt"
+run_resource_copy_mode "$resource_case" A "$resource_paths"
+[[ ! -e "$resource_destination/First Resources.bundle/stale.txt" ]] || fail "stale bundle content survived"
+[[ ! -e "$resource_destination/Second.bundle/Nested.bundle/value.txt" ]] || fail "removed nested resource survived"
+
+# Unknown neighbors survive [A,B] -> [A] -> [].
+mkdir "$resource_destination/Unknown.bundle"
+printf 'unknown' > "$resource_destination/Unknown.bundle/value"
+run_resource_copy_mode "$resource_case" A "\"$resource_a\""
+[[ ! -e "$resource_destination/Second.bundle" ]] || fail "owned removed bundle survived"
+[[ -f "$resource_destination/First Resources.bundle/Info.plist" ]] || fail "retained bundle disappeared"
+run_resource_copy_mode "$resource_case" A ""
+[[ ! -e "$resource_destination/First Resources.bundle" ]] || fail "empty closure retained owned bundle"
+[[ "$(cat "$resource_destination/Unknown.bundle/value")" == unknown ]] || fail "unknown neighbor changed"
+
+# Two target phases in the same package can share one exact source.
+run_resource_copy_mode "$resource_case" Library "\"$resource_a\""
+run_resource_copy_mode "$resource_case" App "\"$resource_a\""
+run_resource_copy_mode "$resource_case" Library ""
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+run_resource_copy_mode "$resource_case" App ""
+[[ ! -e "$resource_destination/First Resources.bundle" ]] || fail "last owner failed to remove stale copy"
+
+run_resource_copy_mode "$resource_case" Library "\"$resource_a\""
+readonly different_source="$resource_case/other/First Resources.bundle"
+mkdir -p "$different_source"
+printf 'other-plist' > "$different_source/Info.plist"
+if run_resource_copy_mode "$resource_case" App "\"$different_source\"" \
+  > "$resource_case/different.out" 2> "$resource_case/different.err"; then
+  fail "same basename from a different source was accepted"
+fi
+grep -q 'different source' "$resource_case/different.err" || fail "different source was not diagnosed"
+diff -r "$resource_a" "$resource_destination/First Resources.bundle"
+run_resource_copy_mode "$resource_case" Library ""
+
+# Regenerating the same project against a new output base keeps target ownership.
+for old_state in present missing; do
+  migration_case="$test_root/resource-migration-$old_state"
+  old_root="$migration_case/old base/execroot/workspace"
+  new_root="$migration_case/new base/execroot/workspace"
+  old_bundle="$old_root/bazel-out/config/bin/Resources.bundle"
+  new_bundle="$new_root/bazel-out/config/bin/Resources.bundle"
+  destination="$migration_case/build products/Features/Example/Resources.bundle"
+  mkdir -p "$old_bundle" "$new_bundle"
+  printf 'old plist' > "$old_bundle/Info.plist"
+  printf 'old only' > "$old_bundle/removed.txt"
+  printf 'new plist' > "$new_bundle/Info.plist"
+  touch -t 202001020304.05 "$old_bundle/Info.plist" "$new_bundle/Info.plist"
+  run_resource_copy_mode "$migration_case" A "\"$old_bundle\"" YES NO build "" "" "" "$old_root"
+  old_identity="$(stat -f '%d:%i' "$destination")"
+  mkdir "${destination%/*}/Unknown.bundle"
+  printf 'unknown' > "${destination%/*}/Unknown.bundle/value"
+  if [[ "$old_state" == missing ]]; then mv "$old_bundle" "$old_root/retained.bundle"; fi
+  run_resource_copy_mode "$migration_case" A "\"$new_bundle\"" YES NO build "" "" "" "$new_root"
+  diff -r "$new_bundle" "$destination"
+  [[ "$(< "${destination%/*}/Unknown.bundle/value")" == unknown ]] || fail "resource migration changed unknown neighbor"
+  assert_equals "$old_identity" "$(stat -f '%d:%i' "$destination")" "owned resource migration identity"
+  grep -Fxq "$new_bundle" "${destination%/*}/.rules_xcodeproj_preview_resource_bundles" || \
+    fail "resource migration did not update its source receipt"
+  warm_identity="$(stat -f '%d:%i:%m' "$destination/Info.plist")"
+  run_resource_copy_mode "$migration_case" A "\"$new_bundle\"" YES NO build "" "" "" "$new_root"
+  assert_equals "$warm_identity" "$(stat -f '%d:%i:%m' "$destination/Info.plist")" "unchanged resource file after migration"
+
+  # A second owner's claim prevents one target from silently redirecting it.
+  run_resource_copy_mode "$migration_case" B "\"$new_bundle\""
+  mkdir -p "$old_bundle"
+  printf 'different source' > "$old_bundle/Info.plist"
+  if run_resource_copy_mode "$migration_case" A "\"$old_bundle\"" \
+    > "$migration_case/shared.out" 2> "$migration_case/shared.err"; then
+    fail "resource migration ignored another owner's claim"
+  fi
+  grep -q 'different source' "$migration_case/shared.err" || fail "resource owner conflict not diagnosed"
+  diff -r "$new_bundle" "$destination"
+done
+
+# A failed migration may already have copied equal-size/equal-mtime new bytes.
+# Both retrying the new source and rolling back must recopy, without granting
+# another owner or an externally replaced destination permission to recover.
+for recovery in old new other-owner replaced; do
+  retry_case="$test_root/resource-migration-recovery-$recovery"
+  retry_old="$retry_case/old/Resources.bundle"
+  retry_new="$retry_case/new/Resources.bundle"
+  retry_destination="$retry_case/build products/Features/Example/Resources.bundle"
+  retry_integration="$retry_case/failing-integration"
+  retry_receipt="${retry_destination%/*}/.rules_xcodeproj_preview_resource_bundles"
+  mkdir -p "$retry_old" "$retry_new" "$retry_integration"
+  printf 'old plist' > "$retry_old/Info.plist"
+  printf 'new plist' > "$retry_new/Info.plist"
+  touch -t 202001020304.05 "$retry_old/Info.plist" "$retry_new/Info.plist"
+  ln -s "$repo_root/xcodeproj/internal/bazel_integration_files/rsync" "$retry_integration/real-rsync"
+  # Real transfer followed by a simulated later failure, not a no-op mock.
+  # shellcheck disable=SC2016
+  printf '#!/bin/bash\nset -e\n"${0%%/*}/real-rsync" "$@"\nexit 23\n' > "$retry_integration/rsync"
+  chmod +x "$retry_integration/rsync"
+  run_resource_copy_mode "$retry_case" A "\"$retry_old\""
+  if run_resource_copy_mode "$retry_case" A "\"$retry_new\"" YES NO build "$retry_integration" \
+    > "$retry_case/failure.out" 2> "$retry_case/failure.err"; then
+    fail "failed migration unexpectedly succeeded"
+  else
+    assert_equals 23 "$?" "simulated later migration failure"
+  fi
+  assert_equals 'new plist' "$(< "$retry_destination/Info.plist")" "failed migration actually copied new bytes"
+  pending_source="$(sed -n '4p' "$retry_receipt")"
+  if [[ "$recovery" == old || "$recovery" == new ]]; then
+    retry_source="$retry_case/$recovery/Resources.bundle"
+    run_resource_copy_mode "$retry_case" A "\"$retry_source\""
+    diff -r "$retry_source" "$retry_destination"
+    grep -Fxq "$retry_source" "$retry_receipt" || fail "successful recovery did not advance the source claim"
+    warm_identity="$(stat -f '%d:%i:%m' "$retry_destination/Info.plist")"
+    run_resource_copy_mode "$retry_case" A "\"$retry_source\""
+    assert_equals "$warm_identity" "$(stat -f '%d:%i:%m' "$retry_destination/Info.plist")" "unchanged resource after recovery"
+  else
+    recovery_owner=B
+    if [[ "$recovery" == replaced ]]; then
+      recovery_owner=A
+      mv "$retry_destination" "$retry_case/retained.bundle"
+      mkdir "$retry_destination"
+      printf 'foreign plist' > "$retry_destination/Info.plist"
+    fi
+    identity="$(stat -f '%d:%i' "$retry_destination")"
+    contents="$(< "$retry_destination/Info.plist")"
+    if run_resource_copy_mode "$retry_case" "$recovery_owner" "\"$retry_old\"" \
+      > "$retry_case/recovery.out" 2> "$retry_case/recovery.err"; then
+      fail "pending migration accepted $recovery recovery"
+    fi
+    assert_equals "$identity" "$(stat -f '%d:%i' "$retry_destination")" "rejected recovery destination identity"
+    assert_equals "$contents" "$(< "$retry_destination/Info.plist")" "rejected recovery destination bytes"
+    assert_equals / "$(sed -n '4p' "$retry_receipt")" "rejected recovery keeps pending source"
+  fi
+  assert_equals / "$pending_source" "failed migration pending source"
+done
+
+# A valid migration cannot change the destination before a later invalid input.
+readonly invalid_migration_case="$test_root/resource-invalid-migration"
+run_resource_copy_mode "$invalid_migration_case" A "\"$resource_a\""
+if run_resource_copy_mode "$invalid_migration_case" A "\"$different_source\" \"$invalid_migration_case/Missing.bundle\"" \
+  > "$invalid_migration_case/failure.out" 2> "$invalid_migration_case/failure.err"; then
+  fail "invalid resource closure allowed an earlier source migration"
+fi
+grep -q 'not materialized' "$invalid_migration_case/failure.err" || fail "invalid migration input not diagnosed"
+diff -r "$resource_a" "$invalid_migration_case/build products/Features/Example/First Resources.bundle"
+
+# Replacing an owned directory invalidates permission to migrate it.
+readonly replaced_migration_case="$test_root/resource-replaced-migration"
+readonly replaced_migration_destination="$replaced_migration_case/build products/Features/Example/First Resources.bundle"
+run_resource_copy_mode "$replaced_migration_case" A "\"$resource_a\""
+mv "$replaced_migration_destination" "$replaced_migration_case/retained.bundle"
+mkdir "$replaced_migration_destination"
+printf 'replacement' > "$replaced_migration_destination/value"
+if run_resource_copy_mode "$replaced_migration_case" A "\"$different_source\"" \
+  > "$replaced_migration_case/failure.out" 2> "$replaced_migration_case/failure.err"; then
+  fail "resource migration adopted an externally replaced directory"
+fi
+grep -q 'not owned' "$replaced_migration_case/failure.err" || fail "resource replacement not diagnosed"
+[[ "$(< "$replaced_migration_destination/value")" == replacement ]] || fail "resource replacement changed"
+
+# Existing directories, files and links are not adopted, even if the contents match.
+for destination_kind in directory file symlink; do
+  unknown_case="$test_root/unknown-resource-$destination_kind"
+  unknown_destination="$unknown_case/build products/Features/Example"
+  mkdir -p "$unknown_destination"
+  case "$destination_kind" in
+    directory) cp -R "$resource_a" "$unknown_destination" ;;
+    file) printf 'user-file' > "$unknown_destination/First Resources.bundle" ;;
+    symlink) ln -s "$resource_a" "$unknown_destination/First Resources.bundle" ;;
+  esac
+  if run_resource_copy_mode "$unknown_case" A "\"$resource_a\"" \
+    > "$unknown_case/failure.out" 2> "$unknown_case/failure.err"; then
+    fail "unowned $destination_kind was adopted"
+  fi
+  grep -q 'not owned' "$unknown_case/failure.err" || fail "unknown destination was not diagnosed"
+  case "$destination_kind" in
+    directory) diff -r "$resource_a" "$unknown_destination/First Resources.bundle" ;;
+    file) [[ "$(cat "$unknown_destination/First Resources.bundle")" == user-file ]] || fail "unknown file changed" ;;
+    symlink) assert_link "$unknown_destination/First Resources.bundle" "$resource_a" ;;
+  esac
+done
+
+# External replacement invalidates our directory identity, including cleanup.
+run_resource_copy_mode "$resource_case" A "\"$resource_a\""
+mv "$resource_destination/First Resources.bundle" "$resource_case/original-copy.bundle"
+mkdir "$resource_destination/First Resources.bundle"
+printf 'replacement' > "$resource_destination/First Resources.bundle/value"
+run_resource_copy_mode "$resource_case" A ""
+[[ "$(cat "$resource_destination/First Resources.bundle/value")" == replacement ]] || fail "replaced stale destination was removed"
+
+# Validate all inputs before touching any of them.
+readonly invalid_case="$test_root/invalid-resources"
+readonly invalid_source="$invalid_case/sources/Missing.bundle"
+mkdir -p "$invalid_source"
+if run_resource_copy_mode "$invalid_case" A "\"$resource_a\" \"$invalid_source\"" \
+  > "$invalid_case/failure.out" 2> "$invalid_case/failure.err"; then
+  fail "bundle without Info.plist was accepted"
+fi
+[[ ! -e "$invalid_case/build products/Features/Example/First Resources.bundle" ]] || fail "invalid closure partially copied"
+if run_resource_copy_mode "$invalid_case" A "\"$resource_a\" \"$resource_a\"" \
+  > "$invalid_case/duplicate.out" 2> "$invalid_case/duplicate.err"; then
+  fail "duplicate resource basename was accepted"
+fi
+[[ ! -e "$invalid_case/build products/Features/Example/First Resources.bundle" ]] || fail "duplicate closure partially copied"
+
+# A failed copy is recorded before rsync, and a later build can finish it.
+readonly partial_case="$test_root/partial-resources"
+readonly failing_integration="$partial_case/integration"
+mkdir -p "$failing_integration"
+printf '#!/bin/bash\nexit 42\n' > "$failing_integration/rsync"
+chmod +x "$failing_integration/rsync"
+if run_resource_copy_mode "$partial_case" A "\"$resource_a\"" YES NO build "$failing_integration" \
+  > "$partial_case/failure.out" 2> "$partial_case/failure.err"; then
+  fail "rsync failure was swallowed"
+fi
+[[ -f "$partial_case/build products/Features/Example/.rules_xcodeproj_preview_resource_bundles" ]] || fail "partial copy ownership was lost"
+run_resource_copy_mode "$partial_case" A "\"$resource_a\""
+diff -r "$resource_a" "$partial_case/build products/Features/Example/First Resources.bundle"
+run_resource_copy_mode "$partial_case" A ""
+[[ ! -e "$partial_case/build products/Features/Example/First Resources.bundle" ]] || fail "recovered copy was not cleaned"
+
+# Concurrent owners must retain each other's entries and remove the last copy
+# only after every owner has released it.
+readonly concurrent_resources="$test_root/concurrent-resources"
+readonly concurrent_destination="$concurrent_resources/build products/Features/Example"
+resource_pids=()
+for owner_number in 1 2 3 4 5 6 7 8; do
+  run_resource_copy_mode "$concurrent_resources" "Owner$owner_number" "$resource_paths" \
+    > "$test_root/resource-owner-$owner_number.log" 2>&1 &
+  resource_pids+=("$!")
+done
+for resource_pid in "${resource_pids[@]}"; do wait "$resource_pid"; done
+diff -r "$resource_a" "$concurrent_destination/First Resources.bundle"
+for owner_number in 1 2 3 4 5 6 7 8; do
+  grep -Fq "$concurrent_resources/Derived/Owner$owner_number" \
+    "$concurrent_destination/.rules_xcodeproj_preview_resource_bundles" || \
+    fail "concurrent resource owner was lost"
+done
+mkdir "$concurrent_destination/Unowned.bundle"
+resource_pids=()
+for owner_number in 1 2 3 4 5 6 7 8; do
+  run_resource_copy_mode "$concurrent_resources" "Owner$owner_number" "" \
+    > "$test_root/resource-release-$owner_number.log" 2>&1 &
+  resource_pids+=("$!")
+done
+for resource_pid in "${resource_pids[@]}"; do wait "$resource_pid"; done
+[[ ! -e "$concurrent_destination/First Resources.bundle" ]] || fail "last concurrent owner retained stale copy"
+[[ -d "$concurrent_destination/Unowned.bundle" ]] || fail "concurrent cleanup removed an unowned bundle"
+
+# Kill only the task-created copying subshell through its mock rsync child.
+# An untrappable exit must not leave a permanent lock blocking later builds.
+readonly killed_case="$test_root/killed-resource-writer"
+readonly killed_integration="$killed_case/integration"
+mkdir -p "$killed_integration"
+# Expanded by the mock child, not by this test process.
+# shellcheck disable=SC2016
+printf '#!/bin/bash\nkill -KILL "$PPID"\n' > "$killed_integration/rsync"
+chmod +x "$killed_integration/rsync"
+if run_resource_copy_mode "$killed_case" A "\"$resource_a\"" YES NO build "$killed_integration" \
+  > "$killed_case/failure.out" 2> "$killed_case/failure.err"; then
+  fail "killed resource writer unexpectedly succeeded"
+fi
+run_resource_copy_mode "$killed_case" A "\"$resource_a\"" \
+  > "$killed_case/retry.out" 2> "$killed_case/retry.err" || \
+  fail "terminated resource writer left an unrecoverable ownership lock"
+diff -r "$resource_a" "$killed_case/build products/Features/Example/First Resources.bundle"
+
+# A live owner is never displaced, and waiting for it remains bounded.
+readonly held_case="$test_root/held-resource-lock"
+readonly held_destination="$held_case/build products/Features/Example"
+mkdir -p "$held_destination"
+(
+  exec 9>> "$held_destination/.rules_xcodeproj_preview_resource_bundles.lockfile"
+  /usr/bin/python3 -c 'import fcntl; fcntl.flock(9, fcntl.LOCK_EX)'
+  touch "$held_case/ready"
+  for (( attempt=0; attempt<200; attempt++ )); do
+    if [[ -f "$held_case/release" ]]; then exit; fi
+    sleep 0.1
+  done
+) &
+held_pid="$!"
+for (( attempt=0; attempt<100; attempt++ )); do
+  if [[ -f "$held_case/ready" ]]; then break; fi
+  sleep 0.1
+done
+[[ -f "$held_case/ready" ]] || fail "resource lock holder did not start"
+if run_resource_copy_mode "$held_case" A "\"$resource_a\"" \
+  > "$held_case/failure.out" 2> "$held_case/failure.err"; then
+  fail "live resource lock owner was displaced"
+fi
+grep -q 'Unable to acquire Preview resource bundle ownership lock' "$held_case/failure.err" || \
+  fail "bounded lock wait diagnostic was not emitted"
+[[ ! -e "$held_destination/First Resources.bundle" ]] || fail "resource staging bypassed held lock"
+touch "$held_case/release"
+wait "$held_pid"
+run_resource_copy_mode "$held_case" A "\"$resource_a\""
+diff -r "$resource_a" "$held_destination/First Resources.bundle"
+
+# Never follow or replace a pre-existing non-file lock path.
+for lock_kind in symlink directory; do
+  lock_case="$test_root/invalid-resource-lock-$lock_kind"
+  lock_destination="$lock_case/build products/Features/Example"
+  lock_path="$lock_destination/.rules_xcodeproj_preview_resource_bundles.lockfile"
+  mkdir -p "$lock_destination"
+  if [[ "$lock_kind" == symlink ]]; then
+    printf 'unowned lock target\n' > "$lock_case/unowned"
+    ln -s "$lock_case/unowned" "$lock_path"
+  else
+    mkdir "$lock_path"
+  fi
+  if run_resource_copy_mode "$lock_case" A "\"$resource_a\"" \
+    > "$lock_case/failure.out" 2> "$lock_case/failure.err"; then
+    fail "invalid resource lock was accepted"
+  fi
+  grep -q 'Invalid Preview resource bundle ownership lock' "$lock_case/failure.err" || \
+    fail "invalid resource lock diagnostic was not emitted"
+  [[ ! -e "$lock_destination/First Resources.bundle" ]] || fail "invalid lock allowed resource staging"
+  if [[ "$lock_kind" == symlink ]]; then
+    [[ -L "$lock_path" && "$(< "$lock_case/unowned")" == 'unowned lock target' ]] || \
+      fail "unowned lock symlink or target was changed"
+  else
+    [[ -d "$lock_path" ]] || fail "unowned lock directory was changed"
+  fi
+done

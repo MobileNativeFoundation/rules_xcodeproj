@@ -44,6 +44,18 @@ def _dynamic_framework_path(file_and_is_framework):
         return path
     return "$(SRCROOT)/{}".format(path)
 
+def _preview_resource_bundle_path(file):
+    path = file.path
+    if path.startswith("bazel-out/"):
+        return "$(BAZEL_OUT){}".format(path[9:])
+    if path.startswith("external/"):
+        return "$(BAZEL_EXTERNAL){}".format(path[8:])
+    if path.startswith("../"):
+        return "$(BAZEL_EXTERNAL){}".format(path[2:])
+    if path.startswith("/"):
+        return path
+    return "$(SRCROOT)/{}".format(path)
+
 def _native_preview_framework_paths(xcode_targets, direct_dependencies):
     targets = {target.id: target for target in xcode_targets.to_list()}
     pending = direct_dependencies.to_list()
@@ -1150,6 +1162,7 @@ def _write_target_build_settings(
         previews_direct_dependencies = EMPTY_DEPSET,
         previews_xcode_targets = EMPTY_DEPSET,
         previews_include_path = EMPTY_STRING,
+        previews_resource_bundles = EMPTY_LIST,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         separate_index_build_output_base,
@@ -1188,6 +1201,8 @@ def _write_target_build_settings(
         previews_direct_dependencies: The target's direct PBX dependency IDs.
         previews_include_path: The Swift include path to add when building
             Xcode previews.
+        previews_resource_bundles: A `list` of resource bundle directory
+            `File`s to materialize when building Xcode previews.
         previews_xcode_targets: A `depset` of focused dependency targets whose
             framework products are owned by Xcode in native Preview builds.
         provisioning_profile_is_xcode_managed: A `bool` indicating whether the
@@ -1320,6 +1335,16 @@ def _write_target_build_settings(
         )
         for file, is_framework in previews_dynamic_frameworks
     ]))
+
+    # previewsResourceBundlePaths
+    args.add_joined(
+        previews_resource_bundles,
+        expand_directories = False,
+        format_each = '"%s"',
+        map_each = _preview_resource_bundle_path,
+        omit_if_empty = False,
+        join_with = " ",
+    )
 
     # previewsIncludePath
     args.add(previews_include_path)

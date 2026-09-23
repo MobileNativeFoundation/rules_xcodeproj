@@ -492,6 +492,7 @@ def _make_non_skipped_target_xcodeprojinfo(
         aspect_attr,
         attrs,
         automatic_target_info,
+        preview_resource_info,
         rule_attr,
         rule_kind,
         target,
@@ -504,6 +505,8 @@ def _make_non_skipped_target_xcodeprojinfo(
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
+        preview_resource_info: A Preview-only processed resource provider for
+            an `apple_resource_bundle`, or `None`.
         rule_attr: `ctx.rule.attr`.
         rule_kind: `ctx.rule.kind`.
         target: The `Target` to process.
@@ -545,6 +548,7 @@ def _make_non_skipped_target_xcodeprojinfo(
             attrs = attrs,
             automatic_target_info = automatic_target_info,
             is_focused = is_focused,
+            preview_resource_info = preview_resource_info,
             rule_attr = rule_attr,
             transitive_infos = valid_transitive_infos,
         )
@@ -756,6 +760,7 @@ def _make_xcodeprojinfo(
         *,
         ctx,
         attrs,
+        preview_resource_info,
         rule_attr,
         rule_kind,
         target,
@@ -766,6 +771,8 @@ def _make_xcodeprojinfo(
     Args:
         ctx: The aspect context.
         attrs: `dir(ctx.rule.attr)` (as a performance optimization).
+        preview_resource_info: A Preview-only processed resource provider for
+            an `apple_resource_bundle`, or `None`.
         rule_attr: `ctx.rule.attr`.
         rule_kind: `ctx.rule.kind`.
         target: The `Target` to process.
@@ -812,6 +819,7 @@ def _make_xcodeprojinfo(
             aspect_attr = ctx.attr,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
+            preview_resource_info = preview_resource_info,
             rule_attr = rule_attr,
             rule_kind = rule_kind,
             target = target,
