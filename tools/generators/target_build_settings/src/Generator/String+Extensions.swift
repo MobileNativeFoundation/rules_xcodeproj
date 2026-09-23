@@ -60,5 +60,11 @@ extension StringProtocol {
                 of: "__BAZEL_XCODE_SDKROOT__",
                 with: "$(SDKROOT)"
             )
+            // rules_swift's system SDK uses a versioned worker alias too.
+            .replacingOccurrences(
+                of: #"^__bazel_developer_dir_[0-9]+_[0-9]+_[0-9]+_[A-Za-z0-9]+/(?=Platforms/|Toolchains/)"#,
+                with: #"\$(DEVELOPER_DIR)/"#,
+                options: .regularExpression
+            )
     }
 }
