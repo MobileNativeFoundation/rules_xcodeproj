@@ -140,6 +140,7 @@ def _process_library_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_preview_inputs = args.swift_preview_inputs,
         tool = ctx.executable._target_build_settings_generator,
     )
 
@@ -170,6 +171,7 @@ def _process_library_target(
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
         product = product,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )

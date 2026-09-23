@@ -39,7 +39,9 @@ extension Generator {
             previewsFrameworkPaths: String,
             previewsIncludePath: String,
             separateIndexBuildOutputBase: Bool,
-            transitiveSwiftDebugSettingPaths: [URL]
+            transitiveSwiftDebugSettingPaths: [URL],
+            nativeSwiftManifests: [String: Data] = [:],
+            previewSwiftImportPaths: Set<String> = []
         ) async throws -> (
             hasDebugInfo: Bool,
             clangArgs: [String],
@@ -47,20 +49,22 @@ extension Generator {
             swiftIncludes: OrderedSet<String>
         ) {
             try await callable(
-                /*argsStream:*/ argsStream,
-                /*buildSettings:*/ &buildSettings,
-                /*includeSelfSwiftDebugSettings:*/
+                /* argsStream: */ argsStream,
+                /* buildSettings: */ &buildSettings,
+                /* includeSelfSwiftDebugSettings: */
                     includeSelfSwiftDebugSettings,
-                /*previewsFrameworkPaths:*/ previewsFrameworkPaths,
-                /*previewsIncludePath:*/ previewsIncludePath,
-                /*transitiveSwiftDebugSettingPaths:*/
+                /* previewsFrameworkPaths: */ previewsFrameworkPaths,
+                /* previewsIncludePath: */ previewsIncludePath,
+                /* transitiveSwiftDebugSettingPaths: */
                     transitiveSwiftDebugSettingPaths,
-                /*parseTransitiveSwiftDebugSettings:*/
+                /* parseTransitiveSwiftDebugSettings: */
                     parseTransitiveSwiftDebugSettings,
-                /*processSwiftArg:*/ processSwiftArg,
-                /*processSwiftClangArg:*/ processSwiftClangArg,
-                /*processSwiftFrontendArg:*/ processSwiftFrontendArg,
-                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase
+                /* processSwiftArg: */ processSwiftArg,
+                /* processSwiftClangArg: */ processSwiftClangArg,
+                /* processSwiftFrontendArg: */ processSwiftFrontendArg,
+                /* separateIndexBuildOutputBase: */ separateIndexBuildOutputBase,
+                /* nativeSwiftManifests: */ nativeSwiftManifests,
+                /* previewSwiftImportPaths: */ previewSwiftImportPaths
             )
         }
     }
@@ -81,7 +85,9 @@ extension Generator.ProcessSwiftArgs {
         _ processSwiftArg: Generator.ProcessSwiftArg,
         _ processSwiftClangArg: Generator.ProcessSwiftClangArg,
         _ processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        _ separateIndexBuildOutputBase: Bool
+        _ separateIndexBuildOutputBase: Bool,
+        _ nativeSwiftManifests: [String: Data],
+        _ previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -101,7 +107,9 @@ extension Generator.ProcessSwiftArgs {
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        nativeSwiftManifests: [String: Data],
+        previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -127,7 +135,9 @@ extension Generator.ProcessSwiftArgs {
             processSwiftArg: processSwiftArg,
             processSwiftClangArg: processSwiftClangArg,
             processSwiftFrontendArg: processSwiftFrontendArg,
-            separateIndexBuildOutputBase: separateIndexBuildOutputBase
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase,
+            nativeSwiftManifests: nativeSwiftManifests,
+            previewSwiftImportPaths: previewSwiftImportPaths
         )
 
         if includeTransitiveSwiftDebugSettings {
@@ -149,13 +159,15 @@ extension Generator.ProcessSwiftArgs {
         includeSelfSwiftDebugSettings: Bool,
         previewsFrameworkPaths: String,
         previewsIncludePath: String,
-        transitiveSwiftDebugSettingPaths: [URL],
+        transitiveSwiftDebugSettingPaths _: [URL],
         parseTransitiveSwiftDebugSettings:
             Generator.ParseTransitiveSwiftDebugSettings,
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        nativeSwiftManifests: [String: Data],
+        previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -328,9 +340,20 @@ extension Generator.ProcessSwiftArgs {
             )
         }
 
-        buildSettings.append(
-            ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
-        )
+        let originalFlags = args.joined(separator: " ").pbxProjEscaped
+        if let indexArgs = NativeSwiftExplicitModules.normalize(
+            args, manifests: nativeSwiftManifests,
+            preparedPaths: previewSwiftImportPaths
+        ), indexArgs != args {
+            buildSettings += [
+                ("OTHER_SWIFT_FLAGS", "$(BAZEL_INDEX_SWIFT_FLAGS__$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped),
+                ("BAZEL_INDEX_SWIFT_FLAGS__", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__NO", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__YES", indexArgs.joined(separator: " ").pbxProjEscaped),
+            ]
+        } else {
+            buildSettings.append(("OTHER_SWIFT_FLAGS", originalFlags))
+        }
 
         // Work around https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3171
         buildSettings.append(("SWIFT_ENABLE_EMIT_CONST_VALUES", "NO"))
