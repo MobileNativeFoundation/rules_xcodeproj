@@ -127,6 +127,7 @@ def _process_mixed_language_library_target(
             conly = mergeable_info.conly_args,
             cxx = mergeable_info.cxx_args,
             swift = mergeable_info.swift_args,
+            swift_preview_inputs = mergeable_info.swift_preview_inputs,
         )
 
         indexstore_override_path = actual_package_bin_dir + "/" + label.name
