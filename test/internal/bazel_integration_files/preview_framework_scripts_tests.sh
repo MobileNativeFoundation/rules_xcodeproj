@@ -25,10 +25,112 @@ assert_link() {
 
 readonly repo_root="$TEST_SRCDIR/$TEST_WORKSPACE"
 readonly copy_outputs_script="$repo_root/xcodeproj/internal/bazel_integration_files/copy_outputs.sh"
+readonly generator_template="$repo_root/xcodeproj/internal/templates/generate_bazel_dependencies.sh"
 test_root="$(mktemp -d "${TMPDIR:-/tmp}/preview-framework-tests.XXXXXX")"
 readonly test_root
 export DERIVED_FILE_DIR="$test_root/default-derived"
 trap 'rm -rf "$test_root"' EXIT
+
+run_generator_mode() {
+  local name="$1"
+  local enable_previews="$2"
+  local native_previews="$3"
+  local expected_groups="$4"
+  local expected_config="$5"
+  local clang_coverage_mapping="${6:-UNSET}"
+  local case_dir="$test_root/generator-$name"
+  local integration_dir="$case_dir/integration"
+  local expected_output_groups
+  local prefix
+  local -a preview_environment=("RULES_XCODEPROJ_PREVIEW_TEST_ENVIRONMENT=1")
+  local -a expected_prefixes
+
+  mkdir -p \
+    "$case_dir/source root" \
+    "$case_dir/obj/Index.noindex" \
+    "$integration_dir"
+
+  sed 's|%swiftcopt%|@build_bazel_rules_swift//swift:copt|g' \
+    "$generator_template" > "$integration_dir/generate_bazel_dependencies.sh"
+
+  cat > "$case_dir/calculate_output_groups" <<'EOF'
+#!/bin/bash
+set -euo pipefail
+printf '%s\n' "$5" > "$CASE_DIR/groups"
+IFS=',' read -r -a prefixes <<< "$5"
+for prefix in "${prefixes[@]}"; do
+  printf '//App:App\n%s //App:App configuration\n' "$prefix"
+done
+EOF
+  chmod +x "$case_dir/calculate_output_groups"
+
+  cat > "$integration_dir/bazel_build.sh" <<'EOF'
+printf '%s\n' "$config" > "$CASE_DIR/config"
+printf '%s\n' "${output_groups[@]}" > "$CASE_DIR/output_groups"
+output_path="$CASE_DIR/output"
+EOF
+
+  if [[ "$enable_previews" != UNSET ]]; then
+    preview_environment+=("ENABLE_PREVIEWS=$enable_previews")
+  fi
+  if [[ "$native_previews" != UNSET ]]; then
+    preview_environment+=("BAZEL_NATIVE_PREVIEWS=$native_previews")
+  fi
+  if [[ "$clang_coverage_mapping" != UNSET ]]; then
+    preview_environment+=("CLANG_COVERAGE_MAPPING=$clang_coverage_mapping")
+  fi
+
+  env \
+    -u CLANG_COVERAGE_MAPPING \
+    -u ENABLE_PREVIEWS \
+    -u BAZEL_NATIVE_PREVIEWS \
+    ENABLE_XOJIT_PREVIEWS=YES \
+    "${preview_environment[@]}" \
+    ACTION=build \
+    BAZEL_CONFIG=dbg \
+    BAZEL_INTEGRATION_DIR="$integration_dir" \
+    BAZEL_OUT="$case_dir/bazel-out" \
+    CALCULATE_OUTPUT_GROUPS_SCRIPT="$case_dir/calculate_output_groups" \
+    CASE_DIR="$case_dir" \
+    INDEX_DATA_STORE_DIR="$case_dir/obj/Index.noindex/DataStore" \
+    OBJROOT="$case_dir/obj/Build/Intermediates.noindex" \
+    PROJECT_DIR="$case_dir/source root" \
+    SRCROOT="$case_dir/source root" \
+    XCODE_VERSION_ACTUAL=2650 \
+    bash "$integration_dir/generate_bazel_dependencies.sh"
+
+  assert_equals "$expected_groups" "$(cat "$case_dir/groups")" \
+    "$name output groups"
+  assert_equals "$expected_config" "$(cat "$case_dir/config")" \
+    "$name Bazel configuration"
+
+  expected_output_groups=$'index_import\ntarget_ids_list'
+  IFS=',' read -r -a expected_prefixes <<< "$expected_groups"
+  for prefix in "${expected_prefixes[@]}"; do
+    expected_output_groups+=$'\n'"$prefix //App:App configuration"
+  done
+  assert_equals \
+    "$expected_output_groups" \
+    "$(cat "$case_dir/output_groups")" \
+    "$name output groups passed to bazel_build.sh"
+}
+
+# Xcode also sets ENABLE_XOJIT_PREVIEWS for ordinary Debug builds. All rows
+# below deliberately export it; only the explicit configuration opts in.
+if env ACTION=install BAZEL_NATIVE_PREVIEWS=YES bash "$generator_template" \
+  >"$test_root/archive.stdout" 2>"$test_root/archive.stderr"; then
+  fail "Preview configuration allowed an archive"
+fi
+grep -q "Preview configurations cannot archive" "$test_root/archive.stderr" || \
+  fail "missing Preview archive diagnostic"
+
+run_generator_mode unset UNSET UNSET bp _dbg_build
+run_generator_mode ordinary NO NO bp _dbg_build
+run_generator_mode coverage NO NO bp dbg_coverage YES
+run_generator_mode legacy YES NO bc,bf,bp,bl dbg_swiftuipreviews
+run_generator_mode xojit NO YES bc,bf,bl _dbg_build
+run_generator_mode xojit-coverage NO YES bc,bf,bl _dbg_build YES
+run_generator_mode both YES YES bc,bf,bl _dbg_build
 
 readonly fake_integration_dir="$test_root/copy-integration"
 mkdir -p "$fake_integration_dir"
