@@ -16,6 +16,14 @@ py_test(
 )
 
 sh_test(
+    name = "preview_framework_scripts",
+    srcs = ["preview_framework_scripts_tests.sh"],
+    data = [
+        "//xcodeproj/internal/bazel_integration_files",
+    ],
+)
+
+sh_test(
     name = "libtool_facade",
     srcs = ["libtool_facade_tests.sh"],
     data = [
@@ -29,6 +37,7 @@ test_suite(
     tests = [
         ":calculate_output_groups",
         ":libtool_facade",
+        ":preview_framework_scripts",
         ":preview_runtime_link_params",
     ],
 )
