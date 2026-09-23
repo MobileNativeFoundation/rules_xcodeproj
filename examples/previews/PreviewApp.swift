@@ -9,6 +9,7 @@ struct PreviewApp: App {
             VStack {
                 PreviewView()
                 MixedPreviewView()
+                Text(previewResourceMessage)
             }
         }
     }
@@ -18,5 +19,15 @@ struct PreviewApp: App {
     VStack {
         PreviewView()
         MixedPreviewView()
+        Text(previewResourceMessage)
     }
+}
+
+private var previewResourceMessage: String {
+    guard let bundleURL = Bundle.main.url(forResource: "SharedResources", withExtension: "bundle"),
+          let bundle = Bundle(url: bundleURL),
+          let messageURL = bundle.url(forResource: "message", withExtension: "txt"),
+          let message = try? String(contentsOf: messageURL, encoding: .utf8)
+    else { return "Preview resource missing" }
+    return message.trimmingCharacters(in: .whitespacesAndNewlines)
 }

@@ -133,6 +133,9 @@ def _process_library_target(
         ),
         transitive_infos = transitive_infos,
     )
+    previews_resource_bundles = input_files.preview_resource_bundle_files(
+        provider_inputs,
+    )
 
     package_bin_dir = products.calculate_packge_bin_dir(
         bin_dir_path = bin_dir_path,
@@ -168,6 +171,7 @@ def _process_library_target(
             info.xcode_targets
             for info in transitive_infos
         ]),
+        previews_resource_bundles = previews_resource_bundles,
         separate_index_build_output_base = (
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
@@ -212,6 +216,7 @@ def _process_library_target(
         preview_link_input_files = (
             preview_link_params.link_input_files if preview_link_params else []
         ),
+        preview_resource_bundle_files = previews_resource_bundles,
         product = product,
         swift_info = swift_info,
         preview_swift_import_files = args.swift_preview_inputs.files,
