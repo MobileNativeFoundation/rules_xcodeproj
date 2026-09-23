@@ -101,6 +101,65 @@ _LIBRARY_INPUT_OPTS = {
     "-weak_library",
 }
 
+
+_STATIC_OPTION_OPERANDS = {
+    **{option: 1 for option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS},
+    "-sectcreate": 3, "-sectorder": 3, "-sectalign": 3,
+    "-reexport_framework": 1, "-upward_framework": 1, "-needed_framework": 1,
+    "-Xclang": 1, "-mllvm": 1, "-Xassembler": 1,
+    "-o": 1, "-e": 1, "-target": 1, "-arch": 1, "-isysroot": 1,
+    "-objc_abi_version": 1, "-object_path_lto": 1,
+}
+
+
+def _static_option_group_end(linkopts, index, *, driver_wrappers=False):
+    opt = linkopts[index]
+    forwarded = driver_wrappers and opt == "-Xlinker"
+    if forwarded:
+        index += 1
+        if index == len(linkopts):
+            raise ValueError("Malformed -Xlinker linker group")
+        opt = linkopts[index]
+    index += 1
+    for _ in range(_STATIC_OPTION_OPERANDS.get(opt, 0)):
+        if forwarded and index < len(linkopts) and linkopts[index] == "-Xlinker":
+            index += 1
+        if index == len(linkopts):
+            raise ValueError("Malformed " + opt + " option group")
+        index += 1
+    return index
+
+
+def _split_static_runtime_policy(linkopts):
+    """Separates declared driver policy before converting to linker tokens.
+
+    Provider values are raw argv, not shell text. Forwarded linker/compiler
+    values and known option operands are not driver options. Opaque dependency
+    response files remain linker inputs; do not build/read them for this query.
+    """
+    policy_options = {
+        "-fprofile-generate", "-fno-profile-generate",
+        "-fprofile-instr-generate", "-fno-profile-instr-generate",
+        "-nostdlib", "-nodefaultlibs", "-nostartfiles", "-nostdlib++",
+        "-fobjc-link-runtime", "-fno-objc-link-runtime",
+    }
+    policy_prefixes = (
+        "-fprofile-generate=", "-fprofile-instr-generate=", "-rtlib=", "--rtlib=",
+    )
+    remaining, policy = [], []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if opt in policy_options or any(opt.startswith(prefix) for prefix in policy_prefixes):
+            policy.append(opt)
+            index += 1
+            continue
+        start = index
+        index = _static_option_group_end(linkopts, index, driver_wrappers=True)
+        remaining.extend(linkopts[start:index])
+    return remaining, policy
+
+
 def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappers=True):
     """Removes exact native products together with their linker option group."""
     result = []
@@ -149,7 +208,7 @@ def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappe
     return result
 
 
-def _parse_args(args_files: List[str]) -> List[str]:
+def _parse_args(args_files: List[str], *, expand_response_files: bool = True) -> List[str]:
     def _is_redirect(arg: str) -> bool:
         # dyld paths are linker values, not response files.
         return arg.startswith("@") and not any(
@@ -180,12 +239,15 @@ def _parse_args(args_files: List[str]) -> List[str]:
 
     # Some actions put their complete tool-plus-arguments list behind one
     # redirect. Expand that first-level redirect before dropping the tool.
-    if _is_redirect(raw_args[0]):
+    if expand_response_files and _is_redirect(raw_args[0]):
         raw_args = _expand_redirect(raw_args[0]) + raw_args[1:]
 
     tool = raw_args[0]
     if not tool or tool.startswith("-") or tool.startswith("@"):
         raise ValueError("Link arguments do not contain a tool")
+
+    if not expand_response_files:
+        return raw_args[1:]
 
     # The first argument across all chunks is the tool name. Later chunks start
     # with real arguments and must not lose their first value.
@@ -208,7 +270,8 @@ def _quote_if_needed(opt: str) -> str:
 
 
 def _anchor_to_execution_root(
-        opt: str, *, path_context: bool = False, source_archive: bool = True,
+        opt: str, *, path_context: bool = False, response_files: bool = False,
+        source_archive: bool = True,
     ) -> str:
     """Makes a relative linker input readable by Xcode's Preview analyzer.
 
@@ -238,6 +301,12 @@ def _anchor_to_execution_root(
                 return "$(SRCROOT)/" + path
             return "$(PROJECT_DIR)/" + path
         return path
+
+    if response_files and opt.startswith("@") and not any(
+        opt == prefix or opt.startswith(prefix + "/")
+        for prefix in ("@rpath", "@loader_path", "@executable_path")
+    ):
+        return _quote_if_needed("@" + _anchor_path(opt[1:], allow_bare=True, archive=False))
 
     anchored = _anchor_path(opt, allow_bare=path_context)
     if anchored != opt:
@@ -274,17 +343,69 @@ def _anchor_to_execution_root(
     return _quote_if_needed(opt)
 
 
+def _static_library_linkopts(linkopts):
+    """Unwraps driver flags for Xcode's Libtool Preview-info consumer."""
+    result = []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        end = _static_option_group_end(linkopts, index, driver_wrappers=True)
+        if opt == "-Xlinker":
+            result.append(linkopts[index + 1])
+            index += 2
+            while index < end:
+                if linkopts[index] == "-Xlinker":
+                    index += 1
+                result.append(linkopts[index])
+                index += 1
+        else:
+            result.extend(opt[4:].split(",") if opt.startswith("-Wl,") else linkopts[index:end])
+        index = end
+
+    # These describe Bazel's debug outputs, not runtime dependencies. Xcode
+    # produces its own equivalents; do not compile the selected target in Bazel
+    # just to populate a Preview metadata response.
+    debug_options = {"-add_ast_path", "-object_path_lto", "-objc_abi_version"}
+    filtered = []
+    index = 0
+    while index < len(result):
+        end = _static_option_group_end(result, index)
+        if result[index] in debug_options:
+            if index + 1 == len(result) or result[index + 1].startswith("-"):
+                raise ValueError("Malformed " + result[index] + " linker group")
+        else:
+            filtered.extend(result[index:end])
+        index = end
+    return filtered
+
+
 def _process_linkopts(
         linkopts: List[str],
         is_framework: bool,
         generated_product_paths: List[str],
+        *, is_static_library: bool = False,
     ) -> List[str]:
-    # Decode Bazel shell quoting before matching complete library bindings.
-    linkopts = [
-        shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
-        for opt in linkopts
-    ]
-    linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
+    # Bazel action arguments may have shell quoting. Static provider arguments
+    # are already individual values: their quote characters are literal data.
+    if not is_static_library:
+        linkopts = [
+            shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
+            for opt in linkopts
+        ]
+    excluded = set(generated_product_paths)
+    if is_static_library:
+        linkopts = _static_library_linkopts(linkopts)
+        excluded.update("@" + path for path in generated_product_paths)
+    linkopts = _remove_generated_inputs(
+        linkopts, excluded, driver_wrappers=not is_static_library,
+    )
+    static_operands = set()
+    if is_static_library:
+        index = 0
+        while index < len(linkopts):
+            end = _static_option_group_end(linkopts, index)
+            static_operands.update(range(index + 1, end))
+            index = end
 
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
@@ -297,6 +418,8 @@ def _process_linkopts(
         ]
 
     for index, linkopt in enumerate(linkopts):
+        if index in static_operands:
+            continue
         if linkopt == "-objc_abi_version":
             if (index < 1 or
                 index + 2 >= len(linkopts) or
@@ -317,9 +440,9 @@ def _process_linkopts(
     processed_linkopts = []
     last_opt = None
     def _process_linkopt(opt, index):
-        if opt == "-filelist":
+        if not is_static_library and opt == "-filelist":
             return
-        if last_opt == "-filelist":
+        if not is_static_library and last_opt == "-filelist":
             # `_process_filelist` anchors and quotes each entry as needed.
             processed_linkopts.extend(_process_filelist(opt))
             return
@@ -336,7 +459,7 @@ def _process_linkopts(
             return
 
         # Xcode adds object files
-        if opt.endswith(".o"):
+        if not is_static_library and opt.endswith(".o"):
             return
 
         # We don't want the BwB swizzle fix for BwX mode
@@ -362,9 +485,11 @@ def _process_linkopts(
 
         previous_option = None
         previous_index = index - 1
-        if (previous_index >= 0 and linkopts[previous_index] == "-Xlinker"):
+        if (not is_static_library and previous_index >= 0 and
+            linkopts[previous_index] == "-Xlinker"):
             previous_index -= 1
         if (previous_index >= 0 and
+            previous_index not in static_operands and
             linkopts[previous_index].startswith("-") and
             linkopts[previous_index] != "-Xlinker"):
             previous_option = linkopts[previous_index]
@@ -374,7 +499,9 @@ def _process_linkopts(
         else:
             processed_linkopts.append(_anchor_to_execution_root(
                 opt,
-                path_context=previous_option in _SPLIT_PATH_OPTS,
+                path_context=(previous_option in _SPLIT_PATH_OPTS or
+                              (is_static_library and opt.endswith(".o"))),
+                response_files=is_static_library,
                 source_archive=(previous_option not in _SPLIT_PATH_OPTS or
                                 previous_option in _LIBRARY_INPUT_OPTS - {"-filelist"}),
             ))
@@ -384,6 +511,11 @@ def _process_linkopts(
         if skip_next:
             skip_next -= 1
             continue
+        if index in static_operands:
+            _process_linkopt(linkopt, index)
+            last_opt = linkopt
+            continue
+
         # Xcode provides its own LTO object path. Remove the complete Bazel
         # driver group so the leading `-Xlinker` can't become orphaned and
         # consume the next option as the value of `-object_path_lto`.
@@ -408,27 +540,36 @@ def _main(
         output_path: str,
         generated_product_paths_file: str,
         is_framework: bool,
-        args_files: List[str]
+        args_files: List[str],
+        *, is_static_library: bool = False,
     ) -> None:
     with open(generated_product_paths_file, encoding = "utf-8") as fp:
         generated_product_paths = json.load(fp)
 
+    linkopts = _parse_args(args_files, expand_response_files=not is_static_library)
+    if is_static_library:
+        linkopts, runtime_policy = _split_static_runtime_policy(linkopts)
     linkopts = _process_linkopts(
-        linkopts = _parse_args(args_files),
+        linkopts = linkopts,
         is_framework = is_framework,
         generated_product_paths = generated_product_paths,
+        is_static_library = is_static_library,
     )
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
         result = "\n".join(linkopts)
         fp.write(f'{result}\n')
+    if is_static_library:
+        with open(output_path + ".runtime.json", encoding = "utf-8", mode = "w") as fp:
+            json.dump(runtime_policy, fp, separators=(",", ":"))
+            fp.write("\n")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 5:
         print(
             f"""
-Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework> \
+Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework|static> \
 <args_files...>\
 """,
             file = sys.stderr,
@@ -440,4 +581,5 @@ Usage: {sys.argv[0]} <output> <self_linked_outputs_file> <is_framework> \
         sys.argv[2],
         sys.argv[3] == "1",
         sys.argv[4:],
+        is_static_library = sys.argv[3] == "static",
     )
