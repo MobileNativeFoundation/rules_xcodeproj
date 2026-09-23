@@ -1,6 +1,66 @@
 """Module for collecting compiler args."""
 
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 load("//xcodeproj/internal:memory_efficiency.bzl", "EMPTY_LIST")
+
+def _swift_preview_inputs(action, swift_info):
+    """Collects declared imports and generated inputs for native indexing."""
+    inputs = {file.path: file for file in action.inputs.to_list()}
+    outputs = {file.path: None for file in action.outputs.to_list()}
+    argv = action.argv
+    import_files = []
+
+    # A generated bridging header is an input to the native compile, even when
+    # it is not part of a Clang module's public header inventory.
+    for i in range(len(argv) - 1):
+        if argv[i] == "-import-objc-header":
+            path = argv[i + 1]
+            if path == "-Xfrontend" and i + 2 < len(argv):
+                path = argv[i + 2]
+            file = inputs.get(path)
+            if file and not file.is_source and file.path not in outputs:
+                import_files.append(file)
+
+    # Native compilation retains macro flags without compiling the selected
+    # Bazel target, so its executable plugins must be prepared independently.
+    for i in range(len(argv) - 3):
+        if argv[i:i + 3] == ["-Xfrontend", "-load-plugin-executable", "-Xfrontend"]:
+            plugin = inputs.get(argv[i + 3].rpartition("#")[0])
+            if plugin and plugin.path not in outputs:
+                import_files.append(plugin)
+    if swift_info:
+        dependency_paths = {}
+        for module in swift_info.direct_modules:
+            context = getattr(module, "compilation_context", None)
+            if context:
+                # The direct context is the exact compile inventory. It also
+                # contains private and toolchain modules absent from SwiftInfo.
+                import_files.extend([
+                    file
+                    for file in getattr(context, "direct_sources", ())
+                    if not file.is_source
+                ])
+                for file in context.swiftmodules:
+                    if type(file) == "File" and file.path not in outputs:
+                        import_files.append(file)
+                for file in context.module_maps:
+                    if type(file) == "File":
+                        dependency_paths[file.path] = None
+        for module in swift_info.transitive_modules.to_list():
+            if getattr(module, "is_system", False):
+                continue
+            clang = getattr(module, "clang", None)
+            module_map = getattr(clang, "module_map", None) if clang else None
+            context = getattr(clang, "compilation_context", None) if clang else None
+            if type(module_map) == "File" and module_map.path in dependency_paths and module_map.path not in outputs and context:
+                headers = context.headers.to_list()
+
+                # Never prepare the selected action's own generated header.
+                if not any([header.path in outputs for header in headers]):
+                    import_files.append(module_map)
+                    import_files.extend(headers)
+    return struct(files = depset(import_files))
 
 # Compiler option processing
 
@@ -8,6 +68,21 @@ _CC_COMPILE_ACTIONS = {
     "CppCompile": None,
     "ObjcCompile": None,
 }
+
+def _cc_preview_inputs(actions, source_paths, compilation_context):
+    # Use the selected Clang target's actual generated sources, not the mixed
+    # wrapper's public headers (which can include its own Swift output).
+    generated_sources = {}
+    for action in actions:
+        if action.mnemonic not in _CC_COMPILE_ACTIONS:
+            continue
+        for file in action.inputs.to_list():
+            if not file.is_source and file.path in source_paths:
+                generated_sources[file] = None
+    return depset(
+        generated_sources.keys(),
+        transitive = [compilation_context.headers] if compilation_context else [],
+    )
 
 def _get_unprocessed_cc_compiler_opts(
         *,
@@ -65,11 +140,18 @@ def _collect_compiler_args(
             target.
         *   `swift`: A `list` of `Args` for the `SwiftCompile` action for this
             target.
+        *   `swift_preview_inputs`: The declared inputs to prepare for native
+            index compilation.
     """
     swift_args = EMPTY_LIST
+    swift_preview_inputs = struct(files = depset())
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             swift_args = action.args
+            swift_preview_inputs = _swift_preview_inputs(
+                action,
+                target[SwiftInfo] if SwiftInfo in target else None,
+            )
             break
 
     conly_args, cxx_args = _get_unprocessed_cc_compiler_opts(
@@ -78,12 +160,26 @@ def _collect_compiler_args(
         target = target,
     )
 
+    if conly_args or cxx_args:
+        cc_info = target[CcInfo] if CcInfo in target else None
+        source_paths = dict(c_sources)
+        source_paths.update(cxx_sources)
+        cc_inputs = _cc_preview_inputs(
+            target.actions,
+            source_paths,
+            cc_info.compilation_context if cc_info else None,
+        )
+        swift_preview_inputs = struct(files = depset(transitive = [swift_preview_inputs.files, cc_inputs]))
+
     return struct(
         conly = conly_args,
         cxx = cxx_args,
         swift = swift_args,
+        swift_preview_inputs = swift_preview_inputs,
     )
 
 compiler_args = struct(
     collect = _collect_compiler_args,
+    cc_preview_inputs = _cc_preview_inputs,
+    swift_preview_inputs = _swift_preview_inputs,
 )

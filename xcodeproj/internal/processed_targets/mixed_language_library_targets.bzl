@@ -140,6 +140,7 @@ def _process_mixed_language_library_target(
             conly = [],
             cxx = [],
             swift = [],
+            swift_preview_inputs = struct(files = depset()),
         )
         indexstore_overrides = []
 
@@ -188,6 +189,7 @@ def _process_mixed_language_library_target(
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_swift_import_files = args.swift_preview_inputs.files,
         product = product,
         swift_info = swift_info,
         transitive_infos = transitive_infos,

@@ -540,6 +540,7 @@ def _process_focused_top_level_target(
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
         product = product,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )
