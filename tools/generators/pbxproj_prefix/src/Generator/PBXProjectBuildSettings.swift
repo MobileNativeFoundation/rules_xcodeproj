@@ -26,6 +26,7 @@ extension Generator {
         indexImport: String,
         indexingProjectDir: String,
         legacyIndexImport: String,
+        nativePreviews: Bool = false,
         projectDir: String,
         resolvedRepositories: String,
         separateIndexBuildOutputBase: Bool,
@@ -51,9 +52,12 @@ extension Generator {
                 key: "BAZEL_LLDB_INIT",
                 value: #""$(PROJECT_FILE_PATH)/rules_xcodeproj/bazel.lldbinit""#
             ),
+            .init(key: "BAZEL_NATIVE_PREVIEWS", value: nativePreviews ? "YES" : "NO"),
+            .init(key: "BAZEL_SWIFT_COMPILATION_MODE", value: nativePreviews ? "singlefile" : "wholemodule"),
             .init(
                 key: "BAZEL_OUT",
-                value: #""$(PROJECT_DIR)/bazel-out""#),
+                value: #""$(PROJECT_DIR)/bazel-out""#
+            ),
             .init(
                 key: "BAZEL_OUTPUT_BASE",
                 value: #""$(_BAZEL_OUTPUT_BASE:standardizepath)""#
@@ -75,7 +79,7 @@ extension Generator {
                 key: "BUILD_WORKSPACE_DIRECTORY",
                 value: #""$(SRCROOT)""#
             ),
-            .init(key: "CC", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
+
             .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
             .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
             .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
@@ -85,23 +89,14 @@ extension Generator {
                 value: #""$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)""#
             ),
             .init(key: "COPY_PHASE_STRIP", value: "NO"),
-            .init(key: "CXX", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
+
             .init(key: "DEBUG_INFORMATION_FORMAT", value: "dwarf"),
             .init(key: "DSTROOT", value: #""$(PROJECT_TEMP_DIR)""#),
-            .init(key: "ENABLE_DEBUG_DYLIB", value: "NO"),
+            .init(key: "ENABLE_DEBUG_DYLIB", value: nativePreviews ? "YES" : "NO"),
             .init(key: "ENABLE_DEFAULT_SEARCH_PATHS", value: "NO"),
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
             .init(key: "ENABLE_USER_SCRIPT_SANDBOXING", value: "NO"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
-            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld""#),
-            .init(
-                key: "LDPLUSPLUS",
-                value: #""$(BAZEL_INTEGRATION_DIR)/ld""#
-            ),
-            .init(
-                key: "LIBTOOL",
-                value: #""$(BAZEL_INTEGRATION_DIR)/libtool""#
-            ),
             .init(
                 key: "IMPORT_INDEX_BUILD_INDEXSTORES",
                 value: importIndexBuildIndexstores ? "YES" : "NO"
@@ -154,13 +149,8 @@ extension Generator {
             .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: "bazel"),
             .init(key: "SRCROOT", value: workspace.pbxProjEscaped),
             .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
-            .init(
-                key: "SWIFT_EXEC",
-                value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
-            ),
             .init(key: "SWIFT_OBJC_INTERFACE_HEADER_NAME", value: #""""#),
             .init(key: "SWIFT_OPTIMIZATION_LEVEL", value: #""-Onone""#),
-            .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             .init(key: "SWIFT_VERSION", value: "5.0"),
             .init(key: "TAPI_EXEC", value: "/usr/bin/true"),
             .init(
@@ -176,6 +166,24 @@ extension Generator {
                 value: #""$(PROJECT_DIR)/../..""#
             ),
         ]
+
+        // Native ownership is an explicit configuration choice, available before
+        // Xcode plans its tasks. ENABLE_XOJIT_PREVIEWS is also set for ordinary
+        // Debug builds and cannot select the owner.
+        for (key, bazelValue, nativeValue) in [
+            ("CC", "$(BAZEL_INTEGRATION_DIR)/clang.sh", "$(DT_TOOLCHAIN_DIR)/usr/bin/clang"),
+            ("CXX", "$(BAZEL_INTEGRATION_DIR)/clang.sh", "$(DT_TOOLCHAIN_DIR)/usr/bin/clang++"),
+            ("LD", "$(BAZEL_INTEGRATION_DIR)/ld", "$(DT_TOOLCHAIN_DIR)/usr/bin/clang"),
+            ("LDPLUSPLUS", "$(BAZEL_INTEGRATION_DIR)/ld", "$(DT_TOOLCHAIN_DIR)/usr/bin/clang++"),
+            ("LIBTOOL", "$(BAZEL_INTEGRATION_DIR)/libtool", "$(BAZEL_INTEGRATION_DIR)/xojit/libtool"),
+            ("SWIFT_EXEC", "$(BAZEL_INTEGRATION_DIR)/swiftc", "$(DT_TOOLCHAIN_DIR)/usr/bin/swiftc"),
+            ("SWIFT_USE_INTEGRATED_DRIVER", "NO", "YES"),
+            ("PREVIEW_SDK_LIBRARY_SEARCH_PATH", "", "$(SDKROOT)/usr/lib"),
+        ] {
+            buildSettings.append(
+                .init(key: key, value: (nativePreviews ? nativeValue : bazelValue).pbxProjEscaped)
+            )
+        }
         if suppressCoverageBuild {
             buildSettings.append(
                 .init(
