@@ -9,6 +9,7 @@ load(
     "memory_efficient_depset",
 )
 
+_APPLICATION_PRODUCT_TYPE = "a"  # com.apple.product-type.application
 _FRAMEWORK_PRODUCT_TYPE = "f"  # com.apple.product-type.framework
 
 _PREVIEWS_ENABLED_PRODUCT_TYPES = {
@@ -192,7 +193,7 @@ def _previews_info(
     else:
         include_path = EMPTY_STRING
 
-    if product_type != _FRAMEWORK_PRODUCT_TYPE:
+    if product_type not in (_APPLICATION_PRODUCT_TYPE, _FRAMEWORK_PRODUCT_TYPE):
         dynamic_frameworks = EMPTY_LIST
 
     return struct(
