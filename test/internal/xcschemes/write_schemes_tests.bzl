@@ -614,6 +614,20 @@ def write_schemes_test_suite(name):
                             enabled = "0",
                             value = "value with spaces",
                         ),
+                        "OS_ACTIVITY_MODE": [
+                            xcscheme_infos_testable.make_env(
+                                enabled = "1",
+                                value = "disable",
+                            ),
+                            xcscheme_infos_testable.make_env(
+                                enabled = "0",
+                                value = "info",
+                            ),
+                            xcscheme_infos_testable.make_env(
+                                enabled = "0",
+                                value = "debug",
+                            ),
+                        ],
                         "VAR WITH SPACES": xcscheme_infos_testable.make_env(
                             enabled = "1",
                             value = "value\nwith\nnewlines",
@@ -1326,11 +1340,29 @@ def write_schemes_test_suite(name):
                 # - run - commandLineArguments - literalString
                 "1",
                 # - run - environmentVariables count
-                "2",
+                "5",
                 # - run - environmentVariables - key
                 "A",
                 # - run - environmentVariables - value
                 "value with spaces",
+                # - run - environmentVariables - enabled
+                "0",
+                # - run - environmentVariables - key
+                "OS_ACTIVITY_MODE",
+                # - run - environmentVariables - value
+                "disable",
+                # - run - environmentVariables - enabled
+                "1",
+                # - run - environmentVariables - key
+                "OS_ACTIVITY_MODE",
+                # - run - environmentVariables - value
+                "info",
+                # - run - environmentVariables - enabled
+                "0",
+                # - run - environmentVariables - key
+                "OS_ACTIVITY_MODE",
+                # - run - environmentVariables - value
+                "debug",
                 # - run - environmentVariables - enabled
                 "0",
                 # - run - environmentVariables - key
