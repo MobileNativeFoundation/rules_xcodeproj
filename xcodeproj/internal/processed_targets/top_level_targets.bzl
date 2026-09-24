@@ -473,6 +473,11 @@ def _process_focused_top_level_target(
         infoplist = infoplist,
         name = label.name,
         previews_dynamic_frameworks = previews_dynamic_frameworks,
+        previews_direct_dependencies = direct_dependencies,
+        previews_xcode_targets = depset(transitive = [
+            info.xcode_targets
+            for info in transitive_infos
+        ]),
         previews_include_path = (
             mergeable_info.previews_include_path if mergeable_info else EMPTY_STRING
         ),
@@ -541,9 +546,16 @@ def _process_focused_top_level_target(
         output_group_info = (
             target[OutputGroupInfo] if OutputGroupInfo in target else None
         ),
+        preview_framework_files = [
+            file
+            for file, _ in previews_dynamic_frameworks
+        ],
+        preview_link_input_files = (
+            linker_inputs._top_level_values.preview_link_input_files
+        ),
         product = product,
-        preview_swift_import_files = args.swift_preview_inputs.files,
         swift_info = swift_info,
+        preview_swift_import_files = args.swift_preview_inputs.files,
         transitive_infos = transitive_infos,
     )
     target_output_groups = output_groups.collect(
