@@ -314,6 +314,33 @@ def _get_static_library_preview_libraries(
         libraries.append(library)
     return libraries
 
+def _get_static_library_preview_force_load_libraries(
+        *,
+        libraries,
+        linker_inputs):
+    """Returns Preview libraries whose Bazel link semantics require force-load."""
+    compilation_providers = linker_inputs._compilation_providers
+
+    if compilation_providers.objc:
+        candidates = getattr(
+            compilation_providers.objc,
+            "force_load_library",
+            depset(),
+        ).to_list()
+    else:
+        candidates = []
+        for input in linker_inputs._cc_linker_inputs:
+            for library in input.libraries:
+                if not library.alwayslink:
+                    continue
+                static_library = (library.static_library or
+                                  library.pic_static_library)
+                if static_library:
+                    candidates.append(static_library)
+
+    force_load_set = {file: None for file in candidates}
+    return [file for file in libraries if file in force_load_set]
+
 def _dynamic_framework_name(file):
     framework_dir = file.dirname
     if not framework_dir.endswith(".framework"):
@@ -395,6 +422,205 @@ def _map_static_library_preview_dynamic_frameworks(
             previews_dynamic_frameworks.append((linker_file, False))
     return previews_dynamic_frameworks
 
+def _preview_execution_root_path(file):
+    path = file.path
+    if path.startswith("/") or path.startswith("$"):
+        return path
+
+    # Index builds can replant execution-root source symlinks while Xcode's
+    # Preview analyzer is still loading them. Anchor workspace source archives
+    # before either writing the response or forwarding it to the processor.
+    if (file.is_source and file.extension == "a" and
+        not path.startswith("external/") and
+        not any([part in [".", ".."] for part in path.split("/")])):
+        return "$(SRCROOT)/{}".format(path)
+    return "$(PROJECT_DIR)/{}".format(path)
+
+def _quote_preview_link_arg(arg):
+    # Xcode's response parser accepts whole-argument quotes, not shell-style
+    # concatenation. Build setting values can contain spaces after expansion.
+    if not any([
+        character in arg
+        for character in [" ", "\t", "\n", "\r", "'", "\"", "\\", "$("]
+    ]):
+        return arg
+    return "\"{}\"".format(arg.replace("\\", "\\\\").replace("\"", "\\\""))
+
+def _get_static_library_preview_dynamic_libraries(linker_inputs):
+    """Returns standalone CcInfo dylibs using their exact linker artifacts."""
+    seen = {}
+    libraries = []
+    for input in linker_inputs._cc_linker_inputs:
+        for library in input.libraries:
+            # Keep the existing static/PIC preference when both variants exist.
+            if library.static_library or library.pic_static_library:
+                continue
+            if not library.dynamic_library:
+                continue
+            file = (
+                library.resolved_symlink_dynamic_library or
+                library.dynamic_library
+            )
+            if (file.extension != "dylib" or
+                ".framework/" in file.path or file in seen):
+                continue
+            seen[file] = None
+            libraries.append(file)
+    return libraries
+
+def _create_static_library_preview_link_params(
+        *,
+        actions,
+        name,
+        linker_inputs,
+        product_files = EMPTY_TUPLE,
+        tool = None):
+    """Creates Libtool inputs for a static library's Xcode Preview closure.
+
+    Xcode 26 derives Preview static library inputs from the target's Libtool
+    task. Bazel static library actions only archive the target's own objects,
+    so their transitive static libraries, standalone dylibs, and frameworks aren't
+    otherwise visible to that Preview-info path. Xcode accepts canonical
+    `-F`, `-framework`, `-rpath`, `-ObjC`, and `-force_load` arguments in the
+    Libtool response. `-ObjC` is required for Objective-C categories whose
+    selectors are reached dynamically at runtime and therefore don't create
+    undefined symbols that would otherwise pull their archive members into
+    XOJIT. Per-library `alwayslink` semantics still require `-force_load`,
+    including for symbols outside Objective-C category metadata. The generated
+    Libtool facade intentionally ignores these link-only arguments for the
+    ordinary archive while Xcode records them for the synthetic XOJIT image.
+
+    Args:
+        actions: The `ctx.actions` object.
+        linker_inputs: A value returned by `linker_input_files.collect`.
+        name: The target name, used to name the generated params file.
+        product_files: Products whose sources are merged into this native
+            target. Exclude all of them, not only the primary archive, to avoid
+            loading Bazel's copy of the same definitions into the Preview JIT.
+        tool: The link params processor, required when declared link flags exist.
+
+    Returns:
+        A `struct` with `dynamic_frameworks`, `file`, `libraries`, and
+        `link_input_files` fields, or `None` if the target has no transitive
+        link inputs besides its own product.
+    """
+    libraries = _get_static_library_preview_libraries(
+        linker_inputs,
+        product_files = product_files,
+    )
+    force_load_libraries = _get_static_library_preview_force_load_libraries(
+        libraries = libraries,
+        linker_inputs = linker_inputs,
+    )
+    dynamic_frameworks = _get_static_library_preview_dynamic_frameworks(
+        linker_inputs,
+    )
+    dynamic_libraries = _get_static_library_preview_dynamic_libraries(
+        linker_inputs,
+    )
+
+    objc = linker_inputs._compilation_providers.objc
+    if objc:
+        user_link_flags = getattr(objc, "linkopt", EMPTY_DEPSET).to_list()
+        additional_inputs = getattr(objc, "link_inputs", EMPTY_DEPSET).to_list()
+    else:
+        # Keep each LinkerInput's ordered flag sequence, including repeated
+        # options. A depset of individual flags would lose option/value pairs.
+        user_link_flags = [
+            flag
+            for input in linker_inputs._cc_linker_inputs
+            for flag in getattr(input, "user_link_flags", EMPTY_TUPLE)
+        ]
+        additional_inputs = [
+            file
+            for input in linker_inputs._cc_linker_inputs
+            for file in getattr(input, "additional_inputs", EMPTY_TUPLE)
+        ]
+    native_products = list(product_files)
+    if linker_inputs._primary_static_library:
+        native_products.append(linker_inputs._primary_static_library)
+    native_owners = {file.owner: None for file in native_products}
+    excluded_paths = {file.path: None for file in native_products}
+    preview_inputs = {file: None for file in libraries + dynamic_libraries}
+    for file in additional_inputs:
+        # Xcode emits the selected target's objects/autolink information. Do
+        # not make generation or Preview preparation compile its Bazel copy.
+        if (file.owner in native_owners and
+            file.extension in ["o", "autolink", "objlist"]):
+            excluded_paths[file.path] = None
+        elif file.path not in excluded_paths and file.extension != "swiftmodule":
+            preview_inputs[file] = None
+
+    if (not libraries and not dynamic_frameworks and not dynamic_libraries and
+        not user_link_flags):
+        return None
+
+    args = []
+    if dynamic_frameworks:
+        args.append("-F$(TARGET_BUILD_DIR)")
+        for dynamic_framework in dynamic_frameworks:
+            args.extend([
+                "-framework",
+                _dynamic_framework_name(dynamic_framework),
+            ])
+        args.extend([
+            "-rpath",
+            "$(TARGET_BUILD_DIR)",
+        ])
+    if libraries:
+        args.append("-ObjC")
+    force_load_set = {file: None for file in force_load_libraries}
+    for library in libraries:
+        path = _preview_execution_root_path(library)
+        if library in force_load_set:
+            args.extend(["-force_load", path])
+        else:
+            args.append(path)
+    args.extend([
+        _preview_execution_root_path(library)
+        for library in dynamic_libraries
+    ])
+
+    params = actions.declare_file(
+        "{}.rules_xcodeproj.preview.link.params".format(name),
+    )
+    runtime_policy = actions.declare_file(params.basename + ".runtime.json", sibling = params)
+    if user_link_flags:
+        raw_params = actions.declare_file(params.basename + ".raw", sibling = params)
+        products = actions.declare_file(params.basename + ".products.json", sibling = params)
+        actions.write(
+            output = raw_params,
+            content = "\n".join(["libtool"] + args + user_link_flags) + "\n",
+        )
+        actions.write(output = products, content = json.encode(excluded_paths.keys()))
+        actions.run(
+            executable = tool,
+            arguments = [params.path, products.path, "static", raw_params.path],
+            # The processor reads only argument metadata. Additional linker
+            # artifacts are prepared in bl, not while generating the project.
+            inputs = [raw_params, products],
+            outputs = [params, runtime_policy],
+            mnemonic = "ProcessLinkParams",
+            progress_message = "Generating %{output}",
+        )
+    else:
+        actions.write(output = runtime_policy, content = "[]\n")
+        actions.write(
+            output = params,
+            content = "{}\n".format("\n".join([
+                _quote_preview_link_arg(arg)
+                for arg in args
+            ])),
+        )
+
+    preview_inputs[runtime_policy] = None
+    return struct(
+        dynamic_frameworks = tuple(dynamic_frameworks),
+        file = params,
+        link_input_files = tuple(preview_inputs),
+        libraries = tuple(libraries),
+    )
+
 def _get_library_static_libraries_for_bwx(
         linker_inputs,
         *,
@@ -451,22 +677,25 @@ def _get_primary_static_library(linker_inputs):
 
 linker_input_files = struct(
     collect = _collect_linker_inputs,
-    get_static_library_preview_dynamic_frameworks = (
-        _get_static_library_preview_dynamic_frameworks
-    ),
-    get_static_library_preview_libraries = (
-        _get_static_library_preview_libraries
-    ),
-    map_static_library_preview_dynamic_frameworks = (
-        _map_static_library_preview_dynamic_frameworks
+    create_static_library_preview_link_params = (
+        _create_static_library_preview_link_params
     ),
     merge = _merge_linker_inputs,
     get_library_static_libraries_for_bwx = (
         _get_library_static_libraries_for_bwx
     ),
     get_primary_static_library = _get_primary_static_library,
+    get_static_library_preview_dynamic_frameworks = (
+        _get_static_library_preview_dynamic_frameworks
+    ),
+    get_static_library_preview_libraries = (
+        _get_static_library_preview_libraries
+    ),
     get_transitive_static_libraries_for_bwx = (
         _get_transitive_static_libraries_for_bwx
+    ),
+    map_static_library_preview_dynamic_frameworks = (
+        _map_static_library_preview_dynamic_frameworks
     ),
     to_input_files = _to_input_files,
 )
