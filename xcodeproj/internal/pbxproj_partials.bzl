@@ -1111,6 +1111,7 @@ def _write_target_build_settings(
         name,
         previews_dynamic_frameworks = EMPTY_LIST,
         previews_include_path = EMPTY_STRING,
+        swift_preview_inputs = None,
         provisioning_profile_is_xcode_managed = False,
         provisioning_profile_name = None,
         separate_index_build_output_base,
@@ -1147,6 +1148,7 @@ def _write_target_build_settings(
             `False`, the file points to an executable in a dynamic framework.
         previews_include_path: The Swift include path to add when building
             Xcode previews.
+        swift_preview_inputs: Manifest metadata and prepared native index files.
         provisioning_profile_is_xcode_managed: A `bool` indicating whether the
             provisioning profile is managed by Xcode.
         provisioning_profile_name: The name of the provisioning profile to use
@@ -1264,6 +1266,18 @@ def _write_target_build_settings(
 
     # separateIndexBuildOutputBase
     args.add(TRUE_ARG if separate_index_build_output_base else FALSE_ARG)
+
+    # Exact manifest paths are project-generation metadata; prepared import
+    # files are copied through the indexing output group instead.
+    manifests = swift_preview_inputs.manifests if generate_build_settings and swift_preview_inputs else []
+    args.add_all(manifests, terminate_with = "", omit_if_empty = False)
+    args.add_all(
+        swift_preview_inputs.paths if manifests else [],
+        terminate_with = "",
+        omit_if_empty = False,
+    )
+    if manifests:
+        inputs = depset(manifests, transitive = [inputs] if type(inputs) == "depset" else [depset(inputs)])
 
     c_output_args = actions.args()
 
