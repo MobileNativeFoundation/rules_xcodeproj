@@ -30,6 +30,124 @@ _LD_SKIP_OPTS = {
 }
 
 
+_WL_PATH_OPTS = {
+    "-add_ast_path",
+    "-alias_list",
+    "-assert_weak_library",
+    "-bundle_loader",
+    "-delay_library",
+    "-dirty_data_list",
+    "-dtrace",
+    "-exported_symbols_list",
+    "-filelist",
+    "-force_load",
+    "-interposable_list",
+    "-lazy_library",
+    "-load_hidden",
+    "-lto_library",
+    "-merge_library",
+    "-needed_library",
+    "-non_global_symbols_no_strip_list",
+    "-non_global_symbols_strip_list",
+    "-order_file",
+    "-reexport_library",
+    "-reexported_symbols_list",
+    "-unexported_symbols_list",
+    "-upward_library",
+    "-weak_library",
+}
+
+_WL_POSITIONAL_PATH_OPTS = {
+    "-filelist": (1, 2),
+    "-sectcreate": (3,),
+    "-sectorder": (3,),
+}
+
+_SPLIT_PATH_OPTS = _WL_PATH_OPTS | {
+    "-F",
+    "-L",
+    "-iframework",
+    "-rpath",
+}
+
+_SPLIT_NON_PATH_OPTS = {
+    "-allowable_client",
+    "-compatibility_version",
+    "-current_version",
+    "-dylib_compatibility_version",
+    "-dylib_current_version",
+    "-framework",
+    "-install_name",
+    "-sub_umbrella",
+    "-u",
+    "-umbrella",
+    "-undefined",
+    "-weak_framework",
+}
+
+_LIBRARY_INPUT_OPTS = {
+    "-assert_weak_library",
+    "-delay_library",
+    "-filelist",
+    "-force_load",
+    "-lazy_library",
+    "-load_hidden",
+    "-merge_library",
+    "-needed_library",
+    "-reexport_library",
+    "-upward_library",
+    "-weak_library",
+}
+
+
+def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappers=True):
+    """Removes exact native products together with their linker option group."""
+    result = []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if driver_wrappers and opt.startswith("-Wl,"):
+            values = _remove_generated_inputs(
+                opt[4:].split(","), generated_product_paths,
+            )
+            if values:
+                result.append("-Wl," + ",".join(values))
+            index += 1
+            continue
+
+        # Read a driver-forwarded linker token without leaving its -Xlinker
+        # behind when the token or its complete library binding is removed.
+        option_index = index + (driver_wrappers and opt == "-Xlinker")
+        if option_index >= len(linkopts):
+            result.append(opt)
+            break
+        option = linkopts[option_index]
+        end = option_index + 1
+        if option in _WL_POSITIONAL_PATH_OPTS and option != "-filelist":
+            # Section arguments are metadata/content, not positional libraries.
+            for _ in range(max(_WL_POSITIONAL_PATH_OPTS[option])):
+                if driver_wrappers and end < len(linkopts) and linkopts[end] == "-Xlinker":
+                    end += 1
+                end = min(end + 1, len(linkopts))
+        elif option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS:
+            value_index = end
+            if driver_wrappers and value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
+                value_index += 1
+            if value_index < len(linkopts):
+                end = value_index + 1
+                if (option in _LIBRARY_INPUT_OPTS and
+                    linkopts[value_index] in generated_product_paths):
+                    index = end
+                    continue
+        elif option in generated_product_paths:
+            index = end
+            continue
+
+        result.extend(linkopts[index:end])
+        index = end
+    return result
+
+
 def _parse_args(args_files: List[str]) -> List[str]:
     raw_args = []
     for args_path in args_files:
@@ -93,6 +211,13 @@ def _process_linkopts(
         is_framework: bool,
         generated_product_paths: List[str]
     ) -> List[str]:
+    # Decode Bazel shell quoting before matching complete library bindings.
+    linkopts = [
+        shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
+        for opt in linkopts
+    ]
+    linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
+
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
             paths = fp.read().splitlines()
@@ -115,16 +240,6 @@ def _process_linkopts(
             # Not calling `_quote_and_append_processed_linkopt`, because
             # `_process_filelist` applies quoting if needed
             processed_linkopts.extend(_process_filelist(opt))
-            return
-
-        opt_generated_path_matches = [
-            path
-            for path in generated_product_paths
-            if opt.endswith(path)
-        ]
-        if opt_generated_path_matches:
-            if last_opt == "-force_load":
-                processed_linkopts.pop()
             return
 
         # Xcode sets entitlements
@@ -163,11 +278,6 @@ def _process_linkopts(
         if skip_next:
             skip_next -= 1
             continue
-
-        # Bazel shell-formatted parameter files encode arguments with shell
-        # quoting. Decode a whole quoted argument before processing it.
-        if linkopt.startswith("'") and linkopt.endswith("'"):
-            linkopt = shlex.split(linkopt)[0]
 
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:
