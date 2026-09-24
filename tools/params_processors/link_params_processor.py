@@ -42,6 +42,7 @@ _WL_PATH_OPTS = {
     "-filelist",
     "-force_load",
     "-interposable_list",
+    "-lazy_library",
     "-load_hidden",
     "-lto_library",
     "-merge_library",
@@ -91,8 +92,11 @@ _DIRECT_INPUT_SUFFIXES = (
 )
 
 _LIBRARY_INPUT_OPTS = {
+    "-assert_weak_library",
+    "-delay_library",
     "-filelist",
     "-force_load",
+    "-lazy_library",
     "-load_hidden",
     "-merge_library",
     "-needed_library",

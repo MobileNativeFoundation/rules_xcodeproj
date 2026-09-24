@@ -330,6 +330,31 @@ class LinkParamsProcessorTest(unittest.TestCase):
                         ),
                     )
 
+    def test_selected_library_binding_options_are_removed_atomically(self):
+        selected = "bazel-out/bin/libSelected.a"
+        dependency = "external/dependency/libDependency.a"
+        for option in (
+            "-lazy_library", "-delay_library", "-assert_weak_library",
+        ):
+            for spelling in ("plain", "forwarded", "comma"):
+                def group(path):
+                    if spelling == "plain":
+                        return [option, path]
+                    if spelling == "forwarded":
+                        return ["-Xlinker", option, "-Xlinker", path]
+                    return ["-Wl," + option + "," + path]
+
+                with self.subTest(option=option, spelling=spelling):
+                    retained = group(dependency) + ["-framework", "Foundation"]
+                    self.assertEqual(
+                        link_params_processor._process_linkopts(
+                            group(selected) + retained, False, [selected],
+                        ),
+                        link_params_processor._process_linkopts(
+                            retained, False, [],
+                        ),
+                    )
+
     def test_selected_forwarded_input_does_not_leave_xlinker(self):
         selected = "bazel-out/bin/libSelected.a"
         self.assertEqual(
