@@ -21,13 +21,13 @@ class LinkParamsProcessorTest(unittest.TestCase):
         ]:
             with self.subTest(following=following):
                 self.assertEqual(link_params_processor._process_linkopts(
-                    ["-bundle"] + following, False, []
+                    ["-bundle"] + following, False, [], is_static_library=False,
                 ), following)
 
     def test_xcode_owns_the_test_bundle_loader(self):
         self.assertEqual(link_params_processor._process_linkopts(
             ["-bundle_loader", "bazel-out/Host_lipobin", "-Xlinker", "-needed-lXCTestSwiftSupport"],
-            False, []
+            False, [], is_static_library=False,
         ), ["-Xlinker", "-needed-lXCTestSwiftSupport"])
 
     def test_native_tests_omit_bazel_source_location_swizzle(self):
@@ -36,11 +36,122 @@ class LinkParamsProcessorTest(unittest.TestCase):
             for group in [["-Wl,-force_load," + library], ["-force_load", library]]:
                 with self.subTest(group=group):
                     self.assertEqual(link_params_processor._process_linkopts(
-                        group + ["-lKept"], False, []
+                        group + ["-lKept"], False, [], is_static_library=False,
                     ), ["-lKept"])
         self.assertEqual(link_params_processor._process_linkopts(
-            ["-Wl,-force_load,bazel-out/lib/Other.lo"], False, []
+            ["-Wl,-force_load,bazel-out/lib/Other.lo"], False, [], is_static_library=False,
         ), ['"-Wl,-force_load,$(PROJECT_DIR)/bazel-out/lib/Other.lo"'])
+
+    def test_static_runtime_policy_is_ordered_and_separate_from_linker_args(self):
+        flags = [
+            "-fprofile-instr-generate", "-nodefaultlibs", "-fno-profile-generate",
+            "-fprofile-instr-generate", "-fprofile-generate=Author's profile dir",
+            "-rtlib=compiler-rt", "-fobjc-link-runtime", "-all_load",
+        ]
+        remaining, policy = link_params_processor._split_static_runtime_policy(flags)
+        self.assertEqual(policy, flags[:-1])
+        self.assertEqual(remaining, ["-all_load"])
+
+    def test_static_runtime_policy_preserves_namespaces_and_option_values(self):
+        for flags in [
+            ["-u", "-fprofile-generate"],
+            ["-framework", "-nodefaultlibs"],
+            ["-L", "-fprofile-generate"],
+            ["-reexport_framework", "-nostdlib"],
+            ["-sectcreate", "__DATA", "-fprofile-generate", "-nodefaultlibs"],
+            ["-sectalign", "__DATA", "-fprofile-generate", "4000"],
+            ["-Xlinker", "-u", "-Xlinker", "-fobjc-link-runtime"],
+            ["-Xlinker", "-nostdlib"],
+            ["-Wl,-u,-fprofile-generate,-all_load"],
+            ["-Xclang", "-fprofile-instr-generate"],
+            ["-mllvm", "-fprofile-generate"],
+            ["-Xassembler", "-nostdlib"],
+            ["@missing.rsp", "-filelist", "missing.objlist"],
+        ]:
+            with self.subTest(flags=flags):
+                remaining, policy = link_params_processor._split_static_runtime_policy(
+                    flags + ["-fprofile-generate"],
+                )
+                self.assertEqual(remaining, flags)
+                self.assertEqual(policy, ["-fprofile-generate"])
+
+    def test_static_runtime_policy_rejects_malformed_known_groups(self):
+        for flags in (["-u"], ["-Xlinker"], ["-Xlinker", "-force_load"],
+                      ["-sectalign", "__DATA"], ["-Xclang"]):
+            with self.subTest(flags=flags), self.assertRaisesRegex(ValueError, "Malformed"):
+                link_params_processor._split_static_runtime_policy(flags)
+
+    def test_static_driver_carriers_are_literal_unforwarded_operands(self):
+        for flags, expected, policy in [
+            (["-u", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-Xlinker"], ["-fprofile-generate"]),
+            (["-u", "-Wl,-fprofile-generate", "-nodefaultlibs"],
+             ["-u", "-Wl,-fprofile-generate"], ["-nodefaultlibs"]),
+            (["-Xlinker", "-u", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-fprofile-generate"], []),
+            (["-Xlinker", "-u", "-Xlinker", "-Xlinker", "-fprofile-generate"],
+             ["-u", "-Xlinker"], ["-fprofile-generate"]),
+        ]:
+            with self.subTest(flags=flags):
+                remaining, actual_policy = link_params_processor._split_static_runtime_policy(flags)
+                self.assertEqual(actual_policy, policy)
+                self.assertEqual(link_params_processor._process_linkopts(
+                    remaining + ["selected.a"], False, ["selected.a"], is_static_library=True,
+                ), expected)
+
+    def test_static_policy_lookalikes_survive_canonical_skip_rules(self):
+        for spelling in ("direct", "forwarded", "comma"):
+            values = ["-u", "-fobjc-link-runtime", "-u", "-add_ast_path", "-all_load"]
+            flags = values if spelling == "direct" else (
+                [value for token in values for value in ("-Xlinker", token)]
+                if spelling == "forwarded" else ["-Wl," + ",".join(values)]
+            )
+            with self.subTest(spelling=spelling):
+                remaining, policy = link_params_processor._split_static_runtime_policy(flags)
+                self.assertEqual(policy, [])
+                self.assertEqual(link_params_processor._process_linkopts(
+                    remaining, False, [], is_static_library=True,
+                ), values)
+
+    def test_static_runtime_policy_sidecar_is_declared_data_not_shell_text(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            source = root / "raw.params"
+            selected = root / "selected.json"
+            output = root / "preview.params"
+            policy = "-fprofile-generate=Author's \\\"profile\\\" directory"
+            source.write_text("libtool\n" + policy + "\n-u\n_retained\n@missing.rsp\n")
+            selected.write_text("[]")
+            link_params_processor._main(
+                str(output), str(selected), False, [str(source)],
+                is_static_library=True,
+            )
+            self.assertEqual(json.loads(pathlib.Path(str(output) + ".runtime.json").read_text()), [policy])
+            self.assertEqual(shlex.split(output.read_text()), [
+                "-u", "_retained", "@$(PROJECT_DIR)/missing.rsp",
+            ])
+
+    def test_static_symbol_operand_does_not_bind_the_following_archive(self):
+        for symbol in ("-Xlinker", "-L", "-u", "-force_load"):
+            values = ["-u", symbol, "deps/libOther.a", "bazel-out/libGenerated.a", "external/dep/libExternal.a"]
+            for spelling in ("direct", "forwarded", "comma"):
+                flags = values if spelling == "direct" else (
+                    [value for token in values for value in ("-Xlinker", token)]
+                    if spelling == "forwarded" else ["-Wl," + ",".join(values)]
+                )
+                with self.subTest(symbol=symbol, spelling=spelling):
+                    remaining, policy = link_params_processor._split_static_runtime_policy(
+                        flags + ["-fprofile-generate"],
+                    )
+                    self.assertEqual(policy, ["-fprofile-generate"])
+                    processed = link_params_processor._process_linkopts(
+                        remaining, False, [], is_static_library=True,
+                    )
+                    self.assertEqual(shlex.split("\n".join(processed)), [
+                        "-u", symbol, "$(SRCROOT)/deps/libOther.a",
+                        "$(PROJECT_DIR)/bazel-out/libGenerated.a",
+                        "$(PROJECT_DIR)/external/dep/libExternal.a",
+                    ])
 
     def test_nonstatic_processing_does_not_create_runtime_sidecar(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -67,6 +178,7 @@ class LinkParamsProcessorTest(unittest.TestCase):
             link.symlink_to(archive)
             processed = link_params_processor._process_linkopts(
                 ["-force_load", archive.name], False, [],
+                is_static_library=True,
             )
             response = "\n".join(processed).replace(
                 "$(PROJECT_DIR)", str(execution_root),
@@ -91,13 +203,106 @@ class LinkParamsProcessorTest(unittest.TestCase):
             ("Vendor/../bazel-out/libDependency.a", "$(PROJECT_DIR)"),
             ("Vendor/libDependency.dylib", "$(PROJECT_DIR)"),
         ]:
-            with self.subTest(path=path):
+            for static in (False, True):
+                with self.subTest(path=path, static=static):
+                    processed = link_params_processor._process_linkopts(
+                        ["-force_load", path], False, [],
+                        is_static_library=static,
+                    )
+                    self.assertEqual(shlex.split("\n".join(processed)), [
+                        "-force_load", anchor + "/" + path,
+                    ])
+
+    def test_archive_suffix_does_not_reanchor_non_library_path_values(self):
+        for flags, expected in [
+            (["-FVendor.a"], ["-F$(PROJECT_DIR)/Vendor.a"]),
+            (["-L", "Vendor.a"], ["-L", "$(PROJECT_DIR)/Vendor.a"]),
+            (["-rpath", "Vendor.a"], ["-rpath", "$(PROJECT_DIR)/Vendor.a"]),
+            (["-Wl,-order_file,ordering.a"], ["-order_file", "$(PROJECT_DIR)/ordering.a"]),
+            (["@autolink.a"], ["@$(PROJECT_DIR)/autolink.a"]),
+            (["-Wl,-filelist,objects.a"], ["-filelist", "$(PROJECT_DIR)/objects.a"]),
+            (["-u", "symbol.a"], ["-u", "symbol.a"]),
+        ]:
+            with self.subTest(flags=flags):
                 processed = link_params_processor._process_linkopts(
-                    ["-force_load", path], False, [],
+                    flags, False, [], is_static_library=True,
                 )
-                self.assertEqual(shlex.split("\n".join(processed)), [
-                    "-force_load", anchor + "/" + path,
-                ])
+                self.assertEqual(shlex.split("\n".join(processed)), expected)
+
+    def test_static_preview_canonicalizes_declared_dependency_flags(self):
+        flags = [
+            "-Wl,-u,_retained,-weak_framework,OptionalKit",
+            "-Xlinker", "-reexport_library", "-Xlinker", "external/lib.dylib",
+            "-Wl,-add_ast_path,bazel-out/Selected.swiftmodule",
+            "-Xlinker", "-add_ast_path", "-Xlinker", "bazel-out/Dependency.swiftmodule",
+            "-L", "external/lib", "-lDependency",
+            "external/dependency.modulewrap.o", "@external/dependency.autolink",
+            "bazel-out/selected.o", "@bazel-out/selected.autolink",
+            "-Wl,-rpath,@loader_path/Frameworks",
+        ]
+        processed = link_params_processor._process_linkopts(
+            flags, False, ["bazel-out/selected.o", "bazel-out/selected.autolink"],
+            is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-u", "_retained", "-weak_framework", "OptionalKit",
+            "-reexport_library", "$(PROJECT_DIR)/external/lib.dylib",
+            "-L", "$(PROJECT_DIR)/external/lib", "-lDependency",
+            "$(PROJECT_DIR)/external/dependency.modulewrap.o",
+            "@$(PROJECT_DIR)/external/dependency.autolink",
+            "-rpath", "@loader_path/Frameworks",
+        ])
+
+    def test_static_preview_does_not_materialize_response_inputs_during_generation(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            params = root / "raw.params"
+            exclusions = root / "selected.json"
+            output = root / "preview.params"
+            params.write_text(
+                "libtool\n@external/missing.autolink\n"
+                "-Wl,-filelist,external/missing.objlist\n",
+                encoding="utf-8",
+            )
+            exclusions.write_text("[]", encoding="utf-8")
+            link_params_processor._main(
+                str(output), str(exclusions), False, [str(params)],
+                is_static_library=True,
+            )
+            self.assertEqual(
+                shlex.split(output.read_text(encoding="utf-8")),
+                ["@$(PROJECT_DIR)/external/missing.autolink",
+                 "-filelist", "$(PROJECT_DIR)/external/missing.objlist"],
+            )
+            # Ordinary top-level processing still requires its response input.
+            with self.assertRaises(FileNotFoundError):
+                link_params_processor._parse_args([str(params)])
+
+    def test_static_preview_removes_owned_driver_metadata(self):
+        processed = link_params_processor._process_linkopts(
+            ["-Wl,-object_path_lto,bazel-out/Selected.lto.o",
+             "-Wl,-objc_abi_version,2", "-ObjC", "external/dependency.o"],
+            False, [], is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-ObjC", "$(PROJECT_DIR)/external/dependency.o",
+        ])
+
+    def test_static_preview_rejects_dangling_driver_forwarding(self):
+        with self.assertRaisesRegex(ValueError, "Malformed -Xlinker"):
+            link_params_processor._process_linkopts(
+                ["-Xlinker"], False, [], is_static_library=True,
+            )
+
+    def test_static_preview_provider_arguments_are_not_shell_serialized(self):
+        processed = link_params_processor._process_linkopts(
+            ["-force_load", "'literal archive.a'", "-u", "symbol/with.a"],
+            False, [], is_static_library=True,
+        )
+        self.assertEqual(shlex.split("\n".join(processed)), [
+            "-force_load", "$(PROJECT_DIR)/'literal archive.a'",
+            "-u", "symbol/with.a",
+        ])
 
     def test_selected_library_option_groups_are_removed_atomically(self):
         selected = "bazel-out/bin/libSelected.a"
