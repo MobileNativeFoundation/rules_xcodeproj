@@ -45,7 +45,7 @@ build:workflows --config=cache
 build:workflows --bes_upload_mode=wait_for_upload_complete
 build:workflows --build_metadata=ROLE=CI
 build:workflows --build_metadata=VISIBILITY=PUBLIC
-build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows
+build:workflows --remote_instance_name=buildbuddy-io/rules_xcodeproj/workflows-1
 build:workflows --color=yes
 build:workflows --terminal_columns=120
 build:workflows --disk_cache=
