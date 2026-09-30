@@ -20,7 +20,7 @@ BEGIN_UNRELEASED_TEMPLATE
 
 ### New
 
-* TBD
+* Added support for multiple values for the same environment variable in custom schemes.
 
 ### Adjusted
 
