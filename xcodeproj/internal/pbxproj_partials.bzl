@@ -641,7 +641,11 @@ def _write_generated_xcfilelist(
     # Source files are tracked as build files by Xcode, so building targets that
     # directly use generated source files will fail the first time they are
     # built if we don't track them
-    args.add_all(srcs, map_each = _xcfilelist_generated_file_path)
+    args.add_all(
+        srcs,
+        map_each = _xcfilelist_generated_file_path,
+        uniquify = True,
+    )
 
     xcfilelist = actions.declare_file(
         "{}-generated.xcfilelist".format(generator_name),
