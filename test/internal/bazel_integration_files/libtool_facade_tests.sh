@@ -104,6 +104,43 @@ cmp "$test_root/original-link.params" "$metadata_response"
 [[ "$(cat "$native_dependency_info")" == native-dependencies ]] || \
   fail "XOJIT replaced native dependency info with stub metadata"
 
+# Reject missing, non-executable, or aliased derived archivers before dispatch.
+# Use isolated SDK roots so the original executable mock remains untouched.
+readonly rejected_tool_diagnostic='rules_xcodeproj libtool facade: derived XcodeDefault libtool is not a distinct executable'
+for tool_case in absent nonexecutable alias; do
+  case_root="$test_root/$tool_case Xcode.app/Contents/Developer"
+  case_sdk="$case_root/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+  case_libtool="$case_root/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool"
+  mkdir -p "$case_sdk"
+  case "$tool_case" in
+    absent) ;;
+    nonexecutable)
+      mkdir -p "${case_libtool%/*}"
+      printf '#!/bin/sh\nexit 0\n' > "$case_libtool"
+      chmod 0644 "$case_libtool"
+      ;;
+    alias)
+      mkdir -p "${case_libtool%/*}"
+      ln -s "$facade" "$case_libtool"
+      ;;
+  esac
+  cp "$native_record" "$test_root/before-rejected-$tool_case.argv.nul"
+  set +e
+  env -i NATIVE_RECORD="$native_record" "$preview_facade" \
+    -static -syslibroot "$case_sdk" \
+    > "$test_root/rejected-$tool_case.stdout" \
+    2> "$test_root/rejected-$tool_case.stderr"
+  rejected_status=$?
+  set -e
+  [[ "$rejected_status" == 64 ]] || \
+    fail "$tool_case derived archiver did not fail with status 64"
+  [[ ! -s "$test_root/rejected-$tool_case.stdout" ]] || \
+    fail "$tool_case derived archiver unexpectedly wrote stdout"
+  [[ "$(cat "$test_root/rejected-$tool_case.stderr")" == "$rejected_tool_diagnostic" ]] || \
+    fail "$tool_case derived archiver diagnostic changed"
+  cmp "$test_root/before-rejected-$tool_case.argv.nul" "$native_record"
+done
+
 # The companion calculation works for another variant/architecture too.
 readonly variant_filelist="$target_temp_dir/Objects-profile/x86_64/Native.LinkFileList"
 env -i NATIVE_RECORD="$native_record" "$preview_facade" \
