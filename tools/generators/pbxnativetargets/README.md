@@ -1,6 +1,6 @@
 # `PBXNativeTarget`s `PBXProj` partials generator
 
-The `pbxnativetargets` generator creates two or more files:
+The `pbxnativetargets` generator creates three or more files:
 
 - A `PBXProj` partial containing all of the `PBXNativeTarget` related objects:
   - `PBXNativeTarget`
@@ -8,6 +8,8 @@ The `pbxnativetargets` generator creates two or more files:
   - `XCBuildConfigurationList`
   - and various build phases
 - A file that maps `PBXBuildFile` identifiers to file paths
+- A JSON Lines fragment mapping generated target GUIDs and Xcode
+  configurations to Bazel build metadata
 
 Each `pbxnativetargets` invocation might process a subset of all targets. All
 targets that share the same name will be processed by the same invocation. This
@@ -22,6 +24,7 @@ The generator accepts the following command-line arguments (see
 
 - Positional `targets-output-path`
 - Positional `buildfile-map-output-path`
+- Positional `build-proxy-manifest-entries-output-path`
 - Positional `consolidation-map`
 - Positional `target-arguments-file
 - Positional `top-level-target-attributes-file`
@@ -35,6 +38,7 @@ Here is an example invocation:
 $ pbxnativetargets \
     /tmp/pbxproj_partials/pbxnativetargets/0 \
     /tmp/pbxproj_partials/buildfile_subidentifiers/0 \
+    /tmp/pbxproj_partials/build_proxy_manifest_entries/0 \
     /tmp/pbxproj_partials/consolidation_maps/0 \
     /tmp/pbxproj_partials/target_arguments_files/7 \
     /tmp/pbxproj_partials/top_level_target_attributes_files/7 \

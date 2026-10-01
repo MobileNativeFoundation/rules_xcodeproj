@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+"""Builds a canonical build-proxy manifest from generator shard entries."""
+
+import argparse
+from pathlib import Path
+
+from xcodeproj.internal import build_proxy_manifest_lib
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("output", type=Path)
+    parser.add_argument("generator_label")
+    parser.add_argument("bazel_path")
+    parser.add_argument("fragments", nargs="*", type=Path)
+    args = parser.parse_args()
+    build_proxy_manifest_lib.write(
+        args.output,
+        args.fragments,
+        bazel_path=args.bazel_path,
+        generator_label=args.generator_label,
+    )
+
+
+if __name__ == "__main__":
+    main()
