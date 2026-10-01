@@ -137,6 +137,7 @@ def _write_consolidation_map_targets(
         ),
         colorize,
         consolidation_map,
+        buildable_folders_by_label,
         default_xcode_configuration,
         generator_name,
         idx,
@@ -309,6 +310,11 @@ def _write_consolidation_map_targets(
                 omit_if_empty = False,
                 terminate_with = "",
             )
+            targets_args.add_all(
+                buildable_folders_by_label.get(str(label), []),
+                omit_if_empty = False,
+                terminate_with = "",
+            )
 
             targets_args.add_all(
                 xcode_target_configurations[xcode_target.id],
@@ -398,6 +404,7 @@ def _write_files_and_groups(
         *,
         actions,
         buildfile_subidentifiers_files,
+        buildable_folders,
         colorize,
         compile_stub_needed,
         execution_root_file,
@@ -467,6 +474,17 @@ def _write_files_and_groups(
     args = actions.args()
     args.use_param_file("@%s")
     args.set_param_file_format("multiline")
+
+    # buildableFolders
+    buildable_folders_file = actions.declare_file(
+        "{}_pbxproj_partials/buildable_folders_file".format(
+            generator_name,
+        ),
+    )
+    buildable_folders_args = actions.args()
+    buildable_folders_args.set_param_file_format("multiline")
+    buildable_folders_args.add_all(buildable_folders)
+    actions.write(buildable_folders_file, buildable_folders_args)
 
     # filePaths
 
@@ -543,6 +561,9 @@ def _write_files_and_groups(
     # generatedFilePathsFile
     args.add(generated_file_paths_file)
 
+    # buildableFoldersFile
+    args.add(buildable_folders_file)
+
     # developmentRegion
     args.add(project_options["development_region"])
 
@@ -571,6 +592,7 @@ def _write_files_and_groups(
         inputs = [
             file_paths_file,
             generated_file_paths_file,
+            buildable_folders_file,
             execution_root_file,
             selected_model_versions_file,
         ] + buildfile_subidentifiers_files,
@@ -1319,6 +1341,7 @@ def _write_targets(
         actions,
         colorize,
         consolidation_maps,
+        buildable_folders_by_label,
         default_xcode_configuration,
         generator_name,
         install_path,
@@ -1364,6 +1387,7 @@ def _write_targets(
             actions = actions,
             colorize = colorize,
             consolidation_map = consolidation_map,
+            buildable_folders_by_label = buildable_folders_by_label,
             default_xcode_configuration = default_xcode_configuration,
             generator_name = generator_name,
             idx = consolidation_map.basename,
