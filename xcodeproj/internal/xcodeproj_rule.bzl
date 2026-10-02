@@ -320,6 +320,7 @@ def _write_project_contents(
         platforms,
         post_build_script,
         pre_build_script,
+        preview_xcode_configurations,
         project_options,
         resource_bundle_xcode_targets,
         selected_model_versions_generator,
@@ -441,6 +442,7 @@ def _write_project_contents(
         platforms = platforms,
         post_build_script = post_build_script,
         pre_build_script = pre_build_script,
+        preview_xcode_configurations = preview_xcode_configurations,
         project_options = project_options,
         resolved_repositories_file = resolved_repositories_file,
         separate_index_build_output_base = separate_index_build_output_base,
@@ -664,6 +666,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         platforms = depset(transitive = [info.platforms for info in infos]),
         post_build_script = ctx.attr.post_build,
         pre_build_script = ctx.attr.pre_build,
+        preview_xcode_configurations = ctx.attr.preview_xcode_configurations,
         project_options = ctx.attr.project_options,
         resource_bundle_xcode_targets = (
             xcode_targets_module.from_resource_bundles(
@@ -796,6 +799,7 @@ def _xcodeproj_attrs(
         "owned_extra_files": attr.label_keyed_string_dict(allow_files = True),
         "post_build": attr.string(mandatory = True),
         "pre_build": attr.string(mandatory = True),
+        "preview_xcode_configurations": attr.string_list(),
         "project_options": attr.string_dict(mandatory = True),
         "runner_build_file": attr.string(mandatory = True),
         "runner_label": attr.string(mandatory = True),

@@ -3,12 +3,15 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 test_suite(
     name = "test",
     tests = [
+        "//test/internal/bazel_integration_files",
         "//test/internal/bazel_labels",
         "//test/internal/build_settings",
+        "//test/internal/files",
         "//test/internal/flattened_key_values",
         "//test/internal/info_plists",
         "//test/internal/pbxproj_partials",
         "//test/internal/platforms",
+        "//test/internal/preview_resource_bundles",
         "//test/internal/target",
         "//test/internal/target_id",
         "//test/internal/targets",
@@ -22,6 +25,7 @@ bzl_library(
     deps = [
         "//test/internal/bazel_labels:bzls",
         "//test/internal/build_settings:bzls",
+        "//test/internal/files:bzls",
         "//test/internal/flattened_key_values:bzls",
         "//test/internal/info_plists:bzls",
         "//test/internal/pbxproj_partials:bzls",

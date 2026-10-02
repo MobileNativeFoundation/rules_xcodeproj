@@ -39,7 +39,9 @@ extension Generator {
             previewsFrameworkPaths: String,
             previewsIncludePath: String,
             separateIndexBuildOutputBase: Bool,
-            transitiveSwiftDebugSettingPaths: [URL]
+            transitiveSwiftDebugSettingPaths: [URL],
+            nativeSwiftManifests: [String: Data] = [:],
+            previewSwiftImportPaths: Set<String> = []
         ) async throws -> (
             hasDebugInfo: Bool,
             clangArgs: [String],
@@ -47,20 +49,22 @@ extension Generator {
             swiftIncludes: OrderedSet<String>
         ) {
             try await callable(
-                /*argsStream:*/ argsStream,
-                /*buildSettings:*/ &buildSettings,
-                /*includeSelfSwiftDebugSettings:*/
+                /* argsStream: */ argsStream,
+                /* buildSettings: */ &buildSettings,
+                /* includeSelfSwiftDebugSettings: */
                     includeSelfSwiftDebugSettings,
-                /*previewsFrameworkPaths:*/ previewsFrameworkPaths,
-                /*previewsIncludePath:*/ previewsIncludePath,
-                /*transitiveSwiftDebugSettingPaths:*/
+                /* previewsFrameworkPaths: */ previewsFrameworkPaths,
+                /* previewsIncludePath: */ previewsIncludePath,
+                /* transitiveSwiftDebugSettingPaths: */
                     transitiveSwiftDebugSettingPaths,
-                /*parseTransitiveSwiftDebugSettings:*/
+                /* parseTransitiveSwiftDebugSettings: */
                     parseTransitiveSwiftDebugSettings,
-                /*processSwiftArg:*/ processSwiftArg,
-                /*processSwiftClangArg:*/ processSwiftClangArg,
-                /*processSwiftFrontendArg:*/ processSwiftFrontendArg,
-                /*separateIndexBuildOutputBase:*/ separateIndexBuildOutputBase
+                /* processSwiftArg: */ processSwiftArg,
+                /* processSwiftClangArg: */ processSwiftClangArg,
+                /* processSwiftFrontendArg: */ processSwiftFrontendArg,
+                /* separateIndexBuildOutputBase: */ separateIndexBuildOutputBase,
+                /* nativeSwiftManifests: */ nativeSwiftManifests,
+                /* previewSwiftImportPaths: */ previewSwiftImportPaths
             )
         }
     }
@@ -81,7 +85,9 @@ extension Generator.ProcessSwiftArgs {
         _ processSwiftArg: Generator.ProcessSwiftArg,
         _ processSwiftClangArg: Generator.ProcessSwiftClangArg,
         _ processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        _ separateIndexBuildOutputBase: Bool
+        _ separateIndexBuildOutputBase: Bool,
+        _ nativeSwiftManifests: [String: Data],
+        _ previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -101,7 +107,9 @@ extension Generator.ProcessSwiftArgs {
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        nativeSwiftManifests: [String: Data],
+        previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -127,7 +135,9 @@ extension Generator.ProcessSwiftArgs {
             processSwiftArg: processSwiftArg,
             processSwiftClangArg: processSwiftClangArg,
             processSwiftFrontendArg: processSwiftFrontendArg,
-            separateIndexBuildOutputBase: separateIndexBuildOutputBase
+            separateIndexBuildOutputBase: separateIndexBuildOutputBase,
+            nativeSwiftManifests: nativeSwiftManifests,
+            previewSwiftImportPaths: previewSwiftImportPaths
         )
 
         if includeTransitiveSwiftDebugSettings {
@@ -149,13 +159,15 @@ extension Generator.ProcessSwiftArgs {
         includeSelfSwiftDebugSettings: Bool,
         previewsFrameworkPaths: String,
         previewsIncludePath: String,
-        transitiveSwiftDebugSettingPaths: [URL],
+        transitiveSwiftDebugSettingPaths _: [URL],
         parseTransitiveSwiftDebugSettings:
             Generator.ParseTransitiveSwiftDebugSettings,
         processSwiftArg: Generator.ProcessSwiftArg,
         processSwiftClangArg: Generator.ProcessSwiftClangArg,
         processSwiftFrontendArg: Generator.ProcessSwiftFrontendArg,
-        separateIndexBuildOutputBase: Bool
+        separateIndexBuildOutputBase: Bool,
+        nativeSwiftManifests: [String: Data],
+        previewSwiftImportPaths: Set<String>
     ) async throws -> (
         hasDebugInfo: Bool,
         clangArgs: [String],
@@ -226,10 +238,17 @@ extension Generator.ProcessSwiftArgs {
         }
 
         var hasDebugInfo = false
+        var swiftProfile = NativeSwiftProfile(
+            valueArgs: Set(skipSwiftArgs.filter { $0.value > 1 }.map { String($0.key) })
+        )
+        var nativeOutputArgIndices: Set<Int> = []
+        var nativeHeaderName: String?
         for try await arg in argsStream {
             guard arg != Generator.argsSeparator else {
                 break
             }
+
+            swiftProfile.consume(arg)
 
             if skipNext != 0 {
                 skipNext -= 1
@@ -295,6 +314,10 @@ extension Generator.ProcessSwiftArgs {
                 // current arg wasn't filtered out
                 args.append("-Xfrontend")
 
+                if arg == "-avoid-emit-module-source-info" {
+                    nativeOutputArgIndices.formUnion([args.count - 1, args.count])
+                }
+
                 try processSwiftFrontendArg(
                     arg,
                     previousFrontendArg: previousFrontendArg,
@@ -316,6 +339,20 @@ extension Generator.ProcessSwiftArgs {
                 continue
             }
 
+            // Xcode owns these outputs in the Preview configuration. Keep the
+            // original flags for ordinary Bazel-owned builds and debugging.
+            let outputFlags = ["-emit-objc-header-path", "-emit-const-values-path"]
+            // Bazel may suppress this undeclared sidecar, but Xcode schedules
+            // a copy of it after native module emission.
+            if arg == "-avoid-emit-module-source-info" || outputFlags.contains(arg) ||
+                previousArg.map({ outputFlags.contains($0) }) == true
+            {
+                nativeOutputArgIndices.insert(args.count)
+            }
+            if previousArg == "-emit-objc-header-path" {
+                nativeHeaderName = (arg as NSString).lastPathComponent
+            }
+
             try processSwiftArg(
                 arg,
                 previousArg: previousArg,
@@ -328,9 +365,57 @@ extension Generator.ProcessSwiftArgs {
             )
         }
 
-        buildSettings.append(
-            ("OTHER_SWIFT_FLAGS", args.joined(separator: " ").pbxProjEscaped)
-        )
+        let originalFlags = args.joined(separator: " ").pbxProjEscaped
+        buildSettings.append(("BAZEL_PREVIEW_SWIFT_PROFILE", swiftProfile.isRequired ? "YES" : "NO"))
+        let nativeInputArgs = args.enumerated()
+            .filter { !nativeOutputArgIndices.contains($0.offset) }
+            .map(\.element)
+        let nativeArgs = NativeSwiftExplicitModules.normalize(
+            nativeInputArgs, manifests: nativeSwiftManifests,
+            preparedPaths: previewSwiftImportPaths
+        ) ?? nativeInputArgs
+        var bazelFlags = originalFlags
+        if let indexArgs = NativeSwiftExplicitModules.normalize(
+            args, manifests: nativeSwiftManifests,
+            preparedPaths: previewSwiftImportPaths
+        ), indexArgs != args {
+            // SourceKit does not run through Bazel's worker, so its SDK aliases
+            // and relative manifest paths are not a usable indexing contract.
+            // Change import discovery only; keep index stubs and output flags.
+            bazelFlags = "$(BAZEL_INDEX_SWIFT_FLAGS__$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped
+            buildSettings += [
+                ("BAZEL_INDEX_SWIFT_FLAGS__", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__NO", originalFlags),
+                ("BAZEL_INDEX_SWIFT_FLAGS__YES", indexArgs.joined(separator: " ").pbxProjEscaped),
+            ]
+        }
+        if nativeArgs != args || bazelFlags != originalFlags {
+            buildSettings += [
+                ("OTHER_SWIFT_FLAGS", "$(BAZEL_SWIFT_FLAGS__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                ("BAZEL_SWIFT_FLAGS__", bazelFlags),
+                ("BAZEL_SWIFT_FLAGS__NO", bazelFlags),
+                ("BAZEL_SWIFT_FLAGS__YES", nativeArgs.joined(separator: " ").pbxProjEscaped),
+            ]
+        } else {
+            buildSettings.append(("OTHER_SWIFT_FLAGS", originalFlags))
+        }
+
+        if let nativeHeaderName {
+            buildSettings += [
+                ("SWIFT_OBJC_INTERFACE_HEADER_NAME", "$(BAZEL_SWIFT_HEADER__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                ("BAZEL_SWIFT_HEADER__", #""""#),
+                ("BAZEL_SWIFT_HEADER__NO", #""""#),
+                ("BAZEL_SWIFT_HEADER__YES", nativeHeaderName.pbxProjEscaped),
+                // Default search paths and header maps are disabled. Mixed
+                // targets must find Xcode's header before Bazel's -iquote paths,
+                // without discarding inherited search paths in either mode.
+                ("HEADER_SEARCH_PATHS", "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS)) $(inherited)".pbxProjEscaped),
+                ("USER_HEADER_SEARCH_PATHS", "$(BAZEL_SWIFT_HEADER_SEARCH_PATHS__$(BAZEL_NATIVE_PREVIEWS)) $(inherited)".pbxProjEscaped),
+                ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__", #""""#),
+                ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__NO", #""""#),
+                ("BAZEL_SWIFT_HEADER_SEARCH_PATHS__YES", "\"$(DERIVED_SOURCES_DIR)\"".pbxProjEscaped),
+            ]
+        }
 
         // Work around https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/3171
         buildSettings.append(("SWIFT_ENABLE_EMIT_CONST_VALUES", "NO"))

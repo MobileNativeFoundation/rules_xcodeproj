@@ -1,5 +1,10 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
+exports_files(
+    ["preview_resource_bundle_info.plist"],
+    visibility = ["//visibility:public"],
+)
+
 bzl_library(
     name = "files",
     srcs = glob(["*.bzl"]),

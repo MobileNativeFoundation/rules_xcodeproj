@@ -93,7 +93,22 @@ def _write_target_build_settings_test_impl(ctx):
             (mock_actions.mock_file(f), True)
             for f in ctx.attr.previews_dynamic_frameworks
         ],
+        previews_xcode_targets = depset([
+            struct(
+                id = path,
+                direct_dependencies = depset(ctx.attr.previews_xcode_dependencies.get(path, [])),
+                product = struct(type = "f", basename = path.split("/")[-1]),
+                package_bin_dir = "bazel-out/config/bin/other-package",
+                outputs = struct(product_path = path),
+            )
+            for path in ctx.attr.previews_xcode_frameworks
+        ]),
+        previews_direct_dependencies = depset(ctx.attr.previews_direct_dependencies),
         previews_include_path = ctx.attr.previews_include_path,
+        previews_resource_bundles = [
+            mock_actions.mock_file(f)
+            for f in ctx.attr.previews_resource_bundles
+        ],
         provisioning_profile_is_xcode_managed = ctx.attr.provisioning_profile_is_xcode_managed,
         provisioning_profile_name = ctx.attr.provisioning_profile_name,
         separate_index_build_output_base = ctx.attr.separate_index_build_output_base,
@@ -124,7 +139,7 @@ def _write_target_build_settings_test_impl(ctx):
 
         asserts.equals(
             env,
-            ctx.attr.expected_args,
+            ctx.attr.expected_args + ["", ""],
             actions.args_objects[0].captured.args,
             "args[0] arguments",
         )
@@ -183,7 +198,11 @@ write_target_build_settings_test = unittest.make(
         "include_self_swift_debug_settings": attr.bool(mandatory = True),
         "infoplist": attr.string(),
         "previews_dynamic_frameworks": attr.string_list(mandatory = True),
+        "previews_xcode_frameworks": attr.string_list(),
+        "previews_xcode_dependencies": attr.string_list_dict(),
+        "previews_direct_dependencies": attr.string_list(),
         "previews_include_path": attr.string(mandatory = True),
+        "previews_resource_bundles": attr.string_list(mandatory = True),
         "provisioning_profile_is_xcode_managed": attr.bool(mandatory = True),
         "provisioning_profile_name": attr.string(),
         "separate_index_build_output_base": attr.bool(mandatory = True),
@@ -228,7 +247,11 @@ def write_target_build_settings_test_suite(name):
             include_self_swift_debug_settings = True,
             infoplist = None,
             previews_dynamic_frameworks = [],
+            previews_xcode_frameworks = [],
+            previews_xcode_dependencies = {},
+            previews_direct_dependencies = None,
             previews_include_path = "",
+            previews_resource_bundles = [],
             provisioning_profile_is_xcode_managed = False,
             provisioning_profile_name = None,
             separate_index_build_output_base = False,
@@ -261,7 +284,11 @@ def write_target_build_settings_test_suite(name):
             include_self_swift_debug_settings = include_self_swift_debug_settings,
             infoplist = infoplist,
             previews_dynamic_frameworks = previews_dynamic_frameworks,
+            previews_xcode_frameworks = previews_xcode_frameworks,
+            previews_xcode_dependencies = previews_xcode_dependencies,
+            previews_direct_dependencies = previews_xcode_frameworks if previews_direct_dependencies == None else previews_direct_dependencies,
             previews_include_path = previews_include_path,
+            previews_resource_bundles = previews_resource_bundles,
             provisioning_profile_is_xcode_managed = provisioning_profile_is_xcode_managed,
             provisioning_profile_name = provisioning_profile_name,
             separate_index_build_output_base = separate_index_build_output_base,
@@ -340,12 +367,68 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
             "0",
         ],
     )
+
+    # Only the actual PBX graph determines native framework ownership. A
+    # focused framework in an unreachable subtree still needs its Bazel copy.
+    framework_files = [
+        "bazel-out/config/bin/original/Direct.framework",
+        "bazel-out/config/bin/original/Leaf.framework",
+        "bazel-out/config/bin/original/Unreachable.framework",
+    ]
+    legacy_paths = " ".join(['"$(BAZEL_OUT){}"'.format(path[9:]) for path in framework_files])
+    native_paths = " ".join([
+        '"$(BUILD_DIR)/bazel-out/config/bin/other-package/Direct.framework"',
+        '"$(BUILD_DIR)/bazel-out/config/bin/other-package/Leaf.framework"',
+        '"$(BAZEL_OUT)/config/bin/original/Unreachable.framework"',
+    ])
+    for suffix, roots, expected_native in [
+        ("reachable_frameworks", framework_files[:1], native_paths),
+        ("unscheduled_frameworks", [], legacy_paths),
+    ]:
+        _add_test(
+            name = "{}_{}".format(name, suffix),
+            conly_args = [],
+            cxx_args = [],
+            generate_build_settings = True,
+            generate_swift_debug_settings = False,
+            swift_args = [],
+            previews_dynamic_frameworks = framework_files,
+            previews_xcode_frameworks = framework_files,
+            previews_direct_dependencies = roots,
+            previews_xcode_dependencies = {framework_files[0]: [framework_files[1]]},
+            expect_c_params = False,
+            expect_cxx_params = False,
+            expect_debug_settings = False,
+            expected_args = [
+                "0",
+                _BUILD_SETTINGS_DECLARED_FILE.path,
+                "",
+                "",
+                "0",
+                "0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "0",
+                legacy_paths,
+                expected_native,
+                "",
+                "",
+                "0",
+            ],
+        )
 
     # C and C++
 
@@ -389,6 +472,10 @@ def write_target_build_settings_test_suite(name):
             # provisioningProfileIsXcodeManaged
             "0",
             # previewsFrameworkPaths
+            "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
             "",
             # previewsIncludePath
             "",
@@ -438,6 +525,10 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -485,6 +576,10 @@ def write_target_build_settings_test_suite(name):
             # provisioningProfileIsXcodeManaged
             "0",
             # previewsFrameworkPaths
+            "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
             "",
             # previewsIncludePath
             "",
@@ -541,6 +636,10 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -596,6 +695,10 @@ def write_target_build_settings_test_suite(name):
             "1",
             # previewsFrameworkPaths
             "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -649,6 +752,10 @@ def write_target_build_settings_test_suite(name):
             # provisioningProfileIsXcodeManaged
             "0",
             # previewsFrameworkPaths
+            "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
             "",
             # previewsIncludePath
             "",
@@ -708,6 +815,10 @@ def write_target_build_settings_test_suite(name):
             "0",
             # previewsFrameworkPaths
             "",
+            # nativePreviewsFrameworkPaths
+            "",
+            # previewsResourceBundlePaths
+            "",
             # previewsIncludePath
             "",
             # separateIndexBuildOutputBase
@@ -737,6 +848,14 @@ def write_target_build_settings_test_suite(name):
             "external/repo/1.framework",
         ],
         previews_include_path = "bazel-out/swiftmodule/parent",
+        previews_xcode_frameworks = ["bazel-out/generated.framework"],
+        previews_resource_bundles = [
+            "bazel-out/generated.bundle",
+            "/absolute/f.bundle",
+            "../repo/2.bundle",
+            "project/a.bundle",
+            "external/repo/1.bundle",
+        ],
         separate_index_build_output_base = True,
         swift_args = [],
         swift_debug_settings_to_merge = [
@@ -789,6 +908,23 @@ def write_target_build_settings_test_suite(name):
 "$(BAZEL_EXTERNAL)/repo/2.framework" \
 "$(SRCROOT)/project/a.framework" \
 "$(BAZEL_EXTERNAL)/repo/1.framework"\
+""",
+            # nativePreviewsFrameworkPaths: exact focused native product;
+            # imported and unmapped framework paths remain.
+            """\
+"$(BUILD_DIR)/bazel-out/config/bin/other-package/generated.framework" \
+"/absolute/f.framework" \
+"$(BAZEL_EXTERNAL)/repo/2.framework" \
+"$(SRCROOT)/project/a.framework" \
+"$(BAZEL_EXTERNAL)/repo/1.framework"\
+""",
+            # previewsResourceBundlePaths
+            """\
+"$(BAZEL_OUT)/generated.bundle" \
+"/absolute/f.bundle" \
+"$(BAZEL_EXTERNAL)/repo/2.bundle" \
+"$(SRCROOT)/project/a.bundle" \
+"$(BAZEL_EXTERNAL)/repo/1.bundle"\
 """,
             # previewsIncludePath
             "bazel-out/swiftmodule/parent",

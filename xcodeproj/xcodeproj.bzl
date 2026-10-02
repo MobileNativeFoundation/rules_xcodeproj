@@ -43,6 +43,7 @@ def xcodeproj(
         minimum_xcode_version = None,
         post_build = None,
         pre_build = None,
+        preview_xcode_configurations = [],
         project_name = None,
         project_options = None,
         scheme_autogeneration_mode = "auto",
@@ -362,6 +363,12 @@ def xcodeproj(
             Refer to the
             [bazel documentation](https://bazel.build/extending/config#defining)
             on how to define the transition settings dictionary.
+        preview_xcode_configurations: Optional. Names from `xcode_configurations`
+            that use native Xcode compilation and linking for Previews. Defaults
+            to none, preserving Bazel-owned builds. Add a dedicated configuration
+            such as "Previews" and select it in a Preview scheme's run action.
+            Do not use it for test, archive, or production configurations.
+            Bazel still prepares dependencies for these configurations.
         xcschemes: Optional. A `list` of values returned by
             `xcschemes.scheme`.
 
@@ -489,6 +496,10 @@ configuration alphabetically ("{default}").
         xcscheme_labels.resolve_labels(xcschemes),
     )
 
+    for configuration in preview_xcode_configurations:
+        if configuration not in xcode_configurations:
+            fail("Unknown Preview Xcode configuration: {}".format(configuration))
+
     normalized_xcode_configurations = {}
     xcode_configuration_inverse_map = {}
     xcode_configuration_flags = None
@@ -555,6 +566,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         owned_extra_files = owned_extra_files,
         post_build = post_build,
         pre_build = pre_build,
+        preview_xcode_configurations = preview_xcode_configurations,
         project_name = project_name,
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,

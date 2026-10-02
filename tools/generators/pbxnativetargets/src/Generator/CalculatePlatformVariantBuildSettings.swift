@@ -22,10 +22,10 @@ extension Generator {
             platformVariant: Target.PlatformVariant
         ) async throws -> [PlatformVariantBuildSetting] {
             return try await callable(
-                /*isBundle:*/ isBundle,
-                /*originalProductBasename:*/ originalProductBasename,
-                /*productType:*/ productType,
-                /*platformVariant:*/ platformVariant
+                /* isBundle: */ isBundle,
+                /* originalProductBasename: */ originalProductBasename,
+                /* productType: */ productType,
+                /* platformVariant: */ platformVariant
             )
         }
     }
@@ -146,6 +146,14 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let testHost = platformVariant.unitTestHost {
+            // Let Xcode select the host's native image, including its debug
+            // dylib. Bazel's bundle_loader points to a different executable.
+            buildSettings += [
+                .init(key: "BUNDLE_LOADER", value: "$(BAZEL_BUNDLE_LOADER__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped),
+                .init(key: "BAZEL_BUNDLE_LOADER__", value: #""""#),
+                .init(key: "BAZEL_BUNDLE_LOADER__NO", value: #""""#),
+                .init(key: "BAZEL_BUNDLE_LOADER__YES", value: "$(TEST_HOST)".pbxProjEscaped),
+            ]
             buildSettings.append(
                 .init(
                     key: "TARGET_BUILD_DIR",
@@ -165,6 +173,16 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         if let linkParams = platformVariant.linkParams {
+            if platformVariant.platform == .iOSSimulator {
+                buildSettings.append(
+                    .init(
+                        key: "LIBRARY_SEARCH_PATHS",
+                        value:
+                            #""$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)""#
+                    )
+                )
+            }
+
             // Drop the `bazel-out` prefix since we use the env var for this
             // portion of the path
             buildSettings.append(
@@ -175,15 +193,56 @@ extension Generator.CalculatePlatformVariantBuildSettings {
 """#
                 )
             )
-            buildSettings.append(
-                .init(
-                    key: "OTHER_LDFLAGS",
-                    value: #""@$(DERIVED_FILE_DIR)/link.params""#
+            if productType == .staticLibrary {
+                // Index preparation requests compile/index inputs, not bl.
+                // Reuse the existing input in inactive configurations so the
+                // phase never requires an unprepared runtime-policy sidecar.
+                buildSettings += [
+                    .init(
+                        key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX",
+                        value: (
+                            "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_" +
+                            "$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))"
+                        ).pbxProjEscaped
+                    ),
+                    .init(key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_", value: ".runtime.json"),
+                    .init(key: "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO", value: ".runtime.json"),
+                ]
+                // Xcode 26 derives a static-library target's Preview link
+                // closure from its Libtool task, not from OTHER_LDFLAGS.
+                // Create Link Dependencies truncates this response file for
+                // ordinary builds, preserving normal archive membership.
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LIBTOOLFLAGS",
+                        value: #""@$(DERIVED_FILE_DIR)/link.params""#
+                    )
                 )
-            )
+            } else {
+                buildSettings.append(
+                    .init(
+                        key: "OTHER_LDFLAGS",
+                        value: #""-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params""#
+                    )
+                )
+            }
         }
 
-        buildSettings.append(contentsOf: platformVariant.buildSettingsFromFile)
+        buildSettings.append(
+            contentsOf: platformVariant.buildSettingsFromFile.map { buildSetting in
+                guard platformVariant.platform.supportsXcodePreviews,
+                      buildSetting.key == "SWIFT_COMPILATION_MODE",
+                      buildSetting.value == "wholemodule"
+                else {
+                    return buildSetting
+                }
+
+                // Unlike ENABLE_XOJIT_PREVIEWS, this configuration-scoped value
+                // is fixed before Preview eligibility checks. Ordinary builds
+                // retain WMO; only an opted-in Preview configuration is incremental.
+                return .init(key: buildSetting.key, value: #""$(BAZEL_SWIFT_COMPILATION_MODE)""#)
+            }
+        )
 
         return buildSettings
     }
@@ -212,6 +271,24 @@ private extension Platform.OS {
         case .tvOS: return "appletvos"
         case .visionOS: return "xros"
         case .watchOS: return "watchos"
+        }
+    }
+}
+
+private extension Platform {
+    var supportsXcodePreviews: Bool {
+        switch self {
+        case .macOS,
+                .iOSSimulator,
+                .tvOSSimulator,
+                .visionOSSimulator,
+                .watchOSSimulator:
+            return true
+        case .iOSDevice,
+                .tvOSDevice,
+                .visionOSDevice,
+                .watchOSDevice:
+            return false
         }
     }
 }

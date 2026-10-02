@@ -26,6 +26,8 @@ _IGNORED_RESOURCE_FIELDS = {
     "unprocessed": None,
 }
 
+_PREVIEW_DIRECTORY_OVERLAY_PREFIX = ".rules_xcodeproj_directory_overlay/"
+
 def _processed_resource_fields(resources_info):
     return [
         f
@@ -40,7 +42,144 @@ def _create_bundle(name = None):
         resource_file_paths = [],
         generated_resource_file_paths = [],
         dependency_paths = [],
+        preview_resources = {},
     )
+
+def _add_preview_resource(
+        *,
+        bundle,
+        bundle_path,
+        file,
+        parent_dir):
+    if not bundle_path:
+        return
+
+    relative_parent = parent_dir[len(bundle_path):].lstrip("/")
+    if file.is_directory and not relative_parent:
+        # Some Apple resource tools, notably actool, return a tree artifact
+        # whose contents belong directly in the bundle root. Preserve that
+        # overlay semantic instead of nesting the implementation directory
+        # (for example `xcassets/Assets.car`) in the materialized bundle.
+        relative_path = _PREVIEW_DIRECTORY_OVERLAY_PREFIX + file.basename
+    elif relative_parent and paths.basename(relative_parent) == file.basename:
+        # Processed resources such as `.momd` directories are represented by
+        # a tree artifact whose basename is already the destination directory.
+        relative_path = relative_parent
+    else:
+        relative_path = paths.join(relative_parent, file.basename)
+    existing = bundle.preview_resources.get(relative_path)
+    if existing and existing != file:
+        fail(
+            "Multiple resource bundle files map to {} in {}: {} and {}".format(
+                relative_path,
+                bundle_path,
+                existing.path,
+                file.path,
+            ),
+        )
+    bundle.preview_resources[relative_path] = file
+
+def _materialize_preview_bundle(*, actions, bundle, dependencies = []):
+    workspace = bundle.label.workspace_name
+    if workspace:
+        owner_path = paths.join(
+            "external",
+            workspace,
+            bundle.label.package,
+            bundle.label.name,
+        )
+    else:
+        owner_path = paths.join(bundle.label.package, bundle.label.name)
+
+    output_path = paths.join(
+        "rules_xcodeproj_preview_resources",
+        bundle.materialization_name,
+        owner_path,
+        "{}.bundle".format(bundle.name),
+    )
+    output = actions.declare_directory(output_path)
+    manifest = actions.declare_file("{}.manifest".format(output_path))
+
+    manifest_resources = dict(bundle.preview_resources)
+    for dependency in dependencies:
+        existing = manifest_resources.get(dependency.relative_path)
+        if existing and existing != dependency.file:
+            fail(
+                "Preview resource bundle dependency collides at {} in {}: {} and {}".format(
+                    dependency.relative_path,
+                    bundle.name,
+                    existing.path,
+                    dependency.file.path,
+                ),
+            )
+        manifest_resources[dependency.relative_path] = dependency.file
+
+    manifest_args = actions.args()
+    for relative_path, file in sorted(manifest_resources.items()):
+        manifest_args.add(file.path)
+        manifest_args.add(relative_path)
+    actions.write(manifest, manifest_args)
+
+    actions.run_shell(
+        arguments = [manifest.path, output.path],
+        command = """\
+set -euo pipefail
+
+readonly manifest="$1"
+readonly output="$2"
+entries=()
+while IFS= read -r entry; do
+  entries+=("$entry")
+done < "$manifest"
+
+if (( ${#entries[@]} == 0 || ${#entries[@]} % 2 != 0 )); then
+  echo >&2 "error: Invalid Preview resource bundle manifest: $manifest"
+  exit 1
+fi
+
+mkdir -p "$output"
+for (( index=0; index<${#entries[@]}; index+=2 )); do
+  source="${entries[index]}"
+  relative_path="${entries[index + 1]}"
+
+  if [[ -z "$relative_path" || "$relative_path" == /* || \
+        "$relative_path" == .. || "$relative_path" == ../* || \
+        "$relative_path" == */../* || "$relative_path" == */.. ]]; then
+    echo >&2 "error: Invalid Preview resource bundle path: $relative_path"
+    exit 1
+  fi
+  if [[ "$relative_path" == .rules_xcodeproj_directory_overlay/* ]]; then
+    if [[ ! -d "$source" ]]; then
+      echo >&2 "error: Preview resource overlay is not a directory: $source"
+      exit 1
+    fi
+    cp -RL "$source"/. "$output"
+    continue
+  fi
+  if [[ ! -e "$source" ]]; then
+    echo >&2 "error: Missing Preview resource bundle input: $source"
+    exit 1
+  fi
+
+  destination="$output/$relative_path"
+  mkdir -p "${destination%/*}"
+  cp -RL "$source" "$destination"
+done
+
+if [[ ! -f "$output/Info.plist" ]]; then
+  echo >&2 "error: Preview resource bundle is missing Info.plist: $output"
+  exit 1
+fi
+""",
+        inputs = [manifest] + manifest_resources.values(),
+        mnemonic = "MaterializeXcodePreviewResourceBundle",
+        outputs = [output],
+        progress_message = "Materializing Xcode Preview resource bundle {}".format(
+            bundle.name,
+        ),
+    )
+
+    return output
 
 def _handle_processed_resource(
         *,
@@ -49,7 +188,15 @@ def _handle_processed_resource(
         bundle_path,
         file,
         focused_resource_short_paths,
+        parent_dir,
         processed_origins):
+    _add_preview_resource(
+        bundle = bundle,
+        bundle_path = bundle_path,
+        file = file,
+        parent_dir = parent_dir,
+    )
+
     if not file.is_source:
         if bundle_path and file.basename == "Info.plist":
             path_components = file.path.split("/")
@@ -162,6 +309,7 @@ def _add_processed_resources_to_bundle(
         bundle_path,
         files,
         focused_resource_short_paths,
+        parent_dir,
         processed_origins):
     for file in files.to_list():
         _handle_processed_resource(
@@ -170,6 +318,7 @@ def _add_processed_resources_to_bundle(
             bundle_path = bundle_path,
             file = file,
             focused_resource_short_paths = focused_resource_short_paths,
+            parent_dir = parent_dir,
             processed_origins = processed_origins,
         )
 
@@ -209,11 +358,21 @@ def _add_structured_resources(
         bundle_path,
         files,
         focused_resource_short_paths,
+        parent_dir,
         resource_bundle_targets,
         root_bundle):
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
+        # Keep Preview inputs independently of whether this nested bundle gets
+        # an Xcode resource target below.
+        for file in files.to_list():
+            _add_preview_resource(
+                bundle = bundle,
+                bundle_path = bundle_path,
+                file = file,
+                parent_dir = parent_dir,
+            )
         if (not bundle.resources and
             not bundle.resource_file_paths and
             not bundle.generated_resource_file_paths and
@@ -292,6 +451,7 @@ def _handle_processed_resources(
                 bundle_path = None,
                 files = files,
                 focused_resource_short_paths = focused_resource_short_paths,
+                parent_dir = parent_dir,
                 processed_origins = processed_origins,
             )
             continue
@@ -304,6 +464,7 @@ def _handle_processed_resources(
                 bundle_path = None,
                 files = files,
                 focused_resource_short_paths = focused_resource_short_paths,
+                parent_dir = parent_dir,
                 processed_origins = processed_origins,
             )
             continue
@@ -316,6 +477,7 @@ def _handle_processed_resources(
             bundle_path = bundle_path,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
+            parent_dir = parent_dir,
             processed_origins = processed_origins,
         )
 
@@ -350,6 +512,7 @@ def _handle_unprocessed_resources(
             bundle_path = bundle_path,
             files = files,
             focused_resource_short_paths = focused_resource_short_paths,
+            parent_dir = parent_dir,
             resource_bundle_targets = resource_bundle_targets,
             root_bundle = root_bundle,
         )
@@ -358,20 +521,26 @@ def _handle_unprocessed_resources(
 
 def _collect_resources(
         *,
+        actions,
         avoid_resource_infos,
         focused_labels,
         label_str,
+        materialization_name,
         platform,
         resource_info):
     """Collects resource information for a target.
 
     Args:
+        actions: `ctx.actions`, or `None` when Preview materialization outputs
+            can't be created for this collection.
         avoid_resource_infos: A `list` of `AppleResourceInfo` providers from
             targets that should be avoided (e.g. test hosts).
         focused_labels: A `depset` of label strings of focused targets. This
             will include the current target (if focused) and any focused
             dependencies of the current target.
         label_str: The label string for the target.
+        materialization_name: A generator- and target-specific name for Preview
+            outputs, or `None` when `actions` is `None`.
         platform: A value returned from `platforms.collect`.
         resource_info: The `AppleResourceInfo` provider for the target.
 
@@ -469,6 +638,42 @@ def _collect_resources(
         field_handler = _deduplicated_field_handler,
     )
 
+    # Previews need complete bundles even when nested resource targets are not
+    # focused in the generated project. Materialize before filtering the Xcode
+    # resource targets below, with children copied into their immediate parent.
+    preview_resource_bundles = []
+    preview_dependencies = {}
+    if actions:
+        for bundle_path in parent_bundle_paths:
+            bundle = resource_bundle_targets[bundle_path]
+            metadata = bundle_metadata.get(bundle_path)
+            if not metadata:
+                continue
+            materialized = _materialize_preview_bundle(
+                actions = actions,
+                bundle = struct(
+                    label = metadata.label,
+                    materialization_name = materialization_name,
+                    name = bundle.name,
+                    preview_resources = bundle.preview_resources,
+                ),
+                dependencies = preview_dependencies.get(bundle_path, []),
+            )
+            preview_resource_bundles.append(struct(
+                id = metadata.id,
+                name = bundle.name,
+                file = materialized,
+            ))
+            for parent_path in parent_bundle_paths:
+                if bundle_path.startswith(parent_path + "/"):
+                    preview_dependencies.setdefault(parent_path, []).append(
+                        struct(
+                            file = materialized,
+                            relative_path = bundle_path[len(parent_path) + 1:],
+                        ),
+                    )
+                    break
+
     for child_bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets[child_bundle_path]
         if (not bundle.resources and
@@ -512,6 +717,7 @@ def _collect_resources(
 
     return struct(
         bundles = frozen_bundles,
+        preview_resource_bundles = preview_resource_bundles,
         resources = root_bundle.resources,
         resource_file_paths = root_bundle.resource_file_paths,
         generated_resource_file_paths = root_bundle.generated_resource_file_paths,
@@ -542,4 +748,5 @@ def _path_folder_type_prefix(path):
 resources = struct(
     collect = _collect_resources,
     folder_type_prefix = _folder_type_prefix,
+    materialize_preview_bundle = _materialize_preview_bundle,
 )

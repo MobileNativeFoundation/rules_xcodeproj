@@ -2,11 +2,9 @@ import CustomDump
 import PBXProj
 import ToolCommon
 import XCTest
-
 @testable import pbxnativetargets
 
 class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
-
     func test_base() async throws {
         // Arrange
 
@@ -257,8 +255,12 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
         let expectedBuildSettings = baseBuildSettings.updating([
             "LINK_PARAMS_FILE":
                 "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
-            "OTHER_LDFLAGS":
+            "OTHER_LIBTOOLFLAGS":
                 "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX":
+                "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_": ".runtime.json",
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO": ".runtime.json",
         ])
 
         // Act
@@ -274,6 +276,118 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
             buildSettings.asDictionary,
             expectedBuildSettings
         )
+    }
+
+    func test_runtimePolicyInputOnlyExistsForNativeNonIndexBuilds() async throws {
+        let settings = try await calculatePlatformVariantBuildSettingsWithDefaults(
+            platformVariant: .mock(linkParams: "bazel-out/some/link.params")
+        ).asDictionary
+        for action in ["", "build", "indexbuild", "install"] {
+            for native in ["", "NO", "YES"] {
+                for arena in ["", "NO", "YES"] {
+                    let key = "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_\(action)_\(native)_\(arena)"
+                    let expected = action == "build" && native == "YES" && arena != "YES" ? ".runtime.json" : ""
+                    XCTAssertEqual(settings[key] ?? "", expected, key)
+                }
+            }
+        }
+    }
+
+    func test_linkParams_nonStaticLibrary() async throws {
+        // Arrange
+
+        let platformVariant = Target.PlatformVariant.mock(
+            linkParams: "bazel-out/some/link.params"
+        )
+
+        let expectedBuildSettings = baseBuildSettings.updating([
+            "LINK_PARAMS_FILE":
+                "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
+            "OTHER_LDFLAGS":
+                "-working-directory $(PROJECT_DIR) @$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+        ])
+
+        // Act
+
+        let buildSettings =
+            try await calculatePlatformVariantBuildSettingsWithDefaults(
+                originalProductBasename: "libA.dylib",
+                productType: .dynamicLibrary,
+                platformVariant: platformVariant
+            )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
+    func test_linkParams_iOSSimulatorLibrarySearchPath() async throws {
+        // Arrange
+
+        let platformVariant = Target.PlatformVariant.mock(
+            platform: .iOSSimulator,
+            linkParams: "bazel-out/some/link.params"
+        )
+
+        let expectedBuildSettings = noPlatformBuildSettings.updating([
+            "IPHONEOS_DEPLOYMENT_TARGET": "9.4.1",
+            "LIBRARY_SEARCH_PATHS":
+                "$(inherited) $(PREVIEW_SDK_LIBRARY_SEARCH_PATH)".pbxProjEscaped,
+            "LINK_PARAMS_FILE":
+                "$(BAZEL_OUT)/some/link.params".pbxProjEscaped,
+            "OTHER_LIBTOOLFLAGS":
+                "@$(DERIVED_FILE_DIR)/link.params".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX":
+                "$(BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_$(ACTION)_$(BAZEL_NATIVE_PREVIEWS)_$(INDEX_ENABLE_BUILD_ARENA))".pbxProjEscaped,
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_": ".runtime.json",
+            "BAZEL_PREVIEW_RUNTIME_POLICY_SUFFIX_build_YES_NO": ".runtime.json",
+        ])
+
+        // Act
+
+        let buildSettings =
+            try await calculatePlatformVariantBuildSettingsWithDefaults(
+                platformVariant: platformVariant
+            )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            buildSettings.asDictionary,
+            expectedBuildSettings
+        )
+    }
+
+    func test_librarySearchPathExcludedFromOtherLinkModes() async throws {
+        for platformVariant in [
+            Target.PlatformVariant.mock(
+                platform: .iOSDevice,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .tvOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .visionOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(
+                platform: .watchOSSimulator,
+                linkParams: "bazel-out/some/link.params"
+            ),
+            Target.PlatformVariant.mock(platform: .iOSSimulator),
+        ] {
+            let buildSettings =
+                try await calculatePlatformVariantBuildSettingsWithDefaults(
+                    platformVariant: platformVariant
+                )
+
+            XCTAssertNil(buildSettings.asDictionary["LIBRARY_SEARCH_PATHS"])
+        }
     }
 
     func test_packageBinDir() async throws {
@@ -378,6 +492,10 @@ $(BUILD_DIR)/some/packageBin/dir$(TARGET_BUILD_SUBPATH)
             "TEST_HOST": #"""
 $(BUILD_DIR)/some/packageBin/dir/a/path/Host.app/Executable_Name
 """#.pbxProjEscaped,
+            "BUNDLE_LOADER": "$(BAZEL_BUNDLE_LOADER__$(BAZEL_NATIVE_PREVIEWS))".pbxProjEscaped,
+            "BAZEL_BUNDLE_LOADER__": #""""#,
+            "BAZEL_BUNDLE_LOADER__NO": #""""#,
+            "BAZEL_BUNDLE_LOADER__YES": "$(TEST_HOST)".pbxProjEscaped,
         ])
 
         // Act
@@ -429,7 +547,7 @@ $(BUILD_DIR)/some/packageBin/dir/a/path/Host.app/Executable_Name
     }
 }
 
-private func calculatePlatformVariantBuildSettingsWithDefaults(
+func calculatePlatformVariantBuildSettingsWithDefaults(
     isBundle: Bool = false,
     originalProductBasename: String = "libA.a",
     productType: PBXProductType = .staticLibrary,
@@ -457,7 +575,7 @@ private let baseBuildSettings = noPlatformBuildSettings.updating([
     "MACOSX_DEPLOYMENT_TARGET": "9.4.1",
 ])
 
-private extension Target.PlatformVariant {
+extension Target.PlatformVariant {
     static func mock(
         xcodeConfigurations: [String] = ["CONFIG"],
         id: TargetID = "A",
@@ -501,7 +619,7 @@ private extension Target.PlatformVariant {
     }
 }
 
-private extension Array where Element == PlatformVariantBuildSetting {
+extension Array where Element == PlatformVariantBuildSetting {
     var asDictionary: [String: String] {
         return Dictionary(uniqueKeysWithValues: map { ($0.key, $0.value) })
     }

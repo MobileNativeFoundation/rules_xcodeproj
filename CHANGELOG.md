@@ -48,7 +48,7 @@ END_UNRELEASED_TEMPLATE
 
 ### New
 
-* TBD
+* Added opt-in `preview_xcode_configurations` for native Xcode Preview compilation while keeping ordinary configurations Bazel-owned. See [the Preview example](examples/previews/README.md) for setup and validation scope.
 
 ### Adjusted
 

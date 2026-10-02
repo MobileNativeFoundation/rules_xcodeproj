@@ -2,7 +2,6 @@ import CustomDump
 import Foundation
 import PBXProj
 import XCTest
-
 @testable import pbxproj_prefix
 
 class PBXProjectPrefixPartialTests: XCTestCase {
@@ -71,7 +70,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         // Act
 
         let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
-            buildSettings: buildSettings,
+            buildSettings: Dictionary(uniqueKeysWithValues: xcodeConfigurations.map { ($0, buildSettings) }),
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             developmentRegion: developmentRegion,
@@ -154,7 +153,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         // Act
 
         let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
-            buildSettings: buildSettings,
+            buildSettings: Dictionary(uniqueKeysWithValues: xcodeConfigurations.map { ($0, buildSettings) }),
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             developmentRegion: developmentRegion,
@@ -238,7 +237,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         // Act
 
         let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
-            buildSettings: buildSettings,
+            buildSettings: Dictionary(uniqueKeysWithValues: xcodeConfigurations.map { ($0, buildSettings) }),
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             developmentRegion: developmentRegion,
@@ -261,7 +260,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         let buildSettings = "{BUILD_SETTINGS_HERE}"
         let compatibilityVersion = "AppCode 42.7.4"
-        let defaultXcodeConfiguration: String = "Debug"
+        let defaultXcodeConfiguration = "Debug"
         let developmentRegion = "enGB"
         let organizationName = "Multiple Words"
         let projectDir = "/some/execution_root"
@@ -322,7 +321,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         // Act
 
         let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
-            buildSettings: buildSettings,
+            buildSettings: Dictionary(uniqueKeysWithValues: xcodeConfigurations.map { ($0, buildSettings) }),
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             developmentRegion: developmentRegion,
@@ -345,7 +344,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         let buildSettings = "{BUILD_SETTINGS_HERE}"
         let compatibilityVersion = "AppCode 42.7.4"
-        let defaultXcodeConfiguration: String = "Debug"
+        let defaultXcodeConfiguration = "Debug"
         let developmentRegion = "enGB"
         let organizationName = #"Go "Home""#
         let projectDir = "/some/execution_root"
@@ -406,7 +405,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         // Act
 
         let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
-            buildSettings: buildSettings,
+            buildSettings: Dictionary(uniqueKeysWithValues: xcodeConfigurations.map { ($0, buildSettings) }),
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             developmentRegion: developmentRegion,

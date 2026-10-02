@@ -21,6 +21,7 @@ bzl_library(
         "@bazel_skylib//lib:structs",
         "@bazel_skylib//lib:versions",
         "@bazel_skylib//rules:common_settings",
+        "@build_bazel_apple_support//lib:apple_support",
         "@build_bazel_rules_apple//apple",
         "@build_bazel_rules_apple//apple:resources",
     ],

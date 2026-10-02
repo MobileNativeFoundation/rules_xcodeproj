@@ -19,8 +19,8 @@ extension Generator {
             allConditionalFiles: Set<BazelPath>
         ) -> [BuildSetting] {
             return callable(
-                /*platformBuildSettings:*/ platformBuildSettings,
-                /*allConditionalFiles:*/ allConditionalFiles
+                /* platformBuildSettings: */ platformBuildSettings,
+                /* allConditionalFiles: */ allConditionalFiles
             )
         }
     }
@@ -71,7 +71,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                             // Lots of code just to quote and `.pbxProjEscaped`
                             // the paths
                             platformBuildSettings.conditionalFiles
-                                .map { $0.path.quoteIfNeeded }
+                                .map(\.path.quoteIfNeeded)
                                 // TODO: See if we can not sort, or sort earlier
                                 .sorted()
                                 .joined(separator: " ")
@@ -101,7 +101,7 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
         excludedSourceFileNames.append(
             contentsOf: allConditionalFiles
                 .subtracting(conditionalFiles)
-                .map { $0.path.pbxProjEscaped }
+                .map(\.path.pbxProjEscaped)
         )
 
         // Set configuration-wide conditional files
@@ -134,6 +134,8 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
 
         for (key, platformAndValues) in platformedBuildSettings {
             let isNonInheritableKey = nonInheritableKeys.contains(key)
+            let preservePlatformValues = key == "BAZEL_TARGET_ID" ||
+                key == "BAZEL_COMPILE_TARGET_IDS"
 
             var remainingPlatforms: Set<Platform>
             let setBaseValue: Bool
@@ -171,10 +173,17 @@ extension Generator.CalculateXcodeConfigurationBuildSettings {
                 remainingPlatforms.removeAll()
             }
 
+            // PIF consumers try explicit SDK IDs before similar-platform
+            // fallbacks. Keep every supported platform's ID, including the
+            // base platform and values shared by multiple platforms.
+            if preservePlatformValues {
+                remainingPlatformAndValues = ArraySlice(platformAndValues)
+            }
+
             for (platform, value) in remainingPlatformAndValues {
                 remainingPlatforms.remove(platform)
 
-                guard value != baseValue else {
+                guard preservePlatformValues || value != baseValue else {
                     // Don't set redundant settings
                     continue
                 }

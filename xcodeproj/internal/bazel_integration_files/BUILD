@@ -1,3 +1,11 @@
+exports_files(
+    [
+        "calculate_output_groups.py",
+        "preview_runtime_link_params.py",
+    ],
+    visibility = ["//test/internal/bazel_integration_files:__pkg__"],
+)
+
 _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",

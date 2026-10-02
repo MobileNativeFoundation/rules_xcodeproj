@@ -4,6 +4,10 @@ load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
 )
+load(
+    "@build_bazel_rules_apple//apple:resources.bzl",
+    "resources_common",
+)
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
 load(
     "//xcodeproj/internal:memory_efficiency.bzl",
@@ -42,6 +46,7 @@ def _collect_transitive_uncategorized(info):
 def _inner_merge_input_files(
         *,
         framework_files,
+        preview_resource_bundles,
         resource_bundles,
         transitive_infos,
         xccurrentversions):
@@ -51,6 +56,14 @@ def _inner_merge_input_files(
                 info.inputs._product_framework_files
                 for info in transitive_infos
             ] + [framework_files],
+        ),
+        _preview_resource_bundles = memory_efficient_depset(
+            preview_resource_bundles,
+            order = "postorder",
+            transitive = [
+                info.inputs._preview_resource_bundles
+                for info in transitive_infos
+            ],
         ),
         _resource_bundle_labels = memory_efficient_depset(
             transitive = [
@@ -331,6 +344,29 @@ def _collect_input_files(
     non_arc_srcs = []
     srcs = []
 
+    # Some rule macros, including mixed_language_library, keep resource
+    # providers on `data` dependencies instead of forwarding AppleResourceInfo
+    # to the generated library target. Merge those providers once so Preview
+    # materialization sees the same complete resource closure.
+    if not resource_info:
+        resource_data_deps = [
+            dep
+            for dep in getattr(rule_attr, "data", [])
+            if AppleResourceInfo in dep
+        ]
+        if resource_data_deps:
+            resource_info = resources_common.merge_providers(
+                default_owner = str(label),
+                providers = [
+                    dep[AppleResourceInfo]
+                    for dep in resource_data_deps
+                ],
+            )
+            focused_labels = memory_efficient_depset(
+                [str(label)] + [str(dep.label) for dep in resource_data_deps],
+                transitive = [focused_labels],
+            )
+
     extra_files = [infoplist] if infoplist else []
 
     # Include BUILD files for the project but not for external repos
@@ -437,12 +473,17 @@ def _collect_input_files(
 
     if resource_info:
         resources_result = resources_module.collect(
+            actions = ctx.actions,
             avoid_resource_infos = [
                 dep[AppleResourceInfo]
                 for dep in avoid_deps
                 if AppleResourceInfo in dep
             ],
             label_str = str(label),
+            materialization_name = "{}/{}".format(
+                ctx.attr._generator_name,
+                label.name,
+            ),
             focused_labels = focused_labels,
             platform = platform,
             resource_info = resource_info,
@@ -450,6 +491,7 @@ def _collect_input_files(
 
         extra_files.extend(resources_result.resources)
         resource_bundles = resources_result.bundles
+        preview_resource_bundles = resources_result.preview_resource_bundles
 
         xccurrentversions.extend(resources_result.xccurrentversions)
 
@@ -538,6 +580,7 @@ def _collect_input_files(
             )
         )
         resource_bundles = None
+        preview_resource_bundles = None
 
     important_generated = [
         file
@@ -564,6 +607,14 @@ def _collect_input_files(
         ),
         struct(
             _product_framework_files = product_framework_files,
+            _preview_resource_bundles = memory_efficient_depset(
+                preview_resource_bundles,
+                order = "postorder",
+                transitive = [
+                    info.inputs._preview_resource_bundles
+                    for info in transitive_infos
+                ],
+            ),
             _resource_bundle_labels = resource_bundle_labels,
             _resource_bundle_uncategorized_files = (
                 resource_bundle_uncategorized_files
@@ -614,13 +665,16 @@ def _collect_input_files(
 def _collect_mixed_language_input_files(
         *,
         mergeable_info,
-        mixed_target_infos):
+        mixed_target_infos,
+        transitive_infos):
     """Collects all of the inputs of a target.
 
     Args:
         mergeable_info: A value from `mergeable_infos.calculate_mixed_language`.
         mixed_target_infos: A `list` of `XcodeProjInfo`s for the underlying
             Clang and Swift targets.
+        transitive_infos: A `list` of `XcodeProjInfo`s for the mixed target's
+            direct dependencies.
 
     Returns:
         A `tuple` with two elements:
@@ -668,6 +722,13 @@ def _collect_mixed_language_input_files(
             ),
             struct(
                 _product_framework_files = EMPTY_DEPSET,
+                _preview_resource_bundles = memory_efficient_depset(
+                    order = "postorder",
+                    transitive = [
+                        info.inputs._preview_resource_bundles
+                        for info in mixed_target_infos + transitive_infos
+                    ],
+                ),
                 _resource_bundle_labels = EMPTY_DEPSET,
                 _resource_bundle_uncategorized_files = EMPTY_DEPSET,
                 _resource_bundle_uncategorized_file_paths = EMPTY_DEPSET,
@@ -693,6 +754,13 @@ def _collect_mixed_language_input_files(
             # Framework files only come from top-level targets, so no need to
             # collect them from `mixed_target_infos`
             _product_framework_files = EMPTY_DEPSET,
+            _preview_resource_bundles = memory_efficient_depset(
+                order = "postorder",
+                transitive = [
+                    info.inputs._preview_resource_bundles
+                    for info in mixed_target_infos + transitive_infos
+                ],
+            ),
             # Resources only come from top-level targets, so no need to collect
             # them from `mixed_target_infos`
             _resource_bundle_labels = EMPTY_DEPSET,
@@ -738,6 +806,8 @@ def _collect_unsupported_input_files(
         include_extra_files,
         is_resource_bundle,
         label,
+        platform,
+        preview_resource_info,
         rule_attr,
         transitive_infos):
     """Collects all of the inputs of a target.
@@ -750,6 +820,9 @@ def _collect_unsupported_input_files(
         include_extra_files: Whether to include extra files in the inputs.
         is_resource_bundle: Whether `target` is a resource bundle.
         label: The effective label of the target.
+        platform: A value from `platforms.collect`.
+        preview_resource_info: A Preview-only processed resource provider for
+            an `apple_resource_bundle`, or `None`.
         rule_attr: `ctx.rule.attr`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of `target`.
@@ -800,6 +873,31 @@ def _collect_unsupported_input_files(
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
     )
+
+    if preview_resource_info:
+        preview_resources_result = resources_module.collect(
+            actions = ctx.actions,
+            avoid_resource_infos = [],
+            focused_labels = memory_efficient_depset([str(label)]),
+            label_str = str(label),
+            materialization_name = "{}/{}".format(
+                ctx.attr._generator_name,
+                label.name,
+            ),
+            platform = platform,
+            resource_info = preview_resource_info.resource_info,
+        )
+        preview_resource_bundles = preview_resources_result.preview_resource_bundles
+        preview_resource_bundle_labels = [
+            bundle.label
+            for bundle in preview_resources_result.bundles
+        ]
+        preview_resource_bundles_metadata = preview_resources_result.bundles
+        xccurrentversions.extend(preview_resources_result.xccurrentversions)
+    else:
+        preview_resource_bundles = None
+        preview_resource_bundle_labels = None
+        preview_resource_bundles_metadata = None
 
     if is_resource_bundle:
         uncategorized_files = []
@@ -869,7 +967,16 @@ def _collect_unsupported_input_files(
                 for info in transitive_infos
             ],
         ),
+        _preview_resource_bundles = memory_efficient_depset(
+            preview_resource_bundles,
+            order = "postorder",
+            transitive = [
+                info.inputs._preview_resource_bundles
+                for info in transitive_infos
+            ],
+        ),
         _resource_bundle_labels = memory_efficient_depset(
+            preview_resource_bundle_labels,
             transitive = [
                 info.inputs._resource_bundle_labels
                 for info in transitive_infos
@@ -910,6 +1017,7 @@ def _collect_unsupported_input_files(
             ],
         ),
         resource_bundles = memory_efficient_depset(
+            preview_resource_bundles_metadata,
             transitive = [
                 info.inputs.resource_bundles
                 for info in transitive_infos
@@ -945,10 +1053,23 @@ def _merge_input_files(*, transitive_infos):
     """
     return _inner_merge_input_files(
         framework_files = EMPTY_DEPSET,
+        preview_resource_bundles = None,
         resource_bundles = None,
         transitive_infos = transitive_infos,
         xccurrentversions = None,
     )
+
+def _preview_resource_bundle_files(inputs):
+    # Postorder propagation chooses the original dependency's materialization
+    # before a consuming app/library's duplicate view of the same resource ID.
+    # All targets then stage the same source, not merely the same basename.
+    bundles_by_id = {}
+    for bundle in inputs._preview_resource_bundles.to_list():
+        bundles_by_id.setdefault(bundle.id, bundle)
+    return [
+        bundles_by_id[id].file
+        for id in sorted(bundles_by_id)
+    ]
 
 def _merge_top_level_input_files(
         *,
@@ -982,6 +1103,7 @@ def _merge_top_level_input_files(
     """
     if resource_info:
         resources_result = resources_module.collect(
+            actions = None,
             avoid_resource_infos = [
                 dep[AppleResourceInfo]
                 for dep in avoid_deps
@@ -989,19 +1111,23 @@ def _merge_top_level_input_files(
             ],
             focused_labels = focused_labels,
             label_str = None,
+            materialization_name = None,
             platform = platform,
             resource_info = resource_info,
         )
 
         resource_bundles = resources_result.bundles
+        preview_resource_bundles = resources_result.preview_resource_bundles
 
         xccurrentversions = resources_result.xccurrentversions
     else:
         resource_bundles = None
+        preview_resource_bundles = None
         xccurrentversions = None
 
     return _inner_merge_input_files(
         framework_files = framework_files,
+        preview_resource_bundles = preview_resource_bundles,
         resource_bundles = resource_bundles,
         transitive_infos = transitive_infos,
         xccurrentversions = xccurrentversions,
@@ -1013,4 +1139,5 @@ input_files = struct(
     collect_unsupported = _collect_unsupported_input_files,
     merge = _merge_input_files,
     merge_top_level = _merge_top_level_input_files,
+    preview_resource_bundle_files = _preview_resource_bundle_files,
 )
