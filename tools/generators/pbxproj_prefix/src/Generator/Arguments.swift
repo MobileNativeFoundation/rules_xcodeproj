@@ -91,6 +91,9 @@ Populates the `ORGANIZATIONNAME` attribute for the project.
         )
         var xcodeConfigurations: [String]
 
+        @Option(parsing: .upToNextOption, help: "Configurations using native Xcode tools for Previews.")
+        var previewXcodeConfigurations: [String] = []
+
         @Option(
             help: "Path to a file containing a pre-build script.",
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
