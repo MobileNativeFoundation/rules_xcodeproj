@@ -30,6 +30,7 @@ _LD_SKIP_OPTS = {
     "OSO_PREFIX_MAP_PWD": 1,
 }
 
+# `-Wl,` forwards linker options; these options take a path operand.
 _WL_PATH_OPTS = {
     "-add_ast_path",
     "-alias_list",
@@ -57,12 +58,14 @@ _WL_PATH_OPTS = {
     "-weak_library",
 }
 
+# Some forwarded options consume extra positional metadata paths as well.
 _WL_POSITIONAL_PATH_OPTS = {
     "-filelist": (1, 2),
     "-sectcreate": (3,),
     "-sectorder": (3,),
 }
 
+# Driver-level spellings can take a separate operand outside `-Wl,` groups.
 _SPLIT_PATH_OPTS = _WL_PATH_OPTS | {
     "-F",
     "-L",
@@ -70,6 +73,7 @@ _SPLIT_PATH_OPTS = _WL_PATH_OPTS | {
     "-rpath",
 }
 
+# These split options consume operands, but the operands are not filesystem paths.
 _SPLIT_NON_PATH_OPTS = {
     "-allowable_client",
     "-compatibility_version",
@@ -91,6 +95,7 @@ _DIRECT_INPUT_SUFFIXES = (
     ".tbd",
 )
 
+# Only these option/operand pairs identify generated library inputs to remove.
 _LIBRARY_INPUT_OPTS = {
     "-assert_weak_library",
     "-delay_library",
@@ -171,6 +176,7 @@ def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappe
     while index < len(linkopts):
         opt = linkopts[index]
         if driver_wrappers and opt.startswith("-Wl,"):
+            # Parse a comma-group's payload without treating it as driver syntax.
             values = _remove_generated_inputs(
                 opt[4:].split(","), generated_product_paths,
             )
@@ -179,8 +185,8 @@ def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappe
             index += 1
             continue
 
-        # Read a driver-forwarded linker token without leaving its -Xlinker
-        # behind when the token or its complete library binding is removed.
+        # In split driver syntax, inspect past -Xlinker but keep it in the span
+        # so removing a selected binding cannot leave the wrapper orphaned.
         option_index = index + (driver_wrappers and opt == "-Xlinker")
         if option_index >= len(linkopts):
             result.append(opt)
@@ -188,12 +194,14 @@ def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappe
         option = linkopts[option_index]
         end = option_index + 1
         if option in _WL_POSITIONAL_PATH_OPTS and option != "-filelist":
-            # Section arguments are metadata/content, not positional libraries.
+            # Section operands are metadata/content; preserve them as a group.
             for _ in range(max(_WL_POSITIONAL_PATH_OPTS[option])):
                 if driver_wrappers and end < len(linkopts) and linkopts[end] == "-Xlinker":
                     end += 1
                 end = min(end + 1, len(linkopts))
         elif option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS:
+            # Consume the full option/value pair; only library options bind a
+            # generated product that is eligible for removal.
             value_index = end
             if driver_wrappers and value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
                 value_index += 1
@@ -207,6 +215,7 @@ def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappe
             index = end
             continue
 
+        # Keep unmatched options and their operands in original order.
         result.extend(linkopts[index:end])
         index = end
     return result
@@ -410,7 +419,6 @@ def _process_linkopts(
             end = _static_option_group_end(linkopts, index)
             static_operands.update(range(index + 1, end))
             index = end
-
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
             paths = fp.read().splitlines()
