@@ -60,6 +60,22 @@ note: ({now}) {value_name} updated after {wait_counter} seconds.""",
     return value
 
 
+def _read_build_request(build_request_file):
+    # Xcode can publish the path before it finishes writing the JSON. Reopen
+    # after a short delay, but still fail on permanently malformed contents.
+    for attempt in range(10):
+        try:
+            with open(build_request_file, encoding = "utf-8") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            # Let the existing discovery loop select the current request.
+            return None
+        except json.JSONDecodeError:
+            if attempt == 9:
+                raise
+            time.sleep(0.1)
+
+
 def _get_build_request(
         xcode_version,
         objroot,
@@ -90,21 +106,19 @@ def _get_build_request(
         )
         def wait_for_build_request_file():
             if os.path.exists(build_request_file):
-                with open(build_request_file, encoding = "utf-8") as f:
-                    # Parse the build-request.json file
-                    try:
-                        return json.load(f)
-                    except Exception as error:
-                        print(
-                            f"""\
+                try:
+                    return _read_build_request(build_request_file)
+                except Exception as error:
+                    print(
+                        f"""\
 error: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
 Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                            file = sys.stderr,
-                        )
-                        exit(1)
+                        file = sys.stderr,
+                    )
+                    exit(1)
             return None
 
         return _wait_for_value(
@@ -126,21 +140,19 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             return None
         build_request_file = f"{xcbuilddata}/build-request.json"
         if os.path.exists(build_request_file):
-            with open(build_request_file, encoding = "utf-8") as f:
-                # Parse the build-request.json file
-                try:
-                    return json.load(f)
-                except Exception as error:
-                    print(
-                        f"""\
+            try:
+                return _read_build_request(build_request_file)
+            except Exception as error:
+                print(
+                    f"""\
 error: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
 Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                        file = sys.stderr,
-                    )
-                    sys.exit(1)
+                    file = sys.stderr,
+                )
+                sys.exit(1)
         return None
 
     return _wait_for_value(
