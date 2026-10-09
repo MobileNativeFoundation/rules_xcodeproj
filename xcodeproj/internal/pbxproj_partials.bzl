@@ -1469,15 +1469,24 @@ def _write_targets(
 def _write_project_pbxproj(
         *,
         actions,
+        colorize,
         files_and_groups,
         generator_name,
         pbxproj_prefix,
         pbxtargetdependencies,
-        targets):
+        targets,
+        tool,
+        uses_synchronized_folders = False):
     """Creates a `project.pbxproj` `File`.
+
+    Projects with synchronized folders are assembled into the layout that Xcode
+    writes (see the `project_pbxproj` generator), since Xcode rewrites
+    `project.pbxproj` when a synchronized folder's contents change if it
+    differs. Other projects concatenate the partials.
 
     Args:
         actions: `ctx.actions`.
+        colorize: A `bool` indicating whether to colorize the output.
         files_and_groups: The `files_and_groups` `File` returned from
             `pbxproj_partials.write_files_and_groups`.
         generator_name: The name of the `xcodeproj` generator target.
@@ -1487,6 +1496,9 @@ def _write_project_pbxproj(
             `pbxproj_partials.write_pbxproject_targets`.
         targets: The `targets` `list` of `Files` returned from
             `pbxproj_partials.write_targets`.
+        tool: The executable that will assemble the `project.pbxproj` file.
+        uses_synchronized_folders: Whether the project has
+            `PBXFileSystemSynchronizedRootGroup`s.
 
     Returns:
         A `project.pbxproj` `File`.
@@ -1498,22 +1510,56 @@ def _write_project_pbxproj(
         files_and_groups,
     ]
 
-    args = actions.args()
-    args.use_param_file("%s")
-    args.set_param_file_format("multiline")
-    args.add_all(inputs)
+    if not uses_synchronized_folders:
+        args = actions.args()
+        args.use_param_file("%s")
+        args.set_param_file_format("multiline")
+        args.add_all(inputs)
 
-    actions.run_shell(
-        arguments = [args],
-        inputs = inputs,
-        outputs = [output],
-        command = """\
+        actions.run_shell(
+            arguments = [args],
+            inputs = inputs,
+            outputs = [output],
+            command = """\
 cat "$@" > "{output}"
 """.format(output = output.path),
+            mnemonic = "WriteXcodeProjPBXProj",
+            progress_message = "Generating %{output}",
+            execution_requirements = {
+                # Running `cat` is faster than looking up and copying from cache
+                "no-cache": "1",
+                # Absolute paths
+                "no-remote": "1",
+                # Each file is directly referenced, so lets have some speed
+                "no-sandbox": "1",
+            },
+        )
+
+        return output
+
+    args = actions.args()
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
+
+    # outputPath
+    args.add(output)
+
+    # partials
+    args.add_all(inputs)
+
+    # colorize
+    if colorize:
+        args.add(_FLAGS.colorize)
+
+    actions.run(
+        arguments = [args],
+        executable = tool,
+        inputs = inputs,
+        outputs = [output],
         mnemonic = "WriteXcodeProjPBXProj",
         progress_message = "Generating %{output}",
         execution_requirements = {
-            # Running `cat` is faster than looking up and copying from cache
+            # Assembling is faster than looking up and copying from cache
             "no-cache": "1",
             # Absolute paths
             "no-remote": "1",
