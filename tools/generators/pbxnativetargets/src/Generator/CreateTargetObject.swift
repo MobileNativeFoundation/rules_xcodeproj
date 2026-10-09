@@ -20,7 +20,8 @@ extension Generator {
             setsProductReference: Bool,
             dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
             buildConfigurationListIdentifier: String,
-            buildPhaseIdentifiers: [String]
+            buildPhaseIdentifiers: [String],
+            synchronizedFolders: [BazelPath] = []
         ) -> Object {
             return callable(
                 /*identifier:*/ identifier,
@@ -31,7 +32,8 @@ extension Generator {
                 /*dependencySubIdentifiers:*/ dependencySubIdentifiers,
                 /*buildConfigurationListIdentifier:*/
                     buildConfigurationListIdentifier,
-                /*buildPhaseIdentifiers:*/ buildPhaseIdentifiers
+                /*buildPhaseIdentifiers:*/ buildPhaseIdentifiers,
+                /*synchronizedFolders:*/ synchronizedFolders
             )
         }
     }
@@ -48,7 +50,8 @@ extension Generator.CreateTargetObject {
         _ setsProductReference: Bool,
         _ dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         _ buildConfigurationListIdentifier: String,
-        _ buildPhaseIdentifiers: [String]
+        _ buildPhaseIdentifiers: [String],
+        _ synchronizedFolders: [BazelPath]
     ) -> Object
 
     static func defaultCallable(
@@ -59,7 +62,8 @@ extension Generator.CreateTargetObject {
         setsProductReference: Bool,
         dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         buildConfigurationListIdentifier: String,
-        buildPhaseIdentifiers: [String]
+        buildPhaseIdentifiers: [String],
+        synchronizedFolders: [BazelPath]
     ) -> Object {
         let productReference: String
         if setsProductReference {
@@ -71,6 +75,34 @@ extension Generator.CreateTargetObject {
 """#
         } else {
             productReference = ""
+        }
+
+        // Folders whose contents Xcode adds to the target, created as
+        // `PBXFileSystemSynchronizedRootGroup`s by the files_and_groups
+        // generator with the same identifiers
+        let fileSystemSynchronizedGroups: String
+        if synchronizedFolders.isEmpty {
+            fileSystemSynchronizedGroups = ""
+        } else {
+            fileSystemSynchronizedGroups = #"""
+			fileSystemSynchronizedGroups = (
+\#(
+    synchronizedFolders
+        .map { folder in
+            let name = folder.path.split(separator: "/").last
+                .map(String.init) ?? folder.path
+            return """
+\t\t\t\t\(
+    Identifiers.FilesAndGroups.synchronizedRootGroup(folder.path, name: name)
+),
+
+"""
+        }
+        .joined()
+)\#
+			);
+
+"""#
         }
 
         // The tabs for indenting are intentional
@@ -100,6 +132,7 @@ extension Generator.CreateTargetObject {
         .joined()
 )\#
 			);
+\#(fileSystemSynchronizedGroups)\#
 			name = \#(identifier.pbxProjEscapedName);
 			productName = \#(productName.pbxProjEscaped);
 \#(productReference)\#

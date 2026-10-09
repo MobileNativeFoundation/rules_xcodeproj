@@ -65,7 +65,8 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolders: []
         )
 
         // Assert
@@ -140,7 +141,8 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolders: []
         )
 
         // Assert
@@ -207,11 +209,86 @@ class CreateTargetObjectTests: XCTestCase {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: dependencySubIdentifiers,
             buildConfigurationListIdentifier: buildConfigurationListIdentifier,
-            buildPhaseIdentifiers: buildPhaseIdentifiers
+            buildPhaseIdentifiers: buildPhaseIdentifiers,
+            synchronizedFolders: []
         )
 
         // Assert
 
         XCTAssertNoDifference(object, expectedObject)
+    }
+
+    func test_synchronizedFolders() {
+        // Arrange
+
+        let identifier = Identifiers.Targets.Identifier(
+            pbxProjEscapedName: "a".pbxProjEscaped,
+            subIdentifier: .init(shard: "A_SHARD", hash: "A_HASH"),
+            full: "A_ID /* a */",
+            withoutComment: "A_ID"
+        )
+        let productSubIdentifier = Identifiers.BuildFiles.SubIdentifier(
+            shard: "B_SHARD",
+            type: .product,
+            path: "product.basename",
+            hash: "B_HASH"
+        )
+        let synchronizedFolders: [BazelPath] = [
+            "a/Sources",
+            "a/Tests",
+        ]
+        let sourcesIdentifier = Identifiers.FilesAndGroups
+            .synchronizedRootGroup("a/Sources", name: "Sources")
+        let testsIdentifier = Identifiers.FilesAndGroups
+            .synchronizedRootGroup("a/Tests", name: "Tests")
+
+        // The tabs for indenting are intentional
+        let expectedObject = Object(
+            identifier: "A_ID /* a */",
+            content: #"""
+{
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCL_ID;
+			buildPhases = (
+				BPA,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				\#(sourcesIdentifier),
+				\#(testsIdentifier),
+			);
+			name = a;
+			productName = A;
+			productType = "com.apple.product-type.library.static";
+		}
+"""#
+        )
+
+        // Act
+
+        let object = Generator.CreateTargetObject.defaultCallable(
+            identifier: identifier,
+            productType: .staticLibrary,
+            productName: "A",
+            productSubIdentifier: productSubIdentifier,
+            setsProductReference: false,
+            dependencySubIdentifiers: [],
+            buildConfigurationListIdentifier: "BCL_ID",
+            buildPhaseIdentifiers: ["BPA"],
+            synchronizedFolders: synchronizedFolders
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(object, expectedObject)
+        XCTAssertEqual(
+            sourcesIdentifier,
+            Identifiers.FilesAndGroups
+                .synchronizedRootGroup("a/Sources", name: "Sources"),
+            "The identifier must only depend on the path"
+        )
     }
 }
