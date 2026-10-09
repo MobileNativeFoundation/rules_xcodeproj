@@ -36,6 +36,7 @@ _GENERATORS = [
     "tools/generators/pbxnativetargets/universal_pbxnativetargets",
     "tools/generators/pbxproj_prefix/universal_pbxproj_prefix",
     "tools/generators/pbxtargetdependencies/universal_pbxtargetdependencies",
+    "tools/generators/project_pbxproj/universal_project_pbxproj",
     "tools/generators/swift_debug_settings/universal_swift_debug_settings",
     "tools/generators/target_build_settings/universal_target_build_settings",
     "tools/generators/xcschemes/universal_xcschemes",

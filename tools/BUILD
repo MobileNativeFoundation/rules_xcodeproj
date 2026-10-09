@@ -9,6 +9,7 @@ _TOOLS = {
     "pbxnativetargets": "//tools/generators/pbxnativetargets",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
+    "project_pbxproj": "//tools/generators/project_pbxproj",
     "swift_debug_settings": "//tools/generators/swift_debug_settings",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
     "target_build_settings": "//tools/generators/target_build_settings",
@@ -32,6 +33,9 @@ _TESTS = {
     "pbxtargetdependencies": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxtargetdependencies:pbxtargetdependencies_tests",
+    ],
+    "project_pbxproj": [
+        "//tools/generators/project_pbxproj:project_pbxproj_tests",
     ],
     "swift_debug_settings": [
         "//tools/generators/swift_debug_settings:swift_debug_settings_tests",
@@ -254,6 +258,35 @@ _XCSCHEMES = [
         test = xcschemes.test(
             diagnostics = _XCSCHEME_DIAGNOSTICS,
             test_targets = _TESTS["pbxtargetdependencies"],
+        ),
+    ),
+    xcschemes.scheme(
+        name = "project_pbxproj",
+        profile = xcschemes.profile(
+            launch_target = xcschemes.launch_target(
+                _TOOLS["project_pbxproj"],
+            ),
+            xcode_configuration = "Release",
+        ),
+        run = xcschemes.run(
+            args = [
+                # outputPath
+                "/tmp/pbxproj_partials/project.pbxproj",
+                # partials
+                "/tmp/pbxproj_partials/pbxproj_prefix",
+                "/tmp/pbxproj_partials/pbxnativetargets/0",
+                "/tmp/pbxproj_partials/pbxnativetargets/1",
+                "/tmp/pbxproj_partials/pbxtargetdependencies",
+                "/tmp/pbxproj_partials/files_and_groups",
+            ],
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            launch_target = xcschemes.launch_target(
+                _TOOLS["project_pbxproj"],
+            ),
+        ),
+        test = xcschemes.test(
+            diagnostics = _XCSCHEME_DIAGNOSTICS,
+            test_targets = _TESTS["project_pbxproj"],
         ),
     ),
     xcschemes.scheme(
@@ -542,6 +575,9 @@ xcodeproj(
         ],
         "//tools/generators/pbxtargetdependencies": [
             "//tools/generators/pbxtargetdependencies:README.md",
+        ],
+        "//tools/generators/project_pbxproj": [
+            "//tools/generators/project_pbxproj:README.md",
         ],
         "//tools/generators/swift_debug_settings": [
             "//tools/generators/swift_debug_settings:README.md",

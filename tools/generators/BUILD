@@ -9,6 +9,7 @@ filegroup(
         "//" + package_name() + "/pbxnativetargets:release_files",
         "//" + package_name() + "/pbxproj_prefix:release_files",
         "//" + package_name() + "/pbxtargetdependencies:release_files",
+        "//" + package_name() + "/project_pbxproj:release_files",
         "//" + package_name() + "/selected_model_versions:release_files",
         "//" + package_name() + "/swift_debug_settings:release_files",
         "//" + package_name() + "/target_build_settings:release_files",

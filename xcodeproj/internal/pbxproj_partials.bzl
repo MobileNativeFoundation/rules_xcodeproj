@@ -1412,15 +1412,21 @@ def _write_targets(
 def _write_project_pbxproj(
         *,
         actions,
+        colorize,
         files_and_groups,
         generator_name,
         pbxproj_prefix,
         pbxtargetdependencies,
-        targets):
+        targets,
+        tool):
     """Creates a `project.pbxproj` `File`.
+
+    The partials are assembled into the layout that Xcode writes. See the
+    `project_pbxproj` generator for details.
 
     Args:
         actions: `ctx.actions`.
+        colorize: A `bool` indicating whether to colorize the output.
         files_and_groups: The `files_and_groups` `File` returned from
             `pbxproj_partials.write_files_and_groups`.
         generator_name: The name of the `xcodeproj` generator target.
@@ -1430,6 +1436,7 @@ def _write_project_pbxproj(
             `pbxproj_partials.write_pbxproject_targets`.
         targets: The `targets` `list` of `Files` returned from
             `pbxproj_partials.write_targets`.
+        tool: The executable that will assemble the `project.pbxproj` file.
 
     Returns:
         A `project.pbxproj` `File`.
@@ -1442,21 +1449,28 @@ def _write_project_pbxproj(
     ]
 
     args = actions.args()
-    args.use_param_file("%s")
+    args.use_param_file("@%s")
     args.set_param_file_format("multiline")
+
+    # outputPath
+    args.add(output)
+
+    # partials
     args.add_all(inputs)
 
-    actions.run_shell(
+    # colorize
+    if colorize:
+        args.add(_FLAGS.colorize)
+
+    actions.run(
         arguments = [args],
+        executable = tool,
         inputs = inputs,
         outputs = [output],
-        command = """\
-cat "$@" > "{output}"
-""".format(output = output.path),
         mnemonic = "WriteXcodeProjPBXProj",
         progress_message = "Generating %{output}",
         execution_requirements = {
-            # Running `cat` is faster than looking up and copying from cache
+            # Assembling is faster than looking up and copying from cache
             "no-cache": "1",
             # Absolute paths
             "no-remote": "1",

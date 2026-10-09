@@ -321,6 +321,7 @@ def _write_project_contents(
         post_build_script,
         pre_build_script,
         project_options,
+        project_pbxproj_generator,
         resource_bundle_xcode_targets,
         selected_model_versions_generator,
         separate_index_build_output_base,
@@ -458,11 +459,13 @@ def _write_project_contents(
 
     project_pbxproj = pbxproj_partials.write_project_pbxproj(
         actions = actions,
+        colorize = colorize,
         files_and_groups = files_and_groups,
         generator_name = name,
         pbxproj_prefix = pbxproj_prefix,
         pbxtargetdependencies = pbxtargetdependencies,
         targets = target_partials,
+        tool = project_pbxproj_generator,
     )
 
     # `.xcfilelist`s
@@ -665,6 +668,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         post_build_script = ctx.attr.post_build,
         pre_build_script = ctx.attr.pre_build,
         project_options = ctx.attr.project_options,
+        project_pbxproj_generator = ctx.executable._project_pbxproj_generator,
         resource_bundle_xcode_targets = (
             xcode_targets_module.from_resource_bundles(
                 bundles = inputs.resource_bundles.to_list(),
@@ -905,6 +909,13 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
             cfg = "exec",
             default = Label(
                 "//tools/generators/pbxtargetdependencies:universal_pbxtargetdependencies",
+            ),
+            executable = True,
+        ),
+        "_project_pbxproj_generator": attr.label(
+            cfg = "exec",
+            default = Label(
+                "//tools/generators/project_pbxproj:universal_project_pbxproj",
             ),
             executable = True,
         ),
