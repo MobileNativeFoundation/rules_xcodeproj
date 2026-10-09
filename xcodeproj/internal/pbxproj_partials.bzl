@@ -1,5 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//xcodeproj/internal/files:files.bzl", "join_paths_ignoring_empty")
 load(":collections.bzl", "uniq")
 load(
@@ -122,6 +123,7 @@ _FLAGS = struct(
     organization_name = "--organization-name",
     platforms = "--platforms",
     post_build_script = "--post-build-script",
+    project_name = "--project-name",
     pre_build_script = "--pre-build-script",
     target_and_test_hosts = "--target-and-test-hosts",
     target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
@@ -774,6 +776,12 @@ def _write_pbxproj_prefix(
     organization_name = project_options.get("organization_name")
     if organization_name:
         args.add(_FLAGS.organization_name, organization_name)
+
+    # projectName
+    args.add(
+        _FLAGS.project_name,
+        paths.split_extension(paths.basename(install_path))[0],
+    )
 
     # platforms
     args.add_all(
