@@ -21,8 +21,12 @@ struct Generator {
     func generate(arguments: Arguments) async throws {
         // FIXME: Do these in parallel as tasks
         let pathTree = try await environment.calculatePathTree(
-            /*paths:*/
+            /*paths:*/ removingPathsInSynchronizedFolders(
                 environment.readFilePathsFile(arguments.filePathsFile),
+                synchronizedFolders: readSynchronizedFoldersFile(
+                    arguments.elementCreatorArguments.synchronizedFoldersFile
+                )
+            ),
             /*generatedPaths:*/ environment.readGeneratedFilePathsFile(
                 arguments.generatedFilePathsFile
             )
