@@ -1,4 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     ":write_files_and_groups_tests.bzl",
     "write_files_and_groups_test_suite",
@@ -29,6 +30,15 @@ write_pbxtargetdependencies_test_suite(name = "write_pbxtargetdependencies")
 write_swift_debug_settings_test_suite(name = "write_swift_debug_settings")
 
 write_target_build_settings_test_suite(name = "write_target_build_settings")
+
+sh_test(
+    name = "assemble_project_pbxproj_test",
+    srcs = ["assemble_project_pbxproj_test.sh"],
+    args = [
+        "$(rootpath //xcodeproj/internal/templates:assemble_project_pbxproj.sh)",
+    ],
+    data = ["//xcodeproj/internal/templates:assemble_project_pbxproj.sh"],
+)
 
 test_suite(name = "pbxproj_partials")
 

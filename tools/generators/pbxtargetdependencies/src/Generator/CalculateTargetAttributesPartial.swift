@@ -24,6 +24,11 @@ extension Generator.CalculateTargetAttributesPartial {
     typealias Callable = (_ objects: [Object]) -> String
 
     static func defaultCallable(objects: [Object]) -> String {
+        // Xcode writes dictionary keys sorted, so we do as well. This allows
+        // the `project.pbxproj` to be byte-identical to what Xcode writes,
+        // preventing Xcode from rewriting it.
+        let objects = objects.sorted { $0.identifier < $1.identifier }
+
         // The tabs for indenting are intentional
         return #"""
 				TargetAttributes = {

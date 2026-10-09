@@ -59,6 +59,7 @@ extension Generator.CalculatePlatformVariants {
     ) {
         var srcs: [[BazelPath]] = []
         var nonArcSrcs: [[BazelPath]] = []
+        var synchronizedFolders: [[BazelPath]] = []
         var excludableFilesKeysWithValues: [(TargetID, Set<BazelPath>)] = []
         for id in ids {
             let targetArguments = try targetArguments.value(
@@ -68,6 +69,7 @@ extension Generator.CalculatePlatformVariants {
 
             srcs.append(targetArguments.srcs)
             nonArcSrcs.append(targetArguments.nonArcSrcs)
+            synchronizedFolders.append(targetArguments.synchronizedFolders)
 
             excludableFilesKeysWithValues.append(
                 (
@@ -141,7 +143,8 @@ extension Generator.CalculatePlatformVariants {
 
         let consolidatedInputs = Target.ConsolidatedInputs(
             srcs: consolidatePaths(srcs),
-            nonArcSrcs: consolidatePaths(nonArcSrcs)
+            nonArcSrcs: consolidatePaths(nonArcSrcs),
+            synchronizedFolders: consolidatePaths(synchronizedFolders)
         )
 
         return (platformVariants, allConditionalFiles, consolidatedInputs)

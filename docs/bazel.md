@@ -963,3 +963,59 @@ xcodeproj_extra_files(
 | <a id="xcodeproj_extra_files-files"></a>files |  The list of extra files to surface in the Xcode navigator.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
 
+<a id="xcodeproj_synchronized_folders"></a>
+
+## xcodeproj_synchronized_folders
+
+<pre>
+load("@rules_xcodeproj//xcodeproj/internal/docs:aspect_hints.bzl", "xcodeproj_synchronized_folders")
+
+xcodeproj_synchronized_folders(<a href="#xcodeproj_synchronized_folders-name">name</a>, <a href="#xcodeproj_synchronized_folders-folders">folders</a>)
+</pre>
+
+This rule is used to show a target's source folders in Xcode as synchronized
+folders (Xcode 16's buildable folders), whose contents Xcode keeps up to date on
+its own: files added to such a folder appear in the target without regenerating
+the project. The provider created by this rule should be attached to the
+related target via an aspect hint.
+
+The folders are relative to the package of the target that the hint is attached
+to, so one hint can be shared by targets in different packages that use the
+same layout. The target's sources inside the folders are shown by the folders
+instead of individually.
+
+Bazel still only compiles the target's `srcs`, so they should be every source
+file in the folders, typically with a `glob`; otherwise a file added in Xcode
+appears in the target but isn't built.
+
+**EXAMPLE**
+
+```starlark
+load(
+    "@rules_xcodeproj//xcodeproj:xcodeproj_synchronized_folders.bzl",
+    "xcodeproj_synchronized_folders",
+)
+
+swift_library(
+    ...
+    srcs = glob(["Sources/**/*.swift"]),
+    aspect_hints = [":sources_folder"],
+    ...
+)
+
+# Show `Sources` as a synchronized folder of the Swift library in Xcode
+xcodeproj_synchronized_folders(
+    name = "sources_folder",
+    folders = ["Sources"],
+)
+```
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="xcodeproj_synchronized_folders-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="xcodeproj_synchronized_folders-folders"></a>folders |  The folders to show as synchronized folders, relative to the package of the target that the hint is attached to.   | List of strings | required |  |
+
+

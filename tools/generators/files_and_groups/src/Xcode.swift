@@ -277,6 +277,17 @@ enum Xcode {
     ///
     /// - Parameters:
     ///   - extension: The file extension.
+    /// The `lastKnownFileType` used for files whose extension isn't in
+    /// `pbxProjEscapedFileTypes`.
+    ///
+    /// Xcode determines the type of such files by sniffing their contents,
+    /// and writes `text` for text files (e.g. `.graphql`, `LICENSE`) and
+    /// `file` for binary ones. We only see paths (and the files might not
+    /// exist yet, e.g. generated files), so we use `text`, as unknown files in
+    /// source trees are overwhelmingly text. Matching Xcode prevents it from
+    /// rewriting the `project.pbxproj` when it next saves the project.
+    public static let unknownFileType = "text"
+
     public static func pbxProjEscapedFileType(extension: String) -> String? {
         pbxProjEscapedFileTypes[`extension`]
     }

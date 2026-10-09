@@ -6,8 +6,17 @@ extension Generator {
     static func pbxProjPrefixPartial(
         bazelDependenciesPartial: String,
         pbxProjectPrefixPartial: String,
-        minimumXcodeVersion: SemanticVersion
+        minimumXcodeVersion: SemanticVersion,
+        usesSynchronizedFolders: Bool = false
     ) -> String {
+        // `PBXFileSystemSynchronizedRootGroup`s need object version 70, which
+        // is what Xcode writes for such projects with the compatibility
+        // version that we set. Other projects keep the version for
+        // `minimumXcodeVersion`, so they don't change.
+        let objectVersion = usesSynchronizedFolders ?
+            max(minimumXcodeVersion.pbxProjObjectVersion, 70) :
+            minimumXcodeVersion.pbxProjObjectVersion
+
         // This is a `PBXProj` partial for the start of the `PBXProj` element.
         //
         // The tabs for indenting are intentional. The trailing newlines are
@@ -19,7 +28,7 @@ extension Generator {
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = \#(minimumXcodeVersion.pbxProjObjectVersion);
+	objectVersion = \#(objectVersion);
 	objects = {
 \#(bazelDependenciesPartial)\#
 \#(pbxProjectPrefixPartial)\#

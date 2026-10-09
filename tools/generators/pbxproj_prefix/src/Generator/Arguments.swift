@@ -74,10 +74,21 @@ Minimum Xcode version that the generated project supports.
         @Argument(help: "Development region for the project.")
         var developmentRegion: String
 
+        @Flag(help: """
+Whether the project has `PBXFileSystemSynchronizedRootGroup`s.
+""")
+        var usesSynchronizedFolders = false
+
         @Option(help: """
 Populates the `ORGANIZATIONNAME` attribute for the project.
 """)
         var organizationName: String?
+
+        @Option(help: """
+Name of the project (the `.xcodeproj` basename without its extension). Used \
+in object comments, to match how Xcode writes them.
+""")
+        var projectName: String?
 
         @Option(
             parsing: .upToNextOption,

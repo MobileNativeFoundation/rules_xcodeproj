@@ -178,7 +178,8 @@ extension Generator.CreateTarget {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: entry.dependencySubIdentifiers,
             buildConfigurationListIdentifier: configurationList.identifier,
-            buildPhaseIdentifiers: buildPhases.map(\.identifier)
+            buildPhaseIdentifiers: buildPhases.map(\.identifier),
+            synchronizedFolders: consolidatedInputs.synchronizedFolders
         )
 
         let buildFileSubIdentifiers =

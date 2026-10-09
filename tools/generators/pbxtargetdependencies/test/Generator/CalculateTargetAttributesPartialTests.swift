@@ -14,12 +14,12 @@ class CalculateTargetAttributesPartialTests: XCTestCase {
             .init(identifier: "c_id /* @//z:c */", content: "{c_content}"),
         ]
 
-        // Shows that it's not responsible for sorting (this order is wrong)
+        // Sorted by identifier, like Xcode does
         // The tabs for indenting are intentional
         let expectedTargetAttributesPartial = #"""
 				TargetAttributes = {
-					b_id /* b */ = {b_content};
 					a_id /* a */ = {a_content};
+					b_id /* b */ = {b_content};
 					c_id /* @//z:c */ = {c_content};
 				};
 			};

@@ -150,4 +150,41 @@ class PBXProjPrefixPartialTests: XCTestCase {
             expectedPbxProjPrefixPartial
         )
     }
+
+    func test_synchronizedFolders() {
+        // Arrange
+
+        let bazelDependenciesPartial = "{BazelDependencies_Partial}\n"
+        let pbxProjectPrefixPartial = "{PBXProject_Prefix_Partial}\n"
+        let minimumXcodeVersion: SemanticVersion = "15.0"
+
+        let expectedPbxProjPrefixPartial = #"""
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+{BazelDependencies_Partial}
+{PBXProject_Prefix_Partial}
+
+"""#
+
+        // Act
+
+        let pbxProjPrefixPartial = Generator.pbxProjPrefixPartial(
+            bazelDependenciesPartial: bazelDependenciesPartial,
+            pbxProjectPrefixPartial: pbxProjectPrefixPartial,
+            minimumXcodeVersion: minimumXcodeVersion,
+            usesSynchronizedFolders: true
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            pbxProjPrefixPartial,
+            expectedPbxProjPrefixPartial
+        )
+    }
 }

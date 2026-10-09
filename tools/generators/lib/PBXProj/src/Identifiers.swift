@@ -258,6 +258,9 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
 
             /// A `XCVersionGroup` or child `PBXFileReference`.
             case coreData = "3"
+
+            /// A `PBXFileSystemSynchronizedRootGroup`.
+            case synchronizedRootGroup = "4"
         }
 
         public static func mainGroup(_ path: String) -> String {
@@ -301,6 +304,28 @@ FF0000000000000000000008 /* rules_xcodeproj */
             hashCache: inout Set<String>
         ) -> String {
             let hash = elementHash(path + type.rawValue, hashCache: &hashCache)
+            return #"FE\#(hash) /* \#(name) */"#
+        }
+
+        /// Calculates the identifier for a
+        /// `PBXFileSystemSynchronizedRootGroup` at `path`.
+        ///
+        /// Unlike `element()`, this doesn't use a hash cache: the targets
+        /// that a synchronized folder belongs to reference it by this
+        /// identifier, and they are created by another generator, so the
+        /// identifier can only depend on `path`.
+        ///
+        /// - Parameters:
+        ///   - path: The path of the folder.
+        ///   - name: The name of the folder, used in a comment.
+        public static func synchronizedRootGroup(
+            _ path: String,
+            name: String
+        ) -> String {
+            let hash = elementHash(
+                path + ElementType.synchronizedRootGroup.rawValue,
+                retryCount: 0
+            )
             return #"FE\#(hash) /* \#(name) */"#
         }
 
@@ -351,9 +376,24 @@ FF0000000000000000000008 /* rules_xcodeproj */
 
     public enum Project {
         public static let id = #"FF0000000000000000000001 /* Project object */"#
-        public static let buildConfigurationList = #"""
+        /// The identifier of the `PBXProject`'s `XCConfigurationList`.
+        ///
+        /// Xcode comments it with the project's name (e.g.
+        /// `Build configuration list for PBXProject "Foo"`). The name is
+        /// optional only to keep older callers working; when it's `nil` the
+        /// name is omitted.
+        public static func buildConfigurationList(
+            projectName: String?
+        ) -> String {
+            guard let projectName else {
+                return #"""
 FF0000000000000000000002 /* Build configuration list for PBXProject */
 """#
+            }
+            return #"""
+FF0000000000000000000002 /* Build configuration list for PBXProject "\#(projectName)" */
+"""#
+        }
 
         /// Calculates the identifier for one of the `PBXProject`
         /// `XCBBuildConfiguration`s.

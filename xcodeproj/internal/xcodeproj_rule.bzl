@@ -131,6 +131,7 @@ def _collect_files(
     transitive_files = [unsupported_extra_files]
     transitive_generated_file_paths = []
     transitive_srcs = []
+    transitive_synchronized_folders = []
     for xcode_target in all_targets:
         transitive_file_paths.append(xcode_target.inputs.extra_file_paths)
         transitive_files.append(xcode_target.inputs.extra_files)
@@ -139,6 +140,9 @@ def _collect_files(
         )
         transitive_srcs.append(xcode_target.inputs.non_arc_srcs)
         transitive_srcs.append(xcode_target.inputs.srcs)
+        transitive_synchronized_folders.append(
+            xcode_target.inputs.synchronized_folders,
+        )
 
         label = xcode_target.label
         if label:
@@ -162,6 +166,7 @@ def _collect_files(
         transitive = transitive_files,
     )
     generated_file_paths = depset(transitive = transitive_generated_file_paths)
+    synchronized_folders = depset(transitive = transitive_synchronized_folders)
 
     return (
         compile_stub_needed,
@@ -170,6 +175,7 @@ def _collect_files(
         generated_file_paths,
         infoplists,
         srcs,
+        synchronized_folders,
     )
 
 def _get_minimum_xcode_version(*, xcode_config):
@@ -301,6 +307,7 @@ def _write_installer(
 def _write_project_contents(
         *,
         actions,
+        assemble_project_pbxproj_script,
         bin_dir_path,
         colorize,
         config,
@@ -361,6 +368,7 @@ def _write_project_contents(
         generated_file_paths,
         infoplists,
         srcs,
+        synchronized_folders,
     ) = _collect_files(
         owned_extra_files = owned_extra_files,
         resource_bundle_xcode_targets = resource_bundle_xcode_targets,
@@ -422,6 +430,7 @@ def _write_project_contents(
         install_path = install_path,
         project_options = project_options,
         selected_model_versions_file = selected_model_versions_file,
+        synchronized_folders = synchronized_folders,
         tool = files_and_groups_generator,
         workspace_directory = workspace_directory,
     )
@@ -447,6 +456,7 @@ def _write_project_contents(
         suppress_coverage_build = suppress_coverage_build,
         target_ids_list = target_ids_list,
         tool = pbxproj_prefix_generator,
+        uses_synchronized_folders = bool(synchronized_folders),
         xcode_configurations = xcode_configurations,
         workspace_directory = workspace_directory,
     )
@@ -455,6 +465,7 @@ def _write_project_contents(
 
     project_pbxproj = pbxproj_partials.write_project_pbxproj(
         actions = actions,
+        assemble_script = assemble_project_pbxproj_script,
         files_and_groups = files_and_groups,
         generator_name = name,
         pbxproj_prefix = pbxproj_prefix,
@@ -632,6 +643,9 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         target_ids_list,
     ) = _write_project_contents(
         actions = actions,
+        assemble_project_pbxproj_script = (
+            ctx.file._assemble_project_pbxproj_script
+        ),
         bin_dir_path = ctx.bin_dir.path,
         colorize = colorize,
         config = config,
@@ -831,6 +845,12 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
         "_allowlist_function_transition": attr.label(
             default = Label(
                 "@bazel_tools//tools/allowlists/function_transition_allowlist",
+            ),
+        ),
+        "_assemble_project_pbxproj_script": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal/templates:assemble_project_pbxproj.sh",
             ),
         ),
         "_bazel_build_script_template": attr.label(

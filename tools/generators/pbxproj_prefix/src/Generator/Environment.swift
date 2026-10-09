@@ -50,6 +50,7 @@ extension Generator {
             _ developmentRegion: String,
             _ organizationName: String?,
             _ projectDir: String,
+            _ projectName: String?,
             _ workspace: String,
             _ xcodeConfigurations: [String]
         ) -> String
@@ -57,7 +58,8 @@ extension Generator {
         let pbxProjPrefixPartial: (
             _ bazelDependenciesPartial: String,
             _ pbxProjectPrefixPartial: String,
-            _ xcodeVersion: SemanticVersion
+            _ xcodeVersion: SemanticVersion,
+            _ usesSynchronizedFolders: Bool
         ) -> String
 
         let projectDir: (_ executionRoot: String) -> String
