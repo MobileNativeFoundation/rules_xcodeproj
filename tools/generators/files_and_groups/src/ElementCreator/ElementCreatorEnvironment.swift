@@ -99,6 +99,7 @@ extension ElementCreator.Environment {
         externalDir: String,
         includeCompileStub: Bool,
         installPath: String,
+        synchronizedFolders: Set<BazelPath> = [],
         selectedModelVersions: [BazelPath: String],
         workspace: String
     ) -> ElementCreator.CreateRootElements {
@@ -113,6 +114,7 @@ extension ElementCreator.Environment {
         let createFileElement = ElementCreator.CreateFileElement(
             createAttributes: createAttributes,
             createIdentifier: createIdentifier,
+            synchronizedFolders: synchronizedFolders,
             callable: createFileElementCallable
         )
         let createFile = ElementCreator.CreateFile(
