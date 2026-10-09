@@ -85,6 +85,9 @@ extension Generator.CreateTargetAttributesObjects {
             )
         }
 
-        return targetAttributes
+        // Xcode writes dictionary keys sorted, so we do as well. This allows
+        // the `project.pbxproj` to be byte-identical to what Xcode writes,
+        // preventing Xcode from rewriting it.
+        return targetAttributes.sorted { $0.identifier < $1.identifier }
     }
 }
