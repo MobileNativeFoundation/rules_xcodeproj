@@ -30,6 +30,9 @@ def _write_pbxproj_prefix_test_impl(ctx):
     expected_inputs = [
         ctx.attr.execution_root_file,
         ctx.attr.resolved_repositories_file,
+        ctx.attr.pbxproject_target_attributes,
+        ctx.attr.pbxproject_known_regions,
+        ctx.attr.pbxproject_targets,
     ]
     if ctx.attr.pre_build_script:
         file = _PRE_BUILD_DECLARED_FILE
@@ -57,6 +60,9 @@ def _write_pbxproj_prefix_test_impl(ctx):
         install_path = "a/project.xcodeproj",
         legacy_index_import = ctx.attr.legacy_index_import,
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
+        pbxproject_known_regions = ctx.attr.pbxproject_known_regions,
+        pbxproject_target_attributes = ctx.attr.pbxproject_target_attributes,
+        pbxproject_targets = ctx.attr.pbxproject_targets,
         platforms = ctx.attr.platforms,
         post_build_script = ctx.attr.post_build_script,
         pre_build_script = ctx.attr.pre_build_script,
@@ -150,6 +156,9 @@ write_pbxproj_prefix_test = unittest.make(
         "index_import": attr.string(mandatory = True),
         "legacy_index_import": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
+        "pbxproject_known_regions": attr.string(mandatory = True),
+        "pbxproject_target_attributes": attr.string(mandatory = True),
+        "pbxproject_targets": attr.string(mandatory = True),
         "platforms": attr.string_list(mandatory = True),
         "post_build_script": attr.string(),
         "pre_build_script": attr.string(),
@@ -189,6 +198,11 @@ def write_pbxproj_prefix_test_suite(name):
             index_import,
             legacy_index_import,
             minimum_xcode_version,
+            pbxproject_known_regions = "a/path/to/pbxproject_known_regions",
+            pbxproject_target_attributes = (
+                "a/path/to/pbxproject_target_attributes"
+            ),
+            pbxproject_targets = "a/path/to/pbxproject_targets",
             platforms,
             post_build_script = None,
             pre_build_script = None,
@@ -216,6 +230,9 @@ def write_pbxproj_prefix_test_suite(name):
             index_import = index_import,
             legacy_index_import = legacy_index_import,
             minimum_xcode_version = minimum_xcode_version,
+            pbxproject_known_regions = pbxproject_known_regions,
+            pbxproject_target_attributes = pbxproject_target_attributes,
+            pbxproject_targets = pbxproject_targets,
             platforms = platforms,
             post_build_script = post_build_script,
             pre_build_script = pre_build_script,
@@ -285,6 +302,12 @@ def write_pbxproj_prefix_test_suite(name):
             "0",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
+            # targetAttributesFile
+            "a/path/to/pbxproject_target_attributes",
+            # knownRegionsFile
+            "a/path/to/pbxproject_known_regions",
+            # targetsFile
+            "a/path/to/pbxproject_targets",
             # minimumXcodeVersion
             "14.2.1",
             # importIndexBuildIndexstores
@@ -359,6 +382,12 @@ def write_pbxproj_prefix_test_suite(name):
             "0",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
+            # targetAttributesFile
+            "a/path/to/pbxproject_target_attributes",
+            # knownRegionsFile
+            "a/path/to/pbxproject_known_regions",
+            # targetsFile
+            "a/path/to/pbxproject_targets",
             # minimumXcodeVersion
             "14.2.1",
             # importIndexBuildIndexstores

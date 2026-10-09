@@ -57,6 +57,26 @@ setting.
         )
         var resolvedRepositoriesFile: URL
 
+        @Argument(
+            help: """
+Path to the `PBXProject.attributes.TargetAttributes` `PBXProj` partial.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var targetAttributesFile: URL
+
+        @Argument(
+            help: "Path to the `PBXProject.knownRegions` `PBXProj` partial.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var knownRegionsFile: URL
+
+        @Argument(
+            help: "Path to the `PBXProject.targets` `PBXProj` partial.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var targetsFile: URL
+
         @Argument(help: """
 Minimum Xcode version that the generated project supports.
 """)

@@ -666,6 +666,9 @@ def _write_pbxproj_prefix(
         index_import,
         install_path,
         minimum_xcode_version,
+        pbxproject_known_regions,
+        pbxproject_target_attributes,
+        pbxproject_targets,
         platforms,
         post_build_script,
         pre_build_script,
@@ -698,6 +701,12 @@ def _write_pbxproj_prefix(
             `.xcodeproj` will be written.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
+        pbxproject_known_regions: The `known_regions` `File` returned from
+            `pbxproj_partials.write_files_and_groups`.
+        pbxproject_target_attributes: The `pbxproject_target_attributes` `File`
+            returned from `pbxproj_partials.write_pbxtargetdependencies`.
+        pbxproject_targets: The `pbxproject_targets` `File` returned from
+            `pbxproj_partials.write_pbxtargetdependencies`.
         platforms: A `depset` of `apple_platform`s.
         post_build_script: A `string` representing a post build script.
         pre_build_script: A `string` representing a pre build script.
@@ -717,7 +726,13 @@ def _write_pbxproj_prefix(
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
     """
-    inputs = [execution_root_file, resolved_repositories_file]
+    inputs = [
+        execution_root_file,
+        resolved_repositories_file,
+        pbxproject_target_attributes,
+        pbxproject_known_regions,
+        pbxproject_targets,
+    ]
     output = actions.declare_file(
         "{}_pbxproj_partials/pbxproj_prefix".format(
             generator_name,
@@ -757,6 +772,15 @@ def _write_pbxproj_prefix(
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
+
+    # targetAttributesFile
+    args.add(pbxproject_target_attributes)
+
+    # knownRegionsFile
+    args.add(pbxproject_known_regions)
+
+    # targetsFile
+    args.add(pbxproject_targets)
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
@@ -1391,9 +1415,6 @@ def _write_project_pbxproj(
         files_and_groups,
         generator_name,
         pbxproj_prefix,
-        pbxproject_targets,
-        pbxproject_known_regions,
-        pbxproject_target_attributes,
         pbxtargetdependencies,
         targets):
     """Creates a `project.pbxproj` `File`.
@@ -1405,12 +1426,6 @@ def _write_project_pbxproj(
         generator_name: The name of the `xcodeproj` generator target.
         pbxproj_prefix: The `File` returned from
             `pbxproj_partials.write_pbxproj_prefix`.
-        pbxproject_known_regions: The `known_regions` `File` returned from
-            `pbxproj_partials.write_known_regions`.
-        pbxproject_target_attributes: The `pbxproject_target_attributes` `File`
-            returned from `pbxproj_partials.write_pbxproject_targets`.
-        pbxproject_targets: The `pbxproject_targets` `File` returned from
-            `pbxproj_partials.write_pbxproject_targets`.
         pbxtargetdependencies: The `pbxtargetdependencies` `Files` returned from
             `pbxproj_partials.write_pbxproject_targets`.
         targets: The `targets` `list` of `Files` returned from
@@ -1421,12 +1436,7 @@ def _write_project_pbxproj(
     """
     output = actions.declare_file("{}.project.pbxproj".format(generator_name))
 
-    inputs = [
-        pbxproj_prefix,
-        pbxproject_target_attributes,
-        pbxproject_known_regions,
-        pbxproject_targets,
-    ] + targets + [
+    inputs = [pbxproj_prefix] + targets + [
         pbxtargetdependencies,
         files_and_groups,
     ]
