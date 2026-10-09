@@ -41,5 +41,15 @@ Path to a file that contains a JSON representation of \
             transform: { $0 == "" ? nil : $0 == "1" }
         )
         var usesTabs: Bool?
+
+        @Option(
+            help: """
+Path to a file that contains the paths, relative to the Bazel execution root, \
+of folders to create as `PBXFileSystemSynchronizedRootGroup`s instead of \
+`PBXFileReference`s.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var synchronizedFoldersFile: URL?
     }
 }
