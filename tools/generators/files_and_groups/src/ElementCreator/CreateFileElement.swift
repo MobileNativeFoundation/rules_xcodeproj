@@ -93,7 +93,8 @@ extension ElementCreator.CreateFileElement {
         let content = """
 {isa = PBXFileReference; \
 \(calculateFileTypeType(basename: name, extension: impliedExt)) = \(
-    impliedExt.flatMap(Xcode.pbxProjEscapedFileType) ?? "file"
+    impliedExt.flatMap(Xcode.pbxProjEscapedFileType) ??
+        Xcode.unknownFileType
 ); \
 \(nameAttribute)\
 path = \(attributes.elementAttributes.path.pbxProjEscaped); \
