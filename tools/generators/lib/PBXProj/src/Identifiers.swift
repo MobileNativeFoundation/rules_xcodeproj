@@ -258,6 +258,9 @@ FF01000000000000000001\#(byteHexStrings[index]!) \#
 
             /// A `XCVersionGroup` or child `PBXFileReference`.
             case coreData = "3"
+
+            /// A `PBXFileSystemSynchronizedRootGroup`.
+            case synchronizedRootGroup = "4"
         }
 
         public static func mainGroup(_ path: String) -> String {
@@ -301,6 +304,28 @@ FF0000000000000000000008 /* rules_xcodeproj */
             hashCache: inout Set<String>
         ) -> String {
             let hash = elementHash(path + type.rawValue, hashCache: &hashCache)
+            return #"FE\#(hash) /* \#(name) */"#
+        }
+
+        /// Calculates the identifier for a
+        /// `PBXFileSystemSynchronizedRootGroup` at `path`.
+        ///
+        /// Unlike `element()`, this doesn't use a hash cache: the targets
+        /// that a synchronized folder belongs to reference it by this
+        /// identifier, and they are created by another generator, so the
+        /// identifier can only depend on `path`.
+        ///
+        /// - Parameters:
+        ///   - path: The path of the folder.
+        ///   - name: The name of the folder, used in a comment.
+        public static func synchronizedRootGroup(
+            _ path: String,
+            name: String
+        ) -> String {
+            let hash = elementHash(
+                path + ElementType.synchronizedRootGroup.rawValue,
+                retryCount: 0
+            )
             return #"FE\#(hash) /* \#(name) */"#
         }
 
