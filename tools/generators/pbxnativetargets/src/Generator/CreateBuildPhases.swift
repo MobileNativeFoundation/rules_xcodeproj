@@ -198,7 +198,8 @@ extension Generator.CreateBuildPhases {
         let hasCompilePhase = productType.hasCompilePhase
         let hasCompileStub = hasCompilePhase &&
             consolidatedInputs.srcs.isEmpty &&
-            consolidatedInputs.nonArcSrcs.isEmpty
+            consolidatedInputs.nonArcSrcs.isEmpty &&
+            consolidatedInputs.synchronizedFolders.isEmpty
 
         if hasLinkParams {
             buildPhases.append(

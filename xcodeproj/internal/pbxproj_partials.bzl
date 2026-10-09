@@ -310,6 +310,14 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
+            # synchronizedFolders
+            # TODO: Pass the target's synchronized folders
+            targets_args.add_all(
+                [],
+                omit_if_empty = False,
+                terminate_with = "",
+            )
+
             targets_args.add_all(
                 xcode_target_configurations[xcode_target.id],
                 omit_if_empty = False,
