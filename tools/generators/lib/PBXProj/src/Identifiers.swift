@@ -283,6 +283,19 @@ FF0000000000000000000004 /* Products */
 FF0000000000000000000008 /* rules_xcodeproj */
 """#
 
+        /// Calculates the identifier for a `PBXFileSystemSynchronizedRootGroup`
+        /// at `path`.
+        public static func synchronizedRootGroup(
+            _ path: String,
+            name: String
+        ) -> String {
+            let digest = Insecure.MD5.hash(data: Data("S\(path)".utf8))
+                .dropLast(5)
+                .map { byteHexStrings[$0]! }
+                .joined()
+            return #"FD\#(digest) /* \#(name) */"#
+        }
+
         /// Calculates the identifier for a file or group element at `path`.
         ///
         /// - Note: The order that this is called matters. If two `path + type`
