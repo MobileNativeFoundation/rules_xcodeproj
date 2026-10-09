@@ -1,0 +1,8 @@
+load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+
+native_binary(
+    name = "universal_project_pbxproj",
+    src = "prebuilt_universal_project_pbxproj",
+    out = "universal_project_pbxproj",
+    visibility = ["//visibility:public"],
+)
