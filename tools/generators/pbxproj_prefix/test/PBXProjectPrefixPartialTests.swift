@@ -41,7 +41,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Release */,
@@ -53,7 +53,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = "en-GB";
 			hasScannedForEncodings = 0;
@@ -77,6 +77,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
             developmentRegion: developmentRegion,
             organizationName: organizationName,
             projectDir: projectDir,
+            projectName: "Foo",
             workspace: workspace,
             xcodeConfigurations: xcodeConfigurations
         )
@@ -124,7 +125,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Release */,
@@ -136,7 +137,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = "en-GB";
 			hasScannedForEncodings = 0;
@@ -160,6 +161,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
             developmentRegion: developmentRegion,
             organizationName: organizationName,
             projectDir: projectDir,
+            projectName: "Foo",
             workspace: workspace,
             xcodeConfigurations: xcodeConfigurations
         )
@@ -207,7 +209,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Release */,
@@ -219,7 +221,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
@@ -244,6 +246,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
             developmentRegion: developmentRegion,
             organizationName: organizationName,
             projectDir: projectDir,
+            projectName: "Foo",
             workspace: workspace,
             xcodeConfigurations: xcodeConfigurations
         )
@@ -291,7 +294,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Release */,
@@ -303,7 +306,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
@@ -328,6 +331,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
             developmentRegion: developmentRegion,
             organizationName: organizationName,
             projectDir: projectDir,
+            projectName: "Foo",
             workspace: workspace,
             xcodeConfigurations: xcodeConfigurations
         )
@@ -375,7 +379,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Release */,
@@ -387,7 +391,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
@@ -412,6 +416,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
             developmentRegion: developmentRegion,
             organizationName: organizationName,
             projectDir: projectDir,
+            projectName: "Foo",
             workspace: workspace,
             xcodeConfigurations: xcodeConfigurations
         )

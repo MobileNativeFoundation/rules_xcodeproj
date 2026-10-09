@@ -75,6 +75,7 @@ struct Generator {
             /*developmentRegion:*/ arguments.developmentRegion,
             /*organizationName:*/ arguments.organizationName,
             /*projectDir:*/ projectDir,
+            /*projectName:*/ arguments.projectName,
             /*workspace:*/ arguments.workspace,
             /*xcodeConfigurations:*/ arguments.xcodeConfigurations
         )
