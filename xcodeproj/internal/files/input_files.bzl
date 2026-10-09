@@ -1,5 +1,6 @@
 """Module containing functions dealing with target input files."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleResourceInfo",
@@ -11,7 +12,11 @@ load(
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
-load("//xcodeproj/internal:providers.bzl", "XcodeProjExtraFilesHintInfo")
+load(
+    "//xcodeproj/internal:providers.bzl",
+    "XcodeProjExtraFilesHintInfo",
+    "XcodeProjSynchronizedFoldersHintInfo",
+)
 load(":linker_input_files.bzl", "linker_input_files")
 load(":resources.bzl", resources_module = "resources")
 
@@ -307,6 +312,9 @@ def _collect_input_files(
                     `target`'s `non_arc_srcs`-like attributes.
                 *   `srcs`: A `list` of `File`s that are inputs to `target`'s
                     `srcs`-like attributes.
+                *   `synchronized_folders`: A `depset` of path strings of
+                    folders from the `xcodeproj_synchronized_folders` aspect
+                    hint, which are shown as synchronized folders.
 
         *   A `struct`, which will end up in `XcodeProjInfo.inputs`, with the
             following fields:
@@ -408,6 +416,33 @@ def _collect_input_files(
         rule_file = ctx.rule.file,
         rule_files = ctx.rule.files,
     )
+
+    # Folders from the `xcodeproj_synchronized_folders` aspect hint are shown
+    # as synchronized folders, so the sources inside them aren't listed
+    # individually
+    synchronized_folders = []
+    if automatic_target_info.srcs:
+        package_dir = paths.join(label.workspace_root, label.package)
+        for hint in rule_attr.aspect_hints:
+            if XcodeProjSynchronizedFoldersHintInfo in hint:
+                synchronized_folders.extend([
+                    paths.join(package_dir, folder)
+                    for folder in (
+                        hint[XcodeProjSynchronizedFoldersHintInfo].folders
+                    )
+                ])
+    if synchronized_folders:
+        folder_prefixes = tuple([folder + "/" for folder in synchronized_folders])
+        srcs = [
+            file
+            for file in srcs
+            if not file.path.startswith(folder_prefixes)
+        ]
+        non_arc_srcs = [
+            file
+            for file in non_arc_srcs
+            if not file.path.startswith(folder_prefixes)
+        ]
 
     # Collect extra fila provided via the `xcodeproj_extra_files` aspect hint
     for hint in rule_attr.aspect_hints:
@@ -560,6 +595,9 @@ def _collect_input_files(
                 infoplist = infoplist,
                 non_arc_srcs = memory_efficient_depset(non_arc_srcs),
                 srcs = memory_efficient_depset(srcs),
+                synchronized_folders = memory_efficient_depset(
+                    synchronized_folders,
+                ),
             ),
         ),
         struct(
@@ -665,6 +703,7 @@ def _collect_mixed_language_input_files(
                 infoplist = None,
                 non_arc_srcs = EMPTY_LIST,
                 srcs = EMPTY_LIST,
+                synchronized_folders = EMPTY_DEPSET,
             ),
             struct(
                 _product_framework_files = EMPTY_DEPSET,
@@ -688,6 +727,7 @@ def _collect_mixed_language_input_files(
             infoplist = None,
             non_arc_srcs = mergeable_info.non_arc_srcs,
             srcs = mergeable_info.srcs,
+            synchronized_folders = mergeable_info.synchronized_folders,
         ),
         struct(
             # Framework files only come from top-level targets, so no need to

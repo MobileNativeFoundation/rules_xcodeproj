@@ -21,6 +21,9 @@ _FILE_PATHS_FILE = mock_actions.mock_file(
 _GENERATED_FILE_PATHS_FILE = mock_actions.mock_file(
     "a_generator_name_pbxproj_partials/generated_file_paths_file",
 )
+_SYNCHRONIZED_FOLDERS_FILE = mock_actions.mock_file(
+    "a_generator_name_pbxproj_partials/synchronized_folders_file",
+)
 
 def _write_files_and_groups_test_impl(ctx):
     env = unittest.begin(ctx)
@@ -35,12 +38,14 @@ def _write_files_and_groups_test_impl(ctx):
         _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE: None,
         _FILE_PATHS_FILE: None,
         _GENERATED_FILE_PATHS_FILE: None,
+        _SYNCHRONIZED_FOLDERS_FILE: None,
     }
     expected_inputs = [
         _FILE_PATHS_FILE,
         _GENERATED_FILE_PATHS_FILE,
         ctx.attr.execution_root_file,
         ctx.attr.selected_model_versions_file,
+        _SYNCHRONIZED_FOLDERS_FILE,
     ] + ctx.attr.buildfile_subidentifiers_files
     expected_outputs = [
         _FILES_AND_GROUPS_DECLARED_FILE,
@@ -91,6 +96,7 @@ def _write_files_and_groups_test_impl(ctx):
         install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
+        synchronized_folders = depset(ctx.attr.synchronized_folders),
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
     )
@@ -190,6 +196,7 @@ write_files_and_groups_test = unittest.make(
         "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
+        "synchronized_folders": attr.string_list(),
         "workspace_directory": attr.string(mandatory = True),
 
         # Expected
@@ -223,6 +230,7 @@ def write_files_and_groups_test_suite(name):
             install_path,
             project_options,
             selected_model_versions_file,
+            synchronized_folders = [],
             workspace_directory,
 
             # Expected
@@ -244,6 +252,7 @@ def write_files_and_groups_test_suite(name):
             install_path = install_path,
             project_options = project_options,
             selected_model_versions_file = selected_model_versions_file,
+            synchronized_folders = synchronized_folders,
             workspace_directory = workspace_directory,
 
             # Expected
@@ -300,6 +309,9 @@ def write_files_and_groups_test_suite(name):
             _GENERATED_FILE_PATHS_FILE.path,
             # developmentRegion
             "en",
+            # synchronizedFoldersFile
+            "--synchronized-folders-file",
+            _SYNCHRONIZED_FOLDERS_FILE.path,
             # useBaseInternationalization
             "--use-base-internationalization",
             # buildFileSubIdentifiersFiles
@@ -310,6 +322,7 @@ def write_files_and_groups_test_suite(name):
         expected_writes = {
             _FILE_PATHS_FILE: "\n",
             _GENERATED_FILE_PATHS_FILE: "\n",
+            _SYNCHRONIZED_FOLDERS_FILE: "\n",
         },
     )
 
@@ -325,6 +338,7 @@ def write_files_and_groups_test_suite(name):
         ],
         colorize = True,
         compile_stub_needed = True,
+        synchronized_folders = ["a/path/to/Sources"],
         execution_root_file = "an/execution/root/file",
         files = [
             "a/path/to/a/file",
@@ -384,6 +398,9 @@ def write_files_and_groups_test_suite(name):
             _GENERATED_FILE_PATHS_FILE.path,
             # developmentRegion
             "enGB",
+            # synchronizedFoldersFile
+            "--synchronized-folders-file",
+            _SYNCHRONIZED_FOLDERS_FILE.path,
             # useBaseInternationalization
             "--use-base-internationalization",
             # compileStubNeeded
@@ -401,6 +418,10 @@ a/path/to/a/file
 another/path/to/another/file
 a/path/to/a/file_path.bundle
 another/path/to/another/file_path.framework
+a/path/to/Sources
+""",
+            _SYNCHRONIZED_FOLDERS_FILE: """\
+a/path/to/Sources
 """,
             _GENERATED_FILE_PATHS_FILE: """\
 file

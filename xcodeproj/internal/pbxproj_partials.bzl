@@ -123,6 +123,8 @@ _FLAGS = struct(
     platforms = "--platforms",
     post_build_script = "--post-build-script",
     pre_build_script = "--pre-build-script",
+    synchronized_folders_file = "--synchronized-folders-file",
+    uses_synchronized_folders = "--uses-synchronized-folders",
     target_and_test_hosts = "--target-and-test-hosts",
     target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
     use_base_internationalization = "--use-base-internationalization",
@@ -311,9 +313,8 @@ def _write_consolidation_map_targets(
             )
 
             # synchronizedFolders
-            # TODO: Pass the target's synchronized folders
             targets_args.add_all(
-                [],
+                xcode_target.inputs.synchronized_folders,
                 omit_if_empty = False,
                 terminate_with = "",
             )
@@ -416,6 +417,7 @@ def _write_files_and_groups(
         install_path,
         project_options,
         selected_model_versions_file,
+        synchronized_folders = EMPTY_DEPSET,
         tool,
         workspace_directory):
     """Creates `File`s representing files and groups in a `.pbxproj`.
@@ -442,6 +444,8 @@ def _write_files_and_groups(
         selected_model_versions_file: A `File` that contains a JSON
             representation of `[BazelPath: String]`, mapping `.xcdatamodeld`
             file paths to selected `.xcdatamodel` file names.
+        synchronized_folders: A `depset` of paths of folders to create as
+            `PBXFileSystemSynchronizedRootGroup`s.
         tool: The executable that will generate the output files.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
@@ -492,6 +496,10 @@ def _write_files_and_groups(
     # TODO: Consider moving normalization into `args.add_all.map_each`
     file_paths_args.add_all(file_paths)
 
+    # Synchronized folders are placed in the tree like files, and created as
+    # `PBXFileSystemSynchronizedRootGroup`s.
+    file_paths_args.add_all(synchronized_folders)
+
     actions.write(file_paths_file, file_paths_args)
 
     # generatedFilePaths
@@ -512,6 +520,20 @@ def _write_files_and_groups(
     )
 
     actions.write(generated_file_paths_file, generated_file_paths_args)
+
+    # synchronizedFoldersFile
+
+    synchronized_folders_file = actions.declare_file(
+        "{}_pbxproj_partials/synchronized_folders_file".format(
+            generator_name,
+        ),
+    )
+
+    synchronized_folders_args = actions.args()
+    synchronized_folders_args.set_param_file_format("multiline")
+    synchronized_folders_args.add_all(synchronized_folders)
+
+    actions.write(synchronized_folders_file, synchronized_folders_args)
 
     # ... the rest
 
@@ -554,6 +576,9 @@ def _write_files_and_groups(
     # developmentRegion
     args.add(project_options["development_region"])
 
+    # synchronizedFoldersFile
+    args.add(_FLAGS.synchronized_folders_file, synchronized_folders_file)
+
     # useBaseInternationalization
     args.add(_FLAGS.use_base_internationalization)
 
@@ -581,6 +606,7 @@ def _write_files_and_groups(
             generated_file_paths_file,
             execution_root_file,
             selected_model_versions_file,
+            synchronized_folders_file,
         ] + buildfile_subidentifiers_files,
         outputs = [
             files_and_groups,
@@ -683,6 +709,7 @@ def _write_pbxproj_prefix(
         suppress_coverage_build,
         target_ids_list,
         tool,
+        uses_synchronized_folders = False,
         workspace_directory,
         xcode_configurations):
     """Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
@@ -718,6 +745,8 @@ def _write_pbxproj_prefix(
             when `CLANG_COVERAGE_MAPPING` is set.
         target_ids_list: A `File` containing a list of target IDs.
         tool: The executable that will generate the `PBXProj` partial.
+        uses_synchronized_folders: Whether the project has
+            `PBXFileSystemSynchronizedRootGroup`s.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
         xcode_configurations: A sorted sequence of Xcode configuration names.
@@ -782,6 +811,9 @@ def _write_pbxproj_prefix(
     organization_name = project_options.get("organization_name")
     if organization_name:
         args.add(_FLAGS.organization_name, organization_name)
+
+    if uses_synchronized_folders:
+        args.add(_FLAGS.uses_synchronized_folders)
 
     # platforms
     args.add_all(

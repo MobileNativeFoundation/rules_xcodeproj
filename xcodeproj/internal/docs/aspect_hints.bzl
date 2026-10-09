@@ -8,5 +8,10 @@ load(
     "//xcodeproj:xcodeproj_extra_files.bzl",
     _xcodeproj_extra_files = "xcodeproj_extra_files",
 )
+load(
+    "//xcodeproj:xcodeproj_synchronized_folders.bzl",
+    _xcodeproj_synchronized_folders = "xcodeproj_synchronized_folders",
+)
 
 xcodeproj_extra_files = _xcodeproj_extra_files
+xcodeproj_synchronized_folders = _xcodeproj_synchronized_folders

@@ -16,6 +16,19 @@ XcodeProjRunnerOutputInfo = provider(
     },
 )
 
+XcodeProjSynchronizedFoldersHintInfo = provider(
+    doc = """\
+Provides the folders of a target to show as synchronized folders during project
+generation.
+""",
+    fields = {
+        "folders": """\
+A `tuple` of folder paths, relative to the package of the target that the hint
+is attached to.
+""",
+    },
+)
+
 XcodeProjExtraFilesHintInfo = provider(
     doc = "Provides a list of extra files to include during project generation",
     fields = {
