@@ -13,6 +13,7 @@ test_suite(
         "//test/internal/target_id",
         "//test/internal/targets",
         "//test/internal/xcodeproj_extra_files",
+        "//test/internal/xcodeproj_synchronized_folders",
         "//test/internal/xcschemes",
     ],
 )
@@ -30,6 +31,7 @@ bzl_library(
         "//test/internal/target_id:bzls",
         "//test/internal/targets:bzls",
         "//test/internal/xcodeproj_extra_files:bzls",
+        "//test/internal/xcodeproj_synchronized_folders:bzls",
         "//test/internal/xcschemes:bzls",
     ],
 )
