@@ -170,12 +170,14 @@ def _write_consolidation_map_targets(
             `dict` mapping `xcode_target.id` to `xcode_target`s.
 
     Returns:
-        A tuple with two elements:
+        A tuple with three elements:
 
         *   `pbxnativetargets`: A `File` for the `PBNativeTarget` `PBXProj`
             partial.
         *   `buildfile_subidentifiers`: A `File` that contain serialized
             `[Identifiers.BuildFile.SubIdentifier]`.
+        *   `build_proxy_manifest_entries`: A `File` that contains
+            deterministic JSON Lines manifest entries.
     """
     pbxnativetargets = actions.declare_file(
         "{}_pbxproj_partials/pbxnativetargets/{}".format(
@@ -185,6 +187,12 @@ def _write_consolidation_map_targets(
     )
     buildfile_subidentifiers = actions.declare_file(
         "{}_pbxproj_partials/buildfile_subidentifiers/{}".format(
+            generator_name,
+            idx,
+        ),
+    )
+    build_proxy_manifest_entries = actions.declare_file(
+        "{}_pbxproj_partials/build_proxy_manifest_entries/{}".format(
             generator_name,
             idx,
         ),
@@ -218,6 +226,9 @@ def _write_consolidation_map_targets(
 
     # buildFileSubIdentifiersOutputPath
     args.add(buildfile_subidentifiers)
+
+    # buildProxyManifestEntriesOutputPath
+    args.add(build_proxy_manifest_entries)
 
     # consolidationMap
     args.add(consolidation_map)
@@ -380,6 +391,7 @@ Target ID for unit test host '{}' not found in xcode_targets
         outputs = [
             pbxnativetargets,
             buildfile_subidentifiers,
+            build_proxy_manifest_entries,
         ],
         progress_message = message,
         mnemonic = "WritePBXNativeTargets",
@@ -392,6 +404,7 @@ Target ID for unit test host '{}' not found in xcode_targets
     return (
         pbxnativetargets,
         buildfile_subidentifiers,
+        build_proxy_manifest_entries,
     )
 
 def _write_files_and_groups(
@@ -1347,19 +1360,23 @@ def _write_targets(
             `dict` mapping `xcode_target.id` to `xcode_target`s.
 
     Returns:
-        A tuple with two elements:
+        A tuple with three elements:
 
         *   `pbxnativetargets`: A `list` of `File`s for the `PBNativeTarget`
             `PBXProj` partials.
         *   `buildfile_subidentifiers_files`: A `list` of `File`s that contain
             serialized `[Identifiers.BuildFile.SubIdentifier]`s.
+        *   `build_proxy_manifest_entries_files`: A `list` of `File`s that
+            contain deterministic JSON Lines manifest entries.
     """
     pbxnativetargets = []
     buildfile_subidentifiers_files = []
+    build_proxy_manifest_entries_files = []
     for consolidation_map, labels in consolidation_maps.items():
         (
             label_pbxnativetargets,
             label_buildfile_subidentifiers,
+            label_build_proxy_manifest_entries,
         ) = _write_consolidation_map_targets(
             actions = actions,
             colorize = colorize,
@@ -1377,10 +1394,14 @@ def _write_targets(
 
         pbxnativetargets.append(label_pbxnativetargets)
         buildfile_subidentifiers_files.append(label_buildfile_subidentifiers)
+        build_proxy_manifest_entries_files.append(
+            label_build_proxy_manifest_entries,
+        )
 
     return (
         pbxnativetargets,
         buildfile_subidentifiers_files,
+        build_proxy_manifest_entries_files,
     )
 
 # `project.pbxproj`
