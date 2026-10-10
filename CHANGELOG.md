@@ -56,7 +56,7 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed Address Sanitizer being incorrectly applied to host tools during the build, which cause those tools to fail to build.
 
 ### Ruleset Development Changes
 
