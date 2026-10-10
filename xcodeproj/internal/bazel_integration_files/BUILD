@@ -1,6 +1,9 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
+
 _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",
+    "copy_tool.py",
     "create_lldbinit.sh",
     ":renamed_import_indexstores",
     "process_bazel_build_log.py",
@@ -9,18 +12,44 @@ _BASE_FILES = [
 filegroup(
     name = "bazel_integration_files",
     srcs = _BASE_FILES + [
-        ":renamed_rsync",
         ":renamed_swiftc_stub",
         ":rsync_excludes",
     ] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [
             "**/*.bzl",
+            "**/*_tests.py",
             "BUILD",
         ],
     ),
     # This is made public for internal use only
     visibility = ["//visibility:public"],
+)
+
+py_library(
+    name = "copy_tool_library",
+    srcs = ["copy_tool.py"],
+    srcs_version = "PY3",
+    visibility = ["//visibility:private"],
+)
+
+py_binary(
+    name = "copy_tool",
+    srcs = ["copy_tool.py"],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    # This is made public for internal use only
+    visibility = ["//visibility:public"],
+    deps = [":copy_tool_library"],
+)
+
+py_test(
+    name = "copy_tool_tests",
+    srcs = ["copy_tool_tests.py"],
+    deps = [
+        ":copy_tool_library",
+        "//:py_init_shim",
+    ],
 )
 
 genrule(
@@ -124,27 +153,6 @@ fi
         "manual",
         "no-sandbox",
     ],
-)
-
-genrule(
-    name = "renamed_rsync",
-    srcs = ["@rsync"],
-    outs = ["rsync"],
-    # Make `rsync` have the right name
-    cmd = """\
-readonly output="$@"
-if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
-  cp -c "$<" "$@"
-else
-  cp "$<" "$@"
-fi
-""",
-    message = "Renaming rsync",
-    tags = [
-        "manual",
-        "no-sandbox",
-    ],
-    visibility = ["//visibility:public"],
 )
 
 # Release

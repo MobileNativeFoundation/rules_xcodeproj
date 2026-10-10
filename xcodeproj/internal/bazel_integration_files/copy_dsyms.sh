@@ -46,22 +46,16 @@ function patch_dsym() {
 EOF
 }
 
-readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
+readonly copy_tool="$BAZEL_INTEGRATION_DIR/copy_tool.py"
 
 if [[ -n "${BAZEL_OUTPUTS_DSYM:-}" ]]; then
   cd "${BAZEL_OUT%/*}"
 
   # shellcheck disable=SC2046
-  "$rsync" \
-    --copy-links \
-    --recursive \
-    --times \
-    --archive \
+  "$copy_tool" \
     --delete \
     ${exclude_list:+--exclude-from="$exclude_list"} \
-    --perms \
-    --chmod=u+w \
-    --out-format="%n%L" \
+    --print \
     $(xargs -n1 <<< "$BAZEL_OUTPUTS_DSYM") \
     "$TARGET_BUILD_DIR"
 
