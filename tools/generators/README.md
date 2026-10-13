@@ -13,8 +13,10 @@ represents “`PBXProj`”, so we will too from here on.
 
 Instead of there being a single generator for `PBXProj`, there are multiple,
 with each generating a portion of the end file. These portions are called
-“partials”. These partials are concatenated together to form the final
-`project.pbxproj` file. We use this approach for a couple reasons:
+“partials”. These partials are assembled by the
+[`project_pbxproj`](project_pbxproj/README.md) generator to form the final
+`project.pbxproj` file, in the same layout that Xcode writes. We use this
+approach for a couple reasons:
 
 - Each generator only needs a subset of the total inputs needed to generate the
   full `PBXProj`. This means that when the project changes, not every generator
@@ -38,9 +40,10 @@ information.
   - All of the `PBXProject` related objects:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
-  - The start of the `PBXProject` element
-  - Contains all `PBXProject` properties except for
-    `attributes.TargetAttributes`, `targets`, and `knownRegions`
+  - The `PBXProject` element, in the order Xcode writes it
+    - The `attributes.TargetAttributes`, `knownRegions`, and `targets`
+      properties are read from the partials created by
+      `pbxtargetdependencies` and `files_and_groups`
 - [`pbxtargetdependencies`](pbxtargetdependencies/README.md):
   - Creates four+ files:
     - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` objects

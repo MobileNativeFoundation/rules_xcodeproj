@@ -73,8 +73,17 @@ struct Generator {
             /*defaultXcodeConfiguration:*/ arguments
                 .defaultXcodeConfiguration,
             /*developmentRegion:*/ arguments.developmentRegion,
+            /*knownRegions:*/ try environment.readPBXProjectPartial(
+                arguments.knownRegionsFile
+            ),
             /*organizationName:*/ arguments.organizationName,
             /*projectDir:*/ projectDir,
+            /*targetAttributes:*/ try environment.readPBXProjectPartial(
+                arguments.targetAttributesFile
+            ),
+            /*targets:*/ try environment.readPBXProjectPartial(
+                arguments.targetsFile
+            ),
             /*workspace:*/ arguments.workspace,
             /*xcodeConfigurations:*/ arguments.xcodeConfigurations
         )
