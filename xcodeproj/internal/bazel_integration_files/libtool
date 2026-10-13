@@ -4,6 +4,58 @@ set -euo pipefail
 
 original_args=("$@")
 
+# Native Libtool tasks do not export Xcode build settings. The generated
+# LIBTOOL setting chooses this entry point only in Preview configurations.
+if [[ "${BASH_SOURCE[0]}" == */xojit/libtool ]]; then
+  native_args=()
+  sysroot=
+  filelist=
+  for ((index = 0; index < ${#original_args[@]}; index++)); do
+    arg="${original_args[index]}"
+    case "$arg" in
+      -V) exec libtool "${original_args[@]}" ;;
+      -syslibroot) sysroot="${original_args[index + 1]:-}" ;;
+      -filelist) filelist="${original_args[index + 1]:-}" ;;
+    esac
+  done
+
+  # Xcode places its filelist at TARGET_TEMP_DIR/Objects-<variant>/<arch>/
+  # <product>.LinkFileList and the generated response at DerivedSources/
+  # link.params. Match that exact companion, not arbitrary response suffixes.
+  preview_response=
+  objects_arch_dir="${filelist%/*}"
+  objects_variant_dir="${objects_arch_dir%/*}"
+  if [[ "$filelist" == /*.LinkFileList && \
+        "${objects_variant_dir##*/}" == Objects-?* ]]; then
+    preview_response="@${objects_variant_dir%/*}/DerivedSources/link.params"
+  fi
+  for arg in "${original_args[@]}"; do
+    # The Preview analyzer sees the original invocation, but native archive
+    # creation must not consume its additional link dependencies/options.
+    if [[ -n "$preview_response" && "$arg" == "$preview_response" ]]; then
+      continue
+    fi
+    native_args+=("$arg")
+  done
+
+  case "$sysroot" in
+    */Contents/Developer/Platforms/*.platform/Developer/SDKs/*.sdk)
+      developer_dir="${sysroot%%/Platforms/*}"
+      ;;
+    *)
+      echo >&2 "rules_xcodeproj libtool facade: -syslibroot must identify an Xcode SDK"
+      exit 64
+      ;;
+  esac
+  real_libtool="$developer_dir/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool"
+  if [[ ! -f "$real_libtool" || ! -x "$real_libtool" || \
+        "$real_libtool" -ef "${BASH_SOURCE[0]}" ]]; then
+    echo >&2 "rules_xcodeproj libtool facade: derived XcodeDefault libtool is not a distinct executable"
+    exit 64
+  fi
+  exec "$real_libtool" "${native_args[@]}"
+fi
+
 while test $# -gt 0
 do
   case $1 in
