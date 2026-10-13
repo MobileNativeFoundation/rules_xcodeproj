@@ -24,14 +24,29 @@ readonly test_frameworks=(
 readonly rsync="$BAZEL_INTEGRATION_DIR/rsync"
 
 if [[ "$ACTION" != indexbuild ]]; then
+  outputs_product="${BAZEL_OUTPUTS_PRODUCT:-}"
+  if [[ -n "$outputs_product" ]]; then
+    # Generated product paths are relative to the selected Bazel execution
+    # root. SRCROOT/bazel-out can point to a different output base.
+    if [[ "$outputs_product" != /* ]]; then
+      outputs_product="$PROJECT_DIR/$outputs_product"
+    fi
+    if [[ ! -e "$outputs_product" ]]; then
+      echo >&2 \
+        "error: Bazel output product is not materialized: $outputs_product"
+      exit 1
+    fi
+  fi
+  readonly outputs_product
+
   # Copy product
-  if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
-    cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
+  if [[ -n "$outputs_product" ]]; then
+    cd "${outputs_product%/*}"
 
     if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
-      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
+      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME"
     else
       # Product is a bundle
       "$rsync" \
