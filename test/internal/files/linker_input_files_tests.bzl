@@ -303,12 +303,14 @@ static_library_preview_framework_mapping_test = unittest.make(
 def _top_level_preview_dynamic_inputs_test_impl(ctx):
     env = unittest.begin(ctx)
     solib = ctx.actions.declare_file("_solib/Dependency.framework/Dependency")
+    second_solib = ctx.actions.declare_file("_solib/Second.framework/Second")
+    propagated_only = ctx.actions.declare_file("_solib/Propagated.framework/Propagated")
     resolved = ctx.actions.declare_file("Dependency.framework/Dependency")
     unused = ctx.actions.declare_file("libUnused.dylib")
     selected_archive = ctx.actions.declare_file("libSelected.a")
     objects = ctx.actions.declare_file("Selected-linker.objlist")
     header = ctx.actions.declare_file("Dependency.h")
-    for file in [solib, resolved, unused, selected_archive, objects, header]:
+    for file in [solib, second_solib, propagated_only, resolved, unused, selected_archive, objects, header]:
         ctx.actions.write(file, "test\n")
 
     for use_objc in [False, True]:
@@ -317,7 +319,7 @@ def _top_level_preview_dynamic_inputs_test_impl(ctx):
                 library = depset(),
                 imported_library = depset(),
                 static_framework_file = depset(),
-                dynamic_framework_file = depset([solib, unused]),
+                dynamic_framework_file = depset([solib, second_solib, unused]),
                 link_inputs = depset(),
             ) if use_objc else None,
             cc_info = struct(linking_context = struct(linker_inputs = depset([
@@ -325,6 +327,7 @@ def _top_level_preview_dynamic_inputs_test_impl(ctx):
                     additional_inputs = (),
                     libraries = (
                         _dynamic_library(dynamic = solib, resolved = resolved),
+                        _dynamic_library(dynamic = second_solib),
                         _dynamic_library(dynamic = unused),
                         _static_library(static = selected_archive),
                     ),
@@ -336,18 +339,23 @@ def _top_level_preview_dynamic_inputs_test_impl(ctx):
             target = struct(actions = [struct(
                 mnemonic = "CppLink",
                 args = ("actual-link-args",),
-                inputs = depset([solib, selected_archive, objects, header]),
+                inputs = depset([second_solib, propagated_only, solib, selected_archive, objects, header]),
             )]),
             automatic_target_info = struct(link_mnemonics = ["CppLink"]),
-            compilation_providers = providers,
+            compilation_providers = struct(
+                cc_info = providers.cc_info,
+                objc = providers.objc,
+                framework_files = providers.framework_files,
+                preview_dynamic_library_files = depset([propagated_only]),
+            ),
             is_top_level = True,
         )
         values = linker_inputs._top_level_values
         asserts.equals(
             env,
-            [solib],
+            [second_solib, propagated_only, solib],
             list(values.preview_link_input_files),
-            "Preview prepares the consumed lexical dynamic input, not its resolved replacement, unused libraries, selected archive or headers",
+            "Preview selects actual action-input order, including a propagated-only candidate, while excluding the resolved replacement, unused libraries, selected archive and headers",
         )
         asserts.equals(
             env,
