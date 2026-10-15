@@ -21,9 +21,9 @@ extension ElementCreator {
             includeSelf: Bool
         ) -> [BazelPath] {
             return callable(
-                /*node:*/ node,
-                /*bazelPath:*/ bazelPath,
-                /*includeSelf:*/ includeSelf
+                /* node: */ node,
+                /* bazelPath: */ bazelPath,
+                /* includeSelf: */ includeSelf
             )
         }
     }
@@ -46,7 +46,7 @@ extension ElementCreator.CollectBazelPaths {
         switch node {
         case .file:
             return includeSelf ? [bazelPath] : []
-        case .group(_, let children):
+        case let .group(_, children):
             var bazelPaths = children.flatMap { node in
                 return handleChildNode(node, parentBazelPath: bazelPath)
             }
@@ -57,6 +57,8 @@ extension ElementCreator.CollectBazelPaths {
         case .generatedFiles:
             // Impossible to have generated files under localized or model files
             fatalError()
+        case .buildableFolder:
+            return includeSelf ? [bazelPath] : []
         }
     }
 
@@ -65,13 +67,13 @@ extension ElementCreator.CollectBazelPaths {
         parentBazelPath: BazelPath
     ) -> [BazelPath] {
         switch node {
-        case .file(let name):
+        case let .file(name):
             let bazelPath = BazelPath(
                 parent: parentBazelPath,
                 path: name
             )
             return [bazelPath]
-        case .group(let name, let children):
+        case let .group(name, children):
             let bazelPath = BazelPath(
                 parent: parentBazelPath,
                 path: name
@@ -84,6 +86,8 @@ extension ElementCreator.CollectBazelPaths {
         case .generatedFiles:
             // Impossible to have generated files under localized or model files
             fatalError()
+        case let .buildableFolder(path):
+            return [path]
         }
     }
 }

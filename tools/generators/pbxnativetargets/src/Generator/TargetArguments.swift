@@ -27,19 +27,20 @@ struct TargetArguments: Equatable {
     // FIXME: Extract to `Inputs` type
     let srcs: [BazelPath]
     let nonArcSrcs: [BazelPath]
+    let buildableFolders: [BazelPath]
 
     let dSYMPathsBuildSetting: String
 }
 
-extension Dictionary<TargetID, TargetArguments> {
+extension [TargetID: TargetArguments] {
     static func parse(from url: URL) async throws -> Self {
-        var rawArgs = ArraySlice(try await url.allLines.collect())
+        var rawArgs = try await ArraySlice(url.allLines.collect())
 
         let targetCount =
             try rawArgs.consumeArg("target-count", as: Int.self, in: url)
 
         var keysWithValues: [(TargetID, TargetArguments)] = []
-        for _ in (0..<targetCount) {
+        for _ in 0 ..< targetCount {
             let id =
                 try rawArgs.consumeArg("target-id", as: TargetID.self, in: url)
             let productType = try rawArgs.consumeArg(
@@ -88,6 +89,11 @@ extension Dictionary<TargetID, TargetArguments> {
                 as: BazelPath.self,
                 in: url
             )
+            let buildableFolders = try rawArgs.consumeArgs(
+                "buildable-folders",
+                as: BazelPath.self,
+                in: url
+            )
             let xcodeConfigurations = try rawArgs.consumeArgs(
                 "xcode-configurations",
                 in: url
@@ -130,6 +136,7 @@ extension Dictionary<TargetID, TargetArguments> {
                         hasCxxParams: hasCxxParams,
                         srcs: srcs,
                         nonArcSrcs: nonArcSrcs,
+                        buildableFolders: buildableFolders,
                         dSYMPathsBuildSetting: dSYMPathsBuildSetting
                     )
                 )

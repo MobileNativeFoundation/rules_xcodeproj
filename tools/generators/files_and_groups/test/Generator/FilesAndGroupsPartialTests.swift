@@ -2,7 +2,6 @@ import CustomDump
 import Foundation
 import PBXProj
 import XCTest
-
 @testable import files_and_groups
 
 class FilesAndGroupsPartialTests: XCTestCase {

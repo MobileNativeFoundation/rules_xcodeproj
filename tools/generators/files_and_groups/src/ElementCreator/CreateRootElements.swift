@@ -41,15 +41,15 @@ extension ElementCreator {
             for pathTree: [PathTreeNode]
         ) -> GroupChildElements {
             return callable(
-                /*pathTree:*/ pathTree,
-                /*includeCompileStub:*/ includeCompileStub,
-                /*installPath:*/ installPath,
-                /*workspace:*/ workspace,
-                /*createExternalRepositoriesGroup:*/
+                /* pathTree: */ pathTree,
+                /* includeCompileStub: */ includeCompileStub,
+                /* installPath: */ installPath,
+                /* workspace: */ workspace,
+                /* createExternalRepositoriesGroup: */
                     createExternalRepositoriesGroup,
-                /*createGroupChild:*/ createGroupChild,
-                /*createGroupChildElements:*/ createGroupChildElements,
-                /*createInternalGroup:*/ createInternalGroup
+                /* createGroupChild: */ createGroupChild,
+                /* createGroupChildElements: */ createGroupChildElements,
+                /* createInternalGroup: */ createInternalGroup
             )
         }
     }
@@ -86,7 +86,7 @@ extension ElementCreator.CreateRootElements {
         var groupChildren: [GroupChild] = []
         for node in pathTree {
             switch node {
-            case .group(let name, let children):
+            case let .group(name, children):
                 switch name {
                 case "external":
                     groupChildren.append(
@@ -120,7 +120,7 @@ extension ElementCreator.CreateRootElements {
                     )
                 }
 
-            case .file, .generatedFiles:
+            case .file, .generatedFiles, .buildableFolder:
                 groupChildren.append(
                     createGroupChild(
                         for: node,
