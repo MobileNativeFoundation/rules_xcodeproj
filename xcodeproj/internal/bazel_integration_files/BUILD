@@ -80,7 +80,7 @@ frameworks=(
   'libclang_rt.ubsan*.dylib'
   'libXCTestBundleInject.dylib'
   'libXCTestSwiftSupport.dylib'
-  'Testing.framework',
+  'Testing.framework'
   'XCTAutomationSupport.framework'
   'XCTest.framework'
   'XCTestCore.framework'
