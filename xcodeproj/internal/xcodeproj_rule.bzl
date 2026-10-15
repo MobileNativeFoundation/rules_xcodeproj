@@ -2,6 +2,10 @@
 
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load("//xcodeproj:xcodeprojinfo.bzl", "XcodeProjInfo")
+load(
+    "//xcodeproj/internal:build_proxy_manifest.bzl",
+    "write_build_proxy_manifest",
+)
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 load(
     "//xcodeproj/internal/bazel_integration_files:actions.bzl",
@@ -209,6 +213,7 @@ def _write_bazel_integration_files(
         bazel_build_script_template,
         bazel_dependencies_script_template,
         bazel_path,
+        build_proxy_manifest,
         colorize,
         infos_per_xcode_configuration,
         install_path,
@@ -241,7 +246,11 @@ def _write_bazel_integration_files(
     )
 
     return (
-        [bazel_build_script, generate_bazel_dependencies_script] +
+        [
+            bazel_build_script,
+            build_proxy_manifest,
+            generate_bazel_dependencies_script,
+        ] +
         swift_debug_settings +
         static_files
     )
@@ -301,12 +310,15 @@ def _write_installer(
 def _write_project_contents(
         *,
         actions,
+        bazel_path,
         bin_dir_path,
+        build_proxy_manifest_generator,
         colorize,
         config,
         default_xcode_configuration,
         files_and_groups_generator,
         generation_shard_count,
+        generator_label,
         import_index_build_indexstores,
         legacy_index_import,
         index_import,
@@ -392,6 +404,7 @@ def _write_project_contents(
     (
         target_partials,
         buildfile_subidentifiers_files,
+        build_proxy_manifest_entries_files,
     ) = pbxproj_partials.write_targets(
         actions = actions,
         colorize = colorize,
@@ -403,6 +416,15 @@ def _write_project_contents(
         xcode_target_configurations = xcode_target_configurations,
         xcode_targets = xcode_targets,
         xcode_targets_by_label = xcode_targets_by_label,
+    )
+
+    build_proxy_manifest = write_build_proxy_manifest(
+        actions = actions,
+        bazel_path = bazel_path,
+        entries_files = build_proxy_manifest_entries_files,
+        generator_label = generator_label,
+        name = name,
+        tool = build_proxy_manifest_generator,
     )
 
     (
@@ -486,6 +508,7 @@ def _write_project_contents(
 
     return (
         project_pbxproj,
+        build_proxy_manifest,
         generated_directories_filelist,
         generated_xcfilelist,
         consolidation_maps.keys(),
@@ -626,18 +649,24 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
 
     (
         project_pbxproj,
+        build_proxy_manifest,
         generated_directories_filelist,
         generated_xcfilelist,
         consolidation_maps,
         target_ids_list,
     ) = _write_project_contents(
         actions = actions,
+        bazel_path = ctx.attr.bazel_path,
         bin_dir_path = ctx.bin_dir.path,
+        build_proxy_manifest_generator = (
+            ctx.executable._build_proxy_manifest_generator
+        ),
         colorize = colorize,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
         files_and_groups_generator = ctx.executable._files_and_groups_generator,
         generation_shard_count = ctx.attr.generation_shard_count,
+        generator_label = ctx.label,
         import_index_build_indexstores = (
             ctx.attr.import_index_build_indexstores
         ),
@@ -724,6 +753,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
             ctx.file._generate_bazel_dependencies_script_template
         ),
         bazel_path = ctx.attr.bazel_path,
+        build_proxy_manifest = build_proxy_manifest,
         colorize = colorize,
         infos_per_xcode_configuration = infos_per_xcode_configuration,
         install_path = install_path,
@@ -845,6 +875,11 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
             default = Label(
                 "//xcodeproj/internal/bazel_integration_files",
             ),
+        ),
+        "_build_proxy_manifest_generator": attr.label(
+            cfg = "exec",
+            default = Label("//xcodeproj/internal:build_proxy_manifest"),
+            executable = True,
         ),
         "_contents_xcworkspacedata": attr.label(
             allow_single_file = True,
