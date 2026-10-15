@@ -58,6 +58,55 @@ final class CreateGroupElementTests: XCTestCase {
         XCTAssertEqual(result.element.object.identifier, stubbedIdentifier)
     }
 
+    func test_element_identifier_name() {
+        // Arrange
+
+        let name = "node_name"
+        let bazelPath = BazelPath("a/bazel/path/node_name")
+
+        let createAttributes = ElementCreator.CreateAttributes.mock(
+            elementAttributes: .init(
+                sourceTree: .group,
+                name: "a_name",
+                path: "/abs/path/to/a_path"
+            ),
+            resolvedRepository: nil
+        )
+
+        let expectedCreateIdentifierCalled: [
+            ElementCreator.CreateIdentifier.MockTracker.Called
+        ] = [
+            .init(
+                path: bazelPath.path,
+                // Xcode comments an element with its name when it has one
+                name: "a_name",
+                type: .group
+            )
+        ]
+        let stubbedIdentifier = "1234abcd"
+        let createIdentifier = ElementCreator.CreateIdentifier
+            .mock(identifier: stubbedIdentifier)
+
+        // Act
+
+        let result = ElementCreator.CreateGroupElement.defaultCallable(
+            name: name,
+            bazelPath: bazelPath,
+            bazelPathType: .workspace,
+            childIdentifiers: [],
+            createAttributes: createAttributes.mock,
+            createIdentifier: createIdentifier.mock
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            createIdentifier.tracker.called,
+            expectedCreateIdentifierCalled
+        )
+        XCTAssertEqual(result.element.object.identifier, stubbedIdentifier)
+    }
+
     // MARK: element.sortOrder
 
     func test_element_sortOrder() {
