@@ -270,15 +270,19 @@ def _write_schemes(
             custom_scheme_args.add(-1)
             return
 
-        custom_scheme_args.add(len(env))
+        env_count = 0
+        for values in env.values():
+            env_count += len(values)
+        custom_scheme_args.add(env_count)
 
         # buildifier: disable=uninitialized
-        for key, env in env.items():
-            custom_scheme_args.add_all(
-                [key, env.value],
-                map_each = _null_newlines,
-            )
-            custom_scheme_args.add(env.enabled)
+        for key, values in env.items():
+            for value in values:
+                custom_scheme_args.add_all(
+                    [key, value.value],
+                    map_each = _null_newlines,
+                )
+                custom_scheme_args.add(value.enabled)
 
     # buildifier: disable=uninitialized
     def _add_execution_action(

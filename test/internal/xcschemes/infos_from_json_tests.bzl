@@ -176,17 +176,23 @@ def infos_from_json_test_suite(name):
 
     full_env = {
         "A": "B",
-        "ENV\nVAR": xcscheme_infos_testable.make_env(
-            "1\n2",
-            enabled = "0",
-        ),
+        "ENV\nVAR": [
+            xcscheme_infos_testable.make_env(
+                "1\n2",
+                enabled = "0",
+            ),
+            xcscheme_infos_testable.make_env("3"),
+        ],
     }
     expected_full_env = {
-        "A": xcscheme_infos_testable.make_env("B"),
-        "ENV\nVAR": xcscheme_infos_testable.make_env(
-            "1\n2",
-            enabled = "0",
-        ),
+        "A": [xcscheme_infos_testable.make_env("B")],
+        "ENV\nVAR": [
+            xcscheme_infos_testable.make_env(
+                "1\n2",
+                enabled = "0",
+            ),
+            xcscheme_infos_testable.make_env("3"),
+        ],
     }
 
     full_build_targets = [
