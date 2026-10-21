@@ -66,7 +66,7 @@ extension ElementCreator.CreateLocalizedFileElement {
             fileTypeType = "lastKnownFileType"
             fileType = ext
                 .flatMap { Xcode.pbxProjEscapedFileType(extension: $0) } ??
-                "file"
+                Xcode.unknownFileType
         }
 
         let content = """

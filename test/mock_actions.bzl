@@ -53,9 +53,8 @@ def _create():
                 format_each = None,
                 map_each = None,
                 omit_if_empty = True,
-                terminate_with = None):
-            inner_args = []
-
+                terminate_with = None,
+                uniquify = False):
             if values != None:
                 flag = flag_or_values
             else:
@@ -65,31 +64,38 @@ def _create():
             if type(values) == "depset":
                 values = values.to_list()
 
-            if omit_if_empty and not values:
-                return inner_args
-
-            if flag:
-                inner_args.append(flag)
-
+            value_args = []
             if map_each:
                 for value in values:
                     mapped_value = map_each(value)
                     if type(mapped_value) == "list":
                         if format_each:
-                            inner_args.extend(
+                            value_args.extend(
                                 [format_each % v for v in mapped_value],
                             )
                         else:
-                            inner_args.extend(
+                            value_args.extend(
                                 [str(v) for v in mapped_value],
                             )
                     elif mapped_value:
                         if format_each:
-                            inner_args.append(format_each % mapped_value)
+                            value_args.append(format_each % mapped_value)
                         else:
-                            inner_args.append(str(mapped_value))
+                            value_args.append(str(mapped_value))
             else:
-                inner_args.extend([_path_or_str(value) for value in values])
+                value_args.extend([_path_or_str(value) for value in values])
+
+            if uniquify:
+                value_args = _uniq(value_args)
+
+            if omit_if_empty and not value_args:
+                return []
+
+            inner_args = []
+            if flag:
+                inner_args.append(flag)
+
+            inner_args.extend(value_args)
 
             if terminate_with != None:
                 inner_args.append(terminate_with)
@@ -105,7 +111,8 @@ def _create():
                 format_each = None,
                 map_each = None,
                 omit_if_empty = True,
-                terminate_with = None):
+                terminate_with = None,
+                uniquify = False):
             args.extend(
                 _inner_add_all(
                     flag_or_values,
@@ -114,6 +121,7 @@ def _create():
                     map_each = map_each,
                     omit_if_empty = omit_if_empty,
                     terminate_with = terminate_with,
+                    uniquify = uniquify,
                 ),
             )
 
@@ -125,7 +133,8 @@ def _create():
                 join_with,
                 map_each = None,
                 omit_if_empty = True,
-                terminate_with = None):
+                terminate_with = None,
+                uniquify = False):
             args.append(
                 join_with.join(
                     _inner_add_all(
@@ -135,6 +144,7 @@ def _create():
                         map_each = map_each,
                         omit_if_empty = omit_if_empty,
                         terminate_with = terminate_with,
+                        uniquify = uniquify,
                     ),
                 ),
             )
@@ -218,3 +228,15 @@ mock_actions = struct(
     mock_file = _mock_file,
     mock_label = _mock_label,
 )
+
+def _uniq(values):
+    unique_values = []
+    seen = {}
+    for value in values:
+        if value in seen:
+            continue
+
+        seen[value] = None
+        unique_values.append(value)
+
+    return unique_values

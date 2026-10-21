@@ -125,7 +125,7 @@ final class CreateFileElementTests: XCTestCase {
         )
 
         let expectedContent = #"""
-{isa = PBXFileReference; lastKnownFileType = file; path = "a path"; sourceTree = SOURCE_ROOT; }
+{isa = PBXFileReference; lastKnownFileType = text; path = "a path"; sourceTree = SOURCE_ROOT; }
 """#
 
         // Act
@@ -160,7 +160,7 @@ final class CreateFileElementTests: XCTestCase {
         )
 
         let expectedContent = #"""
-{isa = PBXFileReference; lastKnownFileType = file; path = a_path; sourceTree = "<group>"; }
+{isa = PBXFileReference; lastKnownFileType = text; path = a_path; sourceTree = "<group>"; }
 """#
 
         // Act
@@ -428,7 +428,7 @@ final class CreateFileElementTests: XCTestCase {
         )
 
         let expectedContent = #"""
-{isa = PBXFileReference; lastKnownFileType = file; name = "a name"; path = a_path; sourceTree = "<group>"; }
+{isa = PBXFileReference; lastKnownFileType = text; name = "a name"; path = a_path; sourceTree = "<group>"; }
 """#
 
         // Act

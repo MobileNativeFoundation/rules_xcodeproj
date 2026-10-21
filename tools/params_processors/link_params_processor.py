@@ -13,7 +13,7 @@ _LD_SKIP_OPTS = {
     "-o": 2,
 
     # Xcode sets these, and no way to unset it
-    "-bundle": 2,
+    "-bundle": 1,
     "-dynamiclib": 1,
     "-e": 2,
     "-isysroot": 2,
