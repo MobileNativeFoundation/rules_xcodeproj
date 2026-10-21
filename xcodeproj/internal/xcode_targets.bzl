@@ -30,6 +30,7 @@ def _from_resource_bundle(bundle):
             infoplist = None,
             non_arc_srcs = EMPTY_DEPSET,
             srcs = EMPTY_DEPSET,
+            synchronized_folders = EMPTY_DEPSET,
         ),
         label = None,
     )
@@ -125,7 +126,11 @@ def _make_xcode_target(
     elif mergeable_info:
         compile_stub_needed = (
             product.type not in _NON_COMPILE_PRODUCT_TYPES and
-            not (mergeable_info.srcs or mergeable_info.non_arc_srcs)
+            not (
+                mergeable_info.srcs or
+                mergeable_info.non_arc_srcs or
+                mergeable_info.synchronized_folders
+            )
         )
         inputs = _merge_xcode_inputs(
             dest_inputs = inputs,
@@ -134,7 +139,11 @@ def _make_xcode_target(
     else:
         compile_stub_needed = (
             product.type not in _NON_COMPILE_PRODUCT_TYPES and
-            not (inputs.srcs or inputs.non_arc_srcs)
+            not (
+                inputs.srcs or
+                inputs.non_arc_srcs or
+                inputs.synchronized_folders
+            )
         )
 
     if mergeable_info:
@@ -184,6 +193,7 @@ def _merge_xcode_inputs(*, dest_inputs, mergeable_info):
         infoplist = dest_inputs.infoplist,
         non_arc_srcs = mergeable_info.non_arc_srcs,
         srcs = mergeable_info.srcs,
+        synchronized_folders = mergeable_info.synchronized_folders,
     )
 
 def _to_xcode_target_outputs(outputs):
