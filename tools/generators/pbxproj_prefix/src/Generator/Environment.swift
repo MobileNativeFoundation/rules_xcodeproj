@@ -50,6 +50,7 @@ extension Generator {
             _ developmentRegion: String,
             _ organizationName: String?,
             _ projectDir: String,
+            _ projectName: String?,
             _ workspace: String,
             _ xcodeConfigurations: [String]
         ) -> String

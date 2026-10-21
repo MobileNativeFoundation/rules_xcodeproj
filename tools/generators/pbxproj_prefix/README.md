@@ -314,7 +314,7 @@ Here is an example output:
 			};
 			name = Release;
 		};
-		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF0000000000000000000100 /* Debug */,
@@ -325,7 +325,7 @@ Here is an example output:
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject "Foo" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;

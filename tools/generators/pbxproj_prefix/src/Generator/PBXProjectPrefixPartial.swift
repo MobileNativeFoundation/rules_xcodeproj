@@ -9,6 +9,7 @@ extension Generator {
         developmentRegion: String,
         organizationName: String?,
         projectDir: String,
+        projectName: String?,
         workspace: String,
         xcodeConfigurations: [String]
     ) -> String {
@@ -23,6 +24,9 @@ extension Generator {
         } else {
             organizationNameAttribute = ""
         }
+
+        let buildConfigurationList = Identifiers.Project
+            .buildConfigurationList(projectName: projectName)
 
         // Build configurations
 
@@ -56,7 +60,7 @@ extension Generator {
         // correctly.
         return #"""
 \#(buildConfigurations.map(\.element).joined(separator: "\n"))
-		\#(Identifiers.Project.buildConfigurationList) = {
+		\#(buildConfigurationList) = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 \#(
@@ -71,7 +75,7 @@ extension Generator {
 		};
 		\#(Identifiers.Project.id) = {
 			isa = PBXProject;
-			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
+			buildConfigurationList = \#(buildConfigurationList);
 			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
 			developmentRegion = \#(developmentRegion.pbxProjEscaped);
 			hasScannedForEncodings = 0;
