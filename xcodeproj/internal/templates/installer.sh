@@ -128,6 +128,11 @@ $cp_cmd "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 $cp_cmd "$bazel_env" "$dest/rules_xcodeproj/bazel/bazel_env.sh"
 $cp_cmd "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 
+# Keep the canonical basename for Xcode's Preview command parser while the
+# entry-point path carries the mode to native tasks without build-setting env.
+mkdir -p "$dest/rules_xcodeproj/bazel/xojit"
+ln -s ../libtool "$dest/rules_xcodeproj/bazel/xojit/libtool"
+
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   $cp_cmd "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 else
