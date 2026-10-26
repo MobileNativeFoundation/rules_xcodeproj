@@ -5,6 +5,7 @@ test_suite(
     tests = [
         "//test/internal/bazel_labels",
         "//test/internal/build_settings",
+        "//test/internal/files",
         "//test/internal/flattened_key_values",
         "//test/internal/info_plists",
         "//test/internal/pbxproj_partials",
@@ -22,6 +23,7 @@ bzl_library(
     deps = [
         "//test/internal/bazel_labels:bzls",
         "//test/internal/build_settings:bzls",
+        "//test/internal/files:bzls",
         "//test/internal/flattened_key_values:bzls",
         "//test/internal/info_plists:bzls",
         "//test/internal/pbxproj_partials:bzls",
