@@ -7,6 +7,7 @@ enum Target {
     struct ConsolidatedInputs: Equatable {
         var srcs: [BazelPath]
         var nonArcSrcs: [BazelPath]
+        var synchronizedFolders: [BazelPath] = []
     }
 
     struct Host: Equatable {
