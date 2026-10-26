@@ -68,6 +68,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
         xcode_configurations = ctx.attr.xcode_configurations,
+        preview_xcode_configurations = ctx.attr.preview_xcode_configurations,
     )
 
     # Assert
@@ -160,6 +161,7 @@ write_pbxproj_prefix_test = unittest.make(
         "target_ids_list": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
         "xcode_configurations": attr.string_list(mandatory = True),
+        "preview_xcode_configurations": attr.string_list(),
 
         # Expected
         "expected_args": attr.string_list(mandatory = True),
@@ -199,6 +201,7 @@ def write_pbxproj_prefix_test_suite(name):
             target_ids_list,
             workspace_directory,
             xcode_configurations,
+            preview_xcode_configurations = [],
 
             # Expected
             expected_args,
@@ -226,6 +229,7 @@ def write_pbxproj_prefix_test_suite(name):
             target_ids_list = target_ids_list,
             workspace_directory = workspace_directory,
             xcode_configurations = xcode_configurations,
+            preview_xcode_configurations = preview_xcode_configurations,
 
             # Expected
             expected_args = expected_args,
@@ -310,6 +314,7 @@ def write_pbxproj_prefix_test_suite(name):
         name = "{}_full".format(name),
 
         # Inputs
+        preview_xcode_configurations = ["Debug"],
         colorize = True,
         config = "custom_rxcp_config",
         default_xcode_configuration = "Release",
@@ -377,6 +382,9 @@ def write_pbxproj_prefix_test_suite(name):
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
+            "Debug",
+            # previewXcodeConfigurations
+            "--preview-xcode-configurations",
             "Debug",
             # preBuildScript
             "--pre-build-script",

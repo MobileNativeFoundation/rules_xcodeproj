@@ -3,7 +3,7 @@ import PBXProj
 extension Generator {
     /// Calculates the `PBXProject` prefix `PBXProj` partial.
     static func pbxProjectPrefixPartial(
-        buildSettings: String,
+        buildSettings: [String: String],
         compatibilityVersion: String,
         defaultXcodeConfiguration: String,
         developmentRegion: String,
@@ -26,7 +26,7 @@ extension Generator {
 
         // Build configurations
 
-        let buildConfigurations =  xcodeConfigurations
+        let buildConfigurations = xcodeConfigurations
             .enumerated()
             .map { index, name in
                 let id = Identifiers.Project
@@ -36,7 +36,7 @@ extension Generator {
                     element: #"""
 		\#(id) = {
 			isa = XCBuildConfiguration;
-			buildSettings = \#(buildSettings);
+			buildSettings = \#(buildSettings[name]!);
 			name = \#(name.pbxProjEscaped);
 		};
 """#
@@ -61,13 +61,13 @@ extension Generator {
 			buildConfigurations = (
 \#(
     buildConfigurations
-        .map { id, _ in "\t\t\t\t\(id),"}.joined(separator: "\n")
+        .map { id, _ in "\t\t\t\t\(id)," }.joined(separator: "\n")
 )
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = \#(
-                defaultXcodeConfiguration.pbxProjEscaped
-            );
+    defaultXcodeConfiguration.pbxProjEscaped
+);
 		};
 		\#(Identifiers.Project.id) = {
 			isa = PBXProject;
