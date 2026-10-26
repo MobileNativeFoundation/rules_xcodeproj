@@ -6,7 +6,10 @@ py_library(
     name = "py_init_shim",
     testonly = 1,
     srcs = ["__init__.py"],
-    visibility = ["//tools:__subpackages__"],
+    visibility = [
+        "//tools:__subpackages__",
+        "//xcodeproj:__subpackages__",
+    ],
 )
 
 # Release

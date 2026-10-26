@@ -252,12 +252,12 @@ def _write_installer(
         bazel_integration_files,
         config,
         contents_xcworkspacedata,
+        copy_tool,
         generated_directories_filelist,
         generated_xcfilelist,
         install_path,
         name,
         project_pbxproj,
-        rsync,
         template,
         xcschememanagement,
         xcschemes):
@@ -275,13 +275,13 @@ def _write_installer(
             ),
             "%config%": config,
             "%contents_xcworkspacedata%": contents_xcworkspacedata.short_path,
+            "%copy_tool%": copy_tool.short_path,
             "%generated_directories_filelist%": (
                 generated_directories_filelist.short_path
             ),
             "%generated_xcfilelist%": generated_xcfilelist.short_path,
             "%output_path%": install_path,
             "%project_pbxproj%": project_pbxproj.short_path,
-            "%rsync%": rsync.short_path,
             "%xcschememanagement%": xcschememanagement.short_path,
             "%xcschemes%": xcschemes.short_path,
         },
@@ -289,6 +289,7 @@ def _write_installer(
 
     runfiles = bazel_integration_files + [
         contents_xcworkspacedata,
+        copy_tool,
         generated_directories_filelist,
         generated_xcfilelist,
         project_pbxproj,
@@ -743,12 +744,12 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         bazel_integration_files = bazel_integration_files,
         config = config,
         contents_xcworkspacedata = ctx.file._contents_xcworkspacedata,
+        copy_tool = ctx.executable._copy_tool,
         generated_directories_filelist = generated_directories_filelist,
         generated_xcfilelist = generated_xcfilelist,
         install_path = install_path,
         name = name,
         project_pbxproj = project_pbxproj,
-        rsync = ctx.file._rsync,
         template = ctx.file._installer_template,
         xcschememanagement = xcschememanagement,
         xcschemes = xcschemes,
@@ -769,7 +770,11 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
             files = depset(
                 transitive = [inputs.important_generated],
             ),
-            runfiles = ctx.runfiles(files = runfiles),
+            runfiles = ctx.runfiles(files = runfiles).merge(
+                # `copy_tool` is a `py_binary`, so it needs its own runfiles
+                # (sources and interpreter) to be launchable by the installer.
+                ctx.attr._copy_tool[DefaultInfo].default_runfiles,
+            ),
         ),
         OutputGroupInfo(
             all_targets = output_groups_fields["all_b"],
@@ -852,6 +857,13 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//xcodeproj/internal/templates:contents.xcworkspacedata",
             ),
         ),
+        "_copy_tool": attr.label(
+            cfg = "exec",
+            default = Label(
+                "//xcodeproj/internal/bazel_integration_files:copy_tool",
+            ),
+            executable = True,
+        ),
         "_extension_point_identifiers_parser": attr.label(
             cfg = "exec",
             default = Label("//tools/extension_point_identifiers_parser"),
@@ -907,11 +919,6 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
                 "//tools/generators/pbxtargetdependencies:universal_pbxtargetdependencies",
             ),
             executable = True,
-        ),
-        "_rsync": attr.label(
-            allow_single_file = True,
-            cfg = "exec",
-            default = Label("//xcodeproj/internal/bazel_integration_files:renamed_rsync"),
         ),
         "_selected_model_versions_generator": attr.label(
             cfg = "exec",
