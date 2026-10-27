@@ -32,7 +32,8 @@ def _calculate_mergeable_info(
         product_type,
         xcode_inputs):
     # We can only merge if this target doesn't have its own sources
-    if xcode_inputs.srcs or xcode_inputs.non_arc_srcs:
+    if (xcode_inputs.srcs or xcode_inputs.non_arc_srcs or
+        xcode_inputs.synchronized_folders):
         return None
 
     avoid_ids = {
@@ -146,6 +147,7 @@ def _cc_mergeable_info(*, mergeable_info):
             previews_include_path = EMPTY_STRING,
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
+            synchronized_folders = mergeable_info.inputs.synchronized_folders,
             swift_args = EMPTY_LIST,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
@@ -246,6 +248,12 @@ def _mixed_language_mergeable_info(
                     cc.inputs.srcs,
                 ],
             ),
+            synchronized_folders = memory_efficient_depset(
+                transitive = [
+                    swift.inputs.synchronized_folders,
+                    cc.inputs.synchronized_folders,
+                ],
+            ),
             swift_args = swift.args.swift,
             swift_debug_settings_to_merge = swift.swift_debug_settings,
         ),
@@ -276,6 +284,7 @@ def _swift_mergeable_info(*, dynamic_frameworks, mergeable_info, product_type):
             previews_include_path = previews_info.include_path,
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
+            synchronized_folders = mergeable_info.inputs.synchronized_folders,
             swift_args = mergeable_info.args.swift,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
