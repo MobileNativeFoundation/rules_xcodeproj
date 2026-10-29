@@ -27,6 +27,22 @@ filegroup(
 )
 
 py_library(
+    name = "calculate_output_groups_library",
+    srcs = ["calculate_output_groups.py"],
+    srcs_version = "PY3",
+    visibility = ["//visibility:private"],
+)
+
+py_test(
+    name = "calculate_output_groups_tests",
+    srcs = ["calculate_output_groups_tests.py"],
+    deps = [
+        ":calculate_output_groups_library",
+        "//:py_init_shim",
+    ],
+)
+
+py_library(
     name = "copy_tool_library",
     srcs = ["copy_tool.py"],
     srcs_version = "PY3",

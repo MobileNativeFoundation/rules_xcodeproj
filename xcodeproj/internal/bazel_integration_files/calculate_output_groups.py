@@ -23,13 +23,19 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
+# How long to wait for Xcode to write the current build's `build-request.json`
+# before falling back to an earlier, matching one
+_BUILD_REQUEST_TIMEOUT_SECONDS = 30
 
-def _wait_for_value(calculate_value, value_name):
+
+def _wait_for_value(calculate_value, value_name, timeout = None):
     wait_counter = 0
     while True:
         value = calculate_value()
         if value:
             break
+        if timeout is not None and wait_counter >= timeout:
+            return None
         if wait_counter == 0:
             now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
@@ -60,6 +66,23 @@ note: ({now}) {value_name} updated after {wait_counter} seconds.""",
     return value
 
 
+def _read_build_request(build_request_file):
+    # Xcode writes `build-request.json` in place, so it can be empty or
+    # truncated while it's being written, and it can be deleted at any time
+    try:
+        with open(build_request_file, encoding = "utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def _getctime_or_zero(path):
+    try:
+        return os.path.getctime(path)
+    except OSError:
+        return 0
+
+
 def _get_build_request(
         xcode_version,
         objroot,
@@ -88,27 +111,8 @@ def _get_build_request(
         build_request_file = (
             f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
         )
-        def wait_for_build_request_file():
-            if os.path.exists(build_request_file):
-                with open(build_request_file, encoding = "utf-8") as f:
-                    # Parse the build-request.json file
-                    try:
-                        return json.load(f)
-                    except Exception as error:
-                        print(
-                            f"""\
-error: Failed to parse '{build_request_file}':
-{type(error).__name__}: {error}.
-
-Please file a bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                            file = sys.stderr,
-                        )
-                        exit(1)
-            return None
-
         return _wait_for_value(
-            wait_for_build_request_file,
+            lambda: _read_build_request(build_request_file),
             f"\"{build_request_file}\"",
         )
 
@@ -124,28 +128,55 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             # ValueError: no .xcbuilddata files yet (empty glob)
             # FileNotFoundError/OSError: TOCTOU race - file deleted between glob and getctime
             return None
-        build_request_file = f"{xcbuilddata}/build-request.json"
-        if os.path.exists(build_request_file):
-            with open(build_request_file, encoding = "utf-8") as f:
-                # Parse the build-request.json file
-                try:
-                    return json.load(f)
-                except Exception as error:
-                    print(
-                        f"""\
-error: Failed to parse '{build_request_file}':
-{type(error).__name__}: {error}.
-
-Please file a bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                        file = sys.stderr,
-                    )
-                    sys.exit(1)
-        return None
+        return _read_build_request(f"{xcbuilddata}/build-request.json")
 
     return _wait_for_value(
         wait_for_build_request,
         "newest 'buildRequest.json' file",
+        timeout = _BUILD_REQUEST_TIMEOUT_SECONDS,
+    )
+
+
+def _find_matching_build_request(
+        objroot,
+        configuration,
+        platform,
+        scheme_label,
+        guid_labels):
+    xcbuilddatas = sorted(
+        glob.glob(f"{objroot}/XCBuildData/*.xcbuilddata"),
+        key = _getctime_or_zero,
+        reverse = True,
+    )
+    for xcbuilddata in xcbuilddatas:
+        build_request_file = f"{xcbuilddata}/build-request.json"
+        build_request = _read_build_request(build_request_file)
+        if build_request and _build_request_matches(
+            build_request,
+            configuration,
+            platform,
+            scheme_label,
+            guid_labels,
+        ):
+            return build_request_file, build_request
+    return None, None
+
+
+def _build_request_matches(
+        build_request,
+        configuration,
+        platform,
+        scheme_label,
+        guid_labels):
+    parameters = build_request.get("parameters") or {}
+    if parameters.get("configurationName") != configuration:
+        return False
+    run_destination = parameters.get("activeRunDestination") or {}
+    if run_destination.get("platform") != platform:
+        return False
+    return any(
+        guid_labels.get(target.get("guid")) == scheme_label
+        for target in build_request.get("configuredTargets") or []
     )
 
 
@@ -360,16 +391,65 @@ def _similar_platforms(platform):
     return _DEVICE_PLATFORMS
 
 
+def _get_fallback_build_request(
+        objroot,
+        configuration,
+        platform,
+        scheme_label,
+        guid_labels):
+    build_request_file = None
+    build_request = None
+    if scheme_label:
+        build_request_file, build_request = _find_matching_build_request(
+            objroot,
+            configuration,
+            platform,
+            scheme_label,
+            guid_labels,
+        )
+
+    now = datetime.datetime.now().strftime('%H:%M:%S')
+    if not build_request:
+        print(
+            f"""\
+error: ({now}) newest 'buildRequest.json' file still not updated after \
+{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds, and no earlier one matches this \
+build. Quit and reopen Xcode, then build again. If this happens frequently, \
+please file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+            file = sys.stderr,
+            flush = True,
+        )
+        sys.exit(1)
+
+    print(
+        f"""\
+warning: ({now}) newest 'buildRequest.json' file still not updated after \
+{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds. Using '{build_request_file}' \
+instead, which matches this build's scheme, configuration, and platform. If \
+the wrong targets are built, quit and reopen Xcode, then build again.""",
+        file = sys.stderr,
+        flush = True,
+    )
+    return build_request
+
+
 def _main(
         xcode_version,
         objroot,
         base_objroot,
         marker_file,
+        configuration,
+        platform,
         prefixes_str):
     if not os.path.exists(marker_file):
         return
 
     build_request_min_ctime = os.path.getctime(marker_file)
+    with open(marker_file, encoding = "utf-8") as f:
+        # The scheme pre-action writes the `BAZEL_LABEL` of the scheme's first
+        # build target
+        scheme_label = f.read().strip()
 
     try:
         xcode_version = int(xcode_version)
@@ -386,14 +466,22 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
     prefixes = prefixes_str.split(",")
 
     try:
+        guid_labels, guid_target_ids = (
+            _calculate_guid_labels_and_target_ids(base_objroot)
+        )
         build_request = _get_build_request(
             xcode_version,
             objroot,
             build_request_min_ctime,
         )
-        guid_labels, guid_target_ids = (
-            _calculate_guid_labels_and_target_ids(base_objroot)
-        )
+        if not build_request:
+            build_request = _get_fallback_build_request(
+                objroot,
+                configuration,
+                platform,
+                scheme_label,
+                guid_labels,
+            )
     except Exception:
         print(
             f"""\
@@ -430,6 +518,10 @@ if __name__ == "__main__":
         sys.argv[3],
         # build_marker_file
         sys.argv[4],
-        # output_group_prefixes
+        # CONFIGURATION
         sys.argv[5],
+        # PLATFORM_NAME
+        sys.argv[6],
+        # output_group_prefixes
+        sys.argv[7],
     )

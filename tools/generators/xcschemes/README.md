@@ -62,7 +62,7 @@ Here is an example output:
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Initialize Bazel Build Output Groups File"
-               scriptText = "mkdir -p &quot;${BUILD_MARKER_FILE%/*}&quot;&#10;touch &quot;$BUILD_MARKER_FILE&quot;&#10;">
+               scriptText = "mkdir -p &quot;${BUILD_MARKER_FILE%/*}&quot;&#10;printf &apos;%s\n&apos; &quot;${BAZEL_LABEL:-}&quot; &gt; &quot;$BUILD_MARKER_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
