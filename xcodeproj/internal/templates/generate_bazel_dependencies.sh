@@ -44,6 +44,7 @@ else
         "$build_marker_file" \
         "$CONFIGURATION" \
         "$PLATFORM_NAME" \
+        "$RULES_XCODEPROJ_BUILD_MODE" \
         $output_group_prefixes \
         && printf '\0' )
 

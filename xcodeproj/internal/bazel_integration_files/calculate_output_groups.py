@@ -4,6 +4,7 @@ import datetime
 import glob
 import json
 import os
+import re
 import sys
 import time
 import traceback
@@ -23,8 +24,8 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
-# How long to wait for Xcode to write the current build's `build-request.json`
-# before falling back to an earlier, matching one
+# How long to wait for Xcode to update the current build's `.xcbuilddata` before
+# falling back to an earlier, matching one
 _BUILD_REQUEST_TIMEOUT_SECONDS = 30
 
 
@@ -76,6 +77,49 @@ def _read_build_request(build_request_file):
         return None
 
 
+def _build_request_from_manifest(
+        manifest_file,
+        configuration,
+        platform,
+        guid_labels):
+    # Unlike `build-request.json`, Xcode writes `manifest.json` atomically
+    # before the build starts. It lists every target in the build graph, which
+    # in BwB mode are the targets that need Bazel outputs.
+    try:
+        with open(manifest_file, encoding = "utf-8", errors = "replace") as f:
+            manifest = f.read()
+    except OSError:
+        return None
+    guids = _manifest_target_guids(manifest, guid_labels)
+    if not guids:
+        return None
+    return {
+        "configuredTargets": [{"guid": guid} for guid in sorted(guids)],
+        "parameters": {
+            "activeRunDestination": {"platform": platform},
+            "configurationName": configuration,
+        },
+    }
+
+
+def _manifest_target_guids(manifest, guids):
+    # Task and node names identify configured targets as
+    # `target-<name>-<guid>-<parameters>`. Names and GUIDs can both contain
+    # `-`, so every GUID length is tried after every `-`.
+    guid_lengths = {len(guid) for guid in guids}
+    found = set()
+    for identifier in set(re.findall(r'target-[^"<>]+', manifest)):
+        start = identifier.find("-")
+        while start != -1:
+            for length in guid_lengths:
+                end = start + 1 + length
+                if (identifier[end:end + 1] == "-" and
+                    identifier[start + 1:end] in guids):
+                    found.add(identifier[start + 1:end])
+            start = identifier.find("-", start + 1)
+    return found
+
+
 def _getctime_or_zero(path):
     try:
         return os.path.getctime(path)
@@ -83,10 +127,19 @@ def _getctime_or_zero(path):
         return 0
 
 
+def _newest_first_xcbuilddatas(objroot):
+    return sorted(
+        glob.glob(f"{objroot}/XCBuildData/*.xcbuilddata"),
+        key = _getctime_or_zero,
+        reverse = True,
+    )
+
+
 def _get_build_request(
         xcode_version,
         objroot,
-        build_request_min_ctime):
+        build_request_min_ctime,
+        build_request_from_manifest = None):
     if xcode_version < 1430:
         # Before Xcode 14.3
         def wait_for_description():
@@ -128,7 +181,22 @@ def _get_build_request(
             # ValueError: no .xcbuilddata files yet (empty glob)
             # FileNotFoundError/OSError: TOCTOU race - file deleted between glob and getctime
             return None
-        return _read_build_request(f"{xcbuilddata}/build-request.json")
+        build_request = _read_build_request(f"{xcbuilddata}/build-request.json")
+        if build_request or not build_request_from_manifest:
+            return build_request
+
+        manifest_file = f"{xcbuilddata}/manifest.json"
+        build_request = build_request_from_manifest(manifest_file)
+        if build_request:
+            now = datetime.datetime.now().strftime('%H:%M:%S')
+            print(
+                f"""\
+note: ({now}) Using the targets in '{manifest_file}', because Xcode hasn't \
+written 'build-request.json' yet.""",
+                file = sys.stderr,
+                flush = True,
+            )
+        return build_request
 
     return _wait_for_value(
         wait_for_build_request,
@@ -137,18 +205,38 @@ def _get_build_request(
     )
 
 
+def _find_matching_manifest(
+        objroot,
+        configuration,
+        platform,
+        scheme_label,
+        guid_labels):
+    for xcbuilddata in _newest_first_xcbuilddatas(objroot):
+        manifest_file = f"{xcbuilddata}/manifest.json"
+        build_request = _build_request_from_manifest(
+            manifest_file,
+            configuration,
+            platform,
+            guid_labels,
+        )
+        if build_request and _build_request_matches(
+            build_request,
+            configuration,
+            platform,
+            scheme_label,
+            guid_labels,
+        ):
+            return manifest_file, build_request
+    return None, None
+
+
 def _find_matching_build_request(
         objroot,
         configuration,
         platform,
         scheme_label,
         guid_labels):
-    xcbuilddatas = sorted(
-        glob.glob(f"{objroot}/XCBuildData/*.xcbuilddata"),
-        key = _getctime_or_zero,
-        reverse = True,
-    )
-    for xcbuilddata in xcbuilddatas:
+    for xcbuilddata in _newest_first_xcbuilddatas(objroot):
         build_request_file = f"{xcbuilddata}/build-request.json"
         build_request = _read_build_request(build_request_file)
         if build_request and _build_request_matches(
@@ -396,26 +484,36 @@ def _get_fallback_build_request(
         configuration,
         platform,
         scheme_label,
-        guid_labels):
-    build_request_file = None
+        guid_labels,
+        use_manifest):
+    source = None
     build_request = None
     if scheme_label:
-        build_request_file, build_request = _find_matching_build_request(
-            objroot,
-            configuration,
-            platform,
-            scheme_label,
-            guid_labels,
-        )
+        if use_manifest:
+            source, build_request = _find_matching_manifest(
+                objroot,
+                configuration,
+                platform,
+                scheme_label,
+                guid_labels,
+            )
+        if not build_request:
+            source, build_request = _find_matching_build_request(
+                objroot,
+                configuration,
+                platform,
+                scheme_label,
+                guid_labels,
+            )
 
     now = datetime.datetime.now().strftime('%H:%M:%S')
     if not build_request:
         print(
             f"""\
 error: ({now}) newest 'buildRequest.json' file still not updated after \
-{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds, and no earlier one matches this \
-build. Quit and reopen Xcode, then build again. If this happens frequently, \
-please file a bug report here: \
+{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds, and no earlier build description \
+matches this build. Quit and reopen Xcode, then build again. If this happens \
+frequently, please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
             flush = True,
@@ -425,9 +523,9 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
     print(
         f"""\
 warning: ({now}) newest 'buildRequest.json' file still not updated after \
-{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds. Using '{build_request_file}' \
-instead, which matches this build's scheme, configuration, and platform. If \
-the wrong targets are built, quit and reopen Xcode, then build again.""",
+{_BUILD_REQUEST_TIMEOUT_SECONDS} seconds. Using the targets in '{source}' \
+instead, which is for this build's scheme. If the wrong targets are built, \
+quit and reopen Xcode, then build again.""",
         file = sys.stderr,
         flush = True,
     )
@@ -441,6 +539,7 @@ def _main(
         marker_file,
         configuration,
         platform,
+        build_mode,
         prefixes_str):
     if not os.path.exists(marker_file):
         return
@@ -464,6 +563,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         xcode_version = 9999
 
     prefixes = prefixes_str.split(",")
+    use_manifest = build_mode == "bazel"
 
     try:
         guid_labels, guid_target_ids = (
@@ -473,6 +573,14 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             xcode_version,
             objroot,
             build_request_min_ctime,
+            build_request_from_manifest = (
+                lambda manifest_file: _build_request_from_manifest(
+                    manifest_file,
+                    configuration,
+                    platform,
+                    guid_labels,
+                )
+            ) if use_manifest else None,
         )
         if not build_request:
             build_request = _get_fallback_build_request(
@@ -481,6 +589,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                 platform,
                 scheme_label,
                 guid_labels,
+                use_manifest,
             )
     except Exception:
         print(
@@ -522,6 +631,8 @@ if __name__ == "__main__":
         sys.argv[5],
         # PLATFORM_NAME
         sys.argv[6],
-        # output_group_prefixes
+        # RULES_XCODEPROJ_BUILD_MODE
         sys.argv[7],
+        # output_group_prefixes
+        sys.argv[8],
     )
