@@ -117,6 +117,19 @@ def _xcodeproj_cache_warm_aspect_impl(target, ctx):
             getattr(ctx.rule.attr, "top_level_device_targets", []) +
             getattr(ctx.rule.attr, "top_level_simulator_targets", [])
         )
+    elif ctx.rule.kind == "swift_compiler_plugin":
+        # The linked plugin executable is an input to SwiftCompile actions.
+        # Select CppLink only for compiler plugins; collecting it generally
+        # would make cache warming download all application and library links.
+        compile_outs = [
+            action.outputs
+            for action in target.actions
+            if (
+                action.mnemonic in _COMPILE_MNEMONICS or
+                action.mnemonic == "CppLink"
+            )
+        ]
+        deps = getattr(ctx.rule.attr, "deps", [])
     elif CcInfo in target or SwiftInfo in target:
         compile_outs = [
             action.outputs
@@ -131,12 +144,14 @@ def _xcodeproj_cache_warm_aspect_impl(target, ctx):
     else:
         deps = getattr(ctx.rule.attr, "deps", [])
 
+    compile_deps = deps + getattr(ctx.rule.attr, "plugins", [])
+
     return [
         OutputGroupInfo(
             compiles = depset(
                 transitive = compile_outs + [
                     dep[OutputGroupInfo].compiles
-                    for dep in deps
+                    for dep in compile_deps
                     if (
                         OutputGroupInfo in dep and
                         hasattr(dep[OutputGroupInfo], "compiles")
@@ -162,6 +177,7 @@ xcodeproj_cache_warm_aspect = aspect(
         "deps",
         "implementation_deps",
         "private_deps",
+        "plugins",
 
         # `*_application`
         "extensions",
