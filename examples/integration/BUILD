@@ -17,7 +17,10 @@ load(
     "XCSCHEMES",
 )
 
-exports_files(["README.md"])
+exports_files([
+    "IDETemplateMacros.plist",
+    "README.md",
+])
 
 string_flag(
     name = "flag_to_transition_on",

@@ -6,6 +6,7 @@ def project_options(
         indent_width = None,
         organization_name = None,
         tab_width = None,
+        template_macros = None,
         uses_tabs = None):
     """Project options for use in `xcodeproj.project_options`.
 
@@ -15,6 +16,10 @@ def project_options(
         organization_name: Optional. Populates the `ORGANIZATIONNAME` attribute
             for the project.
         tab_width: Optional. The number of spaces to use for tabs.
+        template_macros: Optional. A Bazel `Label` or label-like `string`
+            pointing to an `IDETemplateMacros.plist` file. If specified, this
+            file will be installed at `xcshareddata/IDETemplateMacros.plist`
+            inside the generated `.xcodeproj` bundle.
         uses_tabs: Optional. Whether to use tabs for indentation.
 
     Returns:
@@ -33,6 +38,8 @@ def project_options(
         d["organization_name"] = organization_name
     if tab_width:
         d["tab_width"] = str(tab_width)
+    if template_macros:
+        d["template_macros"] = str(template_macros)
     if uses_tabs != None:
         d["uses_tabs"] = "1" if uses_tabs else "0"
 

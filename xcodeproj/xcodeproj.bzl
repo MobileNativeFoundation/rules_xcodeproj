@@ -471,6 +471,10 @@ configuration alphabetically ("{default}").
         for f in extra_files
     ]
 
+    template_macros = project_options.get("template_macros")
+    if template_macros:
+        template_macros = bazel_labels.normalize_string(template_macros)
+
     xcschemes = xcschemes or []
     if type(xcschemes) != "list":
         fail("""
@@ -561,6 +565,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         scheme_autogeneration_config = scheme_autogeneration_config,
         storekit_configurations_map = storekit_configurations_map,
         target_name_mode = target_name_mode,
+        template_macros = template_macros,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,
