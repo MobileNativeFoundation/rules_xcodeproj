@@ -41,6 +41,16 @@ def _create():
         else:
             writes[write_output.path] = "\n".join(content.captured.args) + "\n"
 
+    expand_template_args = []
+
+    def _actions_expand_template(*, is_executable = False, output, substitutions, template):
+        expand_template_args.append(struct(
+            is_executable = is_executable,
+            output = output,
+            substitutions = substitutions,
+            template = template,
+        ))
+
     args_objects = []
 
     def _create_args():
@@ -192,12 +202,14 @@ def _create():
         args = _create_args,
         declare_directory = _actions_declare_directory,
         declare_file = _actions_declare_file,
+        expand_template = _actions_expand_template,
         run = _action_run,
         write = _actions_write,
     )
 
     return struct(
         args_objects = args_objects,
+        expand_template_args = expand_template_args,
         run_args = run_args,
         declared_directories = declared_directories,
         declared_files = declared_files,
@@ -205,9 +217,10 @@ def _create():
         writes = writes,
     )
 
-def _mock_file(path):
+def _mock_file(path, short_path = None):
     return struct(
         path = path,
+        short_path = short_path if short_path != None else path,
     )
 
 def _mock_label(label):

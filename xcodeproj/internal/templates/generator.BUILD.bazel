@@ -36,6 +36,7 @@ xcodeproj(
     suppress_coverage_build = %suppress_coverage_build%,
     tags = %tags%,
     target_name_mode = "%target_name_mode%",
+    template_macros = %template_macros%,
     top_level_device_targets = %top_level_device_targets%,
     top_level_simulator_targets = %top_level_simulator_targets%,
     tvos_device_cpus = "%tvos_device_cpus%",
