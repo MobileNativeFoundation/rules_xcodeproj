@@ -92,6 +92,12 @@ def _xcodeproj_aspect_attrs(
             default = Label("//xcodeproj:separate_index_build_output_base"),
             providers = [BuildSettingInfo],
         ),
+        "_signing_certificate_name": attr.label(
+            default = Label(
+                "@build_bazel_rules_apple//apple/build_settings:signing_certificate_name",
+            ),
+            providers = [BuildSettingInfo],
+        ),
         "_target_build_settings_generator": attr.label(
             cfg = "exec",
             default = Label(

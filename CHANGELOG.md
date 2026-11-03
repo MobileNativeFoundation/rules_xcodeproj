@@ -58,7 +58,8 @@ END_UNRELEASED_TEMPLATE
 
 ### Fixed
 
-* TBD
+* Fixed reading signing certificate names when Bazel's native ObjC fragment no
+  longer exposes them: [#3385](https://github.com/MobileNativeFoundation/rules_xcodeproj/pull/3385)
 
 ### Ruleset Development Changes
 
