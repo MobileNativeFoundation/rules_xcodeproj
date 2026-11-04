@@ -259,6 +259,7 @@ def _write_installer(
         name,
         project_pbxproj,
         template,
+        template_macros,
         xcschememanagement,
         xcschemes):
     installer = actions.declare_file(
@@ -282,6 +283,9 @@ def _write_installer(
             "%generated_xcfilelist%": generated_xcfilelist.short_path,
             "%output_path%": install_path,
             "%project_pbxproj%": project_pbxproj.short_path,
+            "%template_macros%": (
+                template_macros.short_path if template_macros else ""
+            ),
             "%xcschememanagement%": xcschememanagement.short_path,
             "%xcschemes%": xcschemes.short_path,
         },
@@ -295,7 +299,7 @@ def _write_installer(
         project_pbxproj,
         xcschememanagement,
         xcschemes,
-    ]
+    ] + ([template_macros] if template_macros else [])
 
     return (installer, runfiles)
 
@@ -751,6 +755,7 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         name = name,
         project_pbxproj = project_pbxproj,
         template = ctx.file._installer_template,
+        template_macros = ctx.file.template_macros,
         xcschememanagement = xcschememanagement,
         xcschemes = xcschemes,
     )
@@ -814,6 +819,9 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
         ),
         "suppress_coverage_build": attr.bool(mandatory = True),
         "target_name_mode": attr.string(mandatory = True),
+        "template_macros": attr.label(
+            allow_single_file = [".plist"],
+        ),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
             aspects = [xcodeproj_aspect],
@@ -957,4 +965,5 @@ A dict mapping of Labels for StoreKit Testing configuration files to their File 
 xcodeproj_rule = struct(
     attrs = _xcodeproj_attrs,
     impl = _xcodeproj_impl,
+    write_installer = _write_installer,
 )

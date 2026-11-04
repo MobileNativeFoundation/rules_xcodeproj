@@ -185,7 +185,8 @@ A `list` of values from `top_level_target`.
 <pre>
 load("@rules_xcodeproj//xcodeproj/internal/docs:project_options.bzl", "project_options")
 
-project_options(*, <a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-organization_name">organization_name</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
+project_options(*, <a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-organization_name">organization_name</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-template_macros">template_macros</a>,
+                <a href="#project_options-uses_tabs">uses_tabs</a>)
 </pre>
 
 Project options for use in `xcodeproj.project_options`.
@@ -199,6 +200,7 @@ Project options for use in `xcodeproj.project_options`.
 | <a id="project_options-indent_width"></a>indent_width |  Optional. The number of spaces to use for indentation.   |  `None` |
 | <a id="project_options-organization_name"></a>organization_name |  Optional. Populates the `ORGANIZATIONNAME` attribute for the project.   |  `None` |
 | <a id="project_options-tab_width"></a>tab_width |  Optional. The number of spaces to use for tabs.   |  `None` |
+| <a id="project_options-template_macros"></a>template_macros |  Optional. A Bazel `Label` or label-like `string` pointing to an `IDETemplateMacros.plist` file. If specified, this file will be installed at `xcshareddata/IDETemplateMacros.plist` inside the generated `.xcodeproj` bundle.   |  `None` |
 | <a id="project_options-uses_tabs"></a>uses_tabs |  Optional. Whether to use tabs for indentation.   |  `None` |
 
 **RETURNS**

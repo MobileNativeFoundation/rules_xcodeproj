@@ -248,6 +248,9 @@ def _write_generator_build_file(
             "%suppress_coverage_build%": str(attr._suppress_coverage_build[BuildSettingInfo].value),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
+            "%template_macros%": (
+                _serialize_nullable_string(attr.template_macros)
+            ),
             "%testonly%": str(attr.testonly),
             "%top_level_device_targets%": str(attr.top_level_device_targets),
             "%top_level_simulator_targets%": str(
@@ -541,6 +544,7 @@ to a single file.""",
             default = "auto",
             values = ["auto", "label"],
         ),
+        "template_macros": attr.string(),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
         "tvos_device_cpus": attr.string(mandatory = True),
