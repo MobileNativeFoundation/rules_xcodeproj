@@ -33,12 +33,6 @@ ios_application(
             "@build_bazel_rules_apple//tools/codesigningtool:disable_signing_resource_rules",
         ],
     }),
-    codesignopts = select({
-        ":release_build": [],
-        "//conditions:default": [
-            "--digest-algorithm=sha1",
-        ],
-    }),
     entitlements = "ios app.entitlements",
     executable_name = select({
         "@build_bazel_apple_support//constraints:device": None,

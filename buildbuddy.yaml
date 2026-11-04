@@ -2,6 +2,7 @@ x_templates:
   action_setup:
     - &action_base
       os: "darwin"
+      arch: "arm64"
       self_hosted: true
       pool: workflows
       triggers:
@@ -11,8 +12,6 @@ x_templates:
         pull_request:
           branches:
             - "*"
-    - &arm64
-      arch: "arm64"
 
     - &bazel_in_repo_version # No change, uses `.bazelversion`, just used to make it clear
       env: {}
@@ -67,7 +66,6 @@ actions:
 
   - name: Test
     <<: *bazel_in_repo_version
-    <<: *arm64
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
@@ -75,7 +73,6 @@ actions:
       - *test_all
   - name: Test - Bazel Previous LTS
     <<: *bazel_previous_lts
-    <<: *arm64
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
@@ -83,7 +80,6 @@ actions:
       - *test_all
   - name: Test - Bazel LTS
     <<: *bazel_lts
-    <<: *arm64
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
@@ -93,7 +89,6 @@ actions:
   # `//command_line_option:incompatible_enable_apple_toolchain_resolution`.
   # - name: Test - Bazel HEAD
   #   <<: *bazel_head
-  #   <<: *arm64
   #   <<: *normal_resources
   #   <<: *action_base
   #   <<: *root_workspace
@@ -102,7 +97,6 @@ actions:
 
   - name: Integration Test - "examples/integration" - Bazel Previous LTS
     <<: *bazel_previous_lts
-    <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_integration_workspace
@@ -111,7 +105,6 @@ actions:
       - *build_all
   - name: Integration Test - "examples/integration" - Bazel LTS
     <<: *bazel_lts
-    <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_integration_workspace
@@ -122,7 +115,6 @@ actions:
   # `//command_line_option:incompatible_enable_apple_toolchain_resolution`.
   # - name: Integration Test - "examples/integration" - Bazel HEAD
   #   <<: *bazel_head
-  #   <<: *arm64
   #   <<: *action_base
   #   <<: *normal_resources
   #   <<: *examples_integration_workspace
