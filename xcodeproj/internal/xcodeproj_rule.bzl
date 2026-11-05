@@ -172,6 +172,50 @@ def _collect_files(
         srcs,
     )
 
+def _calculate_synchronized_folders_by_id(
+        *,
+        merged_target_ids,
+        synchronized_folders,
+        xcode_targets):
+    """Calculates the synchronized folders of each Xcode target.
+
+    Args:
+        merged_target_ids: A `dict` mapping `xcode_target.id` to a `list` of
+            the IDs of the targets merged into it.
+        synchronized_folders: A `dict` mapping a normalized label string to a
+            `list` of workspace relative folder paths, from
+            `xcodeproj.synchronized_folders`.
+        xcode_targets: A `dict` mapping `xcode_target.id` to `xcode_target`s.
+
+    Returns:
+        A `dict` mapping `xcode_target.id` to a sorted `list` of the target's
+        synchronized folder paths. Targets without synchronized folders aren't
+        included.
+    """
+    if not synchronized_folders:
+        return {}
+
+    synchronized_folders_by_id = {}
+    for id, xcode_target in xcode_targets.items():
+        if not xcode_target.label:
+            continue
+
+        folders = list(synchronized_folders.get(str(xcode_target.label), []))
+
+        # Folders of a library merged into this target (e.g. a test target's
+        # library) apply to this target, since it has the library's sources
+        for merged_id in merged_target_ids.get(id, []):
+            # Target IDs are the target's label followed by its configuration
+            merged_label = merged_id.split(" ", 1)[0]
+            folders.extend(synchronized_folders.get(merged_label, []))
+
+        if folders:
+            synchronized_folders_by_id[id] = sorted(
+                {folder: None for folder in folders}.keys(),
+            )
+
+    return synchronized_folders_by_id
+
 def _get_minimum_xcode_version(*, xcode_config):
     version = str(xcode_config.xcode_version())
     if not version:
@@ -326,6 +370,7 @@ def _write_project_contents(
         selected_model_versions_generator,
         separate_index_build_output_base,
         suppress_coverage_build,
+        synchronized_folders_by_id,
         target_name_mode,
         unique_directories,
         unowned_extra_files,
@@ -400,6 +445,7 @@ def _write_project_contents(
         default_xcode_configuration = default_xcode_configuration,
         generator_name = name,
         install_path = install_path,
+        synchronized_folders_by_id = synchronized_folders_by_id,
         tool = pbxnativetargets_generator,
         xcode_target_configurations = xcode_target_configurations,
         xcode_targets = xcode_targets,
@@ -423,6 +469,11 @@ def _write_project_contents(
         install_path = install_path,
         project_options = project_options,
         selected_model_versions_file = selected_model_versions_file,
+        synchronized_folders = sorted({
+            folder: None
+            for folders in synchronized_folders_by_id.values()
+            for folder in folders
+        }.keys()),
         tool = files_and_groups_generator,
         workspace_directory = workspace_directory,
     )
@@ -448,6 +499,7 @@ def _write_project_contents(
         suppress_coverage_build = suppress_coverage_build,
         target_ids_list = target_ids_list,
         tool = pbxproj_prefix_generator,
+        uses_synchronized_folders = bool(synchronized_folders_by_id),
         xcode_configurations = xcode_configurations,
         workspace_directory = workspace_directory,
     )
@@ -576,6 +628,16 @@ def _xcodeproj_impl(ctx):
         xcode_configuration_map = ctx.attr.xcode_configuration_map,
     )
 
+    merged_target_ids = {
+        dest: srcs
+        for dest, srcs in depset(
+            transitive = [
+                info.merged_target_ids
+                for info in infos
+            ],
+        ).to_list()
+    }
+
     (
         additional_outputs,
         xcode_targets,
@@ -583,15 +645,7 @@ def _xcodeproj_impl(ctx):
         xcode_target_configurations,
     ) = xcode_targets_module.dicts_from_xcode_configurations(
         infos_per_xcode_configuration = infos_per_xcode_configuration,
-        merged_target_ids = {
-            dest: srcs
-            for dest, srcs in depset(
-                transitive = [
-                    info.merged_target_ids
-                    for info in infos
-                ],
-            ).to_list()
-        },
+        merged_target_ids = merged_target_ids,
     )
 
     if not xcode_targets:
@@ -682,6 +736,11 @@ Are you using an `alias`? `xcodeproj.focused_targets` and \
         ),
         separate_index_build_output_base = separate_index_build_output_base,
         suppress_coverage_build = suppress_coverage_build,
+        synchronized_folders_by_id = _calculate_synchronized_folders_by_id(
+            merged_target_ids = merged_target_ids,
+            synchronized_folders = ctx.attr.synchronized_folders,
+            xcode_targets = xcode_targets,
+        ),
         target_name_mode = ctx.attr.target_name_mode,
         unique_directories = ctx.executable._unique_directories,
         unowned_extra_files = ctx.files.unowned_extra_files,
@@ -813,6 +872,7 @@ def _xcodeproj_attrs(
 A dict mapping of Labels for StoreKit Testing configuration files to their File paths.""",
         ),
         "suppress_coverage_build": attr.bool(mandatory = True),
+        "synchronized_folders": attr.string_list_dict(),
         "target_name_mode": attr.string(mandatory = True),
         "top_level_device_targets": attr.label_list(
             cfg = target_transitions.device,
