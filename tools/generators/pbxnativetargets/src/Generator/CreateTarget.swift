@@ -45,18 +45,18 @@ extension Generator {
             objects: [Object]
         ) {
             return try await callable(
-                /*consolidationMapEntry:*/ entry,
-                /*defaultXcodeConfiguration:*/ defaultXcodeConfiguration,
-                /*shard:*/ shard,
-                /*targetArguments:*/ targetArguments,
-                /*topLevelTargetAttributes:*/ topLevelTargetAttributes,
-                /*unitTestHosts:*/ unitTestHosts,
-                /*xcodeConfigurations:*/ xcodeConfigurations,
-                /*calculatePlatformVariants:*/ calculatePlatformVariants,
-                /*createBuildPhases:*/ createBuildPhases,
-                /*createProductObject:*/ createProductObject,
-                /*createTargetObject:*/ createTargetObject,
-                /*createXcodeConfigurations:*/ createXcodeConfigurations
+                /* consolidationMapEntry: */ entry,
+                /* defaultXcodeConfiguration: */ defaultXcodeConfiguration,
+                /* shard: */ shard,
+                /* targetArguments: */ targetArguments,
+                /* topLevelTargetAttributes: */ topLevelTargetAttributes,
+                /* unitTestHosts: */ unitTestHosts,
+                /* xcodeConfigurations: */ xcodeConfigurations,
+                /* calculatePlatformVariants: */ calculatePlatformVariants,
+                /* createBuildPhases: */ createBuildPhases,
+                /* createProductObject: */ createProductObject,
+                /* createTargetObject: */ createTargetObject,
+                /* createXcodeConfigurations: */ createXcodeConfigurations
             )
         }
     }
@@ -134,7 +134,9 @@ extension Generator.CreateTarget {
             buildFileObjects,
             buildPhaseFileSubIdentifiers
         ) = createBuildPhases(
-            consolidatedInputs: consolidatedInputs,
+            consolidatedInputs: consolidatedInputs.filtering(
+                pathsIn: aTargetArguments.buildableFolders
+            ),
             hasCParams: aTargetArguments.hasCParams,
             hasCxxParams: aTargetArguments.hasCxxParams,
             hasLinkParams: topLevelTargetAttributes[id]?.linkParams != nil,
@@ -178,7 +180,8 @@ extension Generator.CreateTarget {
             setsProductReference: setsProductReference,
             dependencySubIdentifiers: entry.dependencySubIdentifiers,
             buildConfigurationListIdentifier: configurationList.identifier,
-            buildPhaseIdentifiers: buildPhases.map(\.identifier)
+            buildPhaseIdentifiers: buildPhases.map(\.identifier),
+            buildableFolders: aTargetArguments.buildableFolders
         )
 
         let buildFileSubIdentifiers =
@@ -187,6 +190,17 @@ extension Generator.CreateTarget {
             [product, target]
 
         return (buildFileSubIdentifiers, objects)
+    }
+}
+
+private extension Target.ConsolidatedInputs {
+    func filtering(pathsIn buildableFolders: [BazelPath]) -> Self {
+        return .init(
+            srcs: srcs.filter { !$0.isContained(in: buildableFolders) },
+            nonArcSrcs: nonArcSrcs.filter {
+                !$0.isContained(in: buildableFolders)
+            }
+        )
     }
 }
 

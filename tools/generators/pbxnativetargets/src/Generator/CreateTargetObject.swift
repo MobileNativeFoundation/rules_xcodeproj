@@ -20,20 +20,28 @@ extension Generator {
             setsProductReference: Bool,
             dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
             buildConfigurationListIdentifier: String,
-            buildPhaseIdentifiers: [String]
+            buildPhaseIdentifiers: [String],
+            buildableFolders: [BazelPath]
         ) -> Object {
             return callable(
-                /*identifier:*/ identifier,
-                /*productType:*/ productType,
-                /*productName:*/ productName,
-                /*productSubIdentifier:*/ productSubIdentifier,
-                /*setsProductReference:*/ setsProductReference,
-                /*dependencySubIdentifiers:*/ dependencySubIdentifiers,
-                /*buildConfigurationListIdentifier:*/
+                /* identifier: */ identifier,
+                /* productType: */ productType,
+                /* productName: */ productName,
+                /* productSubIdentifier: */ productSubIdentifier,
+                /* setsProductReference: */ setsProductReference,
+                /* dependencySubIdentifiers: */ dependencySubIdentifiers,
+                /* buildConfigurationListIdentifier: */
                     buildConfigurationListIdentifier,
-                /*buildPhaseIdentifiers:*/ buildPhaseIdentifiers
+                /* buildPhaseIdentifiers: */ buildPhaseIdentifiers,
+                /* buildableFolders: */ buildableFolders
             )
         }
+    }
+}
+
+private extension String {
+    var lastPathComponent: String {
+        return split(separator: "/").last.map(String.init) ?? self
     }
 }
 
@@ -48,7 +56,8 @@ extension Generator.CreateTargetObject {
         _ setsProductReference: Bool,
         _ dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         _ buildConfigurationListIdentifier: String,
-        _ buildPhaseIdentifiers: [String]
+        _ buildPhaseIdentifiers: [String],
+        _ buildableFolders: [BazelPath]
     ) -> Object
 
     static func defaultCallable(
@@ -59,7 +68,8 @@ extension Generator.CreateTargetObject {
         setsProductReference: Bool,
         dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier],
         buildConfigurationListIdentifier: String,
-        buildPhaseIdentifiers: [String]
+        buildPhaseIdentifiers: [String],
+        buildableFolders: [BazelPath]
     ) -> Object {
         let productReference: String
         if setsProductReference {
@@ -71,6 +81,24 @@ extension Generator.CreateTargetObject {
 """#
         } else {
             productReference = ""
+        }
+
+        let fileSystemSynchronizedGroups: String
+        if buildableFolders.isEmpty {
+            fileSystemSynchronizedGroups = ""
+        } else {
+            let identifiers = buildableFolders.map {
+                Identifiers.FilesAndGroups.synchronizedRootGroup(
+                    $0.path,
+                    name: $0.path.lastPathComponent
+                )
+            }
+            fileSystemSynchronizedGroups = #"""
+			fileSystemSynchronizedGroups = (
+\#(identifiers.map { "\t\t\t\t\($0),\n" }.joined())\#
+			);
+
+"""#
         }
 
         // The tabs for indenting are intentional
@@ -100,6 +128,7 @@ extension Generator.CreateTargetObject {
         .joined()
 )\#
 			);
+\#(fileSystemSynchronizedGroups)\#
 			name = \#(identifier.pbxProjEscapedName);
 			productName = \#(productName.pbxProjEscaped);
 \#(productReference)\#

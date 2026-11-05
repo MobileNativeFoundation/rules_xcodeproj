@@ -3,9 +3,10 @@ import PBXProj
 extension Generator {
     static func calculatePathTree(
         paths: [BazelPath],
-        generatedPaths: [GeneratedPath]
+        generatedPaths: [GeneratedPath],
+        buildableFolders: [BazelPath] = []
     ) -> [PathTreeNode] {
-        /// `[package: [config: [path]]`
+        // `[package: [config: [path]]`
         var generatedPathsByPackageAndConfig:
             [BazelPath: [String: [BazelPath]]] = [:]
         for generatedPath in generatedPaths {
@@ -51,14 +52,14 @@ extension Generator {
                     (
                         package,
                         .multipleConfigs(
-                            pathsByConfig.sorted { $0.key < $1.key }.map({ config, paths in
+                            pathsByConfig.sorted { $0.key < $1.key }.map { config, paths in
                                 return .init(
                                     name: config,
                                     path: "\(config)/\(packageBin)",
                                     children:
                                         calculateRootedPathTree(paths: paths)
                                 )
-                            })
+                            }
                         )
                     )
                 )
@@ -67,7 +68,8 @@ extension Generator {
 
         return calculateRootedPathTree(
             paths: paths,
-            generatedFiles: generatedFiles
+            generatedFiles: generatedFiles,
+            buildableFolders: buildableFolders
         )
     }
 
@@ -75,9 +77,10 @@ extension Generator {
         paths: [BazelPath],
         generatedFiles: [
             (package: BazelPath, generatedFiles: PathTreeNode.GeneratedFiles)
-        ] = []
+        ] = [],
+        buildableFolders: [BazelPath] = []
     ) -> [PathTreeNode] {
-        guard !paths.isEmpty else {
+        guard !paths.isEmpty || !generatedFiles.isEmpty || !buildableFolders.isEmpty else {
             return []
         }
 
@@ -87,14 +90,14 @@ extension Generator {
             nodesByComponentCount[components.count, default: []]
                 .append(
                     PathTreeNodeToVisit(
-                      components: components,
-                      kind: .file
-                  )
+                        components: components,
+                        kind: .file
+                    )
                 )
         }
 
-        for (`package`, generatedFiles) in generatedFiles {
-            var components = `package`.path.split(separator: "/")
+        for (package, generatedFiles) in generatedFiles {
+            var components = package.path.split(separator: "/")
             components.append("")
             nodesByComponentCount[components.count, default: []]
                 .append(
@@ -105,7 +108,21 @@ extension Generator {
                 )
         }
 
-        for componentCount in (1...nodesByComponentCount.keys.max()!)
+        for buildableFolder in buildableFolders {
+            let components = buildableFolder.path.split(separator: "/")
+            guard !components.isEmpty else {
+                continue
+            }
+            nodesByComponentCount[components.count, default: []]
+                .append(
+                    PathTreeNodeToVisit(
+                        components: components,
+                        kind: .buildableFolder(buildableFolder)
+                    )
+                )
+        }
+
+        for componentCount in (1 ... nodesByComponentCount.keys.max()!)
             .reversed()
         {
             let nodesToVisit = nodesByComponentCount
@@ -154,13 +171,15 @@ extension Generator {
                 switch nodeToVisit.kind {
                 case .file:
                     node = .file(String(nodeToVisit.components.last!))
-                case .group(let children):
+                case let .group(children):
                     node = .group(
                         name: String(nodeToVisit.components.last!),
                         children: children
                     )
-                case .generatedFiles(let generatedFiles):
+                case let .generatedFiles(generatedFiles):
                     node = .generatedFiles(generatedFiles)
+                case let .buildableFolder(buildableFolder):
+                    node = .buildableFolder(buildableFolder)
                 }
                 collectedChildren.append(node)
             }
@@ -203,19 +222,22 @@ enum PathTreeNode: Equatable {
     case file(String)
     case group(name: String, children: [PathTreeNode])
     case generatedFiles(GeneratedFiles)
+    case buildableFolder(BazelPath)
 }
 
 extension PathTreeNode {
     var nameForSpecialGroupChild: String {
         switch self {
-        case .file(let name):
+        case let .file(name):
             return name
-        case .group(let name, _):
+        case let .group(name, _):
             return name
         case .generatedFiles:
             // This is only called from `CreateVerisonGroup` and
             // `CreateLocalizedFiles` where this case can't be hit
             fatalError()
+        case let .buildableFolder(path):
+            return path.path.lastPathComponent
         }
     }
 }
@@ -225,6 +247,7 @@ private class PathTreeNodeToVisit {
         case file
         case group(children: [PathTreeNode])
         case generatedFiles(PathTreeNode.GeneratedFiles)
+        case buildableFolder(BazelPath)
     }
 
     let components: [String.SubSequence]
@@ -236,5 +259,11 @@ private class PathTreeNodeToVisit {
     ) {
         self.components = components
         self.kind = kind
+    }
+}
+
+private extension String {
+    var lastPathComponent: String {
+        return split(separator: "/").last.map(String.init) ?? self
     }
 }

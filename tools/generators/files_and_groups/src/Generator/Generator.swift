@@ -19,13 +19,19 @@ struct Generator {
     /// groups `PBXProj` partial, and `RESOLVED_REPOSITORIES` build setting.
     /// Then it writes them to disk.
     func generate(arguments: Arguments) async throws {
+        let buildableFolders = try await environment.readBuildableFoldersFile(
+            arguments.buildableFoldersFile
+        )
+
         // FIXME: Do these in parallel as tasks
         let pathTree = try await environment.calculatePathTree(
-            /*paths:*/
-                environment.readFilePathsFile(arguments.filePathsFile),
-            /*generatedPaths:*/ environment.readGeneratedFilePathsFile(
+            /* paths: */
+                environment.readFilePathsFile(arguments.filePathsFile)
+                    .filter { !$0.isContained(in: buildableFolders) },
+            /* generatedPaths: */ environment.readGeneratedFilePathsFile(
                 arguments.generatedFilePathsFile
-            )
+            ),
+            /* buildableFolders: */ buildableFolders
         )
 
         let elementsCreator = ElementCreator(environment: environment.elements)
@@ -39,12 +45,12 @@ struct Generator {
         }
 
         let writeKnownRegionsPartialTask = Task {
-            return try environment.write(
+            return try await environment.write(
                 environment.knownRegionsPartial(
-                    /*knownRegions:*/
-                        try await createElementsTask.value.knownRegions,
-                    /*developmentRegion:*/ arguments.developmentRegion,
-                    /*useBaseInternationalization:*/
+                    /* knownRegions: */
+                        createElementsTask.value.knownRegions,
+                    /* developmentRegion: */ arguments.developmentRegion,
+                    /* useBaseInternationalization: */
                     arguments.useBaseInternationalization
                 ),
                 to: arguments.knownRegionsOutputPath
@@ -52,8 +58,8 @@ struct Generator {
         }
 
         let writeFilesAndGroupsPartialTask = Task {
-            let buildFilesPartial = environment.calculateTargetFilesPartial(
-                objects: try await environment.createTargetFileObjects(
+            let buildFilesPartial = try await environment.calculateTargetFilesPartial(
+                objects: environment.createTargetFileObjects(
                     buildFileSubIdentifierFiles:
                         arguments.buildFileSubIdentifiersFiles,
                     // Because we pass in a task here,
@@ -72,21 +78,21 @@ struct Generator {
                 )
             )
 
-            return try environment.write(
+            return try await environment.write(
                 environment.filesAndGroupsPartial(
-                    /*buildFilesPartial:*/ buildFilesPartial,
-                    /*elementsPartial:*/
-                        try await createElementsTask.value.partial
+                    /* buildFilesPartial: */ buildFilesPartial,
+                    /* elementsPartial: */
+                        createElementsTask.value.partial
                 ),
                 to: arguments.filesAndGroupsOutputPath
             )
         }
 
         let writeResolvedRepositoriesBuildSettingTask = Task {
-            return try environment.write(
+            return try await environment.write(
                 environment.resolvedRepositoriesBuildSetting(
-                    /*resolvedRepositories:*/
-                        try await createElementsTask.value.resolvedRepositories
+                    /* resolvedRepositories: */
+                        createElementsTask.value.resolvedRepositories
                 ),
                 to: arguments.resolvedRepositoriesOutputPath
             )

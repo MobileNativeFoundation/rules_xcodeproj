@@ -38,16 +38,16 @@ extension ElementCreator {
             parentBazelPathType: BazelPathType
         ) -> GroupChild {
             return callable(
-                /*node:*/ node,
-                /*parentBazelPath:*/ parentBazelPath,
-                /*parentBazelPathType:*/ parentBazelPathType,
-                /*createFile:*/ createFile,
-                /*createGroup:*/ createGroup,
-                /*createGroupChild:*/ self,
-                /*createInlineBazelGeneratedFiles:*/
+                /* node: */ node,
+                /* parentBazelPath: */ parentBazelPath,
+                /* parentBazelPathType: */ parentBazelPathType,
+                /* createFile: */ createFile,
+                /* createGroup: */ createGroup,
+                /* createGroupChild: */ self,
+                /* createInlineBazelGeneratedFiles: */
                     createInlineBazelGeneratedFiles,
-                /*createLocalizedFiles:*/ createLocalizedFiles,
-                /*createVersionGroup:*/ createVersionGroup
+                /* createLocalizedFiles: */ createLocalizedFiles,
+                /* createVersionGroup: */ createVersionGroup
             )
         }
     }
@@ -82,7 +82,38 @@ extension ElementCreator.CreateGroupChild {
         createVersionGroup: ElementCreator.CreateVersionGroup
     ) -> GroupChild {
         switch node {
-        case .group(let name, let children):
+        case let .buildableFolder(path):
+            let name = path.path.lastPathComponent
+            let object = Object(
+                identifier: Identifiers.FilesAndGroups
+                    .synchronizedRootGroup(path.path, name: name),
+                content: #"""
+{
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {};
+			explicitFolders = (
+			);
+			path = \#(name.pbxProjEscaped);
+			sourceTree = "<group>";
+		}
+"""#
+            )
+            let element = Element(
+                name: name,
+                object: object,
+                sortOrder: .groupLike
+            )
+            return .elementAndChildren(
+                .init(
+                    element: element,
+                    transitiveObjects: [object],
+                    bazelPathAndIdentifiers: [],
+                    knownRegions: [],
+                    resolvedRepositories: []
+                )
+            )
+
+        case let .group(name, children):
             let (basenameWithoutExt, ext) = name.splitExtension()
             switch ext {
             case "lproj":
@@ -130,7 +161,7 @@ extension ElementCreator.CreateGroupChild {
                 )
             }
 
-        case .file(let name):
+        case let .file(name):
             return .elementAndChildren(
                 createFile(
                     name: name,
@@ -143,7 +174,7 @@ extension ElementCreator.CreateGroupChild {
                 )
             )
 
-        case .generatedFiles(let generatedFiles):
+        case let .generatedFiles(generatedFiles):
             return .elementAndChildren(
                 createInlineBazelGeneratedFiles(
                     for: generatedFiles,
@@ -151,6 +182,12 @@ extension ElementCreator.CreateGroupChild {
                 )
             )
         }
+    }
+}
+
+private extension String {
+    var lastPathComponent: String {
+        return split(separator: "/").last.map(String.init) ?? self
     }
 }
 
