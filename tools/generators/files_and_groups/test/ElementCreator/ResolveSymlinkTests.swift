@@ -157,6 +157,151 @@ final class ResolveSymlinkTests: XCTestCase {
 
         XCTAssertEqual(symlinkDest, expectedSymlinkDest)
     }
+
+    func test_relativeSymlinkInSymlinkedDirectory() throws {
+        // Arrange
+
+        let repository = try createSymlink(
+            "repository",
+            to: fixtureDirectory.url.path
+        )
+        let path = "\(repository)/symlinks/relative2"
+
+        let expectedSymlinkDest = "\(fixtureDirectory.url.path)/files/file"
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    func test_absoluteSymlinkDestinationInSymlinkedDirectory() throws {
+        // Arrange
+
+        let repository = try createSymlink(
+            "repository",
+            to: "\(fixtureDirectory.url.path)/files"
+        )
+        let path = try createSymlink(
+            "symlinks/file",
+            to: "\(repository)/file"
+        )
+
+        let expectedSymlinkDest = "\(fixtureDirectory.url.path)/files/file"
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    func test_absoluteSymlinkMissingDestinationInSymlinkedDirectory() throws {
+        // Arrange
+
+        let repository = try createSymlink(
+            "repository",
+            to: "\(fixtureDirectory.url.path)/files"
+        )
+        let path = try createSymlink(
+            "symlinks/missing",
+            to: "\(repository)/missing"
+        )
+
+        let expectedSymlinkDest = "\(fixtureDirectory.url.path)/files/missing"
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    func test_absoluteSymlinkDestinationEndingInCurrentComponent() throws {
+        // Arrange
+
+        let path = try createSymlink(
+            "current",
+            to: "\(fixtureDirectory.url.path)/files/."
+        )
+
+        let expectedSymlinkDest = "\(fixtureDirectory.url.path)/files"
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    func test_absoluteSymlinkDestinationEndingInParentComponent() throws {
+        // Arrange
+
+        let path = try createSymlink(
+            "parent",
+            to: "\(fixtureDirectory.url.path)/files/.."
+        )
+
+        let expectedSymlinkDest = fixtureDirectory.url.path
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    func test_absoluteSymlinkDestinationWithMissingParent() throws {
+        // Arrange
+
+        let nestedDirectory = "\(fixtureDirectory.url.path)/files/sub"
+        try FileManager.default.createDirectory(
+            atPath: nestedDirectory,
+            withIntermediateDirectories: false
+        )
+        let alias = try createSymlink("alias", to: nestedDirectory)
+        let destination = "\(alias)/../generated/File.swift"
+        let path = try createSymlink("linked.swift", to: destination)
+
+        let expectedSymlinkDest = destination
+
+        // Act
+
+        let symlinkDest =
+            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+
+        // Assert
+
+        XCTAssertEqual(symlinkDest, expectedSymlinkDest)
+    }
+
+    private func createSymlink(
+        _ name: String,
+        to destination: String
+    ) throws -> String {
+        let path = "\(fixtureDirectory.url.path)/\(name)"
+        try FileManager.default.createSymbolicLink(
+            atPath: path,
+            withDestinationPath: destination
+        )
+        return path
+    }
 }
 
 class TemporaryDirectory {

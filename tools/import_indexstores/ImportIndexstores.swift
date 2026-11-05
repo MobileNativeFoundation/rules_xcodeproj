@@ -138,7 +138,7 @@ Intermediates\.noindex/Previews/[^/]*/Intermediates\.noindex
             let srcRoot = try getEnvironmentVariable("SRCROOT")
 
             // TODO: Remove 5.8 when support for Xcode 16.2.x is dropped.
-            // For now, we must support two index-import versions: 5.8.x and 6.1.x
+            // For now, we must support two index-import versions: 5.8.x and 6.4.x
             // In Swift 6.1 (Xcode 16.3+) the hash algorithm was changed making index imports
             // incompatible with 5.8.x. Fallback to the latest version.
             let indexImport: String

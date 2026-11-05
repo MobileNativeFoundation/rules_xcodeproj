@@ -52,7 +52,9 @@ END_UNRELEASED_TEMPLATE
 
 ### Adjusted
 
-* TBD
+* Bazel build outputs are now copied into Xcode's derived data using a small
+  Python-based copy tool (backed APFS clonefile on macOS) instead of a bundled
+  `rsync` binary, avoiding full duplicate copies of build artifacts on disk.
 
 ### Fixed
 

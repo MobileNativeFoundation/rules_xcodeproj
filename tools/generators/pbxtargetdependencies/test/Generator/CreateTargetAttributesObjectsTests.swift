@@ -74,11 +74,8 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
             ),
         ]
 
+        // Sorted by identifier, like Xcode does
         let expectedObjects: [Object] = [
-            .init(
-                identifier: Identifiers.BazelDependencies.idWithoutComment,
-                content: "{TA_BazelDependnencies}"
-            ),
             .init(
                 identifier:
                     identifiedTargetsMap["A"]!.identifier.withoutComment,
@@ -88,6 +85,10 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
                 identifier:
                     identifiedTargetsMap["C"]!.identifier.withoutComment,
                 content: "{TA_C}"
+            ),
+            .init(
+                identifier: Identifiers.BazelDependencies.idWithoutComment,
+                content: "{TA_BazelDependnencies}"
             ),
         ]
 
@@ -109,6 +110,78 @@ final class CreateTargetAttributesObjectsTests: XCTestCase {
             createTargetAttributesContent.tracker.called,
             expectedCreateTargetAttributesContentCalled
         )
+        XCTAssertNoDifference(objects, expectedObjects)
+    }
+
+    func test_sortedByIdentifier() throws {
+        // Arrange
+
+        let identifiedTargets: [IdentifiedTarget] = [
+            .mock(
+                key: ["B"],
+                identifier: .init(
+                    pbxProjEscapedName: "B",
+                    subIdentifier: .init(shard: "01", hash: "00000000"),
+                    full: "010000000000000000000001 /* B */",
+                    withoutComment: "010000000000000000000001"
+                )
+            ),
+            .mock(
+                key: ["A"],
+                identifier: .init(
+                    pbxProjEscapedName: "A",
+                    subIdentifier: .init(shard: "00", hash: "12345678"),
+                    full: "000012345678000000000001 /* A */",
+                    withoutComment: "000012345678000000000001"
+                )
+            ),
+        ]
+        let identifiedTargetsMap: OrderedDictionary<
+            TargetID,
+            IdentifiedTarget
+        > = [
+            "B": identifiedTargets[0],
+            "A": identifiedTargets[1],
+        ]
+
+        let createTargetAttributesContent =
+            Generator.CreateTargetAttributesContent.mock(
+                contents: [
+                    "{TA_BazelDependnencies}",
+                    "{TA_B}",
+                    "{TA_A}",
+                ]
+            )
+
+        let expectedObjects: [Object] = [
+            .init(
+                identifier: "000012345678000000000001",
+                content: "{TA_A}"
+            ),
+            .init(
+                identifier: "010000000000000000000001",
+                content: "{TA_B}"
+            ),
+            .init(
+                identifier: Identifiers.BazelDependencies.idWithoutComment,
+                content: "{TA_BazelDependnencies}"
+            ),
+        ]
+
+        // Act
+
+        let objects = try Generator.CreateTargetAttributesObjects
+            .defaultCallable(
+                identifiedTargets: identifiedTargets,
+                identifiedTargetsMap: identifiedTargetsMap,
+                testHosts: [:],
+                createdOnToolsVersion: "14.2.1",
+                createTargetAttributesContent:
+                    createTargetAttributesContent.mock
+            )
+
+        // Assert
+
         XCTAssertNoDifference(objects, expectedObjects)
     }
 
