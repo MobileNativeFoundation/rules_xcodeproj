@@ -59,6 +59,7 @@ extension Generator.CalculatePlatformVariants {
     ) {
         var srcs: [[BazelPath]] = []
         var nonArcSrcs: [[BazelPath]] = []
+        var synchronizedFolders: [[BazelPath]] = []
         var excludableFilesKeysWithValues: [(TargetID, Set<BazelPath>)] = []
         for id in ids {
             let targetArguments = try targetArguments.value(
@@ -68,6 +69,7 @@ extension Generator.CalculatePlatformVariants {
 
             srcs.append(targetArguments.srcs)
             nonArcSrcs.append(targetArguments.nonArcSrcs)
+            synchronizedFolders.append(targetArguments.synchronizedFolders)
 
             excludableFilesKeysWithValues.append(
                 (
@@ -139,9 +141,17 @@ extension Generator.CalculatePlatformVariants {
             )
         }
 
+        // Xcode adds the contents of synchronized folders to the target, so
+        // sources inside them aren't added to its build phases
+        let consolidatedSynchronizedFolders =
+            consolidatePaths(synchronizedFolders)
+        let synchronizedFoldersSet = Set(consolidatedSynchronizedFolders)
         let consolidatedInputs = Target.ConsolidatedInputs(
-            srcs: consolidatePaths(srcs),
+            srcs: consolidatePaths(srcs)
+                .removingPaths(inSynchronizedFolders: synchronizedFoldersSet),
             nonArcSrcs: consolidatePaths(nonArcSrcs)
+                .removingPaths(inSynchronizedFolders: synchronizedFoldersSet),
+            synchronizedFolders: consolidatedSynchronizedFolders
         )
 
         return (platformVariants, allConditionalFiles, consolidatedInputs)
