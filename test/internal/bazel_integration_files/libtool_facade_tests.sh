@@ -246,11 +246,11 @@ readonly installed_project="$test_root/Installed Project.xcodeproj"
 mkdir -p "$installer_inputs/schemes"
 : > "$installer_inputs/empty"
 cp "$facade" "$installer_inputs/libtool"
-printf '#!/bin/bash\nexit 0\n' > "$installer_inputs/rsync"
-chmod 0755 "$installer_inputs/rsync"
+printf '#!/bin/bash\nexit 0\n' > "$installer_inputs/copy_tool"
+chmod 0755 "$installer_inputs/copy_tool"
 sed \
-  -e 's/%bazel_integration_files%/(libtool rsync)/g' \
-  -e 's/%rsync%/rsync/g' \
+  -e 's/%bazel_integration_files%/(libtool copy_tool)/g' \
+  -e 's/%copy_tool%/copy_tool/g' \
   -e 's/%xcschemes%/schemes/g' \
   -e 's/%output_path%/Installed Project.xcodeproj/g' \
   -e 's/%[a-z_]*%/empty/g' \
