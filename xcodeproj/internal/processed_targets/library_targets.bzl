@@ -116,6 +116,7 @@ def _process_library_target(
     args = compiler_args.collect(
         c_sources = target_inputs.c_sources,
         cxx_sources = target_inputs.cxx_sources,
+        srcs = target_inputs.xcode_inputs.srcs,
         target = target,
     )
 
@@ -140,6 +141,7 @@ def _process_library_target(
             ctx.attr._separate_index_build_output_base[BuildSettingInfo].value
         ),
         swift_args = args.swift,
+        swift_directories = args.swift_directories,
         tool = ctx.executable._target_build_settings_generator,
     )
 

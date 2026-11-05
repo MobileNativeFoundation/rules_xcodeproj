@@ -4,6 +4,10 @@ load(
     "write_files_and_groups_test_suite",
 )
 load(
+    ":write_generated_directories_filelist_tests.bzl",
+    "write_generated_directories_filelist_test_suite",
+)
+load(
     ":write_generated_xcfilelist_tests.bzl",
     "write_generated_xcfilelist_test_suite",
 )
@@ -25,6 +29,10 @@ load(
 )
 
 write_files_and_groups_test_suite(name = "write_files_and_groups")
+
+write_generated_directories_filelist_test_suite(
+    name = "write_generated_directories_filelist",
+)
 
 write_generated_xcfilelist_test_suite(name = "write_generated_xcfilelist")
 

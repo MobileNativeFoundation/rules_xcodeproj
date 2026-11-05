@@ -47,12 +47,14 @@ def _collect_compiler_args(
         *,
         c_sources,
         cxx_sources,
+        srcs,
         target):
     """Collects the compiler args for a target.
 
     Args:
         c_sources: A `dict` of C source paths.
         cxx_sources: A `dict` of C++ source paths.
+        srcs: A `depset` or `list` of the target's source `File`s.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
 
@@ -65,11 +67,22 @@ def _collect_compiler_args(
             target.
         *   `swift`: A `list` of `Args` for the `SwiftCompile` action for this
             target.
+        *   `swift_directories`: A `tuple` of the directories (tree
+            artifacts) in `srcs` that `swift` expands, e.g. generated
+            sources. Actions that use `swift` need them as inputs.
     """
     swift_args = EMPTY_LIST
+    swift_directories = EMPTY_LIST
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             swift_args = action.args
+            if type(srcs) == "depset":
+                srcs = srcs.to_list()
+            swift_directories = tuple([
+                file
+                for file in srcs
+                if file.is_directory and not file.is_source
+            ])
             break
 
     conly_args, cxx_args = _get_unprocessed_cc_compiler_opts(
@@ -82,6 +95,7 @@ def _collect_compiler_args(
         conly = conly_args,
         cxx = cxx_args,
         swift = swift_args,
+        swift_directories = swift_directories,
     )
 
 compiler_args = struct(

@@ -147,6 +147,7 @@ def _cc_mergeable_info(*, mergeable_info):
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
             swift_args = EMPTY_LIST,
+            swift_directories = EMPTY_LIST,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
     )
@@ -247,6 +248,7 @@ def _mixed_language_mergeable_info(
                 ],
             ),
             swift_args = swift.args.swift,
+            swift_directories = swift.args.swift_directories,
             swift_debug_settings_to_merge = swift.swift_debug_settings,
         ),
     )
@@ -277,6 +279,7 @@ def _swift_mergeable_info(*, dynamic_frameworks, mergeable_info, product_type):
             product_files = (mergeable_info.product_file,),
             srcs = mergeable_info.inputs.srcs,
             swift_args = mergeable_info.args.swift,
+            swift_directories = mergeable_info.args.swift_directories,
             swift_debug_settings_to_merge = mergeable_info.swift_debug_settings,
         ),
     )
