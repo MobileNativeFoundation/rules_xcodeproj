@@ -3,6 +3,7 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 test_suite(
     name = "test",
     tests = [
+        "//test/internal/bazel_integration_files",
         "//test/internal/bazel_labels",
         "//test/internal/build_settings",
         "//test/internal/flattened_key_values",
