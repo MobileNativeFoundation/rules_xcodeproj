@@ -55,6 +55,10 @@ def _generated_dirname(file):
     if file.is_source:
         return None
 
+    # A tree artifact (e.g. generated sources) is a directory itself.
+    if file.is_directory:
+        return file.path
+
     return file.dirname
 
 def _xcfilelist_always_generated_file_path(file):
@@ -602,7 +606,11 @@ def _write_generated_directories_filelist(
     directories_args.use_param_file("%s", use_always = True)
 
     directories_args.add_all(infoplists, map_each = _dirname)
-    directories_args.add_all(srcs, map_each = _generated_dirname)
+    directories_args.add_all(
+        srcs,
+        map_each = _generated_dirname,
+        expand_directories = False,
+    )
 
     filelist = actions.declare_file(
         "{}-generated_directories.filelist".format(generator_name),
@@ -645,6 +653,7 @@ def _write_generated_xcfilelist(
         srcs,
         map_each = _xcfilelist_generated_file_path,
         uniquify = True,
+        expand_directories = False,
     )
 
     xcfilelist = actions.declare_file(
@@ -1120,6 +1129,7 @@ def _write_target_build_settings(
         separate_index_build_output_base,
         swift_args,
         swift_debug_settings_to_merge = EMPTY_DEPSET,
+        swift_directories = EMPTY_LIST,
         team_id = None,
         tool):
     """Creates the `OTHER_SWIFT_FLAGS` build setting string file for a target.
@@ -1161,6 +1171,9 @@ def _write_target_build_settings(
             target.
         swift_debug_settings_to_merge: A `depset` of `Files` containing
             Swift debug settings from dependencies.
+        swift_directories: A `list` of the directories (tree artifacts) in
+            the inputs of the `SwiftCompile` action, e.g. generated sources.
+            `swift_args` expand them, so they need to be inputs.
         team_id: The team ID to use for code signing.
         tool: The executable that will generate the output files.
 
@@ -1218,14 +1231,20 @@ def _write_target_build_settings(
             terminate_with = "",
         )
 
-        inputs = swift_debug_settings_to_merge
+        if swift_directories:
+            inputs = depset(
+                swift_directories,
+                transitive = [swift_debug_settings_to_merge],
+            )
+        else:
+            inputs = swift_debug_settings_to_merge
     else:
         debug_settings_output = None
 
         # swiftDebugSettingsOutputPath
         args.add("")
 
-        inputs = []
+        inputs = swift_directories
 
     # deviceFamily
     args.add(device_family)

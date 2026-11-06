@@ -41,11 +41,21 @@ def _write_target_build_settings_test_impl(ctx):
     swift_debug_settings_to_merge = depset(
         ctx.attr.swift_debug_settings_to_merge,
     )
+    swift_directories = [
+        mock_actions.mock_file(path)
+        for path in ctx.attr.swift_directories
+    ]
+    expected_inputs = swift_directories
 
     if ctx.attr.expect_debug_settings:
         expected_debug_settings = _DEBUG_SETTINGS_DECLARED_FILE
         expected_declared_files[expected_debug_settings] = None
-        expected_inputs = swift_debug_settings_to_merge
+        if swift_directories:
+            expected_inputs = (
+                swift_directories + swift_debug_settings_to_merge.to_list()
+            )
+        else:
+            expected_inputs = swift_debug_settings_to_merge
         expected_outputs.append(expected_debug_settings)
     else:
         expected_debug_settings = None
@@ -99,6 +109,7 @@ def _write_target_build_settings_test_impl(ctx):
         separate_index_build_output_base = ctx.attr.separate_index_build_output_base,
         swift_args = swift_args,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
+        swift_directories = swift_directories,
         team_id = ctx.attr.team_id,
         tool = None,
     )
@@ -129,10 +140,13 @@ def _write_target_build_settings_test_impl(ctx):
             "args[0] arguments",
         )
 
+        inputs = actions.run_args["inputs"]
+        if swift_directories and type(inputs) == "depset":
+            inputs = inputs.to_list()
         asserts.equals(
             env,
             expected_inputs,
-            actions.run_args["inputs"],
+            inputs,
             "actions.run.inputs",
         )
 
@@ -189,6 +203,7 @@ write_target_build_settings_test = unittest.make(
         "separate_index_build_output_base": attr.bool(mandatory = True),
         "swift_debug_settings_to_merge": attr.string_list(mandatory = True),
         "swift_args": attr.string_list(mandatory = True),
+        "swift_directories": attr.string_list(),
         "team_id": attr.string(),
 
         # Expected
@@ -234,6 +249,7 @@ def write_target_build_settings_test_suite(name):
             separate_index_build_output_base = False,
             swift_args,
             swift_debug_settings_to_merge = [],
+            swift_directories = [],
             team_id = None,
 
             # Expected
@@ -267,6 +283,7 @@ def write_target_build_settings_test_suite(name):
             separate_index_build_output_base = separate_index_build_output_base,
             swift_args = swift_args,
             swift_debug_settings_to_merge = swift_debug_settings_to_merge,
+            swift_directories = swift_directories,
             team_id = team_id,
 
             # Expected
@@ -794,6 +811,115 @@ def write_target_build_settings_test_suite(name):
             "bazel-out/swiftmodule/parent",
             # separateIndexBuildOutputBase
             "1",
+        ],
+    )
+
+    # Swift sources in tree artifacts: `swift_args` expand them, so they are
+    # inputs
+
+    _add_test(
+        name = "{}_swift_directories".format(name),
+
+        # Inputs
+        conly_args = [],
+        cxx_args = [],
+        generate_build_settings = True,
+        generate_swift_debug_settings = True,
+        swift_args = ["-v", "a"],
+        swift_directories = [
+            "bazel-out/ios-sim/bin/a/generated_sources",
+        ],
+
+        # Expected
+        expect_c_params = False,
+        expect_cxx_params = False,
+        expect_debug_settings = True,
+        expected_args = [
+            # colorize
+            "0",
+            # buildSettingsOutputPath
+            _BUILD_SETTINGS_DECLARED_FILE.path,
+            # swiftDebugSettingsOutputPath
+            _DEBUG_SETTINGS_DECLARED_FILE.path,
+            # includeSelfSwiftDebugSettings
+            "1",
+            # transitiveSwiftDebugSettingPaths
+            "",
+            # deviceFamily
+            "",
+            # extensionSafe
+            "0",
+            # generatesDsyms
+            "0",
+            # infoPlist
+            "",
+            # entitlements
+            "",
+            # certificateName
+            "",
+            # provisioningProfileName
+            "",
+            # teamID
+            "",
+            # provisioningProfileIsXcodeManaged
+            "0",
+            # previewsFrameworkPaths
+            "",
+            # previewsIncludePath
+            "",
+            # separateIndexBuildOutputBase
+            "0",
+        ],
+    )
+
+    _add_test(
+        name = "{}_swift_directories_no_debug_settings".format(name),
+
+        # Inputs
+        conly_args = [],
+        cxx_args = [],
+        generate_build_settings = True,
+        generate_swift_debug_settings = False,
+        swift_args = ["-v", "a"],
+        swift_directories = [
+            "bazel-out/ios-sim/bin/a/generated_sources",
+        ],
+
+        # Expected
+        expect_c_params = False,
+        expect_cxx_params = False,
+        expect_debug_settings = False,
+        expected_args = [
+            # colorize
+            "0",
+            # buildSettingsOutputPath
+            _BUILD_SETTINGS_DECLARED_FILE.path,
+            # swiftDebugSettingsOutputPath
+            "",
+            # deviceFamily
+            "",
+            # extensionSafe
+            "0",
+            # generatesDsyms
+            "0",
+            # infoPlist
+            "",
+            # entitlements
+            "",
+            # certificateName
+            "",
+            # provisioningProfileName
+            "",
+            # teamID
+            "",
+            # provisioningProfileIsXcodeManaged
+            "0",
+            # previewsFrameworkPaths
+            "",
+            # previewsIncludePath
+            "",
+            # separateIndexBuildOutputBase
+            "0",
         ],
     )
 

@@ -163,8 +163,9 @@ def _create():
 
         use_param_file_args = {}
 
-        def _args_use_param_file(param_file):
+        def _args_use_param_file(param_file, *, use_always = False):
             use_param_file_args["use_param_file"] = param_file
+            use_param_file_args["use_always"] = use_always
 
         set_param_file_format_args = {}
 

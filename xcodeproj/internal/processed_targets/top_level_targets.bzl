@@ -368,6 +368,7 @@ def _process_focused_top_level_target(
             conly = mergeable_info.conly_args,
             cxx = mergeable_info.cxx_args,
             swift = mergeable_info.swift_args,
+            swift_directories = mergeable_info.swift_directories,
         )
 
         if mergeable_info.previews_dynamic_frameworks:
@@ -423,6 +424,7 @@ def _process_focused_top_level_target(
         args = compiler_args.collect(
             c_sources = target_inputs.c_sources,
             cxx_sources = target_inputs.cxx_sources,
+            srcs = target_inputs.xcode_inputs.srcs,
             target = target,
         )
         previews_dynamic_frameworks = EMPTY_LIST
@@ -485,6 +487,7 @@ def _process_focused_top_level_target(
         ),
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
+        swift_directories = args.swift_directories,
         team_id = provisioning_profile_props.team_id,
         tool = ctx.executable._target_build_settings_generator,
     )
@@ -761,6 +764,7 @@ def _process_unfocused_top_level_target(
     args = compiler_args.collect(
         c_sources = None,
         cxx_sources = None,
+        srcs = getattr(ctx.rule.files, "srcs", EMPTY_LIST),
         target = target,
     )
     swift_debug_settings_to_merge = memory_efficient_depset(
@@ -795,6 +799,7 @@ def _process_unfocused_top_level_target(
         ),
         swift_args = args.swift,
         swift_debug_settings_to_merge = swift_debug_settings_to_merge,
+        swift_directories = args.swift_directories,
         tool = ctx.executable._target_build_settings_generator,
     )
 
