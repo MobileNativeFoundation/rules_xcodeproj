@@ -1,5 +1,10 @@
 load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
 
+exports_files(
+    ["calculate_output_groups.py"],
+    visibility = ["//test/internal/bazel_integration_files:__pkg__"],
+)
+
 _BASE_FILES = [
     "calculate_output_groups.py",
     "copy_dsyms.sh",
