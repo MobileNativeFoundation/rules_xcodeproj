@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+import shlex
 import sys
 from typing import List
 
@@ -29,25 +30,188 @@ _LD_SKIP_OPTS = {
 }
 
 
+# `-Wl,` forwards linker options; these options take a path operand.
+_WL_PATH_OPTS = {
+    "-add_ast_path",
+    "-alias_list",
+    "-assert_weak_library",
+    "-bundle_loader",
+    "-delay_library",
+    "-dirty_data_list",
+    "-dtrace",
+    "-exported_symbols_list",
+    "-filelist",
+    "-force_load",
+    "-interposable_list",
+    "-lazy_library",
+    "-load_hidden",
+    "-lto_library",
+    "-merge_library",
+    "-needed_library",
+    "-non_global_symbols_no_strip_list",
+    "-non_global_symbols_strip_list",
+    "-order_file",
+    "-reexport_library",
+    "-reexported_symbols_list",
+    "-unexported_symbols_list",
+    "-upward_library",
+    "-weak_library",
+}
+
+# Some forwarded options consume extra positional metadata paths as well.
+_WL_POSITIONAL_PATH_OPTS = {
+    "-filelist": (1, 2),
+    "-sectcreate": (3,),
+    "-sectorder": (3,),
+}
+
+# Driver-level spellings can take a separate operand outside `-Wl,` groups.
+_SPLIT_PATH_OPTS = _WL_PATH_OPTS | {
+    "-F",
+    "-L",
+    "-iframework",
+    "-rpath",
+}
+
+# These split options consume operands, but the operands are not filesystem paths.
+_SPLIT_NON_PATH_OPTS = {
+    "-allowable_client",
+    "-compatibility_version",
+    "-current_version",
+    "-dylib_compatibility_version",
+    "-dylib_current_version",
+    "-framework",
+    "-install_name",
+    "-sub_umbrella",
+    "-u",
+    "-umbrella",
+    "-undefined",
+    "-weak_framework",
+}
+
+# Only these option/operand pairs identify generated library inputs to remove.
+_LIBRARY_INPUT_OPTS = {
+    "-assert_weak_library",
+    "-delay_library",
+    "-filelist",
+    "-force_load",
+    "-lazy_library",
+    "-load_hidden",
+    "-merge_library",
+    "-needed_library",
+    "-reexport_library",
+    "-upward_library",
+    "-weak_library",
+}
+
+
+def _remove_generated_inputs(linkopts, generated_product_paths, *, driver_wrappers=True):
+    """Removes exact native products together with their linker option group."""
+    result = []
+    index = 0
+    while index < len(linkopts):
+        opt = linkopts[index]
+        if driver_wrappers and opt.startswith("-Wl,"):
+            # Parse a comma-group's payload without treating it as driver syntax.
+            values = _remove_generated_inputs(
+                opt[4:].split(","), generated_product_paths,
+            )
+            if values:
+                result.append("-Wl," + ",".join(values))
+            index += 1
+            continue
+
+        # In split driver syntax, inspect past -Xlinker but keep it in the span
+        # so removing a selected binding cannot leave the wrapper orphaned.
+        option_index = index + (driver_wrappers and opt == "-Xlinker")
+        if option_index >= len(linkopts):
+            result.append(opt)
+            break
+        option = linkopts[option_index]
+        end = option_index + 1
+        if option in _WL_POSITIONAL_PATH_OPTS and option != "-filelist":
+            # Section operands are metadata/content; preserve them as a group.
+            for _ in range(max(_WL_POSITIONAL_PATH_OPTS[option])):
+                if driver_wrappers and end < len(linkopts) and linkopts[end] == "-Xlinker":
+                    end += 1
+                end = min(end + 1, len(linkopts))
+        elif option in _SPLIT_PATH_OPTS | _SPLIT_NON_PATH_OPTS:
+            # Consume the full option/value pair; only library options bind a
+            # generated product that is eligible for removal.
+            value_index = end
+            if driver_wrappers and value_index < len(linkopts) and linkopts[value_index] == "-Xlinker":
+                value_index += 1
+            if value_index < len(linkopts):
+                end = value_index + 1
+                if (option in _LIBRARY_INPUT_OPTS and
+                    linkopts[value_index] in generated_product_paths):
+                    index = end
+                    continue
+        elif option in generated_product_paths:
+            index = end
+            continue
+
+        # Keep unmatched options and their operands in original order.
+        result.extend(linkopts[index:end])
+        index = end
+    return result
+
+
 def _parse_args(args_files: List[str]) -> List[str]:
-    args = []
+    raw_args = []
     for args_path in args_files:
         # Each argument is a path to a file containing the actual arguments
         with open(args_path, encoding = "utf-8") as fp:
-            lines = fp.read().splitlines()
-            if lines[0].startswith("@"):
-                # Sometimes those arguments might be also be a redirect
-                with open(lines[0][1:], encoding = "utf-8") as f:
-                    args.extend(f.read().splitlines())
-            else:
-                # First argument is the tool name
-                args.extend(lines[1:])
+            raw_args.extend(fp.read().splitlines())
+
+    if not raw_args:
+        raise ValueError("Link arguments do not contain a tool")
+
+    def _is_redirect(arg: str) -> bool:
+        # dyld paths are linker values, not response files.
+        return arg.startswith("@") and not any(
+            arg == prefix or arg.startswith(prefix + "/")
+            for prefix in ("@rpath", "@loader_path", "@executable_path")
+        )
+
+    def _expand_redirect(arg: str) -> List[str]:
+        redirect_path = arg[1:]
+        if not redirect_path:
+            raise ValueError("Link arguments contain an empty redirect")
+        with open(redirect_path, encoding = "utf-8") as fp:
+            redirected_args = fp.read().splitlines()
+        if not redirected_args:
+            raise ValueError("Link arguments contain an empty redirect")
+        if any(_is_redirect(arg) for arg in redirected_args):
+            raise ValueError("Nested link argument redirects are unsupported")
+        return redirected_args
+
+    # Some actions put their complete tool-plus-arguments list behind one
+    # redirect. Expand that first-level redirect before dropping the tool.
+    if _is_redirect(raw_args[0]):
+        raw_args = _expand_redirect(raw_args[0]) + raw_args[1:]
+
+    tool = raw_args[0]
+    if not tool or tool.startswith("-") or tool.startswith("@"):
+        raise ValueError("Link arguments do not contain a tool")
+
+    # The first argument across all chunks is the tool name. Later chunks start
+    # with real arguments and must not lose their first value.
+    args = []
+    for arg in raw_args[1:]:
+        if _is_redirect(arg):
+            args.extend(_expand_redirect(arg))
+        else:
+            args.append(arg)
 
     return args
 
 def _quote_if_needed(opt: str) -> str:
-    if " " in opt or ("$(" in opt and ")" in opt):
-        return f"'{opt}'"
+    # This is a Clang response file, not a shell command. Quote the whole
+    # argument and escape response syntax. Double quotes also allow apostrophes
+    # introduced later by expansion of PROJECT_DIR or another build setting.
+    if any(character in opt for character in " \t\n\r'\"\\") or "$(" in opt:
+        return '"' + opt.replace("\\", "\\\\").replace('"', '\\"') + '"'
     return opt
 
 
@@ -56,6 +220,16 @@ def _process_linkopts(
         is_framework: bool,
         generated_product_paths: List[str]
     ) -> List[str]:
+    # Change "link.params" from `shell` to `multiline` format.
+    # https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
+    # Decode a whole shell-quoted argument before matching library bindings.
+    linkopts = [
+        shlex.split(opt)[0] if opt.startswith("'") and opt.endswith("'") else opt
+        for opt in linkopts
+    ]
+    # Remove generated products together with any option that binds them.
+    linkopts = _remove_generated_inputs(linkopts, set(generated_product_paths))
+
     def _process_filelist(filelist_path: str) -> List[str]:
         with open(filelist_path, encoding = "utf-8") as fp:
             paths = fp.read().splitlines()
@@ -78,16 +252,6 @@ def _process_linkopts(
             # Not calling `_quote_and_append_processed_linkopt`, because
             # `_process_filelist` applies quoting if needed
             processed_linkopts.extend(_process_filelist(opt))
-            return
-
-        opt_generated_path_matches = [
-            path
-            for path in generated_product_paths
-            if opt.endswith(path)
-        ]
-        if opt_generated_path_matches:
-            if last_opt == "-force_load":
-                processed_linkopts.pop()
             return
 
         # Xcode sets entitlements
@@ -126,11 +290,6 @@ def _process_linkopts(
         if skip_next:
             skip_next -= 1
             continue
-
-        # Change "link.params" from `shell` to `multiline` format
-        # https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
-        if linkopt.startswith("'") and linkopt.endswith("'"):
-            linkopt = linkopt[1:-1]
 
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:
