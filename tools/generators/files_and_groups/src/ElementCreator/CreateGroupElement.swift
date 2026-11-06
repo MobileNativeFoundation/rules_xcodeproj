@@ -105,7 +105,10 @@ extension ElementCreator.CreateGroupElement {
                 object: .init(
                     identifier: createIdentifier(
                         path: bazelPath.path,
-                        name: attributes.elementAttributes.path,
+                        // Xcode comments an element with its `name`, falling
+                        // back to its `path`
+                        name: attributes.elementAttributes.name ??
+                            attributes.elementAttributes.path,
                         type: .group
                     ),
                     content: content

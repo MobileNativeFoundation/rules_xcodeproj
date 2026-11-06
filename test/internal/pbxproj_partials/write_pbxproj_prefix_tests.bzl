@@ -293,6 +293,9 @@ def write_pbxproj_prefix_test_suite(name):
             "Debug",
             # developmentRegion
             "en",
+            # projectName
+            "--project-name",
+            "project",
             # platforms
             "--platforms",
             "macosx",
@@ -370,6 +373,9 @@ def write_pbxproj_prefix_test_suite(name):
             # organizationName
             "--organization-name",
             "MobileNativeFoundation 2",
+            # projectName
+            "--project-name",
+            "project",
             # platforms
             "--platforms",
             "macosx",
