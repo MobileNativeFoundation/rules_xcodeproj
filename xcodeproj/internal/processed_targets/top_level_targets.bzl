@@ -319,6 +319,7 @@ def _process_focused_top_level_target(
         automatic_target_info = automatic_target_info,
         objc_fragment = ctx.fragments.objc,
         rule_attr = rule_attr,
+        signing_certificate_name = ctx.attr._signing_certificate_name[BuildSettingInfo].value,
     )
 
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
