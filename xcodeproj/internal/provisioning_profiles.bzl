@@ -9,7 +9,8 @@ def _process_attr(
         *,
         automatic_target_info,
         objc_fragment,
-        rule_attr):
+        rule_attr,
+        signing_certificate_name = None):
     attr = automatic_target_info.provisioning_profile
     if attr and hasattr(rule_attr, attr):
         provisioning_profile_target = getattr(rule_attr, attr, None)
@@ -33,7 +34,10 @@ def _process_attr(
     is_xcode_managed = info.is_xcode_managed
 
     return struct(
-        certificate_name = objc_fragment.signing_certificate_name,
+        certificate_name = (
+            signing_certificate_name or
+            getattr(objc_fragment, "signing_certificate_name", None)
+        ),
         is_missing_profile = is_missing_profile,
         is_xcode_managed = is_xcode_managed,
         # We need to not set the profile name if the profile is managed by Xcode
