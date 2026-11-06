@@ -130,6 +130,7 @@ def _collect_output_files(
         link_params = None,
         name,
         output_group_info,
+        preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         should_produce_dto = True,
         swift_info,
@@ -155,6 +156,7 @@ def _collect_output_files(
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_swift_import_files: Files to prepare for native index imports.
         product: A value from `process_product`.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
             collected values. This will only be `True` if the generator can use
@@ -267,7 +269,7 @@ def _collect_output_files(
     # does not include linked products, avoiding large binary materialization.
     indexing_depset = memory_efficient_depset(
         [indexstores_filelist],
-        transitive = [transitive_indexstores],
+        transitive = [transitive_indexstores, preview_swift_import_files],
     )
 
     direct_group_list = [
@@ -307,6 +309,7 @@ def _collect_mixed_language_output_files(
         mixed_target_infos,
         name,
         output_group_info,
+        preview_swift_import_files = EMPTY_DEPSET,
         product = None,
         swift_info,
         transitive_infos):
@@ -327,6 +330,7 @@ def _collect_mixed_language_output_files(
         name: Name (potentially replaced) of the target.
         output_group_info: The `OutputGroupInfo` provider for the target, or
             `None`.
+        preview_swift_import_files: Files to prepare for native index imports.
         product: A value from `process_product`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -408,6 +412,10 @@ def _collect_mixed_language_output_files(
 
     direct_group_list = [
         ("bc {}".format(id), transitive_compile_params),
+        ("bi {}".format(id), memory_efficient_depset(
+            [indexstores_filelist],
+            transitive = [transitive_indexstores, preview_swift_import_files],
+        )),
         ("bl {}".format(id), transitive_link_params),
         (products_output_group_name, products_depset),
     ]
