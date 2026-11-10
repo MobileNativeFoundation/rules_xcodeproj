@@ -246,6 +246,7 @@ def _write_generator_build_file(
             "%separate_index_build_output_base%": str(attr._separate_index_build_output_base[BuildSettingInfo].value),
             "%storekit_configurations_map%": str(storekit_configurations_map),
             "%suppress_coverage_build%": str(attr._suppress_coverage_build[BuildSettingInfo].value),
+            "%synchronized_folders%": str(attr.synchronized_folders),
             "%tags%": tags,
             "%target_name_mode%": attr.target_name_mode,
             "%testonly%": str(attr.testonly),
@@ -537,6 +538,7 @@ A dict mapping xcscheme names to Labels of StoreKit Testing configuration files.
 While the attr allows for Labels that make up multiple files, the Label must point
 to a single file.""",
         ),
+        "synchronized_folders": attr.string_list_dict(),
         "target_name_mode": attr.string(
             default = "auto",
             values = ["auto", "label"],

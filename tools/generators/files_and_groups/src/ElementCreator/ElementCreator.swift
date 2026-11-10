@@ -1,3 +1,4 @@
+import Foundation
 import PBXProj
 
 struct ElementCreator {
@@ -23,6 +24,9 @@ struct ElementCreator {
             ),
             includeCompileStub: compileStubNeeded,
             installPath: arguments.installPath,
+            synchronizedFolders: try readSynchronizedFoldersFile(
+                arguments.synchronizedFoldersFile
+            ),
             selectedModelVersions:
                 try environment.readSelectedModelVersionsFile(
                     arguments.selectedModelVersionsFile
@@ -52,6 +56,18 @@ struct ElementCreator {
             resolvedRepositories: rootElements.resolvedRepositories
         )
     }
+}
+
+/// Reads the paths of synchronized folders, one per line, from `url`.
+func readSynchronizedFoldersFile(_ url: URL?) throws -> Set<BazelPath> {
+    guard let url else {
+        return []
+    }
+    return Set(
+        try String(contentsOf: url, encoding: .utf8)
+            .split(separator: "\n")
+            .map { BazelPath(String($0)) }
+    )
 }
 
 struct CreatedElements {

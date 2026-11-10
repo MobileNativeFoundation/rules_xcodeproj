@@ -123,6 +123,8 @@ _FLAGS = struct(
     platforms = "--platforms",
     post_build_script = "--post-build-script",
     pre_build_script = "--pre-build-script",
+    synchronized_folders_file = "--synchronized-folders-file",
+    uses_synchronized_folders = "--uses-synchronized-folders",
     target_and_test_hosts = "--target-and-test-hosts",
     target_and_watch_kit_extensions = "--target-and-watch-kit-extensions",
     use_base_internationalization = "--use-base-internationalization",
@@ -142,6 +144,7 @@ def _write_consolidation_map_targets(
         idx,
         install_path,
         labels,
+        synchronized_folders_by_id,
         tool,
         xcode_target_configurations,
         xcode_targets,
@@ -162,6 +165,8 @@ def _write_consolidation_map_targets(
             `.xcodeproj` will be written.
         labels: A `list` of `Label`s of the targets included in
             `consolidation_map`.
+        synchronized_folders_by_id: A `dict` mapping `xcode_target.id` to a
+            sorted `list` of paths of the target's synchronized folders.
         tool: The executable that will generate the output files.
         xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
             `list` of Xcode configuration names that the target is present in.
@@ -310,6 +315,13 @@ def _write_consolidation_map_targets(
                 terminate_with = "",
             )
 
+            # synchronizedFolders
+            targets_args.add_all(
+                synchronized_folders_by_id.get(xcode_target.id, EMPTY_LIST),
+                omit_if_empty = False,
+                terminate_with = "",
+            )
+
             targets_args.add_all(
                 xcode_target_configurations[xcode_target.id],
                 omit_if_empty = False,
@@ -408,6 +420,7 @@ def _write_files_and_groups(
         install_path,
         project_options,
         selected_model_versions_file,
+        synchronized_folders = EMPTY_LIST,
         tool,
         workspace_directory):
     """Creates `File`s representing files and groups in a `.pbxproj`.
@@ -434,6 +447,8 @@ def _write_files_and_groups(
         selected_model_versions_file: A `File` that contains a JSON
             representation of `[BazelPath: String]`, mapping `.xcdatamodeld`
             file paths to selected `.xcdatamodel` file names.
+        synchronized_folders: A sorted `list` of paths of folders to create as
+            `PBXFileSystemSynchronizedRootGroup`s.
         tool: The executable that will generate the output files.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
@@ -484,6 +499,10 @@ def _write_files_and_groups(
     # TODO: Consider moving normalization into `args.add_all.map_each`
     file_paths_args.add_all(file_paths)
 
+    # Synchronized folders are placed in the tree like files, and created as
+    # `PBXFileSystemSynchronizedRootGroup`s.
+    file_paths_args.add_all(synchronized_folders)
+
     actions.write(file_paths_file, file_paths_args)
 
     # generatedFilePaths
@@ -504,6 +523,26 @@ def _write_files_and_groups(
     )
 
     actions.write(generated_file_paths_file, generated_file_paths_args)
+
+    # synchronizedFoldersFile
+
+    if synchronized_folders:
+        synchronized_folders_file = actions.declare_file(
+            "{}_pbxproj_partials/synchronized_folders_file".format(
+                generator_name,
+            ),
+        )
+
+        synchronized_folders_args = actions.args()
+        synchronized_folders_args.set_param_file_format("multiline")
+        synchronized_folders_args.add_all(synchronized_folders)
+
+        actions.write(synchronized_folders_file, synchronized_folders_args)
+
+        synchronized_folders_inputs = [synchronized_folders_file]
+    else:
+        synchronized_folders_file = None
+        synchronized_folders_inputs = []
 
     # ... the rest
 
@@ -546,6 +585,10 @@ def _write_files_and_groups(
     # developmentRegion
     args.add(project_options["development_region"])
 
+    # synchronizedFoldersFile
+    if synchronized_folders_file:
+        args.add(_FLAGS.synchronized_folders_file, synchronized_folders_file)
+
     # useBaseInternationalization
     args.add(_FLAGS.use_base_internationalization)
 
@@ -573,7 +616,7 @@ def _write_files_and_groups(
             generated_file_paths_file,
             execution_root_file,
             selected_model_versions_file,
-        ] + buildfile_subidentifiers_files,
+        ] + synchronized_folders_inputs + buildfile_subidentifiers_files,
         outputs = [
             files_and_groups,
             pbxproject_known_regions,
@@ -670,6 +713,9 @@ def _write_pbxproj_prefix(
         index_import,
         install_path,
         minimum_xcode_version,
+        pbxproject_known_regions,
+        pbxproject_target_attributes,
+        pbxproject_targets,
         platforms,
         post_build_script,
         pre_build_script,
@@ -679,6 +725,7 @@ def _write_pbxproj_prefix(
         suppress_coverage_build,
         target_ids_list,
         tool,
+        uses_synchronized_folders = False,
         workspace_directory,
         xcode_configurations):
     """Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
@@ -702,6 +749,12 @@ def _write_pbxproj_prefix(
             `.xcodeproj` will be written.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
+        pbxproject_known_regions: The `known_regions` `File` returned from
+            `pbxproj_partials.write_files_and_groups`.
+        pbxproject_target_attributes: The `pbxproject_target_attributes` `File`
+            returned from `pbxproj_partials.write_pbxtargetdependencies`.
+        pbxproject_targets: The `pbxproject_targets` `File` returned from
+            `pbxproj_partials.write_pbxtargetdependencies`.
         platforms: A `depset` of `apple_platform`s.
         post_build_script: A `string` representing a post build script.
         pre_build_script: A `string` representing a pre build script.
@@ -714,6 +767,8 @@ def _write_pbxproj_prefix(
             when `CLANG_COVERAGE_MAPPING` is set.
         target_ids_list: A `File` containing a list of target IDs.
         tool: The executable that will generate the `PBXProj` partial.
+        uses_synchronized_folders: Whether the project has
+            `PBXFileSystemSynchronizedRootGroup`s.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
         xcode_configurations: A sorted sequence of Xcode configuration names.
@@ -721,7 +776,13 @@ def _write_pbxproj_prefix(
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
     """
-    inputs = [execution_root_file, resolved_repositories_file]
+    inputs = [
+        execution_root_file,
+        resolved_repositories_file,
+        pbxproject_target_attributes,
+        pbxproject_known_regions,
+        pbxproject_targets,
+    ]
     output = actions.declare_file(
         "{}_pbxproj_partials/pbxproj_prefix".format(
             generator_name,
@@ -762,6 +823,15 @@ def _write_pbxproj_prefix(
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
 
+    # targetAttributesFile
+    args.add(pbxproject_target_attributes)
+
+    # knownRegionsFile
+    args.add(pbxproject_known_regions)
+
+    # targetsFile
+    args.add(pbxproject_targets)
+
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
 
@@ -778,6 +848,9 @@ def _write_pbxproj_prefix(
     organization_name = project_options.get("organization_name")
     if organization_name:
         args.add(_FLAGS.organization_name, organization_name)
+
+    if uses_synchronized_folders:
+        args.add(_FLAGS.uses_synchronized_folders)
 
     # platforms
     args.add_all(
@@ -1326,6 +1399,7 @@ def _write_targets(
         default_xcode_configuration,
         generator_name,
         install_path,
+        synchronized_folders_by_id = {},
         tool,
         xcode_target_configurations,
         xcode_targets,
@@ -1343,6 +1417,8 @@ def _write_targets(
         generator_name: The name of the `xcodeproj` generator target.
         install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
+        synchronized_folders_by_id: A `dict` mapping `xcode_target.id` to a
+            sorted `list` of paths of the target's synchronized folders.
         tool: The executable that will generate the output files.
         xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
             `list` of Xcode configuration names that the target is present in.
@@ -1373,6 +1449,7 @@ def _write_targets(
             idx = consolidation_map.basename,
             install_path = install_path,
             labels = labels,
+            synchronized_folders_by_id = synchronized_folders_by_id,
             tool = tool,
             xcode_target_configurations = xcode_target_configurations,
             xcode_targets = xcode_targets,
@@ -1392,65 +1469,97 @@ def _write_targets(
 def _write_project_pbxproj(
         *,
         actions,
+        colorize,
         files_and_groups,
         generator_name,
         pbxproj_prefix,
-        pbxproject_targets,
-        pbxproject_known_regions,
-        pbxproject_target_attributes,
         pbxtargetdependencies,
-        targets):
+        targets,
+        tool,
+        uses_synchronized_folders = False):
     """Creates a `project.pbxproj` `File`.
+
+    Projects with synchronized folders are assembled into the layout that Xcode
+    writes (see the `project_pbxproj` generator), since Xcode rewrites
+    `project.pbxproj` when a synchronized folder's contents change if it
+    differs. Other projects concatenate the partials.
 
     Args:
         actions: `ctx.actions`.
+        colorize: A `bool` indicating whether to colorize the output.
         files_and_groups: The `files_and_groups` `File` returned from
             `pbxproj_partials.write_files_and_groups`.
         generator_name: The name of the `xcodeproj` generator target.
         pbxproj_prefix: The `File` returned from
             `pbxproj_partials.write_pbxproj_prefix`.
-        pbxproject_known_regions: The `known_regions` `File` returned from
-            `pbxproj_partials.write_known_regions`.
-        pbxproject_target_attributes: The `pbxproject_target_attributes` `File`
-            returned from `pbxproj_partials.write_pbxproject_targets`.
-        pbxproject_targets: The `pbxproject_targets` `File` returned from
-            `pbxproj_partials.write_pbxproject_targets`.
         pbxtargetdependencies: The `pbxtargetdependencies` `Files` returned from
             `pbxproj_partials.write_pbxproject_targets`.
         targets: The `targets` `list` of `Files` returned from
             `pbxproj_partials.write_targets`.
+        tool: The executable that will assemble the `project.pbxproj` file.
+        uses_synchronized_folders: Whether the project has
+            `PBXFileSystemSynchronizedRootGroup`s.
 
     Returns:
         A `project.pbxproj` `File`.
     """
     output = actions.declare_file("{}.project.pbxproj".format(generator_name))
 
-    inputs = [
-        pbxproj_prefix,
-        pbxproject_target_attributes,
-        pbxproject_known_regions,
-        pbxproject_targets,
-    ] + targets + [
+    inputs = [pbxproj_prefix] + targets + [
         pbxtargetdependencies,
         files_and_groups,
     ]
 
-    args = actions.args()
-    args.use_param_file("%s")
-    args.set_param_file_format("multiline")
-    args.add_all(inputs)
+    if not uses_synchronized_folders:
+        args = actions.args()
+        args.use_param_file("%s")
+        args.set_param_file_format("multiline")
+        args.add_all(inputs)
 
-    actions.run_shell(
-        arguments = [args],
-        inputs = inputs,
-        outputs = [output],
-        command = """\
+        actions.run_shell(
+            arguments = [args],
+            inputs = inputs,
+            outputs = [output],
+            command = """\
 cat "$@" > "{output}"
 """.format(output = output.path),
+            mnemonic = "WriteXcodeProjPBXProj",
+            progress_message = "Generating %{output}",
+            execution_requirements = {
+                # Running `cat` is faster than looking up and copying from cache
+                "no-cache": "1",
+                # Absolute paths
+                "no-remote": "1",
+                # Each file is directly referenced, so lets have some speed
+                "no-sandbox": "1",
+            },
+        )
+
+        return output
+
+    args = actions.args()
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
+
+    # outputPath
+    args.add(output)
+
+    # partials
+    args.add_all(inputs)
+
+    # colorize
+    if colorize:
+        args.add(_FLAGS.colorize)
+
+    actions.run(
+        arguments = [args],
+        executable = tool,
+        inputs = inputs,
+        outputs = [output],
         mnemonic = "WriteXcodeProjPBXProj",
         progress_message = "Generating %{output}",
         execution_requirements = {
-            # Running `cat` is faster than looking up and copying from cache
+            # Assembling is faster than looking up and copying from cache
             "no-cache": "1",
             # Absolute paths
             "no-remote": "1",
