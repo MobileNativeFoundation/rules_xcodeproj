@@ -493,7 +493,7 @@ private func compareExecutionActions(
 private extension Array where Element == OrderedExecutionAction {
     private static let initializeBazelBuildOutputGroupsFileScriptText = #"""
 mkdir -p "${BUILD_MARKER_FILE%/*}"
-touch "$BUILD_MARKER_FILE"
+printf '%s\n' "${BAZEL_LABEL:-}" > "$BUILD_MARKER_FILE"
 
 """#.schemeXmlEscaped
 

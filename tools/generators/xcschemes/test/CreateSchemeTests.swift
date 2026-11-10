@@ -41,7 +41,7 @@ final class CreateSchemeTests: XCTestCase {
                     title: "Initialize Bazel Build Output Groups File",
                     escapedScriptText: #"""
 mkdir -p "${BUILD_MARKER_FILE%/*}"
-touch "$BUILD_MARKER_FILE"
+printf '%s\n' "${BAZEL_LABEL:-}" > "$BUILD_MARKER_FILE"
 
 """#.schemeXmlEscaped,
                     expandVariablesBasedOn: target.buildableReference
