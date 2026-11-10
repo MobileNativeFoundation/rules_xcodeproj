@@ -66,6 +66,7 @@ swift_library(
     module_name = "pbxnativetargets_tests",
     deps = [
         ":pbxnativetargets.library",
+        "//tools/lib/ToolCommon",
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
     ],
 )

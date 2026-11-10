@@ -47,6 +47,7 @@ def xcodeproj(
         project_options = None,
         scheme_autogeneration_mode = "auto",
         scheme_autogeneration_config = None,
+        synchronized_folders = {},
         target_name_mode = "auto",
         top_level_targets,
         tvos_device_cpus = "arm64",
@@ -255,6 +256,29 @@ def xcodeproj(
             [`xcschemes.autogeneration_config`](#xcschemes.autogeneration_config).
 
             Allows further configuration of `scheme_autogeneration_mode`.
+        synchronized_folders: Optional. A `dict` mapping a target's label to a
+            `list` of workspace relative folder paths to show as Xcode
+            synchronized folders (`PBXFileSystemSynchronizedRootGroup`s) in
+            that target.
+
+            For example:
+
+            ```starlark
+            synchronized_folders = {
+                "//Feature:Feature": ["Feature/Sources"],
+                "//Feature:FeatureTests": ["Feature/Tests"],
+            },
+            ```
+
+            Xcode adds a synchronized folder's contents to its target itself,
+            so files added to the folder (in Xcode or on disk) appear in the
+            target without regenerating the project. The target's `srcs` in
+            the folders aren't listed individually. Bazel still builds the
+            target's `srcs`, so they should cover the folder (e.g. with a
+            `glob`).
+
+            A library's folders apply to the target it's merged into (e.g.
+            its test target). Folders of unfocused targets are ignored.
         target_name_mode: Optional. Specifies how Xcode targets names are
             represented:
 
@@ -471,6 +495,28 @@ configuration alphabetically ("{default}").
         for f in extra_files
     ]
 
+    normalized_synchronized_folders = {}
+    for label, folders in synchronized_folders.items():
+        for folder in folders:
+            if (not folder or folder.startswith("/") or folder.endswith("/") or
+                folder == "." or folder.startswith("../")):
+                fail("""
+{target}: `xcodeproj.synchronized_folders` folder "{folder}" for "{label}" must \
+be a workspace relative path to a folder, without a trailing "/".
+""".format(
+                    folder = folder,
+                    label = label,
+                    target = bazel_labels.normalize_string(name),
+                ))
+        normalized_synchronized_folders.setdefault(
+            bazel_labels.normalize_string(label),
+            [],
+        ).extend(folders)
+    synchronized_folders = {
+        label: sorted({folder: None for folder in folders}.keys())
+        for label, folders in normalized_synchronized_folders.items()
+    }
+
     xcschemes = xcschemes or []
     if type(xcschemes) != "list":
         fail("""
@@ -560,6 +606,7 @@ for {configuration} ({new_keys}) do not match keys of other configurations \
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         scheme_autogeneration_config = scheme_autogeneration_config,
         storekit_configurations_map = storekit_configurations_map,
+        synchronized_folders = synchronized_folders,
         target_name_mode = target_name_mode,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
