@@ -181,22 +181,20 @@ def _get_build_request(
             # ValueError: no .xcbuilddata files yet (empty glob)
             # FileNotFoundError/OSError: TOCTOU race - file deleted between glob and getctime
             return None
-        build_request = _read_build_request(f"{xcbuilddata}/build-request.json")
-        if build_request or not build_request_from_manifest:
-            return build_request
-
-        manifest_file = f"{xcbuilddata}/manifest.json"
-        build_request = build_request_from_manifest(manifest_file)
-        if build_request:
-            now = datetime.datetime.now().strftime('%H:%M:%S')
-            print(
-                f"""\
-note: ({now}) Using the targets in '{manifest_file}', because Xcode hasn't \
-written 'build-request.json' yet.""",
-                file = sys.stderr,
-                flush = True,
+        if build_request_from_manifest:
+            # Xcode writes `manifest.json` atomically before the build starts,
+            # while `build-request.json` is written in place, can show up late,
+            # and on Xcode 27.1 is sometimes never written for the current
+            # build. So prefer `manifest.json` to avoid waiting, and only fall
+            # back to `build-request.json` if it's missing (older Xcode
+            # versions) or doesn't have any of our targets.
+            build_request = build_request_from_manifest(
+                f"{xcbuilddata}/manifest.json",
             )
-        return build_request
+            if build_request:
+                return build_request
+
+        return _read_build_request(f"{xcbuilddata}/build-request.json")
 
     return _wait_for_value(
         wait_for_build_request,

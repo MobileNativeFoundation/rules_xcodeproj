@@ -153,9 +153,8 @@ class get_build_request_test(_ObjrootTestCase):
             _build_request(guids=(_APP_GUID, _OTHER_GUID)),
         )
         self.sleep.assert_not_called()
-        self.assertIn("manifest.json", self.stderr.getvalue())
 
-    def test_prefers_build_request_over_manifest(self):
+    def test_prefers_manifest_over_build_request(self):
         self._xcbuilddata(
             "a",
             json.dumps(_build_request()),
@@ -164,10 +163,53 @@ class get_build_request_test(_ObjrootTestCase):
 
         self.assertEqual(
             self._get_build_request(use_manifest=True),
+            _build_request(guids=(_APP_GUID, _OTHER_GUID)),
+        )
+        self.sleep.assert_not_called()
+
+    def test_uses_manifest_when_build_request_is_incomplete(self):
+        self._xcbuilddata("a", "", manifest=_manifest(_APP_GUID))
+
+        self.assertEqual(
+            self._get_build_request(use_manifest=True),
             _build_request(),
         )
+        self.sleep.assert_not_called()
+
+    def test_falls_back_to_build_request_without_manifest(self):
+        # Older Xcode versions don't write `manifest.json`
+        self._xcbuilddata("a", json.dumps(_build_request("Old")))
+        self._xcbuilddata("b", json.dumps(_build_request("New")))
+
+        self.assertEqual(
+            self._get_build_request(use_manifest=True),
+            _build_request("New"),
+        )
+        self.sleep.assert_not_called()
+
+    def test_falls_back_to_build_request_without_manifest_targets(self):
+        self._xcbuilddata(
+            "a",
+            json.dumps(_build_request()),
+            manifest=_manifest("unknown-guid"),
+        )
+
+        self.assertEqual(
+            self._get_build_request(use_manifest=True),
+            _build_request(),
+        )
+        self.sleep.assert_not_called()
 
     def test_ignores_manifest_when_disabled(self):
+        self._xcbuilddata(
+            "a",
+            json.dumps(_build_request()),
+            manifest=_manifest(_APP_GUID, _OTHER_GUID),
+        )
+
+        self.assertEqual(self._get_build_request(), _build_request())
+
+    def test_ignores_manifest_when_disabled_and_build_request_is_missing(self):
         self._xcbuilddata("a", manifest=_manifest(_APP_GUID))
 
         self.assertIsNone(self._get_build_request())
@@ -176,6 +218,30 @@ class get_build_request_test(_ObjrootTestCase):
         self._xcbuilddata("a", manifest=_manifest("unknown-guid"))
 
         self.assertIsNone(self._get_build_request(use_manifest=True))
+
+    def test_waits_for_manifest_written_after_start(self):
+        path = os.path.join(
+            self.objroot,
+            "XCBuildData",
+            "a.xcbuilddata",
+        )
+        os.makedirs(path)
+
+        def write_manifest(_):
+            if self.sleep.call_count == 2:
+                with open(
+                    os.path.join(path, "manifest.json"),
+                    "w",
+                    encoding="utf-8",
+                ) as f:
+                    f.write(_manifest(_APP_GUID))
+        self.sleep.side_effect = write_manifest
+
+        self.assertEqual(
+            self._get_build_request(use_manifest=True),
+            _build_request(),
+        )
+        self.assertEqual(self.sleep.call_count, 2)
 
     def _write_on_sleep(self, path, sleep_count):
         def write(_):
