@@ -1,4 +1,20 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
+
+py_library(
+    name = "build_proxy_manifest_lib",
+    srcs = ["build_proxy_manifest_lib.py"],
+    visibility = ["//test/internal/build_proxy_manifest:__pkg__"],
+)
+
+py_binary(
+    name = "build_proxy_manifest",
+    srcs = ["build_proxy_manifest.py"],
+    # The xcodeproj rule is instantiated from a generated extension repository,
+    # so its implicit executable tool must be visible across repository bounds.
+    visibility = ["//visibility:public"],
+    deps = [":build_proxy_manifest_lib"],
+)
 
 bzl_library(
     name = "bazel_tools",
