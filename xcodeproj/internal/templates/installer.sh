@@ -71,6 +71,7 @@ readonly src_generated_xcfilelist="$PWD/%generated_xcfilelist%"
 readonly src_generated_directories_filelist="$PWD/%generated_directories_filelist%"
 readonly src_project_pbxproj="$PWD/%project_pbxproj%"
 readonly src_copy_tool="$PWD/%copy_tool%"
+readonly src_template_macros="%template_macros%"
 readonly src_xcschememanagement="$PWD/%xcschememanagement%"
 readonly src_xcschemes="$PWD/%xcschemes%/"
 readonly src_xcworkspacedata="$PWD/%contents_xcworkspacedata%"
@@ -170,6 +171,17 @@ readonly dest_xcschememanagement="$user_xcschmes/xcschememanagement.plist"
 mkdir -p "$user_xcschmes"
 $cp_cmd "$src_xcschememanagement" "$dest_xcschememanagement"
 chmod u+w "$dest_xcschememanagement"
+
+# Copy over `IDETemplateMacros.plist`
+readonly dest_template_macros="$dest/xcshareddata/IDETemplateMacros.plist"
+
+if [[ -n "$src_template_macros" ]]; then
+  mkdir -p "$dest/xcshareddata"
+  $cp_cmd "$PWD/$src_template_macros" "$dest_template_macros"
+  chmod u+w "$dest_template_macros"
+else
+  rm -f "$dest_template_macros"
+fi
 
 # Even though we can generate a project on Linux, it can never run on Linux.
 # And since it has absolute paths, the generated project can't be copied to a

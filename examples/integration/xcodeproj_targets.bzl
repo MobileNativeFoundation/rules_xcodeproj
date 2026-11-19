@@ -37,6 +37,7 @@ PROJECT_OPTIONS = project_options(
     indent_width = 3,
     organization_name = "BB",
     tab_width = 2,
+    template_macros = ":IDETemplateMacros.plist",
     uses_tabs = True,
 )
 
