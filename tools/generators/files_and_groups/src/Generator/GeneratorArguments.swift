@@ -49,6 +49,15 @@ Path to a file that contains generated file paths, split into three components
         )
         var generatedFilePathsFile: URL
 
+        @Argument(
+            help: """
+Path to a file that contains buildable folder paths, relative to the Bazel \
+workspace.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var buildableFoldersFile: URL
+
         @Argument(help: "Development region for the project.")
         var developmentRegion: String
 
