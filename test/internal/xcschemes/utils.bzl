@@ -4,11 +4,14 @@ def _dict_of_dicts_to_env_infos(dict_of_dicts):
     if dict_of_dicts == None:
         return None
     return {
-        k: struct(
-            enabled = d["enabled"],
-            value = d["value"],
-        )
-        for k, d in dict_of_dicts.items()
+        k: [
+            struct(
+                enabled = d["enabled"],
+                value = d["value"],
+            )
+            for d in (values if type(values) == "list" else [values])
+        ]
+        for k, values in dict_of_dicts.items()
     }
 
 def _dict_to_diagnostics_info(d):

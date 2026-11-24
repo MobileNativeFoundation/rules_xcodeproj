@@ -134,14 +134,21 @@ def _profile(
             variables.
 
             Each value of the `dict` can either be a string or a value returned
-            by [`xcschemes.env_value`](#xcschemes.env_value). If a value is a
-            string, it will be transformed into `xcschemes.env_value(value)`.
+            by [`xcschemes.env_value`](#xcschemes.env_value). It can also be a
+            list of values returned by `xcschemes.env_value`; each entry creates
+            a row for the same environment variable, in list order. If a value
+            is a string, it will be transformed into
+            `xcschemes.env_value(value)`.
             For example,
             ```
             xcschemes.profile(
                 env = {
                     "VAR1": "value 1",
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```
@@ -151,6 +158,10 @@ def _profile(
                 env = {
                     "VAR1": xcschemes.env_value("value 1"),
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```
@@ -303,14 +314,21 @@ def _run(
             variables.
 
             Each value of the `dict` can either be a string or a value returned
-            by [`xcschemes.env_value`](#xcschemes.env_value). If a value is a
-            string, it will be transformed into `xcschemes.env_value(value)`.
+            by [`xcschemes.env_value`](#xcschemes.env_value). It can also be a
+            list of values returned by `xcschemes.env_value`; each entry creates
+            a row for the same environment variable, in list order. If a value
+            is a string, it will be transformed into
+            `xcschemes.env_value(value)`.
             For example,
             ```
             xcschemes.run(
                 env = {
                     "VAR1": "value 1",
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```
@@ -320,6 +338,10 @@ def _run(
                 env = {
                     "VAR1": xcschemes.env_value("value 1"),
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```
@@ -467,14 +489,21 @@ def _test(
             variables.
 
             Each value of the `dict` can either be a string or a value returned
-            by [`xcschemes.env_value`](#xcschemes.env_value). If a value is a
-            string, it will be transformed into `xcschemes.env_value(value)`.
+            by [`xcschemes.env_value`](#xcschemes.env_value). It can also be a
+            list of values returned by `xcschemes.env_value`; each entry creates
+            a row for the same environment variable, in list order. If a value
+            is a string, it will be transformed into
+            `xcschemes.env_value(value)`.
             For example,
             ```
             xcschemes.test(
                 env = {
                     "VAR1": "value 1",
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```
@@ -484,6 +513,10 @@ def _test(
                 env = {
                     "VAR1": xcschemes.env_value("value 1"),
                     "VAR 2": xcschemes.env_value("value2", enabled = False),
+                    "OS_ACTIVITY_MODE": [
+                        xcschemes.env_value("disable"),
+                        xcschemes.env_value("info", enabled = False),
+                    ],
                 },
             )
             ```

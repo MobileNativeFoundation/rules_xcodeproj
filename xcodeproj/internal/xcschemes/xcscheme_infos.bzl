@@ -325,7 +325,10 @@ def _env_infos_from_dict(env):
     if env == "inherit":
         return None
     return {
-        key: _env_info_from_dict(value)
+        key: [
+            _env_info_from_dict(env_value)
+            for env_value in (value if type(value) == "list" else [value])
+        ]
         for key, value in env.items()
     }
 
