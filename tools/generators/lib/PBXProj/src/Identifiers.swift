@@ -351,9 +351,17 @@ FF0000000000000000000008 /* rules_xcodeproj */
 
     public enum Project {
         public static let id = #"FF0000000000000000000001 /* Project object */"#
-        public static let buildConfigurationList = #"""
-FF0000000000000000000002 /* Build configuration list for PBXProject */
+        /// The identifier of the `PBXProject`'s `XCConfigurationList`.
+        ///
+        /// Xcode comments it with the project's name (e.g.
+        /// `Build configuration list for PBXProject "Foo"`).
+        public static func buildConfigurationList(
+            projectName: String
+        ) -> String {
+            return #"""
+FF0000000000000000000002 /* Build configuration list for PBXProject "\#(projectName)" */
 """#
+        }
 
         /// Calculates the identifier for one of the `PBXProject`
         /// `XCBBuildConfiguration`s.
