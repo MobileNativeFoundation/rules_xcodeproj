@@ -9,7 +9,7 @@ extension Generator {
         developmentRegion: String,
         organizationName: String?,
         projectDir: String,
-        projectName: String?,
+        projectName: String,
         workspace: String,
         xcodeConfigurations: [String]
     ) -> String {

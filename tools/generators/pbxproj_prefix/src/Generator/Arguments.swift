@@ -83,7 +83,7 @@ Populates the `ORGANIZATIONNAME` attribute for the project.
 Name of the project (the `.xcodeproj` basename without its extension). Used \
 in object comments, to match how Xcode writes them.
 """)
-        var projectName: String?
+        var projectName: String
 
         @Option(
             parsing: .upToNextOption,
