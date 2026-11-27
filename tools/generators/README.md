@@ -38,9 +38,10 @@ information.
   - All of the `PBXProject` related objects:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
-  - The start of the `PBXProject` element
-  - Contains all `PBXProject` properties except for
-    `attributes.TargetAttributes`, `targets`, and `knownRegions`
+  - The `PBXProject` element, in the order Xcode writes it
+    - The `attributes.TargetAttributes`, `knownRegions`, and `targets`
+      properties are read from the partials created by
+      `pbxtargetdependencies` and `files_and_groups`
 - [`pbxtargetdependencies`](pbxtargetdependencies/README.md):
   - Creates four+ files:
     - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` objects

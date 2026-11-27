@@ -1,8 +1,13 @@
 # `PBXProj` prefix partial generator
 
 The `pbxproj_prefix` generator creates a `PBXProj` partial containing the
-start of the `PBXProj` element, `PBXProject` related objects, and _part of_ the
-start of the `PBXProject` element.
+start of the `PBXProj` element, `PBXProject` related objects, and the
+`PBXProject` element. The `PBXProject.attributes.TargetAttributes`,
+`PBXProject.knownRegions`, and `PBXProject.targets` properties are read from
+the partials created by the
+[`pbxtargetdependencies`](../pbxtargetdependencies/README.md) and
+[`files_and_groups`](../files_and_groups/README.md) generators, and are
+inserted where Xcode writes them.
 
 ## Inputs
 
@@ -18,6 +23,9 @@ The generator accepts the following command-line arguments (see
 - Positional `index-import`
 - Positional `separate-index-build-output-base`
 - Positional `resolved-repositories-file`
+- Positional `target-attributes-file`
+- Positional `known-regions-file`
+- Positional `targets-file`
 - Positional `minimum-xcode-version`
 - Positional `default-xcode-configuration`
 - Positional `development-region`
@@ -40,6 +48,9 @@ $ pbxproj_prefix \
     bazel-out/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import \
     1 \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/resolved_repositories \
+    bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/pbxproject_target_attributes \
+    bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/pbxproject_known_regions \
+    bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/pbxproject_targets \
     14.0 \
     Release \
     enGB \
@@ -325,17 +336,32 @@ Here is an example output:
 		};
 		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
-			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = enGB;
-			hasScannedForEncodings = 0;
-			mainGroup = FF0000000000000000000003 /* /tmp/workspace */;
-			productRefGroup = FF0000000000000000000004 /* Products */;
-			projectDirPath = /tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main;
-			projectRoot = "";
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
 				ORGANIZATIONNAME = MobileNativeFoundation;
+				TargetAttributes = {
+					FF0100000000000000000001 /* BazelDependencies */ = {
+						CreatedOnToolsVersion = 14.0.0;
+						LastSwiftMigration = 9999;
+					};
+				};
+			};
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = enGB;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				enGB,
+				Base,
+			);
+			mainGroup = FF0000000000000000000003 /* /tmp/workspace */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
+			projectDirPath = /tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main;
+			projectRoot = "";
+			targets = (
+				FF0100000000000000000001 /* BazelDependencies */,
+			);
+		};
 ```

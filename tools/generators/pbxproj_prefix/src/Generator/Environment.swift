@@ -48,8 +48,11 @@ extension Generator {
             _ compatibilityVersion: String,
             _ defaultXcodeConfiguration: String,
             _ developmentRegion: String,
+            _ knownRegions: String,
             _ organizationName: String?,
             _ projectDir: String,
+            _ targetAttributes: String,
+            _ targets: String,
             _ workspace: String,
             _ xcodeConfigurations: [String]
         ) -> String
@@ -63,6 +66,8 @@ extension Generator {
         let projectDir: (_ executionRoot: String) -> String
 
         let readExecutionRootFile: (_ url: URL) throws -> String
+
+        let readPBXProjectPartial: (_ url: URL) throws -> String
 
         let readResolvedRepositoriesFile: (_ url: URL) throws -> String
 
@@ -87,6 +92,7 @@ extension Generator.Environment {
         pbxProjPrefixPartial: Generator.pbxProjPrefixPartial,
         projectDir: Generator.projectDir,
         readExecutionRootFile: Generator.readExecutionRootFile,
+        readPBXProjectPartial: Generator.readPBXProjectPartial,
         readResolvedRepositoriesFile: Generator.readResolvedRepositoriesFile,
         readPrePostBuildScript: Generator.readPrePostBuildScript,
         runScriptBuildPhase: Generator.runScriptBuildPhase,
